@@ -1,0 +1,31 @@
+<md-dialog aria-label="Participants for ">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Participants for</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <div class="table-responsive-vertical md-whiteframe-z1">
+        <table id="table" class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Year</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="participant in vm.tableData track by $index">
+                    <td data-title="ID">{{$index + 1}}</td>
+                    <td data-title="Issue">{{paticpant.name}}</td>
+                    <td data-title="Status">{{paticpant.year}}</td>
+                    <td data-title="Progress">{{paticpant.phone}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</md-dialog>

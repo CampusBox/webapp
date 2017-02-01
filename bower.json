@@ -1,0 +1,29 @@
+{
+  "name": "angular-material-dashboard",
+  "description": "Material Design Angular Admin Dashboard",
+  "homepage": "https://github.com/micrum/angular-material-admin",
+  "license": "MIT",
+  "version": "1.3.0",
+  "dependencies": {
+    "jquery": "~3.1.1",
+    "angular-animate": "^1.5.0",
+    "angular-cookies": "^1.5.0",
+    "angular-touch": "^1.5.0",
+    "angular-sanitize": "^1.5.0",
+    "angular-ui-router": "^0.4.2",
+    "angular": "1.6.1",
+    "angular-nvd3": "1.0.9",
+    "angular-material": "^1.1.3",
+    "angular-mocks": "^1.5.0",
+    "ng-file-upload": "^12.2.13",
+    "moment": "^2.17.1",
+    "mdPickers": "^0.7.5",
+    "angular-medium-editor": "^1.2.1"
+  },
+  "devDependencies": {},
+  "resolutions": {
+    "angular": "1.6.1",
+    "angular-material": "^1.1.3",
+    "moment": "^2.17.1"
+  }
+}

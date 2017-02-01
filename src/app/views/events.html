@@ -1,0 +1,48 @@
+<!-- TODO: Replace table to table component when https://github.com/angular/material/issues/796 will closed -->
+<div layout="horizontal"  ng-disabled="!vm.activated" layout-sm="column" layout-align="space-around">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</div>
+<md-whiteframe class="md-whiteframe-z1" layout layout-align="center center">
+  <md-button class="md-primary md-raised" ng-click="showAdvanced($event)">
+      Custom Dialog
+    </md-button>
+</md-whiteframe>
+<div flex layout="row" layout-align="center start" layout-wrap>
+    <md-card flex="30" ng-repeat="event in vm.tableData | filter:category | filter:search">
+        <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}}" class="md-card-image" alt="Washed Out">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{event.name}}</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <p>
+                {{event.description}}
+            </p>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+            <md-button class="md-icon-button" aria-label="Favorite">
+            <md-icon md-svg-icon="heart-outline"></md-icon>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="Settings" ng-click="showPrerenderedDialog($event)">
+            <md-icon md-svg-icon="menu"></md-icon>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="Share">
+                <md-icon md-svg-icon="share"></md-icon>
+            </md-button>
+        </md-card-actions>
+    </md-card>
+    <div style="visibility: hidden">
+        <div class="md-dialog-container" id="myDialog">
+            <md-dialog layout-padding>
+                <h2>Pre-Rendered Dialog</h2>
+                <p>
+                    This is a pre-rendered dialog, which means that <code>$mdDialog</code> doesn't compile its template on each opening.
+                    <br/>
+                    <br/> The Dialog Element is a static element in the DOM, which is just visually hidden.
+                    <br/> Once the dialog opens, we just fetch the element from the DOM into our dialog and upon close we restore the element back into its old DOM position.
+                </p>
+            </md-dialog>
+        </div>
+    </div>
+</div>

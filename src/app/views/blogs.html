@@ -1,0 +1,27 @@
+<!-- TODO: Replace table to table component when https://github.com/angular/material/issues/796 will closed -->
+<md-toolbar class="md-theme-light">
+    <div class="md-toolbar-tools">
+        <h2 class="md-toolbar-tools">
+      <span>Blog posts</span>
+    </h2>
+        <md-button aria-label="Favorite" g-click="showAdvanced($event)">
+            <ng-md-icon icon="search"></ng-md-icon>
+            Add Event
+        </md-button>
+    </div>
+</md-toolbar>
+<md-content layout-padding layout-wrap>
+    
+    <md-list flex>
+            <md-list-item class="md-3-line" ng-repeat="blog in vm.tableData" ng-click="null">
+                <img ng-src="assets/images/feynman.jpg " class="md-avatar" alt="{{item.who}}" />
+                <div class="md-list-item-text" layout="column">
+                    <h3 md-colors="{color:'teal'}">{{blog.name}}</h3>
+                    <h4>Richard Feynman</h4>
+                    <p>{{blog.content | limitTo : 240}}...</p>
+                </div>
+                            <md-divider md-inset ng-if="!$last"></md-divider>
+
+            </md-list-item>
+    </md-list>
+</md-content>
