@@ -1,0 +1,19 @@
+<md-content layout-padding layout-wrap>
+    <md-list-item class="md-2-line">
+        <img ng-src="assets/images/lakshit.jpg" class="md-avatar" alt="{{todos[0].who}}" />
+        <div class="md-list-item-text">
+            <h3>Lakshit Anand</h3>
+            <p>Draft</p>
+        </div>
+    </md-list-item>
+    <div layout="row" >
+    <div flex="10">
+        
+    </div>
+        <div flex="90" layout="column">
+            <p class="md-display-3" style="outline: none;" ng-model="title" medium-editor data-placeholder="Title"></p>
+            <p class="md-title" style="outline: none;font-family: serif;" ng-model="body" medium-editor data-placeholder="Tell your story..."></p>
+        </div>
+    </div>
+</md-content>
+<md-button style="float: right; background-color: #039BE5; color: #FFFFFF">Publish</md-button>
