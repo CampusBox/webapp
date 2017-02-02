@@ -124,7 +124,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
 
     $urlRouterProvider.otherwise('/dashboard');
     socialProvider.setGoogleKey("702228530885-vi264d7g6v5ivbcmebjfpomr0hmliomd.apps.googleusercontent.com");
-    socialProvider.setLinkedInKey("YOUR LINKEDIN CLIENT ID");
+    socialProvider.setLinkedInKey("81qzttym8fci2t");
     socialProvider.setFbKey({ appId: "1250377088376164", apiVersion: "v2.8" });
 
     $mdIconProvider

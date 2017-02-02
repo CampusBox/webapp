@@ -1,17 +1,17 @@
 <div layout="column" layout-align="center center" layout-fill="layout-fill">
+    <img ng-src="assets/images/logo.png" style="max-width:200px">
+    <p class="md-display-1" style="font-weight: 300">Sign In to CampusBox</p>
     <div class="loginBox md-whiteframe-z1" layout="column">
-        <md-toolbar>
-            <h2 class="md-toolbar-tools"><span>Login</span></h2>
-        </md-toolbar>
+        
         <md-content class="md-padding" layout="column">
             <div flex layout="row"  layout-align="center center" >
-                <md-button linked-in md-colors="{background: 'indigo'}" class="md-raised md-primary">
+                <md-button fb-login md-colors="{background: 'indigo'}" class="md-raised md-primary">
                     <md-icon md-svg-icon="facebook"></md-icon>
                 </md-button>
-                <md-button g-login md-colors="{background: 'pink'}" class="md-raised md-primary">
-                    <md-icon md-svg-icon="google"></md-icon>
+                <md-button g-login md-colors="{background: 'red'}" class="md-raised md-primary">
+                    <md-icon md-svg-icon="google"></md-icon>+
                 </md-button>
-                <md-button fb-login md-colors="{background: 'blue'}" class="md-raised md-primary">
+                <md-button linked-in md-colors="{background: 'blue'}" class="md-raised md-primary">
                     <md-icon md-svg-icon="linkedin"></md-icon>
                 </md-button>
             </div>
@@ -31,7 +31,7 @@
             <div layout="row" layout-align="center center" style="padding-top:20px">
                 <div flex="flex"></div>
             </div>
-            <md-button class="md-raised md-primary">Login</md-button>
+            <md-button ui-sref="home.profile" class="md-raised md-primary">Login</md-button>
         </md-content>
     </div>
 </div>
