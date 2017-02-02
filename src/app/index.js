@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload',
-    'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app','angular-medium-editor'
+    'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor'
 ])
 
 .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider,
@@ -55,6 +55,15 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
             controllerAs: 'vm',
             data: {
                 title: 'My Blogs'
+            }
+        })
+        .state('home.addBlog', {
+            url: '/addBlog',
+            templateUrl: 'app/views/addBlog.html',
+            controller: 'AddBlogController',
+            controllerAs: 'vm',
+            data: {
+                title: 'Add a Post'
             }
         })
         .state('home.societies', {

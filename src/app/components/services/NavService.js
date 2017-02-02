@@ -38,11 +38,6 @@
         name: 'Profile',
         icon: 'account',
         sref: '.profile'
-      },
-      {
-        name: 'Table',
-        icon: 'table',
-        sref: '.table'
       }
     ];
 
