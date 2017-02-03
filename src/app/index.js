@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload',
-    'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin'
+    'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage'
 ])
 
 .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider,
@@ -25,6 +25,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
 
     .state('static.login', {
         url: '/login',
+        controller: 'LoginController',
         templateUrl: 'app/views/static/login.html',
         data: {
             title: 'Dashboard'
@@ -122,7 +123,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
             }
         });
 
-    $urlRouterProvider.otherwise('/dashboard');
+    // $urlRouterProvider.otherwise('/dashboard');
     socialProvider.setGoogleKey("702228530885-vi264d7g6v5ivbcmebjfpomr0hmliomd.apps.googleusercontent.com");
     socialProvider.setLinkedInKey("81qzttym8fci2t");
     socialProvider.setFbKey({ appId: "1250377088376164", apiVersion: "v2.8" });
@@ -148,4 +149,53 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
         .primaryPalette('light-blue');
 
 
-});
+})
+
+.run(["$rootScope", "$state", "$location", "$stateParams", "$timeout", "$localStorage", function($rootScope, $state, $location, $stateParams, $timeout, $localStorage) {
+    $rootScope.$on("$stateChangeStart", function(event, next) {
+        console.log($location.path());
+
+        if (!$localStorage.authenticated && $location.path() != '/login') {
+            console.log('not');
+            // e.preventDefault();
+            event.preventDefault();
+            $state.go('static.login', next, { location: 'replace' })
+
+            // $state.go('login');
+            //     // $location.path('/newValue')
+
+        } else if ($localStorage.authenticated && $location.path() == '/login') {
+            //  toastr.success('Welcome!');
+            $rootScope.authenticated = true;
+            $rootScope.roll = $localStorage.roll;
+            $rootScope.name = $localStorage.name;
+            $rootScope.gender = $localStorage.gender;
+            $rootScope.hostel = $localStorage.hostel;
+            $rootScope.batch_code = $localStorage.batch_code;
+            $rootScope.branch = $localStorage.branch;
+            $rootScope.year = $localStorage.year;
+            $rootScope.room = $localStorage.room;
+            $rootScope.url = $localStorage.url;
+
+            console.log('yes');
+            event.preventDefault();
+            $state.go('home.profile')
+                // $state.go('login');
+    return;
+
+        } else {
+
+            $rootScope.authenticated = true;
+            $rootScope.roll = $localStorage.roll;
+            $rootScope.name = $localStorage.name;
+            $rootScope.gender = $localStorage.gender;
+            $rootScope.hostel = $localStorage.hostel;
+            $rootScope.batch_code = $localStorage.batch_code;
+            $rootScope.branch = $localStorage.branch;
+            $rootScope.year = $localStorage.year;
+            $rootScope.room = $localStorage.room;
+            $rootScope.url = $localStorage.url;
+
+        }
+    });
+}]);
