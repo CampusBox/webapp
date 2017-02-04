@@ -1,12 +1,14 @@
 <div layout="horizontal">
-    <md-card flex="20">
-        <img ng-src="assets/images/lakshit.jpg" class="md-card-image" alt="Washed Out">
-        <md-card-title>
-            <md-card-title-text>
-                <span class="md-headline">Lakshit Anand</span>
-                <span class="md-subhead">Thapar university</span>
-            </md-card-title-text>
-        </md-card-title>
+    <md-card flex="30">
+        <center>
+            <img style="border-radius: 50%; width: 40%; margin-top:20px;" ng-src="assets/images/lakshit.jpg" class="md-card-image" alt="Washed Out">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Lakshit Anand</span>
+                    <span class="md-subhead">Thapar university</span>
+                </md-card-title-text>
+            </md-card-title>
+        </center>
         <md-card-content>
             <p class="md-body-2">
                 Web Developer, wants to create meaningful projects to positively impact the world.
@@ -35,19 +37,18 @@
                     <md-icon md-svg-icon="twitter"></md-icon>
                     <p>Twitter</p>
                 </md-list-item>
-<md-list-item ng-click="navigateTo('data usage', $event)">
+                <md-list-item ng-click="navigateTo('data usage', $event)">
                     <md-icon md-svg-icon="youtube-play"></md-icon>
                     <p>Youtube</p>
                 </md-list-item>
-<md-list-item ng-click="navigateTo('data usage', $event)">
+                <md-list-item ng-click="navigateTo('data usage', $event)">
                     <md-icon md-svg-icon="github-circle"></md-icon>
                     <p>Github</p>
                 </md-list-item>
-<md-list-item ng-click="navigateTo('data usage', $event)">
+                <md-list-item ng-click="navigateTo('data usage', $event)">
                     <md-icon md-svg-icon="facebook"></md-icon>
                     <p>Facebook</p>
                 </md-list-item>
-                
                 <md-icon md-svg-icon="{{item.icon}}"></md-icon>
             </md-list>
         </md-card-content>
@@ -56,12 +57,15 @@
             <md-button>Action 2</md-button>
         </md-card-actions>
     </md-card>
-    <md-card flex="80">
+    <md-card flex="70">
         <md-card-content>
             <md-content>
                 <md-tabs md-dynamic-height md-border-bottom>
-                    <md-tab label="About">
+                    <md-tab label="Events Attended">
                         <md-content class="md-padding">
+                        <center>
+                            
+                        </center>
                             <h1 class="md-display-2">About</h1>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
                         </md-content>

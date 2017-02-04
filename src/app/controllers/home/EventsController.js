@@ -88,7 +88,40 @@
                 $mdDialog.hide(answer);
             };
         }
-        vm.tableData = [];
+        vm.tableData =[{
+            "id": -1,
+            "name": " ",
+            "description": " ",
+            "venue": " ",
+            "date": " ",
+            "time": " ",
+            "cost": " ",
+            "societyid": 1,
+            "short_description": null,
+            "image": "grey.png"
+        }, {
+            "id": -1,
+            "name": " ",
+            "description": " ",
+            "venue": " ",
+            "date": " ",
+            "time": " ",
+            "cost": " ",
+            "societyid": 1,
+            "short_description": null,
+            "image": "grey.png"
+        }, {
+            "id": -1,
+            "name": " ",
+            "description": " ",
+            "venue": " ",
+            "date": " ",
+            "time": " ",
+            "cost": " ",
+            "societyid": 1,
+            "short_description": null,
+            "image": "grey.png"
+        }];;
         vm.activated = true;
         allDataService.get("events/Cultural")
             .then(function(tableData) {

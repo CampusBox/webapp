@@ -3,11 +3,10 @@
         <md-button layout="row" layout-align="center center" class="md-toolbar-tools" href="https://github.com/flatlogic/angular-material-dashboard">
             <h1>
                 <md-icon md-svg-icon="school"></md-icon>
-                
             </h1>
         </md-button>
     </md-toolbar>
-    <md-button ng-repeat-start="item in vm.menuItems" layout="column" layout-align="center center" flex class="capitalize" ng-click="vm.selectItem(item)" ui-sref-active="md-warn" ui-sref="{{item.sref}}">
+    <md-button ng-repeat="item in vm.menuItems" layout="column" layout-align="center center" flex class="capitalize" ng-click="vm.selectItem(item)" ui-sref-active="md-warn" ui-sref="{{item.sref}}">
         <div hide-sm hide-md class="md-tile-content">
             <md-icon md-svg-icon="{{item.icon}}"></md-icon>
         </div>
@@ -15,7 +14,6 @@
             {{item.name}}
         </div>
     </md-button>
-    <md-divider ng-repeat-end></md-divider>
     <md-button ng-click="vm.showActions($event)" layout-align="center center">
         <div class="md-tile-content">
             Actions
@@ -23,27 +21,26 @@
     </md-button>
 </md-sidenav>
 <div layout="column" flex>
-   
-    <md-toolbar layout="row" layout-align="center center" ng-show="!showSearch" angular.element( '.searchbar').trigger( 'focus');>
+    <md-toolbar layout="row" md-theme="yellow" layout-align="center center" style="background:  rgb(236, 236, 236);">
         <section layout-align="start center" layout-fill flex>
             <md-button hide-gt-sm ng-click="vm.toggleItemsList()" aria-label="Menu">
                 <md-icon md-svg-icon="menu"></md-icon>
             </md-button>
         </section>
         <section layout-align="end center">
-            <input ng-model="search.who" class="searchbar" placeholder="enter search" autofocus="">
-            <md-button class="toolbar-button" aria-label="Search" ng-click="vm.toggleRightSidebar()">
-                <md-icon md-svg-icon="magnify"></md-icon>
-            </md-button>
-            <md-button class="toolbar-button " aria-label="Notifications " ng-click="vm.toggleRightSidebar() ">
-                <md-icon md-svg-icon="bell "></md-icon>
+            <!-- <md-input-container>
+                <input ng-model="user.email" type="Search here...">
+                <md-icon md-svg-icon="magnify" style="display:inline-block;"></md-icon>
+            </md-input-container> -->
+            <md-button  class="toolbar-button " aria-label="Notifications " ng-click="vm.toggleRightSidebar() ">
+                <md-icon md-colors="{color: 'light-blue'}" md-svg-icon="bell "></md-icon>
                 <span class="notifications-label ">7</span>
             </md-button>
         </section>
         <section class="md-warn " layout="row " layout-align="center center ">
-            <img class="img-circle " ng-src="assets/images/feynman.jpg ">
             <md-menu>
                 <md-button class="capitalize " ng-click="$mdOpenMenu() " aria-label="Open menu ">
+                    <!-- <img class="img-circle " ng-src="assets/images/feynman.jpg "> -->
                     <span>Richard</span>
                     <md-icon md-svg-icon="chevron-down "></md-icon>
                 </md-button>
@@ -81,10 +78,10 @@
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
-                        <md-button ng-click="logout();$mdCloseMenu(); " >
+                        <md-button ng-click="logout();$mdCloseMenu(); ">
                             <div layout="row " flex=" " class="ng-scope layout-row flex ">
                                 <p flex=" " ">Sign Out</p>
-                                <md-icon md-svg-icon="logout-variant"></md-icon>
+                                <md-icon md-svg-icon="logout-variant "></md-icon>
                             </div>
                         </md-button>
                     </md-menu-item>
@@ -94,86 +91,25 @@
     </md-toolbar>
     <md-content flex class="md-padding page-content ">
         <div ui-view>
+        
         </div>
     </md-content>
-</div>
-<md-sidenav md-component-id="right" class="md-sidenav-right">
-    <md-toolbar>
-        <md-toolbar class="md-warn " layout="row " layout-align="center center ">
-            <img class="img-circle " ng-src="assets/images/feynman.jpg ">
-            <md-menu>
-                <md-button class="capitalize " ng-click="$mdOpenMenu() " aria-label="Open menu ">
-                    <span>Richard</span>
-                    <md-icon md-svg-icon="chevron-down "></md-icon>
-                </md-button>
-                <md-menu-content width="4">
-                    <md-menu-item>
-                        <md-button ng-click="$mdCloseMenu() " ui-sref="home.myEvents ">
-                            <div layout="row " flex=" " class="ng-scope layout-row flex ">
-                                <p flex=" " class="flex ">My Events</p>
-                                <md-icon md-svg-icon="calendar"></md-icon>
-                            </div>
-                        </md-button>
-                    </md-menu-item>
-                    <md-menu-item>
-                        <md-button ng-click="$mdCloseMenu() " ui-sref="home.myBlogs ">
-                            <div layout="row " flex=" " class="ng-scope layout-row flex ">
-                                <p flex=" " class="flex ">My Blogs</p>
-                                <md-icon md-svg-icon="comment-text-outline"></md-icon>
-                            </div>
-                        </md-button>
-                    </md-menu-item>
-                    <md-menu-item>
-                        <md-button ng-click="$mdCloseMenu() " ui-sref="home.profile ">
-                            <div layout="row " flex=" " class="ng-scope layout-row flex ">
-                                <p flex=" " class="flex ">Items Uploads</p>
-                                <md-icon md-svg-icon="tag"></md-icon>
-                            </div>
-                        </md-button>
-                    </md-menu-item>
-                    <md-menu-item>
-                        <md-button ng-click="$mdCloseMenu() " ui-sref="home.profile ">
-                            <div layout="row " flex=" " class="ng-scope layout-row flex ">
-                                <p flex=" " class="flex ">Profile</p>
-                                <md-icon md-svg-icon="account "></md-icon>
-                            </div>
-                        </md-button>
-                    </md-menu-item>
-                    <md-menu-item>
-                        <md-button ng-click="$mdCloseMenu() " ui-sref="static.login">
-                            <div layout="row " flex=" " class="ng-scope layout-row flex ">
-                                <p flex=" " ">Sign Out</p>
-                                <md-icon md-svg-icon="logout-variant"></md-icon>
-                            </div>
-                        </md-button>
-                    </md-menu-item>
-                </md-menu-content>
-            </md-menu>
-    </md-toolbar>
-    </md-toolbar>
+<md-sidenav md-component-id="right" class="md-sidenav-right " style="width: 500px !important;max-width: 500px !important ">
+    
     <section>
-        <md-tabs  md-stretch-tabs="always" selected="{{selectedTab}}" md-dynamic-height md-border-bottom="" md-selected="selectedIndex">
-            <md-tab label="Search">
-                <md-content class="md-padding">
-                <md-autocomplete
-                  md-no-cache="ctrl.noCache"
-                  md-selected-item="ctrl.selectedItem"
-                  md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
-                  md-search-text="ctrl.searchText"
-                  md-selected-item-change="ctrl.selectedItemChange(item)"
-                  md-items="item in ctrl.querySearch(ctrl.searchText)"
-                  md-item-text="item.display"
-                  md-min-length="0"
-                  placeholder="US State?">
+        <md-tabs md-stretch-tabs="always " selected="{{selectedTab}} " md-dynamic-height md-border-bottom=" " md-selected="selectedIndex ">
+            <md-tab label="Search ">
+                <md-content class="md-padding ">
+                    <div ng-include src=" 'app/views/partials/searchSidebar.html' ">
                 </md-content>
             </md-tab>
-            <md-tab label="Notifications">
-                <md-content class="md-padding">
-                    
+            <md-tab label="Notifications ">
+                <md-content class="md-padding ">
                     <div ng-include src=" 'app/views/partials/messages.html' ">
                     </div>
                 </md-content>
             </md-tab>
         </md-tabs>
     </section>
-    </md-sidenav>
+</md-sidenav>
+</div>

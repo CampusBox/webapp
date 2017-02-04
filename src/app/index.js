@@ -151,51 +151,25 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
 
 })
 
-.run(["$rootScope", "$state", "$location", "$stateParams", "$timeout", "$localStorage", function($rootScope, $state, $location, $stateParams, $timeout, $localStorage) {
-    $rootScope.$on("$stateChangeStart", function(event, next) {
-        console.log($location.path());
+// .run(["$rootScope", "$state", "$location", "$stateParams", "$timeout", "$localStorage", function($rootScope, $state, $location, $stateParams, $timeout, $localStorage) {
+//     $rootScope.$on("$stateChangeStart", function(event, next) {
+//         console.log($location.path());
+//         console.log($localStorage.authenticated);
+//             console.log($state.current.name);
 
-        if (!$localStorage.authenticated && $location.path() != '/login') {
-            console.log('not');
-            // e.preventDefault();
-            event.preventDefault();
-            $state.go('static.login', next, { location: 'replace' })
+//         if ($localStorage.authenticated != true && $location.path() != '/login') {
+//             console.log('Not logged in.');
+          
+//             $state.go('static.login');
 
-            // $state.go('login');
-            //     // $location.path('/newValue')
+//         } else if ($localStorage.authenticated == true && $state.current.name == 'static.login') {
+//             console.log('Already logged in.');
+//             event.preventDefault();
+//             $state.go('home.profile')
+//             return;
 
-        } else if ($localStorage.authenticated && $location.path() == '/login') {
-            //  toastr.success('Welcome!');
-            $rootScope.authenticated = true;
-            $rootScope.roll = $localStorage.roll;
-            $rootScope.name = $localStorage.name;
-            $rootScope.gender = $localStorage.gender;
-            $rootScope.hostel = $localStorage.hostel;
-            $rootScope.batch_code = $localStorage.batch_code;
-            $rootScope.branch = $localStorage.branch;
-            $rootScope.year = $localStorage.year;
-            $rootScope.room = $localStorage.room;
-            $rootScope.url = $localStorage.url;
+//         } 
+//     });
+// }])
 
-            console.log('yes');
-            event.preventDefault();
-            $state.go('home.profile')
-                // $state.go('login');
-    return;
-
-        } else {
-
-            $rootScope.authenticated = true;
-            $rootScope.roll = $localStorage.roll;
-            $rootScope.name = $localStorage.name;
-            $rootScope.gender = $localStorage.gender;
-            $rootScope.hostel = $localStorage.hostel;
-            $rootScope.batch_code = $localStorage.batch_code;
-            $rootScope.branch = $localStorage.branch;
-            $rootScope.year = $localStorage.year;
-            $rootScope.room = $localStorage.room;
-            $rootScope.url = $localStorage.url;
-
-        }
-    });
-}]);
+;

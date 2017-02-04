@@ -47,7 +47,8 @@
                     // $rootScope.$loginData.method = 0; //brinjal own sign up
                     console.log($rootScope.$loginData);
                     event.preventDefault();
-                    $state.go('home.dashboard', { location: 'replace' })
+                    $state.go('home.dashboard');
+                    return;
                 } else {
                     $scope.showLoading = false;
                     alert('Nope, not your credentials!');

@@ -3,14 +3,19 @@
   angular
     .module('app')
     .controller('SearchController', [
-      '$timeout', '$q', 'countriesService',
+      '$timeout', '$q','allDataService',
       SearchController
     ]);
 
-  function SearchController($timeout, $q, countriesService) {
+  function SearchController($timeout, $q,allDataService ) {
     var vm = this;
 
-    vm.countries = countriesService.loadAll();
+    allDataService.get("events/Technical")
+      .then(function(tableData) {
+        vm.countries = [].concat(tableData.data)
+      });
+
+
     vm.selectedCountry = null;
     vm.searchText = null;
     vm.querySearch = querySearch;
