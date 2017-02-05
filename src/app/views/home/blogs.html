@@ -7,6 +7,41 @@
     </h2>
     <md-button ui-sref="home.addBlog" style="background-color: #039BE5; color: #FFFFFF; margin-right: 10px;">Add Blog</md-button>
 </div>
+<!-- rohan starts -->
+<md-card>
+    <md-card-header>
+        <md-card-avatar>
+            <img class="md-user-avatar" src="assets/images/feynman.jpg"  style="height: auto;width: 100%;" />
+        </md-card-avatar>
+        <md-card-header-text>
+            <span class="md-title">User</span>
+            <span class="md-subhead">subhead</span>
+        </md-card-header-text>
+    </md-card-header>
+    <img ng-src="https://lh6.ggpht.com/HlgucZ0ylJAfZgusynnUwxNIgIp5htNhShF559x3dRXiuy_UdP3UQVLYW6c" class="md-card-image" alt="Washed Out">
+    <md-card-title>
+        <md-card-title-text>
+            <span class="md-headline">In-card mixed actions</span>
+            <span class="md-subhead">Reversed</span>
+        </md-card-title-text>
+    </md-card-title>
+    
+    <md-card-content>
+        <p>
+            The titles of Washed Out's breakthrough song and the first single from Paracosm share the two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
+        </p>
+    </md-card-content>
+    <md-card-actions layout="row" layout-align="start center">
+        <md-button>Action 1</md-button>
+        <md-button>Action 2</md-button>
+        <md-card-icon-actions>
+            <md-button class="md-icon-button" aria-label="toggle">
+                <md-icon md-svg-icon="heart-outline"></md-icon>
+            </md-button>
+        </md-card-icon-actions>
+    </md-card-actions>
+</md-card>
+<!-- rohan ends like a bitch -->
 <md-card class="md-3-line" ng-repeat="blog in vm.tableData" ng-click="null">
     <md-card-header>
         <md-card-avatar>
