@@ -12,7 +12,21 @@
 
     function EventsController($mdDialog, $scope, allDataService,Upload) {
         var vm = this;
-
+$scope.showReport = function(ev) {
+            $mdDialog.show({
+                    controller: DialogController,
+                    templateUrl: 'app/views/partials/showReport.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: false,
+                    fullscreen: false // Only for -xs, -sm breakpoints.
+                })
+                .then(function(answer) {
+                    $scope.status = 'You said the information was "' + answer + '".';
+                }, function() {
+                    $scope.status = 'You cancelled the dialog.';
+                });
+        };
         $scope.showAdvanced = function(ev) {
             $mdDialog.show({
                     controller: DialogController,

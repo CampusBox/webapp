@@ -1,0 +1,30 @@
+<md-dialog aria-label="Mango (Fruit)">
+    <form ng-cloak>
+        <md-toolbar >
+           <div class="md-toolbar-tools">
+                <h2>Report Event</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+            
+        </md-toolbar>
+        <!--Note: for scrollShrink to work, the toolbar must be a sibling of a md-content element, placed before it.-->
+        <md-content>
+            <md-radio-group ng-model="data.group1">
+                <md-radio-button value="Spam" class="md-primary">Spam</md-radio-button>
+                <md-radio-button value="Harrasment">Harrasment</md-radio-button>
+                <md-radio-button value="Copyright">Copyright Content</md-radio-button>
+                <md-radio-button value="Inappropriate">Inappropriate Content</md-radio-button>
+            </md-radio-group>
+        </md-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="answer('not useful')">
+                Cancel
+            </md-button>
+            <md-button class="md-raised md-primary" ng-click="nextTab()">Report</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

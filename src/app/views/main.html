@@ -21,7 +21,7 @@
     </md-button>
 </md-sidenav>
 <div layout="column" flex>
-    <md-toolbar layout="row" md-theme="yellow" layout-align="center center" style="background:  rgb(236, 236, 236);">
+    <div layout="row" md-theme="yellow" layout-align="center center" style="background:  rgb(236, 236, 236);">
         <section layout-align="start center" layout-fill flex>
             <md-button hide-gt-sm ng-click="vm.toggleItemsList()" aria-label="Menu">
                 <md-icon md-svg-icon="menu"></md-icon>
@@ -88,7 +88,7 @@
                 </md-menu-content>
             </md-menu>
         </section>
-    </md-toolbar>
+    </div>
     <md-content flex class="md-padding page-content ">
         <div ui-view>
         
