@@ -1,5 +1,5 @@
-<div layout="horizontal">
-    <md-card flex="30">
+<div layout="row" layout-xs="column"   >
+    <md-card flex="30" flex-xs="100">
         <center>
             <img style="border-radius: 50%; width: 40%; margin-top:20px;" ng-src="assets/images/lakshit.jpg" class="md-card-image" alt="Washed Out">
             <md-card-title>
@@ -29,7 +29,7 @@
                 Social Accounts
             </p>
             <md-list>
-                <md-list-item ng-click="navigateTo('data usage', $event)">
+                <md-list-item ng-click="showAdvanced()">
                     <md-icon md-svg-icon="facebook"></md-icon>
                     <p>Facebook</p>
                 </md-list-item>
@@ -57,7 +57,7 @@
             <md-button>Action 2</md-button>
         </md-card-actions>
     </md-card>
-    <md-card flex="70">
+    <md-card flex="70"  flex-xs="100">
         <md-card-content>
             <md-content>
                 <md-tabs md-dynamic-height md-border-bottom>

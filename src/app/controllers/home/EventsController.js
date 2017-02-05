@@ -10,9 +10,9 @@
             EventsController
         ]);
 
-    function EventsController($mdDialog, $scope, allDataService,Upload) {
+    function EventsController($mdDialog, $scope, allDataService, Upload) {
         var vm = this;
-$scope.showReport = function(ev) {
+        $scope.showReport = function(ev) {
             $mdDialog.show({
                     controller: DialogController,
                     templateUrl: 'app/views/partials/showReport.html',
@@ -57,7 +57,7 @@ $scope.showReport = function(ev) {
                     $scope.status = 'You cancelled the dialog.';
                 });
         };
-   $scope.addUpdate = function(ev) {
+        $scope.addUpdate = function(ev) {
             $mdDialog.show({
                     controller: DialogController,
                     templateUrl: 'app/views/partials/addUpdate.html',
@@ -89,7 +89,9 @@ $scope.showReport = function(ev) {
                 });
         };
 
+
         function DialogController($scope, $mdDialog) {
+            $scope.event = {};
             $scope.hide = function() {
                 $mdDialog.hide();
             };
@@ -101,8 +103,28 @@ $scope.showReport = function(ev) {
             $scope.answer = function(answer) {
                 $mdDialog.hide(answer);
             };
+
+            $scope.con = function(a) {
+                var selectDay = "day";
+                var selectTime = "time";
+                delete a[selectDay];
+                delete a[selectTime];
+                console.log(a);
+                allDataService.post('students/', a).then(function(result) {
+                    if (result.status != 'error') {
+                        // var x = angular.copy(coupon);
+                        // x.save = 'insert';
+                        // x.id = result.data;
+                        // $uibModalInstance.close(x);
+                        console.log(result.status);
+                    } else {
+                        console.log(result);
+                    }
+                });
+            }
+
         }
-        vm.tableData =[{
+        vm.tableData = [{
             "id": -1,
             "name": " ",
             "description": " ",

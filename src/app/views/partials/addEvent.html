@@ -1,11 +1,11 @@
-<md-dialog aria-label="Mango (Fruit)" style="min-width:500px">
+<md-dialog style="min-width:80%">
     <form ng-cloak>
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>Add New Event</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
-                    <md-icon md-svg-src="close" aria-label="Close dialog"></md-icon>
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
                 </md-button>
             </div>
         </md-toolbar>
@@ -13,131 +13,118 @@
             <md-tabs md-dynamic-height md-border-bottom="" md-selected="selectedIndex">
                 <md-tab label="Basic Details">
                     <md-content class="md-padding">
+                        <div layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Title</label>
+                                <input type="text" ng-model="vm.event.name">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Price</label>
+                                <input type="number" ng-model="vm.event.price">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Venue</label>
+                                <ng-md-icon icon="search"></ng-md-icon>
+                                <input type="text" ng-model="vm.event.venue">
+                            </md-input-container>
+                        </div>
                         <md-input-container class="md-block">
-                            <label>Title</label>
-                            <input type="text" ng-model="vm.event.title">
-                        </md-input-container>
-                        <md-input-container class="md-block">
-                            <label>Category</label>
-                            <md-select ng-model="vm.event.favouriteColor" placeholder="Favorite Color">
-                                <md-option ng-value="color" ng-repeat="color in ['red', 'green', 'blue']">{{color}}</md-option>
+                            <md-select ng-model="someModel" placeholder="Category">
+                                <md-select-header>
+                                    <span> Category </span>
+                                </md-select-header>
+                                <md-option ng-value="category" ng-repeat="category in ['cultural', 'technical']">{{ category }}</md-option>
                             </md-select>
                         </md-input-container>
                         <md-input-container class="md-block">
                             <label>Description</label>
-                            <textarea ng-model="vm.event.description"></textarea>
+                            <textarea ng-model="vm.event.description" md-maxlength="150" rows="4" md-select-on-focus></textarea>
                         </md-input-container>
                     </md-content>
                 </md-tab>
                 <md-tab label="Timings">
-                    <md-content class="md-padding">
-                        <div layout-gt-sm="row" flex layout-align="center center">
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <label>Number of Days</label>
-                                <md-select ng-model="vm.event.day" placeholder="Number of Days">
-                                    <md-option ng-value="day" ng-repeat="day in ['Single Day', 'Multiple Days']">{{day}}</md-option>
-                                </md-select>
-                            </md-input-container>
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <label>Timings of the event</label>
-                                <md-select ng-model="vm.event.time" placeholder="Timings of the event">
-                                    <md-option ng-value="time" ng-repeat="time in ['All day', 'Limited Timings']">{{time}}</md-option>
-                                </md-select>
-                            </md-input-container>
-                        </div>
-                        <label>Date</label>
-                        <div layout-gt-sm="row" flex layout="row" layout-align="center center">
-                            <md-input-container class="md-block" ng-show="vm.event.day=='Multiple Days' || vm.event.day=='Single Day'">
-                                <label>From</label>
-                                <md-datepicker ng-model="ctrl.myDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
-                            </md-input-container>
-                            <md-input-container class="md-block" ng-show="vm.event.day=='Multiple Days'">
-                                <label>To</label>
-                                <md-datepicker ng-model="ctrl.myDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
-                            </md-input-container>
-                        </div>
-                        <div layout-gt-sm="row" flex layout="row" layout-align="center center">
-                            <div layout-gt-sm="row" ng-show="vm.event.time=='Limited Timings'">
-                                <label>From time</label>
-                                <md-input-container class="md-block" flex-gt-sm layout-align="end center">
-                                    <label>Hours</label>
-                                    <md-select ng-model="vm.event.hours" placeholder="Hours">
-                                        <md-option ng-value="hour+1" ng-repeat="hour in [].constructor(12) track by $index">{{$index+1}}</md-option>
+                    <md-content>
+                        <div layout="row">
+                            <div layout="column" flex-gt-sm class="md-padding">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>Number of Days</label>
+                                    <md-select ng-model="vm.event.day" placeholder="Number of Days">
+                                        <md-option ng-value="day" ng-repeat="day in ['Single Day', 'Multiple Days']">{{day}}</md-option>
                                     </md-select>
                                 </md-input-container>
+                                <div layout-gt-sm="row" flex layout="row">
+                                    <md-input-container class="md-block" ng-show="vm.event.day=='Multiple Days' || vm.event.day=='Single Day'">
+                                        <label>From Date</label>
+                                        <md-datepicker ng-model="vm.event.dateFrom" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                                    </md-input-container>
+                                    <md-input-container class="md-block" ng-show="vm.event.day=='Multiple Days'">
+                                        <label>To Date</label>
+                                        <md-datepicker ng-model="vm.event.dateTo" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <span flex></span>
+                            <div layout="column" flex-gt-sm class="md-padding">
                                 <md-input-container class="md-block" flex-gt-sm>
-                                    <label>State</label>
-                                    <md-select ng-model="vm.event.minutes" placeholder="Minutes">
-                                        <md-option ng-value="min*15" ng-repeat="min in [].constructor(4) track by $index">{{$index*15}}</md-option>
+                                    <label>Timings of the event</label>
+                                    <md-select ng-model="vm.event.time">
+                                        <md-option ng-value="time" ng-repeat="time in ['All day', 'Limited Timings']">{{time}}</md-option>
                                     </md-select>
-                                </md-input-container>
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label>Time</label>
-                                    <md-select ng-model="vm.event.zone" placeholder="AM/PM">
-                                        <md-option ng-value="zone" ng-repeat="zone in ['AM', 'PM']">{{zone}}</md-option>
-                                    </md-select>
+                                    <div layout-gt-sm="row" ng-show="vm.event.time=='Limited Timings'">
+                                        <label>From time</label>
+                                        <md-input-container class="md-block" flex-gt-sm layout-align="end center">
+                                            <label>Hours</label>
+                                            <md-select ng-model="vm.event.fromHours" placeholder="Hours">
+                                                <md-option ng-value="$index+1" ng-repeat="hour in [].constructor(12) track by $index">{{$index+1}}</md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                        <md-input-container class="md-block" flex-gt-sm>
+                                            <label>Minutes</label>
+                                            <md-select ng-model="vm.event.fromMinutes" placeholder="Minutes">
+                                                <md-option ng-value="$index*15" ng-repeat="min in [].constructor(4) track by $index">{{$index*15}}</md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                        <md-input-container class="md-block" flex-gt-sm>
+                                            <label>Time</label>
+                                            <md-select ng-model="vm.event.fromAmPm" placeholder="AM/PM">
+                                                <md-option ng-value="zone" ng-repeat="zone in ['AM', 'PM']">{{zone}}</md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
+                                    <div layout-gt-sm="row" ng-show="vm.event.time=='Limited Timings'" layout-align="end ">
+                                        <label>To time</label>
+                                        <md-input-container class="md-block" flex-gt-sm layout-align="end center">
+                                            <label>Hours</label>
+                                            <md-select ng-model="vm.event.toHours" placeholder="Hours">
+                                                <md-option ng-value="$index+1" ng-repeat="hour in [].constructor(12) track by $index">{{$index+1}}</md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                        <md-input-container class="md-block" flex-gt-sm>
+                                            <label>Minutes</label>
+                                            <md-select ng-model="vm.event.toMinutes" placeholder="Minutes">
+                                                <md-option ng-value="{{$index*15}}" ng-repeat="min in [].constructor(4) track by $index">{{$index*15}}</md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                        <md-input-container class="md-block" flex-gt-sm>
+                                            <label>Time</label>
+                                            <md-select ng-model="vm.event.toAmPm" placeholder="AM/PM">
+                                                <md-option ng-value="zone" ng-repeat="zone in ['AM', 'PM']">{{zone}}</md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                    </div>
                                 </md-input-container>
                             </div>
-                            <div layout-gt-sm="row" ng-show="vm.event.time=='Limited Timings'">
-                                <label>From time</label>
-                                <md-input-container class="md-block" flex-gt-sm layout-align="end center">
-                                    <label>Hours</label>
-                                    <md-select ng-model="vm.event.hours" placeholder="Hours">
-                                        <md-option ng-value="hour+1" ng-repeat="hour in [].constructor(12) track by $index">{{$index+1}}</md-option>
-                                    </md-select>
-                                </md-input-container>
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label>State</label>
-                                    <md-select ng-model="vm.event.minutes" placeholder="Minutes">
-                                        <md-option ng-value="min*15" ng-repeat="min in [].constructor(4) track by $index">{{$index*15}}</md-option>
-                                    </md-select>
-                                </md-input-container>
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label>Time</label>
-                                    <md-select ng-model="vm.event.zone" placeholder="AM/PM">
-                                        <md-option ng-value="zone" ng-repeat="zone in ['AM', 'PM']">{{zone}}</md-option>
-                                    </md-select>
-                                </md-input-container>
-                            </div>
                         </div>
-                        <md-button class="md-raised md-primary" ng-click="nextTab()">Next</md-button>
-                    </md-content>
-                </md-tab>
-                <md-tab label="Venue">
-                    <md-content class="md-padding">
-                        <h1 class="md-display-2">Venue</h1>
-                        <md-input-container class="md-block">
-                            <label>Venue</label>
-                            <ng-md-icon icon="search"></ng-md-icon>
-                            <input type="text" ng-model="vm.event.venue">
-                        </md-input-container>
-                        <md-input-container class="md-block" flex-gt-sm>
-                            <label>State</label>
-                            <md-select ng-model="vm.event.minutes" placeholder="Minutes">
-                                <md-option ng-value="min*15" ng-repeat="min in [].constructor(4) track by $index">{{$index*15}}</md-option>
-                            </md-select>
-                        </md-input-container>
-                        <md-input-container class="md-block" flex-gt-sm>
-                            <label>Time</label>
-                            <md-select ng-model="vm.event.zone" placeholder="AM/PM">
-                                <md-option ng-value="zone" ng-repeat="zone in ['AM', 'PM']">{{zone}}</md-option>
-                            </md-select>
-                        </md-input-container>
-                        <md-button class="md-raised md-primary" ng-click="nextTab()">Next</md-button>
                     </md-content>
                 </md-tab>
             </md-tabs>
-            </div>
+            <md-dialog-actions layout="row">
+                <span flex></span>
+                <md-button ng-click="con(vm.event)">
+                    Create
+                </md-button>
+                <md-button class="md-raised md-primary" ng-if="selectedIndex == 0" ng-click="selectedIndex = selectedIndex + 1">Next</md-button>
+            </md-dialog-actions>
         </md-dialog-content>
-        <md-dialog-actions layout="row">
-            <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
-                Show more
-            </md-button>
-            <span flex></span>
-            <md-button ng-click="answer('not useful')">
-                Create
-            </md-button>
-            <md-button class="md-raised md-primary" ng-click="nextTab()">Next</md-button>
-        </md-dialog-actions>
     </form>
 </md-dialog>
