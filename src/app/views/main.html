@@ -39,10 +39,10 @@
         </section>
         <section class="md-warn " layout="row " layout-align="center center ">
             <md-menu>
-                <md-button class="capitalize " ng-click="$mdOpenMenu() " aria-label="Open menu ">
-                    <!-- <img class="img-circle " ng-src="assets/images/feynman.jpg "> -->
-                    <span>Richard</span>
-                    <md-icon md-svg-icon="chevron-down "></md-icon>
+                <md-button class="capitalize "  aria-label="Open menu ">
+                    <img class="img-circle " ng-click="$mdOpenMenu() " ng-src="{{user.url}}">
+<!--                     <span>Richard</span>
+ -->                    <md-icon md-svg-icon="chevron-down "></md-icon>
                 </md-button>
                 <md-menu-content width="5">
                     <md-menu-item>

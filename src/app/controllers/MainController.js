@@ -3,17 +3,18 @@
     angular
         .module('app')
         .controller('MainController', [
-            'navService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state', '$mdToast', '$scope','$localStorage',
+            'navService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state', '$mdToast', '$scope', '$localStorage',
             MainController
         ]);
 
-    function MainController(navService, $mdSidenav, $mdBottomSheet, $log, $q, $state, $mdToast, $scope,$localStorage) {
+    function MainController(navService, $mdSidenav, $mdBottomSheet, $log, $q, $state, $mdToast, $scope, $localStorage) {
         var vm = this;
         $scope.logout = function(newState) {
             $localStorage.authenticated = false;
-         event.preventDefault();
-                    $state.go('static.login', { location: 'replace' })
+            event.preventDefault();
+            $state.go('static.login', { location: 'replace' })
         };
+        $scope.user =$localStorage.user;
         vm.menuItems = [];
         vm.selectItem = selectItem;
         vm.toggleItemsList = toggleItemsList;
