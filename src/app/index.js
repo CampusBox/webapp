@@ -32,6 +32,15 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
         }
     })
 
+    .state('static.signUp', {
+        url: '/signup',
+        controller: 'SignUpController',
+        templateUrl: 'app/views/static/signUp.html',
+        data: {
+            title: 'Dashboard'
+        }
+    })
+
     .state('home.dashboard', {
             url: '/dashboard',
             templateUrl: 'app/views/home/dashboard.html',
@@ -123,10 +132,10 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
             }
         });
 
-    // $urlRouterProvider.otherwise('/dashboard');
+    $urlRouterProvider.otherwise('/dashboard');
     socialProvider.setGoogleKey("702228530885-vi264d7g6v5ivbcmebjfpomr0hmliomd.apps.googleusercontent.com");
-    socialProvider.setLinkedInKey("81qzttym8fci2t");
-    socialProvider.setFbKey({ appId: "1250377088376164", apiVersion: "v2.8" });
+    socialProvider.setLinkedInKey("81l3qatlqe4l4p");
+    socialProvider.setFbKey({ appId: "1871706606399929", appSecret: "9fb3f4a3928e6e4e9dbdd2669a9ad185", apiVersion: "v2.8" });
 
     $mdIconProvider
         .defaultIconSet('assets/svg/mdi.svg');

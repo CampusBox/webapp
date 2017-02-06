@@ -3,14 +3,12 @@
   angular
        .module('app')
        .controller('StaticController', [
-          'navService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state', '$mdToast','$rootScope',
+          'navService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state', '$mdToast',
           StaticController
        ]);
 
-  function StaticController(navService, $mdSidenav, $mdBottomSheet, $log, $q, $state, $mdToast,$rootScope) {
-    $rootScope.$on('event:social-sign-in-success', function(event, userDetails){
-      console.log(userDetails);
-    })
+  function StaticController(navService, $mdSidenav, $mdBottomSheet, $log, $q, $state, $mdToast) {
+    
     var vm = this;
 
     vm.menuItems = [ ];
