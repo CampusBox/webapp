@@ -1,0 +1,29 @@
+<md-dialog style="min-width:85%;min-height:95%;overflow: visible;">
+   
+            <div flex layout="row">
+            <div flex="60" layout="column" layout-align="center center" style="background-color: #000">
+                
+                <img style="max-width: 100%;max-height: 100%" ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}}" class="md-card-image" alt="Event title " >
+            </div>
+                <div flex="40">
+                    <div layout-padding>
+                            <h4 class="md-headline">{{event.name}}<br><span class="md-subhead"> by Thapar Civil Society</span></h4>
+                            <span>{{event.date}} | 10:00am- 10:00pm</span>
+                            <br>
+                            <a><span> Tan Audi, Thapar University</span></a>
+                            <br>
+                            <span>2000</span>
+                        
+                        <p>
+                            The titles of Washed Out's breakthrough song and the first single from Paracosm share the two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
+                        </p>
+                            <md-button aria-label="bookmark"><md-icon md-svg-icon="bookmark-outline"></md-icon> Bookmark</md-button>
+                            <md-button aria-label="website"><md-icon md-svg-icon="link"></md-icon>Website</md-button>
+                    </div>
+                </div>
+            </div>
+<md-button aria-label="bookmark" style="background: #fff;position: fixed;left:-9%;top:47%;" id="left" ng-click="showEvent($event, index-1, 'left', 'right')"><md-icon md-svg-icon="chevron-left"><md-button>
+</md-dialog>
+<md-button aria-label="bookmark" style="background: #fff;position: absolute;right:0" id="right" ng-click="showEvent($event, index+1, 'right', 'left')"><md-icon md-svg-icon="chevron-right"><md-button>
+
+

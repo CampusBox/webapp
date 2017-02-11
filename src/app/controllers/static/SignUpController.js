@@ -3,31 +3,120 @@
     angular
         .module('app')
         .controller('SignUpController', [
-            '$scope', 'loginData', '$rootScope', '$localStorage', '$state', 'collegesListService',
+            '$scope', '$timeout', 'loginData', '$rootScope', '$localStorage', '$state', 'collegesListService', 'allDataService',
             SignUpController
         ]);
 
-    function SignUpController($scope, loginData, $rootScope, $localStorage, $state, collegesListService) {
+    function SignUpController($scope, $timeout, loginData, $rootScope, $localStorage, $state, collegesListService, allDataService) {
         var vm = this;
+        vm.tags = [];
+        $scope.items = [{ 'title': 'Drama', 'intrested': false },
+            { 'title': 'Writing', 'intrested': false },
+            { 'title': 'technology', 'intrested': false }
+        ];
+
+        $scope.selected = [];
+        $scope.interests = [];
+
+        $scope.toggle = function(item, list) {
+            var idx = list.indexOf(item);
+            if (idx > -1) {
+                list.splice(idx, 1);
+            } else {
+                list.push(item);
+                $scope.buttonClass = 'md-primary md-raised';
+            }
+            item.intrested = !item.intrested;
+            $scope.interests = list;
+        };
+        $scope.exists = function(item, list) {
+            return list.indexOf(item) > -1;
+        };
         $scope.currentState = 1;
         $scope.user = { college: "", roll: "" };
+
         $rootScope.$on('event:social-sign-in-success', function(event, userDetails) {
-            console.log(userDetails);
+            // console.log("Social sign in success")
+            // console.log(userDetails);
+            // console.log(event);
             $scope.user.name = userDetails.name;
             $scope.user.email = userDetails.email;
             $scope.user.gender = "";
             $scope.user.imageUrl = userDetails.imageUrl;
             $scope.user.provider = userDetails.provider;
-            console.log($scope.user);
-            $scope.$apply(function() {
+            // $scope.$apply(function() {
 
+            //     $scope.currentState = 2;
+            // })
+            $timeout(function() {
                 $scope.currentState = 2;
-            })
+                // $scope.someData = someData;
+            }, 0);
         })
 
+        $scope.finish
 
+        // skills chips end
+        // function DemoCtrl($timeout, $q) {
 
+        $scope.readonly = false;
+        $scope.selectedItem = null;
+        $scope.searchText = null;
+        $scope.querySearch = querySearch;
+        $scope.vegetables = loadVegetables();
+        $scope.selectedVegetables = [];
+        $scope.autocompleteDemoRequireMatch = false;
+        $scope.transformChip = transformChip;
 
+        /**
+         * Return the proper object when the append is called.
+         */
+        function transformChip(chip) {
+            // If it is an object, it's already a known chip
+            if (angular.isObject(chip)) {
+                return chip;
+            }
+
+            // Otherwise, create a new one
+            return { name: chip }
+        }
+
+        /**
+         * Search for vegetables.
+         */
+        function querySearch(query) {
+            var results = query ? $scope.vegetables.filter(createFilterFor(query)) : [];
+            return results;
+        }
+
+        /**
+         * Create filter function for a query string
+         */
+        function createFilterFor(query) {
+            var lowercaseQuery = angular.lowercase(query);
+
+            return function filterFn(vegetable) {
+                return (vegetable._lowername.indexOf(lowercaseQuery) === 0);
+            };
+
+        }
+
+        function loadVegetables() {
+            vm.veggies = [];
+            allDataService.get("events/Cultural")
+                .then(function(veggies) {
+                    vm.veggies = [].concat(veggies.data)
+                    vm.activated = false;
+                });
+
+            return vm.veggies.map(function(veg) {
+                veg._lowername = veg.name.toLowerCase();
+                return veg;
+            });
+        }
+        // }
+
+        // skills chips end
         var pendingSearch, cancelSearch = angular.noop;
         var lastSearch;
 
@@ -36,24 +125,24 @@
         vm.asyncContacts = [];
         vm.filterSelected = true;
 
-        vm.querySearch = querySearch;
-
-        /**
-         * Search for contacts; use a random delay to simulate a remote call
-         */
-        function querySearch(criteria) {
-            return criteria ? vm.allContacts.filter(createFilterFor(criteria)) : [];
-        }
-
         vm.colleges = [];
         collegesListService
             .loadAllItems()
             .then(function(colleges) {
                 vm.colleges = [].concat(colleges);
-                console.log(vm.colleges);
             });
-        $scope.doLogin = function(customer) {
+        $scope.doLogin = function(user) {
             console.log('attempt');
+            user.interests = $scope.interests;
+            user.skills = $scope.selectedVegetables;
+            console.log(user);
+            allDataService.post('students/', user).then(function(result) {
+                if (result.status != 'error') {
+                    console.log(result.status);
+                } else {
+                    console.log(result);
+                }
+            });
             $scope.showLoading = true;
             // $location.path('/dashboard');
             // function querySearch(query) {
@@ -100,8 +189,6 @@
                 }
             });
         };
-
-
     }
 
 })();

@@ -1,0 +1,91 @@
+<!-- <md-content> -->
+<md-list>
+    <md-list-item>
+        <!-- <md-card>
+            <md-card-header>
+                <md-card-avatar>
+                    <img class="md-user-avatar" src=".././assets/images/am.jpg" />
+                </md-card-avatar>
+                <md-card-header-t ext>
+                    <span class="md-title">User</span>
+                    <span class="md-subhead">subhead</span>
+                    </md-card-header-text>
+            </md-card-header>
+            <div layout="row">
+                <img src=".././assets/images/pika.jpg" class="md-card-image" alt="Washed Out" flex="70" flex-offset="15">
+            </div>
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">In-card mixed actions</span>
+                    <span class="md-subhead">Reversed</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="start center">
+                <md-button>Action 1</md-button>
+                <md-button>Action 2</md-button>
+                <md-card-icon-actions>
+                    <md-button class="md-icon-button" aria-label="toggle">
+                        <md-icon md-svg-icon="heart-broken"></md-icon>
+                    </md-button>
+                </md-card-icon-actions>
+            </md-card-actions>
+            <md-card-content>
+                <p>
+                    Pikachu is a yellow color pokemon, small heighted and cute.
+                </p>
+            </md-card-content>
+        </md-card> -->
+        <div layout="row" layout-align="center" style="margin: auto; width: 100%">
+
+               <md-content class="md-padding md-whiteframe-1dp" flex="90" flex-gt-md="50">
+                   <div layout="row">
+                       <div layout="column" flex ng-form="optionsForm">
+                           <h1 class="md-title">Options</h1>
+                           <md-checkbox ng-model="options.keyboard">Keyboard Navigation</md-checkbox>
+                           <md-checkbox ng-model="options.showDots">Show Dots</md-checkbox>
+                           <md-checkbox ng-model="options.targetEvent">Use Target Event</md-checkbox>
+                           <md-input-container>
+                               <label>Button Classes</label>
+                               <md-select ng-model="options.buttonClass" multiple>
+                                   <md-option value="md-raised">md-raised</md-option>
+                                   <md-option value="md-accent">md-accent</md-option>
+                                   <md-option value="md-primary">md-primary</md-option>
+                               </md-select>
+                           </md-input-container>
+                           <md-input-container>
+                               <label>Initial index</label>
+                               <input ng-model="options.initialIndex" name="initialIndex" type="number"
+                                      min="0" max="{{items.length-1}}" />
+                               <div ng-messages="optionsForm.initialIndex.$error">
+                                   <div ng-message="min">Indices are zero-based</div>
+                                   <div ng-message="max">Total number of images is {{items.length}}</div>
+                               </div>
+                           </md-input-container>
+                           <md-input-container>
+                               <label>Backdrop Opacity</label>
+                               <input ng-model="options.backdropOpacity" name="backdropOpacity" type="number"
+                                      min="0" max="1" />
+                               <div ng-messages="optionsForm.backdropOpacity.$error">
+                                   <div ng-message="min">Negative opacity?!</div>
+                                   <div ng-message="max">Opacity should be between 0 and 1</div>
+                               </div>
+                           </md-input-container>
+                       </div>
+                       <div flex>
+                           <p>Page Direction</p>
+                           <md-radio-group ng-model="$root.dir">
+                               <md-radio-button value="rtl">Right to left</md-radio-button>
+                               <md-radio-button value="ltr">Left to right</md-radio-button>
+                           </md-radio-group>
+                       </div>
+                   </div>
+                   <div layout="row" layout-align="end">
+                       <md-button class="md-raised" ng-click="resetOptions();">Reset options</md-button>
+                       <md-button class="md-primary md-raised" ng-click="showDemo($event);">Show demo</md-button>
+                   </div>
+               </md-content>
+           </div>
+
+    </md-list-item>
+</md-list>
+<!-- </md-content> -->

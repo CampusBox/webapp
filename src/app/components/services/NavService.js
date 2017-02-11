@@ -24,11 +24,11 @@
         icon: 'calendar',
         sref: '.events'
       },
-      {
-        name: 'Societies',
-        icon: 'account-multiple',
-        sref: '.societies'
-      },
+      // {
+      //   name: 'Societies',
+      //   icon: 'account-multiple',
+      //   sref: '.societies'
+      // },
       {
         name: 'Blogs',
         icon: 'comment-text-outline',

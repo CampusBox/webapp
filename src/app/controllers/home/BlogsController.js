@@ -3,15 +3,19 @@
   angular
     .module('app')
     .controller('BlogsController', [
+      '$scope',
       'allDataService',
       BlogsController
     ]);
 
-  function BlogsController(allDataService) {
+  function BlogsController($scope,allDataService) {
     var vm = this;
+    $scope.liked = false;
 
-    vm.tableData =  [{ "id": -1, "name": " ", "description": " ", "venue": " ", "date": " ", "time": " ", "cost": " ", "societyid": 1, "short_description": null, "image": "grey.png" }, { "id": -1, "name": " ", "description": " ", "venue": " ", "date": " ", "time": " ", "cost": " ", "societyid": 1, "short_description": null, "image": "grey.png" }, { "id": -1, "name": " ", "description": " ", "venue": " ", "date": " ", "time": " ", "cost": " ", "societyid": 1, "short_description": null, "image": "grey.png" }, { "id": -1, "name": " ", "description": " ", "venue": " ", "date": " ", "time": " ", "cost": " ", "societyid": 1, "short_description": null, "image": "grey.png" }];
-
+    $scope.toggleLike = function(blogId){
+      console.log(blogId);
+      vm.liked = !vm.liked;
+    }
 
     allDataService.get("blog_posts")
       .then(function(tableData) {
