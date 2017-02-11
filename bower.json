@@ -20,7 +20,9 @@
     "mdPickers": "^0.7.5",
     "angular-medium-editor": "^1.2.1",
     "angularjs-social-login": "^2.4.5",
-    "ngstorage": "^0.3.11"
+    "ngstorage": "^0.3.11",
+    "satellizer": "^0.15.5",
+    "ng-img-crop": "ngImgCrop#^0.3.2"
   },
   "devDependencies": {},
   "resolutions": {

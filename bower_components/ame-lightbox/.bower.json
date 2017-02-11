@@ -1,0 +1,33 @@
+{
+  "name": "ame-lightbox",
+  "version": "0.0.9",
+  "description": "Lightbox component on top of angular material",
+  "main": [
+    "./dist/ame-lightbox.min.js",
+    "./dist/ame-lightbox.min.css"
+  ],
+  "repository": "https://github.com/alirezamirian/angular-material-lightbox",
+  "ignore": [
+    "*",
+    "!dist/*"
+  ],
+  "keywords": [
+    "lightbox",
+    "angular",
+    "angular material"
+  ],
+  "dependencies": {
+    "angular-material": ">=1.0.0"
+  },
+  "homepage": "https://github.com/alirezamirian/angular-material-lightbox",
+  "_release": "0.0.9",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.9",
+    "commit": "44655de9452fadbd3d6977dfdc46bca6a4eb193f"
+  },
+  "_source": "https://github.com/alirezamirian/angular-material-lightbox.git",
+  "_target": "^0.0.9",
+  "_originalSource": "ame-lightbox",
+  "_direct": true
+}

@@ -112,12 +112,13 @@ socialLogin.factory("fbService", function($q){
 			var deferred = $q.defer();
 			FB.login(function(res){
 				deferred.resolve(res);
-			}, {scope: 'email', auth_type: 'rerequest'});
+			}, {scope: 'email,user_about_me,user_birthday', auth_type: 'rerequest'});
 			return deferred.promise;
 		},
 		getUserDetails: function(){
 			var deferred = $q.defer();
-			FB.api('/me?fields=name,email,picture', function(res){
+			FB.api('/me?fields=name,email,picture,cover,birthday,education,gender,about,hometown,interested_in,languages,link,location,sports,website', function(res){
+				console.log(res);
 				if(!res || res.error){
 					deferred.reject('Error occured while fetching user details.');
 				}else{
@@ -136,7 +137,8 @@ socialLogin.directive("linkedIn", function($rootScope, social, socialLoginServic
 		link: function(scope, ele, attr){
 		    ele.on("click", function(){
 		  		IN.User.authorize(function(){
-					IN.API.Raw("/people/~:(id,first-name,last-name,email-address,picture-url)").result(function(res){
+					IN.API.Raw("/people/~:(id,first-name,last-name,email-address,picture-url,headline,location,industry,summary,specialties,positions,public-profile-url)").result(function(res){
+						console.log(res);
 						socialLoginService.setProvider("linkedIn");
 						var userDetails = {name: res.firstName + " " + res.lastName, email: res.emailAddress, uid: res.id, provider: "linkedIN", imageUrl: res.pictureUrl};
 						$rootScope.$broadcast('event:social-sign-in-success', userDetails);
@@ -180,8 +182,9 @@ socialLogin.directive("fbLogin", function($rootScope, fbService, social, socialL
 					if(res.status == "connected"){
 						fbService.getUserDetails().then(function(user){
 							socialLoginService.setProvider("facebook");
+							console.log(user);
 							var userDetails = {name: user.name, email: user.email, uid: user.id, provider: "facebook", imageUrl: user.picture.data.url}
-							$rootScope.$broadcast('event:social-sign-in-success', userDetails);
+							$rootScope.$broadcast('event:social-sign-in-success', user);
 						}, function(err){
 							console.log(err);
 						})
@@ -192,4 +195,4 @@ socialLogin.directive("fbLogin", function($rootScope, fbService, social, socialL
 			});
 		}
 	}
-})
+});

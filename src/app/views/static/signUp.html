@@ -9,9 +9,8 @@
                 <form ng-submit="doLogin(user)" name="register">
                     <md-input-container class="md-block">
                         <label>College</label>
-                        <md-select name="" ng-model="someModel" required placeholder="My College">
-                            <md-option ng-model="user.college" ng-value="college.name" ng-repeat="college in vm.colleges">{{ college.name }}</md-option>
-                            <md-option ng-model="user.college" ng-value="college" ng-repeat="college in ['IIT Hyderabad','IIIT Hyderabad','BITS Hyderabad',]">{{ college }}</md-option>
+                        <md-select name="" ng-model="user.college" required placeholder="My College">
+                            <md-option ng-value="college" ng-repeat="college in ['IIT Hyderabad','IIIT Hyderabad','BITS Hyderabad',]">{{ college }}</md-option>
                         </md-select>
                     </md-input-container>
                     <md-input-container class="md-block">
@@ -39,49 +38,56 @@
         <span>Welcome {{user.name}}</span>
       </h2>
         </md-toolbar> -->
-        <md-content ng-show="currentState==2" class="md-padding autocomplete" layout="column">
+        <md-content ng-show="currentState==2" class="md-p adding autocomplete" layout="column">
             <md-progress-linear md-mode="determinate" value="66"></md-progress-linear>
             <center>
                 <img ng-src="{{user.imageUrl}}" alt="" style="border-radius: 50%; height: auto;width: 20%">
                 <p class="md-headline">Welcome, {{user.name}}</p>
             </center>
+            <p class="md-title">Tell us your interests, so we can show you relevant content.</p>
             <form>
-                <p class="md-title">Tell us your interests, so we can show you relevant content.</p>
-                <md-chips>
-                    <md-chip>Hockey</md-chip>
-                    <md-chip>Lacrosse</md-chip>
-                    <md-chip>Baseball</md-chip>
-                    <!-- Static chips are transcluded -->
-                    <md-chip>{{ctrl.chipText}}</md-chip>
-                </md-chips>
+                <div layout="row" layout-wrap flex>
+                    <div flex="50" ng-repeat="item in items">
+                        <md-button ng-class="item.intrested?'md-raised md-primary':'md-primary'" ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
+                            <!-- <md-checkbox >
+                            </md-checkbox> -->
+                                {{ item.title }}
+                        </md-button>
+                    </div>
+                </div>
                 <div class="errors" ng-messages="register.fruitName.$error">
                     <!-- <div ng-message="md-max-chips">Maximum number of chips reached.</div> -->
                 </div>
             </form>
             <md-button ng-click="currentState=3;" class="md-raised md-primary">
-            Continue
+                Continue
             </md-button>
         </md-content>
         <md-content ng-show="currentState==3" class="md-padding autocomplete" layout="column">
             <md-progress-linear md-mode="determinate" value="66"></md-progress-linear>
             <center>
-                <p class="md-headline">One last step.</p>
+                <p class="md-headline">One last step, add your top five skills</p>
             </center>
             <form>
                 <p class="md-title">Your talents/skills, to help you connect to relevant peers</p>
-                <md-chips>
-                    <md-chip>Hockey</md-chip>
-                    <md-chip>Lacrosse</md-chip>
-                    <md-chip>Baseball</md-chip>
-                    <!-- Static chips are transcluded -->
-                    <md-chip>{{ctrl.chipText}}</md-chip>
-                </md-chips>
+                <form>
+                    <md-chips ng-model="selectedVegetables" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-require-match="autocompleteDemoRequireMatch" md-max-chips="5" ng-model="user.skills">
+                        <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Enter your top 5 skills">
+                            <span md-highlight-text="searchText">{{item.name}}</span>
+                        </md-autocomplete>
+                        <md-chip-template>
+                            <span>
+                      <strong>{{$chip.name}}</strong>
+                    </span>
+                        </md-chip-template>
+                    </md-chips>
+                </form>
                 <div class="errors" ng-messages="register.fruitName.$error">
                     <!-- <div ng-message="md-max-chips">Maximum number of chips reached.</div> -->
                 </div>
             </form>
-            <md-button ui-sref="home.profile" class="md-raised md-primary">
-            Continue
+            <md-button ui-sref="home.profile" class="md-raised md-primary" ng-click="doLogin(user)">
+                Finish
             </md-button>
         </md-content>
     </div>

@@ -1,6 +1,7 @@
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAoxkYb6Lkrz_CMGy__9Yqw5zHlvV6-kX4&libraries=places"></script>
 <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z2 md-sidenav-left">
-    <md-toolbar md-theme="blue" class="md-whiteframe-z2">
-        <md-button layout="row" layout-align="center center" class="md-toolbar-tools" href="https://github.com/flatlogic/angular-material-dashboard">
+    <md-toolbar md-theme="light-blue" class="md-whiteframe-z2">
+        <md-button layout="row" layout-align="center center" class="md-toolbar-tools" aria-label="Home">
             <h1>
                 <md-icon md-svg-icon="school"></md-icon>
             </h1>
@@ -21,7 +22,7 @@
     </md-button>
 </md-sidenav>
 <div layout="column" flex>
-    <div layout="row" md-theme="yellow" layout-align="center center" style="background:  rgb(236, 236, 236);">
+    <div layout="row"  layout-align="center center" style="background:  rgb(236, 236, 236);">
         <section layout-align="start center" layout-fill flex>
             <md-button hide-gt-sm ng-click="vm.toggleItemsList()" aria-label="Menu">
                 <md-icon md-svg-icon="menu"></md-icon>
@@ -39,14 +40,14 @@
         </section>
         <section class="md-warn " layout="row " layout-align="center center ">
             <md-menu>
-                <md-button class="capitalize "  aria-label="Open menu ">
-                    <img class="img-circle " ng-click="$mdOpenMenu() " ng-src="{{user.url}}">
+                <md-button class="capitalize " ng-click="$mdOpenMenu()" aria-label="Open menu ">
+                    <img class="img-circle "  ng-src="{{user.url}}">
 <!--                     <span>Richard</span>
  -->                    <md-icon md-svg-icon="chevron-down "></md-icon>
                 </md-button>
                 <md-menu-content width="5">
                     <md-menu-item>
-                        <md-button ng-click="$mdCloseMenu() " ui-sref="home.myEvents ">
+                        <md-button ng-click="$mdCloseMenu() " ui-sref="home.myProfile({tab:'0'})">
                             <div layout="row " flex=" " class="ng-scope layout-row flex ">
                                 <p flex=" " class="flex ">My Events</p>
                                 <md-icon md-svg-icon="calendar"></md-icon>
@@ -54,7 +55,7 @@
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
-                        <md-button ng-click="$mdCloseMenu() " ui-sref="home.myBlogs ">
+                        <md-button ng-click="$mdCloseMenu() " ui-sref="home.myProfile({tab:'2'})">
                             <div layout="row " flex=" " class="ng-scope layout-row flex ">
                                 <p flex=" " class="flex ">My Blogs</p>
                                 <md-icon md-svg-icon="comment-text-outline"></md-icon>
@@ -62,7 +63,7 @@
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
-                        <md-button ng-click="$mdCloseMenu() " ui-sref="home.profile ">
+                        <md-button ng-click="$mdCloseMenu() " ui-sref="home.myProfile({tab:'0'})">
                             <div layout="row " flex=" " class="ng-scope layout-row flex ">
                                 <p flex=" " class="flex ">Items Uploads</p>
                                 <md-icon md-svg-icon="tag"></md-icon>
@@ -70,7 +71,7 @@
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
-                        <md-button ng-click="$mdCloseMenu() " ui-sref="home.profile ">
+                        <md-button ng-click="$mdCloseMenu() " ui-sref="home.myProfile">
                             <div layout="row " flex=" " class="ng-scope layout-row flex ">
                                 <p flex=" " class="flex ">Profile</p>
                                 <md-icon md-svg-icon="account "></md-icon>
