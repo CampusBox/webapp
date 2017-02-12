@@ -1,12 +1,12 @@
-<div layout="row" layout-xs="column"   layout-align="start">
+<div layout="row" layout-xs="column" layout-align="start">
     <md-card flex="30" flex-xs="100">
         <center>
             <img style="border-radius: 50%; width: 40%; margin-top:20px;" ng-src="{{user.url}}" class="md-card-image" alt="Washed Out">
             <md-card-title>
                 <md-card-title-text>
                     <span class="md-headline">{{user.name}}</span>
-                    
                     <span class="md-subhead">Thapar university</span>
+                    <md-button class="md-raised md-primary" >Follow</md-button>
                 </md-card-title-text>
             </md-card-title>
         </center>
@@ -58,12 +58,98 @@
             <md-button>Action 2</md-button>
         </md-card-actions>
     </md-card>
-    <md-card flex="70"  flex-xs="100">
+    <md-card flex="70" flex-xs="100">
         <md-card-content>
-            <md-content>
-                <md-tabs md-dynamic-height md-border-bottom md-selected="tab">
-                    <md-tab label="Events Attended">
-                        <md-content class="md-padding">
+            <md-tabs md-dynamic-height md-border-bottom md-selected="tab">
+                <md-tab label="Overview">
+                    <div flex layout="row" layout-align="space-around" layout-wrap>
+                        <md-card flex="100" flex-gt-xs="40" ng-repeat="item in [1,2,3,4]" style="box-shadow: 0px 0px #FFF; border-radius: 3px; border : solid .5px rgba(10,10,10,0.3)" md-theme="{{ showDarkTheme ? 'dark-orange' : 'default' }}" md-theme-watch>
+                            <!-- <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out"> -->
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-body-2" style="color: #174f7d; font-weight: 900">Card with image</span>
+                                    <span class="md-caption">24 Oct</span>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-card-content>
+                                <p>
+                                    The titles of Washed Out's breakthrough song and the first single from Paracosm share the two
+                                </p>
+                            </md-card-content>
+                            <md-card-actions layout="row" layout-align="end center">
+                                <md-button class="md-icon-button" aria-label="Favorite">
+                                    <md-icon md-svg-icon="heart-outline"></md-icon>
+                                </md-button>
+                                <md-button class="md-icon-button" aria-label="Settings">
+                                    <md-icon md-svg-icon="menu"></md-icon>
+                                </md-button>
+                                <md-button class="md-icon-button" aria-label="Share">
+                                    <md-icon md-svg-icon="bookmark-outline"></md-icon>
+                                </md-button>
+                            </md-card-actions>
+                        </md-card>
+                    </div>
+                    <h2> Activity </h2>
+                    <br>
+                    <h3>Top Events Created</h3>
+                     <md-list>
+                        <md-list-item class="md-2-line" ng-repeat="event in vm.events | limitTo:6">
+                            <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}}" class="md-avatar" alt="{{item.who}}">
+                            <div class="md-list-item-text">
+                                <h3>{{event.name}}</h3>
+                                <p>Created: date</p>
+                            </div>
+                            <span><md-icon md-svg-icon="heart"></md-icon> 100</span>
+                            <md-divider md-inset ng-if="!$last"></md-divider>
+                        </md-list-item>
+                    </md-list>
+                    <br>
+                    <h3>Liked Items</h3>
+                    <md-list>
+                        <md-list-item class="md-2-line" ng-repeat="event in vm.events | limitTo:6">
+                            <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}}" class="md-avatar" alt="{{item.who}}">
+                            <div class="md-list-item-text">
+                                <h3>{{event.name}}</h3>
+                                <h4>Description</h4>
+                                <p>Created: date - Rohan Goel</p>
+                            </div>
+                            <span><md-icon md-svg-icon="heart"></md-icon> 100</span>
+
+                            <md-divider md-inset ng-if="!$last"></md-divider>
+                        </md-list-item>
+                    </md-list>
+                </md-tab>
+                <md-tab label="Creative Content">
+                    <div flex layout="row" layout-align="space-around" layout-wrap>
+                        <md-card flex="100" ng-repeat="item in [1,2,3,4]" style="box-shadow: 0px 0px #FFF; border-radius: 3px; border : solid .5px rgba(10,10,10,0.3)" md-theme="{{ showDarkTheme ? 'dark-orange' : 'default' }}" md-theme-watch>
+                            <!-- <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out"> -->
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-body-2" style="color: #174f7d; font-weight: 900">Card with image</span>
+                                    <span class="md-caption">24 Oct</span>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-card-content>
+                                <p>
+                                    The titles of Washed Out's breakthrough song and the first single from Paracosm share the two most
+                                </p>
+                            </md-card-content>
+                            <md-card-actions layout="row" layout-align="end center">
+                                <md-button class="md-icon-button" aria-label="Favorite">
+                                    <md-icon md-svg-icon="heart-outline"></md-icon>
+                                </md-button>
+                                <md-button class="md-icon-button" aria-label="Settings">
+                                    <md-icon md-svg-icon="menu"></md-icon>
+                                </md-button>
+                                <md-button class="md-icon-button" aria-label="Share">
+                                    <md-icon md-svg-icon="bookmark-outline"></md-icon>
+                                </md-button>
+                            </md-card-actions>
+                        </md-card>
+                    </div>
+                </md-tab>
+                <md-tab label="Events Created">
+                    <md-content class="md-padding">
                         <!-- TODO: Replace table to table component when https://github.com/angular/material/issues/796 will closed -->
                         <div layout="row" ng-hide="!vm.activated" layout-sm="column" layout-align="space-around">
                             <md-progress-circular md-mode="indeterminate"></md-progress-circular>
@@ -84,101 +170,35 @@
                                 <md-list-item ng-click="showAdvanced($event)" class="secondary-button-padding" ng-repeat="event in vm.events ">
                                     <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}}" class="md-avatar" alt="{{item.who}}">
                                     <p>{{event.name}}</p>
-                                    <md-button class="md-mini"  aria-label="description" md-no-ink="true|false" ng-click="showUpdates(event)"  md-ripple-size="auto">Updates</md-button>
-                                    <md-button class="md-mini"  aria-label="description" md-no-ink="true|false" ng-click="showParticipants(event)" md-ripple-size="auto">Participants</md-button>
+                                    <md-button class="md-mini" aria-label="description" md-no-ink="true|false" ng-click="showUpdates(event)" md-ripple-size="auto">Updates</md-button>
+                                    <md-button class="md-mini" aria-label="description" md-no-ink="true|false" ng-click="showParticipants(event)" md-ripple-size="auto">Participants</md-button>
                                     <md-divider md-inset ng-if="!$last"></md-divider>
                                 </md-list-item>
                             </md-list>
                         </md-content>
-
-                        </md-content>
-                    </md-tab>
-                    <md-tab label="Skills">
-                        <md-content class="md-padding">
-                            <md-toolbar layout="row" class="md-hue-3">
-                                <div class="md-toolbar-tools">
-                                    <span>Skills</span>
+                    </md-content>
+                </md-tab>
+                <md-tab label="following">
+                    <md-list flex>
+                        <md-list-item class="md-3-line" ng-repeat="item in followers" ng-click="null">
+                            <img ng-src="{{item.image}}" class="md-avatar" alt="{{item.who}}" />
+                            <div class="md-list-item-text" layout="row">
+                                <div layout="column">
+                                    <h3>{{ item.name }} </h3>
+                                    <h4> {{ item.college }}</h4>
+                                    <p>{{ item.about }}</p>
                                 </div>
-                            </md-toolbar>
-                            <md-content>
-                                <md-list flex>
-                                    <md-divider></md-divider>
-                                    <md-subheader class="md-no-sticky">Classes</md-subheader>
-                                    <md-list-item class="md-2-line">
-                                        <md-icon md-svg-icon="" class="md-avatar" alt="{{phone.options.face}}" ng-if="phone.options.face" />
-                                        <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
-                                            <h3> Guitar</h3>
-                                            <p> Expert </p>
-                                        </div>
-                                        <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon" aria-label="call">
-                                            <md-icon md-svg-icon="{{phone.options.actionIcon}}"></md-icon>
-                                        </md-button>
-                                    </md-list-item>
-                                    <md-list-item class="md-2-line">
-                                        <md-icon md-svg-icon="" class="md-avatar" alt="{{phone.options.face}}" ng-if="phone.options.face" />
-                                        <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
-                                            <h3> Drums with double base</h3>
-                                            <p> Expert </p>
-                                        </div>
-                                        <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon" aria-label="call">
-                                            <md-icon md-svg-icon="{{phone.options.actionIcon}}"></md-icon>
-                                        </md-button>
-                                    </md-list-item>
-                                    <md-list-item class="md-2-line">
-                                        <md-icon md-svg-icon="" class="md-avatar" alt="{{phone.options.face}}" ng-if="phone.options.face" />
-                                        <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
-                                            <h3> Angular Js</h3>
-                                            <p> Intermediate </p>
-                                        </div>
-                                        <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon" aria-label="call">
-                                            <md-icon md-svg-icon="{{phone.options.actionIcon}}"></md-icon>
-                                        </md-button>
-                                    </md-list-item>
-                                    <md-list-item class="md-2-line">
-                                        <md-icon md-svg-icon="" class="md-avatar" alt="{{phone.options.face}}" ng-if="phone.options.face" />
-                                        <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
-                                            <h3> Slim PHP wil REST APIs</h3>
-                                            <p> Beginner </p>
-                                        </div>
-                                        <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon" aria-label="call">
-                                            <md-icon md-svg-icon="{{phone.options.actionIcon}}"></md-icon>
-                                        </md-button>
-                                    </md-list-item>
-                                </md-list>
-                            </md-content>
-                    </md-tab>
-                    <md-tab label="Blogs">
-                        <md-content class="md-padding">
-                        <div layout="row" ng-hide="!vm.activated" layout-sm="column" layout-align="space-around">
-                            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-                        </div>
-                            
-                        </p>
-                        <md-toolbar class="md-theme-light">
-                            <div class="md-toolbar-tools">
-                                <h2 class="md-toolbar-tools">
-                              <span>Blogs Uploaded by You</span>
-                            </h2>
-                                <md-button aria-label="Favorite" ng-click="showAdvanced($event)">
-                                    <ng-md-icon icon="search"></ng-md-icon>
-                                    Add Blog
-                                </md-button>
+                                <span flex></span>
+                                <md-button md-no-ink class="md-flat">Follow</md-button>
                             </div>
-                        </md-toolbar>
-                        <md-content>
-                            <md-list>
-                                <md-list-item ng-click="showAdvanced($blogs)" class="secondary-button-padding" ng-repeat="blogs in vm.blogs ">
-                                    <p>{{blogs.name}}</p>
-                                    <md-button class=" md-icon-button" aria-label="description" ng-click="showAdvanced($blogs)" md-no-ink="true|false" md-ripple-size="full">
-
-                                        <md-icon md-svg-icon="pencil"></md-icon>
-                                    <md-divider md-inset ng-if="!$last"></md-divider>
-                                </md-list-item>
-                            </md-list>
-                        </md-content>   
-                        </md-content>
-                    </md-tab>
-                </md-tabs>
-                </md-content>
+                        </md-list-item>
+                        <md-divider></md-divider>
+                </md-tab>
+                <md-tab label="Recomended">
+                    <md-content class="md-padding">
+                    </md-content>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
     </md-card>
 </div>
