@@ -5,14 +5,15 @@
         .controller('EventsController', [
             '$mdDialog',
             '$scope',
+            '$element',
             'allDataService',
             'Upload',
             EventsController
         ]);
 
-    function EventsController($mdDialog, $scope, allDataService, Upload) {
+    function EventsController($mdDialog, $scope, $element, allDataService, Upload) {
         var vm = this;
-        $scope.events = {};
+        $scope.events = [];
         $scope.showReport = function(ev) {
             $mdDialog.show({
                     controller: 'DialogController',
@@ -35,10 +36,10 @@
                     controller: 'SingleEventController',
                     templateUrl: 'app/views/partials/singleEvent.html',
                     parent: angular.element(document.body),
-                    targetEvent : ev,
+                    targetEvent: ev,
                     locals: {
                         events: $scope.events,
-                        index : index
+                        index: index
                     },
                     closeTo: '#left',
                     targetEvent: ev,
@@ -97,7 +98,7 @@
                     $scope.status = 'You cancelled the dialog.';
                 });
         };
-        $scope.report = function(){
+        $scope.report = function() {
             console.log('testing report function');
         }
         $scope.showParticipants = function(ev) {
@@ -115,24 +116,27 @@
                     $scope.status = 'You cancelled the dialog.';
                 });
         };
-
-
         $scope.update = false;
-        // $scope.initUpdateIcon = function(eventId){
-        //     forea
-        // }
-        $scope.updateIcon = function(){
-            // $scope.update = !update;
+        $scope.updateIcon = function() {
             console.log('asascascascdbrththrrb');
-            // console.log(eventId + update + 'updateIcon called');
         }
+
+        $scope.searchTerm;
+        $scope.clearSearchTerm = function() {
+            $scope.searchTerm = '';
+        };
+        // The md-select directive eats keydown events for some quick select
+              // logic. Since we have a search input here, we don't need that logic.
+              $element.find('input').on('keydown', function(ev) {
+                  ev.stopPropagation();
+              });
         vm.activated = true;
         allDataService.get("events/Cultural")
-            .then(function(tableData) {
-                vm.tableData = [].concat(tableData.data)
-                vm.activated = false;
-                $scope.events = vm.tableData;
-            });
+        .then(function(tableData) {
+            vm.tableData = [].concat(tableData.data)
+            vm.activated = false;
+            $scope.events = vm.tableData;
+        });
     }
 
 })();
