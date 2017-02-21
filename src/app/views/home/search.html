@@ -1,15 +1,73 @@
-<div layout-gt-md="row">
-    <panel-widget flex 
-                  title="Showing Results for" 
-                  template="app/views/partials/searchBar.html" 
-                  class="fixed-height-widget">
-    </panel-widget>
-    
-</div>
-
-<div layout-gt-md="row">
-  
-    <panel-widget title="TODO list" 
-                  template="app/views/partials/checkboxes.html">
-    </panel-widget>
-</div>
+<md-content class="md-padding" ng-controller="SearchController">
+    <md-input-container class="md-block" flex-gt-sm md-no-float>
+        <input type="text" ng-model="vm.event.online" placeholder="Search Campusbox"> </md-input-container>
+    <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="top"></md-tab>
+        <md-tab label="Content">
+            <md-content class="md-padding">
+                <h1 class="md-display-2">Tab One
+        </h1>
+                <p>Lorem i psum dolor sit a met, consectetur adipiscing elit . Nulla venenati s ante augue. Ph asellus volutpat neque ac dui ma ttis vulputate. Etiam consequat aliquam cursus. In sodales preti um ultrices. Mae cenas lectus est , sollicitudin c onsectetur felis nec, feugiat ul tricies mi.</p>
+            </md-content>
+        </md-tab>
+        <md-tab label="People">
+            <md-content class="md-padding">
+                <md-card flex="30" flex-xs="100">
+                    <center>
+                        <img style="border-radius: 50%; width: 40%; margin-top:20px;" ng-src="https://avatars2.githubusercontent.com/u/14099191?v=3&u=e03e9a657eb1e4de7da062cc5a5611092f0f2d7e&s=400" class="md-card-image" alt="Washed Out">
+                        <md-card-title style="padding: 0px;">
+                            <md-card-title-text>
+                                <span class="md-headline">Rohan Goel
+        </span>
+                                <span class="md-subhead" style="padding:0px;">Thapar university</span>
+                                <md-button class=" md-primary">Follow</md-button>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </center>
+                    <md-card-content style="padding-top: 0px;">
+                        <center>
+                            <div style=" text-align:center;">
+                                <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
+                                    <li ng-repeat="skill in followers[0].skills" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">{{skill}}</li>
+                                </ul>
+                            </div>
+                            <p class="md-body-1" style="margin-top:0px;">
+                                Web Developer, want s to create mean ingful projects to positively im pact the world..
+                            </p>
+                        </center>
+                        <section layout="row" layout-align="center center" layout-wrap>
+                            <md-button class="md-icon-button" aria-la bel="Settings">
+                                <md-icon md-svg-icon="facebook">
+                                </md-icon>
+                                </md-button>
+                                <md-button class="md-icon-button" aria-label="Favorite">
+                                    <md-icon md-svg-icon="twitter"></md-icon>
+                                </md-button>
+                                <md-button class="md-icon-button" aria-label="More">
+                                    <md-icon md-svg-icon="youtube-play"></md-icon>
+                                </md-button>
+                                <md-button href="http://google.com" title="Launch Google.com innew window" target="_blank" ng-disabled="true" aria-label="Google.com" class="md-icon-button">
+                                    <md-icon md-svg-icon="github-circle"></md-icon>
+                                </md-button>
+                        </section>
+                    </md-card-content>
+                    <md-card-actions layout="row" layout-align="end center">
+                    </md-card-actions>
+                </md-card>
+            </md-content>
+            <md-tab label="Events">
+                <md-content class="md-padding">
+                    <md-list>
+                        <md-list-item class="md-2-line" ng-repeat="event in events| limitTo:6">
+                            <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}}" class="md-avatar" alt="{{item.who}}">
+                            <div class="md-list-item-text">
+                                <h3>{{event.name}}</h3>
+                                <p>Created: date</p>
+                            </div> <span><md-icon md-svg-icon="heart"></md-icon> 100</span>
+                            <md-divider md-inset ng-if="!$last"></md-divider>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </md-tab>
+    </md-tabs>
+</md-content>
