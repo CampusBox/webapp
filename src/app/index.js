@@ -58,6 +58,8 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
             })
             .state('home.search', {
                 url: '/search',
+                controler: 'SearchController',
+                controllerAs: 'vm',
                 templateUrl: 'app/views/home/search.html',
                 data: {
                     title: 'Dashboard'

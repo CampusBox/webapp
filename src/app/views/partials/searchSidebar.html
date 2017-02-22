@@ -1,15 +1,99 @@
 <div ng-controller="SearchController as vm">
-    <md-autocomplete
-          ng-disabled="ctrl.isDisabled"
-          md-no-cache="ctrl.noCache"
-          md-selected-item="ctrl.selectedItem"
-          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
-          md-search-text="ctrl.searchText"
-          md-selected-item-change="ctrl.selectedItemChange(item)"
-          md-items="item in ctrl.querySearch(ctrl.searchText)"
-          md-item-text="item.display"
-          md-min-length="0"
-          placeholder="What is your favorite US state?">
-</md-autocomplete>
-
+    <md-autocomplete ng-disabled="ctrl.isDisabled" md-no-cache="ctrl.noCache" md-selected-item="ctrl.selectedItem" md-search-text-change="ctrl.searchTextChange(ctrl.searchText)" md-search-text="ctrl.searchText" md-selected-item-change="ctrl.selectedItemChange(item)" md-items="item in ctrl.querySearch(ctrl.searchText)" md-item-text="item.display" md-min-length="0" placeholder="What is your favorite US state?">
+    </md-autocomplete>
+    <div layout="row">
+        <h3>People</h3>
+        <span flex></span>
+        <p>more</p>
+    </div>
+    <div layout="row" layout-wrap>
+        <!--  <md-card ng-repeat="item in [1,2,3,4,5,6]" flex="45" flex-xs="100">
+            <center>
+                <img style="border-radius: 50%; width: 40%; margin-top:20px;" ng-src="https://avatars2.githubusercontent.com/u/14099191?v=3&u=e03e9a657eb1e4de7da062cc5a5611092f0f2d7e&s=400" class="md-card-image" alt="Washed Out">
+                <md-card-title style="padding: 0px;">
+                    <md-card-title-text>
+                        <span class="md-headline">Rohan Goel</span>
+                        <span class="md-subhead" style="padding:0px;">Thapar university</span>
+                        <md-button class=" md-primary">Follow</md-button>
+                    </md-card-title-text>
+                </md-card-title>
+            </center>
+            <md-card-content style="padding-top: 0px;">
+                <center>
+                    <div style=" text-align:center;">
+                        <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
+                            <li ng-repeat="skill in followers[0].skills" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">{{skill}}</li>
+                        </ul>
+                    </div>
+                    <p class="md-body-1" style="margin-top:0px;">
+                        Web Developer, want s to create mean ingful projects to positively im pact the world..
+                    </p>
+                </center>
+                <section layout="row" layout-align="center center" layout-wrap>
+                    <md-button class="md-icon-button" aria-la bel="Settings">
+                        <md-icon md-svg-icon="facebook">
+                        </md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" aria-label="Favorite">
+                        <md-icon md-svg-icon="twitter"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" aria-label="More">
+                        <md-icon md-svg-icon="youtube-play"></md-icon>
+                    </md-button>
+                    <md-button href="http://google.com" title="Launch Google.com innew window" target="_blank" ng-disabled="true" aria-label="Google.com" class="md-icon-button">
+                        <md-icon md-svg-icon="github-circle"></md-icon>
+                    </md-button>
+                </section>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+            </md-card-actions>
+        </md-card> -->
+        <md-list flex>
+            <md-list-item class="md-3-line" ng-repeat="item in followers" ng-click="null">
+                <img ng-src="{{item.image}}" class="md-avatar" alt="{{item.who}}" />
+                <div class="md-list-item-text" layout="row">
+                    <div layout="column">
+                        <h3>{{ item.name }}  <small style="background:rgba(43, 36, 36, 0.51);color: white;border-radius:5px;padding: 4px;margin-left: 10px;">{{ item.college }}</small> </h3>
+                        <p>{{ item.about }}</p>
+                    </div>
+                    <span flex></span>
+                    <md-button md-no-ink class="md-flat md-primary">Follow</md-button>
+                </div>
+                <md-divider></md-divider>
+            </md-list-item>
+        </md-list>
+    </div>
+    <div layout="row">
+        <h3>Events</h3>
+        <span flex></span>
+        <p>more</p>
+    </div>
+    <md-list>
+        <md-list-item class="md-2-line" ng-repeat="event in events | limitTo:6">
+            <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}}" class="md-avatar" alt="{{item.who}}">
+            <div class="md-list-item-text">
+                <h3>{{event.name}}</h3>
+                <p>Created: date</p>
+            </div>
+            <span><md-icon md-svg-icon="heart"></md-icon> 100</span>
+            <md-divider md-inset ng-if="!$last"></md-divider>
+        </md-list-item>
+    </md-list>
+    <div layout="row">
+        <h3>Content</h3>
+        <span flex></span>
+        <p>more</p>
+    </div>
+    <md-list>
+        <md-list-item class="md-2-line" ng-repeat="event in events | limitTo:6">
+            <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}}" class="md-avatar" alt="{{item.who}}">
+            <div class="md-list-item-text">
+                <h3>{{event.name}}</h3>
+                <h4>Description</h4>
+                <p>Created: date - Rohan Goel</p>
+            </div>
+            <span><md-icon md-svg-icon="heart"></md-icon> 100</span>
+            <md-divider md-inset ng-if="!$last"></md-divider>
+        </md-list-item>
+    </md-list>
 </div>

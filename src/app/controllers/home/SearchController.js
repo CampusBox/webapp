@@ -27,8 +27,6 @@
         allDataService.get("events/Cultural")
             .then(function(events) {
                 $scope.events = [].concat(events.data);
-                // console.log(vm.events);
-                console.log("aa");
             });
     }
 })();
