@@ -10,6 +10,7 @@
             restrict: 'E',
             scope: {
                 events: '=',
+                search: '=',
                 update: '=',
                 show: '&',
                 updateIcon: '&',
@@ -18,7 +19,7 @@
             template: ''+
                       '<md-content>'+
                       '<md-list>'+
-                      '<md-list-item ng-click="show({event:$event, index:$index});" class="secondary-button-padding " ng-repeat="event in events track by $index">'+                      '<img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}} " class="md-avatar " alt="{{item.who}} ">'+
+                      '<md-list-item ng-click="show({event:$event, index:$index});" class="secondary-button-padding " ng-repeat="event in events track by $index | toArray:false  | filter:search">'+                      '<img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}} " class="md-avatar " alt="{{item.who}} ">'+
                       '<p>{{event.name}}</p>'+
                       '<md-button class="md-icon-button" ng-click="updateIcon();" aria-label="Update">'+
                       '<md-icon ng-if="!update" md-svg-icon="bell-outline"></md-icon>'+ 

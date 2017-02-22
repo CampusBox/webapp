@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload',
-        'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop'
+        'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop', 'material.components.expansionPanels'
 ])
     //remove setellizer
     .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider,
@@ -58,6 +58,8 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
             })
             .state('home.search', {
                 url: '/search',
+                controler: 'SearchController',
+                controllerAs: 'vm',
                 templateUrl: 'app/views/home/search.html',
                 data: {
                     title: 'Dashboard'

@@ -18,148 +18,173 @@
     -ms-flex: 1 1 30%;
     flex: 1 1 30%;
 }
+
+
+/*colllege filter start*/
+
+.selectdemoSelectHeader {
+    /* Please note: All these selectors are only applied to children of elements with the 'selectdemoSelectHeader' class */
+}
+
+.selectdemoSelectHeader .demo-header-searchbox {
+    border: none;
+    outline: none;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+}
+
+.selectdemoSelectHeader .demo-select-header {
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12);
+    padding-left: 10.667px;
+    height: 48px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: auto;
+}
+
+.selectdemoSelectHeader md-content._md {
+    max-height: 240px;
+}
+
+
+/*college filter end*/
+
+
+/*search autocomplete start*/
+
+.autocomplete-custom-template li {
+    border-bottom: 1px solid #ccc;
+    height: auto;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    white-space: normal;
+}
+
+.autocomplete-custom-template li:last-child {
+    border-bottom-width: 0;
+}
+
+.autocomplete-custom-template .item-title,
+.autocomplete-custom-template .item-metadata {
+    display: block;
+    line-height: 2;
+}
+
+.autocomplete-custom-template .item-title md-icon {
+    height: 18px;
+    width: 18px;
+}
+
+
+/*search autocomplete css end*/
 </style>
 <div layout="column">
-    <md-tabs flex md-dynamic-height>
-        <md-tab label="All">
-            <div flex layout="row">
-                <md-button class="md-icon-button " ng-click="grid=false" aria-label="Favorite ">
-                    <md-icon md-svg-icon="view-list "></md-icon>
-                </md-button>
-                <md-button class="md-icon-button " ng-click="grid=true" aria-label="Favorite ">
-                    <md-icon md-svg-icon="view-grid "></md-icon>
-                </md-button>
-                <md-slider ng-show="grid" ng-model="width" value="18.5" step="0.5" name="points" min="18" max="33">
-            </div>
-            <!-- <div id="homePage" ng-class="{ 'center': page.isSelected(1) , 'left': !page.isSelected(1)  }"> -->
-            <!-- <div ng-show="grid" flex layout="row" layout-align="space-around" layout-wrap>
-                <md-card style="float:left ; display:inline-flex; !important;" ng-repeat="event in vm.tableData track by $index">
-                    <img style="height:{{width*10}}px !important; min-height: 200px; background: #aaa; width:auto;" ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}} " class="md-card-image " alt="Washed Out ">
-                    <md-card-title>
-                        <md-card-title-text>
-                            <span>{{event.name}}</span>
-                        </md-card-title-text>
-                    </md-card-title>
-                    <md-card-content>
-                    </md-card-content>
-                    <md-card-actions layout="row " layout-align="end center ">
-                        <md-button ng-click="showEvent($event, $index)">View event</md-button>
-                        <md-button class="md-icon-button " aria-label="Favorite ">
-                            <md-icon md-svg-icon="heart-outline "></md-icon>
-                        </md-button>
-                        <md-button class="md-icon-button " aria-label="Share ">
-                            <md-icon md-svg-icon="share "></md-icon>
-                        </md-button>
-                        <md-menu md-offset="0 3">
-                            <md-button class="md-icon-button " aria-label="Settings " ng-click="$mdOpenMenu($event)">
-                                <md-icon md-svg-icon="dots-vertical "></md-icon>
-                            </md-button>
-                            <md-menu-content width="3">
-                                <md-menu-item>
-                                    <md-button ng-click="" ui-sref="home.myEvents ">
-                                        <div layout="row " flex=" " class="ng-scope layout-row flex ">
-                                            <md-icon md-svg-icon="delete"></md-icon>
-                                            <p flex=" " class="flex ">Less events like this</p>
-                                        </div>
-                                    </md-button>
-                                </md-menu-item>
-                                <md-menu-item>
-                                    <md-button ng-click="" ui-sref="home.myEvents ">
-                                        <div layout="row " flex=" " class="ng-scope layout-row flex ">
-                                            <md-icon md-svg-icon="delete-forever"></md-icon>
-                                            <p flex=" " class="flex ">Less from Hackathons</p>
-                                        </div>
-                                    </md-button>
-                                </md-menu-item>
-                                <md-menu-item>
-                                    <md-button ng-click=" " ui-sref="home.profile ">
-                                        <div layout="row " flex=" " class="ng-scope layout-row flex ">
-                                            <md-icon md-svg-icon="flag-outline"></md-icon>
-                                            <p flex=" " class="flex ">Report</p>
-                                        </div>
-                                    </md-button>
-                                </md-menu-item>
-                            </md-menu-content>
-                        </md-menu>
-                    </md-card-actions>
-                </md-card>
-            </div> -->
-            <events-grid width="width" ng-show="grid" openMenu="$mdOpenMenu(event)" grid="grid" show="showEvent(event, index)" events="vm.tableData"></events-grid>
-            <md-button aria-label="Favorite " ng-click="showAdvanced($event) ">
-                <ng-md-icon icon="search "></ng-md-icon>
-                Add Event
+    <div flex layout="row" layout-align="space-between">
+        <md-input-container>
+            <md-icon md-svg-icon="filter-outline" t></md-icon>
+            <md-select ng-model="category" multiple placeholder="Choose a category" class="md-no-underline">
+                <md-optgroup label="Type">
+                    <md-option ng-value="category" ng-repeat="category in ['All', 'Performance', 'Competition', 'Conference', 'Workshop', 'Seminar', 'Exhibition', 'Others'] | orderBy">{{ category }}</md-option>
+                </md-optgroup>
+            </md-select>
+        </md-input-container>
+        <md-input-container>
+            <md-icon md-svg-icon="view-list"></md-icon>
+            <md-select ng-model="type" multiple placeholder="Event Type" class="md-no-underline">
+                <md-optgroup label="Type">
+                    <md-option ng-value="type" ng-repeat="type in ['All', 'Music', 'Sports', 'Dance', 'Technical'] | orderBy">{{ type }}</md-option>
+                </md-optgroup>
+            </md-select>
+        </md-input-container>
+        <md-input-container>
+            <md-icon md-svg-icon="calendar"></md-icon>
+            <md-select ng-model="category" placeholder="All Timings" class="md-no-underline">
+                <md-optgroup label="Type">
+                    <md-option ng-value="category" ng-repeat="category in ['Today', 'Tommorrow', 'This Week', 'This MOnth', 'Custom'] | orderBy">{{ category }}</md-option>
+                </md-optgroup>
+            </md-select>
+        </md-input-container>
+        <md-input-container>
+            <md-icon md-svg-icon="domain"></md-icon>
+            <md-select ng-model="college" md-on-close="clearSearchTerm()" placeholder="College" class="md-no-underline" data-md-container-class="selectdemoSelectHeader" multiple>
+                <md-select-header class="demo-select-header">
+                    <input ng-model="searchTerm" type="search" class="demo-header-searchbox md-text">
+                </md-select-header>
+                <md-optgroup label="College">
+                    <md-option ng-value="college" ng-repeat="college in ['IIT Hyderabad', 'IIIT Hyderabad', 'Bits Hyderabad', 'JNTU Hyderabad'] |
+              filter:searchTerm | orderBy ">{{ college }}</md-option>
+                </md-optgroup>
+            </md-select>
+        </md-input-container>
+        <span flex></span>
+        <div layout="row">
+            <md-slider ng-show="grid" ng-model="width" value="18.5" step="0.5" name="points" min="18" max="33"></md-slider>
+            <md-button class="md-icon-button " ng-click="grid=true" aria-label="Favorite ">
+                <md-icon md-svg-icon="view-grid "></md-icon>
             </md-button>
-            <!-- <md-content ng-show="!grid ">
-                <md-list>
-                    <md-list-item ng-click="showEvent($event, $index)" class="secondary-button-padding " ng-repeat="event in events track by $index">
-                        <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}} " class="md-avatar " alt="{{item.who}} ">
-                        <p>{{event.name}}</p>
-                        <md-button class="md-icon-button " aria-label="Favorite ">
-                            <md-icon md-svg-icon="heart-outline "></md-icon>
-                        </md-button>
-                        <md-button class="md-icon-button " aria-label="Share ">
-                            <md-icon md-svg-icon="share "></md-icon>
-                        </md-button>
-                        <md-menu md-offset="0 3">
-                            <md-button class="md-icon-button " aria-label="Settings " ng-click="$mdOpenMenu($event)">
-                                <md-icon md-svg-icon="dots-vertical "></md-icon>
+            <md-button class="md-icon-button " ng-click="grid=false" aria-label="Favorite ">
+                <md-icon md-svg-icon="view-list "></md-icon>
+            </md-button>
+        </div>
+    </div>
+    <events-grid width="width" ng-show="grid" openMenu="$mdOpenMenu(event)" grid="grid" show="showEvent(event, index)" events="vm.tableData"></events-grid>
+    <md-content>
+        <md-list ng-show="!grid">
+            <md-list-item ng-click="showEvent(event, $index)" class="secondary-button-padding " ng-repeat="event in searchedEvents = (events | filter:{ name: search}) track by $index"> <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}} " class="md-avatar " alt="{{item.who}} ">
+                <p>{{event.name}}</p>
+                <md-button class="md-icon-button" ng-click="updateIcon();" aria-label="Update">
+                    <md-icon ng-if="!update" md-svg-icon="bell-outline"></md-icon>
+                    <md-icon ng-if="update" md-svg-icon="bell-ring"></md-icon>
+                </md-button>
+                <md-button class="md-icon-button " aria-label="Share ">
+                    <md-icon md-svg-icon="share "></md-icon>
+                </md-button>
+                <md-menu md-offset="0 3">
+                    <md-button class="md-icon-button " aria-label="Settings " ng-click="$mdOpenMenu($event)">
+                        <md-icon md-svg-icon="dots-vertical "></md-icon>
+                    </md-button>
+                    <md-menu-content width="3">
+                        <md-menu-item>
+                            <md-button ng-click="">
+                                <div layout="row " flex=" " class="ng-scope layout-row flex ">
+                                    <md-icon md-svg-icon="delete"></md-icon>
+                                    <p flex=" " class="flex ">Less events like this</p>
+                                </div>
                             </md-button>
-                            <md-menu-content width="3">
-                                <md-menu-item>
-                                    <md-button ng-click="">
-                                        <div layout="row " flex=" " class="ng-scope layout-row flex ">
-                                            <md-icon md-svg-icon="delete"></md-icon>
-                                            <p flex=" " class="flex ">Less events like this</p>
-                                        </div>
-                                    </md-button>
-                                </md-menu-item>
-                                <md-menu-item>
-                                    <md-button ng-click="">
-                                        <div layout="row " flex=" " class="ng-scope layout-row flex ">
-                                            <md-icon md-svg-icon="delete"></md-icon>
-                                            <p flex=" " class="flex ">Move to a different category</p>
-                                        </div>
-                                    </md-button>
-                                </md-menu-item>
-                                <md-menu-item>
-                                    <md-button ng-click="">
-                                        <div layout="row " flex=" " class="ng-scope layout-row flex ">
-                                            <md-icon md-svg-icon="delete-forever"></md-icon>
-                                            <p flex=" " class="flex ">Less from Hackathons</p>
-                                        </div>
-                                    </md-button>
-                                </md-menu-item>
-                                <md-menu-item>
-                                    <md-button ng-click="showReport(event) ">
-                                        <div layout="row " flex=" " class="ng-scope layout-row flex ">
-                                            <md-icon md-svg-icon="flag-outline"></md-icon>
-                                            <p flex=" " class="flex ">Report</p>
-                                        </div>
-                                    </md-button>
-                                </md-menu-item>
-                            </md-menu-content>
-                        </md-menu>
-                        <md-divider md-inset ng-if="!$last "></md-divider>
-                    </md-list-item>
-                </md-list>
-            </md-content> -->
-            <events-list report="report(eventId)" updateIcon="updateIcon()" update="update" ng-show="!grid" events="vm.tableData" show="showEvent(event, index)">
-            </events-list>
-            <md-tab label="Performance">
-            </md-tab>
-            <md-tab label="Competition">
-            </md-tab>
-            <md-tab label="Conference">
-            </md-tab>
-            <md-tab label="Workshop">
-            </md-tab>
-            <md-tab label="Seminar">
-            </md-tab>
-            <md-tab label="Exhibition">
-            </md-tab>
-            <md-tab label="Other">
-            </md-tab>
-    </md-tabs>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="">
+                                <div layout="row " flex=" " class="ng-scope layout-row flex ">
+                                    <md-icon md-svg-icon="delete"></md-icon>
+                                    <p flex=" " class="flex ">Move to a different category</p>
+                                </div>
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="">
+                                <div layout="row " flex=" " class="ng-scope layout-row flex ">
+                                    <md-icon md-svg-icon="delete-forever"></md-icon>
+                                    <p flex=" " class="flex ">Less from Hackathons</p>
+                                </div>
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="showReport(event) ">
+                                <div layout="row " flex=" " class="ng-scope layout-row flex ">
+                                    <md-icon md-svg-icon="flag-outline"></md-icon>
+                                    <p flex=" " class="flex" ng-click="report();">Report</p>
+                                </div>
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+                <md-divider md-inset ng-if="!$last "></md-divider>
+            </md-list-item>
+        </md-list>
+    </md-content>
 </div>
 <!-- TODO: Replace table to table component when https://github.com/angular/material/issues/796 will closed -->
 <div layout="row" ng-hide="vm.tableData[0].id>0" layout-sm="column" layout-align="space-around strech">

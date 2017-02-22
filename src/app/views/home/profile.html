@@ -6,7 +6,7 @@
                 <md-card-title-text>
                     <span class="md-headline">{{user.name}}</span>
                     <span class="md-subhead">Thapar university</span>
-                    <md-button class="md-raised md-primary" >Follow</md-button>
+                    <md-button class="md-raised md-primary">Follow</md-button>
                 </md-card-title-text>
             </md-card-title>
         </center>
@@ -92,7 +92,7 @@
                     <h2> Activity </h2>
                     <br>
                     <h3>Top Events Created</h3>
-                     <md-list>
+                    <md-list>
                         <md-list-item class="md-2-line" ng-repeat="event in vm.events | limitTo:6">
                             <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}}" class="md-avatar" alt="{{item.who}}">
                             <div class="md-list-item-text">
@@ -114,7 +114,6 @@
                                 <p>Created: date - Rohan Goel</p>
                             </div>
                             <span><md-icon md-svg-icon="heart"></md-icon> 100</span>
-
                             <md-divider md-inset ng-if="!$last"></md-divider>
                         </md-list-item>
                     </md-list>
@@ -193,6 +192,7 @@
                             </div>
                         </md-list-item>
                         <md-divider></md-divider>
+                    </md-list>
                 </md-tab>
                 <md-tab label="Recomended">
                     <md-content class="md-padding">
