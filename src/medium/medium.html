@@ -1,0 +1,29 @@
+<html>
+
+<head>
+    <link href="https://michelson.github.io/dante2/dante.css" rel="stylesheet" />
+    <link href="https://michelson.github.io/dante2/app.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        editor = new Dante({
+            el: "app",
+            debug: false,
+            content: window.Doc,
+            store_url: "https://michelson.github.io/dante2/app.js",
+            upload_url: "https://michelson.github.io/dante2/app.js"
+            // read_only: true
+        })
+        editor.render()
+        window.dante_editor = editor
+    })
+    </script>
+    <script src="https://michelson.github.io/dante2/dante-vendors.js"></script>
+    <script src="https://michelson.github.io/dante2/dante.js"></script>
+    <script src="https://michelson.github.io/dante2/app.js"></script>
+</body>
+
+</html>

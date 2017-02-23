@@ -29,14 +29,17 @@
             </md-button>
         </section>
         <section layout-align="end center">
-            <!-- <md-input-container>
-                <input ng-model="user.email" type="Search here...">
-                <md-icon md-svg-icon="magnify" style="display:inline-block;"></md-icon>
-            </md-input-container> -->
+            <!-- <md-button>
+            <md-icon -->
+            <!-- </md-button> -->
+            <md-button  class="toolbar-button" aria-label="Search" ng-click="vm.toggleRightSidebar() ">
+                <md-icon md-colors="{color: 'light-blue'}" md-svg-icon="magnify"></md-icon>
+            </md-button>
             <md-button  class="toolbar-button " aria-label="Notifications " ng-click="vm.toggleRightSidebar() ">
                 <md-icon md-colors="{color: 'light-blue'}" md-svg-icon="bell "></md-icon>
                 <span style="color:#fff" class="notifications-label ">7</span>
             </md-button>
+
         </section>
         <section class="md-warn " layout="row " layout-align="center center ">
             <md-menu>
