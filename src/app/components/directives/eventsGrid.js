@@ -20,7 +20,8 @@
                     '<img style="height:{{width*10}}px !important; min-height: 200px; background: #aaa; width:auto;" ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}} " class="md-card-image " alt="Washed Out ">' +
                     '<md-card-title>' +
                     '<md-card-title-text>' +
-                    '<span>{{event.name}}</span>' +
+                    '<span>{{event.name  | limitTo : 25}}</span>' +
+                    '<span>{{event.name  | limitTo : 40:25}}</span>' +
                     '</md-card-title-text>' +
                     '</md-card-title>' +
                     '<md-card-content>' +

@@ -19,6 +19,79 @@
     flex: 1 1 30%;
 }
 
+.shimmer {
+    /* the shimmer magic */
+    background: -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(.5, #fff));
+    background: -moz-gradient(linear, left top, right top, from(#222), to(#222), color-stop(.5, #fff));
+    background: gradient(linear, left top, right top, from(#222), to(#222), color-stop(.5, #fff));
+    -webkit-background-size: 125px 100%;
+    -moz-background-size: 125px 100%;
+    background-size: 125px 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    -webkit-animation-name: shimmer;
+    -moz-animation-name: shimmer;
+    -webkit-animation-name: shimmer;
+    animation-name: shimmer;
+    -webkit-animation-duration: 2s;
+    -moz-animation-duration: 2s;
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-color: #222;
+}
+
+@-moz-keyframes shimmer {
+    0% {
+        background-position: top left;
+    }
+    100% {
+        background-position: top right;
+    }
+}
+
+@-webkit-keyframes shimmer {
+    0% {
+        background-position: top left;
+    }
+    100% {
+        background-position: top right;
+    }
+}
+
+@-o-keyframes shimmer {
+    0% {
+        background-position: top left;
+    }
+    100% {
+        background-position: top right;
+    }
+}
+
+@-ms-keyframes shimmer {
+    0% {
+        background-position: top left;
+    }
+    100% {
+        background-position: top right;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: top left;
+    }
+    100% {
+        background-position: top right;
+    }
+}
+
 
 /*colllege filter start*/
 
@@ -195,3 +268,7 @@
         </md-dialog>
         <md-button style="position: fixed;right:0;top:47%;" id="right">
             <md-button>
+            </md-button>
+        </md-button>
+    </md-button>
+</md-button>

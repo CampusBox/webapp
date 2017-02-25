@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload',
+angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload', 'satellizer',
         'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop'
-])
+    ])
     //remove setellizer
-    .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider,
+    .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, $authProvider,
         $mdIconProvider, socialProvider) {
         $stateProvider
             .state('home', {
@@ -38,15 +38,14 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                     title: 'Dashboard'
                 }
             })
-
-        .state('static.signUp', {
-            url: '/signup',
-            controller: 'SignUpController',
-            templateUrl: 'app/views/static/signUp.html',
-            data: {
-                title: 'Dashboard'
-            }
-        })
+            .state('static.signUp', {
+                url: '/signup',
+                controller: 'SignUpController',
+                templateUrl: 'app/views/static/signUp.html',
+                data: {
+                    title: 'Dashboard'
+                }
+            })
 
         .state('home.dashboard', {
                 url: '/dashboard',
@@ -142,10 +141,69 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                 }
             });
 
-        $urlRouterProvider.otherwise('/dashboard');
+        // $authProvider.facebook({
+        //     clientId: '1250377088376164'
+        // });
+
+        // Optional: For client-side use (Implicit Grant), set responseType to 'token' (default: 'code')
+        $authProvider.facebook({
+            clientId: '1250377088376164',
+            // responseType: 'token'
+        });
+
+        $authProvider.google({
+            clientId: '702228530885-vi264d7g6v5ivbcmebjfpomr0hmliomd.apps.googleusercontent.com',
+            url: '',
+            authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth'
+        });
+
+        // $authProvider.github({
+        //     clientId: 'GitHub Client ID'
+        // });
+
+        $authProvider.linkedin({
+            clientId: '81l3qatlqe4l4p',
+            redirectUri: "http://localhost:3000",
+              url: 'http://localhost:3000'
+        });
+
+        // $authProvider.instagram({
+        //     clientId: 'Instagram Client ID'
+        // });
+
+        // $authProvider.yahoo({
+        //     clientId: 'Yahoo Client ID / Consumer Key'
+        // });
+
+        // $authProvider.live({
+        //     clientId: 'Microsoft Client ID'
+        // });
+
+        // $authProvider.twitch({
+        //     clientId: 'Twitch Client ID'
+        // });
+
+        // $authProvider.bitbucket({
+        //     clientId: 'Bitbucket Client ID'
+        // });
+
+        // $authProvider.spotify({
+        //     clientId: 'Spotify Client ID'
+        // });
+
+        // // No additional setup required for Twitter
+
+        // $authProvider.oauth2({
+        //     name: 'foursquare',
+        //     url: '/auth/foursquare',
+        //     clientId: 'Foursquare Client ID',
+        //     redirectUri: window.location.origin,
+        //     authorizationEndpoint: 'https://foursquare.com/oauth2/authenticate',
+        // });
+        $urlRouterProvider.otherwise('/login');
         socialProvider.setGoogleKey("702228530885-vi264d7g6v5ivbcmebjfpomr0hmliomd.apps.googleusercontent.com");
         socialProvider.setLinkedInKey("81l3qatlqe4l4p");
-        socialProvider.setFbKey({ appId: "1250377088376164", apiVersion: "v2.8" });
+        socialProvider.setFbKey({ appId: "1250377088376164", apiVersion: "v2.8", responseType: 'token' });
 
         $mdIconProvider
             .defaultIconSet('assets/svg/mdi.svg');

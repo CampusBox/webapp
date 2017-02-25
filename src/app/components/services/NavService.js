@@ -14,11 +14,7 @@
         icon: 'home-outline',
         sref: '.dashboard'
       },
-      {
-        name: 'Search',
-        icon: 'magnify',
-        sref: '.search'
-      },
+      
       {
         name: 'Events',
         icon: 'calendar',
@@ -33,12 +29,12 @@
         name: 'Blogs',
         icon: 'comment-text-outline',
         sref: '.blogs'
-      },
-      {
-        name: 'Profile',
-        icon: 'account',
-        sref: '.profile'
       }
+      // {
+      //   name: 'Profile',
+      //   icon: 'account',
+      //   sref: '.profile'
+      // }
     ];
 
     return {

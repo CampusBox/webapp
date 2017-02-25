@@ -13,7 +13,53 @@
 
     function EventsController($mdDialog, $scope, $element, allDataService, Upload) {
         var vm = this;
-        $scope.events = [];
+        $scope.grid = true;
+        $scope.width = 18;
+        $scope.events = [{
+            "id": -1,
+            "name": " ",
+            "description": " ",
+            "venue": " ",
+            "date": " ",
+            "time": " ",
+            "cost": " ",
+            "societyid": 1,
+            "short_description": null,
+            "image": "grey.png"
+        }, {
+            "id": -1,
+            "name": " ",
+            "description": " ",
+            "venue": " ",
+            "date": " ",
+            "time": " ",
+            "cost": " ",
+            "societyid": 1,
+            "short_description": null,
+            "image": "grey.png"
+        }, {
+            "id": -1,
+            "name": " ",
+            "description": " ",
+            "venue": " ",
+            "date": " ",
+            "time": " ",
+            "cost": " ",
+            "societyid": 1,
+            "short_description": null,
+            "image": "grey.png"
+        }, {
+            "id": -1,
+            "name": " ",
+            "description": " ",
+            "venue": " ",
+            "date": " ",
+            "time": " ",
+            "cost": " ",
+            "societyid": 1,
+            "short_description": null,
+            "image": "grey.png"
+        }];
         $scope.showReport = function(ev) {
             $mdDialog.show({
                     controller: 'DialogController',
@@ -126,17 +172,17 @@
             $scope.searchTerm = '';
         };
         // The md-select directive eats keydown events for some quick select
-              // logic. Since we have a search input here, we don't need that logic.
-              $element.find('input').on('keydown', function(ev) {
-                  ev.stopPropagation();
-              });
+        // logic. Since we have a search input here, we don't need that logic.
+        $element.find('input').on('keydown', function(ev) {
+            ev.stopPropagation();
+        });
         vm.activated = true;
         allDataService.get("events/Cultural")
-        .then(function(tableData) {
-            vm.tableData = [].concat(tableData.data)
-            vm.activated = false;
-            $scope.events = vm.tableData;
-        });
+            .then(function(tableData) {
+                vm.tableData = [].concat(tableData.data)
+                vm.activated = false;
+                $scope.events = vm.tableData;
+            });
     }
 
 })();
