@@ -6,12 +6,12 @@
             '$mdDialog',
             '$scope',
             '$element',
-            'allDataService',
+            'tokenService',
             'Upload',
             EventsController
         ]);
 
-    function EventsController($mdDialog, $scope, $element, allDataService, Upload) {
+    function EventsController($mdDialog, $scope, $element, tokenService, Upload) {
         var vm = this;
         $scope.grid = true;
         $scope.width = 18;
@@ -177,7 +177,7 @@
             ev.stopPropagation();
         });
         vm.activated = true;
-        allDataService.get("events/Cultural")
+        tokenService.get("events")
             .then(function(tableData) {
                 vm.tableData = [].concat(tableData.data)
                 vm.activated = false;

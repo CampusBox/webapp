@@ -256,7 +256,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
 
         authManager.checkAuthOnRefresh();
         console.log(authManager.isAuthenticated);
-        authManager.redirectWhenUnauthenticated();
+        // authManager.redirectWhenUnauthenticated();
     });
 // .run(["$rootScope", "$state", "$location", "$stateParams", "$timeout", "$localStorage", function($rootScope, $state, $location, $stateParams, $timeout, $localStorage) {
 //     $rootScope.$on("$stateChangeStart", function(event, next) {

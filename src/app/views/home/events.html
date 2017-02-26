@@ -206,8 +206,8 @@
     <events-grid width="width" ng-show="grid" openMenu="$mdOpenMenu(event)" grid="grid" show="showEvent(event, index)" events="vm.tableData"></events-grid>
     <md-content>
         <md-list ng-show="!grid">
-            <md-list-item ng-click="showEvent(event, $index)" class="secondary-button-padding " ng-repeat="event in searchedEvents = (events | filter:{ name: search}) track by $index"> <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}} " class="md-avatar " alt="{{item.who}} ">
-                <p>{{event.name}}</p>
+            <md-list-item ng-click="showEvent(event, $index)" class="secondary-button-padding " ng-repeat="event in searchedEvents = (events | filter:{ name: search}) track by $index"> <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.contactperson1}}.jpg " class="md-avatar " alt="{{item.who}} ">
+                <p>{{event.title}}</p>
                 <md-button class="md-icon-button" ng-click="updateIcon();" aria-label="Update">
                     <md-icon ng-if="!update" md-svg-icon="bell-outline"></md-icon>
                     <md-icon ng-if="update" md-svg-icon="bell-ring"></md-icon>
