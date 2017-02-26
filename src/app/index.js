@@ -1,18 +1,36 @@
 'use strict';
 
 angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload', 'satellizer',
-        'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop'
+        'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop', 'angular-jwt'
     ])
     //remove setellizer
     .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, $authProvider,
-        $mdIconProvider, socialProvider) {
+        $mdIconProvider, socialProvider, jwtInterceptorProvider, jwtOptionsProvider, $httpProvider) {
+        jwtOptionsProvider.config({
+            whiteListedDomains: ['http://localhost'],
+            unauthenticatedRedirectPath: '/login',
+            authPrefix: 'MyPrefix ',
+            tokenGetter: ['options', function(options) {
+
+                if (options && options.url.substr(options.url.length - 5) == '.html') {
+                    return null;
+                }
+                console.log(localStorage.getItem('id_token'));
+                return "localStorage.getItem('id_token')";
+            }],
+        });
+        $httpProvider.interceptors.push('jwtInterceptor');
+      
         $stateProvider
             .state('home', {
                 url: '',
                 templateUrl: 'app/views/main.html',
                 controller: 'MainController',
                 controllerAs: 'vm',
-                abstract: true
+                abstract: true,
+                data: {
+                    requiresLogin: true
+                }
             })
             .state('static', {
                 url: '',
@@ -52,6 +70,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                 controler: 'DashboardController',
                 templateUrl: 'app/views/home/dashboard.html',
                 data: {
+                    requiresLogin: true,
                     title: 'Dashboard'
                 }
             })
@@ -61,6 +80,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                 controllerAs: 'vm',
                 templateUrl: 'app/views/home/search.html',
                 data: {
+                    requiresLogin: true,
                     title: 'Dashboard'
                 }
             })
@@ -79,6 +99,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                 controller: 'ProfileController',
                 controllerAs: 'vm',
                 data: {
+                    requiresLogin: true,
                     title: 'Profile'
                 }
             })
@@ -91,6 +112,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                 controller: 'EventsController',
                 controllerAs: 'vm',
                 data: {
+                    requiresLogin: true,
                     title: 'Profile'
                 }
             })
@@ -100,6 +122,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                 controller: 'EventsController',
                 controllerAs: 'vm',
                 data: {
+                    requiresLogin: true,
                     title: 'My Events'
                 }
             })
@@ -110,6 +133,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                 controller: 'BlogsController',
                 controllerAs: 'vm',
                 data: {
+                    requiresLogin: true,
                     title: 'Profile'
                 }
             })
@@ -119,6 +143,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                 controller: 'BlogsController',
                 controllerAs: 'vm',
                 data: {
+                    requiresLogin: true,
                     title: 'My Blogs'
                 }
             })
@@ -164,7 +189,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
         $authProvider.linkedin({
             clientId: '81l3qatlqe4l4p',
             redirectUri: "http://localhost:3000",
-              url: 'http://localhost:3000'
+            url: 'http://localhost:3000'
         });
 
         // $authProvider.instagram({
@@ -227,7 +252,12 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
 
 
     })
+    .run(function(authManager) {
 
+        authManager.checkAuthOnRefresh();
+        console.log(authManager.isAuthenticated);
+        authManager.redirectWhenUnauthenticated();
+    });
 // .run(["$rootScope", "$state", "$location", "$stateParams", "$timeout", "$localStorage", function($rootScope, $state, $location, $stateParams, $timeout, $localStorage) {
 //     $rootScope.$on("$stateChangeStart", function(event, next) {
 //         console.log($location.path());

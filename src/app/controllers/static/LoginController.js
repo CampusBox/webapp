@@ -3,12 +3,31 @@
     angular
         .module('app')
         .controller('LoginController', [
-            '$scope', 'loginData', '$rootScope', '$localStorage', '$state', '$auth',
+            '$scope', 'loginData', '$rootScope', '$localStorage', '$state', '$auth', 'tokenService',
             LoginController
         ]);
 
-    function LoginController($scope, loginData, $rootScope, $localStorage, $state, $auth) {
+    function LoginController($scope, loginData, $rootScope, $localStorage, $state, $auth, tokenService) {
         var vm = this;
+        console.log('1');
+
+        tokenService.post("token")
+            .then(function(response) {
+                console.log(response);
+                localStorage.setItem('id_token', response.token);
+                console.log(localStorage.getItem('id_token'));
+
+                tokenService.get("events").then(function(abc) {
+                    console.log(abc);
+                });
+
+
+            }).catch(function(response) {
+                console.log(response);
+                // Something went wrong.
+            });
+
+
         $scope.authenticate = function(provider) {
             $auth.authenticate(provider).then(function(response) {
                     // Signed in with Google.
