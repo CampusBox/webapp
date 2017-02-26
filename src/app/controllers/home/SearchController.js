@@ -3,11 +3,11 @@
     angular
         .module('app')
         .controller('SearchController', [
-            '$scope', '$timeout', '$q', 'allDataService',
+            '$scope', '$timeout', '$q', 'tokenService',
             SearchController
         ]);
 
-    function SearchController($scope, $timeout, $q, allDataService) {
+    function SearchController($scope, $timeout, $q, tokenService) {
         var vm = this;
         $scope.tests = 'test';
         $scope.events ={};
@@ -24,7 +24,7 @@
             'college': 'Thapar University',
             'skills': ['cabbage', 'anal', 'missionary']
         }];
-        allDataService.get("events/Cultural")
+        tokenService.get("events")
             .then(function(events) {
                 $scope.events = [].concat(events.data);
             });

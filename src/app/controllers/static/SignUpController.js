@@ -3,11 +3,11 @@
     angular
         .module('app')
         .controller('SignUpController', [
-            '$scope', '$timeout', 'loginData', '$rootScope', '$localStorage', '$state', 'collegesListService', 'allDataService',
+            '$scope', '$timeout', 'loginData', '$rootScope', '$localStorage', '$state', 'collegesListService', 'tokenService',
             SignUpController
         ]);
 
-    function SignUpController($scope, $timeout, loginData, $rootScope, $localStorage, $state, collegesListService, allDataService) {
+    function SignUpController($scope, $timeout, loginData, $rootScope, $localStorage, $state, collegesListService, tokenService) {
         var vm = this;
         vm.tags = [];
         $scope.items = [{ 'title': 'Drama', 'intrested': false },
@@ -103,7 +103,7 @@
 
         function loadVegetables() {
             vm.veggies = [];
-            allDataService.get("events/Cultural")
+            tokenService.get("events")
                 .then(function(veggies) {
                     vm.veggies = [].concat(veggies.data)
                     vm.activated = false;

@@ -5,13 +5,13 @@
         .controller('MyProfileController', [
             '$mdDialog',
             '$scope',
-            'allDataService',
+            'tokenService',
             '$stateParams',
             '$state',
             MyProfileController
         ]);
 
-    function MyProfileController($mdDialog, $scope, allDataService, $stateParams, $state) {
+    function MyProfileController($mdDialog, $scope, tokenService, $stateParams, $state) {
         var vm = this;
         $scope.tab = $stateParams.tab;
         $scope.showAdvanced = function(ev) {
@@ -149,7 +149,7 @@
                 vm.blogs = [].concat(blogs.data)
                 console.log("aa");
             });
-        allDataService.get("events/Cultural")
+        tokenService.get("events")
             .then(function(events) {
                 vm.events = [].concat(events.data)
                 console.log("aa");
