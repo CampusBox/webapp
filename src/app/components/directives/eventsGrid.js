@@ -17,11 +17,11 @@
             template: ''+
                     '<div flex layout="row" layout-align="space-around" layout-wrap>' +
                     '<md-card style="float:left ; display:inline-flex; !important;" ng-repeat="event in events track by $index">' +
-                    '<img style="height:{{width*10}}px !important; min-height: 200px; background: #aaa; width:auto;" ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}} " class="md-card-image " alt="Washed Out ">' +
+                    '<img style="height:{{width*10}}px !important; min-height: 200px; background: #aaa; width:auto;" ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.contactperson1}}.jpg " class="md-card-image " alt="Washed Out ">' +
                     '<md-card-title>' +
                     '<md-card-title-text>' +
-                    '<span>{{event.name  | limitTo : 25}}</span>' +
-                    '<span>{{event.name  | limitTo : 40:25}}</span>' +
+                    '<span>{{event.title  | limitTo : 25}}</span>' +
+                    '<span>{{event.title  | limitTo : 40:25}}</span>' +
                     '</md-card-title-text>' +
                     '</md-card-title>' +
                     '<md-card-content>' +

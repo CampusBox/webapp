@@ -6,7 +6,7 @@
             '$mdDialog',
             '$scope',
             '$element',
-            'allDataService',
+            'tokenService',
             'Upload',
             '$timeout',
             EventsController
@@ -179,7 +179,7 @@
             ev.stopPropagation();
         });
         vm.activated = true;
-        allDataService.get("events/Cultural")
+        tokenService.get("events")
             .then(function(tableData) {
                 vm.tableData = [].concat(tableData.data)
                 vm.activated = false;
