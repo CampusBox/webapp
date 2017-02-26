@@ -8,10 +8,11 @@
             '$element',
             'allDataService',
             'Upload',
+            '$timeout',
             EventsController
         ]);
 
-    function EventsController($mdDialog, $scope, $element, allDataService, Upload) {
+    function EventsController($mdDialog, $scope, $element, allDataService, Upload, $timeout) {
         var vm = this;
         $scope.grid = true;
         $scope.width = 18;
@@ -144,6 +145,7 @@
                     $scope.status = 'You cancelled the dialog.';
                 });
         };
+
         $scope.report = function() {
             console.log('testing report function');
         }

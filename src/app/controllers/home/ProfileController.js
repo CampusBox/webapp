@@ -22,7 +22,7 @@
         $scope.showAdvanced = function(ev) {
             $mdDialog.show({
                     controller: DialogController,
-                    templateUrl: 'app/views/partials/completeProfile.html',
+                    templateUrl: 'app/views/partials/addEvent.html',
                     parent: angular.element(document.body),
                     targetEvent: ev,
                     clickOutsideToClose: true,

@@ -6,8 +6,8 @@
         .controller('DialogController', [
             '$mdDialog',
             '$scope',
-             'Upload',
-             '$timeout',
+            'Upload',
+            '$timeout',
             DialogController
         ]);
 
@@ -18,24 +18,27 @@
         //maps autocomplete finish
 
         // poster upload
-        $scope.upload = function (dataUrl, name) {
+        //IMAGE UPLOAD CODE START
+        $scope.upload = function(dataUrl, name) {
                 Upload.upload({
-                    url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
+                    url: 'http://upload.campusbox.org/imageUpload.php',
+                    method: 'POST',
+                    file: Upload.dataUrltoBlob(dataUrl, name),
                     data: {
-                        file: Upload.dataUrltoBlob(dataUrl, name)
+                        'targetPath': './media/'
                     },
-                }).then(function (response) {
-                    $timeout(function () {
+                }).then(function(response) {
+                    $timeout(function() {
                         $scope.result = response.data;
                     });
-                }, function (response) {
-                    if (response.status > 0) $scope.errorMsg = response.status 
-                        + ': ' + response.data;
-                }, function (evt) {
+                }, function(response) {
+                    if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
+                }, function(evt) {
                     $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
                 });
             }
-        //
+            //IMAGE UPLOAD CODE END
+            //
         $scope.hide = function() {
             $mdDialog.hide();
         };

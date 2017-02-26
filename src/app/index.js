@@ -15,7 +15,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                 if (options && options.url.substr(options.url.length - 5) == '.html') {
                     return null;
                 }
-                console.log(localStorage.getItem('id_token'));
+                // console.log(localStorage.getItem('id_token'));
                 return "localStorage.getItem('id_token')";
             }],
         });
@@ -255,7 +255,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
     .run(function(authManager) {
 
         authManager.checkAuthOnRefresh();
-        console.log(authManager.isAuthenticated);
+        // console.log(authManager.isAuthenticated);
         authManager.redirectWhenUnauthenticated();
     });
 // .run(["$rootScope", "$state", "$location", "$stateParams", "$timeout", "$localStorage", function($rootScope, $state, $location, $stateParams, $timeout, $localStorage) {
