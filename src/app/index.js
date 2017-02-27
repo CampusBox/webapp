@@ -116,6 +116,16 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                     title: 'Profile'
                 }
             })
+        .state('home.eventFullPage', {
+                url: '/eventFullPage',
+                templateUrl: 'app/views/home/eventFullPage.html',
+                controller: 'EventFullPageController',
+                controllerAs: 'vm',
+                data: {
+                    requiresLogin: true,
+                    title: 'Event'
+                }
+            })
             .state('home.myEvents', {
                 url: '/myEvents',
                 templateUrl: 'app/views/home/myEvents.html',
