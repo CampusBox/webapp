@@ -204,7 +204,61 @@
             </md-button>
         </div>
     </div>
-    <events-grid width="width" ng-show="grid" openMenu="$mdOpenMenu(event)" grid="grid" show="showEvent(event, index)" events="vm.tableData"></events-grid>
+    <!-- <events-grid width="width" ng-show="grid" openMenu="$mdOpenMenu(event)" grid="grid" show="showEvent(event, index)" events="vm.tableData"></events-grid> -->
+    <div flex layout="row" layout-align="space-around" layout-wrap>
+        <md-card ng-show="grid" style="float:left ; display:inline-flex; !important;" ng-repeat="event in events track by $index">
+            <img style="height:{{width*10}}px !important; min-height: 200px; background: #aaa; width:auto;" ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.eventId}}.jpg " class="md-card-image " alt="Washed Out ">
+            <md-card-title>
+                <md-card-title-text>
+                    <span>{{event.title  | limitTo : 25}}</span>
+                    <span>{{event.title  | limitTo : 40:25}}</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+            </md-card-content>
+            <md-card-actions layout="row " layout-align="end center ">
+                <md-button ng-click="showEvent(event, $index)">View event</md-button>
+                <md-button class="md-icon-button " aria-label="Favorite ">
+                    <md-icon md-svg-icon="heart-outline "></md-icon>
+                </md-button>
+                <md-button class="md-icon-button " aria-label="Share ">
+                    <md-icon md-svg-icon="share "></md-icon>
+                </md-button>
+                <md-menu md-offset="0 3">
+                    <md-button class="md-icon-button " aria-label="Settings " ng-click="$mdOpenMenu(event)">
+                        <md-icon md-svg-icon="dots-vertical "></md-icon>
+                    </md-button>
+                    <md-menu-content width="3">
+                        <md-menu-item>
+                            <md-button ng-click="" ui-sref="home.myEvents ">
+                                <div layout="row " flex=" " class="ng-scope layout-row flex ">
+                                    <md-icon md-svg-icon="delete"></md-icon>
+                                    <p flex=" " class="flex ">Less events like this</p>
+                                </div>
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="" ui-sref="home.myEvents ">
+                                <div layout="row " flex=" " class="ng-scope layout-row flex ">
+                                    <md-icon md-svg-icon="delete-forever"></md-icon>
+                                    <p flex=" " class="flex ">Less from Hackathons</p>
+                                </div>
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click=" " ui-sref="home.profile ">
+                                <div layout="row " flex=" " class="ng-scope layout-row flex ">
+                                    <md-icon md-svg-icon="flag-outline"></md-icon>
+                                    <p flex=" " class="flex ">Report</p>
+                                </div>
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </md-card-actions>
+        </md-card>
+    </div>'
+
     <md-content>
         <md-list ng-show="!grid">
             <md-list-item ng-click="showEvent(event, $index)" class="secondary-button-padding " ng-repeat="event in searchedEvents = (events | filter:{ name: search}) track by $index"> <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.eventId}}.jpg " class="md-avatar " alt="{{item.who}} ">
