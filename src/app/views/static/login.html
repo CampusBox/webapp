@@ -5,7 +5,7 @@
         <div class="loginBox md-whiteframe-z1" layout="column">
             <md-content class="md-padding" layout="column">
                 <div flex layout="row" layout-align="center center">
-                    <md-button fb-login md-colors="{background: 'indigo'}" class="md-raised md-primary">
+                    <md-button ng-click="authenticate('facebook')" md-colors="{background: 'indigo'}" class="md-raised md-primary">
                         <md-icon md-svg-icon="facebook"></md-icon>
                     </md-button>
                     <md-button g-login md-colors="{background: 'red'}" class="md-raised md-primary">
@@ -16,19 +16,19 @@
                     </md-button>
                 </div>
                 <center>
-                <button ng-click="authenticate('facebook')">Sign in with Facebook</button>
-<button ng-click="authenticate('google')">Sign in with Google</button>
-<button ng-click="authenticate('github')">Sign in with GitHub</button>
-<button ng-click="authenticate('linkedin')">Sign in with LinkedIn</button>
-<button ng-click="authenticate('instagram')">Sign in with Instagram</button>
-<button ng-click="authenticate('twitter')">Sign in with Twitter</button>
-<button ng-click="authenticate('foursquare')">Sign in with Foursquare</button>
-<button ng-click="authenticate('yahoo')">Sign in with Yahoo</button>
-<button ng-click="authenticate('live')">Sign in with Windows Live</button>
-<button ng-click="authenticate('twitch')">Sign in with Twitch</button>
-<button ng-click="authenticate('bitbucket')">Sign in with Bitbucket</button>
-<button ng-click="authenticate('spotify')">Sign in with Spotify</button>
-                    <p>Or</p>
+                 <!--    <button ng-click="authenticate('facebook')">Sign in with Facebook</button>
+                    <button ng-click="authenticate('google')">Sign in with Google</button>
+                    <button ng-click="authenticate('github')">Sign in with GitHub</button>
+                    <button ng-click="authenticate('linkedin')">Sign in with LinkedIn</button>
+                    <button ng-click="authenticate('instagram')">Sign in with Instagram</button>
+                    <button ng-click="authenticate('twitter')">Sign in with Twitter</button>
+                    <button ng-click="authenticate('foursquare')">Sign in with Foursquare</button>
+                    <button ng-click="authenticate('yahoo')">Sign in with Yahoo</button>
+                    <button ng-click="authenticate('live')">Sign in with Windows Live</button>
+                    <button ng-click="authenticate('twitch')">Sign in with Twitch</button>
+                    <button ng-click="authenticate('bitbucket')">Sign in with Bitbucket</button>
+                    <button ng-click="authenticate('spotify')">Sign in with Spotify</button>
+                    --> <p>Or</p>
                 </center>
                 <!-- <md-divider></md-divider> -->
                 <md-input-container>

@@ -15,8 +15,9 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                 if (options && options.url.substr(options.url.length - 5) == '.html') {
                     return null;
                 }
+                var token = localStorage.getItem('id_token');
                 // console.log(localStorage.getItem('id_token'));
-                return "localStorage.getItem('id_token')";
+                return token;
             }],
         });
         $httpProvider.interceptors.push('jwtInterceptor');
@@ -182,7 +183,8 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
         // Optional: For client-side use (Implicit Grant), set responseType to 'token' (default: 'code')
         $authProvider.facebook({
             clientId: '1250377088376164',
-            // responseType: 'token'
+            url:"http://localhost/app/public/facebook",
+             responseType: 'token'
         });
 
         $authProvider.google({
