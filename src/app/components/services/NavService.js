@@ -10,7 +10,7 @@
   function navService($q){
     var menuItems = [
       {
-        name: 'Dash',
+        name: 'Home',
         icon: 'home-outline',
         sref: '.dashboard'
       },
