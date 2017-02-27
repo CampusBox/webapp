@@ -1,26 +1,4 @@
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAoxkYb6Lkrz_CMGy__9Yqw5zHlvV6-kX4&libraries=places"></script>
-<!-- <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z2 md-sidenav-left">
-    <md-toolbar md-theme="light-blue" class="md-whiteframe-z2">
-        <md-button layout="row" layout-align="center center" class="md-toolbar-tools" aria-label="Home">
-            <h1>
-                <md-icon md-svg-icon="school"></md-icon>
-            </h1>
-        </md-button>
-    </md-toolbar>
-    <md-button ng-repeat="item in vm.menuItems" layout="column" layout-align="center center" flex class="capitalize" ng-click="vm.selectItem(item)" ui-sref-active="md-warn" ui-sref="{{item.sref}}">
-        <div hide-sm hide-md class="md-tile-content">
-            <md-icon md-svg-icon="{{item.icon}}"></md-icon>
-        </div>
-        <div class="md-tile-content">
-            {{item.name}}
-        </div>
-    </md-button>
-    <md-button ng-click="vm.showActions($event)" layout-align="center center">
-        <div class="md-tile-content">
-            Actions
-        </div>
-    </md-button>
-</md-sidenav> -->
 <div layout="column" flex>
     <md-toolbar layout="row" layout-align="center center">
         <section layout-align="start center">
@@ -31,16 +9,26 @@
             </h1>
             </md-button>
         </section>
-        <section layout-align="start center"  flex>
+        <section layout-align="start center" flex>
             <md-button hide-gt-sm ng-click="vm.toggleItemsList()" aria-label="Menu">
                 <md-icon md-svg-icon="menu"></md-icon>
             </md-button>
-             <md-autocomplete placeholder="Search anything" md-selected-item="vm.selectedCountry" md-search-text="vm.searchText" md-no-cache="vm.disableCaching" md-items="item in vm.querySearch(vm.searchText)" md-item-text="item.display">
-            <span md-highlight-text="vm.searchText">{{item.display}}</span>
-        </md-autocomplete>
+            <form ng-submit="$event.preventDefault()">
+                <md-autocomplete ng-disabled="isDisabled" md-no-cache="false" md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item)" md-items="item in searchData" md-item-text="item.name" md-min-length="0" placeholder="Pick an Angular repository" md-menu-class="autocomplete-custom-template">
+                    <md-item-template>
+                        <md-list-item class="noright">
+                            <img alt="{{ person.name }}" ng-src="http://thapar.brinjal.in/superadmin/eventimg/951.jpg" class="md-avatar" />
+                            <p>{{ item.name }}---</p>
+                            <md-icon md-svg-icon="account-outline" class="md-secondary md-hue-3"></md-icon>
+                            <!-- <md-icon md-svg-icon="calendar" class="md-secondary md-hue-3" ></md-icon> -->
+                            <!-- <md-icon md-svg-icon="brush" class="md-secondary md-hue-3" ></md-icon> -->
+                        </md-list-item>
+                    </md-item-template>
+                </md-autocomplete>
+            </form>
         </section>
-                <section layout-align="start center" layout-fill flex>
-</section>
+        <section layout-align="start center">
+        </section>
         <section layout-align="end center">
             <!-- <md-button>
             <md-icon -->
@@ -116,7 +104,7 @@
         <div ui-view>
         </div>
     </md-content>
-<md-sidenav md-component-id="right" class="md-sidenav-right " style="width: 500px !important;max-width: 500px !important ">
+<md-sidenav md-component-id="right " class="md-sidenav-right " style="width: 500px !important;max-width: 500px !important ">
     
     <section>
         <md-tabs md-stretch-tabs="always " selected="{{selectedTab}} " md-dynamic-height md-border-bottom=" " md-selected="selectedIndex ">

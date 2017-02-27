@@ -7,7 +7,7 @@
             '$q',
             function($http, $q, $location) {
 
-                var serviceBase = 'http://localhost/app/public/';
+                var serviceBase = 'http://192.171.2.213/app/public/';
                 console.log(localStorage.getItem('id_token'));
                 var config = {headers: {
                          'Authorization': 'Bearer '+ localStorage.getItem('id_token'),

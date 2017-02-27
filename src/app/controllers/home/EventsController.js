@@ -12,7 +12,7 @@
             EventsController
         ]);
 
-    function EventsController($mdDialog, $scope, $element, allDataService, Upload, $timeout) {
+    function EventsController($mdDialog, $scope, $element,tokenService, Upload, $timeout) {
         var vm = this;
         $scope.grid = true;
         $scope.width = 18;

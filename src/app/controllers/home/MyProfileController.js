@@ -8,10 +8,11 @@
             'tokenService',
             '$stateParams',
             '$state',
+            'allDataService',
             MyProfileController
         ]);
 
-    function MyProfileController($mdDialog, $scope, tokenService, $stateParams, $state) {
+    function MyProfileController($mdDialog, $scope, tokenService, $stateParams, $state, allDataService) {
         var vm = this;
         $scope.tab = $stateParams.tab;
         $scope.showAdvanced = function(ev) {

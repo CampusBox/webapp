@@ -3,19 +3,20 @@
     angular
         .module('app')
         .controller('MainController', [
-            'navService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state', '$mdToast', '$scope', '$localStorage',
+            'navService', '$mdSidenav', 'allDataService', '$mdBottomSheet', '$log', '$q', '$timeout', '$state', '$mdToast', '$scope', '$localStorage',
             MainController
         ]);
 
-    function MainController(navService, $mdSidenav, $mdBottomSheet, $log, $q, $state, $mdToast, $scope, $localStorage) {
+    function MainController(navService, $mdSidenav, allDataService, $mdBottomSheet, $log, $q, $timeout, $state, $mdToast, $scope, $localStorage) {
         var vm = this;
+
         $scope.logout = function(newState) {
             $localStorage.authenticated = false;
             event.preventDefault();
             $state.go('static.login', { location: 'replace' })
         };
-            var expToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3NhbXBsZXMuYXV0aDAuY29tLyIsInN1YiI6ImZhY2Vib29rfDEwMTU0Mjg3MDI3NTEwMzAyIiwiYXVkIjoiQlVJSlNXOXg2MHNJSEJ3OEtkOUVtQ2JqOGVESUZ4REMiLCJleHAiOjE0MTIyMzQ3MzAsImlhdCI6MTQxMjE5ODczMH0.7M5sAV50fF1-_h9qVbdSgqAnXVF7mz3I6RjS6JiH0H8';  
-       $scope.user =$localStorage.user;
+        var expToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3NhbXBsZXMuYXV0aDAuY29tLyIsInN1YiI6ImZhY2Vib29rfDEwMTU0Mjg3MDI3NTEwMzAyIiwiYXVkIjoiQlVJSlNXOXg2MHNJSEJ3OEtkOUVtQ2JqOGVESUZ4REMiLCJleHAiOjE0MTIyMzQ3MzAsImlhdCI6MTQxMjE5ODczMH0.7M5sAV50fF1-_h9qVbdSgqAnXVF7mz3I6RjS6JiH0H8';
+        $scope.user = $localStorage.user;
         vm.menuItems = [];
         vm.selectItem = selectItem;
         vm.toggleItemsList = toggleItemsList;
@@ -82,6 +83,34 @@
                 .position('bottom right')
             );
         }
+
+        //Search Autocomplete start
+
+        var self = this;
+        $scope.test = [{
+            'name': 'rOHSN',
+            'url': 'https://github.com/angular/angular.js',
+            'watchers': '3,623',
+            'forks': '16,175',
+        }];
+        $scope.searchData = [];
+        allDataService.get("societies/Technical")
+            .then(function(tableData) {
+                $scope.searchData = [].concat(tableData.data);
+            });
+        $scope.querySearch = querySearch;
+
+        function querySearch(query) {
+            allDataService.get("societies/Cultural" + query)
+                .then(function(tableData) {
+                    console.log(query);
+                    $scope.searchData = [].concat(tableData.data);
+                    console.log($scope.searchData);
+                    return $scope.searchData;
+                });
+        }
+
+        // Search Autocomplete End
     }
 
 })();

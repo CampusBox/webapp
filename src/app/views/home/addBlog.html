@@ -1,4 +1,16 @@
 <div ng-controller="BlogsController">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script>
+    var simplemde = new SimpleMDE();
+    </script>
+    <script>
+    var simplemde = new SimpleMDE({
+        element: document.getElementById("MyID")
+    });
+    </script>
+    <div id="MyID">
+    </div>
     <md-content layout-padding layout-wrap>
         <md-list-item class="md-2-line">
             <img ng-src="assets/images/lakshit.jpg" class="md-avatar" alt="{{todos[0].who}}" />
