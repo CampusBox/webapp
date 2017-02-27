@@ -189,6 +189,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
         // $authProvider.facebook({
         //     clientId: '1250377088376164'
         // });
+$authProvider.tokenName = 'token_id';
 
         // Optional: For client-side use (Implicit Grant), set responseType to 'token' (default: 'code')
         $authProvider.facebook({
