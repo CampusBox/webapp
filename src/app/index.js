@@ -156,6 +156,15 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                     title: 'Add a Post'
                 }
             })
+            .state('home.addImages', {
+                url: '/addImages',
+                templateUrl: 'app/views/home/addImages.html',
+                controller: 'AddBlogController',
+                controllerAs: 'vm',
+                data: {
+                    title: 'Add Pictures'
+                }
+            })
             .state('home.societies', {
                 url: '/societies',
                 templateUrl: 'app/views/home/societies.html',

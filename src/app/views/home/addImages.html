@@ -1,0 +1,95 @@
+<style type="text/css" media="screen">
+.thumb {
+    width: 24px;
+    height: 24px;
+    float: none;
+    position: relative;
+    top: 7px;
+}
+
+form .progress {
+    line-height: 15px;
+}
+
+
+}
+.progress {
+    display: inline-block;
+    width: 100px;
+    border: 3px groove #CCC;
+}
+.progress div {
+    font-size: smaller;
+    background: orange;
+    width: 0;
+}
+.uploadedImage {
+    height: 100%;
+    width: 100%;
+    /*opacity: 0;*/
+}
+</style>
+<md-content>
+    <!-- <form name="myForm">
+        <md-button class="md-primary" ngf-select ng-model="picFile" accept="image/*">
+            Select Picture</md-button>
+        <div layout="row">
+            <div ngf-drop ng-model="picFile" ngf-pattern="image/*" class="cropArea">
+                <img-crop image="picFile  | ngfDataUrl" result-image="croppedDataUrl" ng-init="croppedDataUrl=''" area-type="square">
+                </img-crop>
+            </div>
+            <div class="md-padding">
+                <img ng-src="{{croppedDataUrl}}" />
+            </div>
+        </div>
+        <button ng-click="upload(croppedDataUrl, picFile.name)">Submit</button>
+        <span class="progress" ng-show="progress >= 0">
+                      <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+                    </span>
+        <span ng-show="result">Upload Successful</span>
+        <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+    </form> -->
+    
+    <div layout="row">
+        <div flex="20"  class="md-whiteframe-1dp" >
+        </div>
+        <span flex></span>
+        <div flex="80"  class="md-whiteframe-1dp">
+            <md-button style="float: right;" class="md-primary md-raised" md-colors="{background: 'teal'}" ngf-select="uploadFiles($files, $invalidFiles)" multiple accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+                <md-icon md-svg-icon="plus"></md-icon>Add more images</md-button>
+        </div>
+    </div>
+
+    <div layout="row">
+        <div flex="20"  class="md-whiteframe-1dp" >
+            <md-input-container class="md-block" flex-gt-sm>
+                <!-- <label>Title</label> -->
+                <input placeholder="Title" ng-model="user.firstName">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Description</label>
+                <textarea ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+            </md-input-container>
+            <br>
+            <md-button class="md-primary"  md-colors="{background: 'light-blue'}" style="float:right;">Done</md-button>
+        </div>
+        <div flex="80"  class="md-whiteframe-1dp">
+            <div layout="column">
+                <div layout="row" layout-wrap>
+                    <div ng-repeat="f in files" layout="row" style="background-color: rgba(190, 165, 165, 0.46); height:255px; width:255px;margin:10px;padding:5px;">
+                        <div>
+                            <img ngf-src="f" class="uploadedImage" style="opacity: {{f.progress/100}}">
+                            <!-- <img src="https://developers.google.com/open-source/gsoc/images/gsoc2016-sun-373x373.png" class="uploadedImage"> -->
+                        </div>
+                        <div>
+                            <md-button style="margin:-35px;" class="md-icon-button">
+                                <md-icon md-svg-icon="close"></md-icon>
+                            </md-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{errorMsg}}
+        </div>
+    </div>
+</md-content>
