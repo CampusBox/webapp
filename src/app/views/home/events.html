@@ -212,7 +212,7 @@
     <!-- <events-grid width="width" ng-show="grid" openMenu="$mdOpenMenu(event)" grid="grid" show="showEvent(event, index)" events="vm.tableData"></events-grid> -->
     <div flex layout="row" layout-align="space-around" layout-wrap>
         <md-card ng-show="grid" style="float:left ; display:inline-flex; !important;" ng-repeat="event in events track by $index">
-            <img style="height:{{width*10}}px !important; min-height: 200px; background: #aaa; width:auto;" ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.eventId}}.jpg " class="md-card-image " alt="Washed Out ">
+            <img style="height:{{width*10}}px !important; min-height: 200px; background: #aaa; width:auto;" ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.id}}.jpg " class="md-card-image " alt="Washed Out ">
             <md-card-title>
                 <md-card-title-text>
                     <span>{{event.title  | limitTo : 25}}</span>
@@ -267,7 +267,7 @@
 
     <md-content>
         <md-list ng-show="!grid">
-            <md-list-item ng-click="showEvent(event, $index)" class="secondary-button-padding " ng-repeat="event in searchedEvents = (events | filter:{ name: search}) track by $index"> <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.eventId}}.jpg " class="md-avatar " alt="{{item.who}} ">
+            <md-list-item ng-click="showEvent(event, $index)" class="secondary-button-padding " ng-repeat="event in searchedEvents = (events | filter:{ name: search}) track by $index"> <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.id}}.jpg " class="md-avatar " alt="{{item.who}} ">
                 <p>{{event.title}}</p>
                 <md-button class="md-icon-button" ng-click="updateIcon();" aria-label="Update">
                     <md-icon ng-if="!update" md-svg-icon="bell-outline"></md-icon>
