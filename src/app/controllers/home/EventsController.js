@@ -12,7 +12,7 @@
             EventsController
         ]);
 
-    function EventsController($mdDialog, $scope, $element,tokenService, Upload, $timeout) {
+    function EventsController($mdDialog, $scope, $element, tokenService, Upload, $timeout) {
         var vm = this;
         $scope.grid = true;
         $scope.width = 18;
@@ -164,11 +164,25 @@
                     $scope.status = 'You cancelled the dialog.';
                 });
         };
-        $scope.update = false;
-        $scope.updateIcon = function() {
-            console.log('asascascascdbrththrrb');
+        $scope.heart = function(event, $index) {
+            $scope.events[$index].Actions.Bookmarked.status = !$scope.events[$index].Actions.Bookmarked.status;
+            if ($scope.events[$index].Actions.Bookmarked.status) {
+                $scope.events[$index].Actions.Bookmarked.total += 1;
+            } else {
+                $scope.events[$index].Actions.Bookmarked.total -= 1;
+            }
+        }
+        $scope.update = function(event, $index) {
+            $scope.events[$index].Actions.Participants.status = !$scope.events[$index].Actions.Participants.status;
         }
 
+        tokenService.get("events")
+            .then(function(tableData) {
+                vm.tableData = [].concat(tableData.data);
+                vm.activated = false;
+                $scope.events = vm.tableData;
+                console.log($scope.events);
+            });
         $scope.searchTerm;
         $scope.clearSearchTerm = function() {
             $scope.searchTerm = '';
@@ -179,12 +193,6 @@
             ev.stopPropagation();
         });
         vm.activated = true;
-        tokenService.get("events")
-            .then(function(tableData) {
-                vm.tableData = [].concat(tableData.data)
-                vm.activated = false;
-                $scope.events = vm.tableData;
-            });
     }
 
 })();

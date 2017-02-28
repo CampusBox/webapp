@@ -122,7 +122,12 @@
     max-height: 240px;
 }
 
-
+.pink{
+    fill: rgb(233, 30, 99) !important;
+}
+.yellow{
+    fill: rgb(255, 235, 59) !important;
+}
 /*college filter end*/
 
 
@@ -217,12 +222,13 @@
             <md-card-content>
             </md-card-content>
             <md-card-actions layout="row " layout-align="end center ">
-                <md-button ng-click="showEvent(event, $index)">View event</md-button>
-                <md-button class="md-icon-button " aria-label="Favorite ">
-                    <md-icon md-svg-icon="heart-outline "></md-icon>
+                <md-button ng-click="showEvent(event, $index)" class="md-primary" md-colors = "{color: 'indigo'}">View</md-button>
+                <md-button class="md-icon-button" ng-click="heart(event, $index)" aria-label="Favorite ">
+                    <md-icon ng-class="event.Actions.Bookmarked.status? 'pink':''"  md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>
                 </md-button>
-                <md-button class="md-icon-button " aria-label="Share ">
-                    <md-icon md-svg-icon="share "></md-icon>
+                <span>{{event.Actions.Bookmarked.total}}</span>
+                <md-button class="md-icon-button" ng-click="update(event, $index)" aria-label="Favorite ">
+                    <md-icon ng-class="event.Actions.Participants.status? 'yellow':''"  md-svg-icon="{{event.Actions.Participants.status? 'bell-ring' : 'bell-outline' }}"></md-icon>
                 </md-button>
                 <md-menu md-offset="0 3">
                     <md-button class="md-icon-button " aria-label="Settings " ng-click="$mdOpenMenu(event)">
