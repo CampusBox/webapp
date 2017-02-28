@@ -168,8 +168,24 @@
             $scope.events[$index].Actions.Bookmarked.status = !$scope.events[$index].Actions.Bookmarked.status;
             if ($scope.events[$index].Actions.Bookmarked.status) {
                 $scope.events[$index].Actions.Bookmarked.total += 1;
+                tokenService.post('bookmarkEvent/' + event.id, '').then(function(result) {
+                    console.log('post request');
+                    if (result.status != 'error') {
+                        console.log(result.status);
+                    } else {
+                        console.log(result);
+                    }
+                });
             } else {
                 $scope.events[$index].Actions.Bookmarked.total -= 1;
+                tokenService.delete('bookmarkEvent/' + event.id, '').then(function(result) {
+                    console.log('post request');
+                    if (result.status != 'error') {
+                        console.log(result.status);
+                    } else {
+                        console.log(result);
+                    }
+                });
             }
         }
         $scope.update = function(event, $index) {

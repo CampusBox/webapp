@@ -7,7 +7,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
     .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, $authProvider,
         $mdIconProvider, socialProvider, jwtInterceptorProvider, jwtOptionsProvider, $httpProvider) {
         jwtOptionsProvider.config({
-            whiteListedDomains: ['http://localhost'],
+            whiteListedDomains: ['http://localhost','http://192.171.2.213'],
             unauthenticatedRedirectPath: '/login',
             authPrefix: 'MyPrefix ',
             tokenGetter: ['options', function(options) {
