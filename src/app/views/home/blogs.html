@@ -1,86 +1,94 @@
 <div layout="column" layout-fill layout-padding>
     <md-tabs flex md-dynamic-height>
         <md-tab label="All">
-            <div class="md-toolbar-tools">
-                <h2 class="md-toolbar-tools"><span>My Account/Blog posts</span></h2>
-                <md-button ui-sref="home.addBlog" style="background-color: #039BE5; color: #FFFFFF; margin-right: 10px;">Add Blog</md-button>
-            </div>
-            <md-card class="md-3-line" ng-repeat="blog in vm.tableData" ng-click="null">
-                <md-card-header>
-                    <md-card-avatar>
-                        <img src="assets/images/feynman.jpg" />
-                    </md-card-avatar>
-                    <md-card-header-text>
-                        <span class="md-title">Richard Feynman</span>
-                        <span class="md-subhead">Jan 28 - 5 min read</span>
-                    </md-card-header-text>
-                </md-card-header>
-                <md-card-content>
-                    <span class="md-headline">{{blog.name}}</span>
-                    <p class="md-body-2">{{blog.content | limitTo : 300}}...</p>
-                    <span style="margin-left: 15px; margin-bottom: 20px;">Read more...</span>
-                    <md-button ng-click="toggleLike(blog.id)" class="md-icon-button">
-                        <md-icon ng-if="!vm.liked" md-svg-icon="heart-outline"></md-icon>
-                        <md-icon ng-if="vm.liked" md-svg-icon="heart"></md-icon>
-                    </md-button>
-                </md-card-content>
-            </md-card>
-        </md-tab>
-        <md-tab label="Litrery">
-        </md-tab>
-        <md-tab label="Art">
-            <div layout="row">
-                <div flex="25"></div>
-                <md-card flex="50">
+            <div layout="row" layout-wrap layout-align="center center">
+                <md-card flex-gt-md="60" ng-repeat="blog in vm.tableData">
                     <div layout="row" layout-align="left left">
-                        <span class="md-body-1" style="color: #8f8faf;">
-                <md-icon md-svg-icon="tag" style="fill: #8f8faf;margin:10px;"></md-icon>
-                Life
-                </span>
+                        <span class="md-body-1" style="color: #8f8faf;"><md-icon md-svg-icon="tag" style="fill: #8f8faf;margin:10px;"></md-icon>Life</span>
                     </div>
-                    <md-card-header>
+                    <md-card-header style="padding-bottom: : 0px;">
                         <md-card-avatar>
                             <img style="max-height: 300px;" class="md-user-avatar" src="https://avatars2.githubusercontent.com/u/14099191?v=3&u=e03e9a657eb1e4de7da062cc5a5611092f0f2d7e&s=400" />
                         </md-card-avatar>
-                        <md-card-header-text style="margin-left: 5px;">
+                        <md-card-header-text style="margin: 5px;">
                             <span class="md-title">Rohan Goel</span>
-                            <span class="md-subhead md-caption">Date created | Colege name</span>
+                            <span class="md-subhead md-caption">Feb 27 | 5 min read</span>
                         </md-card-header-text>
                     </md-card-header>
-                    <img src="https://media.licdn.com/media/AAEAAQAAAAAAAArZAAAAJDE4ZmRlMGI3LTFkMmQtNDYwMC04MWJkLTU3YzIzNzA1MDczZA.jpg" style="max-height: 300px;padding-left: 25px;padding-right: 25px;" class="md-card-image" alt="Washed Out">
-                    <md-card-title-text>
-                        <h5 class="md-display-1" style="margin:10px;color: #373737;">Mortality</h5>
-                        <span class="md-body-1" style="color: #8f8faf;margin-left: 10px;">Mortality rate, or death rate, is a measure of the number of deaths (in general, or due to a specific cause) in a particular population, scaled to the size of that population, per unit of time. </span>
-                    </md-card-title-text>
-                    <md-card-title>
-                    </md-card-title>
                     <md-card-content>
-                        <p class="md-caption" style="color:#8f8faf;">
+                        <p class="md-display-1" style="color: #373737;font-size: 28px;margin:0px; ">{{blog.name}}</p>
+                        <md-card-title-text>
+                            <p class="md-body-2 " style="color: #8f8faf;margin-left: 10px;font-size: 24px;font-weight: 300;line-height: 1.22; letter-spacing: -.022em; margin:0px; ">{{blog.content | limitTo : 300}}...</p>
+                        </md-card-title-text>
+                        <p class="md-caption " style="color:#8f8faf; ">
                             Read more...
                         </p>
                     </md-card-content>
-                    <div layout="row" layout-align="start center">
-                        <md-button class="md-icon-button">
-                            <md-icon md-svg-icon="heart-outline"></md-icon>
+                    <div layout="row " layout-align="start center ">
+                        <md-button class="md-icon-button ">
+                            <md-icon md-svg-icon="heart-outline "></md-icon>
                         </md-button>
                         <span>100</span>
                         <span flex></span>
-                        <md-button style="float:right;" class="md-icon-button">
-                            <md-icon md-svg-icon="bookmark-outline"></md-icon>
+                        <md-button style="float:right; " class="md-icon-button ">
+                            <md-icon md-svg-icon="bookmark-outline "></md-icon>
                         </md-button>
                         <md-card-icon-actions>
-                            <md-button class="md-icon-button" aria-label="toggle">
-                                <md-icon md-svg-icon="md-toggle-arrow"></md-icon>
+                            <md-button class="md-icon-button " aria-label="toggle ">
+                                <md-icon md-svg-icon="md-toggle-arrow "></md-icon>
                             </md-button>
                         </md-card-icon-actions>
                     </div>
                 </md-card>
-                <div flex="25"></div>
             </div>
         </md-tab>
-        <md-tab label="Music">
+        <md-tab label="Art ">
+            <div layout="column" layout-wrap layout-align="center center">
+                <md-card flex-gt-md="70" ng-repeat="a in [1,2,3,4] ">
+                    <div layout="row " layout-align="left left ">
+                        <span class="md-body-1 " style="color: #8f8faf; "><md-icon md-svg-icon="tag " style="fill: #8f8faf;margin:10px; "></md-icon>Life</span>
+                    </div>
+                    <md-card-header style="padding-bottom: : 0px;">
+                        <md-card-avatar>
+                            <img style="max-height: 300px;" class="md-user-avatar" src="https://avatars2.githubusercontent.com/u/14099191?v=3&u=e03e9a657eb1e4de7da062cc5a5611092f0f2d7e&s=400" />
+                        </md-card-avatar>
+                        <md-card-header-text style="margin: 5px;">
+                            <span class="md-title">Rohan Goel</span>
+                            <span class="md-subhead md-caption">Feb 27 | 5 min read</span>
+                        </md-card-header-text>
+                    </md-card-header>
+                    <md-card-content>
+                        <p class="md-display-1" style="color: #373737;font-size: 28px;margin:0px; ">My new collection</p>
+                        <md-card-title-text>
+                            <img src="https://media.licdn.com/media/AAEAAQAAAAAAAArZAAAAJDE4ZmRlMGI3LTFkMmQtNDYwMC04MWJkLTU3YzIzNzA1MDczZA.jpg " style="max-height: 300px;padding-left: 25px;padding-right: 25px; " class="md-card-image " alt="Washed Out ">
+                        </md-card-title-text>
+                        <p class="md-caption " style="color:#8f8faf; ">
+                            Read more...
+                        </p>
+                    </md-card-content>
+                    <div layout="row " layout-align="start center ">
+                        <md-button class="md-icon-button ">
+                            <md-icon md-svg-icon="heart-outline "></md-icon>
+                        </md-button>
+                        <span>100</span>
+                        <span flex></span>
+                        <md-button style="float:right; " class="md-icon-button ">
+                            <md-icon md-svg-icon="bookmark-outline "></md-icon>
+                        </md-button>
+                        <md-card-icon-actions>
+                            <md-button class="md-icon-button " aria-label="toggle ">
+                                <md-icon md-svg-icon="md-toggle-arrow "></md-icon>
+                            </md-button>
+                        </md-card-icon-actions>
+                    </div>
+                </md-card>
+            </div>
         </md-tab>
-        <md-tab label="Videos">
+        <md-tab label="Litrery ">
+        </md-tab>
+        <md-tab label="Music ">
+        </md-tab>
+        <md-tab label="Videos ">
         </md-tab>
     </md-tabs>
 </div>
