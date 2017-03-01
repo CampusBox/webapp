@@ -210,7 +210,7 @@
         </div>
     </div>
     <!-- <events-grid width="width" ng-show="grid" openMenu="$mdOpenMenu(event)" grid="grid" show="showEvent(event, index)" events="vm.tableData"></events-grid> -->
-    <div flex layout="row" layout-align="space-around" layout-wrap>
+    <div flex layout="row" layout-align="space-around" layout-wrap infinite-scroll="myPagingFunction()" infinite-scroll-disabled='serverBusy' infinite-scroll-distance="4">
         <md-card ng-show="grid" style="float:left ; display:inline-flex; !important;" ng-repeat="event in events track by $index">
             <img style="height:{{width*10}}px !important; min-height: 200px; background: #aaa; width:auto;" ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.id}}.jpg " class="md-card-image " alt="Washed Out ">
             <md-card-title>

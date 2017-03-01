@@ -16,51 +16,52 @@
         var vm = this;
         $scope.grid = true;
         $scope.width = 18;
-        $scope.events = [{
-            "id": -1,
-            "name": " ",
-            "description": " ",
-            "venue": " ",
-            "date": " ",
-            "time": " ",
-            "cost": " ",
-            "societyid": 1,
-            "short_description": null,
-            "image": "grey.png"
-        }, {
-            "id": -1,
-            "name": " ",
-            "description": " ",
-            "venue": " ",
-            "date": " ",
-            "time": " ",
-            "cost": " ",
-            "societyid": 1,
-            "short_description": null,
-            "image": "grey.png"
-        }, {
-            "id": -1,
-            "name": " ",
-            "description": " ",
-            "venue": " ",
-            "date": " ",
-            "time": " ",
-            "cost": " ",
-            "societyid": 1,
-            "short_description": null,
-            "image": "grey.png"
-        }, {
-            "id": -1,
-            "name": " ",
-            "description": " ",
-            "venue": " ",
-            "date": " ",
-            "time": " ",
-            "cost": " ",
-            "societyid": 1,
-            "short_description": null,
-            "image": "grey.png"
-        }];
+        $scope.events = [];
+        // {
+        //     "id": -1,
+        //     "name": " ",
+        //     "description": " ",
+        //     "venue": " ",
+        //     "date": " ",
+        //     "time": " ",
+        //     "cost": " ",
+        //     "societyid": 1,
+        //     "short_description": null,
+        //     "image": "grey.png"
+        // }, {
+        //     "id": -1,
+        //     "name": " ",
+        //     "description": " ",
+        //     "venue": " ",
+        //     "date": " ",
+        //     "time": " ",
+        //     "cost": " ",
+        //     "societyid": 1,
+        //     "short_description": null,
+        //     "image": "grey.png"
+        // }, {
+        //     "id": -1,
+        //     "name": " ",
+        //     "description": " ",
+        //     "venue": " ",
+        //     "date": " ",
+        //     "time": " ",
+        //     "cost": " ",
+        //     "societyid": 1,
+        //     "short_description": null,
+        //     "image": "grey.png"
+        // }, {
+        //     "id": -1,
+        //     "name": " ",
+        //     "description": " ",
+        //     "venue": " ",
+        //     "date": " ",
+        //     "time": " ",
+        //     "cost": " ",
+        //     "societyid": 1,
+        //     "short_description": null,
+        //     "image": "grey.png"
+        // }];
         $scope.showReport = function(ev) {
             $mdDialog.show({
                     controller: 'DialogController',
@@ -77,8 +78,6 @@
                 });
         };
         $scope.showEvent = function(ev, index) {
-            console.log(index);
-            console.log('showEvent called');
             $mdDialog.show({
                     controller: 'SingleEventController',
                     templateUrl: 'app/views/partials/singleEvent.html',
@@ -168,21 +167,39 @@
             $scope.events[$index].Actions.Bookmarked.status = !$scope.events[$index].Actions.Bookmarked.status;
             if ($scope.events[$index].Actions.Bookmarked.status) {
                 $scope.events[$index].Actions.Bookmarked.total += 1;
+                tokenService.post('bookmarkEvent/' + event.id).then(function(result) {
+                    console.log('post request');
+                    if (result.status != 'error') {
+                        console.log(result.status);
+                    } else {
+                        console.log(result);
+                    }
+                });
             } else {
                 $scope.events[$index].Actions.Bookmarked.total -= 1;
+                tokenService.delete('rsvpEvent/' + event.id).then(function(result) {
+                    if (result.status != 'error') {
+                        console.log(result.status);
+                    } else {
+                        console.log(result);
+                    }
+                });
             }
         }
         $scope.update = function(event, $index) {
             $scope.events[$index].Actions.Participants.status = !$scope.events[$index].Actions.Participants.status;
         }
+        $scope.serverBusy = false;
 
-        tokenService.get("events")
-            .then(function(tableData) {
-                vm.tableData = [].concat(tableData.data);
-                vm.activated = false;
-                $scope.events = vm.tableData;
-                console.log($scope.events);
-            });
+
+        $scope.myPagingFunction = function() {
+            $scope.serverBusy = true;
+            tokenService.get("events")
+                .then(function(tableData) {
+                    $scope.serverBusy = false;
+                    $scope.events = $scope.events.concat(tableData.data);
+                });
+        }
         $scope.searchTerm;
         $scope.clearSearchTerm = function() {
             $scope.searchTerm = '';
