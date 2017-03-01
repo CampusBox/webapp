@@ -4,26 +4,23 @@
             <img style="border-radius: 50%; width: 40%; margin-top:20px;" ng-src="{{user.url}}" class="md-card-image" alt="Washed Out">
             <md-card-title>
                 <md-card-title-text>
-                    <span class="md-headline">{{user.name}}</span>
-                    <span class="md-subhead">Thapar university</span>
+                    <span class="md-headline">{{profile.name}}</span>
+                    <span class="md-subhead">{{profile.college.name}}</span>
                     <md-button class="md-raised md-primary" ng-click="follow()">Follow</md-button>
                 </md-card-title-text>
             </md-card-title>
         </center>
         <md-card-content>
             <p class="md-body-2">
-                Web Developer, wants to create meaningful projects to positively impact the world.
+                {{profile.description}}
             </p>
             <md-divider></md-divider>
             <p class="md-title">
                 Skills
             </p>
             <md-chips>
-                <md-chip>Hockey</md-chip>
-                <md-chip>Lacrosse</md-chip>
-                <md-chip>Baseball</md-chip>
-                <!-- Static chips are transcluded -->
-                <md-chip>Java Script</md-chip>
+                <md-chip ng-repeat="skill in profile.skills">{{skill.name}}</md-chip>
+            
             </md-chips>
             <md-divider></md-divider>
             <p class="md-title">
@@ -93,10 +90,10 @@
                     <br>
                     <h3>Top Events Created</h3>
                     <md-list>
-                        <md-list-item class="md-2-line" ng-repeat="event in vm.events | limitTo:6">
-                            <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}}" class="md-avatar" alt="{{item.who}}">
+                        <md-list-item class="md-2-line" ng-repeat="event in profile.Events.data | limitTo:6">
+                            <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.id}}.jpg" class="md-avatar" alt="{{item.who}}">
                             <div class="md-list-item-text">
-                                <h3>{{event.name}}</h3>
+                                <h3>{{event.title}}</h3>
                                 <p>Created: date</p>
                             </div>
                             <span><md-icon md-svg-icon="heart"></md-icon> 100</span>
@@ -106,10 +103,10 @@
                     <br>
                     <h3>Liked Items</h3>
                     <md-list>
-                        <md-list-item class="md-2-line" ng-repeat="event in vm.events | limitTo:6">
+                        <md-list-item class="md-2-line" ng-repeat="event in profile.Events.data | limitTo:6">
                             <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}}" class="md-avatar" alt="{{item.who}}">
                             <div class="md-list-item-text">
-                                <h3>{{event.name}}</h3>
+                                <h3>{{event.title}}</h3>
                                 <h4>Description</h4>
                                 <p>Created: date - Rohan Goel</p>
                             </div>
@@ -120,11 +117,11 @@
                 </md-tab>
                 <md-tab label="Creative Content">
                     <div flex layout="row" layout-align="space-around" layout-wrap>
-                        <md-card flex="100" ng-repeat="item in [1,2,3,4]" style="box-shadow: 0px 0px #FFF; border-radius: 3px; border : solid .5px rgba(10,10,10,0.3)" md-theme="{{ showDarkTheme ? 'dark-orange' : 'default' }}" md-theme-watch>
+                        <md-card flex="100" ng-repeat="event in profile.Events.data" style="box-shadow: 0px 0px #FFF; border-radius: 3px; border : solid .5px rgba(10,10,10,0.3)" md-theme="{{ showDarkTheme ? 'dark-orange' : 'default' }}" md-theme-watch>
                             <!-- <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out"> -->
                             <md-card-title>
                                 <md-card-title-text>
-                                    <span class="md-body-2" style="color: #174f7d; font-weight: 900">Card with image</span>
+                                    <span class="md-body-2" style="color: #174f7d; font-weight: 900">{{event.title}}</span>
                                     <span class="md-caption">24 Oct</span>
                                 </md-card-title-text>
                             </md-card-title>
