@@ -167,7 +167,11 @@
             $scope.events[$index].Actions.Bookmarked.status = !$scope.events[$index].Actions.Bookmarked.status;
             if ($scope.events[$index].Actions.Bookmarked.status) {
                 $scope.events[$index].Actions.Bookmarked.total += 1;
+<<<<<<< HEAD
                 tokenService.post('bookmarkEvent/' + event.id).then(function(result) {
+=======
+                tokenService.post('bookmarkEvent/' + event.id, '').then(function(result) {
+>>>>>>> 990a79c83f6f906ada5e096954d34be449f323e1
                     console.log('post request');
                     if (result.status != 'error') {
                         console.log(result.status);
@@ -177,7 +181,12 @@
                 });
             } else {
                 $scope.events[$index].Actions.Bookmarked.total -= 1;
+<<<<<<< HEAD
                 tokenService.delete('rsvpEvent/' + event.id).then(function(result) {
+=======
+                tokenService.delete('bookmarkEvent/' + event.id, '').then(function(result) {
+                    console.log('post request');
+>>>>>>> 990a79c83f6f906ada5e096954d34be449f323e1
                     if (result.status != 'error') {
                         console.log(result.status);
                     } else {
