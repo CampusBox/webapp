@@ -4,11 +4,11 @@
         .module('app')
         .controller('BlogsController', [
             '$scope',
-            'allDataService',
+            'tokenService',
             BlogsController
         ]);
 
-    function BlogsController($scope, allDataService) {
+    function BlogsController($scope, tokenService) {
         var vm = this;
         $scope.liked = false;
 
@@ -17,7 +17,7 @@
             vm.liked = !vm.liked;
         }
 
-        allDataService.get("blog_posts")
+        tokenService.get("contents")
             .then(function(tableData) {
                 vm.tableData = [].concat(tableData.data)
             });

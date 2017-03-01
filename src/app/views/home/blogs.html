@@ -11,14 +11,14 @@
                             <img style="max-height: 300px;" class="md-user-avatar" src="https://avatars2.githubusercontent.com/u/14099191?v=3&u=e03e9a657eb1e4de7da062cc5a5611092f0f2d7e&s=400" />
                         </md-card-avatar>
                         <md-card-header-text style="margin: 5px;">
-                            <span class="md-title">Rohan Goel</span>
-                            <span class="md-subhead md-caption">Feb 27 | 5 min read</span>
+                            <span class="md-title">{{blog.created.by.name}}</span>
+                            <span class="md-subhead md-caption">{{blog.created.at | date :'MMM d'}} | 5 min read</span>
                         </md-card-header-text>
                     </md-card-header>
                     <md-card-content>
-                        <p class="md-display-1" style="color: #373737;font-size: 28px;margin:0px; ">{{blog.name}}</p>
+                        <p class="md-display-1" style="color: #373737;font-size: 28px;margin:0px; ">{{blog.title}}</p>
                         <md-card-title-text>
-                            <p class="md-body-2 " style="color: #8f8faf;margin-left: 10px;font-size: 24px;font-weight: 300;line-height: 1.22; letter-spacing: -.022em; margin:0px; ">{{blog.content | limitTo : 300}}...</p>
+                            <p class="md-body-2 " style="color: #8f8faf;margin-left: 10px;font-size: 24px;font-weight: 300;line-height: 1.22; letter-spacing: -.022em; margin:0px; ">{{blog.content.description | limitTo : 300}}...</p>
                         </md-card-title-text>
                         <p class="md-caption " style="color:#8f8faf; ">
                             Read more...
