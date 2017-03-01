@@ -15,7 +15,7 @@
                 <md-card-title-text>
                     <span class="md-headline">{{profile.name}}</span>
                     <span class="md-subhead">{{profile.college.name}}</span>
-                    <md-button ng-class="demoFollow.status? 'md-raised md-primary':'md-primary'" ng-click="follow()">{{demoFollow.status? 'Following' : 'Follow'}}</md-button>
+                    <md-button ng-class="demoFollow.status? 'md-primary' : 'md-raised md-primary'" ng-click="follow()">{{demoFollow.status?  'Following':'Follow' }}</md-button>
                 </md-card-title-text>
             </md-card-title>
         </center>
@@ -36,28 +36,14 @@
                 Social Accounts
             </p>
             <md-list>
-                <md-list-item ng-click="showAdvanced()">
-                    <md-icon md-svg-icon="facebook"></md-icon>
-                    <p>Facebook</p>
-                </md-list-item>
-                <md-list-item ng-click="navigateTo('data usage', $event)">
-                    <md-icon md-svg-icon="twitter"></md-icon>
-                    <p>Twitter</p>
-                </md-list-item>
-                <md-list-item ng-click="navigateTo('data usage', $event)">
-                    <md-icon md-svg-icon="youtube-play"></md-icon>
-                    <p>Youtube</p>
-                </md-list-item>
-                <md-list-item ng-click="navigateTo('data usage', $event)">
-                    <md-icon md-svg-icon="github-circle"></md-icon>
-                    <p>Github</p>
-                </md-list-item>
-                <md-list-item ng-click="navigateTo('data usage', $event)">
+            <a  ng-repeat="social in profile.SocialAccounts.data" href="{{social.link}}" target="_blank">
+                <md-list-item>
                     <md-icon md-svg-icon="facebook"></md-icon>
                     <p>Facebook</p>
                 </md-list-item>
                 <md-icon md-svg-icon="{{item.icon}}"></md-icon>
             </md-list>
+            </a>
         </md-card-content>
     </md-card>
     <md-card flex="70" flex-xs="100">
@@ -190,7 +176,7 @@
                 </md-tab>
                 <md-tab label="following">
                     <md-list flex>
-                        <md-list-item class="md-3-line" ng-repeat="item in followers" ng-click="null">
+                        <md-list-item class="md-3-line" ng-repeat="item in profile.Followed.data" ng-click="null">
                             <img ng-src="{{item.image}}" class="md-avatar" alt="{{item.who}}" />
                             <div class="md-list-item-text" layout="row">
                                 <div layout="column">
