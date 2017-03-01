@@ -3,11 +3,11 @@
     angular
         .module('app')
         .controller('MainController', [
-            'navService', '$mdSidenav', 'allDataService', '$mdBottomSheet', '$log', '$q', '$timeout', '$state', '$mdToast', '$scope', '$localStorage',
+            'navService', '$mdSidenav', 'tokenService', '$mdBottomSheet', '$log', '$q', '$timeout', '$state', '$mdToast', '$scope', '$localStorage',
             MainController
         ]);
 
-    function MainController(navService, $mdSidenav, allDataService, $mdBottomSheet, $log, $q, $timeout, $state, $mdToast, $scope, $localStorage) {
+    function MainController(navService, $mdSidenav, tokenService, $mdBottomSheet, $log, $q, $timeout, $state, $mdToast, $scope, $localStorage) {
         var vm = this;
 
         $scope.logout = function(newState) {
@@ -94,14 +94,14 @@
             'forks': '16,175',
         }];
         $scope.searchData = [];
-        allDataService.get("societies/Technical")
+        tokenService.get("search/"+"")
             .then(function(tableData) {
                 $scope.searchData = [].concat(tableData.data);
             });
         $scope.querySearch = querySearch;
 
         function querySearch(query) {
-            allDataService.get("societies/Cultural" + query)
+            tokenService.get("search/" + query)
                 .then(function(tableData) {
                     console.log(query);
                     $scope.searchData = [].concat(tableData.data);
