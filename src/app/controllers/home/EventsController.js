@@ -191,6 +191,29 @@
         }
         $scope.update = function(event, $index) {
             $scope.events[$index].Actions.Participants.status = !$scope.events[$index].Actions.Participants.status;
+            if ($scope.events[$index].Actions.Participants.status) {
+                $scope.events[$index].Actions.Participants.total += 1;
+                tokenService.post('ParticipantsEvent/' + event.id).then(function(result) {
+
+                    console.log('post request');
+                    if (result.status != 'error') {
+                        console.log(result.status);
+                    } else {
+                        console.log(result);
+                    }
+                });
+            } else {
+                $scope.events[$index].Actions.Participants.total -= 1;
+
+                tokenService.delete('ParticipantsEvent/' + event.id, '').then(function(result) {
+                    console.log('post request');
+                    if (result.status != 'error') {
+                        console.log(result.status);
+                    } else {
+                        console.log(result);
+                    }
+                });
+            }
         }
         $scope.serverBusy = false;
 

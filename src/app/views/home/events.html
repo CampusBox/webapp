@@ -268,7 +268,10 @@
     <md-content>
         <md-list ng-show="!grid">
             <md-list-item ng-click="showEvent(event, $index)" class="secondary-button-padding " ng-repeat="event in searchedEvents = (events | filter:{ name: search}) track by $index"> <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.id}}.jpg " class="md-avatar " alt="{{item.who}} ">
-                <p>{{event.title}}</p>
+                <p>{{event.title}}
+                <br>
+                <p>aac</p>
+                </p>
                 <md-button class="md-icon-button" ng-click="heart(event, $index)" aria-label="Favorite ">
                     <md-icon ng-class="event.Actions.Bookmarked.status? 'pink':''"  md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>
                 </md-button>
