@@ -74,23 +74,57 @@
                     $scope.status = 'You cancelled the dialog.';
                 });
         };
-        $scope.con = function(a) {
-            var selectDay = "day";
-            var selectTime = "time";
-            delete a[selectDay];
-            delete a[selectTime];
-            console.log(a);
-            allDataService.post('students/', a).then(function(result) {
-                if (result.status != 'error') {
-                    // var x = angular.copy(coupon);
-                    // x.save = 'insert';
-                    // x.id = result.data;
-                    // $uibModalInstance.close(x);
-                    console.log(result.status);
-                } else {
-                    console.log(result);
-                }
-            });
+        $scope.heart = function() {
+            $scope.events[$scope.index].Actions.Bookmarked.status = !$scope.events[$scope.index].Actions.Bookmarked.status;
+            if ($scope.events[$scope.index].Actions.Bookmarked.status) {
+                $scope.events[$scope.index].Actions.Bookmarked.total += 1;
+                tokenService.post('bookmarkEvent/' + $scope.event.id).then(function(result) {
+
+                    console.log('post request');
+                    if (result.status != 'error') {
+                        console.log(result.status);
+                    } else {
+                        console.log(result);
+                    }
+                });
+            } else {
+                $scope.events[$scope.index].Actions.Bookmarked.total -= 1;
+
+                tokenService.delete('bookmarkEvent/' + $scope.event.id, '').then(function(result) {
+                    console.log('post request');
+                    if (result.status != 'error') {
+                        console.log(result.status);
+                    } else {
+                        console.log(result);
+                    }
+                });
+            }
+        }
+        $scope.update = function() {
+            $scope.events[$scope.index].Actions.Participants.status = !$scope.events[$scope.index].Actions.Participants.status;
+            if ($scope.events[$scope.index].Actions.Participants.status) {
+                $scope.events[$scope.index].Actions.Participants.total += 1;
+                tokenService.post('ParticipantsEvent/' + $scope.event.id).then(function(result) {
+
+                    console.log('post request');
+                    if (result.status != 'error') {
+                        console.log(result.status);
+                    } else {
+                        console.log(result);
+                    }
+                });
+            } else {
+                $scope.events[$scope.index].Actions.Participants.total -= 1;
+
+                tokenService.delete('ParticipantsEvent/' + $scope.event.id, '').then(function(result) {
+                    console.log('post request');
+                    if (result.status != 'error') {
+                        console.log(result.status);
+                    } else {
+                        console.log(result);
+                    }
+                });
+            }
         }
 
     }

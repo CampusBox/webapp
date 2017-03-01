@@ -224,6 +224,7 @@
                 .then(function(tableData) {
                     $scope.serverBusy = false;
                     $scope.events = $scope.events.concat(tableData.data);
+                    console.log($scope.events)
                 });
         }
         $scope.searchTerm;
