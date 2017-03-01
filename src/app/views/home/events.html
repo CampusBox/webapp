@@ -269,9 +269,12 @@
         <md-list ng-show="!grid">
             <md-list-item ng-click="showEvent(event, $index)" class="secondary-button-padding " ng-repeat="event in searchedEvents = (events | filter:{ name: search}) track by $index"> <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.id}}.jpg " class="md-avatar " alt="{{item.who}} ">
                 <p>{{event.title}}</p>
-                <md-button class="md-icon-button" ng-click="updateIcon();" aria-label="Update">
-                    <md-icon ng-if="!update" md-svg-icon="bell-outline"></md-icon>
-                    <md-icon ng-if="update" md-svg-icon="bell-ring"></md-icon>
+                <md-button class="md-icon-button" ng-click="heart(event, $index)" aria-label="Favorite ">
+                    <md-icon ng-class="event.Actions.Bookmarked.status? 'pink':''"  md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>
+                </md-button>
+                <span>{{event.Actions.Bookmarked.total}}</span>
+                <md-button class="md-icon-button" ng-click="update(event, $index)" aria-label="Favorite ">
+                    <md-icon ng-class="event.Actions.Participants.status? 'yellow':''"  md-svg-icon="{{event.Actions.Participants.status? 'bell-ring' : 'bell-outline' }}"></md-icon>
                 </md-button>
                 <md-button class="md-icon-button " aria-label="Share ">
                     <md-icon md-svg-icon="share "></md-icon>
