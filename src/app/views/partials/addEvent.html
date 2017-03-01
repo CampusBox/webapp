@@ -15,7 +15,11 @@ Optional adjustments for md-autocomplete in mobile screens
         padding-bottom: 0;
     }
 }
-
+@media (min-width: 959px) {
+    md-dialog.md-dialog-fullscreen {
+        min-width: 85%;
+    }
+}
 
 /*image upload start*/
 
@@ -45,7 +49,7 @@ form .progress {
 
 /*image upload end*/
 </style>
-<md-dialog style="min-width:80%">
+<md-dialog class="md-dialog-fullscreen">
     <form ng-cloak>
         <md-toolbar>
             <div class="md-toolbar-tools">
@@ -63,23 +67,23 @@ form .progress {
                         <div layout-gt-sm="row">
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label>Title</label>
-                                <input type="text" ng-model="vm.event.name">
+                                <input type="text" ng-model="$scope.event.name">
                             </md-input-container>
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label>Ticket Price</label>
-                                <input type="number" ng-model="vm.event.price">
+                                <input type="number" ng-model="$scope.event.price">
                             </md-input-container>
                         </div>
                         <div layout-gt-sm="row">
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label> Online link to the event?</label>
-                                <input type="text" ng-model="vm.event.online">
+                                <input type="text" ng-model="$scope.event.online">
                             </md-input-container>
                         </div>
                         <div layout-gt-sm="row">
                             <!--  <md-input-container class="md-block" flex-gt-sm>
                                 <label>Venue</label>
-                                <input type="text" ng-model="vm.event.venue">
+                                <input type="text" ng-model="$scope.event.venue">
                             </md-input-container> -->
                             <!-- <form id="form" role="form">
                                 <md-input-container>
@@ -101,7 +105,7 @@ form .progress {
                         </md-input-container>
                         <md-input-container class="md-block">
                             <label>Description</label>
-                            <textarea ng-model="vm.event.description" md-maxlength="150" rows="4" md-select-on-focus></textarea>
+                            <textarea ng-model="$scope.event.description" md-maxlength="150" rows="4" md-select-on-focus></textarea>
                         </md-input-container>
                     </md-content>
                 </md-tab>
@@ -110,33 +114,33 @@ form .progress {
                         <div layout-gt-sm="row" flex>
                             <md-input-container class="md-block">
                                 <label>From Date</label>
-                                <md-datepicker ng-model="vm.event.fromDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                                <md-datepicker ng-model="$scope.event.fromDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
                             </md-input-container>
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label>Start Time</label>
-                                <md-select ng-model="vm.event.fromTime" placeholder="Start Time">
-                                    <md-option ng-value="startTime" ng-repeat="startTime in  [].constructor(12) track by $index+1">{{$index+1}}</md-option>
+                                <md-select ng-model="$scope.event.fromTime" placeholder="Start Time">
+                                    <md-option ng-value="b" ng-repeat="b in  [1,2,3,4,5,6,7,8,9,10,11,12] ">{{b}}</md-option>
                                 </md-select>
                             </md-input-container>
                             <md-input-container flex-gt-sm>
                                 <label>Am/Pm</label>
-                                <md-select ng-model="vm.event.fromZone">
+                                <md-select ng-model="$scope.event.fromZone">
                                     <md-option ng-value="fromZone" ng-repeat="fromZone in ['Am', 'Pm']">{{fromZone}}</md-option>
                                 </md-select>
                             </md-input-container>
                             <md-input-container class="md-block">
                                 <label>To Date</label>
-                                <md-datepicker ng-model="vm.event.toDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                                <md-datepicker ng-model="$scope.event.toDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
                             </md-input-container>
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label>End Time</label>
-                                <md-select ng-model="vm.event.toTime" placeholder="End Time">
-                                    <md-option ng-value="endTime" ng-repeat="endTime in  [].constructor(12) track by $index+1">{{$index+1}}</md-option>
+                                <md-select ng-model="$scope.event.toTime" placeholder="End Time">
+                                    <md-option ng-value="b" ng-repeat="b in  [1,2,3,4,5,6,7,8,9,10,11,12] ">{{b}}</md-option>
                                 </md-select>
                             </md-input-container>
                             <md-input-container flex-gt-sm>
                                 <label>Am/Pm</label>
-                                <md-select ng-model="vm.event.toZone">
+                                <md-select ng-model="$scope.event.toZone">
                                     <md-option ng-value="toZone" ng-repeat="toZone in ['Am', 'Pm']">{{toZone}}</md-option>
                                 </md-select>
                             </md-input-container>
@@ -144,13 +148,13 @@ form .progress {
                         <div layout-gt-sm="row" flex>
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label>Event Category</label>
-                                <md-select ng-model="vm.event.category" placeholder="Event Category">
+                                <md-select ng-model="$scope.event.category" placeholder="Event Category">
                                     <md-option ng-value="category" ng-repeat="category in ['cultural', 'technical', 'Seminar or Talk']">{{category}}</md-option>
                                 </md-select>
                             </md-input-container>
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label>Event Topic</label>
-                                <md-select ng-model="vm.event.topic">
+                                <md-select ng-model="$scope.event.topic">
                                     <md-option ng-value="topic" ng-repeat="topic in ['Science And Technology', 'Music', 'Hobies and Special Intrest', 'Sports']">{{topic}}</md-option>
                                 </md-select>
                             </md-input-container>
@@ -158,11 +162,11 @@ form .progress {
                         <div layout-gt-sm="row">
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label>Who is orgainizing the event ?</label>
-                                <input type="text" ng-model="vm.event.organizer">
+                                <input type="text" ng-model="$scope.event.organizer">
                             </md-input-container>
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label>Online Link to the organizer</label>
-                                <input type="text" ng-model="vm.event.onlineOrganizer">
+                                <input type="text" ng-model="$scope.event.onlineOrganizer">
                             </md-input-container>
                         </div>
                     </md-content>
@@ -191,7 +195,7 @@ form .progress {
             </md-tabs>
             <md-dialog-actions layout="row">
                 <span flex></span>
-                <md-button ng-click="con(vm.event)">
+                <md-button ng-click="con($scope.event)">
                     Create
                 </md-button>
                 <md-button class="md-raised md-primary" ng-if="selectedIndex == 0" ng-click="selectedIndex = selectedIndex + 1">Next</md-button>
