@@ -9,7 +9,6 @@
 
     function MainController(navService, $mdSidenav, tokenService, $mdBottomSheet, $log, $q, $timeout, $state, $mdToast, $scope, $localStorage) {
         var vm = this;
-
         $scope.logout = function(newState) {
             $localStorage.authenticated = false;
             event.preventDefault();
@@ -104,7 +103,7 @@
             tokenService.get("search/" + query)
                 .then(function(tableData) {
                     console.log(query);
-                    $scope.searchData = [].concat(tableData.data);
+                    $scope.searchData = tableData.data;
                     console.log($scope.searchData);
                     return $scope.searchData;
                 });

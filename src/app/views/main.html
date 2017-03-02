@@ -1,5 +1,5 @@
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAoxkYb6Lkrz_CMGy__9Yqw5zHlvV6-kX4&libraries=places"></script>
-<div layout="column" flex>
+<div layout="column" flex resize>
     <md-toolbar layout="row" layout-align="center center">
         <section layout-align="start center">
             <md-button  hide-sm hide-xs layout="row" layout-align="center center" class="md-toolbar-tools" aria-label="Home">
@@ -154,22 +154,29 @@
         </section>
        
     </md-toolbar>
-<md-sidenav md-component-id="right" class="md-sidenav-right " >
-    
+<md-sidenav md-component-id="right" class="md-sidenav-right" >
     <section>
-         <md-tabs md-stretch-tabs="always " selected="{{selectedTab}} " md-dynamic-height md-border-bottom=" " md-selected="selectedIndex ">
-            <md-tab hide-gt-xs label="Search ">
+    <md-tabs md-stretch-tabs="always" >
+      <md-tab label="Notifications">
                 <md-content class="md-padding ">
-                    <div ng-include src=" 'app/views/partials/searchSidebar.html' ">
+                    <div ng-include src=" 'app/views/partials/messages.html' "></div>
+        </md-content>
+      </md-tab>
+      <md-tab label="Search" data-ng-if="windowWidth<587 ">
+                <md-content class="md-padding">
+                    <div ng-include src=" 'app/views/partials/searchSidebar.html' "></div>
                 </md-content>
+          
+      </md-tab>
+    </md-tabs>
+         <!-- <md-tabs md-stretch-tabs="always" >
+            <md-tab label="Search" data-ng-if="false">
             </md-tab>
             <md-tab label="Notifications ">
-                <md-content class="md-padding ">
-                    <div ng-include src=" 'app/views/partials/messages.html' ">
                     </div>
                 </md-content>
              </md-tab>
-        </md-tabs>
+        </md-tabs> -->
      </section>
 </md-sidenav>
 </div>
