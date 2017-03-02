@@ -86,9 +86,9 @@
                             </div>
                             <md-content>
                                 <md-list>
-                                    <md-list-item ng-click="showAdvanced($event)" class="secondary-button-padding" ng-repeat="event in vm.events ">
+                                    <md-list-item ng-click="showAdvanced($event)" class="secondary-button-padding" ng-repeat="event in events ">
                                         <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}}" class="md-avatar" alt="{{item.who}}">
-                                        <p>{{event.name}}</p>
+                                        <p>{{event.title}}</p>
                                         <md-button class="md-mini" aria-label="description" md-no-ink="true|false" ng-click="showUpdates(event)" md-ripple-size="auto">Updates</md-button>
                                         <md-button class="md-mini" aria-label="description" md-no-ink="true|false" ng-click="showParticipants(event)" md-ripple-size="auto">Participants</md-button>
                                         <md-divider md-inset ng-if="!$last"></md-divider>

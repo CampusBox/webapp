@@ -15,7 +15,7 @@
 </md-toolbar>
 <md-content>
     <md-list>
-        <md-list-item ng-click="showAdvanced($event)" class="secondary-button-padding" ng-repeat="event in vm.tableData ">
+        <md-list-item ng-click="showAdvanced($event)" class="secondary-button-padding" ng-repeat="event in profile.Events.data ">
             <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}}" class="md-avatar" alt="{{item.who}}">
             <p>{{event.name}}</p>
             <md-button class="md-mini"  aria-label="description" md-no-ink="true|false" ng-click="showUpdates(event)"  md-ripple-size="auto">Updates</md-button>
