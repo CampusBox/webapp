@@ -94,7 +94,7 @@
             'forks': '16,175',
         }];
         $scope.searchData = [];
-        tokenService.get("search/"+"")
+        tokenService.get("search/"+" ")
             .then(function(tableData) {
                 $scope.searchData = [].concat(tableData.data);
             });
