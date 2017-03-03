@@ -1,24 +1,31 @@
-<!-- TODO: Replace table to table component when https://github.com/angular/material/issues/796 will closed -->
-<div class="table-responsive-vertical md-whiteframe-z1">
-    <table id="table" class="table table-hover table-bordered">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Issue</th>
-                <th>Status</th>
-                <th>Progress</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="data in vm.tableData track by $index">
-                <td data-title="ID">{{$index + 1}}</td>
-                <td data-title="Issue">{{data.issue}}</td>
-                <td data-title="Status">{{data.status}}</td>
-                <td data-title="Progress">
-                    <md-progress-linear class="table-progress {{data.class}}" md-mode="determinate" value={{data.progress}}>
-                    </md-progress-linear>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<md-dialog class="md-dialog-fullscreen">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Updates</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-svg-icon="window-close"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <div class="md-padding">
+        <md-list flex>
+            <md-list-item class="md-2-line" ng-repeat="item in [1,2,3,4]" ng-click="null">
+                <img ng-src="{{item.image}}" class="md-avatar" alt="{{item.who}}" />
+                <div class="md-list-item-text" layout="row">
+                    <div layout="column">
+                        <h3>{{ item.name }} </h3>
+                        <h4> {{ item.college }}</h4>
+                    </div>
+                </div>
+            </md-list-item>
+            <md-divider></md-divider>
+        </md-list>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-primary" ng-click="cancel()">
+                Okay
+            </md-button>
+        </md-dialog-actions>
+    </div>
+</md-dialog>

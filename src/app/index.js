@@ -130,7 +130,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
             .state('home.myEvents', {
                 url: '/myEvents',
                 templateUrl: 'app/views/home/myEvents.html',
-                controller: 'EventsController',
+                controller: 'MyProfileController',
                 controllerAs: 'vm',
                 data: {
                     requiresLogin: true,

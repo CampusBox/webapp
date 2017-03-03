@@ -24,11 +24,6 @@
                     clickOutsideToClose: true,
                     fullscreen: true // Only for -xs, -sm breakpoints.
                 })
-                .then(function(answer) {
-                    $scope.status = 'You said the information was "' + answer + '".';
-                }, function() {
-                    $scope.status = 'You cancelled the dialog.';
-                });
         };
         $scope.openSocialAccounts = function(ev) {
             $mdDialog.show({
@@ -39,11 +34,32 @@
                     clickOutsideToClose: true,
                     fullscreen: true // Only for -xs, -sm breakpoints.
                 })
-                .then(function(answer) {
-                    $scope.status = 'You said the information was "' + answer + '".';
-                }, function() {
-                    $scope.status = 'You cancelled the dialog.';
-                });
+        };
+        $scope.showUpdates = function(ev) {
+            $mdDialog.show({
+                    controller: 'UpdatesController',
+                    templateUrl: 'app/views/partials/showUpdates.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    locals: {
+                        updates: $scope.events
+                    },
+                    clickOutsideToClose: true,
+                    fullscreen: true // Only for -xs, -sm breakpoints.
+                })
+        };
+        $scope.showParticipants = function(ev) {
+            $mdDialog.show({
+                    controller: 'ParticipantsController',
+                    templateUrl: 'app/views/partials/showParticipants.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    locals: {
+                        participants: $scope.events
+                    },
+                    clickOutsideToClose: true,
+                    fullscreen: true // Only for -xs, -sm breakpoints.
+                })
         };
 
         // SKILLS CHIP SHIT STARTED
@@ -152,8 +168,7 @@
             });
         tokenService.get("events")
             .then(function(events) {
-                vm.events = [].concat(events.data)
-                console.log("aa");
+                $scope.events = events.data;
             });
     }
 
