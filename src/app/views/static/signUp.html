@@ -157,14 +157,15 @@
                 <form ng-submit="doLogin(user)" name="register">
                     <md-input-container class="md-block">
                         <label>Name of your college</label>
-                        <md-select name="" ng-model="user.college" required placeholder="My College">
-                            <md-option ng-value="college" ng-repeat="college in [1]">{{ college }}</md-option>
+
+                        <md-select name="" ng-model="college" required placeholder="My College">
+                            <md-option ng-value="college" ng-repeat="college in colleges">{{ college.name }}</md-option>
                         </md-select>
                         <!-- <div class="hint">This will be visible on your profile.</div> -->
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Your Roll Number</label>
-                        <input required="" ng-model="user.roll" min="100000000" max="999999999" type="number" name="roll" autocomplete="" />
+                        <input required="" ng-model="signUp.roll" type="number"  autocomplete="" />
                         <!-- <div class="hint">Must match your college id.</div> -->
                         <!-- <div ng-messages="userForm.name.$error" ng-if="!showHints">
                             <div ng-message="required">Name is required.</div>
@@ -175,13 +176,13 @@
                 <div>
                     <center>
                         <p>Continue with</p>
-                        <md-button ng-disabled="user.roll<100000 "  ng-click="authenticate('facebook')" md-colors="{background: 'indigo'}" class="md-raised md-primary">
+                        <md-button ng-disabled="signUp.roll<100000 "  ng-click="authenticate('facebook')" md-colors="{background: 'indigo'}" class="md-raised md-primary">
                             <md-icon md-svg-icon="facebook"></md-icon>
                         </md-button>
-                        <md-button ng-disabled="user.roll<100000" g-login md-colors="{background: 'red'}" class="md-raised md-primary">
+                        <md-button ng-disabled="signUp.roll<100000" g-login md-colors="{background: 'red'}" class="md-raised md-primary">
                             <md-icon md-svg-icon="google"></md-icon>+
                         </md-button>
-                        <md-button ng-disabled="user.roll<100000" linked-in md-colors="{background: 'blue'}" class="md-raised md-primary">
+                        <md-button ng-disabled="signUp.roll<100000" linked-in md-colors="{background: 'blue'}" class="md-raised md-primary">
                             <md-icon md-svg-icon="linkedin"></md-icon>
                         </md-button>
                     </center>

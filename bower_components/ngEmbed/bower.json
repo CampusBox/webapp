@@ -1,0 +1,33 @@
+{
+  "name": "ngEmbed",
+  "version": "2.1.0",
+  "homepage": "https://github.com/ritz078/ngEmbed",
+  "authors": [
+    "Ritesh Kumar <rkritesh078@gmail.com>"
+  ],
+  "description": "An angularjs filter for converting text into emoticons.",
+  "main": [
+    "./src/ng-embed.js",
+    "./src/ng-embed.css",
+    "./images/*",
+    "./fonts/*"
+  ],
+  "keywords": [
+    "ngEmbed",
+    "embed",
+    "smiley"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.x",
+    "angular-sanitize": "^1.x"
+  },
+  "devDependencies": {}
+}

@@ -3,17 +3,22 @@
     angular
         .module('app')
         .controller('SignUpController', [
-            '$scope', '$timeout', 'loginData', '$rootScope', '$localStorage', '$state', 'collegesListService', 'tokenService',
+
+            '$scope', '$timeout', 'loginData', '$rootScope', '$localStorage', '$state', 'collegesListService', 'tokenService', '$auth',
             SignUpController
         ]);
 
-    function SignUpController($scope, $timeout, loginData, $rootScope, $localStorage, $state, collegesListService, tokenService) {
+    function SignUpController($scope, $timeout, loginData, $rootScope, $localStorage, $state, collegesListService, tokenService, $auth) {
         var vm = this;
         $scope.querySearch = querySearch;
-
+        $scope.signUp = {};
         vm.tags = [];
         $scope.skills = loadSkills();
+        $scope.roll = "";
         $scope.continue = false;
+        tokenService.get("colleges").then(function(colleges) {
+            $scope.colleges = colleges;
+        });
         $scope.items = [
             { 'title': 'Articles', 'intrested': false },
             { 'title': 'Poetry', 'intrested': false },
@@ -112,71 +117,98 @@
         };
 
 
-        $auth.authenticate(provider).then(function(response) {
-                console.log(response);
+        $scope.signUp = {};
 
-                tokenService.post("facebook", response)
-                    .then(function(abc) {
-                        console.log(abc);
-                        localStorage.setItem('id_token', abc.token);
-                        console.log(localStorage.getItem('id_token'));
-
-                        tokenService.get("events").then(function(abc) {
+        $scope.authenticate = function(provider) {
+            $auth.authenticate(provider).then(function(response) {
+                    $scope.signUp.token = response.access_token;
+                    $scope.signUp.type = provider;
+                    $scope.signUp.skills = $scope.selectedSkills;
+                    $scope.signUp.intrests = $scope.interests;
+                    $scope.signUp.college_id = $scope.college;
+                    $scope.signUp.college_id = 1;
+                    console.log(response);
+                    tokenService.post("signup", $scope.signUp)
+                        .then(function(abc) {
                             console.log(abc);
+                            localStorage.setItem('id_token', abc.token);
+                            console.log(localStorage.getItem('id_token'));
+
+                            tokenService.get("events").then(function(abc) {
+                                console.log(abc);
+                            });
+
+
+                        }).catch(function(abc) {
+
                         });
 
+                })
+                .catch(function(response) {
 
-                    }).catch(function(abc) {
-                        console.log(abc);
-                        // Something went wrong.
-                    });
+                    $scope.signUp.token = response.access_token;
+                    $scope.signUp.type = provider;
+                    $scope.signUp.skills = $scope.selectedSkills;
+                    $scope.signUp.intrests = $scope.interests;
+                    $scope.signUp.college_id = $scope.college;
+                    $scope.signUp.college_id = 1;
+                    console.log(response);
+                    tokenService.post("signup", $scope.signUp)
+                        .then(function(abc) {
+                            console.log(abc);
+                            localStorage.setItem('id_token', abc.token);
+                            console.log(localStorage.getItem('id_token'));
 
-            })
-            .catch(function(response) {
-                console.log(response);
-                // Something went wrong.
-            });
-    };
-
-    $scope.selected = [];
-    $scope.interests = [];
-
-    $scope.toggle = function(item, list) {
-        var idx = list.indexOf(item);
-        if (idx > -1) {
-            list.splice(idx, 1);
-        } else {
-            list.push(item);
-            $scope.buttonClass = 'md-primary md-raised';
-        }
-        item.intrested = !item.intrested;
-        $scope.interests = list;
-        $scope.continue = ($scope.interests.length > 3);
-    };
-    $scope.exists = function(item, list) {
-        return list.indexOf(item) > -1;
-    };
-    $scope.currentState = 1;
-    $scope.user = { college: "", roll: "" };
-
-    $rootScope.$on('event:social-sign-in-success', function(event, userDetails) {
-        // console.log("Social sign in success")
-        // console.log(userDetails);
-        // console.log(event);
-        $scope.user.name = userDetails.name;
-        $scope.user.email = userDetails.email;
-        $scope.user.gender = "";
-        $scope.user.imageUrl = userDetails.imageUrl;
-        $scope.user.provider = userDetails.provider;
-        // $scope.$apply(function() {
-
-        //     $scope.currentState = 2;
-        // })
-        $timeout(function() {
-            $scope.currentState = 2;
-            // $scope.someData = someData;
-        }, 0);
-    })
+                            tokenService.get("events").then(function(abc) {
+                                console.log(abc);
+                            });
 
 
+                        }).catch(function(abc) {
+
+                        });
+                });
+
+        };
+        $scope.selected = [];
+        $scope.interests = [];
+
+        $scope.toggle = function(item, list) {
+            var idx = list.indexOf(item);
+            if (idx > -1) {
+                list.splice(idx, 1);
+            } else {
+                list.push(item);
+                $scope.buttonClass = 'md-primary md-raised';
+            }
+            item.intrested = !item.intrested;
+            $scope.interests = list;
+            $scope.continue = ($scope.interests.length > 3);
+        };
+        $scope.exists = function(item, list) {
+            return list.indexOf(item) > -1;
+        };
+        $scope.currentState = 1;
+
+        $rootScope.$on('event:social-sign-in-success', function(event, userDetails) {
+            // console.log("Social sign in success")
+            // console.log(userDetails);
+            // console.log(event);
+            $scope.user.name = userDetails.name;
+            $scope.user.email = userDetails.email;
+            $scope.user.gender = "";
+            $scope.user.imageUrl = userDetails.imageUrl;
+            $scope.user.provider = userDetails.provider;
+            // $scope.$apply(function() {
+
+            //     $scope.currentState = 2;
+            // })
+            $timeout(function() {
+                $scope.currentState = 2;
+                // $scope.someData = someData;
+            }, 0);
+        })
+
+
+    }
 })();
