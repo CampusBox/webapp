@@ -194,7 +194,9 @@ $authProvider.httpInterceptor = false;
         $authProvider.facebook({
             clientId: '1250377088376164',
             url:"http://localhost/app/public/facebook",
-             responseType: 'token'
+             responseType: 'token',
+               authorizationEndpoint: 'https://www.facebook.com/v2.8/dialog/oauth',
+               scope: ['email']
         });
 
         $authProvider.google({

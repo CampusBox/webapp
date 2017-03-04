@@ -3,11 +3,11 @@
     angular
         .module('app')
         .controller('SignUpController', [
-            '$scope', '$timeout', 'loginData', '$rootScope', '$localStorage', '$state', 'collegesListService', 'tokenService','$auth',
+            '$scope', '$timeout', 'loginData', '$rootScope', '$localStorage', '$state', 'collegesListService', 'tokenService',
             SignUpController
         ]);
 
-    function SignUpController($scope, $timeout, loginData, $rootScope, $localStorage, $state, collegesListService, tokenService,$auth) {
+    function SignUpController($scope, $timeout, loginData, $rootScope, $localStorage, $state, collegesListService, tokenService) {
         var vm = this;
         $scope.querySearch = querySearch;
 
@@ -111,13 +111,11 @@
             });
         };
 
-        $scope.authenticate = function(provider) {
 
         $auth.authenticate(provider).then(function(response) {
                 console.log(response);
-                console.log(provider);
-                console.log($scope.selectedSkills);
-                tokenService.post("signup", response)
+
+                tokenService.post("facebook", response)
                     .then(function(abc) {
                         console.log(abc);
                         localStorage.setItem('id_token', abc.token);
@@ -138,8 +136,8 @@
                 console.log(response);
                 // Something went wrong.
             });
-   
-};
+    };
+
     $scope.selected = [];
     $scope.interests = [];
 
@@ -181,4 +179,4 @@
     })
 
 
-}})();
+})();

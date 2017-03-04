@@ -11,22 +11,6 @@
         var vm = this;
         console.log('1');
 
-        // tokenService.post("token")
-        //     .then(function(response) {
-        //         console.log(response);
-        //         localStorage.setItem('id_token', response.token);
-        //         console.log(localStorage.getItem('id_token'));
-
-        //         tokenService.get("events").then(function(abc) {
-        //             console.log(abc);
-        //         });
-
-
-        //     }).catch(function(response) {
-        //         console.log(response);
-        //         // Something went wrong.
-        //     });
-
 
         $scope.authenticate = function(provider) {
             $auth.authenticate(provider).then(function(response) {
@@ -50,14 +34,6 @@
                             console.log(abc);
                             // Something went wrong.
                         });
-
-
-
-
-
-
-
-
                 })
                 .catch(function(response) {
                     console.log(response);
@@ -87,8 +63,6 @@
                 } else {
                     $scope.showLoading = false;
                     alert('Nope, not your credentials!');
-
-                    //toastr.danger('Sorry, your credentials are invalid. Please check again.');
                 }
             });
         };
