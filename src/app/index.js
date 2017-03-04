@@ -208,10 +208,10 @@ $authProvider.httpInterceptor = false;
         // });
 
         $authProvider.linkedin({
-            clientId: '81l3qatlqe4l4p',
-            redirectUri: "http://localhost:3000",
-            url: 'http://localhost:3000'
-        });
+             clientId: '81l3qatlqe4l4p',
+             redirectUri: "http://localhost:8000",
+             url: 'http://localhost:8000'
+         });
 
         // $authProvider.instagram({
         //     clientId: 'Instagram Client ID'
@@ -275,8 +275,8 @@ $authProvider.httpInterceptor = false;
     })
     .run(function(authManager) {
 
-        authManager.checkAuthOnRefresh();
-        console.log(authManager.isAuthenticated);
+       // authManager.checkAuthOnRefresh();
+       // console.log(authManager.isAuthenticated);
         // authManager.redirectWhenUnauthenticated();
     });
 // .run(["$rootScope", "$state", "$location", "$stateParams", "$timeout", "$localStorage", function($rootScope, $state, $location, $stateParams, $timeout, $localStorage) {

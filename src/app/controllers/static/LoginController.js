@@ -35,7 +35,7 @@
 
                     console.log(response);
 
-                    tokenService.post("facebook",response)
+                    tokenService.post("facebook", response)
                         .then(function(abc) {
                             console.log(abc);
                             localStorage.setItem('id_token', abc.token);

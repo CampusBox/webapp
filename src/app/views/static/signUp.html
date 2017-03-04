@@ -1,94 +1,192 @@
-<div layout="column" layout-align="center center" layout-fill="layout-fill">
+<style type="text/css">
+.interest {
+    background-color: rgba(158, 158, 158, 0.4);
+    border-radius: 15px;
+    text-transform: none !important;
+}
+
+.interest_selected {
+    background-color: #f96262 !important;
+    border-radius: 15px;
+    text-transform: none !important;
+    color: #fff;
+}
+
+.hint {
+    /* Position the hint */
+    /* Copy styles from ng-messages */
+    font-size: 12px;
+    line-height: 14px;
+    transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+    /* Set our own color */
+    color: grey;
+}
+
+.login-box {
+    width: 50%
+}
+</style>
+<div layout="column" layout-align="center center">
     <img ng-src="assets/images/logo.png" style="max-width:200px">
-    <p class="md-display-1" style="font-weight: 300">Sign Up for CampusBox</p>
-    <div class="loginBox md-whiteframe-z1" layout="column">
-        <md-content class="md-padding" layout="column" ng-show="currentState==1">
-            <div flex layout="column" layout-align="center">
-                <md-progress-linear md-mode="determinate" value="33"></md-progress-linear>
-                <p class="md-headline">Input your details to continue</p>
-                <form ng-submit="doLogin(user)" name="register">
-                    <md-input-container class="md-block">
-                        <label>College</label>
-                        <md-select name="" ng-model="user.college" required placeholder="My College">
-                            <md-option ng-value="college" ng-repeat="college in ['IIT Hyderabad','IIIT Hyderabad','BITS Hyderabad',]">{{ college }}</md-option>
-                        </md-select>
-                    </md-input-container>
-                    <md-input-container class="md-block">
-                        <label>My Roll Number</label>
-                        <input required="" ng-model="user.roll" min="100000000" max="999999999" type="number" name="roll" autocomplete="" />
-                    </md-input-container>
-                </form>
-                <center>
-                    <p>Connect to a social account to sign up</p>
-                </center>
-                <md-button ng-disabled="user.roll<100000" fb-login md-colors="{background: 'indigo'}" class="md-raised md-primary">
-                    <md-icon md-svg-icon="facebook"></md-icon>
-                </md-button>
-                <md-button ng-disabled="user.roll<100000" g-login md-colors="{background: 'red'}" class="md-raised md-primary">
-                    <md-icon md-svg-icon="google"></md-icon>+
-                </md-button>
-                <md-button ng-disabled="user.roll<100000" linked-in md-colors="{background: 'blue'}" class="md-raised md-primary">
-                    <md-icon md-svg-icon="linkedin"></md-icon>
-                </md-button>
-            </div>
-            <!-- <md-divider></md-divider> -->
-        </md-content>
+    <p class="md-display-1" style="font-weight: 300">Welcome to CampusBox</p>
+    <div class="login-box md-whiteframe-z1" layout="column">
+        <md-progress-linear md-mode="determinate" value="{{currentState*33}}"></md-progress-linear>
         <!--  <md-toolbar ng-show="currentState==2">
             <h2 class="md-toolbar-tools">
         <span>Welcome {{user.name}}</span>
       </h2>
         </md-toolbar> -->
-        <md-content ng-show="currentState==2" class="md-p adding autocomplete" layout="column">
-            <md-progress-linear md-mode="determinate" value="66"></md-progress-linear>
+        <md-content ng-show="currentState==1" class="md-p adding autocomplete" layout="column">
             <center>
                 <img ng-src="{{user.imageUrl}}" alt="" style="border-radius: 50%; height: auto;width: 20%">
-                <p class="md-headline">Welcome, {{user.name}}</p>
+                <p class="md-headline">You are setting up a new student account.</p>
+                <p class="md-title">Select atleast 3 topics to
+                    <br>personalise your content stream.</p>
             </center>
-            <p class="md-title">Tell us your interests, so we can show you relevant content.</p>
             <form>
-                <div layout="row" layout-wrap flex>
-                    <div flex="50" ng-repeat="item in items">
-                        <md-button ng-class="item.intrested?'md-raised md-primary':'md-primary'" ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
-                            <!-- <md-checkbox >
+                <div>
+                    <center layout-align="center">
+                        <span ng-repeat="item in items track by $index">
+                        
+                            <md-button  ng-class="item.intrested?'interest_selected':'interest'" ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
+                                <!-- <md-checkbox >
                             </md-checkbox> -->
                                 {{ item.title }}
-                        </md-button>
-                    </div>
+                            </md-button>
+                            <br ng-show="{{$index==3 || $index==12 || $index==21  }}">
+                    </span>
+                    </center>
                 </div>
                 <div class="errors" ng-messages="register.fruitName.$error">
                     <!-- <div ng-message="md-max-chips">Maximum number of chips reached.</div> -->
                 </div>
             </form>
-            <md-button ng-click="currentState=3;" class="md-raised md-primary">
-                Continue
-            </md-button>
+            <br>
+            <div layout="row" flex>
+                <md-button flex="60" flex-offset="20" ng-diabled="continue" style="float:right" ng-click="currentState=2;" class="md-raised md-primary">
+                    Continue
+                </md-button>
+            </div>
+            <br>
+            <br>
         </md-content>
-        <md-content ng-show="currentState==3" class="md-padding autocomplete" layout="column">
-            <md-progress-linear md-mode="determinate" value="66"></md-progress-linear>
-            <center>
-                <p class="md-headline">One last step, add your top five skills</p>
-            </center>
+        <md-content ng-show="currentState==2" class="md-padding autocomplete" layout="column">
+            <div>
+                <md-button style="position: absolute;" ng-click="currentState=1;" class="md-primary">
+                    <md-icon md-svg-icon="left-arrow"></md-icon>
+                    Back
+                </md-button>
+            </div>
             <form>
-                <p class="md-title">Your talents/skills, to help you connect to relevant peers</p>
+                <center>
+                    <p class="md-headline"> Your Skills and Talents</p>
+                    <p class="md-title">Add talents/skills, to find
+                        <br> events and connect to relevant peers.</p>
+                </center>
                 <form>
-                    <md-chips ng-model="selectedVegetables" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-require-match="autocompleteDemoRequireMatch" md-max-chips="5" ng-model="user.skills">
-                        <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Enter your top 5 skills">
+                    <md-chips name="skills" ng-model="selectedSkills" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
+                        <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Enter upto 5 skills">
                             <span md-highlight-text="searchText">{{item.name}}</span>
                         </md-autocomplete>
                         <md-chip-template>
                             <span>
-                      <strong>{{$chip.name}}</strong>
-                    </span>
+                  <strong>{{$chip.name}}</strong>
+                </span>
                         </md-chip-template>
                     </md-chips>
                 </form>
+                <md-subheader class="md-no-sticky">Popular talents</md-subheader>
+                <md-tabs md-dynamic-height md-border-bottom>
+                    <md-tab label="Sports">
+                        <md-content class="md-padding">
+                            <md-list class="fixedRows" flex layout="row" layout-wrap layout-align="center center">
+                                <md-list-item class="md-2-line contact-item" flex="50" ng-repeat="contact in sports">
+                                    <img ng-src="{{contact.image}}" class="md-avatar" alt="{{contact.name}}" />
+                                    <div class="md-list-item-text compact">
+                                        <h3>{{contact.title}}</h3>
+                                        <p>{{contact.email}}</p>
+                                    </div>
+                                </md-list-item>
+                            </md-list>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Cultural">
+                        <md-content class="md-padding">
+                           <md-list class="fixedRows" flex layout="row" layout-wrap layout-align="center center">
+                                <md-list-item class="md-2-line contact-item" flex="50" ng-repeat="contact in cultural">
+                                    <img ng-src="{{contact.image}}" class="md-avatar" alt="{{contact.name}}" />
+                                    <div class="md-list-item-text compact">
+                                        <h3>{{contact.title}}</h3>
+                                        <p>{{contact.email}}</p>
+                                    </div>
+                                </md-list-item>
+                            </md-list>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Technical">
+                        <md-content class="md-padding">
+                        </md-content>
+                    </md-tab>
+                </md-tabs>
                 <div class="errors" ng-messages="register.fruitName.$error">
                     <!-- <div ng-message="md-max-chips">Maximum number of chips reached.</div> -->
                 </div>
             </form>
-            <md-button ui-sref="home.profile" class="md-raised md-primary" ng-click="doLogin(user)">
-                Finish
-            </md-button>
+            <br>
+            <div layout="row" flex>
+                <md-button flex="60" flex-offset="20" ng-diabled="continue" style="float:right" ng-click="currentState=3;" class="md-raised md-primary">
+                    Continue
+                </md-button>
+            </div>
+            <br>
+            <br>
         </md-content>
+        <md-content class="md-padding" layout="column" ng-show="currentState==3">
+            <div>
+                <md-button style="position: absolute;" ng-click="currentState=2;" class="md-primary">
+                    <md-icon md-svg-icon="left-arrow"></md-icon>
+                    Back
+                </md-button>
+            </div>
+            <div flex layout="column" layout-align="center">
+                <center>
+                    <p class="md-headline"> Your college </p>
+                    <p class="md-title">Add college details to
+                        <br>your profile to get important updates.</p>
+                </center>
+                <form ng-submit="doLogin(user)" name="register">
+                    <md-input-container class="md-block">
+                        <label>Name of your college</label>
+                        <md-select name="" ng-model="college" required placeholder="My College">
+                            <md-option ng-value="college" ng-repeat="college in colleges">{{ college.name }}</md-option>
+                        </md-select>
+                        <!-- <div class="hint">This will be visible on your profile.</div> -->
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Your Roll Number</label>
+                        <input required="" ng-model="signUp.roll" type="number"  autocomplete="" />
+                        <!-- <div class="hint">Must match your college id.</div> -->
+                        <!-- <div ng-messages="userForm.name.$error" ng-if="!showHints">
+                            <div ng-message="required">Name is required.</div>
+                            <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                        </div> -->
+                    </md-input-container>
+                </form>
+                <div>
+                    <center>
+                        <p>Continue with</p>
+                        <md-button ng-disabled="signUp.roll<100000 "  ng-click="authenticate('facebook')" md-colors="{background: 'indigo'}" class="md-raised md-primary">
+                            <md-icon md-svg-icon="facebook"></md-icon>
+                        </md-button>
+                        <md-button ng-disabled="signUp.roll<100000" g-login md-colors="{background: 'red'}" class="md-raised md-primary">
+                            <md-icon md-svg-icon="google"></md-icon>+
+                        </md-button>
+                        <md-button ng-disabled="signUp.roll<100000" linked-in md-colors="{background: 'blue'}" class="md-raised md-primary">
+                            <md-icon md-svg-icon="linkedin"></md-icon>
+                        </md-button>
+                    </center>
+                </div>
+                <!-- <md-divider></md-divider> -->
+        </md-content>
+        </div>
     </div>
-</div>
