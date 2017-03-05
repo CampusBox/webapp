@@ -196,7 +196,7 @@ $authProvider.httpInterceptor = false;
             url:"http://localhost/app/public/facebook",
              responseType: 'token',
                authorizationEndpoint: 'https://www.facebook.com/v2.8/dialog/oauth',
-               scope: ['email']
+               scope: ['user_about_me','read_custom_friendlists','user_friends','email','user_hometown','user_likes']
         });
 
         $authProvider.google({
@@ -211,8 +211,6 @@ $authProvider.httpInterceptor = false;
 
         $authProvider.linkedin({
              clientId: '81l3qatlqe4l4p',
-             redirectUri: "http://localhost:8000",
-             url: 'http://localhost:8000'
          });
 
         // $authProvider.instagram({

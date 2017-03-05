@@ -15,9 +15,7 @@
     function ProfileController($mdDialog, $scope, tokenService, $stateParams, $state, allDataService) {
         var vm = this;
 
-        $scope.followers = [{ 'name': 'Rohan Goel', 'image': 'https://avatars2.githubusercontent.com/u/14099191?v=3&u=e03e9a657eb1e4de7da062cc5a5611092f0f2d7e&s=400', 'about': 'Hello there i do this', 'college': 'Thapar University' },
-            { 'name': 'Rohan Goel', 'image': 'https://avatars3.githubusercontent.com/u/6951276?v=3&s=400', 'about': 'Hello there i do this', 'college': 'Thapar University' }
-        ];
+        $scope.followers = [];
         $scope.demoFollow = [{ 'status:': true }];
         $scope.studentId = $stateParams.studentId;
         console.log($scope.studentId);
