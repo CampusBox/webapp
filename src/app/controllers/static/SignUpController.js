@@ -190,15 +190,34 @@
         };
         $scope.currentState = 1;
 
-        $rootScope.$on('event:social-sign-in-success', function(event, userDetails) {
+        $rootScope.$on('event:social-sign-in-success', function(event, response) {
             // console.log("Social sign in success")
             // console.log(userDetails);
             // console.log(event);
-            $scope.user.name = userDetails.name;
-            $scope.user.email = userDetails.email;
-            $scope.user.gender = "";
-            $scope.user.imageUrl = userDetails.imageUrl;
-            $scope.user.provider = userDetails.provider;
+            console.log(response);
+            $scope.signUp.token = response.token;
+            $scope.signUp.type = "google";
+            $scope.signUp.skills = $scope.selectedSkills;
+            $scope.signUp.intrests = $scope.interests;
+            $scope.signUp.college_id = $scope.college;
+            $scope.signUp.college_id = 1;
+            console.log($scope.signUp);
+
+            tokenService.post("signup", $scope.signUp)
+                .then(function(abc) {
+                    console.log(abc);
+                    localStorage.setItem('id_token', abc.token);
+                    console.log(localStorage.getItem('id_token'));
+
+                    tokenService.get("events").then(function(abc) {
+                        console.log(abc);
+                    });
+
+
+                }).catch(function(abc) {
+
+                });
+
             // $scope.$apply(function() {
 
             //     $scope.currentState = 2;
