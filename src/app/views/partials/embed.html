@@ -1,0 +1,23 @@
+<div class="ne-video" ng-controller="AddBlogController" ng-if="video1.host" class="fade">
+    <div class="ne-video-preview" ng-hide="nePlayVideo">
+        <div class="ne-video-thumb" ng-click="nePlayVideo=!nePlayVideo">
+            <img ng-src="{{video1.thumbnail}}" alt="" />
+            <i class="fa fa-play-circle-o"></i>
+        </div>
+        <div class="ne-video-detail">
+            <div class="ne-video-title">
+                <a ng-href="{{video1.url}}">{{video1.title}}</a>
+            </div>
+            <div class="ne-video-desc">
+                {{video1.description}}
+            </div>
+            <div class="ne-video-stats">
+                <span><i class="fa fa-eye"></i> {{video1.views}}</span>
+                <span><i class="fa fa-heart"></i> {{video1.likes}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="ne-video-player" ng-if="nePlayVideo">
+        <iframe ng-src="{{video1.embedSrc}}" frameBorder="0" width="{{video1.width}}" height="{{video1.height}}" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    </div>
+</div>

@@ -2,7 +2,6 @@
 
     angular
         .module('app')
-        // .service('placeAutocomplete', function() { /* ... */ })
         .controller('SingleEventController', [
             '$mdDialog',
             '$scope',
@@ -14,6 +13,7 @@
         ]);
 
     function SingleEventController($mdDialog, $scope, events, index, Upload, $timeout) {
+        console.log('afafas');
         $scope.index = index;
         $scope.event = events[index];
         $scope.events = events;

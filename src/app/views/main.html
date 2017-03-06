@@ -14,10 +14,10 @@
         </section>
         <section layout-align="start center" flex>
            
-            <form hide-sm hide-xs ng-submit="$event.preventDefault()">
-                <md-autocomplete ng-disabled="isDisabled" md-no-cache="false" md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item)" md-items="item in searchData" md-item-text="item.title" md-min-length="0" placeholder="Pick an Angular repository" md-menu-class="autocomplete-custom-template">
+            <form hide-sm hide-xs ng-submit="$event.preventDefault();openSearch(searchText)" >
+                <md-autocomplete ng-disabled="isDisabled" md-no-cache="false" md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item)" md-items="item in searchData" md-item-text="item.title" md-min-length="0" placeholder="Pick an Angular repository" md-menu-class="autocomplete-custom-template" >
                     <md-item-template>
-                        <md-list-item class="noright">
+                        <md-list-item class="noright" ng-href="item.url">
                             <img alt="{{ person.title }}" ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{item.id}}.jpg" class="md-avatar" />
                             <p>{{ item.title }}---</p>
                             <md-icon md-svg-icon="account-outline" class="md-secondary md-hue-3"></md-icon>
@@ -159,7 +159,81 @@
     <md-tabs md-stretch-tabs="always" >
       <md-tab label="Notifications">
                 <md-content class="md-padding ">
-                    <div ng-include src=" 'app/views/partials/messages.html' "></div>
+                    <!-- <div ng-include src=" 'app/views/partials/messages.html' "></div> -->
+   
+<div class="messages" >
+    <md-content class="messages-content">
+
+                    <md-list>
+                        <md-list-item class="md-3-line md-long-text ">
+                                  <img ng-src=" " class="md-avatar " alt="{{}} "
+                                       />
+                                  <div class="md-list-item-text " ng-class="{ 'md-offset': phone.options.offset } ">
+                                    <h3>Event name</h3>
+                                    <p> This is an event uhis is an event uhis is an event uhis is an event uhis is an event uhis is an event uhis is an event uhis is an event uhis is an event uhis is an event uhis is an event update 
+                                    <br>
+                                    <span>pushed on date</span>
+                                    </p>
+                                  </div>
+                                  <md-button class="md-secondary md-icon-button " ng-click="doSecondaryAction($event) " ng-if="phone.options.actionIcon " aria-label="call ">
+                                    <md-icon md-svg-icon="{{phone.options.actionIcon}} "></md-icon>
+                                  </md-button>
+                                </md-list-item>
+                    </md-list>
+                     <md-list>
+                        <md-list-item class="md-2-line">
+                                  <img ng-src=" " class="md-avatar " alt="{{}} "
+                                       />
+                                  <div class="md-list-item-text " ng-class="{ 'md-offset': phone.options.offset } ">
+                                    <h3>Person name <span class="md-body-1 ">has posted a new thing</span></h3>
+                                    <p> object name with link 
+                                    <br>
+                                    <span>pushed on date</span>
+                                    </p>
+                                  </div>
+                                  <md-button class="md-secondary md-icon-button " ng-click="doSecondaryAction($event) " ng-if="phone.options.actionIcon " aria-label="call ">
+                                    <md-icon md-svg-icon="{{phone.options.actionIcon}} "></md-icon>
+                                  </md-button>
+                                </md-list-item>
+                                <md-list-item class="md-2-line">
+                                  <img ng-src=" " class="md-avatar " alt="{{}} "
+                                       />
+                                  <div class="md-list-item-text " ng-class="{ 'md-offset': phone.options.offset } ">
+                                    <h3>Person name <span class="md-body-1 ">has liked</span></h3>
+                                    <p> you post with link
+                                    <br>
+                                    <span>pushed on date</span>
+                                    </p>
+                                  </div>
+                                </md-list-item>
+                                <md-list-item class="md-2-line">
+                                  <img ng-src=" " class="md-avatar " alt="{{}} "
+                                       />
+                                  <div class="md-list-item-text " ng-class="{ 'md-offset': phone.options.offset } ">
+                                    <h3>Person name</h3>
+                                    <p> has started following you 
+                                    <br>
+                                    <span>pushed on date</span>
+                                    </p>
+                                  </div>
+                                  <md-button class="md-secondary md-icon-button " ng-click="doSecondaryAction($event) " ng-if="phone.options.actionIcon " aria-label="call ">
+                                    <md-icon md-svg-icon="{{phone.options.actionIcon}} "></md-icon>
+                                  </md-button>
+                                </md-list-item>
+                                <md-list-item class="md-2-line">
+                                  <img ng-src=" " class="md-avatar " alt="{{}} "
+                                       />
+                                  <div class="md-list-item-text " ng-class="{ 'md-offset': phone.options.offset } ">
+                                    <h3>Person name <span class="md-body-1 ">has liked</span></h3>
+                                    <p> you post with link
+                                    <br>
+                                    <span>pushed on date</span>
+                                    </p>
+                                  </div>
+                                </md-list-item>
+
+                    </md-list>
+                    </md-content></div>
         </md-content>
       </md-tab>
       <md-tab label="Search" data-ng-if="windowWidth<587 ">
