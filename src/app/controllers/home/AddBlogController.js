@@ -83,6 +83,50 @@
        };
         // ng-embed end
 
+        // ng-emmbed start
+        $scope.inputUrl = "";
+      $scope.trustedUrl = $sce.trustAsResourceUrl($scope.inputUrl);
+
+
+        var video={
+              host            :"youtube",   // youtube/vimeo
+              title           :"Miss you jasmes hersey",   // Title of the video
+             //  thumbnail       :"abc.png",   // Url of the video thumbnail
+             description     :"String",   // Description of the video truncating after 250 characters replacing linebreak (especially for vimeo)
+              // rawDescription  :String,   // Description of the video as sent by the server
+               views           :20,   // Number of video views
+               likes           :10,   // No. of likes
+               uploader        :"String",    // username of video uploader
+               uploaderPage    :"String" ,   // url of uploader's page
+              // uploadDate      :Date,     // Date of video upload
+              url             :$scope.trustedUrl,   // video url
+              embedSrc        :$scope.trustedUrl,   // video embed url
+              width           :400,
+              height          :400    // dimensions of the embedded video
+        }
+
+        $scope.video1= video;
+        $scope.options = {
+              watchEmbedData   : true,     // watch embed data and render on change 
+
+              sanitizeHtml     : true,      // convert html to text
+
+        
+              link             : true,      // convert links into anchor tags
+              linkTarget       : '_self',   //_blank|_self|_parent|_top|framename
+
+  
+              audio            : {
+                embed: true                 // toggle embedding audio player, supports wav|mp3|ogg
+              },
+
+              basicVideo       : true,     // embed video player, supports ogv|webm|mp4
+              gdevAuth         :'xxxxxxxx', // Google developer auth key for YouTube data api
+              video            : $scope.video,
+            };
+
+        // ng-embed end
+
         // Add tags shit staeted
 
         $scope.readonly = false;
