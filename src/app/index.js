@@ -193,7 +193,7 @@ $authProvider.httpInterceptor = false;
         // Optional: For client-side use (Implicit Grant), set responseType to 'token' (default: 'code')
         $authProvider.facebook({
             clientId: '1250377088376164',
-            url:"http://localhost/app/public/facebook",
+            url:"http://http://192.171.2.213/app/public/facebook",
              responseType: 'token',
                authorizationEndpoint: 'https://www.facebook.com/v2.8/dialog/oauth',
                scope: ['user_about_me','read_custom_friendlists','user_friends','email','user_hometown','user_likes']

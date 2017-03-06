@@ -41,35 +41,50 @@ form .progress {
         <div flex-offset="10" flex="90" layout="column">
             <p class="md-display-3" style="outline: none;" ng-model="title" medium-editor data-placeholder="Title"></p>
         </div>
-        <md-button class="md-primary" ng-hide="addImage" class="md-padding" ng-click="addImage = true;">Add image</md-button>
-        <div layout="row">
-        </div>
-        <div layout="row" ng-show="addImage">
-            <form name="myForm" style="width:100%;">
-                <div layout="row" layout-align="center center">
-                    <div ngf-drop ng-model="picFile" style="margin: 0 auto;" ngf-pattern="image/*" class="cropArea" ng-show="!uploaded">
-                        <center>
-                            <h2 class="md-subhead">Add a picture to support your article </h2>
-                            <md-button ng-click="uploaded = false" class="md-primary" ngf-select ng-model="picFile" accept="image/*">
-                                Select Picture</md-button>
-                        </center>
-                        <img-crop image="picFile  | ngfDataUrl" result-image="croppedDataUrl" ng-init="croppedDataUrl=''" area-type="square">
-                        </img-crop>
+        <md-select ng-model="media" placeholder="Attach Media" class="md-no-underline">
+            <md-option value="image">Image</md-option>
+            <md-option value="music">Music</md-option>
+            <md-option value="video">Video</md-option>
+        </md-select>
+        <div id="image">
+            <md-button class="md-primary" ng-hide="addImage" class="md-padding" ng-click="addImage = true;">Add image</md-button>
+            <div layout="row" ng-show="addImage">
+                <form name="myForm" style="width:100%;">
+                    <div layout="row" layout-align="center center">
+                        <div ngf-drop ng-model="picFile" style="margin: 0 auto;" ngf-pattern="image/*" class="cropArea" ng-show="!uploaded">
+                            <center>
+                                <h2 class="md-subhead">Add a picture to support your article </h2>
+                                <md-button ng-click="uploaded = false" class="md-primary" ngf-select ng-model="picFile" accept="image/*">
+                                    Select Picture</md-button>
+                            </center>
+                            <img-crop image="picFile  | ngfDataUrl" result-image="croppedDataUrl" ng-init="croppedDataUrl=''" area-type="square">
+                            </img-crop>
+                        </div>
+                        <div layout="row" style="margin: 0 auto;" layout-align="center center" ng-show="uploaded">
+                            <img ng-src="{{croppedDataUrl}}" style="opacity: {{progress/100}}" />
+                        </div>
                     </div>
-                    <div layout="row" style="margin: 0 auto;" layout-align="center center" ng-show="uploaded">
-                        <img ng-src="{{croppedDataUrl}}" style="opacity: {{progress/100}}" />
-                    </div>
-                </div>
-                <button ng-click="upload(croppedDataUrl, picFile.name); uploaded = true;" ng-show="!uploaded">Submit</button>
-                <span class="progress" ng-show="progress >= 0">
+                    <button ng-click="upload(croppedDataUrl, picFile.name); uploaded = true;" ng-show="!uploaded">Submit</button>
+                    <span class="progress" ng-show="progress >= 0">
               <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
             </span>
-                <div layout="row" ng-show="uploaded">
-                    <md-button ng-click="uploaded = false" class="md-primary" ngf-select ng-model="picFile" accept="image/*">Change Picture</md-button>
-                    <md-button ng-click="upload(croppedDataUrl, picFile.name); uploaded = true;" ng-show="!uploaded">Submit</md-button>
-                </div>
-                <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
-            </form>
+                    <div layout="row" ng-show="uploaded">
+                        <md-button ng-click="uploaded = false" class="md-primary" ngf-select ng-model="picFile" accept="image/*">Change Picture</md-button>
+                        <md-button ng-click="upload(croppedDataUrl, picFile.name); uploaded = true;" ng-show="!uploaded">Submit</md-button>
+                    </div>
+                    <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+                </form>
+            </div>
+        </div>
+        <div id="video">
+        <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Enter a youtube, vimeo, facebook video url</label>
+                <input type="text" ng-model="inputUrl">
+            </md-input-container>
+        </div>
+    <ng-embed embed-data="text" embed-template-url="app/views/partials/embed.html" embed-options="options"></ng-embed>
+            
         </div>
         <div>
             <form name="skillsForm">

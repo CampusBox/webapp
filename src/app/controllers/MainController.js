@@ -3,11 +3,11 @@
     angular
         .module('app')
         .controller('MainController', [
-            'navService', '$mdSidenav', 'tokenService', '$mdBottomSheet', '$log', '$q', '$timeout', '$state', '$mdToast', '$scope', '$localStorage',
+            'navService', '$mdSidenav', 'tokenService', '$mdBottomSheet', '$log', '$q', '$timeout', '$state', '$mdToast', '$scope', '$localStorage', '$location',
             MainController
         ]);
 
-    function MainController(navService, $mdSidenav, tokenService, $mdBottomSheet, $log, $q, $timeout, $state, $mdToast, $scope, $localStorage) {
+    function MainController(navService, $mdSidenav, tokenService, $mdBottomSheet, $log, $q, $timeout, $state, $mdToast, $scope, $localStorage, $location) {
         var vm = this;
         $scope.logout = function(newState) {
             $localStorage.authenticated = false;
@@ -82,8 +82,10 @@
                 .position('bottom right')
             );
         }
-
-        //Search Autocomplete start
+        $scope.openSearch = function(q) {
+                $location.path('/search').search({'q':q});
+            }
+            //Search Autocomplete start
 
         var self = this;
         $scope.test = [{
@@ -93,7 +95,7 @@
             'forks': '16,175',
         }];
         $scope.searchData = [];
-        tokenService.get("search/"+" ")
+        tokenService.get("search/" + " ")
             .then(function(tableData) {
                 $scope.searchData = [].concat(tableData.data);
             });
