@@ -122,12 +122,15 @@
     max-height: 240px;
 }
 
-.pink{
+.pink {
     fill: rgb(233, 30, 99) !important;
 }
-.yellow{
+
+.yellow {
     fill: rgb(255, 235, 59) !important;
 }
+
+
 /*college filter end*/
 
 
@@ -159,7 +162,125 @@
 
 /*search autocomplete css end*/
 </style>
-<div layout="column" resize>
+<md-list>
+    <div layout="row">
+        <md-card flex="30">
+        </md-card>
+        <md-card flex="70" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+            <md-card-title>
+                <md-card-title-media>
+                    <div class="md-media-lg card-media"> <img src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F27789107%2F198741471664%2F1%2Foriginal.jpg?h=140&w=280&rect=0%2C163%2C1600%2C800&s=ac762a5209d1d20b5bc44a3c7be3fa6f" alt="">
+                    </div>
+                </md-card-title-media>
+                <md-card-title-text>
+                    <span class="md-caption"> Sat, May 20
+                    9:00 AM
+    </span>
+                    <span class="md-subhead" style="font-weight: 500">
+                Implementing SAFe® 4.0 with SPC4 Certification (Hyderabad, India)
+            </span>
+                    <span class="md-caption">
+
+                TBD, Hyderabad
+            </span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-divider></md-divider>
+            <div layou="row">
+                <md-card-actions layout="row" layout-align="start center">
+                    <md-button class="md-subhead">#Buisness</md-button>
+                    <md-button class="md-subhead">#FUCKEDUP</md-button>
+                </md-card-actions>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button class="md-icon-button" ng-click="heart(event, $index)" aria-label="Favorite ">
+                        <md-icon ng-class="event.Actions.Bookmarked.status? 'pink':''" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>
+                    </md-button>
+                    <span>{{event.Actions.Bookmarked.total}}</span>
+                    <md-button class="md-icon-button" ng-click="update(event, $index)" aria-label="Favorite ">
+                        <md-icon ng-class="event.Actions.Participants.status? 'yellow':''" md-svg-icon="{{event.Actions.Participants.status? 'bell-ring' : 'bell-outline' }}"></md-icon>
+                    </md-button>
+                </md-card-actions>
+            </div>
+        </md-card>
+    </div>
+    <md-list-item>
+        <div layout="column" layout-align="space-around streach" flex>
+            <div layout="row">
+                <div layout="column" flex="30">
+                    <img src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F27789107%2F198741471664%2F1%2Foriginal.jpg?h=140&w=280&rect=0%2C163%2C1600%2C800&s=ac762a5209d1d20b5bc44a3c7be3fa6f" alt="">
+                </div>
+                <div layout="column" flex="70" layout-align="start start">
+                    <p class="md-body-1" style="margin-bottom: 0px;margin-top: 0px;">Date time</p>
+                    <p class="md-title" style="margin-bottom: 0px;margin-top">Title event</p>
+                    <p class="md-body-1">Event venue</p>
+                </div>
+            </div>
+            <div layout="row">
+                <div layout="row" layout-align="end start">
+                    <span>Free</span>
+                </div>
+                <span flex></span>
+                <div layout="row">
+                    <div layout="row" layout-align="start end">
+                        <a href="">
+                            <md-icon md-svg-icon="tag"></md-icon>Tag 1</a>
+                        <a href="">
+                            <md-icon md-svg-icon="tag"></md-icon>Tag 2</a>
+                    </div>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="heart(event, $index)" aria-label="Favorite ">
+                        <md-icon ng-class="event.Actions.Bookmarked.status? 'pink':''" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>
+                    </md-button>
+                    <span>{{event.Actions.Bookmarked.total}}</span>
+                    <md-button class="md-icon-button" ng-click="update(event, $index)" aria-label="Favorite ">
+                        <md-icon ng-class="event.Actions.Participants.status? 'yellow':''" md-svg-icon="{{event.Actions.Participants.status? 'bell-ring' : 'bell-outline' }}"></md-icon>
+                    </md-button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </md-list-item>
+    </div>
+</md-list>
+<!--     <md-list-item>
+        <div layout="row" layout-align="space-between streach">
+            <div layout="column" flexy="30"  layout-align="space-between none">
+                <div layout="row">
+                    <img src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F27789107%2F198741471664%2F1%2Foriginal.jpg?h=140&w=280&rect=0%2C163%2C1600%2C800&s=ac762a5209d1d20b5bc44a3c7be3fa6f" alt="">
+                </div>
+                <div layout="row">
+                    <span>FREE</span>
+                    <md-button ng-click="showEvent(event, $index)" class="md-primary" md-colors="{color: 'indigo'}">View</md-button>
+                </div>
+            </div>
+            <div layout="column" flex="70" >
+                <div layout="row">
+                    <div layout="column" layout-align="start center">
+                        <p class="md-body-1" style="margin-bottom: 0px;margin-top: 0px;">Date time</p>
+                        <p class="md-title" style="margin-bottom: 0px;margin-top">Title event</p>
+                        <p class="md-body-1">Event venue</p>
+                    </div>
+                </div>
+                <div layout="row" layout-align="end end">
+                    <div layou="row" >
+                        <a href="">
+                            <md-icon md-svg-icon="tag"></md-icon>Tag 1</a>
+                        <a href="">
+                            <md-icon md-svg-icon="tag"></md-icon>Tag 2</a>
+                    </div>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="heart(event, $index)" aria-label="Favorite ">
+                        <md-icon ng-class="event.Actions.Bookmarked.status? 'pink':''" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>
+                    </md-button>
+                    <span>{{event.Actions.Bookmarked.total}}</span>
+                    <md-button class="md-icon-button" ng-click="update(event, $index)" aria-label="Favorite ">
+                        <md-icon ng-class="event.Actions.Participants.status? 'yellow':''" md-svg-icon="{{event.Actions.Participants.status? 'bell-ring' : 'bell-outline' }}"></md-icon>
+                    </md-button>
+                </div>
+            </div>
+    </md-list-item> -->
+<!-- all the code before editing -->
+<!-- <div layout="column" resize>
     <div flex layout="row" layout-align="space-between">
         <md-input-container>
             <md-icon md-svg-icon="filter-outline" t></md-icon>
@@ -325,10 +446,10 @@
         </md-list>
     </md-content>
 </div>
-<!-- TODO: Replace table to table component when https://github.com/angular/material/issues/796 will closed -->
 <div layout="row" ng-hide="vm.tableData[0].id>0" layout-sm="column" layout-align="space-around strech">
     <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-</div>
+</div> -->
+<!-- all the code before editing -->
 <md-button style="position: fixed;left:-9%;top:47%;" id="left">
     <md-button>
         </md-dialog>

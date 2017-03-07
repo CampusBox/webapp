@@ -63,7 +63,7 @@ form .progress {
 
 /*pasted from multiple images*/
 </style>
-<div ng-init="uploaded = false; addImage = false">
+<div ng-init="uploaded = false; addImage = false" ng-controller="AddBlogController">
     <md-content layout-padding layout-wrap>
         <md-list-item class="md-2-line">
             <img ng-src="assets/images/lakshit.jpg" class="md-avatar" alt="{{todos[0].who}}" />
@@ -75,7 +75,6 @@ form .progress {
         <div flex-offset="10" flex="90" layout="column">
             <p class="md-display-3" style="outline: none;" ng-model="title" medium-editor data-placeholder="Title"></p>
         </div>
-<<<<<<< HEAD
         <div layout="row">
             <md-select ng-model="media" placeholder="Attach Media" class="md-no-underline">
                 <md-option value="image">Image</md-option>
@@ -130,8 +129,8 @@ form .progress {
                     {{errorMsg}}
                 </div>
             </div>
-            <div id="video">
             <ng-embed embed-data="text" embed-template-url="app/views/partials/embed.html" embed-options="options"></ng-embed>
+            <div id="video">
             </div>
             <!-- pasted form add multiple images -->
             <!--             <md-button class="md-primary" ng-hide="addImage" class="md-padding" ng-click="addImage = true;">Add image</md-button>

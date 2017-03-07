@@ -3,14 +3,14 @@
     angular
         .module('app')
         // .service('placeAutocomplete', function() { /* ... */ })
-        .controller('SingleEventController', [
+        .controller('UpdatesController', [
             '$mdDialog',
             '$scope',
             'updates',
-            SingleEventController
+            UpdatesController
         ]);
 
-    function SingleEventController($mdDialog, $scope, updates) {
+    function UpdatesController($mdDialog, $scope, updates) {
 
     }
 })();
