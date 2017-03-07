@@ -35,7 +35,7 @@ form .progress {
         </div>
         <span flex></span>
         <div flex="80"  class="md-whiteframe-1dp">
-            <md-button style="float: right;" class="md-primary md-raised" md-colors="{background: 'teal'}" ngf-select="uploadFiles($files, $invalidFiles)" multiple accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+            <md-button style="float: right;" class="md-primary md-raised" md-colors="{background: 'teal'}" ngf-max-files="4" ngf-select="uploadFiles($files, $invalidFiles)" multiple accept="image/*" ng-focus="expression"max-height="1000" ngf-max-size="1MB">
                 <md-icon md-svg-icon="plus"></md-icon>Add more images</md-button>
         </div>
     </div>

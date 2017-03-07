@@ -5,10 +5,11 @@
         .controller('BlogsController', [
             '$scope',
             'tokenService',
+            '$mdDialog',
             BlogsController
         ]);
 
-    function BlogsController($scope, tokenService) {
+    function BlogsController($scope, tokenService, $mdDialog) {
         var vm = this;
         $scope.liked = false;
         $scope.blogs = {};
@@ -70,7 +71,16 @@
                 });
             }
         }
-        
+        $scope.openUrlAdd = function(ev) {
+            $mdDialog.show({
+                    controller: 'AddUrlController',
+                    templateUrl: 'app/views/partials/addUrl.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true,
+                    fullscreen: true // Only for -xs, -sm breakpoints.
+                })
+        };
         tokenService.get("contents")
             .then(function(tableData) {
                 $scope.blogs = tableData.data;
