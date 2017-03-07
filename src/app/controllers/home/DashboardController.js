@@ -18,8 +18,19 @@
 
         tokenService.get("events")
             .then(function(events) {
-                $scope.events = [].concat(events.data)
+                $scope.events = events.data
             });
+tokenService.get("contents")
+            .then(function(events) {
+                $scope.events = events.data
+            });
+
+            tokenService.get("contents")
+                .then(function(tableData) {
+                    $scope.blogs = tableData.data;
+                    console.log($scope.blogs);
+                });
     }
+
 
 })();

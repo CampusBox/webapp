@@ -40,93 +40,141 @@
         }
 
         // ng-emmbed start
-        $scope.inputUrl = "http://www.youtube.com/embed/K0ibBPhiaG0";
-        $scope.trustedUrl = $sce.trustAsResourceUrl("http://www.youtube.com/embed/K0ibBPhiaG0");
+       //  $scope.inputUrl = "http://www.youtube.com/embed/K0ibBPhiaG0";
+       //  $scope.trustedUrl = $sce.trustAsResourceUrl("http://www.youtube.com/embed/K0ibBPhiaG0");
 
 
-        var video = {embed:false,
-            host: "youtube", // youtube/vimeo
-            title: "Miss you jasmes hersey", // Title of the video
-            //  thumbnail       :"abc.png",   // Url of the video thumbnail
-            description: "String", // Description of the video truncating after 250 characters replacing linebreak (especially for vimeo)
-            // rawDescription  :String,   // Description of the video as sent by the server
-            views: 20, // Number of video views
-            likes: 10, // No. of likes
-            uploader: "String", // username of video uploader
-            uploaderPage: "String", // url of uploader's page
-            // uploadDate      :Date,     // Date of video upload
-          //  url: "http://www.youtube.com/embed/K0ibBPhiaG0", // video url
-          //  embedSrc: "http://www.youtube.com/embed/K0ibBPhiaG0", // video embed url
-            width: 400,
-            height: 400 // dimensions of the embedded video
-        }
+       //  var video = {embed:false,
+       //      host: "youtube", // youtube/vimeo
+       //      title: "Miss you jasmes hersey", // Title of the video
+       //      //  thumbnail       :"abc.png",   // Url of the video thumbnail
+       //      description: "String", // Description of the video truncating after 250 characters replacing linebreak (especially for vimeo)
+       //      // rawDescription  :String,   // Description of the video as sent by the server
+       //      views: 20, // Number of video views
+       //      likes: 10, // No. of likes
+       //      uploader: "String", // username of video uploader
+       //      uploaderPage: "String", // url of uploader's page
+       //      // uploadDate      :Date,     // Date of video upload
+       //    //  url: "http://www.youtube.com/embed/K0ibBPhiaG0", // video url
+       //    //  embedSrc: "http://www.youtube.com/embed/K0ibBPhiaG0", // video embed url
+       //      width: 400,
+       //      height: 400 // dimensions of the embedded video
+       //  }
 
-        $scope.video1 = video;
-       $scope.options = {
+       //  $scope.video1 = video;
+       // $scope.options = {
 
-        sanitizeHtml     : false,      // convert html to text
+       //  sanitizeHtml     : true,      // convert html to text
 
-        fontSmiley       : false,      // convert ascii smileys into font smileys
-        emoji            : false,      // convert emojis short names into images
+       //  fontSmiley       : false,      // convert ascii smileys into font smileys
+       //  emoji            : false,      // convert emojis short names into images
 
-         watchEmbedData   : true,     // watch embed data and render on change 
+       //   watchEmbedData   : true,     // watch embed data and render on change 
 
-         link             : true,      // convert links into anchor tags
-         linkTarget       : '_self',   //_blank|_self|_parent|_top|framename
+       //   link             : true,      // convert links into anchor tags
+       //   linkTarget       : '_self',   //_blank|_self|_parent|_top|framename
 
-         basicVideo       : false,     // embed video player, supports ogv|webm|mp4
-         gdevAuth         :'xxxxxxxx', // Google developer auth key for YouTube data api
-         video            : $scope.video1,
-        code:{
-          highlight : false
-        }
-       };
+       //   basicVideo       : false,     // embed video player, supports ogv|webm|mp4
+       //   gdevAuth         :'xxxxxxxx', // Google developer auth key for YouTube data api
+       //   video            : $scope.video1,
+       //  code:{
+       //    highlight : false
+       //  }
+       // };
         // ng-embed end
 
         // ng-emmbed start
-        $scope.inputUrl = "";
-      $scope.trustedUrl = $sce.trustAsResourceUrl($scope.inputUrl);
+      //   $scope.inputUrl = "";
+      // $scope.trustedUrl = $sce.trustAsResourceUrl($scope.inputUrl);
 
 
-        var video={
-              host            :"youtube",   // youtube/vimeo
-              title           :"Miss you jasmes hersey",   // Title of the video
-             //  thumbnail       :"abc.png",   // Url of the video thumbnail
-             description     :"String",   // Description of the video truncating after 250 characters replacing linebreak (especially for vimeo)
-              // rawDescription  :String,   // Description of the video as sent by the server
-               views           :20,   // Number of video views
-               likes           :10,   // No. of likes
-               uploader        :"String",    // username of video uploader
-               uploaderPage    :"String" ,   // url of uploader's page
-              // uploadDate      :Date,     // Date of video upload
-              url             :$scope.trustedUrl,   // video url
-              embedSrc        :$scope.trustedUrl,   // video embed url
-              width           :400,
-              height          :400    // dimensions of the embedded video
-        }
+      //   var video={
+      //         host            :"youtube",   // youtube/vimeo
+      //         title           :"Miss you jasmes hersey",   // Title of the video
+      //        //  thumbnail       :"abc.png",   // Url of the video thumbnail
+      //        description     :"String",   // Description of the video truncating after 250 characters replacing linebreak (especially for vimeo)
+      //         // rawDescription  :String,   // Description of the video as sent by the server
+      //          views           :20,   // Number of video views
+      //          likes           :10,   // No. of likes
+      //          uploader        :"String",    // username of video uploader
+      //          uploaderPage    :"String" ,   // url of uploader's page
+      //         // uploadDate      :Date,     // Date of video upload
+      //         url             :$scope.trustedUrl,   // video url
+      //         embedSrc        :$scope.trustedUrl,   // video embed url
+      //         width           :400,
+      //         height          :400    // dimensions of the embedded video
+      //   }
 
-        $scope.video1= video;
-        $scope.options = {
-              watchEmbedData   : true,     // watch embed data and render on change 
+      //   $scope.video1= video;
+      //   $scope.options = {
+      //         watchEmbedData   : true,     // watch embed data and render on change 
 
-              sanitizeHtml     : true,      // convert html to text
+      //         sanitizeHtml     : true,      // convert html to text
 
         
+      //         link             : true,      // convert links into anchor tags
+      //         linkTarget       : '_self',   //_blank|_self|_parent|_top|framename
+
+  
+      //         audio            : {
+      //           embed: true                 // toggle embedding audio player, supports wav|mp3|ogg
+      //         },
+
+      //         basicVideo       : true,     // embed video player, supports ogv|webm|mp4
+      //         gdevAuth         :'xxxxxxxx', // Google developer auth key for YouTube data api
+      //         video            : $scope.video,
+      //       };
+
+        // ng-embed end
+        // copied form ng-embed
+        $scope.options = {
+              watchEmbedData   : false,     // watch embed data and render on change 
+
+              sanitizeHtml     : false,      // convert html to text
+
+              fontSmiley       : true,      // convert ascii smileys into font smileys
+              emoji            : true,      // convert emojis short names into images
+
               link             : true,      // convert links into anchor tags
               linkTarget       : '_self',   //_blank|_self|_parent|_top|framename
 
-  
+              image            : {
+                embed: false                // toggle embedding image after link, supports gif|jpg|jpeg|tiff|png|svg|webp.
+              },
+
               audio            : {
                 embed: true                 // toggle embedding audio player, supports wav|mp3|ogg
               },
 
-              basicVideo       : true,     // embed video player, supports ogv|webm|mp4
+              basicVideo       : false,     // embed video player, supports ogv|webm|mp4
               gdevAuth         :'xxxxxxxx', // Google developer auth key for YouTube data api
-              video            : $scope.video,
+              video            : {
+                  embed           : true,    // embed YouTube/Vimeo videos
+                  width           : 400,     // width of embedded player
+                  height          : 400,     // height of embedded player
+                  ytTheme         : 'dark',   // YouTube player theme (light/dark)
+                  details         : false,    // display video details (like title, description etc.)
+                  thumbnailQuality: 'medium', // quality of the thumbnail low|medium|high
+                  autoPlay        : true     // autoplay embedded videos
+              }
             };
-
-        // ng-embed end
-
+            var video={
+                  host            :"String",   // youtube/vimeo
+                  title           :"String",   // Title of the video
+                  thumbnail       :"String",   // Url of the video thumbnail
+                  description     :"String",   // Description of the video truncating after 250 characters replacing linebreak (especially for vimeo)
+                  rawDescription  :"String",   // Description of the video as sent by the server
+                  views           :100,   // Number of video views
+                  likes           :400,   // No. of likes
+                  uploader        :"String",    // username of video uploader
+                  uploaderPage    :"String",    // url of uploader's page
+                  // uploadDate      :Date,     // Date of video upload
+                  url             :"https://www.youtube.com/watch?v=qXM0JdAwabU",   // video url
+                  embedSrc        :"http://www.youtube.com/embed/qXM0JdAwabU",   // video embed url
+                  width           :400,
+                  height          :400    // dimensions of the embedded video
+            }
+        // copied from ng-embed 23:57 march 6
         // Add tags shit staeted
 
         $scope.readonly = false;
