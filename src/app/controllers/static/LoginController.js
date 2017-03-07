@@ -1,3 +1,4 @@
+'use strict';
 (function() {
 
     angular
@@ -14,20 +15,15 @@
 
         $scope.authenticate = function(provider) {
             $auth.authenticate(provider).then(function(response) {
-                    // Signed in with Google.
-
+                    response.type = "facebook";
 
                     console.log(response);
 
-                    tokenService.post("facebook", response)
+                    tokenService.post("login", response)
                         .then(function(abc) {
-                            console.log(abc);
                             localStorage.setItem('id_token', abc.token);
-                            console.log(localStorage.getItem('id_token'));
-
-                            tokenService.get("events").then(function(abc) {
-                                console.log(abc);
-                            });
+                            $rootScope.token=abc.token;
+                            $state.go("home.dashboard");
 
 
                         }).catch(function(abc) {
@@ -40,32 +36,27 @@
                     // Something went wrong.
                 });
         };
-        $scope.doLogin = function(customer) {
-            console.log('attempt');
-            $scope.showLoading = true;
-            // $location.path('/dashboard');
 
-            loginData.post('login', {
-                customer: customer
-            }).then(function(results) {
+        $scope.login = {};
+        $rootScope.$on('event:social-sign-in-success', function(event, response) {
+            console.log(response);
+            $scope.login = response;
+            $scope.login.type = "google";
+            console.log($scope.login);
+
+            tokenService.post("login", $scope.login)
+                .then(function(abc) {
+                    console.log(abc);
+                    localStorage.setItem('id_token', abc.token);
+                    $rootScope.token=abc.token;
+                    $state.go("home.dashboard");
 
 
-                console.log(results);
-                if (results.status == "success") {
-                    $localStorage.user = angular.copy(results);
-                    $localStorage.authenticated = true;
+                }).catch(function(abc) {
 
-                    // $rootScope.$loginData.method = 0; //brinjal own sign up
-                    console.log($rootScope.$loginData);
-                    event.preventDefault();
-                    $state.go('home.dashboard');
-                    return;
-                } else {
-                    $scope.showLoading = false;
-                    alert('Nope, not your credentials!');
-                }
-            });
-        };
+                });
+        })
+
         vm.tableData = [];
 
 

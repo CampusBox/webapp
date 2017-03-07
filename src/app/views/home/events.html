@@ -187,9 +187,9 @@
         </md-input-container>
         <md-input-container>
             <md-icon md-svg-icon="domain"></md-icon>
-            <md-select ng-model="college" md-on-close="clearSearchTerm()" placeholder="College" class="md-no-underline" data-md-container-class="selectdemoSelectHeader" multiple>
+            <md-select ng-model="college" aria-label="search" md-on-close="clearSearchTerm()" placeholder="College" class="md-no-underline" data-md-container-class="selectdemoSelectHeader" multiple>
                 <md-select-header class="demo-select-header">
-                    <input ng-model="searchTerm" type="search" class="demo-header-searchbox md-text">
+                    <input aria-label="search" ng-model="searchTerm" type="search" class="demo-header-searchbox md-text">
                 </md-select-header>
                 <md-optgroup label="College">
                     <md-option ng-value="college" ng-repeat="college in ['IIT Hyderabad', 'IIIT Hyderabad', 'Bits Hyderabad', 'JNTU Hyderabad'] |
@@ -200,7 +200,7 @@
         <md-button class="md-primary" ng-click="showAdvanced()">Add event</md-button>
         <span flex></span>
         <div layout="row">
-            <md-slider ng-show="grid" ng-model="width" value="18.5" step="0.5" name="points" min="18" max="33"></md-slider>
+            <md-slider aria-label="size" ng-show="grid" ng-model="width" value="18.5" step="0.5" name="points" min="18" max="33"></md-slider>
             <md-button class="md-icon-button " ng-click="grid=true" aria-label="Favorite ">
                 <md-icon md-svg-icon="view-grid "></md-icon>
             </md-button>
@@ -230,7 +230,7 @@
                     <md-icon ng-class="event.Actions.Participants.status? 'yellow':''"  md-svg-icon="{{event.Actions.Participants.status? 'bell-ring' : 'bell-outline' }}"></md-icon>
                 </md-button>
                 <md-menu md-offset="0 3">
-                    <md-button class="md-icon-button " aria-label="Settings " ng-click="$mdOpenMenu(event)">
+                    <md-button aria-label="menu" class="md-icon-button " aria-label="Settings " ng-click="$mdOpenMenu(event)">
                         <md-icon md-svg-icon="dots-vertical "></md-icon>
                     </md-button>
                     <md-menu-content width="3">
@@ -282,7 +282,7 @@
                     <md-icon md-svg-icon="share "></md-icon>
                 </md-button>
                 <md-menu md-offset="0 3">
-                    <md-button class="md-icon-button " aria-label="Settings " ng-click="$mdOpenMenu($event)">
+                    <md-button aria-label="search" class="md-icon-button " aria-label="Settings " ng-click="$mdOpenMenu($event)">
                         <md-icon md-svg-icon="dots-vertical "></md-icon>
                     </md-button>
                     <md-menu-content width="3">
@@ -329,12 +329,11 @@
 <div layout="row" ng-hide="vm.tableData[0].id>0" layout-sm="column" layout-align="space-around strech">
     <md-progress-circular md-mode="indeterminate"></md-progress-circular>
 </div>
-<md-button style="position: fixed;left:-9%;top:47%;" id="left">
-    <md-button>
+<md-button aria-label="left" style="position: fixed;left:-9%;top:47%;" id="left">
+    <md-button aria-label="left">
         </md-dialog>
-        <md-button style="position: fixed;right:0;top:47%;" id="right">
-            <md-button>
-            </md-button>
+        <md-button aria-label="left" style="position: fixed;right:0;top:47%;" id="right">
+          
         </md-button>
     </md-button>
 </md-button>

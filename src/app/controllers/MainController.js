@@ -1,3 +1,4 @@
+'use strict';
 (function() {
 
     angular
@@ -93,7 +94,7 @@
             'forks': '16,175',
         }];
         $scope.searchData = [];
-        tokenService.get("search/"+" ")
+        tokenService.get("search/"+"a")
             .then(function(tableData) {
                 $scope.searchData = [].concat(tableData.data);
             });
@@ -102,7 +103,6 @@
         function querySearch(query) {
             tokenService.get("search/" + query)
                 .then(function(tableData) {
-                    console.log(query);
                     $scope.searchData = tableData.data;
                     console.log($scope.searchData);
                     return $scope.searchData;

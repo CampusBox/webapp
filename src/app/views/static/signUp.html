@@ -23,7 +23,7 @@
 }
 
 .login-box {
-    width: 50%
+    min-width: 50%
 }
 </style>
 <div layout="column" layout-align="center center">
@@ -42,6 +42,7 @@
                 <p class="md-headline">You are setting up a new student account.</p>
                 <p class="md-title">Select atleast 3 topics to
                     <br>personalise your content stream.</p>
+                    <p>Already have an account ? <a ui-sref='static.login'>Login here</a></p>
             </center>
             <form>
                 <div>
@@ -53,7 +54,7 @@
                             </md-checkbox> -->
                                 {{ item.title }}
                             </md-button>
-                            <br ng-show="{{$index==3 || $index==12 || $index==21  }}">
+                            <br ng-show="{{$index==3 || $index==8|| $index==12 ||$index==17 || $index==21  }}">
                     </span>
                     </center>
                 </div>
@@ -63,7 +64,7 @@
             </form>
             <br>
             <div layout="row" flex>
-                <md-button flex="60" flex-offset="20" ng-diabled="continue" style="float:right" ng-click="currentState=2;" class="md-raised md-primary">
+                <md-button flex="60" flex-offset="20" ng-diabled="continue" style="float:right" ng-click="currentState=3;" class="md-raised md-primary">
                     Continue
                 </md-button>
             </div>

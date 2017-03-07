@@ -23,7 +23,7 @@
         //     "description": " ",
         //     "venue": " ",
         //     "date": " ",
-        //     "time": " ",
+    //     "time": " ",
         //     "cost": " ",
         //     "societyid": 1,
         //     "short_description": null,
@@ -169,7 +169,6 @@
                 $scope.events[$index].Actions.Bookmarked.total += 1;
                 tokenService.post('bookmarkEvent/' + event.id).then(function(result) {
 
-                    console.log('post request');
                     if (result.status != 'error') {
                         console.log(result.status);
                     } else {
@@ -180,7 +179,6 @@
                 $scope.events[$index].Actions.Bookmarked.total -= 1;
 
                 tokenService.delete('bookmarkEvent/' + event.id, '').then(function(result) {
-                    console.log('post request');
                     if (result.status != 'error') {
                         console.log(result.status);
                     } else {
@@ -195,7 +193,6 @@
                 $scope.events[$index].Actions.Participants.total += 1;
                 tokenService.post('ParticipantsEvent/' + event.id).then(function(result) {
 
-                    console.log('post request');
                     if (result.status != 'error') {
                         console.log(result.status);
                     } else {
@@ -206,7 +203,6 @@
                 $scope.events[$index].Actions.Participants.total -= 1;
 
                 tokenService.delete('ParticipantsEvent/' + event.id, '').then(function(result) {
-                    console.log('post request');
                     if (result.status != 'error') {
                         console.log(result.status);
                     } else {
@@ -224,7 +220,6 @@
                 .then(function(tableData) {
                     $scope.serverBusy = false;
                     $scope.events = $scope.events.concat(tableData.data);
-                    console.log($scope.events)
                 });
         }
         $scope.searchTerm;
