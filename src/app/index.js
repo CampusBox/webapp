@@ -6,6 +6,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
     //remove setellizer
     .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, $authProvider,
         $mdIconProvider, socialProvider, jwtInterceptorProvider, jwtOptionsProvider, $httpProvider) {
+
         jwtOptionsProvider.config({
             whiteListedDomains: ['http://localhost', 'http://192.171.2.213','http://campusbox.org'],
             unauthenticatedRedirectPath: '/login',
@@ -243,11 +244,13 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
 
 
     })
-    .run(function(authManager, $state, $location) {
+    .run(function(authManager, $state, $location,$rootScope) {
         authManager.checkAuthOnRefresh();
         authManager.redirectWhenUnauthenticated();
+        $rootScope.token = localStorage.getItem('id_token');
 
     if (!authManager.isAuthenticated()) {
+            console.log("sending to login")
             $state.go('static.login');
 
         }
