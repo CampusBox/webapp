@@ -20,28 +20,28 @@
             $scope.colleges = colleges;
         });
         $scope.items = [
-            { 'title': 'Articles', 'intrested': false },
-            { 'title': 'Poetry', 'intrested': false },
-            { 'title': 'Drama', 'intrested': false },
-            { 'title': 'Painting', 'intrested': false },
-            { 'title': 'Sketching', 'intrested': false },
-            { 'title': 'Manga', 'intrested': false },
-            { 'title': 'Craft', 'intrested': false },
-            { 'title': 'Song Covers', 'intrested': false },
-            { 'title': 'Instrumental', 'intrested': false },
-            { 'title': 'Music Mixing', 'intrested': false },
-            { 'title': 'Photography', 'intrested': false },
+            { 'title': 'Articles','id':1, 'intrested': false },
+            { 'title': 'Poetry','id':1, 'intrested': false },
+            { 'title': 'Drama','id':1, 'intrested': false },
+            { 'title': 'Painting','id':1, 'intrested': false },
+            { 'title': 'Sketching','id':1, 'intrested': false },
+            { 'title': 'Manga','id':1, 'intrested': false },
+            { 'title': 'Craft','id':1, 'intrested': false },
+            { 'title': 'Song Covers','id':1, 'intrested': false },
+            { 'title': 'Instrumental','id':1, 'intrested': false },
+            { 'title': 'Music Mixing','id':1, 'intrested': false },
+            { 'title': 'Photography','id':1, 'intrested': false },
 
-            { 'title': 'Apps', 'intrested': false },
-            { 'title': 'Apps', 'intrested': false },
-            { 'title': 'Apps', 'intrested': false },
-            { 'title': 'Apps', 'intrested': false },
-            { 'title': 'Film and Video', 'intrested': false },
-            { 'title': 'Animation', 'intrested': false },
-            { 'title': 'Graphics', 'intrested': false },
-            { 'title': 'UI and UX', 'intrested': false },
-            { 'title': 'Webites', 'intrested': false },
-            { 'title': 'Apps', 'intrested': false }
+            { 'title': 'Apps','id':1, 'intrested': false },
+            { 'title': 'Apps','id':1, 'intrested': false },
+            { 'title': 'Apps','id':1, 'intrested': false },
+            { 'title': 'Apps','id':1, 'intrested': false },
+            { 'title': 'Film and Video','id':1, 'intrested': false },
+            { 'title': 'Animation','id':1, 'intrested': false },
+            { 'title': 'Graphics','id':1, 'intrested': false },
+            { 'title': 'UI and UX','id':1, 'intrested': false },
+            { 'title': 'Webites','id':1, 'intrested': false },
+            { 'title': 'Apps','id':1, 'intrested': false }
         ];
         $scope.sports = [
             { 'title': 'Football', 'intrested': false },
@@ -127,24 +127,24 @@
                     $scope.signUp.intrests = $scope.interests;
                     $scope.signUp.college_id = $scope.college;
                     $scope.signUp.college_id = 1;
-                    console.log(response);
+                    console.log("then");
                     tokenService.post("signup", $scope.signUp)
                         .then(function(abc) {
-                            console.log(abc);
                             localStorage.setItem('id_token', abc.token);
-                            console.log(localStorage.getItem('id_token'));
-
-                            tokenService.get("events").then(function(abc) {
-                                console.log(abc);
-                            });
-
-
+                            $rootScope.token = abc.token;
+                            $state.go("home.dashboard");
+                            return;
                         }).catch(function(abc) {
+                            localStorage.setItem('id_token', abc.token);
+                            $rootScope.token = abc.token;
+                            $state.go("home.dashboard");
+                            return;
 
                         });
 
                 })
                 .catch(function(response) {
+                    console.log("catch");
 
                     $scope.signUp.token = response.access_token;
                     $scope.signUp.type = provider;
@@ -152,18 +152,12 @@
                     $scope.signUp.intrests = $scope.interests;
                     $scope.signUp.college_id = $scope.college;
                     $scope.signUp.college_id = 1;
-                    console.log(response);
                     tokenService.post("signup", $scope.signUp)
                         .then(function(abc) {
-                            console.log(abc);
                             localStorage.setItem('id_token', abc.token);
-                            console.log(localStorage.getItem('id_token'));
-
-                            tokenService.get("events").then(function(abc) {
-                                console.log(abc);
-                            });
-
-
+                            $rootScope.token = abc.token;
+                            $state.go("home.dashboard");
+                            return;
                         }).catch(function(abc) {
 
                         });
@@ -194,25 +188,20 @@
             // console.log("Social sign in success")
             // console.log(userDetails);
             // console.log(event);
-            console.log(response);
-            $scope.signUp.token = response.token;
+            $scope.signUp.token = response.access_token ? response.access_token : response.token;
             $scope.signUp.type = "google";
             $scope.signUp.skills = $scope.selectedSkills;
             $scope.signUp.intrests = $scope.interests;
             $scope.signUp.college_id = $scope.college;
             $scope.signUp.college_id = 1;
-            console.log($scope.signUp);
 
             tokenService.post("signup", $scope.signUp)
                 .then(function(abc) {
                     console.log(abc);
                     localStorage.setItem('id_token', abc.token);
-                    console.log(localStorage.getItem('id_token'));
-
-                    tokenService.get("events").then(function(abc) {
-                        console.log(abc);
-                    });
-
+                    $rootScope.token = abc.token;
+                    $state.go("home.dashboard");
+                    return;
 
                 }).catch(function(abc) {
 

@@ -144,29 +144,10 @@
             }
         }
         tokenService.get("student/" + $scope.studentId)
-            .then(function(profile) {
-                $scope.profile = profile.data;
+            .then(function(response) {
+                console.log(response);
+                $scope.profile = response.data;
                 console.log($scope.profile);
-            });
-        tokenService.get("studentActivity/" + $scope.studentId)
-            .then(function(studentActivity) {
-                $scope.studentActivity = studentActivity.data;
-                console.log($scope.studentActivity);
-            });
-        tokenService.get("studentEvents/" + $scope.studentId)
-            .then(function(studentEvents) {
-                $scope.studentEvents = studentEvents.data;
-                console.log($scope.studentEvents);
-            });
-        tokenService.get("studentContent/" + $scope.studentId)
-            .then(function(studentContent) {
-                $scope.studentContent = studentContent.data;
-                console.log($scope.studentContent);
-            });
-        tokenService.get("Following/" + $scope.studentId)
-            .then(function(following) {
-                $scope.following = following.data;
-                console.log($scope.following);
             });
 
 

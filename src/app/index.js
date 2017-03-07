@@ -1,27 +1,36 @@
 'use strict';
 
 angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload', 'satellizer',
-        'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop', 'angular-jwt','infinite-scroll','ngEmbed',
+        'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop', 'angular-jwt', 'infinite-scroll', 'ngEmbed',
     ])
     //remove setellizer
     .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, $authProvider,
         $mdIconProvider, socialProvider, jwtInterceptorProvider, jwtOptionsProvider, $httpProvider) {
         jwtOptionsProvider.config({
-            whiteListedDomains: ['http://localhost','http://192.171.2.213'],
+            whiteListedDomains: ['http://localhost', 'http://192.171.2.213','http://campusbox.org'],
             unauthenticatedRedirectPath: '/login',
-            authPrefix: 'MyPrefix ',
-            tokenGetter: ['options', function(options) {
-
+            unauthenticatedRedirector: ['$state', function($state) {
+                $state.go('static.login');
+            }],
+            tokenGetter: ['options', 'jwtHelper', function(options, jwtHelper) {
                 if (options && options.url.substr(options.url.length - 5) == '.html') {
                     return null;
                 }
                 var token = localStorage.getItem('id_token');
-                // console.log(localStorage.getItem('id_token'));
-                return token;
+                if (token) {
+                    if (token != "undefined") {
+                        if (!jwtHelper.isTokenExpired(token)) {
+                            return localStorage.getItem('id_token');
+                        } else {
+                            localStorage.removeItem('id_token');
+                        }
+                    } else
+                        localStorage.removeItem('id_token');
+                }
             }],
         });
         $httpProvider.interceptors.push('jwtInterceptor');
-      
+
         $stateProvider
             .state('home', {
                 url: '',
@@ -117,7 +126,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                     title: 'Profile'
                 }
             })
-        .state('home.eventFullPage', {
+            .state('home.eventFullPage', {
                 url: '/eventFullPage',
                 templateUrl: 'app/views/home/eventFullPage.html',
                 controller: 'EventFullPageController',
@@ -189,14 +198,14 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
         // $authProvider.facebook({
         //     clientId: '1250377088376164'
         // });
-$authProvider.httpInterceptor = false;
+        $authProvider.httpInterceptor = false;
         // Optional: For client-side use (Implicit Grant), set responseType to 'token' (default: 'code')
         $authProvider.facebook({
             clientId: '1250377088376164',
-            url:"http://http://192.171.2.213/app/public/facebook",
-             responseType: 'token',
-               authorizationEndpoint: 'https://www.facebook.com/v2.8/dialog/oauth',
-               scope: ['user_about_me','read_custom_friendlists','user_friends','email','user_hometown','user_likes']
+            url: "http://localhost/app/public/facebook",
+            responseType: 'token',
+            authorizationEndpoint: 'https://www.facebook.com/v2.8/dialog/oauth',
+            scope: ['user_about_me', 'read_custom_friendlists', 'user_friends', 'email', 'user_hometown', 'user_likes']
         });
 
         $authProvider.google({
@@ -204,48 +213,9 @@ $authProvider.httpInterceptor = false;
             url: '',
             authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth'
         });
-
-        // $authProvider.github({
-        //     clientId: 'GitHub Client ID'
-        // });
-
         $authProvider.linkedin({
-             clientId: '81l3qatlqe4l4p',
-         });
-
-        // $authProvider.instagram({
-        //     clientId: 'Instagram Client ID'
-        // });
-
-        // $authProvider.yahoo({
-        //     clientId: 'Yahoo Client ID / Consumer Key'
-        // });
-
-        // $authProvider.live({
-        //     clientId: 'Microsoft Client ID'
-        // });
-
-        // $authProvider.twitch({
-        //     clientId: 'Twitch Client ID'
-        // });
-
-        // $authProvider.bitbucket({
-        //     clientId: 'Bitbucket Client ID'
-        // });
-
-        // $authProvider.spotify({
-        //     clientId: 'Spotify Client ID'
-        // });
-
-        // // No additional setup required for Twitter
-
-        // $authProvider.oauth2({
-        //     name: 'foursquare',
-        //     url: '/auth/foursquare',
-        //     clientId: 'Foursquare Client ID',
-        //     redirectUri: window.location.origin,
-        //     authorizationEndpoint: 'https://foursquare.com/oauth2/authenticate',
-        // });
+            clientId: '81l3qatlqe4l4p',
+        });
         $urlRouterProvider.otherwise('/login');
         socialProvider.setGoogleKey("702228530885-vi264d7g6v5ivbcmebjfpomr0hmliomd.apps.googleusercontent.com");
         socialProvider.setLinkedInKey("81l3qatlqe4l4p");
@@ -273,11 +243,14 @@ $authProvider.httpInterceptor = false;
 
 
     })
-    .run(function(authManager) {
+    .run(function(authManager, $state, $location) {
+        authManager.checkAuthOnRefresh();
+        authManager.redirectWhenUnauthenticated();
 
-       // authManager.checkAuthOnRefresh();
-       // console.log(authManager.isAuthenticated);
-        // authManager.redirectWhenUnauthenticated();
+    if (!authManager.isAuthenticated()) {
+            $state.go('static.login');
+
+        }
     });
 // .run(["$rootScope", "$state", "$location", "$stateParams", "$timeout", "$localStorage", function($rootScope, $state, $location, $stateParams, $timeout, $localStorage) {
 //     $rootScope.$on("$stateChangeStart", function(event, next) {

@@ -3,36 +3,38 @@
 
     angular.module('app')
         .service('tokenService', [
+            '$rootScope',
             '$http',
             '$q',
-            function($http, $q, $location) {
-
-                var serviceBase = 'http://192.171.2.213/app/public/';
-                console.log(localStorage.getItem('id_token'));
-                var config = {
-                    headers: {
-                         'Authorization': 'Bearer '+ localStorage.getItem('id_token'),
-                     }
-                 };
+            function($rootScope, $http, $q, $location) {
+                console.log($rootScope.token);
+                var serviceBase = 'api/public/';
+                $rootScope.config = function() {
+                    return {
+                        headers: {
+                            'Authorization': 'Bearer ' + $rootScope.token,
+                        }
+                    };
+                };
                 var obj = {};
 
                 obj.get = function(q) {
-                    return $http.get(serviceBase + q,config).then(function(results) {
+                    return $http.get(serviceBase + q, $rootScope.config()).then(function(results) {
                         return results.data;
                     });
                 };
                 obj.post = function(q, object) {
-                    return $http.post(serviceBase + q, object,config).then(function(results) {
+                    return $http.post(serviceBase + q, object, $rootScope.config()).then(function(results) {
                         return results.data;
                     });
                 };
                 obj.put = function(q, object) {
-                    return $http.put(serviceBase + q, object,config).then(function(results) {
+                    return $http.put(serviceBase + q, object, $rootScope.config()).then(function(results) {
                         return results.data;
                     });
                 };
                 obj.delete = function(q) {
-                    return $http.delete(serviceBase + q,config).then(function(results) {
+                    return $http.delete(serviceBase + q, $rootScope.config()).then(function(results) {
                         return results.data;
                     });
                 };

@@ -11,9 +11,9 @@
                     <md-button g-login md-colors="{background: 'red'}" class="md-raised md-primary">
                         <md-icon md-svg-icon="google"></md-icon>+
                     </md-button>
-                    <md-button linked-in md-colors="{background: 'blue'}" class="md-raised md-primary">
+                    <!-- <md-button linked-in md-colors="{background: 'blue'}" class="md-raised md-primary">
                         <md-icon md-svg-icon="linkedin"></md-icon>
-                    </md-button>
+                    </md-button> -->
                 </div>
                 <center>
                  <!--    <button ng-click="authenticate('facebook')">Sign in with Facebook</button>
@@ -28,22 +28,10 @@
                     <button ng-click="authenticate('twitch')">Sign in with Twitch</button>
                     <button ng-click="authenticate('bitbucket')">Sign in with Bitbucket</button>
                     <button ng-click="authenticate('spotify')">Sign in with Spotify</button>
-                    --> <p>Or</p>
+                    -->
+              <p>Don't have an account yet ?
                 </center>
-                <!-- <md-divider></md-divider> -->
-                <md-input-container>
-                    <label>Email</label>
-                    <input required="" ng-model="login.roll" min="100000000" max="999999999" type="number" name="email" autocomplete="" />
-                </md-input-container>
-                <md-input-container>
-                    <label>Password</label>
-                    <input required="" type="password" ng-model="login.password" />
-                    <md-button md-colors="{color: 'blue'}">Forgot Password?</md-button>
-                </md-input-container>
-                <div layout="row" layout-align="center center" style="padding-top:20px">
-                    <div flex="flex"></div>
-                </div>
-                <md-button ng-click="doLogin(login)" class="md-raised md-primary">Login</md-button>
+                <md-button ui-sref='static.signup' class="md-raised md-primary">Get Started Now</md-button>
             </md-content>
         </div>
     </form>
