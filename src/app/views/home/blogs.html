@@ -12,7 +12,7 @@
     <md-tabs flex md-dynamic-height>
         <md-tab label="All">
             <div layout="row" layout-wrap layout-align="center center">
-                  <md-card flex-gt-sm="60" ng-repeat="blog in blogs track by $index">
+                <md-card flex-gt-sm="60" ng-repeat="blog in blogs track by $index">
                     <md-card-header>
                         <md-card-avatar>
                             <img class="md-user-avatar" ng-src="{{blog.created.by.image}}" />
@@ -28,7 +28,7 @@
                         <span class="md-headline">{{blog.title}}</span>
                     </md-card-title>
                     <md-card-content>
-                        <p class="md-body-2 " style="white-space: pre-wrap;color: #8f8faf;margin-left: 10px;font-weight: 300; margin:0px; font-size: 18px; line-height: 1.58; ">{{blog.content.description | limitTo : $index%2==0?150:200}}...</p>
+                        <p class="md-body-2 " style="white-space: pre-wrap;margin-left: 10px;font-weight: 300; margin:0px; font-size: 18px; line-height: 1.58; ">{{blog.content.description | limitTo : $index%2==0?150:200}}...</p>
                         <p class="md-subhead" style="color: #8f8faf;">
                             Read More
                         </p>
