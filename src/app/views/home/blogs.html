@@ -8,7 +8,7 @@
 }
 </style>
 <div layout="column" layout-fill layout-padding>
-    <md-button class="md-primary" ng-click="openUrlAdd()">Add url</md-button>
+    <!-- <md-button class="md-primary" ng-click="openUrlAdd()">Add url</md-button> -->
     <md-tabs flex md-dynamic-height>
         <md-tab label="All">
             <div layout="row" layout-wrap layout-align="center center">
@@ -18,12 +18,12 @@
                             <img class="md-user-avatar" ng-src="{{blog.created.by.image}}" />
                         </md-card-avatar>
                         <md-card-header-text>
-                            <span class="md-subhead"><span  ui-sref="home.profile" style="color: #0570c0">{{blog.created.by.name}} </span> in <span ui-sref="home.profile" style="color: #0570c0">{{blog.type}} </span></span>
+                            <span class="md-subhead"><span  ui-sref="home.profile" style="color: #0570c0">{{blog.created.by.name}} </span> in <span ui-sref="home.profile" style="color: #0570c0">{{blog.type?blog.type:"Article"}} </span></span>
                             <span class="md-subhead"></span>
                             <span class="md-title">{{blog.created.at}} · 2 min read</span>
                         </md-card-header-text>
                     </md-card-header>
-                    <img class="md-card-image" ng-if="$index%2==0" ng-src="https://cdn-images-1.medium.com/fit/t/800/240/1*mgYax-dqFtSSi9tIndyb1Q.jpeg" class="md-card-image" alt="Washed Out">
+                    <img class="md-card-image" ng-if="$index%2!=0" ng-src="https://cdn-images-1.medium.com/fit/t/800/240/1*mgYax-dqFtSSi9tIndyb1Q.jpeg" class="md-card-image" alt="Washed Out">
                     <md-card-title>
                         <span class="md-headline">{{blog.title}}</span>
                     </md-card-title>

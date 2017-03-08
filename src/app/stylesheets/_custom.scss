@@ -1,6 +1,6 @@
 // COLORS
-$main-bg-color: #ECECEC;
-$text-color: #7A7A7A;
+$main-bg-color: #f1f1f1;
+$text-color: #282c35;
 $accent-color: rgb(0, 150, 136);
 $warning-color: #E75753;
 
@@ -171,3 +171,173 @@ md-backdrop.md-sidenav-backdrop {
 .orange .md-container {
   background-color: rgb(255, 236, 201)
 }
+
+
+//events page 
+
+.flexy-16 {
+    -webkit-flex: 1 1 16%;
+    -ms-flex: 1 1 16%;
+    flex: 1 1 16%;
+    box-sizing: border-box;
+}
+
+.flexy-20 {
+    -webkit-flex: 1 1 20%;
+    -ms-flex: 1 1 20%;
+    flex: 1 1 20%;
+    box-sizing: border-box;
+}
+
+.flexy-30 {
+    -webkit-flex: 1 1 30%;
+    -ms-flex: 1 1 30%;
+    flex: 1 1 30%;
+}
+
+.eventListItem .md-button {
+  padding: 0 !important;
+}
+.eventListItem md-card {
+  margin: 1px;
+}
+.shimmer {
+    /* the shimmer magic */
+    background: -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(.5, #fff));
+    background: -moz-gradient(linear, left top, right top, from(#222), to(#222), color-stop(.5, #fff));
+    background: gradient(linear, left top, right top, from(#222), to(#222), color-stop(.5, #fff));
+    -webkit-background-size: 125px 100%;
+    -moz-background-size: 125px 100%;
+    background-size: 125px 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    -webkit-animation-name: shimmer;
+    -moz-animation-name: shimmer;
+    -webkit-animation-name: shimmer;
+    animation-name: shimmer;
+    -webkit-animation-duration: 2s;
+    -moz-animation-duration: 2s;
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-color: #222;
+}
+
+@-moz-keyframes shimmer {
+    0% {
+        background-position: top left;
+    }
+    100% {
+        background-position: top right;
+    }
+}
+
+@-webkit-keyframes shimmer {
+    0% {
+        background-position: top left;
+    }
+    100% {
+        background-position: top right;
+    }
+}
+
+@-o-keyframes shimmer {
+    0% {
+        background-position: top left;
+    }
+    100% {
+        background-position: top right;
+    }
+}
+
+@-ms-keyframes shimmer {
+    0% {
+        background-position: top left;
+    }
+    100% {
+        background-position: top right;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: top left;
+    }
+    100% {
+        background-position: top right;
+    }
+}
+
+
+/*colllege filter start*/
+
+.selectdemoSelectHeader {
+    /* Please note: All these selectors are only applied to children of elements with the 'selectdemoSelectHeader' class */
+}
+
+.selectdemoSelectHeader .demo-header-searchbox {
+    border: none;
+    outline: none;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+}
+
+.selectdemoSelectHeader .demo-select-header {
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12);
+    padding-left: 10.667px;
+    height: 48px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: auto;
+}
+
+.selectdemoSelectHeader md-content._md {
+    max-height: 240px;
+}
+
+.pink {
+    fill: rgb(233, 30, 99) !important;
+}
+
+.blue {
+    fill: #0570c0 !important;
+}
+
+
+/*college filter end*/
+
+
+/*search autocomplete start*/
+
+.autocomplete-custom-template li {
+    border-bottom: 1px solid #ccc;
+    height: auto;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    white-space: normal;
+}
+
+.autocomplete-custom-template li:last-child {
+    border-bottom-width: 0;
+}
+
+.autocomplete-custom-template .item-title,
+.autocomplete-custom-template .item-metadata {
+    display: block;
+    line-height: 2;
+}
+
+.autocomplete-custom-template .item-title md-icon {
+    height: 18px;
+    width: 18px;
+}
+

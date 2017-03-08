@@ -1,14 +1,57 @@
 <div layout="row" layout-align="center" ng-controller="DashboardController" style="max-width: 1200px;">
     <div layout="column" class="md-padding" flex-gt-sm="70" flex="100">
+        <h1 class="md-headline">
+            Events for you
+        </h1>
         <div layout="row" layout-wrap layout-align="center center">
+            <md-list>
+                <md-list-item style="margin-bottom: 10px;" ng-click="showEvent(event, $index)" class="secondary-button-padding eventListItem" ng-repeat="event in events | limitTo :3 track by $index">
+                    <md-card flex>
+                        <md-card-title style="padding: 0px;">
+                            <div class="md-media-sm" style="width: 200px;height:140px;">
+                                <img style="width: 200px; position: absolute;    clip: rect(00px,200px,140px,0px); margin-right: " ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.id}}.jpg" alt="">
+                            </div>
+                            <div style="padding: 10px 18px;" flex layout="column">
+                                <span class="md-body-2">{{event.timings.date.start? event.timings.date.start:"Fri, Mar 24 2:00 PM" }}</span>
+                                <div class="md-subhead" style="font-weight: 600">
+                                    {{event.title}}
+                                </div>
+                                <span class="md-subhead">
+
+                            <p class="md-body-1">{{event.details.description}}</p>
+                                </span>
+                            </div>
+                        </md-card-title>
+                        <md-divider></md-divider>
+                        <div layou="row">
+                            <md-card-actions layout="row" layout-align="start center">
+                                <md-button ng-repeat="tag in event.tags" class="md-subhead">{{tag.name}}</md-button>
+                                <md-button class="md-body-2">#FUCKEDUP</md-button>
+                                <md-button class="md-body-2">#BtAwesome</md-button>
+                                <span flex></span>
+                                <md-button class="md-icon-button" ng-click="heart(event, $index)" aria-label="Favorite ">
+                                    <md-icon ng-class="event.Actions.Bookmarked.status? 'pink':''" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>
+                                </md-button>
+                                <span>{{event.Actions.Bookmarked.total}}</span>
+                                <md-button class="md-icon-button" ng-click="update(event, $index)" aria-label="Favorite ">
+                                    <md-icon ng-class="event.Actions.Participants.status? 'yellow':''" md-svg-icon="{{event.Actions.Participants.status? 'bell-ring' : 'bell-outline' }}"></md-icon>
+                                </md-button>
+                            </md-card-actions>
+                        </div>
+                    </md-card>
+                </md-list-item>
+            </md-list>
             <div>
+            <h1 class="md-headline">
+                Creative works by other students
+            </h1>
                 <md-card ng-repeat="blog in blogs track by $index">
                     <md-card-header>
                         <md-card-avatar>
                             <img class="md-user-avatar" ng-src="{{blog.created.by.image}}" />
                         </md-card-avatar>
                         <md-card-header-text>
-                            <span class="md-subhead"><span  ui-sref="home.profile" style="color: #0570c0">{{blog.created.by.name}} </span> in <span ui-sref="home.profile" style="color: #0570c0">{{blog.type}} </span></span>
+                            <span class="md-subhead"><span  ui-sref="home.profile" style="color: #0570c0">{{blog.created.by.name}} </span> in <span ui-sref="home.profile" style="color: #0570c0">{{blog.type?blog.type:"Article"}} </span></span>
                             <span class="md-subhead"></span>
                             <span class="md-title">{{blog.created.at}} · 2 min read</span>
                         </md-card-header-text>
@@ -40,52 +83,25 @@
                     </div>
                 </md-card>
             </div>
+            <div>
+                 <h1 class="md-headline">
+                Other interesting stuff
+            </h1>
+            </div>
         </div>
-        <!-- <div layout="row" layout-align="center center">
-            <md-card ng-repeat="item in [1,2,3]" flex="30">
-                <md-card-header>
-                    <md-card-avatar>
-                        <img class="md-user-avatar" src="https://avatars3.githubusercontent.com/u/6951276?v=3&s=400" />
-                    </md-card-avatar>
-                    <md-card-header-text>
-                        <span class="md-title">User</span>
-                        <span class="md-subhead">subhead</span>
-                    </md-card-header-text>
-                </md-card-header>
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">In-card mixed actions</span>
-                    </md-card-title-text>
-                </md-card-title>
-                <md-card-content>
-                    <p>
-                        The titles of Washed Out's breakthrough song and the first single from Paracosm share the two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-                    </p>
-                </md-card-content>
-                <md-card-actions layout="row" layout-align="start center">
-                    <md-button>Action 1</md-button>
-                    <md-button>Action 2</md-button>
-                    <md-card-icon-actions>
-                        <md-button class="md-icon-button" aria-label="toggle">
-                            <md-icon md-svg-icon="md-toggle-arrow"></md-icon>
-                        </md-button>
-                    </md-card-icon-actions>
-                </md-card-actions>
-            </md-card>
-        </div> -->
     </div>
     <div layout="column" class="md-padding" flex-gt-sm="30" hide show-gt-sm>
         <div layout="column">
             <h5 class="md-subhead">Top stories <br>
             <small style="color: rgba(0,0,0,.44);" class="md-caption">Most popular this week</small>
-            </h5>
             <md-divider></md-divider>
+            </h5>
             <md-list>
-                <md-list-item class="md-2-line" ng-repeat="item in [1,2,3]">
-                    <img ng-src="https://avatars2.githubusercontent.com/u/14099191?v=3&u=e03e9a657eb1e4de7da062cc5a5611092f0f2d7e&s=400" class="md-avatar" alt="{{todos[0].who}}" />
+                <md-list-item class="md-2-line" ng-repeat="blog in blogs | limitTo :3 track by $index " >
+                    <img ng-src="{{blog.created.by.image}}" class="md-avatar" alt="{{todos[0].who}}" />
                     <div class="md-list-item-text">
-                        <h3>Stop yelling what poor people eat</h3>
-                        <p>Chris Newman</p>
+                        <h3>{{blog.title}}</h3>
+                        <p>{{blog.created.by.name}}</p>
                     </div>
                 </md-list-item>
             </md-list>

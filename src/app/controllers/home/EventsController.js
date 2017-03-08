@@ -14,54 +14,10 @@
 
     function EventsController($mdDialog, $scope, $element, tokenService, Upload, $timeout) {
         var vm = this;
-        $scope.grid = true;
+        $scope.grid = false;
         $scope.width = 18;
         $scope.events = [];
-        // {
-        //     "id": -1,
-        //     "name": " ",
-        //     "description": " ",
-        //     "venue": " ",
-        //     "date": " ",
-    //     "time": " ",
-        //     "cost": " ",
-        //     "societyid": 1,
-        //     "short_description": null,
-        //     "image": "grey.png"
-        // }, {
-        //     "id": -1,
-        //     "name": " ",
-        //     "description": " ",
-        //     "venue": " ",
-        //     "date": " ",
-        //     "time": " ",
-        //     "cost": " ",
-        //     "societyid": 1,
-        //     "short_description": null,
-        //     "image": "grey.png"
-        // }, {
-        //     "id": -1,
-        //     "name": " ",
-        //     "description": " ",
-        //     "venue": " ",
-        //     "date": " ",
-        //     "time": " ",
-        //     "cost": " ",
-        //     "societyid": 1,
-        //     "short_description": null,
-        //     "image": "grey.png"
-        // }, {
-        //     "id": -1,
-        //     "name": " ",
-        //     "description": " ",
-        //     "venue": " ",
-        //     "date": " ",
-        //     "time": " ",
-        //     "cost": " ",
-        //     "societyid": 1,
-        //     "short_description": null,
-        //     "image": "grey.png"
-        // }];
+        
         $scope.showReport = function(ev) {
             $mdDialog.show({
                     controller: 'DialogController',
@@ -218,8 +174,10 @@
             $scope.serverBusy = true;
             tokenService.get("events")
                 .then(function(tableData) {
+            console.log('events called');
                     $scope.serverBusy = false;
                     $scope.events = $scope.events.concat(tableData.data);
+                    console.log($scope.events);
                 });
         }
         $scope.searchTerm;
