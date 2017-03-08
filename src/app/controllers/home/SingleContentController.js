@@ -14,17 +14,16 @@
         var vm = this;
         $scope.contentId = $stateParams.contentId;
         $scope.liked = false;
-        $scope.blogs = {};
-
+        $scope.content = {};
         $scope.toggleLike = function(blogId) {
             console.log(blogId);
             vm.liked = !vm.liked;
         }
 
-        $scope.bookmark = function(content, $index) {
-            $scope.blogs[$index].Actions.Bookmarked.status = !$scope.blogs[$index].Actions.Bookmarked.status;
-            if ($scope.blogs[$index].Actions.Bookmarked.status) {
-                $scope.blogs[$index].Actions.Bookmarked.total += 1;
+        $scope.bookmark = function(content) {
+            $scope.content.Actions.Bookmarked.status = !$scope.content.Actions.Bookmarked.status;
+            if ($scope.content.Actions.Bookmarked.status) {
+                $scope.content.Actions.Bookmarked.total += 1;
                 tokenService.post('bookmarkedContent/' + content.id).then(function(result) {
 
                     console.log('post request');
@@ -35,7 +34,7 @@
                     }
                 });
             } else {
-                $scope.blogs[$index].Actions.Bookmarked.total -= 1;
+                $scope.content.Actions.Bookmarked.total -= 1;
 
                 tokenService.delete('bookmarkedContent/' + content.id, '').then(function(result) {
                     console.log('post request');
@@ -47,10 +46,10 @@
                 });
             }
         }
-        $scope.heart = function(content, $index) {
-            $scope.blogs[$index].Actions.Appriciate.status = !$scope.blogs[$index].Actions.Appriciate.status;
-            if ($scope.blogs[$index].Actions.Appriciate.status) {
-                $scope.blogs[$index].Actions.Appriciate.total += 1;
+        $scope.heart = function(content) {
+            $scope.content.Actions.Appriciate.status = !$scope.content.Actions.Appriciate.status;
+            if ($scope.content.Actions.Appriciate.status) {
+                $scope.content.Actions.Appriciate.total += 1;
                 tokenService.post('appriciateContent/' + content.id).then(function(result) {
 
                     console.log('post request');
@@ -61,7 +60,7 @@
                     }
                 });
             } else {
-                $scope.blogs[$index].Actions.Appriciate.total -= 1;
+                $scope.content.Actions.Appriciate.total -= 1;
 
                 tokenService.delete('appriciateContent/' + content.id, '').then(function(result) {
                     console.log('post request');
@@ -98,8 +97,8 @@
         };
         tokenService.get("content/" + $scope.contentId)
             .then(function(tableData) {
-                $scope.blogs = tableData.data;
-                console.log($scope.blogs);
+                $scope.content = tableData.data;
+                console.log($scope.content);
             });
     }
 

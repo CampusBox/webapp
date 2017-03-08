@@ -1,31 +1,46 @@
-<!-- <md-content>
-    <md-list>
-        <md-list-item class="md-3-line" ng-repeat="item in " ng-click="null">
-            <img ng-src="blog.created.by.image" class="md-avatar" alt="{{blog.created.by.about}}" />
+<div layout="row" style="background: white;">
+    <div flex="10">
+        <div layout="column" layout-align="center center" style="position: fixed;left: 15px;top: 45%;">
+            <md-button class="md-icon-button" ng-click="heart(content)" aria-label="Favorite" sticky>
+                <md-icon ng-class="content.Actions.Appriciate.status? 'pink':''" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon>
+            </md-button>
+            <span>{{content.Actions.Appriciate.total}}</span>
+            <md-button class="md-icon-button" ng-click="bookmark(content)" aria-label="Favorite ">
+                <md-icon ng-class="content.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
+            </md-button>
+        </div>
+    </div>
+    <div flex="80">
+        <md-list-item class="md-3-line" ng-click="null">
+            <img ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
             <div class="md-list-item-text" layout="column">
-                <h3>{{ blog.created.by.name }}</h3>
-                <h4>{{ blog.created.by.college }}</h4>
-                <p>{{ blog.date }}</p>
+                <h3>{{ content.created.by.name }}</h3>
+                <h4>{{ content.created.by.college }}</h4>
+                <p>{{content.created.at}} · 2 min read</p>
             </div>
         </md-list-item>
         <md-divider></md-divider>
-    </md-list>
-</md-content> -->
-<div style="background: white;">
-    <md-list-item flex-offset="20" flex="60" class="md-3-line" ng-click="null">
-        <img ng-src="" class="md-avatar" alt="{{item.who}}" />
-        <div class="md-list-item-text" layout="column">
-            <h3>Rohan <span><md-button class="md-primary md-button-xs" ng-click="follow()">Follow</md-button> </span></h3>
-            <h4>Thapar University</h4>
-            <p>Created date</p>
+        <div>
+            <h1 class="md-title" style="color:rgba(0,0,0,.8);line-height: 1.04;letter-spacing: -.028em;font-size: 40px;font-weight: 700;">
+        	{{content.title}}
+        </h1>
+            <p class="md-body-1" style="white-space: pre-wrap; color:rgba(0,0,0,.8); margin-left: 10px;font-weight: 400; margin:0px; font-size: 21px;line-height: 1.58;letter-spacing: -.003em;">
+                {{content.content.description}}
+                <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
+                    <a ng-href="{{tag.link}}">
+                        <li ng-repeat="tag in content.tags" style="cursor: auto;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">
+                            {{tag.name}}
+                        </li>
+                    </a>
+                </ul>
+                <md-button class="md-icon-button" ng-click="heart(content)" aria-label="Favorite" sticky>
+                    <md-icon ng-class="content.Actions.Appriciate.status? 'pink':''" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon>
+                </md-button>
+                <span>{{content.Actions.Appriciate.total}}</span>
+                <md-button class="md-icon-button" ng-click="bookmark(content)" aria-label="Favorite ">
+                    <md-icon ng-class="content.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
+                </md-button>
+            </p>
         </div>
-    </md-list-item>
-    <div flex="60" flex-offset="20">
-        <h1 class="md-title" style="color:rgba(0,0,0,.8);line-height: 1.04;letter-spacing: -.028em;font-size: 40px;font-weight: 700;">The True Story Of How Standing Rock Fell</h1>
-
-        <p class="md-body-1" style="text-align:justify;white-space: pre-wrap; color:rgba(0,0,0,.8); margin-left: 10px;font-weight: 400; margin:0px; font-size: 21px;line-height: 1.58;letter-spacing: -.003em;">
-            “Fuckin’ hippies need ta get a job,” remarked the pipeline worker in his thick Louisiana accent to a friend sitting with him. The friend, who continued watching the local news anchor talk about the massive clean up effort on the hotel lobby television, replied, “Have you been down there lately? It’s a goddamn mess. Gonna take f’rever ta clean that up!” Suffice it to say, that’s exactly how many around the nation felt about the aftermath of a protest against the Dakota Access Pipeline (DAPL) in North Dakota. I had only been on the ground in North Dakota for a few hours at that point though, returning once again to cover the protest happening just outside of the Standing Rock Sioux Indian Reservation. My first visit to the main camp, originally known as Oceti Sakowin, was to cover the mobilization of thousands of veterans to assist in the protest by Wesley Clark, Jr. and his cohorts. That trip proved to be the high point of the movement with the camp population swelling to what some estimated to be as high as 20,000 people. The pressure of so many protesters, who call themselves ‘water protectors’, joining the fight forced the Army Corps of Engineers’ hand on whether to accept or deny an easement allowing Energy Transfer Partners to continue construction of the pipeline under the Missouri River. On December 4th, 2016, while sitting in the traffic on Highway 1806 just above the camp, I heard a roar erupt as news reached the protesters. Despite Clark Jr.’s gross incompetence as a leader of the veteran mobilization, the tactic had worked and an all night celebration started with a ceremony around the sacred fire at the center of the camp.
-            <br> With victory in the air, the pipeline opponents praised what was surely the end of DAPL construction. They believed months of the bitter stand off with law enforcement and private security resulting in the arrest of hundreds had ended. Surely they would no longer have to endure blasts from water cannons in sub-zero weather, or punishing barrages of less-lethal munitions. For the law enforcement officers on the north side of the barricade that was blocking Highway 1806, it seemed that they would no longer have to endure everything from rocks to Molotov cocktails being thrown at them. They would no longer have to listen to the accusations and jeers of angry protesters, or watch vehicles burn in front of them. Finally, they thought, the officers who came in from neighboring states would finally be able to return home to their families. The feeling of victory was gone almost as fast as the good weather though. The next morning, the word had spread that DAPL officials announced their plans to continue construction despite the Corps of Engineers’ decision. Almost simultaneously, the inclement weather that North Dakota is known for rolled in, forcing many protest
-        </p>
     </div>
 </div>
