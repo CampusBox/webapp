@@ -70,7 +70,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
             .state('static.signUp', {
                 url: '/signup',
                 controller: 'SignUpController',
-                templateUrl: 'app/views/static/signUp.html',
+                templateUrl:          'app/views/static/signUp.html',
                 data: {
                     title: 'Dashboard'
                 }

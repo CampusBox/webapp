@@ -2,36 +2,35 @@
 .pink {
     fill: rgb(233, 30, 99) !important;
 }
-.yellow{
+
+.yellow {
     fill: rgb(255, 235, 59) !important;
 }
 </style>
 <div layout="column" layout-fill layout-padding>
     <md-button class="md-primary" ng-click="openUrlAdd()">Add url</md-button>
-
     <md-tabs flex md-dynamic-height>
         <md-tab label="All">
             <div layout="row" layout-wrap layout-align="center center">
-                <md-card flex-gt-md="60" ng-repeat="blog in blogs track by $index">
-                    <div layout="row" layout-align="left left">
-                        <span class="md-body-1" style="color: #8f8faf;"><md-icon md-svg-icon="tag" style="fill: #8f8faf;margin:10px;"></md-icon>blog.tags.name</span>
-                    </div>
-                    <md-card-header style="padding-bottom: : 0px;">
+                  <md-card flex-gt-sm="60" ng-repeat="blog in blogs track by $index">
+                    <md-card-header>
                         <md-card-avatar>
-                            <img style="max-height: 300px;" class="md-user-avatar" ng-src="blog.created.by.image" />
+                            <img class="md-user-avatar" ng-src="{{blog.created.by.image}}" />
                         </md-card-avatar>
-                        <md-card-header-text style="margin: 5px;">
-                            <span class="md-title">{{blog.created.by.name}}</span>
-                            <span class="md-subhead md-caption">{{blog.created.at}} Feb 27 | 5 min read</span>
+                        <md-card-header-text>
+                            <span class="md-subhead"><span  ui-sref="home.profile" style="color: #0570c0">{{blog.created.by.name}} </span> in <span ui-sref="home.profile" style="color: #0570c0">{{blog.type}} </span></span>
+                            <span class="md-subhead"></span>
+                            <span class="md-title">{{blog.created.at}} · 2 min read</span>
                         </md-card-header-text>
                     </md-card-header>
+                    <img class="md-card-image" ng-if="$index%2==0" ng-src="https://cdn-images-1.medium.com/fit/t/800/240/1*mgYax-dqFtSSi9tIndyb1Q.jpeg" class="md-card-image" alt="Washed Out">
+                    <md-card-title>
+                        <span class="md-headline">{{blog.title}}</span>
+                    </md-card-title>
                     <md-card-content>
-                        <p class="md-display-1" style="color: #373737;font-size: 28px;margin:0px; ">{{blog.title}}</p>
-                        <md-card-title-text>
-                            <p class="md-body-2 " style="color: #8f8faf;margin-left: 10px;font-size: 24px;font-weight: 300;line-height: 1.22; letter-spacing: -.022em; margin:0px; ">{{blog.content.description | limitTo : 300}}...</p>
-                        </md-card-title-text>
-                        <p class="md-caption " style="color:#8f8faf; ">
-                            Read more...
+                        <p class="md-body-2 " style="white-space: pre-wrap;color: #8f8faf;margin-left: 10px;font-weight: 300; margin:0px; font-size: 18px; line-height: 1.58; ">{{blog.content.description | limitTo : $index%2==0?150:200}}...</p>
+                        <p class="md-subhead" style="color: #8f8faf;">
+                            Read More
                         </p>
                     </md-card-content>
                     <div layout="row " layout-align="start center ">
@@ -41,7 +40,7 @@
                         <span>{{blog.Actions.Appriciate.total}}</span>
                         <span flex></span>
                         <md-button class="md-icon-button" ng-click="bookmark(blog, $index)" aria-label="Favorite ">
-                            <md-icon ng-class="blog.Actions.Bookmarked.status? 'yellow':''"  md-svg-icon="{{blog.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
+                            <md-icon ng-class="blog.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{blog.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
                         </md-button>
                         <md-card-icon-actions>
                             <md-button class="md-icon-button " aria-label="toggle ">

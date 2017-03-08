@@ -1,115 +1,115 @@
-<md-content ng-controller="DashboardController" layout="row" layout-align="center">
-<div ng-bind-html="testing">
-    
-</div>
-    <div layout="row" layout-align="center" style="max-width: 1200px;">
-        <div layout="column" class="md-padding" flex-gt-sm="70" flex="100">
-            <div layout="row" ng-repeat="item in [1,2]">
-                <md-card>
+<div layout="row" layout-align="center" ng-controller="DashboardController" style="max-width: 1200px;">
+    <div layout="column" class="md-padding" flex-gt-sm="70" flex="100">
+        <div layout="row" layout-wrap layout-align="center center">
+            <div>
+                <md-card ng-repeat="blog in blogs track by $index">
                     <md-card-header>
                         <md-card-avatar>
-                            <img class="md-user-avatar" src="https://avatars3.githubusercontent.com/u/6951276?v=3&s=400" />
+                            <img class="md-user-avatar" ng-src="{{blog.created.by.image}}" />
                         </md-card-avatar>
                         <md-card-header-text>
-                            <span class="md-title">Lakshit Anand</span>
-                            <span class="md-subhead">Feb 17 · 2 min read</span>
+                            <span class="md-subhead"><span  ui-sref="home.profile" style="color: #0570c0">{{blog.created.by.name}} </span> in <span ui-sref="home.profile" style="color: #0570c0">{{blog.type}} </span></span>
+                            <span class="md-subhead"></span>
+                            <span class="md-title">{{blog.created.at}} · 2 min read</span>
                         </md-card-header-text>
                     </md-card-header>
-                    <img ng-src="https://cdn-images-1.medium.com/fit/t/800/240/1*mgYax-dqFtSSi9tIndyb1Q.jpeg" class="md-card-image" alt="Washed Out">
+                    <img class="md-card-image" ng-if="$index%2==0" ng-src="https://cdn-images-1.medium.com/fit/t/800/240/1*mgYax-dqFtSSi9tIndyb1Q.jpeg" class="md-card-image" alt="Washed Out">
                     <md-card-title>
-                        <md-card-title-text>
-                            <span class="md-headline">Black Joy, We Deserve It.</span>
-                        </md-card-title-text>
+                        <span class="md-headline">{{blog.title}}</span>
                     </md-card-title>
                     <md-card-content>
-                        <p class="md-body-2">
-                            A Black Joy Survival Kit For A Rainy Day
-                        </p>
-                        <p class="md-subhead">
-                        Read More
+                        <p class="md-body-2 " style="white-space: pre-wrap;color: #8f8faf;margin-left: 10px;font-weight: 300; margin:0px; font-size: 18px; line-height: 1.58; ">{{blog.content.description | limitTo : $index%2==0?150:200}}...</p>
+                        <p class="md-subhead" style="color: #8f8faf;">
+                            Read More
                         </p>
                     </md-card-content>
-                    <md-card-actions layout="row" layout-align="start center">
-                        <md-button>Action 1</md-button>
-                        <md-button>Action 2</md-button>
+                    <div layout="row " layout-align="start center ">
+                        <md-button class="md-icon-button" ng-click="heart(blog, $index)" aria-label="Favorite ">
+                            <md-icon ng-class="blog.Actions.Appriciate.status? 'pink':''" md-svg-icon="{{blog.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon>
+                        </md-button>
+                        <span>{{blog.Actions.Appriciate.total}}</span>
+                        <span flex></span>
+                        <md-button class="md-icon-button" ng-click="bookmark(blog, $index)" aria-label="Favorite ">
+                            <md-icon ng-class="blog.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{blog.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
+                        </md-button>
                         <md-card-icon-actions>
-                            <md-button class="md-icon-button" aria-label="toggle">
-                                <md-icon md-svg-icon="md-toggle-arrow"></md-icon>
+                            <md-button class="md-icon-button " aria-label="toggle ">
+                                <md-icon md-svg-icon="md-toggle-arrow "></md-icon>
                             </md-button>
                         </md-card-icon-actions>
-                    </md-card-actions>
-                </md-card>
-            </div>
-            <div layout="row" layout-align="center center">
-                <md-card ng-repeat="item in [1,2,3]" flex="30">
-                    <md-card-header>
-                        <md-card-avatar>
-                            <img class="md-user-avatar" src="https://avatars3.githubusercontent.com/u/6951276?v=3&s=400" />
-                        </md-card-avatar>
-                        <md-card-header-text>
-                            <span class="md-title">User</span>
-                            <span class="md-subhead">subhead</span>
-                        </md-card-header-text>
-                    </md-card-header>
-                    <md-card-title>
-                        <md-card-title-text>
-                            <span class="md-headline">In-card mixed actions</span>
-                        </md-card-title-text>
-                    </md-card-title>
-                    <md-card-content>
-                        <p>
-                            The titles of Washed Out's breakthrough song and the first single from Paracosm share the two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-                        </p>
-                    </md-card-content>
-                    <md-card-actions layout="row" layout-align="start center">
-                        <md-button>Action 1</md-button>
-                        <md-button>Action 2</md-button>
-                        <md-card-icon-actions>
-                            <md-button class="md-icon-button" aria-label="toggle">
-                                <md-icon md-svg-icon="md-toggle-arrow"></md-icon>
-                            </md-button>
-                        </md-card-icon-actions>
-                    </md-card-actions>
+                    </div>
                 </md-card>
             </div>
         </div>
-        <div layout="column" class="md-padding" flex-gt-sm="30"  hide show-gt-sm>
-            <div layout="column">
-                <h5 class="md-subhead">Top stories <br>
+        <!-- <div layout="row" layout-align="center center">
+            <md-card ng-repeat="item in [1,2,3]" flex="30">
+                <md-card-header>
+                    <md-card-avatar>
+                        <img class="md-user-avatar" src="https://avatars3.githubusercontent.com/u/6951276?v=3&s=400" />
+                    </md-card-avatar>
+                    <md-card-header-text>
+                        <span class="md-title">User</span>
+                        <span class="md-subhead">subhead</span>
+                    </md-card-header-text>
+                </md-card-header>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">In-card mixed actions</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <p>
+                        The titles of Washed Out's breakthrough song and the first single from Paracosm share the two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
+                    </p>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="start center">
+                    <md-button>Action 1</md-button>
+                    <md-button>Action 2</md-button>
+                    <md-card-icon-actions>
+                        <md-button class="md-icon-button" aria-label="toggle">
+                            <md-icon md-svg-icon="md-toggle-arrow"></md-icon>
+                        </md-button>
+                    </md-card-icon-actions>
+                </md-card-actions>
+            </md-card>
+        </div> -->
+    </div>
+    <div layout="column" class="md-padding" flex-gt-sm="30" hide show-gt-sm>
+        <div layout="column">
+            <h5 class="md-subhead">Top stories <br>
             <small style="color: rgba(0,0,0,.44);" class="md-caption">Most popular this week</small>
             </h5>
-                <md-divider></md-divider>
-                <md-list>
-                    <md-list-item class="md-2-line" ng-repeat="item in [1,2,3]">
-                        <img ng-src="https://avatars2.githubusercontent.com/u/14099191?v=3&u=e03e9a657eb1e4de7da062cc5a5611092f0f2d7e&s=400" class="md-avatar" alt="{{todos[0].who}}" />
-                        <div class="md-list-item-text">
-                            <h3>Stop yelling what poor people eat</h3>
-                            <p>Chris Newman</p>
-                        </div>
-                    </md-list-item>
-                </md-list>
-            </div>
-            <div layout="column">
-                <h5 class="md-subhead">Top Events<br><small style="color: rgba(0,0,0,.44);" class="md-caption">Most popular this week</small></h5>
-                <md-divider></md-divider>
-                <md-list>
-                    <md-list-item class="md-2-line" ng-repeat="event in events | limitTo:3">
-                        <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}}" class="md-avatar" alt="{{item.who}}">
-                        <div class="md-list-item-text">
-                            <h3>{{event.name}}</h3>
-                            <p>Date | Venue</p>
-                        </div>
-                        <md-divider md-inset ng-if="!$last"></md-divider>
-                    </md-list-item>
-                </md-list>
-            </div>
-            <div layout="column">
-                <h5 class="md-subhead" style="color:rgba(0,0,0,.44);">Tags you follow </h5>
-                <md-divider></md-divider>
-                <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
-                    <li ng-repeat="tag in tags" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">{{tag}}</li>
-                </ul>
-            </div>
+            <md-divider></md-divider>
+            <md-list>
+                <md-list-item class="md-2-line" ng-repeat="item in [1,2,3]">
+                    <img ng-src="https://avatars2.githubusercontent.com/u/14099191?v=3&u=e03e9a657eb1e4de7da062cc5a5611092f0f2d7e&s=400" class="md-avatar" alt="{{todos[0].who}}" />
+                    <div class="md-list-item-text">
+                        <h3>Stop yelling what poor people eat</h3>
+                        <p>Chris Newman</p>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </div>
+        <div layout="column">
+            <h5 class="md-subhead">Top Events<br><small style="color: rgba(0,0,0,.44);" class="md-caption">Most popular this week</small></h5>
+            <md-divider></md-divider>
+            <md-list>
+                <md-list-item class="md-2-line" ng-repeat="event in events | limitTo:3">
+                    <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}}" class="md-avatar" alt="{{item.who}}">
+                    <div class="md-list-item-text">
+                        <h3>{{event.name}}</h3>
+                        <p>Date | Venue</p>
+                    </div>
+                    <md-divider md-inset ng-if="!$last"></md-divider>
+                </md-list-item>
+            </md-list>
+        </div>
+        <div layout="column">
+            <h5 class="md-subhead" style="color:rgba(0,0,0,.44);">Tags you follow </h5>
+            <md-divider></md-divider>
+            <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
+                <li ng-repeat="tag in tags" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">{{tag}}</li>
+            </ul>
         </div>
     </div>
-</md-content>
+</div>
