@@ -114,9 +114,16 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                     title: 'Profile'
                 }
             })
-
-
-
+            .state('home.singleContent', {
+                url: '/singleContent/:contentId',
+                templateUrl: 'app/views/home/singleContent.html',
+                controller: 'SingleContentController',
+                controllerAs: 'vm',
+                data: {
+                    requiresLogin: true,
+                    title: 'Content'
+                }
+            })
         .state('home.events', {
                 url: '/events',
                 templateUrl: 'app/views/home/events.html',

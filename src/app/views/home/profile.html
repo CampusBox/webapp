@@ -21,7 +21,7 @@
         </center>.
         <md-card-content>
             <p class="md-body-2">
-                {{profile.description}}
+                {{profile.subtitle}}
             </p>
             <md-divider></md-divider>
             <p class="md-title">
@@ -39,7 +39,7 @@
             <a  ng-repeat="social in profile.SocialAccounts.data" href="{{social.link}}" target="_blank">
                 <md-list-item>
                     <md-icon md-svg-icon="facebook"></md-icon>
-                    <p>Facebook</p>
+                    <p style="text-transform: capitalize;">{{item.type}}</p>
                 </md-list-item>
                 <md-icon md-svg-icon="{{item.icon}}"></md-icon>
             </md-list>
@@ -81,19 +81,40 @@
                     <br>
                     <h3>Top Events Created</h3>
                     <md-list>
-                        <md-list-item ng-click="showEvent(event, $index)" class="md-2-line" ng-repeat="event in profile.Events.data | limitTo:6">
-                            <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.id}}.jpg" class="md-avatar" alt="{{item.who}}">
-                            <div class="md-list-item-text">
-                                <h3>{{event.title}}</h3>
-                                <p>Created: date</p>
+                        <md-list-item style="margin-bottom: 10px;" ng-click="showEvent(event, $index)" class="secondary-button-padding eventListItem" ng-repeat="event in profile.Events.data track by $index | limitTo:6">
+                            <div flex>
+                                <md-card-title style="padding: 0px;">
+                                    <div class="md-media-sm" style="width: 200px;height:140px;">
+                                        <img style="width: 200px;  position: absolute;    clip: rect(00px,200px,140px,0px); margin-right: " ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.id}}.jpg" alt="">
+                                    </div>
+                                    <div style="padding: 10px 18px;" flex layout="column">
+                                        <span class="md-body-2">{{event.timings.date.start? event.timings.date.start:"Fri, Mar 24 2:00 PM" }}</span>
+                                        <div class="md-subhead" style="font-weight: 600">
+                                            {{event.title}}
+                                        </div>
+                                        <span class="md-subhead">
+
+                                        <p class="md-body-2">{{event.details.description}}</p>
+                                            </span>
+                                    </div>
+                                </md-card-title>
+                                <div layou="row">
+                                    <md-card-actions layout="row" layout-align="start center">
+                                        <span class="md-body-2">#FUCKEDUP </span>
+                                        <span class="md-body-2"> #BtAwesome</span>
+                                        <md-button ng-repeat="tag in event.tags" class="md-subhead">{{tag.name}}</md-button>
+                                        <span flex></span>
+                                        <md-button class="md-icon-button" ng-click="heart(event, $index)" aria-label="Favorite ">
+                                            <md-icon ng-class="event.Actions.Bookmarked.status? 'pink':''" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>
+                                        </md-button>
+                                        <span>{{event.Actions.Bookmarked.total}}</span>
+                                        <md-button class="md-icon-button" ng-click="update(event, $index)" aria-label="Favorite ">
+                                            <md-icon ng-class="!event.Actions.Participants.status? 'blue':''" md-svg-icon="{{!event.Actions.Participants.status? 'account-plus' : 'account-check' }}"></md-icon>
+                                        </md-button>
+                                    </md-card-actions>
+                                </div>
                             </div>
-                            <span><md-button class="md-icon-button" ng-click="heart(event, $index)" aria-label="Favorite ">
-                                <md-icon ng-class="event.Actions.Bookmarked.status? 'pink':''"  md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>
-                            </md-button>{{event.Actions.Bookmarked.total}}</span>
-                            <md-button class="md-icon-button" ng-click="update(event, $index)" aria-label="Favorite ">
-                                <md-icon ng-class="event.Actions.Participants.status? 'yellow':''" md-svg-icon="{{event.Actions.Participants.status? 'bell-ring' : 'bell-outline' }}"></md-icon>
-                            </md-button>
-                            <md-divider md-inset ng-if="!$last"></md-divider>
+                            <md-divider></md-divider>
                         </md-list-item>
                     </md-list>
                     <br>
@@ -113,36 +134,35 @@
                 </md-tab>
                 <md-tab label="Creative Content">
                     <div layout="column" layout-wrap layout-align="center center">
-                        <md-card flex-gt-md="70" ng-repeat="a in [1,2,3,4] ">
-                            <div layout="row " layout-align="left left ">
-                                <span class="md-body-1 " style="color: #8f8faf; "><md-icon md-svg-icon="tag " style="fill: #8f8faf;margin:10px; "></md-icon>Life</span>
-                            </div>
-                            <md-card-header style="padding-bottom: : 0px;">
+                        <md-card flex-gt-sm="60" ng-repeat="blog in profile.Content.data track by $index">
+                            <md-card-header>
                                 <md-card-avatar>
-                                    <img style="max-height: 300px;" class="md-user-avatar" src="https://avatars2.githubusercontent.com/u/14099191?v=3&u=e03e9a657eb1e4de7da062cc5a5611092f0f2d7e&s=400" />
+                                    <img class="md-user-avatar" ng-src="{{blog.created.by.image}}" />
                                 </md-card-avatar>
-                                <md-card-header-text style="margin: 5px;">
-                                    <span class="md-title">Rohan Goel</span>
-                                    <span class="md-subhead md-caption">Feb 27 | 5 min read</span>
+                                <md-card-header-text>
+                                    <span class="md-subhead"><span  ui-sref="home.profile" style="color: #0570c0">{{blog.created.by.name}} </span> in <span ui-sref="home.profile" style="color: #0570c0">{{blog.type?blog.type:"Article"}} </span></span>
+                                    <span class="md-subhead"></span>
+                                    <span class="md-title">{{blog.created.at}} · 2 min read</span>
                                 </md-card-header-text>
                             </md-card-header>
+                            <img class="md-card-image" ng-if="$index%2!=0" ng-src="https://cdn-images-1.medium.com/fit/t/800/240/1*mgYax-dqFtSSi9tIndyb1Q.jpeg" class="md-card-image" alt="Washed Out">
+                            <md-card-title>
+                                <span class="md-headline">{{blog.title}}</span>
+                            </md-card-title>
                             <md-card-content>
-                                <p class="md-display-1" style="color: #373737;font-size: 28px;margin:0px; ">My new collection</p>
-                                <md-card-title-text>
-                                    <img src="https://media.licdn.com/media/AAEAAQAAAAAAAArZAAAAJDE4ZmRlMGI3LTFkMmQtNDYwMC04MWJkLTU3YzIzNzA1MDczZA.jpg " style="max-height: 300px;padding-left: 25px;padding-right: 25px; " class="md-card-image " alt="Washed Out ">
-                                </md-card-title-text>
-                                <p class="md-caption " style="color:#8f8faf; ">
-                                    Read more...
+                                <p class="md-body-2 " style="white-space: pre-wrap;color: #8f8faf;margin-left: 10px;font-weight: 300; margin:0px; font-size: 18px; line-height: 1.58; ">{{blog.content.description | limitTo : $index%2==0?150:200}}...</p>
+                                <p class="md-subhead" style="color: #8f8faf;">
+                                    Read More
                                 </p>
                             </md-card-content>
                             <div layout="row " layout-align="start center ">
-                                <md-button class="md-icon-button ">
-                                    <md-icon md-svg-icon="heart-outline "></md-icon>
+                                <md-button class="md-icon-button" ng-click="heart(blog, $index)" aria-label="Favorite ">
+                                    <md-icon ng-class="blog.Actions.Appriciate.status? 'pink':''" md-svg-icon="{{blog.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon>
                                 </md-button>
-                                <span>100</span>
+                                <span>{{blog.Actions.Appriciate.total}}</span>
                                 <span flex></span>
-                                <md-button style="float:right; " class="md-icon-button ">
-                                    <md-icon md-svg-icon="bookmark-outline "></md-icon>
+                                <md-button class="md-icon-button" ng-click="bookmark(blog, $index)" aria-label="Favorite ">
+                                    <md-icon ng-class="blog.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{blog.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
                                 </md-button>
                                 <md-card-icon-actions>
                                     <md-button class="md-icon-button " aria-label="toggle ">
@@ -156,19 +176,40 @@
                 <md-tab label="Events Created">
                     <md-content class="md-padding">
                         <md-list>
-                            <md-list-item ng-click="showEvent(event, $index)" class="md-2-line" ng-repeat="event in profile.Events.data | limitTo:6">
-                                <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.id}}.jpg" class="md-avatar" alt="{{item.who}}">
-                                <div class="md-list-item-text">
-                                    <h3>{{event.title}}</h3>
-                                    <p>Created: date</p>
+                            <md-list-item style="margin-bottom: 10px;" ng-click="showEvent(event, $index)" class="secondary-button-padding eventListItem" ng-repeat="event in profile.Events.data  track by $index">
+                                <div flex>
+                                    <md-card-title style="padding: 0px;">
+                                        <div class="md-media-sm" style="width: 200px;height:140px;">
+                                            <img style="width: 200px;  position: absolute;    clip: rect(00px,200px,140px,0px); margin-right: " ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.id}}.jpg" alt="">
+                                        </div>
+                                        <div style="padding: 10px 18px;" flex layout="column">
+                                            <span class="md-body-2">{{event.timings.date.start? event.timings.date.start:"Fri, Mar 24 2:00 PM" }}</span>
+                                            <div class="md-subhead" style="font-weight: 600">
+                                                {{event.title}}
+                                            </div>
+                                            <span class="md-subhead">
+
+                                            <p class="md-body-2">{{event.details.description}}</p>
+                                                </span>
+                                        </div>
+                                    </md-card-title>
+                                    <div layou="row">
+                                        <md-card-actions layout="row" layout-align="start center">
+                                            <span class="md-body-2">#FUCKEDUP </span>
+                                            <span class="md-body-2"> #BtAwesome</span>
+                                            <md-button ng-repeat="tag in event.tags" class="md-subhead">{{tag.name}}</md-button>
+                                            <span flex></span>
+                                            <md-button class="md-icon-button" ng-click="heart(event, $index)" aria-label="Favorite ">
+                                                <md-icon ng-class="event.Actions.Bookmarked.status? 'pink':''" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>
+                                            </md-button>
+                                            <span>{{event.Actions.Bookmarked.total}}</span>
+                                            <md-button class="md-icon-button" ng-click="update(event, $index)" aria-label="Favorite ">
+                                                <md-icon ng-class="!event.Actions.Participants.status? 'blue':''" md-svg-icon="{{!event.Actions.Participants.status? 'account-plus' : 'account-check' }}"></md-icon>
+                                            </md-button>
+                                        </md-card-actions>
+                                    </div>
                                 </div>
-                                <span><md-button class="md-icon-button" ng-click="heart(event, $index)" aria-label="Favorite ">
-                                                       <md-icon ng-class="event.Actions.Bookmarked.status? 'pink':''"  md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>
-                                                   </md-button>{{event.Actions.Bookmarked.total}}</span>
-                                <md-button class="md-icon-button" ng-click="update(event, $index)" aria-label="Favorite ">
-                                    <md-icon ng-class="event.Actions.Participants.status? 'yellow':''" md-svg-icon="{{event.Actions.Participants.status? 'bell-ring' : 'bell-outline' }}"></md-icon>
-                                </md-button>
-                                <md-divider md-inset ng-if="!$last"></md-divider>
+                                <md-divider></md-divider>
                             </md-list-item>
                         </md-list>
                     </md-content>
@@ -193,7 +234,45 @@
                 </md-tab>
                 <md-tab label="Recomended">
                     <md-content class="md-padding">
-                    </md-content>
+                    <div layout="column" layout-wrap layout-align="center center">
+                        <md-card flex-gt-sm="60" ng-repeat="blog in profile.BookmarkedContent.data track by $index">
+                            <md-card-header>
+                                <md-card-avatar>
+                                    <img class="md-user-avatar" ng-src="{{blog.created.by.image}}" />
+                                </md-card-avatar>
+                                <md-card-header-text>
+                                    <span class="md-subhead"><span  ui-sref="home.profile" style="color: #0570c0">{{blog.created.by.name}} </span> in <span ui-sref="home.profile" style="color: #0570c0">{{blog.type?blog.type:"Article"}} </span></span>
+                                    <span class="md-subhead"></span>
+                                    <span class="md-title">{{blog.created.at}} · 2 min read</span>
+                                </md-card-header-text>
+                            </md-card-header>
+                            <img class="md-card-image" ng-if="$index%2!=0" ng-src="https://cdn-images-1.medium.com/fit/t/800/240/1*mgYax-dqFtSSi9tIndyb1Q.jpeg" class="md-card-image" alt="Washed Out">
+                            <md-card-title>
+                                <span class="md-headline">{{blog.title}}</span>
+                            </md-card-title>
+                            <md-card-content>
+                                <p class="md-body-2 " style="white-space: pre-wrap;color: #8f8faf;margin-left: 10px;font-weight: 300; margin:0px; font-size: 18px; line-height: 1.58; ">{{blog.content.description | limitTo : $index%2==0?150:200}}...</p>
+                                <p class="md-subhead" style="color: #8f8faf;">
+                                    Read More
+                                </p>
+                            </md-card-content>
+                            <div layout="row " layout-align="start center ">
+                                <md-button class="md-icon-button" ng-click="heart(blog, $index)" aria-label="Favorite ">
+                                    <md-icon ng-class="blog.Actions.Appriciate.status? 'pink':''" md-svg-icon="{{blog.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon>
+                                </md-button>
+                                <span>{{blog.Actions.Appriciate.total}}</span>
+                                <span flex></span>
+                                <md-button class="md-icon-button" ng-click="bookmark(blog, $index)" aria-label="Favorite ">
+                                    <md-icon ng-class="blog.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{blog.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
+                                </md-button>
+                                <md-card-icon-actions>
+                                    <md-button class="md-icon-button " aria-label="toggle ">
+                                        <md-icon md-svg-icon="md-toggle-arrow "></md-icon>
+                                    </md-button>
+                                </md-card-icon-actions>
+                            </div>
+                        </md-card>
+                    </div>
                     </md-content>
                 </md-tab>
             </md-tabs>
