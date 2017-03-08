@@ -24,7 +24,7 @@
             $scope.content.Actions.Bookmarked.status = !$scope.content.Actions.Bookmarked.status;
             if ($scope.content.Actions.Bookmarked.status) {
                 $scope.content.Actions.Bookmarked.total += 1;
-                tokenService.post('bookmarkedContent/' + content.id).then(function(result) {
+                tokenService.post('bookmarkContent/' + content.id).then(function(result) {
 
                     console.log('post request');
                     if (result.status != 'error') {
@@ -36,7 +36,7 @@
             } else {
                 $scope.content.Actions.Bookmarked.total -= 1;
 
-                tokenService.delete('bookmarkedContent/' + content.id, '').then(function(result) {
+                tokenService.delete('bookmarkContent/' + content.id, '').then(function(result) {
                     console.log('post request');
                     if (result.status != 'error') {
                         console.log(result.status);
@@ -50,7 +50,7 @@
             $scope.content.Actions.Appriciate.status = !$scope.content.Actions.Appriciate.status;
             if ($scope.content.Actions.Appriciate.status) {
                 $scope.content.Actions.Appriciate.total += 1;
-                tokenService.post('appriciateContent/' + content.id).then(function(result) {
+                tokenService.post('appreciateContent/' + content.id).then(function(result) {
 
                     console.log('post request');
                     if (result.status != 'error') {
@@ -62,7 +62,7 @@
             } else {
                 $scope.content.Actions.Appriciate.total -= 1;
 
-                tokenService.delete('appriciateContent/' + content.id, '').then(function(result) {
+                tokenService.delete('appreciateContent/' + content.id, '').then(function(result) {
                     console.log('post request');
                     if (result.status != 'error') {
                         console.log(result.status);
