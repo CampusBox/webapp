@@ -20,6 +20,10 @@ body {
   margin-left: 10px;
 }
 
+div.pageContainer {
+  height: auto;
+}
+
 .capitalize {
   text-transform: capitalize;
 }
