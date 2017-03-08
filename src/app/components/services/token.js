@@ -8,7 +8,7 @@
             '$q',
             function($rootScope, $http, $q, $location) {
                 console.log($rootScope.token);
-                var serviceBase = 'api/public/';
+                var serviceBase = 'http://192.171.2.213/app/public/';
                 $rootScope.config = function() {
                     return {
                         headers: {

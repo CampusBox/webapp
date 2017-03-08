@@ -218,8 +218,10 @@
             $scope.serverBusy = true;
             tokenService.get("events")
                 .then(function(tableData) {
+            console.log('events called');
                     $scope.serverBusy = false;
                     $scope.events = $scope.events.concat(tableData.data);
+                    console.log($scope.events);
                 });
         }
         $scope.searchTerm;
