@@ -17,22 +17,7 @@
         $scope.grid = false;
         $scope.width = 18;
         $scope.events = [];
-        
-        $scope.showReport = function(ev) {
-            $mdDialog.show({
-                    controller: 'DialogController',
-                    templateUrl: 'app/views/partials/showReport.html',
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose: false,
-                    fullscreen: false // Only for -xs, -sm breakpoints.
-                })
-                .then(function(answer) {
-                    $scope.status = 'You said the information was "' + answer + '".';
-                }, function() {
-                    $scope.status = 'You cancelled the dialog.';
-                });
-        };
+    
         $scope.showEvent = function(ev, index) {
             $mdDialog.show({
                     controller: 'SingleEventController',
@@ -54,71 +39,11 @@
                     $scope.status = 'You cancelled the dialog.';
                 });
         };
-        $scope.showAdvanced = function(ev) {
-            $mdDialog.show({
-                    controller: 'DialogController',
-                    templateUrl: 'app/views/partials/addEvent.html',
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose: true,
-                    fullscreen: true // Only for -xs, -sm breakpoints.
-                })
-                .then(function(answer) {
-                    $scope.status = 'You said the information was "' + answer + '".';
-                }, function() {
-                    $scope.status = 'You cancelled the dialog.';
-                });
-        };
-
-        $scope.showUpdates = function(ev) {
-            $mdDialog.show({
-                    controller: 'DialogController',
-                    templateUrl: 'app/views/partials/addEvent.html',
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose: true,
-                    fullscreen: true // Only for -xs, -sm breakpoints.
-                })
-                .then(function(answer) {
-                    $scope.status = 'You said the information was "' + answer + '".';
-                }, function() {
-                    $scope.status = 'You cancelled the dialog.';
-                });
-        };
-        $scope.addUpdate = function(ev) {
-            $mdDialog.show({
-                    controller: 'DialogController',
-                    templateUrl: 'app/views/partials/addUpdate.html',
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose: true,
-                    fullscreen: true // Only for -xs, -sm breakpoints.
-                })
-                .then(function(answer) {
-                    $scope.status = 'You said the information was "' + answer + '".';
-                }, function() {
-                    $scope.status = 'You cancelled the dialog.';
-                });
-        };
-
+       
         $scope.report = function() {
             console.log('testing report function');
         }
-        $scope.showParticipants = function(ev) {
-            $mdDialog.show({
-                    controller: 'DialogController',
-                    templateUrl: 'app/views/partials/showParticipants.html',
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose: true,
-                    fullscreen: true // Only for -xs, -sm breakpoints.
-                })
-                .then(function(answer) {
-                    $scope.status = 'You said the information was "' + answer + '".';
-                }, function() {
-                    $scope.status = 'You cancelled the dialog.';
-                });
-        };
+      
         $scope.heart = function(event, $index) {
             $scope.events[$index].Actions.Bookmarked.status = !$scope.events[$index].Actions.Bookmarked.status;
             if ($scope.events[$index].Actions.Bookmarked.status) {

@@ -227,7 +227,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
 
         $mdThemingProvider
             .theme('default')
-            .primaryPalette('light-blue', {
+            .primaryPalette('blue', {
                 'default': '600'
             })
             .accentPalette('blue', {
@@ -236,11 +236,11 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
             .warnPalette('blue');
 
         $mdThemingProvider.theme('dark', 'default')
-            .primaryPalette('light-blue')
+            .primaryPalette('blue')
             .dark('blue');
 
-        $mdThemingProvider.theme('light-blue', 'default')
-            .primaryPalette('light-blue');
+        $mdThemingProvider.theme('blue', 'default')
+            .primaryPalette('blue');
 
 
     })
