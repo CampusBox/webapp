@@ -252,15 +252,15 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
 
     })
     .run(function(authManager, $state, $location,$rootScope) {
-        authManager.checkAuthOnRefresh();
-        authManager.redirectWhenUnauthenticated();
+       // authManager.checkAuthOnRefresh();
+     //   authManager.redirectWhenUnauthenticated();
         $rootScope.token = localStorage.getItem('id_token');
 
-    if (!authManager.isAuthenticated()) {
-            console.log("sending to login")
-            $state.go('static.login');
+  //  if (!authManager.isAuthenticated()) {
+    //        console.log("sending to login")
+      //      $state.go('static.login');
 
-        }
+        //}
     });
 // .run(["$rootScope", "$state", "$location", "$stateParams", "$timeout", "$localStorage", function($rootScope, $state, $location, $stateParams, $timeout, $localStorage) {
 //     $rootScope.$on("$stateChangeStart", function(event, next) {
