@@ -1,37 +1,29 @@
-<md-dialog ">
-    <div flex layout="row ">
-        <div flex="60 " layout="column " layout-align="center center " style="background-color: #000 ">
-            <img style="max-width: 100%;max-height: 100% " ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.id}}.jpg " class="md-card-image " alt="Event title ">
-        </div>
-        <div flex="40 ">
-            <div layout-padding>
-                <h4 class="md-title ">{{event.title}} <span class="md-body-2" style="cursor: default;border-radius: 5px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: right;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(139, 195, 74);">date time</span><br><span class="md-body-2 "> by Organizers name, College name</span></h4>
-                <span class="md-body-2"><md-icon md-svg-icon="map"></md-icon>{{event.details.venue}}</span>
-                <span>{{event.details.price}}</span>
-                    <h5 class="md-headline" style="margin-bottom: 0px;">Aboout</h5>
-                    <p class="md-body-1">{{event.details.description}}</p>
-                <p class="md-body-2">
-                    <h5 style="margin-bottom: 0px;" class="md-headline">Rules</h5>
-                    <ul style="margin-top: 0px;" class="md-body-1">
-                        <li>{{event.details.rules}}</li>
-                    </ul>
-                </p>
-                <md-button class="md-icon-button" ng-click="heart()" aria-label="Favorite ">
-                    <md-icon ng-class="event.Actions.Bookmarked.status? 'pink':''"  md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>
-                </md-button>
-                <span>{{event.Actions.Bookmarked.total}}</span>
-                <md-button class="md-icon-button" ng-click="update()" aria-label="Favorite ">
-                    <md-icon ng-class="event.Actions.Participants.status? 'yellow':''"  md-svg-icon="{{event.Actions.Participants.status? 'bell-ring' : 'bell-outline' }}"></md-icon>
-                </md-button>
-                <md-button aria-label="website ">
-                    <md-icon md-svg-icon="link "></md-icon>Website</md-button>
-            </div>
+<div flex layout="row ">
+    <div flex="60 " layout="column " layout-align="center center " style="background-color: #000 ">
+        <img style="max-width: 100%;max-height: 100% " ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.id}}.jpg " class="md-card-image " alt="Event title ">
+    </div>
+    <div flex="40 ">
+        <div layout-padding>
+            <h4 class="md-title ">{{event.title}} <span class="md-body-2" style="cursor: default;border-radius: 5px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: right;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(139, 195, 74);">date time</span><br><span class="md-body-2 "> by Organizers name, College name</span></h4>
+            <span class="md-body-2"><md-icon md-svg-icon="map"></md-icon>{{event.details.venue}}</span>
+            <span>{{event.details.price}}</span>
+            <h5 class="md-headline" style="margin-bottom: 0px;">Aboout</h5>
+            <p class="md-body-1">{{event.details.description}}</p>
+            <p class="md-body-2">
+                <h5 style="margin-bottom: 0px;" class="md-headline">Rules</h5>
+                <ul style="margin-top: 0px;" class="md-body-1">
+                    <li>{{event.details.rules}}</li>
+                </ul>
+            </p>
+            <md-button class="md-icon-button" ng-click="heart()" aria-label="Favorite ">
+                <md-icon ng-class="event.Actions.Bookmarked.status? 'pink':''" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>
+            </md-button>
+            <span>{{event.Actions.Bookmarked.total}}</span>
+            <md-button class="md-icon-button" ng-click="update()" aria-label="Favorite ">
+                <md-icon ng-class="event.Actions.Participants.status? 'yellow':''" md-svg-icon="{{event.Actions.Participants.status? 'bell-ring' : 'bell-outline' }}"></md-icon>
+            </md-button>
+            <md-button aria-label="website ">
+                <md-icon md-svg-icon="link "></md-icon>Website</md-button>
         </div>
     </div>
-    <md-button aria-label="bookmark " id="left" ng-click="showEvent($event, index-1, 'left', 'right') ">
-        <md-icon class="white " md-svg-icon="chevron-left ">
-            <md-button>
-</md-dialog>
-<md-button aria-label="bookmark " id="right" ng-click="showEvent($event, index+1, 'right', 'left') ">
-    <md-icon md-svg-icon="chevron-right ">
-        <md-button>
+</div>

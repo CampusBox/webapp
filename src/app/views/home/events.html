@@ -146,7 +146,7 @@
                 </md-card>
             </md-list-item>
         </md-list>
-        <md-card flex layout="row " ng-hide="vm.tableData[0].id>0" style="min-height: 171px" layout-sm="column" layout-align="center center">
+        <md-card ng-if="!serverBusy" flex layout="row " ng-hide="vm.tableData[0].id>0" style="min-height: 171px" layout-sm="column" layout-align="center center">
             <md-progress-circular md-mode="indeterminate"></md-progress-circular>
         </md-card>
     </div>
