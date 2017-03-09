@@ -6,12 +6,13 @@
         .controller('AddEventController', [
             '$mdDialog',
             '$scope',
+            'tokenService',
             'Upload',
             '$timeout',
             AddEventController
         ]);
 
-    function AddEventController($mdDialog, $scope, Upload, $timeout) {
+    function AddEventController($mdDialog, $scope,tokenService, Upload, $timeout) {
         $scope.event = {};
         //maps autocomplete
 
@@ -36,7 +37,7 @@
                 }, function(evt) {
                     $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
                 });
-            }
+            };
             //IMAGE UPLOAD CODE END
             //
         $scope.hide = function() {
@@ -58,7 +59,7 @@
             delete a[selectDay];
             delete a[selectTime];
             console.log(a);
-            allDataService.post('students/', a).then(function(result) {
+            tokenService.post('addEvent/', a).then(function(result) {
                 if (result.status != 'error') {
                     // var x = angular.copy(coupon);
                     // x.save = 'insert';
