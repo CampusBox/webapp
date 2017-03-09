@@ -343,3 +343,45 @@ md-backdrop.md-sidenav-backdrop {
     width: 18px;
 }
 
+/*
+Optional adjustments for md-autocomplete in mobile screens
+*/
+
+#place-autocomplete > md-autocomplete md-input-container {
+    margin-top: -10px;
+}
+
+
+/*Media query for tablets and above */
+
+@media screen and (min-width: 480px) {
+    #place-autocomplete > md-autocomplete md-input-container {
+        padding-bottom: 0;
+    }
+}
+/*image upload start*/
+.cropArea {
+    background: #E4E4E4;
+    overflow: hidden;
+    width: 500px;
+    height: 350px;
+}
+
+form .progress {
+    line-height: 15px;
+}
+
+.progress {
+    display: inline-block;
+    width: 100px;
+    border: 3px groove #CCC;
+}
+
+.progress div {
+    font-size: smaller;
+    background: orange;
+    width: 0;
+}
+
+
+/*image upload end*/

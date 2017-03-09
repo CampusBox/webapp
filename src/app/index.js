@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload', 'satellizer',
-        'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop', 'angular-jwt', 'infinite-scroll', 'ngEmbed',
+        'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop', 'angular-jwt', 'infinite-scroll',
     ])
     //remove setellizer
     .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, $authProvider,
@@ -54,6 +54,15 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                 url: '/myProfile/:tab',
                 templateUrl: 'app/views/home/myProfile.html',
                 controller: 'MyProfileController',
+                controllerAs: 'vm',
+                data: {
+                    title: 'My Profile'
+                }
+            })
+            .state('home.addEvent', {
+                url: '/addEvent',
+                templateUrl: 'app/views/home/addEvent.html',
+                controller: 'AddEventController',
                 controllerAs: 'vm',
                 data: {
                     title: 'My Profile'
