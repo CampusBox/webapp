@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload', 'satellizer',
-        'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop', 'angular-jwt', 'infinite-scroll','ngMessages',
+        'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop', 'angular-jwt', 'infinite-scroll','ngMessages'
     ])
     //remove setellizer
     .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, $authProvider,
@@ -70,6 +70,15 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                 controllerAs: 'vm',
                 data: {
                     title: 'My Profile'
+                }
+            })
+            .state('home.singleEvent/:eventId', {
+                url: '/singleEvent',
+                templateUrl: 'app/views/home/singleEvent.html',
+                controller: 'SingleEventController',
+                controllerAs: 'vm',
+                data: {
+                    title: 'Event'
                 }
             })
             .state('static.login', {

@@ -1,4 +1,3 @@
-'use strict';
 (function() {
 
     angular
@@ -7,13 +6,12 @@
         .controller('AddEventController', [
             '$mdDialog',
             '$scope',
-            'tokenService',
             'Upload',
             '$timeout',
             AddEventController
         ]);
 
-    function AddEventController($mdDialog, $scope,tokenService, Upload, $timeout) {
+    function AddEventController($mdDialog, $scope, Upload, $timeout) {
         $scope.event = {};
         $scope.place = null;
         $scope.consoleTag = function(tags){
@@ -37,7 +35,7 @@
                 }, function(evt) {
                     $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
                 });
-            };
+            }
             //IMAGE UPLOAD CODE END
 
             //Tags code start
