@@ -132,12 +132,12 @@
                         .then(function(abc) {
                             localStorage.setItem('id_token', abc.token);
                             $rootScope.token = abc.token;
-                            $state.go("home.dashboard");
+                          //  $state.go("home.dashboard");
                             return;
                         }).catch(function(abc) {
                             localStorage.setItem('id_token', abc.token);
                             $rootScope.token = abc.token;
-                            $state.go("home.dashboard");
+                           // $state.go("home.dashboard");
                             return;
 
                         });
@@ -156,7 +156,7 @@
                         .then(function(abc) {
                             localStorage.setItem('id_token', abc.token);
                             $rootScope.token = abc.token;
-                            $state.go("home.dashboard");
+//                            $state.go("home.dashboard");
                             return;
                         }).catch(function(abc) {
 
@@ -187,20 +187,22 @@
         $rootScope.$on('event:social-sign-in-success', function(event, response) {
             // console.log("Social sign in success")
             // console.log(userDetails);
-            // console.log(event);
-            $scope.signUp.token = response.access_token ? response.access_token : response.token;
+            console.log(event);
+            console.log(response);
+            $scope.signUp.token = response.access_token;
             $scope.signUp.type = "google";
             $scope.signUp.skills = $scope.selectedSkills;
             $scope.signUp.intrests = $scope.interests;
             $scope.signUp.college_id = $scope.college;
             $scope.signUp.college_id = 1;
 
+            console.log($scope.signUp);
             tokenService.post("signup", $scope.signUp)
                 .then(function(abc) {
                     console.log(abc);
                     localStorage.setItem('id_token', abc.token);
                     $rootScope.token = abc.token;
-                    $state.go("home.dashboard");
+              //      $state.go("home.dashboard");
                     return;
 
                 }).catch(function(abc) {

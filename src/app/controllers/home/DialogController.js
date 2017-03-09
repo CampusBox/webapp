@@ -13,10 +13,7 @@
 
     function DialogController($mdDialog, $scope, Upload, $timeout) {
         $scope.event = {};
-        //maps autocomplete
-
-        //maps autocomplete finish
-
+      
         // poster upload
         //IMAGE UPLOAD CODE START
         $scope.upload = function(dataUrl, name) {
