@@ -21,7 +21,7 @@
         //IMAGE UPLOAD CODE START
         $scope.upload = function(dataUrl, name) {
                 Upload.upload({
-                    url: 'http://upload.campusbox.org/imageUpload.php',
+                    url: 'https://upload.campusbox.org/imageUpload.php',
                     method: 'POST',
                     file: Upload.dataUrltoBlob(dataUrl, name),
                     data: {
