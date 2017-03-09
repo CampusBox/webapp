@@ -1,603 +1,67 @@
-body {
-  color: #282c35;
-}
+/*
+Error: Invalid CSS after "...7251240d69d59a0": expected "{", was ""
+        on line 664 of /home/atom/Documents/code/CampusBox/web/final/src/app/stylesheets/_custom.scss
+        from line 2 of /tmp/gulp-ruby-sass/index.scss
 
-.toolbar-button {
-  min-width: 20px;
-}
+659: }
+660: 
+661: 
+662: /*image upload end*\/
+663: >>>>>>> 60e1ec948ddcf48792de2a6517251240d69d59a0
 
-.share-label {
-  vert-align: middle;
-  margin-left: 10px;
-}
-
-.page-content {
-  background-color: #f1f1f1;
-}
-
-.widget-progress {
-  width: 95% !important;
-  margin-left: 10px;
-}
-
-div.pageContainer {
-  height: auto;
-}
-
-.capitalize {
-  text-transform: capitalize;
-}
-
-.img-circle {
-  height: 50px;
-  border-radius: 50%;
-  margin: 0 10px;
-}
-
-.messages {
-  position: relative;
-}
-.messages-content {
-  height: 100vh;
-}
-
-.notifications-label {
-  width: 16px;
-  height: 16px;
-  line-height: 16px;
-  text-align: center;
-  border-radius: 50%;
-  position: absolute;
-  font-size: 12px;
-  top: 2px;
-  right: 2px;
-  background-color: #E75753;
-}
-
-.panel-widget {
-  background-color: white;
-}
-.panel-widget-toolbar {
-  box-shadow: none;
-  margin: 0;
-}
-.panel-widget-tittle {
-  color: #282c35;
-}
-
-.options {
-  transition: all linear 0.5s;
-}
-
-.options.ng-hide {
-  opacity: 0;
-}
-
-.fixed-height-widget {
-  height: 310px;
-}
-
-.donut-chart-title {
-  text-align: center;
-}
-
-.custom-tooltip {
-  font-size: 22px;
-  color: #282c35;
-  text-align: center;
-}
-
-md-radio-group {
-  border: none;
-}
-
-md-icon {
-  height: auto;
-}
-
-md-sidenav.md-locked-open.md-sidenav-left {
-  width: 110px;
-  min-width: 110px;
-  max-width: 110px;
-}
-
-a.md-button.md-warn.md-raised, a.md-button.md-warn.md-fab, .md-button.md-warn.md-raised, .md-button.md-warn.md-fab {
-  color: white;
-}
-
-md-radio-button.md-accent.md-checked .md-label span {
-  color: #009688;
-}
-
-.md-toolbar-tools h1 {
-  font-size: 22px;
-}
-
-md-backdrop.md-sidenav-backdrop {
-  position: fixed;
-}
-
-.material-icons {
-  vertical-align: middle;
-}
-
-.material-icons.md-18 {
-  font-size: 18px;
-}
-
-.material-icons.md-24 {
-  font-size: 24px;
-}
-
-.material-icons.md-36 {
-  font-size: 36px;
-}
-
-.material-icons.md-48 {
-  font-size: 48px;
-}
-
-.nvd3.nv-pie .nv-pie-title {
-  fill: #444444;
-  font-weight: 600;
-  font-size: 22px !important;
-}
-
-.nvtooltip {
-  background-color: transparent;
-  border: none;
-  font-weight: 600;
-}
-
-.orange .md-bar2 {
-  background-color: orange;
-}
-
-.orange .md-container {
-  background-color: #ffecc9;
-}
-
-.flexy-16 {
-  -ms-flex: 1 1 16%;
-  flex: 1 1 16%;
-  box-sizing: border-box;
-}
-
-.flexy-20 {
-  -ms-flex: 1 1 20%;
-  flex: 1 1 20%;
-  box-sizing: border-box;
-}
-
-.flexy-30 {
-  -ms-flex: 1 1 30%;
-  flex: 1 1 30%;
-}
-
-.eventListItem .md-button {
-  padding: 0 !important;
-}
-
-.eventListItem md-card {
-  margin: 1px;
-}
-
-.shimmer {
-  /* the shimmer magic */
-  background: -moz-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff));
-  background: gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff));
-  background-size: 125px 100%;
-  background-clip: text;
-  -webkit-animation-name: shimmer;
-  -webkit-animation-name: shimmer;
-  animation-name: shimmer;
-  -webkit-animation-duration: 2s;
-  -webkit-animation-duration: 2s;
-  animation-duration: 2s;
-  -webkit-animation-iteration-count: infinite;
-  -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
-  background-repeat: no-repeat;
-  background-position: 0 0;
-  background-color: #222;
-}
-@-webkit-keyframes shimmer {
-  0% {
-    background-position: top left;
-  }
-  100% {
-    background-position: top right;
-  }
-}
-@-ms-keyframes shimmer {
-  0% {
-    background-position: top left;
-  }
-  100% {
-    background-position: top right;
-  }
-}
-@keyframes shimmer {
-  0% {
-    background-position: top left;
-  }
-  100% {
-    background-position: top right;
-  }
-}
-/*colllege filter start*/
-.selectdemoSelectHeader {
-  /* Please note: All these selectors are only applied to children of elements with the 'selectdemoSelectHeader' class */
-}
-
-.selectdemoSelectHeader .demo-header-searchbox {
-  border: none;
-  outline: none;
-  height: 100%;
-  width: 100%;
-  padding: 0;
-}
-
-.selectdemoSelectHeader .demo-select-header {
-  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12);
-  padding-left: 10.667px;
-  height: 48px;
-  cursor: pointer;
-  position: relative;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-      align-items: center;
-  width: auto;
-}
-
-.selectdemoSelectHeader md-content._md {
-  max-height: 240px;
-}
-
-.pink {
-  fill: #e91e63 !important;
-}
-
-.blue {
-  fill: #0570c0 !important;
-}
-
-/*college filter end*/
-/*search autocomplete start*/
-.autocomplete-custom-template li {
-  border-bottom: 1px solid #ccc;
-  height: auto;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  white-space: normal;
-}
-
-.autocomplete-custom-template li:last-child {
-  border-bottom-width: 0;
-}
-
-.autocomplete-custom-template .item-title,
-.autocomplete-custom-template .item-metadata {
-  display: block;
-  line-height: 2;
-}
-
-.autocomplete-custom-template .item-title md-icon {
-  height: 18px;
-  width: 18px;
-}
-
-/*search autocomplete start*/
-.cssload-tetrominos {
-  position: absolute;
-  left: 50%;
-  transform: translate(-109px, -94px);
-  -o-transform: translate(-109px, -94px);
-  -ms-transform: translate(-109px, -94px);
-  -webkit-transform: translate(-109px, -94px);
-  -moz-transform: translate(-109px, -94px);
-}
-
-.cssload-tetromino {
-  width: 94px;
-  height: 109px;
-  position: absolute;
-  transition: all ease 0.35s;
-  -o-transition: all ease 0.35s;
-  -ms-transition: all ease 0.35s;
-  -webkit-transition: all ease 0.35s;
-  -moz-transition: all ease 0.35s;
-  background: url('data:image/svg+xml;utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 684"%3E%3Cpath fill="%230570C0" d="M305.7 0L0 170.9v342.3L305.7 684 612 513.2V170.9L305.7 0z"/%3E%3Cpath fill="%324324" d="M305.7 80.1l-233.6 131 233.6 131 234.2-131-234.2-131"/%3E%3C/svg%3E') no-repeat top center;
-}
-
-.cssload-box1 {
-  animation: cssload-tetromino1 1.73s ease-out infinite;
-  -o-animation: cssload-tetromino1 1.73s ease-out infinite;
-  -ms-animation: cssload-tetromino1 1.73s ease-out infinite;
-  -webkit-animation: cssload-tetromino1 1.73s ease-out infinite;
-  -moz-animation: cssload-tetromino1 1.73s ease-out infinite;
-}
-
-.cssload-box2 {
-  animation: cssload-tetromino2 1.73s ease-out infinite;
-  -o-animation: cssload-tetromino2 1.73s ease-out infinite;
-  -ms-animation: cssload-tetromino2 1.73s ease-out infinite;
-  -webkit-animation: cssload-tetromino2 1.73s ease-out infinite;
-  -moz-animation: cssload-tetromino2 1.73s ease-out infinite;
-}
-
-.cssload-box3 {
-  animation: cssload-tetromino3 1.73s ease-out infinite;
-  -o-animation: cssload-tetromino3 1.73s ease-out infinite;
-  -ms-animation: cssload-tetromino3 1.73s ease-out infinite;
-  -webkit-animation: cssload-tetromino3 1.73s ease-out infinite;
-  -moz-animation: cssload-tetromino3 1.73s ease-out infinite;
-  z-index: 2;
-}
-
-.cssload-box4 {
-  animation: cssload-tetromino4 1.73s ease-out infinite;
-  -o-animation: cssload-tetromino4 1.73s ease-out infinite;
-  -ms-animation: cssload-tetromino4 1.73s ease-out infinite;
-  -webkit-animation: cssload-tetromino4 1.73s ease-out infinite;
-  -moz-animation: cssload-tetromino4 1.73s ease-out infinite;
-}
-
-@keyframes cssload-tetromino1 {
-  0%, 40% {
-    -webkit-transform: translate(0, 0);
-            transform: translate(0, 0);
-  }
-  50% {
-    -webkit-transform: translate(47px, -26px);
-            transform: translate(47px, -26px);
-  }
-  60%, 100% {
-    -webkit-transform: translate(94px, 0);
-            transform: translate(94px, 0);
-  }
-}
-@-ms-keyframes cssload-tetromino1 {
-  0%, 40% {
-    -ms-transform: translate(0, 0);
-  }
-  50% {
-    -ms-transform: translate(47px, -26px);
-  }
-  60%, 100% {
-    -ms-transform: translate(94px, 0);
-  }
-}
-@-webkit-keyframes cssload-tetromino1 {
-  0%, 40% {
-    -webkit-transform: translate(0, 0);
-  }
-  50% {
-    -webkit-transform: translate(47px, -26px);
-  }
-  60%, 100% {
-    -webkit-transform: translate(94px, 0);
-  }
-}
-@keyframes cssload-tetromino2 {
-  0%, 20% {
-    -webkit-transform: translate(94px, 0px);
-            transform: translate(94px, 0px);
-  }
-  40%, 100% {
-    -webkit-transform: translate(140px, 26px);
-            transform: translate(140px, 26px);
-  }
-}
-@-ms-keyframes cssload-tetromino2 {
-  0%, 20% {
-    -ms-transform: translate(94px, 0px);
-  }
-  40%, 100% {
-    -ms-transform: translate(140px, 26px);
-  }
-}
-@-webkit-keyframes cssload-tetromino2 {
-  0%, 20% {
-    -webkit-transform: translate(94px, 0px);
-  }
-  40%, 100% {
-    -webkit-transform: translate(140px, 26px);
-  }
-}
-@keyframes cssload-tetromino3 {
-  0% {
-    -webkit-transform: translate(140px, 26px);
-            transform: translate(140px, 26px);
-  }
-  20%, 60% {
-    -webkit-transform: translate(94px, 53px);
-            transform: translate(94px, 53px);
-  }
-  90%, 100% {
-    -webkit-transform: translate(47px, 26px);
-            transform: translate(47px, 26px);
-  }
-}
-@-ms-keyframes cssload-tetromino3 {
-  0% {
-    -ms-transform: translate(140px, 26px);
-  }
-  20%, 60% {
-    -ms-transform: translate(94px, 53px);
-  }
-  90%, 100% {
-    -ms-transform: translate(47px, 26px);
-  }
-}
-@-webkit-keyframes cssload-tetromino3 {
-  0% {
-    -webkit-transform: translate(140px, 26px);
-  }
-  20%, 60% {
-    -webkit-transform: translate(94px, 53px);
-  }
-  90%, 100% {
-    -webkit-transform: translate(47px, 26px);
-  }
-}
-@keyframes cssload-tetromino4 {
-  0%, 60% {
-    -webkit-transform: translate(47px, 26px);
-            transform: translate(47px, 26px);
-  }
-  90%, 100% {
-    -webkit-transform: translate(0, 0);
-            transform: translate(0, 0);
-  }
-}
-@-ms-keyframes cssload-tetromino4 {
-  0%, 60% {
-    -ms-transform: translate(47px, 26px);
-  }
-  90%, 100% {
-    -ms-transform: translate(0, 0);
-  }
-}
-@-webkit-keyframes cssload-tetromino4 {
-  0%, 60% {
-    -webkit-transform: translate(47px, 26px);
-  }
-  90%, 100% {
-    -webkit-transform: translate(0, 0);
-  }
-}
-.table {
-  border-spacing: 0;
-  width: 100%;
-  max-width: 100%;
-  margin-bottom: 2rem;
-  background-color: #fff;
-}
-.table > thead > tr,
-.table > tbody > tr,
-.table > tfoot > tr {
-  transition: all 0.3s ease;
-}
-.table > thead > tr > th,
-.table > thead > tr > td,
-.table > tbody > tr > th,
-.table > tbody > tr > td,
-.table > tfoot > tr > th,
-.table > tfoot > tr > td {
-  text-align: left;
-  padding: 1.2rem;
-  vertical-align: top;
-  border-top: 0;
-  transition: all 0.3s ease;
-}
-.table > thead > tr > th {
-  font-weight: 400;
-  color: #757575;
-  vertical-align: bottom;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-}
-.table > caption + thead > tr:first-child > th,
-.table > caption + thead > tr:first-child > td,
-.table > colgroup + thead > tr:first-child > th,
-.table > colgroup + thead > tr:first-child > td,
-.table > thead:first-child > tr:first-child > th,
-.table > thead:first-child > tr:first-child > td {
-  border-top: 0;
-}
-.table > tbody + tbody {
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
-}
-.table .table {
-  background-color: #fff;
-}
-.table .no-border {
-  border: 0;
-}
-
-.table-bordered {
-  border: 0;
-}
-.table-bordered > thead > tr > th,
-.table-bordered > thead > tr > td,
-.table-bordered > tbody > tr > th,
-.table-bordered > tbody > tr > td,
-.table-bordered > tfoot > tr > th,
-.table-bordered > tfoot > tr > td {
-  border: 0;
-  border-bottom: 1px solid #e0e0e0;
-}
-.table-bordered > thead > tr > th,
-.table-bordered > thead > tr > td {
-  border-bottom-width: 2px;
-}
-
-.table-hover > tbody > tr:hover > td,
-.table-hover > tbody > tr:hover > th {
-  background-color: rgba(0, 0, 0, 0.12);
-}
-
-@media screen and (max-width: 768px) {
-  .table-responsive-vertical > .table {
-    margin-bottom: 0;
-    background-color: transparent;
-  }
-  .table-responsive-vertical > .table > thead,
-  .table-responsive-vertical > .table > tfoot {
-    display: none;
-  }
-  .table-responsive-vertical > .table > tbody {
-    display: block;
-  }
-  .table-responsive-vertical > .table > tbody > tr {
-    display: block;
-    border: 1px solid #e0e0e0;
-    border-radius: 2px;
-    margin-bottom: 1.2rem;
-  }
-  .table-responsive-vertical > .table > tbody > tr > td {
-    background-color: #fff;
-    display: block;
-    vertical-align: middle;
-    text-align: right;
-  }
-  .table-responsive-vertical > .table > tbody > tr > td[data-title]:before {
-    content: attr(data-title);
-    float: left;
-    font-size: inherit;
-    font-weight: 400;
-    color: #757575;
-    padding-right: 10px;
-  }
-  .table-responsive-vertical.shadow-z-1 {
-    box-shadow: none;
-  }
-  .table-responsive-vertical.shadow-z-1 > .table > tbody > tr {
-    border: none;
-  }
-  .table-responsive-vertical > .table-bordered {
-    border: 0;
-  }
-  .table-responsive-vertical > .table-bordered > tbody > tr > td {
-    border: 0;
-    border-bottom: 1px solid #e0e0e0;
-  }
-  .table-responsive-vertical > .table-bordered > tbody > tr > td:last-child {
-    border-bottom: 0;
-  }
-  .table-responsive-vertical > .table-striped > tbody > tr > td,
-  .table-responsive-vertical > .table-striped > tbody > tr:nth-child(odd) {
-    background-color: #fff;
-  }
-  .table-responsive-vertical > .table-striped > tbody > tr > td:nth-child(odd) {
-    background-color: #f5f5f5;
-  }
-  .table-responsive-vertical > .table-hover > tbody > tr:hover > td,
-  .table-responsive-vertical > .table-hover > tbody > tr:hover {
-    background-color: #fff;
-  }
-  .table-responsive-vertical > .table-hover > tbody > tr > td:hover {
-    background-color: rgba(0, 0, 0, 0.12);
-  }
-}
+Backtrace:
+/home/atom/Documents/code/CampusBox/web/final/src/app/stylesheets/_custom.scss:664
+/tmp/gulp-ruby-sass/index.scss:2
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/scss/parser.rb:1207:in `expected'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/scss/parser.rb:1137:in `expected'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/scss/parser.rb:1132:in `tok!'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/scss/parser.rb:665:in `block'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/scss/parser.rb:658:in `ruleset'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/scss/parser.rb:684:in `block_child'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/scss/parser.rb:677:in `block_contents'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/scss/parser.rb:125:in `stylesheet'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/scss/parser.rb:41:in `parse'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/engine.rb:406:in `_to_tree'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/engine.rb:312:in `to_tree'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:326:in `block in visit_import'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/stack.rb:88:in `block in with_import'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/stack.rb:115:in `with_frame'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/stack.rb:88:in `with_import'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:325:in `visit_import'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/base.rb:36:in `visit'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:160:in `block in visit'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/stack.rb:79:in `block in with_base'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/stack.rb:115:in `with_frame'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/stack.rb:79:in `with_base'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:160:in `visit'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/base.rb:52:in `map'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:169:in `block in visit_children'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:181:in `with_environment'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:168:in `visit_children'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:188:in `visit_root'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/base.rb:36:in `visit'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:159:in `visit'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:8:in `visit'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/root_node.rb:36:in `css_tree'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/root_node.rb:20:in `render'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/engine.rb:281:in `render'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/plugin/compiler.rb:494:in `update_stylesheet'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/plugin/compiler.rb:209:in `each'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/plugin.rb:82:in `update_stylesheets'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/exec/sass_scss.rb:340:in `watch_or_update'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/exec/sass_scss.rb:51:in `process_result'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/exec/base.rb:52:in `parse'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/exec/base.rb:19:in `parse!'
+/var/lib/gems/2.3.0/gems/sass-3.4.23/bin/sass:13:in `<top (required)>'
+/usr/local/bin/sass:23:in `load'
+/usr/local/bin/sass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid CSS after \"...7251240d69d59a0\": expected \"{\", was \"\"\A         on line 664 of /home/atom/Documents/code/CampusBox/web/final/src/app/stylesheets/_custom.scss\A         from line 2 of /tmp/gulp-ruby-sass/index.scss\A \A 659: }\A 660: \A 661: \A 662: /*image upload end*/\A 663: >>>>>>> 60e1ec948ddcf48792de2a6517251240d69d59a0"; }

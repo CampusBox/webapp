@@ -1,0 +1,231 @@
+<style type="text/css" media="screen">
+
+</style>
+<div flex layout="row">
+    <md-card flex="50">
+        <form ng-cloak>
+            <md-tabs md-dynamic-height md-border-bottom="" md-selected="selectedIndex">
+                <md-tab label="Basic Details">
+                    <md-content class="md-padding">
+                        <div layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Title</label>
+                                <input type="text" ng-model="event.title">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Ticket Price</label>
+                                <input type="number" ng-model="event.price">
+                            </md-input-container>
+                        </div>
+                        <div layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label> Online link to the event?</label>
+                                <input type="text" ng-model="event.online">
+                            </md-input-container>
+                        </div>
+                        <div layout-gt-sm="row">
+                            <md-input-container>
+                                <p>Start typing the name of a place/location below</p>
+                                <div class="md-padding">
+                                    <place-autocomplete ng-model="location"></place-autocomplete>
+                                    <div ng-if="location.name">
+                                        <h4>Selected location</h4>
+                                        <pre>{{location|json}}</pre>
+                                    </div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>Description</label>
+                            <textarea ng-model="event.description" md-maxlength="150" rows="4" md-select-on-focus></textarea>
+                        </md-input-container>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Additional Details">
+                    <md-content class="md-padding">
+                        <div layout-gt-sm="row" flex>
+                            <md-input-container class="md-block">
+                                <label>From Date</label>
+                                <md-datepicker ng-model="event.fromDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Start Time</label>
+                                <md-select ng-model="event.fromTime" placeholder="Start Time">
+                                    <md-option ng-value="b" ng-repeat="b in  [1,2,3,4,5,6,7,8,9,10,11,12] ">{{b}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container flex-gt-sm>
+                                <label>Am/Pm</label>
+                                <md-select ng-model="event.fromZone">
+                                    <md-option ng-value="fromZone" ng-repeat="fromZone in ['Am', 'Pm']">{{fromZone}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <label>To Date</label>
+                                <md-datepicker ng-model="event.toDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>End Time</label>
+                                <md-select ng-model="event.toTime" placeholder="End Time">
+                                    <md-option ng-value="b" ng-repeat="b in  [1,2,3,4,5,6,7,8,9,10,11,12] ">{{b}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container flex-gt-sm>
+                                <label>Am/Pm</label>
+                                <md-select ng-model="event.toZone">
+                                    <md-option ng-value="toZone" ng-repeat="toZone in ['Am', 'Pm']">{{toZone}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div layout-gt-sm="row" flex>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Event Category</label>
+                                <md-select ng-model="event.category" placeholder="Event Category">
+                                    <md-option ng-value="category" ng-repeat="category in ['cultural', 'technical', 'Seminar or Talk']">{{category}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Event Topic</label>
+                                <md-select ng-model="event.topic">
+                                    <md-option ng-value="topic" ng-repeat="topic in ['Science And Technology', 'Music', 'Hobies and Special Intrest', 'Sports']">{{topic}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Who is orgainizing the event ?</label>
+                                <input type="text" ng-model="event.organizer">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Online Link to the organizer</label>
+                                <input type="text" ng-model="event.onlineOrganizer">
+                            </md-input-container>
+                        </div>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Poster">
+                    <form name="myForm">
+                        <md-button class="md-primary" ngf-select ng-model="picFile" accept="image/*">
+                            Select Picture</md-button>
+                        <div layout="row">
+                            <div ngf-drop ng-model="picFile" ngf-pattern="image/*" class="cropArea">
+                                <img-crop image="picFile  | ngfDataUrl" result-image="croppedDataUrl" ng-init="croppedDataUrl=''" area-type="square">
+                                </img-crop>
+                            </div>
+                            <div class="md-padding">
+                                <img ng-src="{{croppedDataUrl}}" />
+                            </div>
+                        </div>
+                        <button ng-click="upload(croppedDataUrl, picFile.name)">Submit</button>
+                        <span class="progress" ng-show="progress >= 0">
+                      <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+                    </span>
+                        <span ng-show="result">Upload Successful</span>
+                        <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+                    </form>
+                </md-tab>
+            </md-tabs>
+            <md-dialog-actions layout="row">
+                <span flex></span>
+                <md-button ng-click="con(event)">
+                    Create
+                </md-button>
+                <md-button class="md-raised md-primary" ng-if="selectedIndex == 0" ng-click="selectedIndex = selectedIndex + 1">Next</md-button>
+            </md-dialog-actions>
+        </form>
+    </md-card>
+    <div flex="50">
+    <h1 class="md-title">Preview</h1>
+        
+        <md-list  >
+            <md-list-item style="margin-bottom: 10px;" ng-click="showEvent(event, $index)" class="secondary-button-padding eventListItem">
+                <md-card flex>
+                    <md-card-title style="padding: 0px;">
+                        <div class="md-media-sm" style="width: 200px;height:140px;">
+                            <img style="width: 200px;  position: absolute;    clip: rect(00px,200px,140px,0px); margin-right: " ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.id}}.jpg" alt="">
+                        </div>
+                        <div style="padding: 10px 18px;" flex layout="column">
+                            <span class="md-body-2">{{event.timings.date.start? event.timings.date.start:"Fri, Mar 24 2:00 PM" }}</span>
+                            <div class="md-subhead" style="font-weight: 600">
+                                {{event.title}}
+                            </div>
+                            <span class="md-subhead">
+
+                            <p class="md-body-2">{{event.description}}</p>
+                                </span>
+                        </div>
+                    </md-card-title>
+                    <md-divider></md-divider>
+                    <div layout="row">
+                        <md-card-actions layout="row" layout-align="start center">
+                            <span class="md-body-2">#FUCKEDUP </span>
+                            <span class="md-body-2"> #BtAwesome</span>
+                            <md-button ng-repeat="tag in event.tags" class="md-subhead">{{tag.name}}</md-button>
+                            <span flex></span>
+                            <md-button class="md-icon-button" ng-click="heart(event, $index)" aria-label="Favorite ">
+                                <md-icon ng-class="event.Actions.Bookmarked.status? 'pink':''" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>
+                            </md-button>
+                            <span>0</span>
+                            <md-button class="md-icon-button" ng-click="update(event, $index)" aria-label="Favorite ">
+                                <md-icon ng-class="!event.Actions.Participants.status? 'blue':''" md-svg-icon="{{!event.Actions.Participants.status? 'account-plus' : 'account-check' }}"></md-icon>
+                            </md-button>
+                        </md-card-actions>
+                    </div>
+                </md-card>
+            </md-list-item>
+        </md-list>
+        <md-card flex="60" flex-offset="20">
+            <img style="height:{{16*10}}px !important; min-height: 200px; background: #aaa; width:auto;" ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.id}}.jpg " class="md-card-image " alt="Washed Out ">
+            <md-card-title>
+                <md-card-title-text>
+                    <span>{{event.title  | limitTo : 25}}</span>
+                    <span>{{event.title  | limitTo : 40:25}}</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+            </md-card-content>
+            <md-card-actions layout="row " layout-align="end center ">
+                <md-button ng-click="showEvent(event, $index)" class="md-primary" md-colors="{color: 'indigo'}">View</md-button>
+                <md-button class="md-icon-button" ng-click="heart(event, $index)" aria-label="Favorite ">
+                    <md-icon ng-class="event.Actions.Bookmarked.status? 'pink':''" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>
+                </md-button>
+                <span>{{event.Actions.Bookmarked.total}}</span>
+                <md-button class="md-icon-button" ng-click="update(event, $index)" aria-label="Favorite ">
+                    <md-icon ng-class="event.Actions.Participants.status? 'blue':''" md-svg-icon="{{event.Actions.Participants.status? 'account-plus' : 'account-check' }}"></md-icon>
+                </md-button>
+                <md-menu md-offset="0 3">
+                    <md-button aria-label="menu" class="md-icon-button " aria-label="Settings " ng-click="$mdOpenMenu(event)">
+                        <md-icon md-svg-icon="dots-vertical "></md-icon>
+                    </md-button>
+                    <md-menu-content width="3">
+                        <md-menu-item>
+                            <md-button ng-click="" ui-sref="home.myEvents ">
+                                <div layout="row " flex=" " class="ng-scope layout-row flex ">
+                                    <md-icon md-svg-icon="delete"></md-icon>
+                                    <p flex=" " class="flex ">Less events like this</p>
+                                </div>
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="" ui-sref="home.myEvents ">
+                                <div layout="row " flex=" " class="ng-scope layout-row flex ">
+                                    <md-icon md-svg-icon="delete-forever"></md-icon>
+                                    <p flex=" " class="flex ">Less from Hackathons</p>
+                                </div>
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click=" " ui-sref="home.profile ">
+                                <div layout="row " flex=" " class="ng-scope layout-row flex ">
+                                    <md-icon md-svg-icon="flag-outline"></md-icon>
+                                    <p flex=" " class="flex ">Report</p>
+                                </div>
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </md-card-actions>
+        </md-card>
+    </div>
+</div>
