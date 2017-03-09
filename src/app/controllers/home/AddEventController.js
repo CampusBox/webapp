@@ -1,3 +1,4 @@
+'use strict';
 (function() {
 
     angular
@@ -14,15 +15,14 @@
 
     function AddEventController($mdDialog, $scope,tokenService, Upload, $timeout) {
         $scope.event = {};
-        //maps autocomplete
-
-        //maps autocomplete finish
-
-        // poster upload
+        $scope.place = null;
+        $scope.consoleTag = function(tags){
+            console.log(tags);
+        }
         //IMAGE UPLOAD CODE START
         $scope.upload = function(dataUrl, name) {
                 Upload.upload({
-                    url: 'http://upload.campusbox.org/imageUpload.php',
+                    url: 'https://upload.campusbox.org/imageUpload.php',
                     method: 'POST',
                     file: Upload.dataUrltoBlob(dataUrl, name),
                     data: {
@@ -39,38 +39,86 @@
                 });
             };
             //IMAGE UPLOAD CODE END
-            //
-        $scope.hide = function() {
-            $mdDialog.hide();
-        };
 
-        $scope.cancel = function() {
-            $mdDialog.cancel();
-            console.log('asasc');
-        };
+            //Tags code start
+            // Add tags shit staeted
+            $scope.readonly = false;
+            $scope.removable = true;
+            $scope.selectedItem = null;
+            $scope.searchText = null;
+            $scope.querySearch = querySearch;
+            $scope.vegetables = loadVegetables();
+            $scope.tags = [{
+                'name': 'Broccoli'
+            }, {
+                'name': 'Cabbage'
+            }];
+            numberChips = [];
+            numberChips2 = [];
+            numberBuffer = '';
+            $scope.autocompleteDemoRequireMatch = false;
+            $scope.transformChip = transformChip;
 
-        $scope.answer = function(answer) {
-            $mdDialog.hide(answer);
-        };
-
-        $scope.con = function(a) {
-            var selectDay = "day";
-            var selectTime = "time";
-            delete a[selectDay];
-            delete a[selectTime];
-            console.log(a);
-            tokenService.post('addEvent/', a).then(function(result) {
-                if (result.status != 'error') {
-                    // var x = angular.copy(coupon);
-                    // x.save = 'insert';
-                    // x.id = result.data;
-                    // $uibModalInstance.close(x);
-                    console.log(result.status);
-                } else {
-                    console.log(result);
+            /**
+             * Return the proper object when the append is called.
+             */
+            function transformChip(chip) {
+                // If it is an object, it's already a known chip
+                if (angular.isObject(chip)) {
+                    return chip;
                 }
-            });
-        }
+
+                // Otherwise, create a new one
+                return { name: chip }
+            }
+
+            /**
+             * Search for vegetables.
+             */
+            function querySearch(query) {
+                console.log('query funciton called');
+                var results = query ? $scope.vegetables.filter(createFilterFor(query)) : [];
+                return results;
+            }
+
+            /**
+             * Create filter function for a query string
+             */
+            function createFilterFor(query) {
+                var lowercaseQuery = angular.lowercase(query);
+
+                return function filterFn(vegetable) {
+                    return (vegetable._lowername.indexOf(lowercaseQuery) === 0);
+                    // (vegetable._lowertype.indexOf(lowercaseQuery) === 0);
+                };
+
+            }
+
+            function loadVegetables() {
+                var veggies = [{
+                    'name': 'Broccoli'
+                }, {
+                    'name': 'Cabbage'
+                }, {
+                    'name': 'Carrot'
+                }, {
+                    'name': 'Lettuce'
+                }, {
+                    'name': 'Spinach'
+                }];
+
+                return veggies.map(function(veg) {
+                    veg._lowername = veg.name.toLowerCase();
+                    return veg;
+                });
+            }
+            $scope.skillsEdit = function() {
+                $scope.readonly = !$scope.readonly;
+                $scope.removable = !$scope.removable;
+            }
+
+            // Add tags shit ended
+            // Tags code end
 
     }
 })();

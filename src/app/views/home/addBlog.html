@@ -60,6 +60,8 @@ form .progress {
     width: 100%;
     /*opacity: 0;*/
 }
+
+/*pasted from multiple images*/
 .your-custom-chip {
     font-weight: 400 !important;
     font-style: normal !important;
@@ -96,10 +98,13 @@ md-icon svg {
     margin-top: 4px;
     margin-left: auto;
 }
-
-/*pasted from multiple images*/
+.publish-button {
+    float: right;
+    border: 1px solid #039BE5;
+    color: #2899d1;
+    text-transform: capitalize;
+}
 </style>
-<script src="https://w.soundcloud.com/player/api.js" type="text/javascript">console.log("soundcloud included");</script>
 <div ng-init="uploaded = false; addImage = false" ng-controller="AddBlogController">
     <div layout="row">
         <md-content layout-padding layout-wrap flex="70">
@@ -112,42 +117,11 @@ md-icon svg {
             </md-list-item>
             <span class="md-display-3" style="outline: none;" ng-model="title" style="display: inline" medium-editor data-placeholder="Title"></span>
             <center>
-            <iframe ng-if="videoType == 'youtube'" width="560" height="315" ng-src="{{embedUrl}}" frameborder="0" allowfullscreen></iframe>
-            <iframe  ng-if="videoType == 'vimeo'" width="640" height="360" src="{{embedUrl}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-            <!-- <iframe width="100%" height="162px" scrolling="no" frameborder="no" ng-src="{{embedUrl}}"></iframe> -->
-            <iframe id="sc-widget" src="{{embedUrl}}" width="100%" height="465" scrolling="no" frameborder="no"></iframe>
-            <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
-            <script type="text/javascript">
-              (function(){
-                var widgetIframe = document.getElementById('sc-widget'),
-                    widget       = SC.Widget(widgetIframe);
-
-                widget.bind(SC.Widget.Events.READY, function() {
-                  widget.bind(SC.Widget.Events.PLAY, function() {
-                    // get information about currently playing sound
-                    widget.getCurrentSound(function(currentSound) {
-                      console.log('sound ' + currentSound.get('') + 'began to play');
-                    });
-                  });
-                  // get current level of volume
-                  widget.getVolume(function(volume) {
-                    console.log('current volume value is ' + volume);
-                  });
-                  // set new volume level
-                  widget.setVolume(50);
-                  // get the value of the current position
-                });
-
-              }());
-            </script>
+                <iframe ng-if="mediaType == 'youtube'" width="560" height="315" ng-src="{{embedUrl}}" frameborder="0" allowfullscreen></iframe>
+                <iframe ng-if="mediaType == 'vimeo'" width="640" height="360" src="{{embedUrl}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                <iframe ng-show="mediaType == 'soundcloud'" id="sc-widget" width="100%" height="162px" scrolling="no" frameborder="no" ng-src="{{embedUrl}}"></iframe>
+                <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
             </center>
-            <div flex-offset="10" flex="90" layout="column">
-            </div>
-            <div layout="row">
-                <span flex></span>
-                <md-button ng-show="media == 'image'" style="float: right;" class="md-primary md-raised" md-colors="{background: 'teal'}" ngf-select="uploadFiles($files, $invalidFiles)" multiple accept="image/*" ng-focus="expression" max-height="1000" ngf-max-size="1MB">
-                    <md-icon md-svg-icon="plus"></md-icon>Add more images</md-button>
-            </div>
             <div id="image" ng-show="media == 'image'">
                 <!-- pasted form add multiple images -->
                 <div layout="row">
@@ -225,29 +199,29 @@ md-icon svg {
                         </form>
                     </div>
                     <div id="musicInput" ng-show="media == 'music'">
-                        <form ng-submit="submitVideo()">
-                        <md-input-container class="md-block" flex-gt-sm>
-                            <label>Enter a soundcloud url</label>
-                            <input type="text" ng-model="url">
-                        </md-input-container>
+                        <form ng-submit="submitSoundcloud()">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Enter a soundcloud url</label>
+                                <input type="text" ng-model="url">
+                            </md-input-container>
                         </form>
                     </div>
+                    <md-button ng-show="media == 'image'" style="float: right;" class="md-primary md-raised" md-colors="{background: 'teal'}" ngf-select="uploadFiles($files, $invalidFiles)" multiple accept="image/*" ng-focus="expression" max-height="1000" ngf-max-size="1MB">
+                        <md-icon md-svg-icon="plus"></md-icon>Add more images</md-button>
                     <form name="skillsForm">
                         <span style="font-size: 14px;color: rgba(0,0,0,.6);" class="md-body-1">Add tags (up to 5) so your story reaches more people:</span>
-                        <md-chips name="skills" ng-model="selectedVegetables" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
+                        <md-chips name="skills" ng-model="tags" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
                             <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Enter top 5 Tags">
                                 <span md-highlight-text="searchText">{{item.name}}</span>
                             </md-autocomplete>
                             <md-chip-template custom-chip class="your-custom-chip">
-                                <span>
-              <strong>{{$chip.name}}</strong>
-            </span>
+                                <span><strong>{{$chip.name}}</strong></span>
                             </md-chip-template>
                         </md-chips>
                     </form>
                 </md-card-content>
                 <md-card-actions layout="row" layout-align="end center">
-                    <md-button style="float: right;border: 1px solid #039BE5; color: #2899d1;text-transform: capitalize;">Publish</md-button>
+                    <md-button ng-disabled=" ! (title && body)" ng-class="(title && body)? 'publish-button' : 'md-raised md-primary' " ng-click="publish()">Publish</md-button>
                 </md-card-actions>
             </md-card>
         </div>

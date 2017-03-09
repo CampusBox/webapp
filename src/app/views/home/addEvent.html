@@ -1,4 +1,15 @@
 <style type="text/css" media="screen">
+.your-custom-chip {
+    font-weight: 400 !important;
+    font-style: normal !important;
+    color: rgba(0, 0, 0, .44) !important;
+    font-size: 13px !important;
+    letter-spacing: 0px !important;
+    text-decoration: none !important;
+    background: #fafafa;
+    border-radius: 3px !important;
+    border: 1px solid #f0f0f0 !important;
+}
 </style>
 <div flex layout="row">
     <md-card flex="50">
@@ -48,36 +59,84 @@
                             <md-input-container>
                                      <label>From Date</label>
                                 <md-datepicker ng-model="event.fromDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+
+                            <pre>basicDetails.title.$error = {{ basicDetails.title.$error | json }}</pre>
+                            <div ng-messages="basicDetails.title.$error" style="color:maroon" role="alert">
+                                <div ng-message="required">Please enter event name</div>
+                            </div>
+                        </form>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Additional Details">
+                    <md-content class="md-padding">
+                        <div layout-gt-sm="row" flex>
+                            <md-input-container class="md-block">
+                                <label>From Date</label>
+                                <md-datepicker ng-model="event.fromDate" ng-required="true" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
                             </md-input-container>
                             <md-input-container>
                                 <label>Start Time</label>
-                                <md-select ng-model="event.fromTime" placeholder="Start Time">
-                                    <md-option ng-value="b" ng-repeat="b in  [1,2,3,4,5,6,7,8,9,10,11,12] ">{{b}}</md-option>
+                                <md-select ng-model="event.fromTime" placeholder="Start Time" ng-required="true">
+                                    <md-option ng-value="b" ng-repeat="b in  ['1:00','1:30','2:00','2:30','3:00','3:30','4:00','4:30','5:00','5:30','6:00','6:30','7:00','7:30','8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30','12:00','12:30'] ">{{b}}</md-option>
                                 </md-select>
                             </md-input-container>
                             <md-input-container>
                                 <label>Am/Pm</label>
-                                <md-select ng-model="event.fromZone">
+                                <md-select ng-model="event.fromZone" ng-required="true">
                                     <md-option ng-value="fromZone" ng-repeat="fromZone in ['Am', 'Pm']">{{fromZone}}</md-option>
                                 </md-select>
                             </md-input-container>
                         </div>
-                        <div layout="row">
-                            <md-input-container>
+
+                        <div layout="row flex">
+                            <md-input-container class="md-block">
                                 <label>To Date</label>
-                                <md-datepicker ng-model="event.toDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                                <md-datepicker md-min-date="event.fromDate" ng-disabled="!event.fromDate" ng-required="true" ng-model="event.toDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
                             </md-input-container>
                             <md-input-container>
                                 <label>End Time</label>
-                                <md-select ng-model="event.toTime" placeholder="End Time">
-                                    <md-option ng-value="b" ng-repeat="b in  [1,2,3,4,5,6,7,8,9,10,11,12] ">{{b}}</md-option>
+                                <md-select ng-model="event.toTime" placeholder="End Time" ng-disabled="!event.fromTime" ng-required="true">
+                                    <md-option ng-value="b" ng-repeat="b in  ['1:00','1:30','2:00','2:30','3:00','3:30','4:00','4:30','5:00','5:30','6:00','6:30','7:00','7:30','8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30','12:00','12:30']">{{b}}</md-option>
                                 </md-select>
                             </md-input-container>
                             <md-input-container>
                                 <label>Am/Pm</label>
-                                <md-select ng-model="event.toZone">
+                                <md-select ng-model="event.toZone" ng-disabled="!event.toTime" ng-required="true">
                                     <md-option ng-value="toZone" ng-repeat="toZone in ['Am', 'Pm']">{{toZone}}</md-option>
-                                    </md-sselect>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div layout="column" flex>
+                            <form name="skillsForm">
+                                <md-chips name="skills" ng-model="tags" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
+                                    <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Enter top 5 tags for your event">
+                                        <span md-highlight-text="searchText">{{item.name}}</span>
+                                    </md-autocomplete>
+                                    <md-chip-template custom-chip class="your-custom-chip">
+                                        <span><strong>{{$chip.name}}</strong></span>
+                                    </md-chip-template>
+                                </md-chips>
+                                <br>
+                            </form>
+                        </div>
+                        <div layout-gt-sm="row" flex>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Event Category</label>
+                                <md-select ng-model="event.category" placeholder="Event Category">
+                                    <md-option ng-value="category" ng-repeat="category in ['cultural', 'technical', 'Seminar or Talk']">{{category}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Event Topic</label>
+                                <md-select ng-model="event.topic">
+                                    <md-option ng-value="topic" ng-repeat="topic in ['Science And Technology', 'Music', 'Hobies and Special Intrest', 'Sports']">{{topic}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Online Link to the organizer</label>
+                                <input type="text" ng-model="event.onlineOrganizer">
                             </md-input-container>
                         </div>
                     </md-content>
@@ -140,12 +199,13 @@
                             <img style="width: 200px;  position: absolute;    clip: rect(00px,200px,140px,0px); margin-right: " ng-src="{{croppedDataUrl}}" alt="">
                         </div>
                         <div style="padding: 10px 18px;" flex layout="column">
-                            <span class="md-body-2">{{event.timings.date.start? event.timings.date.start:"Fri, Mar 24 2:00 PM" }}</span>
+                            <!-- <span class="md-body-2">{{event.timings.date.start? event.timings.date.start:"Fri, Mar 24 2:00 PM" }}</span> -->
+                            <span class="md-body-2">{{event.fromDate | date: 'EEE, d MMM'}} {{ event.fromTime}} {{event.fromZone}}</span>
                             <div class="md-subhead" style="font-weight: 600">
                                 {{(event.title?event.title:"CampusBox launch ")  | limitTo : 30}}
                             </div>
+                            <span class="md-caption">{{event.venue}}</span>
                             <span class="md-subhead">
-
                             <p class="md-body-2">{{event.description}}</p>
                                 </span>
                         </div>
@@ -153,9 +213,7 @@
                     <md-divider></md-divider>
                     <div layout="row">
                         <md-card-actions layout="row" layout-align="start center">
-                            <span class="md-body-2">#FUCKEDUP </span>
-                            <span class="md-body-2"> #BtAwesome</span>
-                            <md-button ng-repeat="tag in event.tags" class="md-subhead">{{tag.name}}</md-button>
+                            <span class="md-body-2" ng-repeat="tag in tags">#{{ tag.name }}                  </span>
                             <span flex></span>
                             <md-button class="md-icon-button" ng-click="heart(event, $index)" aria-label="Favorite ">
                                 <md-icon ng-class="event.Actions.Bookmarked.status? 'pink':''" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>
@@ -178,7 +236,11 @@
             <img style="height:{{16*10}}px !important; min-height: 200px; background: #aaa; width:auto;" ng-src="{{croppedDataUrl}}" class="md-card-image " alt="Washed Out ">
             <md-card-title>
                 <md-card-title-text>
-                    <span>{{event.title  | limitTo : 30}}</span>
+
+                    <!-- <span class="md-body-2">{{event.timings.date.start? event.timings.date.start:"Fri, Mar 24 2:00 PM" }}</span> -->
+                    <span class="md-body-2">{{event.fromDate | date: 'EEE, d MMM'}} {{ event.fromTime}} {{event.fromZone}}</span>
+                    <span class="md-subhead" style="font-weight: 600">{{event.title |  | limitTo : 30}}</span>
+                    <span class="md-caption">{{event.venue}}</span>
                 </md-card-title-text>
             </md-card-title>
             <md-card-content>
