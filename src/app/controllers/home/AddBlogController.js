@@ -14,8 +14,7 @@
         var vm = this;
 
         $scope.url = "";
-        $scope.embedUrl = "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/298167372&;auto_play=false&;hide_related=false&;show_comments=true&;show_user=true&;show_reposts=false&;visual=true";
-        $scope.embedUrl = $sce.trustAsResourceUrl($scope.embedUrl);
+        $scope.embedUrl = "";
         $scope.videoType = "";
         $scope.videoType = $scope.url.match("/http:\/\/(?:www.)?(?:(vimeo).com\/(.*)|(youtube).com\/watch\?v=(.*?)&)/");
         if ($scope.videoType == "youtube") {
@@ -27,25 +26,29 @@
             // Not a valid url
         }
 
-        $scope.submitVideo = function(){
-        var videoid = $scope.url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
-        if (videoid != null) {
-            $scope.videoType = "youtube";
-            $scope.embedUrl = "https://www.youtube.com/embed/" + videoid[1];
-            $scope.embedUrl = $sce.trustAsResourceUrl($scope.embedUrl);
-            console.log($scope.embedUrl);
-        } else {
-            console.log("This is not a youtube link, checking for vimeo");
-            var videoid = $scope.url.match(/https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/);
+        $scope.submitVideo = function() {
+            var videoid = $scope.url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
             if (videoid != null) {
-                $scope.videoType = "vimeo";
-                $scope.embedUrl = "https://player.vimeo.com/video/"+videoid[3];
-                console.log($scope.embedUrl);
+                $scope.videoType = "youtube";
+                $scope.embedUrl = "https://www.youtube.com/embed/" + videoid[1];
                 $scope.embedUrl = $sce.trustAsResourceUrl($scope.embedUrl);
-            }else{
-                console.log("neither youtube nor vimeo detected")
+                console.log($scope.embedUrl);
+            } else {
+                console.log("This is not a youtube link, checking for vimeo");
+                var videoid = $scope.url.match(/https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/);
+                if (videoid != null) {
+                    $scope.videoType = "vimeo";
+                    $scope.embedUrl = "https://player.vimeo.com/video/" + videoid[3];
+                    console.log($scope.embedUrl);
+                    $scope.embedUrl = $sce.trustAsResourceUrl($scope.embedUrl);
+                } else {
+                    console.log("neither youtube nor vimeo detected");
+                    $scope.embedUrl = "https://w.soundcloud.com/player/?url=" + $scope.url;
+                    $scope.embedUrl = $sce.trustAsResourceUrl($scope.embedUrl);
+                    console.log('tried soundcloud');
+
+                }
             }
-        }
 
         }
         $scope.upload = function(dataUrl, name) {
