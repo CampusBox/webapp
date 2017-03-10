@@ -269,11 +269,11 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
         //   authManager.redirectWhenUnauthenticated();
         $rootScope.token = localStorage.getItem('id_token');
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/service-worker.js', { scope: './'}).then(function(registration) {
-                console.log('Service Worker registered');
-            }).catch(function(err) {
-                console.log('Service Worker registration failed: ', err);
-            });
+            // navigator.serviceWorker.register('/service-worker.js', { scope: './'}).then(function(registration) {
+            //     console.log('Service Worker registered');
+            // }).catch(function(err) {
+            //     console.log('Service Worker registration failed: ', err);
+            // });
         } else {
             console.log("this browser does NOT support service worker");
         }
