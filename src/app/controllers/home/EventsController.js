@@ -9,10 +9,12 @@
             'tokenService',
             'Upload',
             '$timeout',
+            '$location',
+            '$state',
             EventsController
         ]);
 
-    function EventsController($mdDialog, $scope, $element, tokenService, Upload, $timeout) {
+    function EventsController($mdDialog, $scope, $element, tokenService, Upload, $timeout, $location, $state) {
         var vm = this;
         $scope.grid = false;
         $scope.width = 18;
@@ -39,7 +41,9 @@
                     $scope.status = 'You cancelled the dialog.';
                 });
         };
-       
+       $scope.openEvent = function(event){
+        $location.path('/singleEvent/'+event.id);
+       }
         $scope.report = function() {
             console.log('testing report function');
         }

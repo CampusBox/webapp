@@ -72,8 +72,8 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                     title: 'My Profile'
                 }
             })
-            .state('home.singleEvent/:eventId', {
-                url: '/singleEvent',
+            .state('home.singleEvent', {
+                url: '/singleEvent/:eventId',
                 templateUrl: 'app/views/home/singleEvent.html',
                 controller: 'SingleEventController',
                 controllerAs: 'vm',

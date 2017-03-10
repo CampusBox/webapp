@@ -5,7 +5,7 @@
         </h1>
         <div layout="row" layout-wrap layout-align="center center">
             <md-list>
-                <md-list-item style="margin-bottom: 10px;" ng-click="showEvent(event, $index)" class="secondary-button-padding eventListItem" ng-repeat="event in events | limitTo :3 track by $index">
+                <md-list-item style="margin-bottom: 10px;" ng-click="openEvent(event)" class="secondary-button-padding eventListItem" ng-repeat="event in events | limitTo :3 track by $index">
                     <md-card flex>
                         <md-card-title style="padding: 0px;">
                             <div class="md-media-sm" style="width: 200px;height:140px;">
