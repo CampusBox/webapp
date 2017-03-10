@@ -17,23 +17,23 @@
             <md-divider></md-divider>
             <md-input-container>
                 <md-icon md-svg-icon="filter-outline"></md-icon>
-                <md-select ng-model="category" placeholder="Choose a category" class="md-no-underline">
+                <md-select ng-model="type" placeholder="Choose a type" class="md-no-underline">
                     <md-optgroup label="Type">
-                        <md-option ng-value="category" ng-repeat="category in ['All', 'Performance', 'Competition', 'Conference', 'Workshop', 'Seminar', 'Exhibition', 'Others'] | orderBy">{{ category }}</md-option>
+                        <md-option ng-value="type" ng-model="filter.type" ng-repeat="type in ['All', 'Performance', 'Competition', 'Conference', 'Workshop', 'Seminar', 'Exhibition', 'Others'] | orderBy">{{ type }}</md-option>
                     </md-optgroup>
                 </md-select>
             </md-input-container>
             <md-input-container>
                 <md-icon md-svg-icon="view-list"></md-icon>
-                <md-select ng-model="type" placeholder="Event Type" class="md-no-underline">
+                <md-select ng-model="type" ng-model="filter.type" placeholder="Event Type" class="md-no-underline">
                     <md-optgroup label="Type">
-                        <md-option ng-value="type" ng-repeat="type in ['All', 'Music', 'Sports', 'Dance', 'Technical'] | orderBy">{{ type }}</md-option>
+                        <md-option ng-value="type" ng-repeat="type in [1,2.3.4] | orderBy">{{ type }}</md-option>
                     </md-optgroup>
                 </md-select>
             </md-input-container>
             <md-input-container>
                 <md-icon md-svg-icon="calendar"></md-icon>
-                <md-select ng-model="category" placeholder="All Timings" class="md-no-underline">
+                <md-select ng-model="category" ng-model="" placeholder="All Timings" class="md-no-underline">
                     <md-optgroup label="Type">
                         <md-option ng-value="category" ng-repeat="category in ['Today', 'Tommorrow', 'This Week', 'This Month', 'Custom'] | orderBy">{{ category }}</md-option>
                     </md-optgroup>
@@ -41,7 +41,7 @@
             </md-input-container>
             <md-input-container>
                 <md-icon md-svg-icon="domain"></md-icon>
-                <md-select ng-model="college" aria-label="search" md-on-close="clearSearchTerm()" placeholder="College" class="md-no-underline" data-md-container-class="selectdemoSelectHeader">
+                <md-select  ng-model="filter.college"  aria-label="search" md-on-close="clearSearchTerm()" placeholder="College" class="md-no-underline" data-md-container-class="selectdemoSelectHeader">
                     <md-select-header class="demo-select-header">
                         <input aria-label="search" ng-model="searchTerm" type="search" class="demo-header-searchbox md-text">
                     </md-select-header>
@@ -51,7 +51,8 @@
                     </md-optgroup>
                 </md-select>
             </md-input-container>
-            <md-button class="md-primary" ng-click="showAdvanced()">Add event</md-button>
+            <md-button class="md-primary md-raised" ng-click="showAdvanced()">Apply filters</md-button>
+            <!-- <md-button class="md-primary" ng-click="showAdvanced()">Add event</md-button> -->
         </md-card-content>
     </md-card>
     <div layout="column" flex-offset="{{grid?0:5}}" flex-gt-sm="{{grid?80:60}}">

@@ -25,7 +25,8 @@
     "ng-img-crop": "ngImgCrop#^0.3.2",
     "angular-jwt": "^0.1.9",
     "ngInfiniteScroll": "^1.3.4",
-    "angular-messages": "^1.6.3"
+    "angular-messages": "^1.6.3",
+    "upup": "^0.3.0"
   },
   "devDependencies": {},
   "resolutions": {

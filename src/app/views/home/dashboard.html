@@ -72,12 +72,12 @@
                         </md-button>
                         <span>{{blog.Actions.Appriciate.total}}</span>
                         <span flex></span>
+                        <md-card-icon-actions>
                         <md-button class="md-icon-button" ng-click="bookmark(blog, $index)" aria-label="Favorite ">
                             <md-icon ng-class="blog.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{blog.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
                         </md-button>
-                        <md-card-icon-actions>
                             <md-button class="md-icon-button " aria-label="toggle ">
-                                <md-icon md-svg-icon="md-toggle-arrow "></md-icon>
+                                <md-icon md-svg-icon="share"></md-icon>Share
                             </md-button>
                         </md-card-icon-actions>
                     </div>
