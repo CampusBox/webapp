@@ -6,13 +6,13 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
     //remove setellizer
     .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, $authProvider,
         $mdIconProvider, socialProvider, jwtInterceptorProvider, jwtOptionsProvider, $httpProvider, $mdDateLocaleProvider) {
-        
-        $mdDateLocaleProvider.formatDate = function(date) {
-          return moment(date).format('DD-MMM-YY');
-        };
 
+        $mdDateLocaleProvider.formatDate = function(date) {
+            return moment(date).format('DD-MMM-YY');
+        };
+      
         jwtOptionsProvider.config({
-            whiteListedDomains: ['http://localhost', 'http://192.171.2.213','http://campusbox.org'],
+            whiteListedDomains: ['http://localhost', 'http://192.171.2.213', 'http://campusbox.org'],
             unauthenticatedRedirectPath: '/login',
             unauthenticatedRedirector: ['$state', function($state) {
                 $state.go('static.login');
@@ -92,7 +92,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
             .state('static.signUp', {
                 url: '/signup',
                 controller: 'SignUpController',
-                templateUrl:          'app/views/static/signUp.html',
+                templateUrl: 'app/views/static/signUp.html',
                 data: {
                     title: 'Dashboard'
                 }
@@ -146,7 +146,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                     title: 'Content'
                 }
             })
-        .state('home.events', {
+            .state('home.events', {
                 url: '/events',
                 templateUrl: 'app/views/home/events.html',
                 controller: 'EventsController',
@@ -273,36 +273,22 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
 
 
     })
-    .run(function(authManager, $state, $location,$rootScope) {
-       // authManager.checkAuthOnRefresh();
-     //   authManager.redirectWhenUnauthenticated();
+    .run(function(authManager, $state, $location, $rootScope) {
+        // authManager.checkAuthOnRefresh();
+        //   authManager.redirectWhenUnauthenticated();
         $rootScope.token = localStorage.getItem('id_token');
-
-  //  if (!authManager.isAuthenticated()) {
-    //        console.log("sending to login")
-      //      $state.go('static.login');
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js', { scope: './'}).then(function(registration) {
+                console.log('Service Worker registered');
+            }).catch(function(err) {
+                console.log('Service Worker registration failed: ', err);
+            });
+        } else {
+            console.log("this browser does NOT support service worker");
+        }
+        //  if (!authManager.isAuthenticated()) {
+        //        console.log("sending to login")
+        //      $state.go('static.login');
 
         //}
     });
-// .run(["$rootScope", "$state", "$location", "$stateParams", "$timeout", "$localStorage", function($rootScope, $state, $location, $stateParams, $timeout, $localStorage) {
-//     $rootScope.$on("$stateChangeStart", function(event, next) {
-//         console.log($location.path());
-//         console.log($localStorage.authenticated);
-//             console.log($state.current.name);
-
-//         if ($localStorage.authenticated != true && $location.path() != '/login') {
-//             console.log('Not logged in.');
-
-//             $state.go('static.login');
-
-//         } else if ($localStorage.authenticated == true && $state.current.name == 'static.login') {
-//             console.log('Already logged in.');
-//             event.preventDefault();
-//             $state.go('home.profile')
-//             return;
-
-//         } 
-//     });
-// }])
-
-;

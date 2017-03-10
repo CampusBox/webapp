@@ -17,7 +17,7 @@
         $scope.grid = false;
         $scope.width = 18;
         $scope.events = [];
-    
+        $scope.filters=[];
         $scope.showEvent = function(ev, index) {
             $mdDialog.show({
                     controller: 'SingleEventController',
