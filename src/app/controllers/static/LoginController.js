@@ -10,8 +10,8 @@
 
     function LoginController($scope, loginData, $rootScope, $localStorage, $state, $auth, tokenService) {
         var vm = this;
-        console.log('1');
-
+        console.log(localStorage.getItem('id_token'));
+        
 
         $scope.authenticate = function(provider) {
             $auth.authenticate(provider).then(function(response) {

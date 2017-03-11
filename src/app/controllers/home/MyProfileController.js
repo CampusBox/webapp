@@ -161,10 +161,9 @@
                 $mdDialog.hide(answer);
             };
         }
-        allDataService.get("blog_posts")
+        allDataService.get("https://dribbble.com/shots/3167358-Microinteractions-for-to-do-list-app")
             .then(function(blogs) {
-                vm.blogs = [].concat(blogs.data)
-                console.log("aa");
+                            console.log(blogs);
             });
         tokenService.get("events")
             .then(function(events) {

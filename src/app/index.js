@@ -5,12 +5,13 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
     ])
     //remove setellizer
     .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, $authProvider,
-        $mdIconProvider, socialProvider, jwtInterceptorProvider, jwtOptionsProvider, $httpProvider, $mdDateLocaleProvider) {
+        $mdIconProvider, socialProvider, jwtInterceptorProvider, jwtOptionsProvider, $httpProvider, $mdDateLocaleProvider,$mdAriaProvider) {
 
         $mdDateLocaleProvider.formatDate = function(date) {
             return moment(date).format('DD-MMM-YY');
         };
-      
+        $mdAriaProvider.disableWarnings();
+
         jwtOptionsProvider.config({
             whiteListedDomains: ['http://localhost', 'http://192.171.2.213', 'http://campusbox.org'],
             unauthenticatedRedirectPath: '/login',
@@ -237,7 +238,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
         $authProvider.linkedin({
             clientId: '81l3qatlqe4l4p',
         });
-        $urlRouterProvider.otherwise('/login');
+        $urlRouterProvider.otherwise('/signup');
         socialProvider.setGoogleKey("702228530885-vi264d7g6v5ivbcmebjfpomr0hmliomd.apps.googleusercontent.com");
         socialProvider.setLinkedInKey("81l3qatlqe4l4p");
         socialProvider.setFbKey({ appId: "1250377088376164", apiVersion: "v2.8", responseType: 'token' });
