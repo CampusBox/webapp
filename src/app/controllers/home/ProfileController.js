@@ -17,8 +17,7 @@
 
         $scope.followers = [];
         $scope.demoFollow = [{ 'status:': true }];
-        $scope.studentId = $stateParams.studentId;
-        console.log($scope.studentId);
+        $scope.username = $stateParams.studentId;
         $scope.showAdvanced = function(ev) {
             $mdDialog.show({
                     controller: DialogController,
@@ -143,7 +142,7 @@
                 });
             }
         }
-        tokenService.get("student/" + $scope.studentId)
+        tokenService.get("student/" + $scope.username)
             .then(function(response) {
                 console.log(response);
                 $scope.profile = response.data;

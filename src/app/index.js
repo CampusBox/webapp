@@ -55,7 +55,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                 abstract: true
             })
             .state('home.myProfile', {
-                url: '/myProfile/:tab',
+                url: '/myProfile/:username/:tab',
                 templateUrl: 'app/views/home/myProfile.html',
                 controller: 'MyProfileController',
                 controllerAs: 'vm',
@@ -127,7 +127,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                 }
             })
             .state('home.profile', {
-                url: '/profile/:studentId',
+                url: '/profile/:usename',
                 templateUrl: 'app/views/home/profile.html',
                 controller: 'ProfileController',
                 controllerAs: 'vm',
