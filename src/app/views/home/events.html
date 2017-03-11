@@ -1,5 +1,5 @@
-<div layout="row" layout-align="end">
-    <md-slider hide-xs hide-sm aria-label="size" ng-show="grid" ng-model="width" value="18.5" step="0.5" name="points" min="18" max="33"></md-slider>
+<div layout="row" layout-align="end" ng-init="width=23">
+    <md-slider hide-xs hide-sm aria-label="size" ng-show="grid" ng-model="width" value="25" step="5" name="points" min="18" max="48"></md-slider>
     <md-button class="md-icon-button " ng-click="grid=true" aria-label="Favorite ">
         <md-icon md-svg-icon="view-grid "></md-icon>
     </md-button>
@@ -41,7 +41,7 @@
             </md-input-container>
             <md-input-container>
                 <md-icon md-svg-icon="domain"></md-icon>
-                <md-select  ng-model="filter.college"  aria-label="search" md-on-close="clearSearchTerm()" placeholder="College" class="md-no-underline" data-md-container-class="selectdemoSelectHeader">
+                <md-select ng-model="filter.college" aria-label="search" md-on-close="clearSearchTerm()" placeholder="College" class="md-no-underline" data-md-container-class="selectdemoSelectHeader">
                     <md-select-header class="demo-select-header">
                         <input aria-label="search" ng-model="searchTerm" type="search" class="demo-header-searchbox md-text">
                     </md-select-header>
@@ -88,7 +88,7 @@
             </md-input-container>
             <md-input-container>
                 <md-icon md-svg-icon="domain"></md-icon>
-                <md-select  ng-model="filter.college"  aria-label="search" md-on-close="clearSearchTerm()" placeholder="College" class="md-no-underline" data-md-container-class="selectdemoSelectHeader">
+                <md-select ng-model="filter.college" aria-label="search" md-on-close="clearSearchTerm()" placeholder="College" class="md-no-underline" data-md-container-class="selectdemoSelectHeader">
                     <md-select-header class="demo-select-header">
                         <input aria-label="search" ng-model="searchTerm" type="search" class="demo-header-searchbox md-text">
                     </md-select-header>
@@ -102,11 +102,10 @@
             <!-- <md-button class="md-primary" ng-click="showAdvanced()">Add event</md-button> -->
         </md-card-content>
     </md-card>
-
     <div layout="column" flex-offset="{{grid?0:5}}" flex-gt-sm="{{grid?80:60}}">
         <div flex layout="row" layout-align="space-around" layout-wrap infinite-scroll="myPagingFunction()" infinite-scroll-disabled='serverBusy' infinite-scroll-distance="4">
-            <md-card ng-show="grid" ng-click="openEvent(event)" style="float:left ; display:inline-flex; !important;" ng-repeat="event in events track by $index">
-                <img style="height:{{width*10}}px !important; min-height: 200px; background: #aaa; width:auto;" ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.id}}.jpg " class="md-card-image " alt="Washed Out ">
+            <md-card ng-show="grid" ng-click="openEvent(event)" style="width: {{width}}%" ng-repeat="event in events track by $index">
+                <img style="height:auto !important;  background: #aaa; width:100%" ng-src="{{event.image}}" class="md-card-image " alt="Washed Out ">
                 <md-card-title>
                     <md-card-title-text>
                         <span>{{event.title  | limitTo : 25}}</span>
@@ -159,41 +158,42 @@
             </md-card>
         </div>
         <md-list ng-show="!grid">
-            <md-list-item style="margin-bottom: 10px;"  ng-click="openEvent(event)" class="secondary-button-padding eventListItem" ng-repeat="event in events  track by $index">
-                <md-card flex>
-                    <md-card-title style="padding: 0px;">
-                        <div class="md-media-sm" style="width: 200px;height:140px;">
-                            <img style="width: 200px;  position: absolute;    clip: rect(00px,200px,140px,0px); margin-right: " ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.id}}.jpg" alt="">
-                        </div>
-                        <div style="padding: 10px 18px;" flex layout="column">
-                            <span class="md-body-2">{{event.timings.date.start? event.timings.date.start:"Fri, Mar 24 2:00 PM" }}</span>
-                            <div class="md-subhead" style="font-weight: 600">
-                                {{event.title}}
+             <md-list-item style="margin-bottom: 10px;" ng-repeat="event in events" ng-click="showEvent(event, $index)" class="secondary-button-padding eventListItem">
+                    <md-card flex>
+                        <md-card-title style="padding: 0px;">
+                            <div class="md-media-sm" style="width: 200px;height:200px;">
+                                <img style="width: 200px;height:200px;" ng-src="{{event.image}}" alt="">
                             </div>
-                            <span class="md-subhead">
-
-                            <p class="md-body-2">{{event.details.description}}</p>
-                                </span>
-                        </div>
-                    </md-card-title>
-                    <md-divider></md-divider>
-                    <div layou="row">
-                        <md-card-actions layout="row" layout-align="start center">
-                            <span class="md-body-2">#FUCKEDUP </span>
-                            <span class="md-body-2"> #BtAwesome</span>
-                            <md-button ng-repeat="tag in event.tags" class="md-subhead">{{tag.name}}</md-button>
-                            <span flex></span>
-                            <md-button class="md-icon-button" ng-click="heart(event, $index)" aria-label="Favorite ">
-                                <md-icon ng-class="event.Actions.Bookmarked.status? 'pink':''" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>
-                            </md-button>
-                            <span>{{event.Actions.Bookmarked.total}}</span>
-                            <md-button class="md-icon-button" ng-click="update(event, $index)" aria-label="Favorite ">
-                                <md-icon ng-class="!event.Actions.Participants.status? 'blue':''" md-svg-icon="{{!event.Actions.Participants.status? 'account-plus' : 'account-check' }}"></md-icon>
-                            </md-button>
-                        </md-card-actions>
-                    </div>
-                </md-card>
-            </md-list-item>
+                            <div style="padding:  5px 0px 0px 12px;;" flex layout="column">
+                                <!-- <span class="md-body-2">{{event.timings.date.start? event.timings.date.start:"Fri, Mar 24 2:00 PM" }}</span> -->
+                                <span style="margin-top: 0px; color: #555555;" class="md-body-2">{{event.timings.from.date | date: ' d MMM'}} · {{event.timings.from.time}}{{event.timings.from.period}} - {{event.timings.to.date==event.timings.from.date?null:event.timings.to.date | date: ' d MMM'}} · {{ event.timings.to.time}}{{event.timings.to.period}}</span>
+                                <p class="md-title" style="font-weight: 600;margin: 0px;  ">
+                                    {{(event.title?event.title:"CampusBox launch ") | limitTo : 30}}
+                                </p>
+                                <p style="margin-top: 0px; color: #555555;" class="md-body-2">{{event.subtitle?event.subtitle:"We will showcase all the features of CampusBox ver 0.1.3 and give away goodies to everyone" | limitTo : 100}}
+                                </p>
+                                <div flex></div>
+                                <p style="margin:0;color:#555555" class="md-caption">{{event.venue?event.venue:"Main Auditorium, Thapar University"}}</p>
+                                    <md-card-actions layout="row" layout-align="start center">
+                                        <span class="md-body-2" ng-repeat="tag in tags">#{{ tag.name }}                  </span>
+                                        <span flex></span>
+                                        <md-button class="md-icon-button" ng-click="heart(event, $index)" aria-label="Favorite ">
+                                            <md-icon ng-class="event.Actions.Bookmarked.status? 'pink':''" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>
+                                        </md-button>
+                                        <span>0</span>
+                                        <md-button class="md-icon-button" ng-click="update(event, $index)" aria-label="Favorite ">
+                                            <md-icon ng-class="!event.Actions.Participants.status? 'blue':''" md-svg-icon="{{!event.Actions.Participants.status? 'account-plus' : 'account-check' }}"></md-icon>
+                                        </md-button>
+                                        <md-button class="md-icon-button" ng-click="update(event, $index)" aria-label="Favorite ">
+                                            <a target="_blank" ng-href="{{event.link}}">
+                                                <md-icon ng-class="!event.Actions.Participants.status? 'blue':''" md-svg-icon="link-variant"></md-icon>
+                                            </a>
+                                        </md-button>
+                                    </md-card-actions>
+                            </div>
+                        </md-card-title>
+                    </md-card>
+                </md-list-item>
         </md-list>
         <md-card ng-if="!serverBusy" flex layout="row " ng-hide="vm.tableData[0].id>0" style="min-height: 171px" layout-sm="column" layout-align="center center">
             <div class="cssload-tetrominos">

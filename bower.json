@@ -26,7 +26,8 @@
     "angular-jwt": "^0.1.9",
     "ngInfiniteScroll": "^1.3.4",
     "angular-messages": "^1.6.3",
-    "upup": "^0.3.0"
+    "upup": "^0.3.0",
+    "angular-tawk-to": "^0.0.2"
   },
   "devDependencies": {},
   "resolutions": {

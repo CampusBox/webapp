@@ -1,92 +1,17 @@
-<style>
-.angular-medium-editor.medium-editor-element p {
-    margin: 0px;
-}
-
-.medium-editor-placeholder:after {
-    position: relative;
-}
-
-.thumb {
-    width: 24px;
-    height: 24px;
-    float: none;
-    position: relative;
-    top: 7px;
-}
-
-form .progress {
-    line-height: 15px;
-}
-
-.progress {
-    display: inline-block;
-    width: 100px;
-    border: 3px groove #CCC;
-}
-
-.progress div {
-    font-size: smaller;
-    background: orange;
-    width: 0;
-}
-
-.uploadedImage {
-    height: 100%;
-    width: 100%;
-    /*opacity: 0;*/
-}
-
-
-/*pasted from multiple images*/
-
-.your-custom-chip {
-    font-weight: 400 !import2.++36
-    ant;
-    font-style: normal !important;
-    color: rgba(0, 0, 0, .44) !important;
-    font-size: 13px !important;
-    letter-spacing: 0px !important;
-    text-decoration: none !important;
-    background: #fafafa;
-    border-radius: 3px !important;
-    border: 1px solid #f0f0f0 !important;
-}
-
-md-chips.md-default-theme md-chip.mdfocused,
-md-chips md-chip.md-focused {
-    background-color: #fafafa !important;
-    color: rgba(0, 0, 0, .44);
-    border: 1px solid rgba(2, 184, 117, 0.8) !important;
-}
-
-md-chips.md-default-theme md-chip,
-md-chips md-chip,
-md-chips md-chip.md-focused {
-    /*border-color: rgba(2, 184, 117, 0.8);*/
-    border: 1px solid rgba(2, 184, 117, 0.8) !important;
-}
-
-md-chips.md-default-theme md-chip.md-focused md-icon,
-md-chips md-chip.md-focused,
-md-chips md-chip.md-focused md-icon {
-    color: rgba(0, 0, 0, .44) !important;
-}
-md-icon.cross>svg {
-    color: rgba(0, 0, 0, .44) !important;
-    height: 15px;
-    width: 15px;
-    margin-top: 4px;
-    margin-left: auto;
-}
-
-.publish-button {
-    float: right;
-    border: 1px solid #039BE5;
-    color: #2899d1;
-    text-transform: capitalize;
-}
-</style>
+<md-card ng-hide="" style="transition: all linear 0.5s;">
+    <center>
+        <img ng-src="{{user.imageUrl}}" alt="" style="border-radius: 50%; height: auto;width: 20%">
+        <p class="md-title">Select type of creative project you want to add.</p>
+        <div ng-repeat="itemgroup in items" flex layout="row" layout-align="center center">
+            <span ng-repeat="item in itemgroup track by $index">                        
+                            <md-button  ng-class="item.intrested?'interest_selected':'interest'" ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">                        
+                                {{ item.title }}
+                            </md-button>
+                            <!-- <br ng-show="{{$index==3 || $index==8|| $index==12 ||$index==17 || $index==21  }}"> -->
+                    </span>
+        </div>
+    </center>
+</md-card>
 <div ng-init="uploaded = false; addImage = false" ng-controller="AddBlogController">
     <div layout="row" layout-align="start start">
         <div style="background: #fff" class="" layout-padding layout-wrap flex="70">

@@ -19,6 +19,55 @@
         $scope.url = "";
         $scope.embedUrl = "";
         $scope.mediaType = "";
+        $scope.items = [];
+        $scope.items[0] = [
+            { 'title': 'Articles', 'id': 1, 'intrested': false },
+            { 'title': 'Poetry', 'id': 1, 'intrested': false },
+            { 'title': 'Drama', 'id': 1, 'intrested': false },
+            { 'title': 'Painting', 'id': 1, 'intrested': false }
+        ];
+        $scope.items[1] = [
+            { 'title': 'Sketching', 'id': 1, 'intrested': false },
+            { 'title': 'Manga', 'id': 1, 'intrested': false },
+            { 'title': 'Craft', 'id': 1, 'intrested': false },
+            { 'title': 'Song Covers', 'id': 1, 'intrested': false },
+            { 'title': 'Instrumental', 'id': 1, 'intrested': false }
+
+        ];
+        $scope.items[2] = [
+            { 'title': 'Music Mixing', 'id': 1, 'intrested': false },
+            { 'title': 'Photography', 'id': 1, 'intrested': false },
+            { 'title': 'Apps', 'id': 1, 'intrested': false },
+            { 'title': 'Apps', 'id': 1, 'intrested': false }
+
+        ];
+        $scope.items[3] = [
+            { 'title': 'Apps', 'id': 1, 'intrested': false },
+            { 'title': 'Apps', 'id': 1, 'intrested': false },
+            { 'title': 'Film and Video', 'id': 1, 'intrested': false },
+            { 'title': 'Animation', 'id': 1, 'intrested': false },
+            { 'title': 'Graphics', 'id': 1, 'intrested': false }
+        ];
+        $scope.items[4] = [
+
+            { 'title': 'UI and UX', 'id': 1, 'intrested': false },
+            { 'title': 'Webites', 'id': 1, 'intrested': false },
+            { 'title': 'Apps', 'id': 1, 'intrested': false }
+        ];
+        $scope.toggle = function(item, list) {
+            var idx = list.indexOf(item);
+            if (idx > -1) {
+                list.splice(idx, 1);
+            } else {
+                list.push(item);
+                $scope.buttonClass = 'md-primary md-raised';
+            }
+            item.intrested = !item.intrested;
+            $scope.interests = list;
+            $scope.continue = ($scope.interests.length > 3);
+        };
+
+        
         $scope.getSoundCloudInfo = function(url) {
             var regexp = /^https?:\/\/(soundcloud\.com|snd\.sc)\/(.*)$/;
             return url.match(regexp) && url.match(regexp)[2]

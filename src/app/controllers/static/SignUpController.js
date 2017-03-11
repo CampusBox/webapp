@@ -14,53 +14,63 @@
         $scope.signUp = {};
         vm.tags = [];
         $scope.skills = loadSkills();
-        $scope.roll = "";
+        $scope.signUp.collegeId = 0;
         $scope.continue = false;
         tokenService.get("colleges").then(function(colleges) {
             $scope.colleges = colleges;
         });
-        $scope.items = [
+        $scope.items1 = [
             { 'title': 'Articles','id':1, 'intrested': false },
             { 'title': 'Poetry','id':1, 'intrested': false },
             { 'title': 'Drama','id':1, 'intrested': false },
-            { 'title': 'Painting','id':1, 'intrested': false },
+            { 'title': 'Painting','id':1, 'intrested': false }
+];
+        $scope.items2 = [
             { 'title': 'Sketching','id':1, 'intrested': false },
             { 'title': 'Manga','id':1, 'intrested': false },
             { 'title': 'Craft','id':1, 'intrested': false },
             { 'title': 'Song Covers','id':1, 'intrested': false },
-            { 'title': 'Instrumental','id':1, 'intrested': false },
+            { 'title': 'Instrumental','id':1, 'intrested': false }
+            
+];
+        $scope.items3 = [
             { 'title': 'Music Mixing','id':1, 'intrested': false },
             { 'title': 'Photography','id':1, 'intrested': false },
-
             { 'title': 'Apps','id':1, 'intrested': false },
-            { 'title': 'Apps','id':1, 'intrested': false },
+            { 'title': 'Apps','id':1, 'intrested': false }
+            
+];
+        $scope.items4 = [
             { 'title': 'Apps','id':1, 'intrested': false },
             { 'title': 'Apps','id':1, 'intrested': false },
             { 'title': 'Film and Video','id':1, 'intrested': false },
             { 'title': 'Animation','id':1, 'intrested': false },
-            { 'title': 'Graphics','id':1, 'intrested': false },
+            { 'title': 'Graphics','id':1, 'intrested': false }
+];
+        $scope.items5 = [
+
             { 'title': 'UI and UX','id':1, 'intrested': false },
             { 'title': 'Webites','id':1, 'intrested': false },
             { 'title': 'Apps','id':1, 'intrested': false }
         ];
-        $scope.sports = [
-            { 'title': 'Football', 'intrested': false },
-            { 'title': 'Cricket', 'intrested': false },
-            { 'title': 'Basketball', 'intrested': false },
-            { 'title': 'Volleyball', 'intrested': false },
-            { 'title': 'Badminton', 'intrested': false },
+        // $scope.sports = [
+        //     { 'title': 'Football', 'intrested': false },
+        //     { 'title': 'Cricket', 'intrested': false },
+        //     { 'title': 'Basketball', 'intrested': false },
+        //     { 'title': 'Volleyball', 'intrested': false },
+        //     { 'title': 'Badminton', 'intrested': false },
 
-            { 'title': 'Chess', 'intrested': false }
-        ];
-        $scope.cultural = [
-            { 'title': 'Dancing', 'intrested': false },
-            { 'title': 'Acting', 'intrested': false },
-            { 'title': 'Debating', 'intrested': false },
-            { 'title': 'Film Making', 'intrested': false },
+        //     { 'title': 'Chess', 'intrested': false }
+        // ];
+        // $scope.cultural = [
+        //     { 'title': 'Dancing', 'intrested': false },
+        //     { 'title': 'Acting', 'intrested': false },
+        //     { 'title': 'Debating', 'intrested': false },
+        //     { 'title': 'Film Making', 'intrested': false },
 
-            { 'title': 'Music', 'intrested': false },
-            { 'title': 'Photography', 'intrested': false }
-        ];
+        //     { 'title': 'Music', 'intrested': false },
+        //     { 'title': 'Photography', 'intrested': false }
+        // ];
         $scope.transformChip = transformChip;
 
         function transformChip(chip) {

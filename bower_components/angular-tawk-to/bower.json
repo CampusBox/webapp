@@ -1,0 +1,25 @@
+{
+  "name": "angular-tawk-to",
+  "description": "Angular wrapper for Tawk.to javascript API",
+  "authors": [
+    "Geoff Tripoli"
+  ],
+  "license": "MIT",
+  "moduleType": [
+    "globals"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.4.8"
+  },
+  "main": [
+    "dist/tawkTo.js"
+  ]
+}
