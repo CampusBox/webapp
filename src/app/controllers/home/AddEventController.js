@@ -8,7 +8,6 @@
         .controller('AddEventController', [
             '$mdDialog',
             '$scope',
-            'tokenService',
             'Upload',
             '$timeout',
             AddEventController

@@ -34,13 +34,8 @@
                 </md-autocomplete>
             </form>
         </section>
-        <section layout-align="start center">
-        </section>
         <section layout-align="end center">
-            <!-- <md-button>
-            <md-icon -->
-            <!-- </md-button> -->
-            <md-button hide-sm hide-xs ng-repeat="item in vm.menuItems" style="#f1f1f1" layout-align="center center" flex class="capitalize " ng-click="vm.selectItem(item)" ui-sref-active="whiteText" ui-sref="{{item.sref}}">
+            <md-button hide-sm hide-xs ng-repeat="item in vm.menuItems" layout-align="center center" flex class="capitalize " ng-click="vm.selectItem(item)" ui-sref-active="whiteText" ui-sref="{{item.sref}}">
                 <div class="md-tile-content">
                     <md-icon md-svg-icon="{{item.icon}}"></md-icon>
                 </div>
@@ -48,9 +43,6 @@
                     {{item.name}}
                 </div>
             </md-button>
-            <!-- <md-button class="toolbar-button" aria-label="Search" ng-click="vm.toggleRightSidebar() ">
-                <md-icon md-svg-icon="magnify"></md-icon>
-            </md-button> -->
             <md-button hide-sm hide-xs layout-align="center center" flex class="capitalize " aria-label="Notifications " ng-click="vm.toggleRightSidebar() ">
                 <div hide-sm hide-md class="md-tile-content">
                     <md-icon md-svg-icon="bell"></md-icon>
@@ -128,13 +120,12 @@
         <div ui-view >
         </div>
     </md-content>
-    <md-toolbar hide-gt-xs layout="row " layout-align="center center ">
+    <md-toolbar hide-gt-xs>
+    </md-toolbar>
+    <md-toolbar hide-gt-xs layout="row " style="position: fixed;bottom: 0px; " layout-align="center center ">
       
         <section layout-align="center center " layout="row ">
-            <!-- <md-button>
-            <md-icon -->
-            <!-- </md-button> -->
-            <md-button ng-repeat="item in vm.menuItems " layout-align="center center " flex class="capitalize " ng-click="vm.selectItem(item) " ui-sref-active="md-warn " ui-sref="{{item.sref}} ">
+            <md-button ng-repeat="item in vm.menuItems " layout-align="center center " flex class="capitalize " ng-click="vm.selectItem(item) " ui-sref-active=" " ui-sref="{{item.sref}} ">
                 <div hide-sm hide-md class="md-tile-content ">
                     <md-icon md-svg-icon="{{item.icon}} "></md-icon>
                 </div>
@@ -142,9 +133,6 @@
                     {{item.name}}
                 </div>
             </md-button>
-            <!-- <md-button class="toolbar-button " aria-label="Search " ng-click="vm.toggleRightSidebar() ">
-                <md-icon md-svg-icon="magnify "></md-icon>
-            </md-button> -->
             <md-button layout-align="center center " flex class="capitalize " aria-label="Notifications " ng-click="vm.toggleRightSidebar() ">
                 <div hide-sm hide-md class="md-tile-content ">
                     <md-icon md-svg-icon="bell "></md-icon>
@@ -172,9 +160,8 @@
       <md-tab label="Notifications ">
                     <!-- <div ng-include src=" 'app/views/partials/messages.html' "></div> -->
    
-<div class="messages " >
+<div class="messages ">
     <md-content class="messages-content ">
-
                     <md-list>
                         <md-list-item class="md-3-line md-long-text ">
                                   <img ng-src=" " class="md-avatar " alt="{{}} "
@@ -241,12 +228,11 @@
                                     </p>
                                   </div>
                                 </md-list-item>
-
                     </md-list>
                     </md-content>
                     </div>
-        </md-content>
-      </md-tab>
+    </md-content>
+    </md-tab>
       <md-tab label="Search " data-ng-if="windowWidth<587 ">
                 <md-content class="md-padding ">
                     <div ng-include src=" 'app/views/partials/searchSidebar.html' "></div>
@@ -254,14 +240,6 @@
           
       </md-tab>
     </md-tabs>
-         <!-- <md-tabs md-stretch-tabs="always " >
-            <md-tab label="Search " data-ng-if="false ">
-            </md-tab>
-            <md-tab label="Notifications ">
-                    </div>
-                </md-content>
-             </md-tab>
-        </md-tabs> -->
      </section>
 </md-sidenav>
 </div>

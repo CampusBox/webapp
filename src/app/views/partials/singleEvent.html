@@ -1,68 +1,51 @@
-<style type="text/css">
-#left {
-    position: fixed;
-    left: -9%;
-    top: 14%;
-    height: 72%;
-    background: rgba(2, 0, 0, 0.1);
-}
-
-#right {
-    position: absolute;
-    right: 0;
-    height: 70%;
-    background: rgba(2, 0, 0, 0.1);
-}
-
-#right md-icon,
-#left md-icon {
-    fill: #fff;
-    height: 45px;
-    width: 45px;
-}
-
-@media (min-width: 959px) {
-    md-dialog.md-dialog-fullscreen {
-        min-width: 85%;
-        min-height: 95%;
-        overflow: visible;
-    }
-}
-</style>
-<md-dialog ">
-    <div flex layout="row ">
-        <div flex="60 " layout="column " layout-align="center center " style="background-color: #000 ">
-            <img style="max-width: 100%;max-height: 100% " ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.id}}.jpg " class="md-card-image " alt="Event title ">
-        </div>
-        <div flex="40 ">
-            <div layout-padding>
-                <h4 class="md-title ">{{event.title}} <span class="md-body-2 " style="cursor: default;border-radius: 5px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: right;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(139, 195, 74); ">date time</span><br><span class="md-body-2 "> by Organizers name, College name</span></h4>
-                <span class="md-body-2 "><md-icon md-svg-icon="map "></md-icon>{{event.details.venue}}</span>
-                <span>{{event.details.price}}</span>
-                    <h5 class="md-headline " style="margin-bottom: 0px; ">Aboout</h5>
-                    <p class="md-body-1 ">{{event.details.description}}</p>
-                <p class="md-body-2 ">
-                    <h5 style="margin-bottom: 0px; " class="md-headline ">Rules</h5>
-                    <ul style="margin-top: 0px; " class="md-body-1 ">
-                        <li>{{event.details.rules}}</li>
-                    </ul>
-                </p>
-                <md-button class="md-icon-button " ng-click="heart() " aria-label="Favorite ">
-                    <md-icon ng-class="event.Actions.Bookmarked.status? 'pink': '' "  md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }} "></md-icon>
-                </md-button>
-                <span>{{event.Actions.Bookmarked.total}}</span>
-                <md-button class="md-icon-button " ng-click="update() " aria-label="Favorite ">
-                    <md-icon ng-class="event.Actions.Participants.status? 'yellow': '' "  md-svg-icon="{{event.Actions.Participants.status? 'bell-ring' : 'bell-outline' }} "></md-icon>
-                </md-button>
-                <md-button aria-label="website ">
-                    <md-icon md-svg-icon="link "></md-icon>Website</md-button>
+<md-dialog style="min-width:85%;min-height:95%;overflow: visible;">
+    <div layout="column" class="md-padding">
+        <div layout="row">
+            <!-- <img style="max-width: 100%;max-height: 100%" ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}}" class="md-card-image" alt="Event title "> -->
+            <div flex="60">
+            <img style="max-width: 100%;max-height: 100%" ng-src="http://thapar.brinjal.in/superadmin/eventimg/951.jpg" class="md-card-image" alt="Event title ">
+            </div>
+            <div layout="column" flex="40">
+                <span class="md-title" style="color: #666A73;">15 May</span>
+                <h1 class="md-title">{{event.title}}</h1>
+                <span class="md-subhead" style="color: #666A73;">by Thapar university</span>
+                <span flex></span>
+                <span class="md-subhead">Price : Free</span>
             </div>
         </div>
+            <md-divider></md-divider>
+        <div layout="row">
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="heart(event, $index)" aria-label="Favorite ">
+                <md-icon ng-class="event.Actions.Bookmarked.status? 'pink':''" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>
+            </md-button>
+            <span>{{event.Actions.Bookmarked.total}}</span>
+            <md-button class="md-icon-button" ng-click="update(event, $index)" aria-label="Favorite ">
+                <md-icon ng-class="event.Actions.Participants.status? 'blue':''" md-svg-icon="{{event.Actions.Participants.status? 'account-plus' : 'account-check' }}"></md-icon>
+            </md-button>
+        </div>
+            <md-divider></md-divider>
+        <div layout="row">
+            <div layout="column" flex="60">
+                <span class="md-subhead">Description</span>
+                <p>{{event.details.description}}</p>
+            </div>
+            <div layout="column" flex="40">
+                <h4 class="md-subhead">Date and Time</h4>
+                <span>Mon, May 15, 2017, 7:00 AM</span>
+                <span>Thu, May 18, 2017, 5:00 PM IST</span>
+                <h4 class="md-subhead">Location</h4>
+                <p class="md-body-2">Hyderabad International Convention Centre</p>
+            </div>
+        </div>
+        <div layout="row">
+            <span ng-repeat="skill in [1,2,3,4,5]" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">tag</span>
+        </div>
     </div>
-    <md-button aria-label="bookmark " id="left " ng-click="showEvent($event, index-1, 'left', 'right') ">
-        <md-icon class="white " md-svg-icon="chevron-left ">
-            <md-button>
+    <md-button aria-label="bookmark" style="background: #fff;position: fixed;left:-9%;top:47%;" id="left" ng-click="showEvent($event, index-1, 'left', 'right')">
+        <md-icon md-svg-icon="chevron-left">
+    </md-button>
 </md-dialog>
-<md-button aria-label="bookmark " id="right " ng-click="showEvent($event, index+1, 'right', 'left') ">
-    <md-icon md-svg-icon="chevron-right ">
-        <md-button>
+<md-button aria-label="bookmark" style="background: #fff;position: absolute;right:0" id="right" ng-click="showEvent($event, index+1, 'right', 'left')">
+    <md-icon md-svg-icon="chevron-right">
+</md-button>
