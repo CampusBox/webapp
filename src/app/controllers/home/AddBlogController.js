@@ -7,12 +7,13 @@
             'Upload',
             '$sce',
             '$timeout',
+            '$mdDialog',
             AddBlogController
         ]);
 
-    function AddBlogController($scope, Upload, $sce, $timeout) {
+    function AddBlogController($scope, Upload, $sce, $timeout, $mdDialog) {
         var vm = this;
-
+        $scope.progress = 0;
         $scope.content = {};
         $scope.title = "";
         $scope.body = "";
@@ -54,7 +55,18 @@
             { 'title': 'Webites', 'id': 1, 'intrested': false },
             { 'title': 'Apps', 'id': 1, 'intrested': false }
         ];
-        $scope.toggle = function(item, list) {
+        $scope.contents = [
+
+            { 'title': 'Text', 'icon': 'comment-text' },
+            { 'title': 'Image', 'icon': 'image' },
+            { 'title': 'Link', 'icon': 'link-variant' },
+            { 'title': 'embed', 'icon': 'code-tags' },
+            { 'title': 'audio', 'icon': 'soundcloud' },
+            { 'title': 'youtube', 'icon': 'youtube-play' },
+            { 'title': 'vimeo', 'icon': 'vimeo' }
+        ];
+        $scope.selectType = function(item, list) {
+            $scope.progress = 1;
             var idx = list.indexOf(item);
             if (idx > -1) {
                 list.splice(idx, 1);
@@ -66,8 +78,21 @@
             $scope.interests = list;
             $scope.continue = ($scope.interests.length > 3);
         };
+        $scope.addItem = function(ev) {
+            $mdDialog.show({
+                controller: 'ParticipantsController',
+                templateUrl: 'app/views/partials/addItem.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                locals: {
+                    participants: $scope.events
+                },
+                clickOutsideToClose: true,
+            })
+        };
 
-        
+  
+
         $scope.getSoundCloudInfo = function(url) {
             var regexp = /^https?:\/\/(soundcloud\.com|snd\.sc)\/(.*)$/;
             return url.match(regexp) && url.match(regexp)[2]
@@ -77,7 +102,7 @@
             $scope.mediaType = "";
             if (videoid != null) {
                 $scope.mediaType = "youtube";
-                $scope.embedUrl = "https://www.youtube.com/embed/" + videoid[1];
+                $scope.embedUrl = "//www.youtube.com/embed/" + videoid[1];
                 $scope.embedUrl = $sce.trustAsResourceUrl($scope.embedUrl);
                 console.log($scope.embedUrl);
             } else {
@@ -85,7 +110,7 @@
                 var videoid = $scope.url.match(/https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/);
                 if (videoid != null) {
                     $scope.mediaType = "vimeo";
-                    $scope.embedUrl = "https://player.vimeo.com/video/" + videoid[3];
+                    $scope.embedUrl = "//player.vimeo.com/video/" + videoid[3];
                     console.log($scope.embedUrl);
                     $scope.embedUrl = $sce.trustAsResourceUrl($scope.embedUrl);
                 } else {
@@ -98,7 +123,7 @@
             $scope.mediaType = "";
             if ($scope.getSoundCloudInfo($scope.url)) {
                 $scope.mediaType = "soundcloud";
-                $scope.embedUrl = "https://w.soundcloud.com/player/?url=" + $scope.url;
+                $scope.embedUrl = "//w.soundcloud.com/player/?url=" + $scope.url;
                 $scope.embedUrl = $sce.trustAsResourceUrl($scope.embedUrl);
                 var widgetIframe = document.getElementById('sc-widget'),
                     widget = SC.Widget(widgetIframe),
@@ -118,7 +143,7 @@
         }
         $scope.upload = function(dataUrl, name) {
             Upload.upload({
-                url: 'https://upload.campusbox.org/imageUpload.php',
+                url: '//upload.campusbox.org/imageUpload.php',
                 method: 'POST',
                 file: Upload.dataUrltoBlob(dataUrl, name),
                 data: {

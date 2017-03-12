@@ -1,0 +1,16 @@
+<md-dialog aria-label="Dog name" ng-class="dialog.css" class="_md md-default-theme md-transition-in" role="dialog" >
+    <md-dialog-content class="md-dialog-content" role="document" tabindex="-1" id="dialogContent_7">
+        <h2 class="md-title ng-binding">Adding new</h2>
+        <div ng-if="::!dialog.mdHtmlContent" class="md-dialog-content-body ng-scope">
+            <p class="ng-binding">Paste the URL to the content here</p>
+        </div>
+        <md-input-container md-no-float="" class="md-prompt-input-container ng-scope md-input-has-placeholder md-default-theme">
+            <input  md-autofocus="" ng-model="dialog.result" placeholder="eg https://youtube.com?ver=afjsl56sdf5ds6f" class="ng-pristine ng-valid md-autofocus md-input ng-empty ng-touched" aria-label="url" id="input_8" aria-invalid="false">
+            <div class="md-errors-spacer"></div>
+        </md-input-container>
+       </md-dialog-content>
+    <md-dialog-actions>
+        <button class="md-primary md-button " ng-click="dialog.abort()">Cancel</button>
+        <button class="md-primary md-button" ng-click="dialog.hide()" >Add Link</button>
+    </md-dialog-actions>
+</md-dialog>

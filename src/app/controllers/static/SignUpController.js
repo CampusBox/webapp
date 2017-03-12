@@ -15,7 +15,6 @@
         vm.tags = [];
         $scope.skills = loadSkills();
         $scope.signUp.collegeId = 0;
-        $scope.continue = false;
         tokenService.get("colleges").then(function(colleges) {
             $scope.colleges = colleges;
         });
