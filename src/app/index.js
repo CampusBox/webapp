@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload', 'satellizer',
+        'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop', 'angular-jwt', 'infinite-scroll','ngMessages', 'ngTawkTo',
         'ngSanitize', 'ui.router', 'ngMaterial','ngTawkTo', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop', 'angular-jwt', 'infinite-scroll','ngMessages'
     ])
     //remove setellizer
@@ -56,7 +57,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                 abstract: true
             })
             .state('home.myProfile', {
-                url: '/myProfile/:tab',
+                url: '/myProfile/:username/:tab',
                 templateUrl: 'app/views/home/myProfile.html',
                 controller: 'MyProfileController',
                 controllerAs: 'vm',
@@ -128,7 +129,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                 }
             })
             .state('home.profile', {
-                url: '/profile/:studentId',
+                url: '/profile/:username',
                 templateUrl: 'app/views/home/profile.html',
                 controller: 'ProfileController',
                 controllerAs: 'vm',

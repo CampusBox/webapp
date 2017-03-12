@@ -18,8 +18,9 @@
         $scope.title = "";
         $scope.body = "";
         $scope.url = "";
-        $scope.embedUrl = "";
-        $scope.mediaType = "";
+        $scope.media = {};
+        $scope.media.embedUrl = "";
+        $scope.media.mediaType = "";
         $scope.items = [];
         $scope.items[0] = [
             { 'title': 'Articles', 'id': 1, 'intrested': false },
@@ -60,10 +61,10 @@
             { 'title': 'Text', 'icon': 'comment-text' },
             { 'title': 'Image', 'icon': 'image' },
             { 'title': 'Link', 'icon': 'link-variant' },
-            { 'title': 'embed', 'icon': 'code-tags' },
-            { 'title': 'audio', 'icon': 'soundcloud' },
-            { 'title': 'youtube', 'icon': 'youtube-play' },
-            { 'title': 'vimeo', 'icon': 'vimeo' }
+            { 'title': 'Embed', 'icon': 'code-tags' },
+            { 'title': 'Soundcloud', 'icon': 'soundcloud' },
+            { 'title': 'Youtube', 'icon': 'youtube-play' },
+            { 'title': 'Vimeo', 'icon': 'vimeo' }
         ];
         $scope.selectType = function(item, list) {
             $scope.progress = 1;
@@ -78,69 +79,148 @@
             $scope.interests = list;
             $scope.continue = ($scope.interests.length > 3);
         };
-        $scope.addItem = function(ev) {
+        $scope.addItem = function(title) {
             $mdDialog.show({
-                controller: 'ParticipantsController',
+                controller: AddItemController,
                 templateUrl: 'app/views/partials/addItem.html',
                 parent: angular.element(document.body),
-                targetEvent: ev,
+                // targetEvent: ev,
                 locals: {
-                    participants: $scope.events
+                    title: title
                 },
                 clickOutsideToClose: true,
-            })
+            }).then(function(media) {
+                console.log(media.mediaType);
+                console.log(media.embedUrl);
+                $scope.media = media;
+            }, function() {
+                console.log('else');
+            });
         };
 
-  
-
-        $scope.getSoundCloudInfo = function(url) {
-            var regexp = /^https?:\/\/(soundcloud\.com|snd\.sc)\/(.*)$/;
-            return url.match(regexp) && url.match(regexp)[2]
-        }
-        $scope.submitVideo = function() {
-            var videoid = $scope.url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+        function AddItemController($mdDialog, $scope, Upload, $timeout, title) {
+            $scope.error = '';
+            $scope.url = '';
             $scope.mediaType = "";
-            if (videoid != null) {
-                $scope.mediaType = "youtube";
-                $scope.embedUrl = "//www.youtube.com/embed/" + videoid[1];
-                $scope.embedUrl = $sce.trustAsResourceUrl($scope.embedUrl);
-                console.log($scope.embedUrl);
-            } else {
-                console.log("This is not a youtube link, checking for vimeo");
-                var videoid = $scope.url.match(/https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/);
-                if (videoid != null) {
-                    $scope.mediaType = "vimeo";
-                    $scope.embedUrl = "//player.vimeo.com/video/" + videoid[3];
-                    console.log($scope.embedUrl);
-                    $scope.embedUrl = $sce.trustAsResourceUrl($scope.embedUrl);
-                } else {
-                    console.log("neither youtube nor vimeo detected");
-                    $scope.mediaType = "";
+
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+            $scope.submitUrl = function(url) {
+                $scope.url = url;
+                console.log($scope.url)
+                switch (title) {
+                    case 'Youtube':
+                        $scope.error = '';
+                        $scope.item = {};
+                        var videoid = $scope.url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+                        if (videoid != null) {
+                            $scope.item.mediaType = "youtube";
+                            $scope.item.embedUrl = "//www.youtube.com/embed/" + videoid[1];
+                            $scope.item.embedUrl = $sce.trustAsResourceUrl($scope.item.embedUrl);
+                            $mdDialog.hide($scope.item);
+                        } else {
+                            $scope.error = 'Invalid youtube url';
+                            console.log('Invalid youtube url');
+                        }
+                        break;
+                    case 'Soundcloud':
+                        $scope.error = '';
+                        $scope.item = {};
+                        if ($scope.validateSoundcloud($scope.url)) {
+                            $scope.item.mediaType = "soundcloud";
+                            $scope.item.embedUrl = "//w.soundcloud.com/player/?url=" + $scope.url;
+                            $scope.item.embedUrl = $sce.trustAsResourceUrl($scope.item.embedUrl);
+                            var widgetIframe = document.getElementById('sc-widget'),
+                                widget = SC.Widget(widgetIframe),
+                                newSoundUrl = $scope.embedUrl;
+                            widget.bind(SC.Widget.Events.READY, function() {
+                                // load new widget
+                                widget.bind(SC.Widget.Events.FINISH, function() {
+                                    widget.load(newSoundUrl, {
+                                        show_artwork: false
+                                    });
+                                });
+                            });
+                            $mdDialog.hide($scope.item);
+                        } else {
+                            $scope.error = 'Invalid soundcloud url';
+                            console.log('Invalid soundcloud url');
+                            $scope.mediaType = "";
+                        }
+                        break;
+                    case 'Vimeo':
+                        $scope.error = '';
+                        var videoid = $scope.url.match(/https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/);
+                        if (videoid != null) {
+                            $scope.item = {};
+                            $scope.item.mediaType = "vimeo";
+                            $scope.item.embedUrl = "//player.vimeo.com/video/" + videoid[3];
+                            $scope.item.embedUrl = $sce.trustAsResourceUrl($scope.item.embedUrl);
+                            $mdDialog.hide($scope.item);
+                        } else {
+                            $scope.error = 'Invalid vimeo url';
+                            console.log("Invalid vimeo url");
+                            $scope.mediaType = "";
+                        }
+                        break;
+                    default:
                 }
             }
-        }
-        $scope.submitSoundcloud = function() {
-            $scope.mediaType = "";
-            if ($scope.getSoundCloudInfo($scope.url)) {
-                $scope.mediaType = "soundcloud";
-                $scope.embedUrl = "//w.soundcloud.com/player/?url=" + $scope.url;
-                $scope.embedUrl = $sce.trustAsResourceUrl($scope.embedUrl);
-                var widgetIframe = document.getElementById('sc-widget'),
-                    widget = SC.Widget(widgetIframe),
-                    newSoundUrl = $scope.embedUrl;
-                widget.bind(SC.Widget.Events.READY, function() {
-                    // load new widget
-                    widget.bind(SC.Widget.Events.FINISH, function() {
-                        widget.load(newSoundUrl, {
-                            show_artwork: false
-                        });
-                    });
-                });
-            } else {
-                console.log('Invalid soundcloud url');
-                $scope.mediaType = "";
+            $scope.validateSoundcloud = function(url) {
+                var regexp = /^https?:\/\/(soundcloud\.com|snd\.sc)\/(.*)$/;
+                return url.match(regexp) && url.match(regexp)[2]
             }
         }
+
+        // $scope.getSoundCloudInfo = function(url) {
+        //     var regexp = /^https?:\/\/(soundcloud\.com|snd\.sc)\/(.*)$/;
+        //     return url.match(regexp) && url.match(regexp)[2]
+        // }
+        // $scope.submitVideo = function() {
+        //     var videoid = $scope.url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+        //     $scope.mediaType = "";
+        //     if (videoid != null) {
+        //         $scope.mediaType = "youtube";
+        //         $scope.embedUrl = "//www.youtube.com/embed/" + videoid[1];
+        //         $scope.embedUrl = $sce.trustAsResourceUrl($scope.embedUrl);
+        //         console.log($scope.embedUrl);
+        //     } else {
+        //         console.log("This is not a youtube link, checking for vimeo");
+        //         var videoid = $scope.url.match(/https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/);
+        //         if (videoid != null) {
+        //             $scope.mediaType = "vimeo";
+        //             $scope.embedUrl = "//player.vimeo.com/video/" + videoid[3];
+        //             console.log($scope.embedUrl);
+        //             $scope.embedUrl = $sce.trustAsResourceUrl($scope.embedUrl);
+        //         } else {
+        //             console.log("neither youtube nor vimeo detected");
+        //             $scope.mediaType = "";
+        //         }
+        //     }
+        // }
+        // $scope.submitSoundcloud = function() {
+        //     $scope.mediaType = "";
+        //     if ($scope.getSoundCloudInfo($scope.url)) {
+        //         $scope.mediaType = "soundcloud";
+        //         $scope.embedUrl = "//w.soundcloud.com/player/?url=" + $scope.url;
+        //         $scope.embedUrl = $sce.trustAsResourceUrl($scope.embedUrl);
+        //         var widgetIframe = document.getElementById('sc-widget'),
+        //             widget = SC.Widget(widgetIframe),
+        //             newSoundUrl = $scope.embedUrl;
+        //         widget.bind(SC.Widget.Events.READY, function() {
+        //             // load new widget
+        //             widget.bind(SC.Widget.Events.FINISH, function() {
+        //                 widget.load(newSoundUrl, {
+        //                     show_artwork: false
+        //                 });
+        //             });
+        //         });
+        //     } else {
+        //         console.log('Invalid soundcloud url');
+        //         $scope.mediaType = "";
+        //     }
+        // }
         $scope.upload = function(dataUrl, name) {
             Upload.upload({
                 url: '//upload.campusbox.org/imageUpload.php',
@@ -186,13 +266,11 @@
         }
 
         $scope.publish = function() {
-            $scope.content.mediaType = $scope.mediaType;
-            $scope.content.embedUrl = $scope.embedUrl;
+            $scope.content.media = $scope.media;
             $scope.content.tags = $scope.tags;
             $scope.content.title = $scope.title;
             $scope.content.body = $scope.body;
             console.log($scope.content);
-
         }
 
         // Add tags shit staeted
