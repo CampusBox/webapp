@@ -8,15 +8,17 @@
             '$sce',
             '$timeout',
             '$mdDialog',
+            'tokenService',
             AddBlogController
         ]);
 
-    function AddBlogController($scope, Upload, $sce, $timeout, $mdDialog) {
+    function AddBlogController($scope, Upload, $sce, $timeout, $mdDialog, tokenService) {
         var vm = this;
         $scope.progress = 0;
         $scope.content = {};
         $scope.title = "";
-        $scope.body = "";
+        $scope.body = {};
+        $scope.body.text = "";
         $scope.url = "";
         $scope.media = {};
         $scope.media.embedUrl = "";
@@ -66,36 +68,31 @@
             { 'title': 'Youtube', 'icon': 'youtube-play' },
             { 'title': 'Vimeo', 'icon': 'vimeo' }
         ];
-        $scope.selectType = function(item, list) {
+        $scope.selectType = function(type) {
             $scope.progress = 1;
-            var idx = list.indexOf(item);
-            if (idx > -1) {
-                list.splice(idx, 1);
-            } else {
-                list.push(item);
-                $scope.buttonClass = 'md-primary md-raised';
-            }
-            item.intrested = !item.intrested;
-            $scope.interests = list;
-            $scope.continue = ($scope.interests.length > 3);
+            $scope.content.type = type;
         };
         $scope.addItem = function(title) {
-            $mdDialog.show({
-                controller: AddItemController,
-                templateUrl: 'app/views/partials/addItem.html',
-                parent: angular.element(document.body),
-                // targetEvent: ev,
-                locals: {
-                    title: title
-                },
-                clickOutsideToClose: true,
-            }).then(function(media) {
-                console.log(media.mediaType);
-                console.log(media.embedUrl);
-                $scope.media = media;
-            }, function() {
-                console.log('else');
-            });
+            if (title == "Text") {
+                $scope.progress = 2;
+            } else {
+                $mdDialog.show({
+                    controller: AddItemController,
+                    templateUrl: 'app/views/partials/addItem.html',
+                    parent: angular.element(document.body),
+                    // targetEvent: ev,
+                    locals: {
+                        title: title
+                    },
+                    clickOutsideToClose: true,
+                }).then(function(media) {
+
+                    $scope.progress = 2;
+                    $scope.media = media;
+                }, function() {
+                    console.log('else');
+                });
+            }
         };
 
         function AddItemController($mdDialog, $scope, Upload, $timeout, title) {
@@ -117,7 +114,7 @@
                         if (videoid != null) {
                             $scope.item.mediaType = "youtube";
                             $scope.item.embedUrl = "//www.youtube.com/embed/" + videoid[1];
-                            $scope.item.embedUrl = $sce.trustAsResourceUrl($scope.item.embedUrl);
+                            $scope.item.embedUrlIframe = $sce.trustAsResourceUrl($scope.item.embedUrl);
                             $mdDialog.hide($scope.item);
                         } else {
                             $scope.error = 'Invalid youtube url';
@@ -130,7 +127,7 @@
                         if ($scope.validateSoundcloud($scope.url)) {
                             $scope.item.mediaType = "soundcloud";
                             $scope.item.embedUrl = "//w.soundcloud.com/player/?url=" + $scope.url;
-                            $scope.item.embedUrl = $sce.trustAsResourceUrl($scope.item.embedUrl);
+                            $scope.item.embedUrlIframe = $sce.trustAsResourceUrl($scope.item.embedUrl);
                             var widgetIframe = document.getElementById('sc-widget'),
                                 widget = SC.Widget(widgetIframe),
                                 newSoundUrl = $scope.embedUrl;
@@ -156,7 +153,7 @@
                             $scope.item = {};
                             $scope.item.mediaType = "vimeo";
                             $scope.item.embedUrl = "//player.vimeo.com/video/" + videoid[3];
-                            $scope.item.embedUrl = $sce.trustAsResourceUrl($scope.item.embedUrl);
+                            $scope.item.embedUrlIframe = $sce.trustAsResourceUrl($scope.item.embedUrl);
                             $mdDialog.hide($scope.item);
                         } else {
                             $scope.error = 'Invalid vimeo url';
@@ -173,54 +170,6 @@
             }
         }
 
-        // $scope.getSoundCloudInfo = function(url) {
-        //     var regexp = /^https?:\/\/(soundcloud\.com|snd\.sc)\/(.*)$/;
-        //     return url.match(regexp) && url.match(regexp)[2]
-        // }
-        // $scope.submitVideo = function() {
-        //     var videoid = $scope.url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
-        //     $scope.mediaType = "";
-        //     if (videoid != null) {
-        //         $scope.mediaType = "youtube";
-        //         $scope.embedUrl = "//www.youtube.com/embed/" + videoid[1];
-        //         $scope.embedUrl = $sce.trustAsResourceUrl($scope.embedUrl);
-        //         console.log($scope.embedUrl);
-        //     } else {
-        //         console.log("This is not a youtube link, checking for vimeo");
-        //         var videoid = $scope.url.match(/https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/);
-        //         if (videoid != null) {
-        //             $scope.mediaType = "vimeo";
-        //             $scope.embedUrl = "//player.vimeo.com/video/" + videoid[3];
-        //             console.log($scope.embedUrl);
-        //             $scope.embedUrl = $sce.trustAsResourceUrl($scope.embedUrl);
-        //         } else {
-        //             console.log("neither youtube nor vimeo detected");
-        //             $scope.mediaType = "";
-        //         }
-        //     }
-        // }
-        // $scope.submitSoundcloud = function() {
-        //     $scope.mediaType = "";
-        //     if ($scope.getSoundCloudInfo($scope.url)) {
-        //         $scope.mediaType = "soundcloud";
-        //         $scope.embedUrl = "//w.soundcloud.com/player/?url=" + $scope.url;
-        //         $scope.embedUrl = $sce.trustAsResourceUrl($scope.embedUrl);
-        //         var widgetIframe = document.getElementById('sc-widget'),
-        //             widget = SC.Widget(widgetIframe),
-        //             newSoundUrl = $scope.embedUrl;
-        //         widget.bind(SC.Widget.Events.READY, function() {
-        //             // load new widget
-        //             widget.bind(SC.Widget.Events.FINISH, function() {
-        //                 widget.load(newSoundUrl, {
-        //                     show_artwork: false
-        //                 });
-        //             });
-        //         });
-        //     } else {
-        //         console.log('Invalid soundcloud url');
-        //         $scope.mediaType = "";
-        //     }
-        // }
         $scope.upload = function(dataUrl, name) {
             Upload.upload({
                 url: '//upload.campusbox.org/imageUpload.php',
@@ -266,11 +215,20 @@
         }
 
         $scope.publish = function() {
-            $scope.content.media = $scope.media;
+            $scope.content.items = [];
+            $scope.content.items.push($scope.media);
+            $scope.body.mediaType = "text";
+            $scope.content.items.push($scope.body);
             $scope.content.tags = $scope.tags;
             $scope.content.title = $scope.title;
             $scope.content.body = $scope.body;
             console.log($scope.content);
+            tokenService.post("addContent", $scope.content)
+                .then(function(abc) {
+                    console.log(abc);
+                }).catch(function(abc) {
+                    console.log(abc);
+                });
         }
 
         // Add tags shit staeted

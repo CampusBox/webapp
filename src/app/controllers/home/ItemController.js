@@ -41,7 +41,7 @@
                     $scope.mediaType = "";
                 }
             }
-        }
+        };
         $scope.submitSoundcloud = function() {
             $scope.mediaType = "";
             if ($scope.getSoundCloudInfo($scope.url)) {
@@ -63,7 +63,7 @@
                 console.log('Invalid soundcloud url');
                 $scope.mediaType = "";
             }
-        }
+        };
         $scope.upload = function(dataUrl, name) {
             Upload.upload({
                 url: '//upload.campusbox.org/imageUpload.php',
@@ -81,7 +81,7 @@
             }, function(evt) {
                 $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
             });
-        }
+        };
         $scope.uploadFiles = function(files, errFiles) {
             $scope.files = files;
             $scope.errFiles = errFiles;
@@ -106,7 +106,7 @@
                         evt.loaded / evt.total));
                 });
             });
-        }
+        };
 
         $scope.publish = function() {
             $scope.content.mediaType = $scope.mediaType;
@@ -116,7 +116,7 @@
             $scope.content.body = $scope.body;
             console.log($scope.content);
 
-        }
+        };
     }
 
 
