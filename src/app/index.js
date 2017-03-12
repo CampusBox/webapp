@@ -240,8 +240,8 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
         });
 
         $authProvider.google({
+            url: "http://localhost/app/public/login",
             clientId: '702228530885-vi264d7g6v5ivbcmebjfpomr0hmliomd.apps.googleusercontent.com',
-            url: '',
             authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth'
         });
         $authProvider.linkedin({

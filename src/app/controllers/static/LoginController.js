@@ -41,7 +41,7 @@
         $rootScope.$on('event:social-sign-in-success', function(event, response) {
             console.log(response);
             $scope.login = response;
-            $scope.login.type = "google";
+            $scope.login.type = response.provider;
             console.log($scope.login);
 
             tokenService.post("login", $scope.login)
