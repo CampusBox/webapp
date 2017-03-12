@@ -5,12 +5,17 @@
         .service('allDataService', [
             '$http',
             '$q',
-            function($http, $q, $location) {
+            function($http, $q, $location, $scope) {
 
-                var serviceBase = 'http://api.linkpreview.net/?key=58c3b113acaa86a9edcb7b63821802aa44d35d531c9fc&q=';
+                var serviceBase = 'http://api.linkpreview.net/?key=58c3b113acaa86a9edcb7b63821802aa44d35d531c9fc&dataType=jsonp&q=';
 
                 var obj = {};
 
+                // $scope.config = function() {
+                //     return {
+                //         dataType: 'jsonp'
+                //     };
+                // };
                 obj.get = function(q) {
                     return $http.get(serviceBase + q).then(function(results) {
                         return results.data;

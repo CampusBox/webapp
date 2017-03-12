@@ -128,7 +128,8 @@
                 </div>
             </md-tab>
             <md-tab label="Poster">
-                <md-button class="md-primary" ngf-select ng-model="picFile" accept="image/*">
+                <md-button class="md-primary" ngf-select ng-model="picFile" accept="image/*" ngf-resize="{width: 50, height: 100, quality: .8, type: 'image/jpeg',
+               ratio: '1:2', centerCrop: true, restoreExif: false}">
                     Select Picture</md-button>
                 <div layout="row">
                     <div ngf-drop ng-model="picFile" ngf-pattern="image/*" class="cropArea">

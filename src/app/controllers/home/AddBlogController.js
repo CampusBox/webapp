@@ -8,11 +8,11 @@
             '$sce',
             '$timeout',
             '$mdDialog',
-            'tokenService',
+            'allDataService',
             AddBlogController
         ]);
 
-    function AddBlogController($scope, Upload, $sce, $timeout, $mdDialog, tokenService) {
+    function AddBlogController($scope, Upload, $sce, $timeout, $mdDialog, allDataService) {
         var vm = this;
         $scope.progress = 0;
         $scope.content = {};
@@ -21,8 +21,8 @@
         $scope.body.text = "";
         $scope.url = "";
         $scope.media = {};
-        $scope.media.embedUrl = "";
-        $scope.media.mediaType = "";
+        $scope.media.embedUrl = $scope.media.mediaType = "";
+        $scope.linkPreview = {};
         $scope.items = [];
         $scope.items[0] = [
             { 'title': 'Articles', 'id': 1, 'intrested': false },
@@ -161,6 +161,20 @@
                             $scope.mediaType = "";
                         }
                         break;
+                    case 'Link':
+                        $scope.error = '';
+                        if ($scope.validateUrl($scope.url)) {
+                            var item = {};
+                            item.mediaType = 'link';
+                            allDataService.get($scope.url)
+                                .then(function(blogs) {
+                                    item.embedUrl = blogs.data;        
+                                });
+                            $mdDialog.hide(item);
+                        } else {
+                        $scope.error = 'Please enter a valid url';
+                        }
+                        break;
                     default:
                 }
             }
@@ -168,8 +182,14 @@
                 var regexp = /^https?:\/\/(soundcloud\.com|snd\.sc)\/(.*)$/;
                 return url.match(regexp) && url.match(regexp)[2]
             }
+            $scope.validateUrl = function(url) {
+                var res = url.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+                if (res == null)
+                    return false;
+                else
+                    return true;
+            }
         }
-
         $scope.upload = function(dataUrl, name) {
             Upload.upload({
                 url: '//upload.campusbox.org/imageUpload.php',
@@ -230,6 +250,7 @@
                     console.log(abc);
                 });
         }
+
 
         // Add tags shit staeted
         $scope.readonly = false;
