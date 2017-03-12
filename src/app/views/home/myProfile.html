@@ -1,17 +1,17 @@
 <div layout="row" layout-xs="column">
     <md-card flex="30" flex-xs="100">
         <center>
-            <img style="border-radius: 50%; width: 40%; margin-top:20px;" ng-src="{{user.url}}" class="md-card-image" alt="Washed Out">
+            <img style="border-radius: 50%; width: 40%; margin-top:20px;" ng-src="{{student.photo}}" class="md-card-image" alt="Washed Out">
             <md-card-title>
                 <md-card-title-text>
-                    <span class="md-headline">{{user.name}}</span>
-                    <span class="md-subhead">Thapar university</span>
+                    <span class="md-headline">{{student.name}}</span>
+                    <span class="md-subhead">{{student.college.name}}</span>
                 </md-card-title-text>
             </md-card-title>
         </center>
         <md-card-content>
             <p class="md-body-2">
-                Web Developer, wants to create meaningful projects to positively impact the world.
+                {{student.subtitle}}
             </p>
             <md-divider></md-divider>
             <div>
@@ -22,7 +22,7 @@
                     </md-button>
                 </p>
                 <form name="skillsForm">
-                    <md-chips name="skills" ng-model="selectedVegetables" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
+                    <md-chips name="skills" ng-model="student.Skills.data" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
                         <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Enter top 5 Skills">
                             <span md-highlight-text="searchText">{{item.name}}</span>
                         </md-autocomplete>
@@ -78,7 +78,7 @@
         <md-card-content>
             <md-content>
                 <md-tabs md-dynamic-height md-border-bottom md-selected="tab">
-                    <md-tab label="students Uploaded by you">
+                    <md-tab label="Events Uploaded">
                         <md-content class="md-padding">
                             <!-- TODO: Replace table to table component when https://github.com/angular/material/issues/796 will closed -->
                             <div layout="row" ng-hide="!vm.activated" layout-sm="column" layout-align="space-around">
@@ -99,43 +99,13 @@
                             </md-content>
                         </md-content>
                     </md-tab>
-                    <md-tab label="Projects">
-                        <md-content class="md-padding">
-                            <md-content>
-                                <md-card>
-                                    <md-card-title>
-                                        <md-card-title-text>
-                                            <span class="md-headline">Project Title</span>
-                                            <span class="md-subhead">Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description </span>
-                                        </md-card-title-text>
-                                    </md-card-title>
-                                    <md-card-actions layout="row" layout-align="end center">
-                                        <md-button class="md-icon-button">
-                                            <md-icon md-svg-icon="star-outline"></md-icon>
-                                        </md-button>
-                                        <p>200</p>
-                                    </md-card-actions>
-                                </md-card>
-                            </md-content>
+                    <md-tab label="Content Uploaded">
                     </md-tab>
-                    <md-tab label="Blogs">
-                        <md-content class="md-padding">
-                            <div layout="row" ng-hide="!vm.activated" layout-sm="column" layout-align="space-around">
-                                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-                            </div>
-                            </p>
-                            <md-content>
-                                <md-list>
-                                    <md-list-item ng-click="showAdvanced($blogs)" class="secondary-button-padding" ng-repeat="blogs in vm.blogs ">
-                                        <p>{{blogs.name}}</p>
-                                        <md-button class=" md-icon-button" aria-label="description" ng-click="showAdvanced($blogs)" md-ripple-size="full">
-                                            <md-icon md-svg-icon="pencil"></md-icon>
-                                            <md-divider md-inset ng-if="!$last"></md-divider>
-                                    </md-list-item>
-                                </md-list>
-                            </md-content>
-                        </md-content>
+                    <md-tab label="Followers">
                     </md-tab>
+                    <md-tab label="Following">
+                    </md-tab>
+
                 </md-tabs>
                 </md-content>
     </md-card>

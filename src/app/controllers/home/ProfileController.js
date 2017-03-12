@@ -9,15 +9,17 @@
             '$stateParams',
             '$state',
             'allDataService',
+            '$location',
             ProfileController
         ]);
 
-    function ProfileController($mdDialog, $scope, tokenService, $stateParams, $state, allDataService) {
+    function ProfileController($mdDialog, $scope, tokenService, $stateParams, $state, allDataService, $location) {
         var vm = this;
 
         $scope.followers = [];
         $scope.demoFollow = [{ 'status:': true }];
-        $scope.username = $stateParams.studentId;
+        $scope.username = $stateParams.username;
+        console.log($scope.username);
         $scope.showAdvanced = function(ev) {
             $mdDialog.show({
                     controller: DialogController,
@@ -90,8 +92,12 @@
                     }
                 });
             }
-        }
+        };
+        $scope.openProfile = function(stuent) {
+            $location.path('/profile'+ student.username);
+        };
         $scope.heart = function(event, $index) {
+            console.log('heart called');
             $scope.profile.Events.data[$index].Actions.Bookmarked.status = !$scope.profile.Events.data[$index].Actions.Bookmarked.status;
             if ($scope.profile.Events.data[$index].Actions.Bookmarked.status) {
                 $scope.profile.Events.data[$index].Actions.Bookmarked.total += 1;

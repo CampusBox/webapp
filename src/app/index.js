@@ -127,7 +127,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                 }
             })
             .state('home.profile', {
-                url: '/profile/:usename',
+                url: '/profile/:username',
                 templateUrl: 'app/views/home/profile.html',
                 controller: 'ProfileController',
                 controllerAs: 'vm',

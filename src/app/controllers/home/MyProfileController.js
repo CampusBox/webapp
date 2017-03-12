@@ -15,8 +15,9 @@
         var vm = this;
         $scope.tab = $stateParams.tab;
         $scope.username = $stateParams.username;
-        console.log($scope.tab);
-        console.log($scope.username);
+        $scope.demoFollow.status = true;
+
+
         $scope.showAdvanced = function(ev) {
             $mdDialog.show({
                 controller: DialogController,
@@ -51,21 +52,41 @@
             })
         };
         $scope.deactivate = function(student) {
-            
-        };
-        // SKILLS CHIP SHIT STARTED
 
+        };
+        $scope.follow = function() {
+                $scope.demoFollow.status = !$scope.demoFollow.status;
+                if ($scope.demoFollow.status) {
+                    // SEND FOLLOWER ID AND FOLLOWING ID IN POST
+                    tokenService.post('studentFollow/').then(function(result) {
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                } else {
+                    // SEND FOLLOWER ID IN DELETE
+                    tokenService.delete('studentFollow/').then(function(result) {
+                        console.log('post request');
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                }
+            }
+            // SKILLS CHIP SHIT STARTED
+        tokenService.get("skills")
+            .then(function(tableData) {
+                $scope.skills = tableData.data;
+            });
         $scope.readonly = true;
         $scope.removable = false;
         $scope.selectedItem = null;
         $scope.searchText = null;
         $scope.querySearch = querySearch;
-        vegetables = loadVegetables();
-        $scope.selectedVegetables = [{
-            'name': 'Broccoli'
-        }, {
-            'name': 'Cabbage'
-        }];
         numberChips = [];
         numberChips2 = [];
         numberBuffer = '';
@@ -89,11 +110,30 @@
          * Search for vegetables.
          */
         function querySearch(query) {
-            console.log('query funciton called');
-            var results = query ? vegetables.filter(createFilterFor(query)) : [];
-            return results;
+            // var results = query ? vegetables.filter(createFilterFor(query)) : [];
+
+            if (query) {
+                arrayObjectIndexOf($scope.skills, query);
+                results = $scope.skills.filter(arrayObjectIndexOf($scope.skills, query));
+                // results = [];
+                return results;
+            } else {
+                results = [];
+                return results;
+            }
         }
 
+        function arrayObjectIndexOf(myArray, searchTerm) {
+            console.log('myArray[i].name.match(searchTerm)');
+            for (var i = 0, len = myArray.length; i < len; i++) {
+                // if (myArray[i].name == searchTerm) {
+                console.log();
+                if (myArray[i].name.match(searchTerm) != null) {
+                    return i;
+                }
+            }
+            return -1;
+        }
         /**
          * Create filter function for a query string
          */
@@ -101,30 +141,28 @@
             var lowercaseQuery = angular.lowercase(query);
 
             return function filterFn(vegetable) {
-                return (vegetable._lowername.indexOf(lowercaseQuery) === 0) ||
-                    (vegetable._lowertype.indexOf(lowercaseQuery) === 0);
+                return (vegetable.name.indexOf(lowercaseQuery) === 0)
             };
 
         }
 
-        function loadVegetables() {
-            var veggies = [{
-                'name': 'Broccoli'
-            }, {
-                'name': 'Cabbage'
-            }, {
-                'name': 'Carrot'
-            }, {
-                'name': 'Lettuce'
-            }, {
-                'name': 'Spinach'
-            }];
-
-            return veggies.map(function(veg) {
-                veg._lowername = veg.name.toLowerCase();
-                return veg;
-            });
-        }
+        // function loadVegetables() {
+        //     var veggies = [{
+        //         'name': 'Broccoli'
+        //     }, {
+        //         'name': 'Cabbage'
+        //     }, {
+        //         'name': 'Carrot'
+        //     }, {
+        //         'name': 'Lettuce'
+        //     }, {
+        //         'name': 'Spinach'
+        //     }];
+        //     return veggies.map(function(veg) {
+        //         veg._lowername = veg.name.toLowerCase();
+        //         return veg;
+        //     });
+        // }
         $scope.skillsEdit = function() {
             $scope.readonly = !$scope.readonly;
             $scope.removable = !$scope.removable;
