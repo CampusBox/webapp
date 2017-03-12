@@ -3,13 +3,31 @@
   angular
        .module('app')
        .controller('StaticController', [
-          'navService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state', '$mdToast',
+          'navService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state','$scope', '$mdToast','tawkToService',
           StaticController
        ]);
 
-  function StaticController(navService, $mdSidenav, $mdBottomSheet, $log, $q, $state, $mdToast) {
+  function StaticController(navService, $mdSidenav, $mdBottomSheet, $log, $q, $state,$scope, $mdToast,tawkToService) {
     
     var vm = this;
+
+    vm.visitor = {};
+    vm.loaded = false;
+
+    $scope.$on('TAWKTO:onLoad', function () {
+      $scope.$apply(setVisitor);
+      vm.loaded = true;
+    });
+
+    //YOUR TAWK.TO ID GOES HERE
+    vm.id = "58c4061293cfd3557208c461";
+
+    vm.toggle = tawkToService.toggle;
+    vm.toggleVisibility = tawkToService.toggleVisibility;
+
+    function setVisitor() {
+      vm.visitor = tawkToService.setVisitor('ngTawkTo Demo User', 'demo@demo.com');
+    }
 
     vm.menuItems = [ ];
     vm.selectItem = selectItem;

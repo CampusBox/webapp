@@ -7,7 +7,7 @@
             '$q',
             function($http, $q, $location) {
 
-                var serviceBase = 'http://thaparexpress.com/api/v1/';
+                var serviceBase = 'http://api.linkpreview.net/?key=58c3b113acaa86a9edcb7b63821802aa44d35d531c9fc&q=';
 
                 var obj = {};
 

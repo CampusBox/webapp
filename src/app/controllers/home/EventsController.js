@@ -19,7 +19,7 @@
         $scope.grid = false;
         $scope.width = 18;
         $scope.events = [];
-        $scope.filters=[];
+        $scope.filters = [];
         $scope.showEvent = function(ev, index) {
             $mdDialog.show({
                     controller: 'SingleEventController',
@@ -47,7 +47,7 @@
         $scope.report = function() {
             console.log('testing report function');
         }
-      
+
         $scope.heart = function(event, $index) {
             $scope.events[$index].Actions.Bookmarked.status = !$scope.events[$index].Actions.Bookmarked.status;
             if ($scope.events[$index].Actions.Bookmarked.status) {
@@ -100,14 +100,16 @@
 
 
         $scope.myPagingFunction = function() {
-            $scope.serverBusy = true;
-            tokenService.get("events")
-                .then(function(tableData) {
-            console.log('events called');
-                    $scope.serverBusy = false;
-                    $scope.events = $scope.events.concat(tableData.data);
-                    console.log($scope.events);
-                });
+            if ($scope.serverBusy == false) {
+                $scope.serverBusy = true;
+                tokenService.get("events")
+                    .then(function(tableData) {
+                        console.log('events called');
+                        $scope.serverBusy = true;
+                        $scope.events = $scope.events.concat(tableData.data);
+                        console.log($scope.events);
+                    });
+            }
         }
         $scope.searchTerm;
         $scope.clearSearchTerm = function() {

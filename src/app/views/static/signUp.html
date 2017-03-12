@@ -1,34 +1,6 @@
-<style type="text/css">
-.interest {
-    background-color: rgba(158, 158, 158, 0.4);
-    border-radius: 15px;
-    text-transform: none !important;
-}
-
-.interest_selected {
-    background-color: #f96262 !important;
-    border-radius: 15px;
-    text-transform: none !important;
-    color: #fff;
-}
-
-.hint {
-    /* Position the hint */
-    /* Copy styles from ng-messages */
-    font-size: 12px;
-    line-height: 14px;
-    transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
-    /* Set our own color */
-    color: grey;
-}
-
-.login-box {
-    min-width: 50%
-}
-</style>
 <div layout="column" layout-align="center center">
     <img ng-src="assets/images/logo.png" style="max-width:200px">
-    <p class="md-display-1" style="font-weight: 300">Welcome to CampusBox</p>
+    <p class="md-display-1" hide-xs style="font-weight: 300">Welcome to CampusBox</p>
     <div class="login-box md-whiteframe-z1" layout="column">
         <md-progress-linear md-mode="determinate" value="{{currentState*33}}"></md-progress-linear>
         <!--  <md-toolbar ng-show="currentState==2">
@@ -36,42 +8,73 @@
         <span>Welcome {{user.name}}</span>
       </h2>
         </md-toolbar> -->
-        <md-content ng-show="currentState==1" class="md-p adding autocomplete" layout="column">
+        <div ng-show="currentState==1" class="md-p adding autocomplete" layout="column">
             <center>
                 <img ng-src="{{user.imageUrl}}" alt="" style="border-radius: 50%; height: auto;width: 20%">
                 <p class="md-headline">You are setting up a new student account.</p>
                 <p class="md-title">Select atleast 3 topics to
                     <br>personalise your content stream.</p>
-                    <p>Already have an account ? <a ui-sref='static.login'>Login here</a></p>
             </center>
             <form>
-                <div>
-                    <center layout-align="center">
-                        <span ng-repeat="item in items track by $index">
-                        
-                            <md-button  ng-class="item.intrested?'interest_selected':'interest'" ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
-                                <!-- <md-checkbox >
-                            </md-checkbox> -->
+                <center>
+                    <div flex layout="row" layout-align="center center">
+                        <span ng-repeat="item in items1 track by $index">                        
+                            <md-button  ng-class="item.intrested?'interest_selected':'interest'" ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">                        
                                 {{ item.title }}
                             </md-button>
-                            <br ng-show="{{$index==3 || $index==8|| $index==12 ||$index==17 || $index==21  }}">
+                            <!-- <br ng-show="{{$index==3 || $index==8|| $index==12 ||$index==17 || $index==21  }}"> -->
                     </span>
-                    </center>
-                </div>
+                    </div>
+                    <div flex layout="row" layout-align="center center">
+                        <span ng-repeat="item in items2 track by $index">                        
+                            <md-button  ng-class="item.intrested?'interest_selected':'interest'" ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">                        
+                                {{ item.title }}
+                            </md-button>
+                            <!-- <br ng-show="{{$index==3 || $index==8|| $index==12 ||$index==17 || $index==21  }}"> -->
+                    </span>
+                    </div>
+                    <div flex layout="row" layout-align="center center">
+                        <span ng-repeat="item in items3 track by $index">                        
+                            <md-button  ng-class="item.intrested?'interest_selected':'interest'" ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">                        
+                                {{ item.title }}
+                            </md-button>
+                            <!-- <br ng-show="{{$index==3 || $index==8|| $index==12 ||$index==17 || $index==21  }}"> -->
+                    </span>
+                    </div>
+                    <div flex layout="row" layout-align="center center">
+                        <span ng-repeat="item in items4 track by $index">                        
+                            <md-button  ng-class="item.intrested?'interest_selected':'interest'" ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">                        
+                                {{ item.title }}
+                            </md-button>
+                            <!-- <br ng-show="{{$index==3 || $index==8|| $index==12 ||$index==17 || $index==21  }}"> -->
+                    </span>
+                    </div>
+                    <div flex layout="row" layout-align="center center">
+                        <span ng-repeat="item in items5 track by $index">                        
+                            <md-button  ng-class="item.intrested?'interest_selected':'interest'" ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">                        
+                                {{ item.title }}
+                            </md-button>
+                            <!-- <br ng-show="{{$index==3 || $index==8|| $index==12 ||$index==17 || $index==21  }}"> -->
+                    </span>
+                    </div>
+                </center>
                 <div class="errors" ng-messages="register.fruitName.$error">
                     <!-- <div ng-message="md-max-chips">Maximum number of chips reached.</div> -->
                 </div>
             </form>
             <br>
+            <center>
+                <p>Already have an account ? <a ui-sref='static.login'>Login here</a></p>
+            </center>
             <div layout="row" flex>
-                <md-button flex="60" flex-offset="20" ng-diabled="continue" style="float:right" ng-click="currentState=3;" class="md-raised md-primary">
+                <md-button flex="60" flex-offset="20" ng-disabled="interests.length<3" style="float:right" ng-click="currentState=3;" class="md-raised md-primary">
                     Continue
                 </md-button>
             </div>
             <br>
             <br>
-        </md-content>
-        <md-content ng-show="currentState==2" class="md-padding autocomplete" layout="column">
+        </div>
+        <div ng-show="currentState==2" class="md-padding autocomplete" layout="column">
             <div>
                 <md-button style="position: absolute;" ng-click="currentState=1;" class="md-primary">
                     <md-icon md-svg-icon="left-arrow"></md-icon>
@@ -99,7 +102,7 @@
                 <md-subheader class="md-no-sticky">Popular talents</md-subheader>
                 <md-tabs md-dynamic-height md-border-bottom>
                     <md-tab label="Sports">
-                        <md-content class="md-padding">
+                        <div class="md-padding">
                             <md-list class="fixedRows" flex layout="row" layout-wrap layout-align="center center">
                                 <md-list-item class="md-2-line contact-item" flex="50" ng-repeat="contact in sports">
                                     <img ng-src="{{contact.image}}" class="md-avatar" alt="{{contact.name}}" />
@@ -109,11 +112,11 @@
                                     </div>
                                 </md-list-item>
                             </md-list>
-                        </md-content>
+                        </div>
                     </md-tab>
                     <md-tab label="Cultural">
-                        <md-content class="md-padding">
-                           <md-list class="fixedRows" flex layout="row" layout-wrap layout-align="center center">
+                        <div class="md-padding">
+                            <md-list class="fixedRows" flex layout="row" layout-wrap layout-align="center center">
                                 <md-list-item class="md-2-line contact-item" flex="50" ng-repeat="contact in cultural">
                                     <img ng-src="{{contact.image}}" class="md-avatar" alt="{{contact.name}}" />
                                     <div class="md-list-item-text compact">
@@ -122,11 +125,11 @@
                                     </div>
                                 </md-list-item>
                             </md-list>
-                        </md-content>
+                        </div>
                     </md-tab>
                     <md-tab label="Technical">
-                        <md-content class="md-padding">
-                        </md-content>
+                        <div class="md-padding">
+                        </div>
                     </md-tab>
                 </md-tabs>
                 <div class="errors" ng-messages="register.fruitName.$error">
@@ -141,11 +144,11 @@
             </div>
             <br>
             <br>
-        </md-content>
-        <md-content class="md-padding" layout="column" ng-show="currentState==3">
+        </div>
+        <div class="md-padding" layout="column" ng-show="currentState==3">
             <div>
-                <md-button style="position: absolute;" ng-click="currentState=2;" class="md-primary">
-                    <md-icon md-svg-icon="left-arrow"></md-icon>
+                <md-button style="position: absolute;" ng-click="currentState=1;" class="md-primary">
+                    <md-icon md-svg-icon="arrow-left"></md-icon>
                     Back
                 </md-button>
             </div>
@@ -158,7 +161,6 @@
                 <form ng-submit="doLogin(user)" name="register">
                     <md-input-container class="md-block">
                         <label>Name of your college</label>
-
                         <md-select name="" ng-model="college" required placeholder="My College">
                             <md-option ng-value="college" ng-repeat="college in [1]">{{ college }}</md-option>
                         </md-select>
@@ -166,29 +168,29 @@
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Your Roll Number</label>
-                        <input required="" ng-model="signUp.roll" type="number"  autocomplete="" />
+                        <input required="" ng-disabled="college<0" ng-model="signUp.roll" type="text" autocomplete="" />
                         <!-- <div class="hint">Must match your college id.</div> -->
                         <!-- <div ng-messages="userForm.name.$error" ng-if="!showHints">
                             <div ng-message="required">Name is required.</div>
                             <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
                         </div> -->
                     </md-input-container>
-                </form>
                 <div>
-                    <center>
-                        <p>Continue with</p>
-                        <md-button ng-disabled="signUp.roll<100000 "  ng-click="authenticate('facebook')" md-colors="{background: 'indigo'}" class="md-raised md-primary">
+                    <center ng-if="signUp.roll">
+                        <p>Complete setup with</p>
+                        <md-button ng-click="authenticate('facebook')" md-colors="{background: 'indigo'}" class="md-raised md-primary">
                             <md-icon md-svg-icon="facebook"></md-icon>
                         </md-button>
-                         <md-button ng-disabled="signUp.roll<100000" g-login md-colors="{background: 'red'}" class="md-raised md-primary">
+                        <md-button  g-login md-colors="{background: 'red'}" class="md-raised md-primary">
                             <md-icon md-svg-icon="google"></md-icon>+
                         </md-button>
-                        <md-button ng-disabled="signUp.roll<100000" linked-in md-colors="{background: 'blue'}" class="md-raised md-primary">
+                        <!-- <md-button ng-disabled="signUp.roll<100000" linked-in md-colors="{background: 'blue'}" class="md-raised md-primary">
                             <md-icon md-svg-icon="linkedin"></md-icon>
-                        </md-button>
+                        </md-button> -->
                     </center>
+                </form>
                 </div>
                 <!-- <md-divider></md-divider> -->
-        </md-content>
+            </div>
         </div>
     </div>

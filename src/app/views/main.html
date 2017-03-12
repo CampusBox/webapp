@@ -3,11 +3,11 @@
     color: #fff;
 }
 </style>
-<md-button class="md-fab md-fab-bottom-right" hide-xs aria-label="upload photo">
+<!-- <md-button class="md-fab md-fab-bottom-right" aria-label="upload photo">
     +
-</md-button>
+</md-button> -->
 <div layout="column" flex>
-    <md-toolbar layout="row" hide-xs hide-sm layout-align="center center">
+    <md-toolbar layout="row" layout-align="center center">
         <section layout-align="start center">
             <md-button hide-sm hide-xs layout="row" layout-align="center center" class="md-toolbar-tools" aria-label="Home">
                 <h1>
@@ -44,8 +44,8 @@
                 </div>
             </md-button>
             <md-button hide-sm hide-xs layout-align="center center" flex class="capitalize " aria-label="Notifications " ng-click="vm.toggleRightSidebar() ">
-                <div hide-sm hide-md class="md-tile-content">
-                    <md-icon md-svg-icon="bell"></md-icon>
+                <div hide-sm hide-xs class="md-tile-content">
+                    <md-icon md-svg-icon="bell-outline"></md-icon>
                     <span style="color:#fff" class="notifications-label "> </span>
                 </div>
                 <div class="md-tile-content">
@@ -65,6 +65,22 @@
                 </md-button>
                 <md-menu-content width="5">
                     <md-menu-item>
+                        <md-button ng-click="$mdCloseMenu() " ui-sref="home.addEvent">
+                            <div layout="row " flex=" " class="ng-scope layout-row flex ">
+                                <p flex=" " class="flex ">Add Events</p>
+                                <md-icon md-svg-icon="calendar"></md-icon>
+                            </div>
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="$mdCloseMenu() " ui-sref="home.addBlog">
+                            <div layout="row " flex=" " class="ng-scope layout-row flex ">
+                                <p flex=" " class="flex ">Add Cretivity</p>
+                                <md-icon md-svg-icon="calendar"></md-icon>
+                            </div>
+                        </md-button>
+                    </md-menu-item>
+                    <!-- <md-menu-item>
                         <md-button ng-click="$mdCloseMenu() " ui-sref="home.myProfile({tab:'0'})">
                             <div layout="row " flex=" " class="ng-scope layout-row flex ">
                                 <p flex=" " class="flex ">My Events</p>
@@ -75,23 +91,15 @@
                     <md-menu-item>
                         <md-button ng-click="$mdCloseMenu() " ui-sref="home.myProfile({tab:'2'})">
                             <div layout="row " flex=" " class="ng-scope layout-row flex ">
-                                <p flex=" " class="flex ">My Blogs</p>
+                                <p flex=" " class="flex ">My Creativity</p>
                                 <md-icon md-svg-icon="comment-text-outline"></md-icon>
                             </div>
                         </md-button>
-                    </md-menu-item>
-                    <md-menu-item>
-                        <md-button ng-click="$mdCloseMenu() " ui-sref="home.myProfile({tab:'0'})">
-                            <div layout="row " flex=" " class="ng-scope layout-row flex ">
-                                <p flex=" " class="flex ">Items Uploads</p>
-                                <md-icon md-svg-icon="tag"></md-icon>
-                            </div>
-                        </md-button>
-                    </md-menu-item>
+                    </md-menu-item> -->
                     <md-menu-item>
                         <md-button ng-click="$mdCloseMenu() " ui-sref="home.myProfile">
                             <div layout="row " flex=" " class="ng-scope layout-row flex ">
-                                <p flex=" " class="flex ">Profile</p>
+                                <p flex=" " class="flex ">My Profile</p>
                                 <md-icon md-svg-icon="account "></md-icon>
                             </div>
                         </md-button>

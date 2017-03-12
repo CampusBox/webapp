@@ -91,8 +91,8 @@
                                         <p>{{student.title}}</p>
                                         <md-button class="md-primary" aria-label="participants" ng-click="showParticipants(student)" md-ripple-size="auto">Participants</md-button>
                                         <md-switch ng-init="activated=true" ng-model="activated" aria-label="Deactivate" ng-change="deactivate(student)">
-                                           {{ activated? 'Activated':'Deactivated' }}
-                                         </md-switch>
+                                            {{ activated? 'Activated':'Deactivated' }}
+                                        </md-switch>
                                         <md-divider md-inset ng-if="!$last"></md-divider>
                                     </md-list-item>
                                 </md-list>
@@ -102,11 +102,26 @@
                     <md-tab label="Content Uploaded">
                     </md-tab>
                     <md-tab label="Followers">
+                        <md-list flex>
+                            <md-list-item class="md-3-line" ng-repeat="item in student.Followed.data" ng-click="null">
+                                <img ng-src="{{item.image}}" class="md-avatar" alt="{{item.who}}" />
+                                <div class="md-list-item-text" layout="row">
+                                    <div layout="column">
+                                        <h3>{{ item.name }} </h3>
+                                        <h4> {{ item.college }}</h4>
+                                        <p>{{ item.about }}</p>
+                                    </div>
+                                    <span flex></span>
+                                    <md-button ng-class="demoFollow.status? 'md-primary' : 'md-raised md-primary'" ng-click="follow()">{{demoFollow.status? 'Following':'Follow' }}</md-button>
+                                    <md-button md-no-ink class="md-flat">Follow</md-button>
+                                </div>
+                            </md-list-item>
+                            <md-divider></md-divider>
+                        </md-list>
                     </md-tab>
                     <md-tab label="Following">
                     </md-tab>
-
                 </md-tabs>
-                </md-content>
+            </md-content>
     </md-card>
 </div>

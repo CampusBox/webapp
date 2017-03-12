@@ -7,12 +7,12 @@ body {
 }
 
 .share-label {
-  vert-align: middle;
+  vertical-align: middle;
   margin-left: 10px;
 }
 
 .page-content {
-  background-color: #f1f1f1;
+  background-color: #fafafa;
 }
 
 .widget-progress {
@@ -506,6 +506,123 @@ form .progress {
 }
 
 /*image upload end*/
+.interest {
+  background-color: rgba(158, 158, 158, 0.2);
+  border-radius: 15px;
+  text-transform: none !important;
+  padding: 0px 16px;
+  min-width: 0px;
+}
+
+.interest_selected {
+  background-color: #f96262 !important;
+  border-radius: 15px;
+  text-transform: none !important;
+  color: #fff;
+  min-width: 60px;
+}
+
+.hint {
+  /* Position the hint */
+  /* Copy styles from ng-messages */
+  font-size: 12px;
+  line-height: 14px;
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+  /* Set our own color */
+  color: grey;
+}
+
+.login-box {
+  min-width: 50%;
+  background: #fff;
+}
+
+.angular-medium-editor.medium-editor-element p {
+  margin: 0px;
+}
+
+.medium-editor-placeholder:after {
+  position: relative;
+}
+
+.thumb {
+  width: 24px;
+  height: 24px;
+  float: none;
+  position: relative;
+  top: 7px;
+}
+
+form .progress {
+  line-height: 15px;
+}
+
+.progress {
+  display: inline-block;
+  width: 100px;
+  border: 3px groove #CCC;
+}
+
+.progress div {
+  font-size: smaller;
+  background: orange;
+  width: 0;
+}
+
+.uploadedImage {
+  height: 100%;
+  width: 100%;
+  /*opacity: 0;*/
+}
+
+/*pasted from multiple images*/
+.your-custom-chip {
+  font-weight: 400 !important;
+  font-style: normal !important;
+  color: rgba(0, 0, 0, 0.44) !important;
+  font-size: 13px !important;
+  letter-spacing: 0px !important;
+  text-decoration: none !important;
+  background: #fafafa;
+  border-radius: 3px !important;
+  border: 1px solid #f0f0f0 !important;
+}
+
+md-chips.md-default-theme md-chip.mdfocused,
+md-chips md-chip.md-focused {
+  background-color: #fafafa !important;
+  color: rgba(0, 0, 0, 0.44);
+  border: 1px solid rgba(2, 184, 117, 0.8) !important;
+}
+
+md-chips.md-default-theme md-chip,
+md-chips md-chip,
+md-chips md-chip.md-focused {
+  /*border-color: rgba(2, 184, 117, 0.8);*/
+  border: 1px solid rgba(2, 184, 117, 0.8) !important;
+}
+
+md-chips.md-default-theme md-chip.md-focused md-icon,
+md-chips md-chip.md-focused,
+md-chips md-chip.md-focused md-icon {
+  color: rgba(0, 0, 0, 0.44) !important;
+}
+
+md-icon.cross > svg {
+  color: rgba(0, 0, 0, 0.44) !important;
+  height: 15px;
+  width: 15px;
+  margin-top: 4px;
+  margin-left: auto;
+}
+
+.publish-button {
+  float: right;
+  border: 1px solid #039BE5;
+  color: #2899d1;
+  text-transform: capitalize;
+}
+
 .table {
   border-spacing: 0;
   width: 100%;

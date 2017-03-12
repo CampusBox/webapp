@@ -10,8 +10,8 @@
 
     function LoginController($scope, loginData, $rootScope, $localStorage, $state, $auth, tokenService) {
         var vm = this;
-        console.log('1');
-
+        console.log(localStorage.getItem('id_token'));
+        
 
         $scope.authenticate = function(provider) {
             $auth.authenticate(provider).then(function(response) {
@@ -41,7 +41,7 @@
         $rootScope.$on('event:social-sign-in-success', function(event, response) {
             console.log(response);
             $scope.login = response;
-            $scope.login.type = "google";
+            $scope.login.type = response.provider;
             console.log($scope.login);
 
             tokenService.post("login", $scope.login)

@@ -22,7 +22,6 @@
         vm.toggleItemsList = toggleItemsList;
         vm.showActions = showActions;
         vm.title = $state.current.data.title;
-        vm.showSimpleToast = showSimpleToast;
         vm.toggleRightSidebar = toggleRightSidebar;
 
         navService
@@ -46,7 +45,6 @@
         function selectItem(item) {
             vm.title = item.name;
             vm.toggleItemsList();
-            vm.showSimpleToast(vm.title);
         }
 
         function showActions($event) {

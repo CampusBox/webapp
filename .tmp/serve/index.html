@@ -39,7 +39,7 @@
         <a href="http://browsehappy.com/">upgrade your browser</a>
         to improve your experience.</p>
     <![endif]-->
-    <div ui-view layout="row"></div>
+    <div ui-view layout-fill layout="row"></div>
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
@@ -69,6 +69,7 @@
     <script src="../bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
     <script src="../bower_components/upup/dist/upup.min.js"></script>
     <script src="../bower_components/upup/dist/upup.sw.min.js"></script>
+    <script src="../bower_components/angular-tawk-to/dist/tawkTo.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
@@ -87,6 +88,7 @@
     <script src="app/controllers/home/ParticipantsController.js"></script>
     <script src="app/controllers/home/NotificationsController.js"></script>
     <script src="app/controllers/home/MyProfileController.js"></script>
+    <script src="app/controllers/home/ItemController.js"></script>
     <script src="app/controllers/home/EventsController.js"></script>
     <script src="app/controllers/home/DialogController.js"></script>
     <script src="app/controllers/home/DashboardController.js"></script>

@@ -6,11 +6,10 @@
         .controller('ParticipantsController', [
             '$mdDialog',
             '$scope',
-            'participants',
             ParticipantsController
         ]);
 
-    function ParticipantsController($mdDialog, $scope, participants) {
+    function ParticipantsController($mdDialog, $scope) {
         $scope.save = function() {
             $scope.title = $scope.editableTitle;
             $scope.disableEditor();
