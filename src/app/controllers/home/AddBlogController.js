@@ -8,10 +8,11 @@
             '$sce',
             '$timeout',
             '$mdDialog',
+            'allDataService',
             AddBlogController
         ]);
 
-    function AddBlogController($scope, Upload, $sce, $timeout, $mdDialog) {
+    function AddBlogController($scope, Upload, $sce, $timeout, $mdDialog, allDataService) {
         var vm = this;
         $scope.progress = 0;
         $scope.content = {};
@@ -19,8 +20,8 @@
         $scope.body = "";
         $scope.url = "";
         $scope.media = {};
-        $scope.media.embedUrl = "";
-        $scope.media.mediaType = "";
+        $scope.media.embedUrl = $scope.media.mediaType = "";
+        $scope.linkPreview = {};
         $scope.items = [];
         $scope.items[0] = [
             { 'title': 'Articles', 'id': 1, 'intrested': false },
@@ -164,6 +165,20 @@
                             $scope.mediaType = "";
                         }
                         break;
+                    case 'Link':
+                        $scope.error = '';
+                        if ($scope.validateUrl($scope.url)) {
+                            var item = {};
+                            item.mediaType = 'link';
+                            allDataService.get($scope.url)
+                                .then(function(blogs) {
+                                    item.embedUrl = blogs.data;        
+                                });
+                            $mdDialog.hide(item);
+                        } else {
+                        $scope.error = 'Please enter a valid url';
+                        }
+                        break;
                     default:
                 }
             }
@@ -171,56 +186,14 @@
                 var regexp = /^https?:\/\/(soundcloud\.com|snd\.sc)\/(.*)$/;
                 return url.match(regexp) && url.match(regexp)[2]
             }
+            $scope.validateUrl = function(url) {
+                var res = url.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+                if (res == null)
+                    return false;
+                else
+                    return true;
+            }
         }
-
-        // $scope.getSoundCloudInfo = function(url) {
-        //     var regexp = /^https?:\/\/(soundcloud\.com|snd\.sc)\/(.*)$/;
-        //     return url.match(regexp) && url.match(regexp)[2]
-        // }
-        // $scope.submitVideo = function() {
-        //     var videoid = $scope.url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
-        //     $scope.mediaType = "";
-        //     if (videoid != null) {
-        //         $scope.mediaType = "youtube";
-        //         $scope.embedUrl = "//www.youtube.com/embed/" + videoid[1];
-        //         $scope.embedUrl = $sce.trustAsResourceUrl($scope.embedUrl);
-        //         console.log($scope.embedUrl);
-        //     } else {
-        //         console.log("This is not a youtube link, checking for vimeo");
-        //         var videoid = $scope.url.match(/https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/);
-        //         if (videoid != null) {
-        //             $scope.mediaType = "vimeo";
-        //             $scope.embedUrl = "//player.vimeo.com/video/" + videoid[3];
-        //             console.log($scope.embedUrl);
-        //             $scope.embedUrl = $sce.trustAsResourceUrl($scope.embedUrl);
-        //         } else {
-        //             console.log("neither youtube nor vimeo detected");
-        //             $scope.mediaType = "";
-        //         }
-        //     }
-        // }
-        // $scope.submitSoundcloud = function() {
-        //     $scope.mediaType = "";
-        //     if ($scope.getSoundCloudInfo($scope.url)) {
-        //         $scope.mediaType = "soundcloud";
-        //         $scope.embedUrl = "//w.soundcloud.com/player/?url=" + $scope.url;
-        //         $scope.embedUrl = $sce.trustAsResourceUrl($scope.embedUrl);
-        //         var widgetIframe = document.getElementById('sc-widget'),
-        //             widget = SC.Widget(widgetIframe),
-        //             newSoundUrl = $scope.embedUrl;
-        //         widget.bind(SC.Widget.Events.READY, function() {
-        //             // load new widget
-        //             widget.bind(SC.Widget.Events.FINISH, function() {
-        //                 widget.load(newSoundUrl, {
-        //                     show_artwork: false
-        //                 });
-        //             });
-        //         });
-        //     } else {
-        //         console.log('Invalid soundcloud url');
-        //         $scope.mediaType = "";
-        //     }
-        // }
         $scope.upload = function(dataUrl, name) {
             Upload.upload({
                 url: '//upload.campusbox.org/imageUpload.php',
@@ -272,6 +245,7 @@
             $scope.content.body = $scope.body;
             console.log($scope.content);
         }
+
 
         // Add tags shit staeted
         $scope.readonly = false;

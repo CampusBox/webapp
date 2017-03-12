@@ -10,13 +10,6 @@
     <md-toolbar layout="row" layout-align="center center">
         <section layout-align="start center">
             <md-button hide-sm hide-xs layout="row" layout-align="center center" class="md-toolbar-tools" aria-label="Home">
-                <h1>
-                <md-icon md-svg-icon="school"></md-icon>
-                CampusBox
-            </h1>
-                <h1 hide-gt-sm>
-                <md-icon md-svg-icon="school"></md-icon>
-            </h1>
             </md-button>
         </section>
         <section layout-align="start center" flex>
@@ -34,16 +27,16 @@
                 </md-autocomplete>
             </form>
         </section>
-        <section layout-align="end center">
-            <md-button hide-sm hide-xs ng-repeat="item in vm.menuItems" layout-align="center center" flex class="capitalize " ng-click="vm.selectItem(item)" ui-sref-active="whiteText" ui-sref="{{item.sref}}">
-                <div class="md-tile-content">
+        <section layout-align="end start" >
+            <md-button hide-sm hide-xs style="height: 61px;margin-top: 3px;margin-bottom: 0px;" ng-repeat="item in vm.menuItems" layout-align="center center" flex class="capitalize " ng-click="vm.selectItem(item)" ui-sref-active="whiteText" ui-sref="{{item.sref}}">
+                <div class="md-tile-content" layout="column">
                     <md-icon md-svg-icon="{{item.icon}}"></md-icon>
                 </div>
                 <div class="md-tile-content">
                     {{item.name}}
                 </div>
             </md-button>
-            <md-button hide-sm hide-xs layout-align="center center" flex class="capitalize " aria-label="Notifications " ng-click="vm.toggleRightSidebar() ">
+            <md-button style="height: 61px;margin-top: 3px;margin-bottom: 0px;" hide-sm hide-xs layout-align="center center" flex class="capitalize " aria-label="Notifications " ng-click="vm.toggleRightSidebar() ">
                 <div hide-sm hide-xs class="md-tile-content">
                     <md-icon md-svg-icon="bell-outline"></md-icon>
                     <span style="color:#fff" class="notifications-label "> </span>
