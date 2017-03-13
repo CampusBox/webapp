@@ -37,7 +37,7 @@
             <md-list>
                 <a ng-repeat="social in profile.SocialAccounts.data" href="{{social.link}}" target="_blank">
                     <md-list-item>
-                        <md-icon md-svg-icon="facebook"></md-icon>
+                        <md-icon md-svg-icon="{{item.type}}"></md-icon>
                         <p style="text-transform: capitalize;">{{item.type}}</p>
                     </md-list-item>
                     <md-icon md-svg-icon="{{item.icon}}"></md-icon>
