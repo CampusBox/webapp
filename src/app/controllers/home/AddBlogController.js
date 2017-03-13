@@ -16,7 +16,8 @@
     function AddBlogController($scope, Upload, $sce, $timeout, $mdDialog, allDataService, tokenService) {
         var vm = this;
         $scope.progress = 0;
-        $scope.content = {};
+        $scope.creativity = {};
+        $scope.creativity.items = [];
         $scope.title = "";
         $scope.body = {};
         $scope.body.text = "";
@@ -61,15 +62,15 @@
         ];
         $scope.contents = [
 
-            { 'title': 'Link', 'icon': 'link-variant' },
-            { 'title': 'Embed', 'icon': 'code-tags' },
+            // { 'title': 'Link', 'icon': 'link-variant' },
+            // { 'title': 'Embed', 'icon': 'code-tags' },
             { 'title': 'Soundcloud', 'icon': 'soundcloud' },
             { 'title': 'Youtube', 'icon': 'youtube-play' },
             { 'title': 'Vimeo', 'icon': 'vimeo' }
         ];
         $scope.selectType = function(type) {
             $scope.progress = 1;
-            $scope.content.type = type;
+            $scope.creativity.type = type;
         };
         $scope.addItem = function(title) {
             if (title == "Text") {
@@ -85,9 +86,21 @@
                     },
                     clickOutsideToClose: true,
                 }).then(function(media) {
-
                     $scope.progress = 2;
-                    $scope.media = media;
+                    $scope.creativity.items.push(media);
+                    if (media.mediaType == 'Soundcloud') {
+                        var widgetIframe = document.getElementById('sc-widget'),
+                            widget = SC.Widget(widgetIframe),
+                            newSoundUrl = $scope.embedUrlIframe;
+                        widget.bind(SC.Widget.Events.READY, function() {
+                            // load new widget
+                            widget.bind(SC.Widget.Events.FINISH, function() {
+                                widget.load(newSoundUrl, {
+                                    show_artwork: false
+                                });
+                            });
+                        });
+                    }
                 }, function() {
                     console.log('else');
                 });
@@ -98,6 +111,7 @@
             $scope.error = '';
             $scope.url = '';
             $scope.mediaType = "";
+            $scope.title = title;
 
             $scope.cancel = function() {
                 $mdDialog.cancel();
@@ -127,17 +141,7 @@
                             $scope.item.mediaType = "soundcloud";
                             $scope.item.embedUrl = "//w.soundcloud.com/player/?url=" + $scope.url;
                             $scope.item.embedUrlIframe = $sce.trustAsResourceUrl($scope.item.embedUrl);
-                            var widgetIframe = document.getElementById('sc-widget'),
-                                widget = SC.Widget(widgetIframe),
-                                newSoundUrl = $scope.embedUrl;
-                            widget.bind(SC.Widget.Events.READY, function() {
-                                // load new widget
-                                widget.bind(SC.Widget.Events.FINISH, function() {
-                                    widget.load(newSoundUrl, {
-                                        show_artwork: false
-                                    });
-                                });
-                            });
+
                             $mdDialog.hide($scope.item);
                         } else {
                             $scope.error = 'Invalid soundcloud url';
@@ -151,7 +155,7 @@
                         if (videoid != null) {
                             $scope.item = {};
                             $scope.item.mediaType = "vimeo";
-                            $scope.item.embedUrl = "//player.vimeo.com/video/" + videoid[3];
+                            $scope.item.embedUrl = "//player.vimeo.com/video/" + videoid[3] + '?color=ffffff&title=0&byline=0&portrait=0&badge=0';
                             $scope.item.embedUrlIframe = $sce.trustAsResourceUrl($scope.item.embedUrl);
                             $mdDialog.hide($scope.item);
                         } else {
@@ -189,29 +193,31 @@
                     return true;
             }
         }
-
-        $scope.publish = function() {
-            $scope.content.items = [];
-            $scope.image={};
-            $scope.content.items.push($scope.media);
-            $scope.body.mediaType = "text";
-            $scope.content.items.push($scope.body);
-            $scope.content.tags = $scope.tags;
-            $scope.content.title = $scope.title;
-            $scope.content.body = $scope.body;
+        $scope.addImage = function(file) {
+                console.log('abc');
             Upload.dataUrl($scope.file, true).then(function(url) {
                 $scope.image.mediaType = "image";
                 $scope.image.image = url;
-                $scope.content.items.push($scope.image);
+                $scope.creativity.items.push($scope.image);
 
-                console.log($scope.content);
-                tokenService.post("addContent", $scope.content)
-                    .then(function(abc) {
-                        console.log(abc);
-                    }).catch(function(abc) {
-                        console.log(abc);
+                console.log($scope.creativity);
+                tokenService.post("addContent", $scope.creativity)
+                    .then(function(status) {
+                        alert(status.status);
+                        state.go(home.dashboard);
+                    }).catch(function(status) {
+                        console.log(status);
                     });
             });
+        };
+        $scope.publish = function() {
+            $scope.creativity.body = $scope.body;
+            $scope.body.mediaType = "text";
+            $scope.creativity.items.push($scope.body);
+            $scope.image = {};
+
+            $scope.creativity.tags = $scope.tags;
+            $scope.creativity.title = $scope.title;
         };
 
 

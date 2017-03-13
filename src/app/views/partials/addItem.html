@@ -1,17 +1,17 @@
-<md-dialog aria-label="Dog name" ng-class="dialog.css" class="_md md-default-theme md-transition-in" role="dialog" >
-    <md-dialog-content class="md-dialog-content" role="document" tabindex="-1" id="dialogContent_7">
-        <h2 class="md-title ng-binding">Adding new</h2>
-        <div ng-if="::!dialog.mdHtmlContent" class="md-dialog-content-body ng-scope">
-            <p class="ng-binding">Paste the URL to the content here</p>
+<md-dialog aria-label="Dog name" ng-class="dialog.css" class="_md md-default-theme md-transition-in" flex-gt-sm="40" role="dialog">
+    <md-dialog-content class="md-dialog-content" r>
+        <h2 class="md-title ">Adding new {{title}}</h2>
+        <div class="md-dialog-content-body">
+            <!-- <p class="ng-binding">Paste the URL to the content here</p> -->
         </div>
-        <md-input-container md-no-float="" class="md-prompt-input-container ng-scope md-input-has-placeholder md-default-theme">
-            <input  md-autofocus="" ng-model="url" placeholder="eg https://youtube.com?ver=afjsl56sdf5ds6f" class="ng-pristine ng-valid md-autofocus md-input ng-empty ng-touched" aria-label="url" id="input_8" aria-invalid="false">
+        <md-input-container flex>
+            <input md-autofocus="" ng-model="url" placeholder="Paste the URL to the content here" class=" ng-valid md-autofocus md-input ng-empty ng-touched" aria-label="url" id="input_8" aria-invalid="false">
             <div class="md-errors-spacer"></div>
+            <span class="md-caption" style="color:rgb(244, 67, 54);" ng-hide="error == ''">{{error}}</span>
         </md-input-container>
-        <span class="md-caption" style="color:rgb(244, 67, 54);" ng-hide="error == ''">{{error}}</span>
-       </md-dialog-content>
+    </md-dialog-content>
     <md-dialog-actions>
         <button class="md-primary md-button " ng-click="cancel()">Cancel</button>
-        <button class="md-primary md-button" ng-click="submitUrl(url)" >Add Link</button>
+        <button class="md-primary md-button" ng-click="submitUrl(url)">Add Link</button>
     </md-dialog-actions>
 </md-dialog>

@@ -529,12 +529,20 @@ form .progress {
   line-height: 14px;
   transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
   /* Set our own color */
-  color: grey;
+  color: #aaa;
 }
 
 .login-box {
   min-width: 50%;
   background: #fff;
+}
+
+.content-text p {
+  margin: 0px;
+  letter-spacing: 0.02em;
+  line-height: 1.58;
+  font-size: 21px;
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .angular-medium-editor.medium-editor-element p {
