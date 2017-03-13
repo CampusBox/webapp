@@ -13,6 +13,9 @@
         $scope.querySearch = querySearch;
         $scope.signUp = {};
         vm.tags = [];
+        if (localStorage.getItem('id_token') != null) {
+            $state.go("home.dashboard");
+        }
         $scope.skills = loadSkills();
         $scope.signUp.collegeId = 0;
         tokenService.get("colleges").then(function(colleges) {
@@ -141,7 +144,7 @@
                         .then(function(abc) {
                             localStorage.setItem('id_token', abc.token);
                             $rootScope.token = abc.token;
-                          //  $state.go("home.dashboard");
+                           $state.go("home.dashboard");
                             return;
                         }).catch(function(abc) {
                             localStorage.setItem('id_token', abc.token);
@@ -198,7 +201,7 @@
             // console.log(userDetails);
             console.log(event);
             console.log(response);
-            $scope.signUp.token = response.access_token;
+            $scope.signUp.token = response.token;
             $scope.signUp.type = "google";
             $scope.signUp.skills = $scope.selectedSkills;
             $scope.signUp.intrests = $scope.interests;

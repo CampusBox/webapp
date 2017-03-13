@@ -17,7 +17,8 @@
         $scope.progress = 0;
         $scope.content = {};
         $scope.title = "";
-        $scope.body = "";
+        $scope.body = {};
+        $scope.body.text = "";
         $scope.url = "";
         $scope.media = {};
         $scope.media.embedUrl = $scope.media.mediaType = "";
@@ -67,36 +68,31 @@
             { 'title': 'Youtube', 'icon': 'youtube-play' },
             { 'title': 'Vimeo', 'icon': 'vimeo' }
         ];
-        $scope.selectType = function(item, list) {
+        $scope.selectType = function(type) {
             $scope.progress = 1;
-            var idx = list.indexOf(item);
-            if (idx > -1) {
-                list.splice(idx, 1);
-            } else {
-                list.push(item);
-                $scope.buttonClass = 'md-primary md-raised';
-            }
-            item.intrested = !item.intrested;
-            $scope.interests = list;
-            $scope.continue = ($scope.interests.length > 3);
+            $scope.content.type = type;
         };
         $scope.addItem = function(title) {
-            $mdDialog.show({
-                controller: AddItemController,
-                templateUrl: 'app/views/partials/addItem.html',
-                parent: angular.element(document.body),
-                // targetEvent: ev,
-                locals: {
-                    title: title
-                },
-                clickOutsideToClose: true,
-            }).then(function(media) {
-                console.log(media.mediaType);
-                console.log(media.embedUrl);
-                $scope.media = media;
-            }, function() {
-                console.log('else');
-            });
+            if (title == "Text") {
+                $scope.progress = 2;
+            } else {
+                $mdDialog.show({
+                    controller: AddItemController,
+                    templateUrl: 'app/views/partials/addItem.html',
+                    parent: angular.element(document.body),
+                    // targetEvent: ev,
+                    locals: {
+                        title: title
+                    },
+                    clickOutsideToClose: true,
+                }).then(function(media) {
+
+                    $scope.progress = 2;
+                    $scope.media = media;
+                }, function() {
+                    console.log('else');
+                });
+            }
         };
 
         function AddItemController($mdDialog, $scope, Upload, $timeout, title) {
@@ -118,7 +114,7 @@
                         if (videoid != null) {
                             $scope.item.mediaType = "youtube";
                             $scope.item.embedUrl = "//www.youtube.com/embed/" + videoid[1];
-                            $scope.item.embedUrl = $sce.trustAsResourceUrl($scope.item.embedUrl);
+                            $scope.item.embedUrlIframe = $sce.trustAsResourceUrl($scope.item.embedUrl);
                             $mdDialog.hide($scope.item);
                         } else {
                             $scope.error = 'Invalid youtube url';
@@ -131,7 +127,7 @@
                         if ($scope.validateSoundcloud($scope.url)) {
                             $scope.item.mediaType = "soundcloud";
                             $scope.item.embedUrl = "//w.soundcloud.com/player/?url=" + $scope.url;
-                            $scope.item.embedUrl = $sce.trustAsResourceUrl($scope.item.embedUrl);
+                            $scope.item.embedUrlIframe = $sce.trustAsResourceUrl($scope.item.embedUrl);
                             var widgetIframe = document.getElementById('sc-widget'),
                                 widget = SC.Widget(widgetIframe),
                                 newSoundUrl = $scope.embedUrl;
@@ -157,7 +153,7 @@
                             $scope.item = {};
                             $scope.item.mediaType = "vimeo";
                             $scope.item.embedUrl = "//player.vimeo.com/video/" + videoid[3];
-                            $scope.item.embedUrl = $sce.trustAsResourceUrl($scope.item.embedUrl);
+                            $scope.item.embedUrlIframe = $sce.trustAsResourceUrl($scope.item.embedUrl);
                             $mdDialog.hide($scope.item);
                         } else {
                             $scope.error = 'Invalid vimeo url';
@@ -239,11 +235,20 @@
         }
 
         $scope.publish = function() {
-            $scope.content.media = $scope.media;
+            $scope.content.items = [];
+            $scope.content.items.push($scope.media);
+            $scope.body.mediaType = "text";
+            $scope.content.items.push($scope.body);
             $scope.content.tags = $scope.tags;
             $scope.content.title = $scope.title;
             $scope.content.body = $scope.body;
             console.log($scope.content);
+            tokenService.post("addContent", $scope.content)
+                .then(function(abc) {
+                    console.log(abc);
+                }).catch(function(abc) {
+                    console.log(abc);
+                });
         }
 
 

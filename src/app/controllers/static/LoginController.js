@@ -10,8 +10,9 @@
 
     function LoginController($scope, loginData, $rootScope, $localStorage, $state, $auth, tokenService) {
         var vm = this;
-        console.log(localStorage.getItem('id_token'));
-        
+        if (localStorage.getItem('id_token') != null) {
+            $state.go("home.dashboard");
+        }
 
         $scope.authenticate = function(provider) {
             $auth.authenticate(provider).then(function(response) {
@@ -22,7 +23,7 @@
                     tokenService.post("login", response)
                         .then(function(abc) {
                             localStorage.setItem('id_token', abc.token);
-                            $rootScope.token=abc.token;
+                            $rootScope.token = abc.token;
                             $state.go("home.dashboard");
 
 
@@ -48,7 +49,7 @@
                 .then(function(abc) {
                     console.log(abc);
                     localStorage.setItem('id_token', abc.token);
-                    $rootScope.token=abc.token;
+                    $rootScope.token = abc.token;
                     $state.go("home.dashboard");
 
 
