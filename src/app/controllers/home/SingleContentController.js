@@ -99,11 +99,12 @@
         tokenService.get("content/" + $scope.contentId)
             .then(function(tableData) {
                 $scope.content = tableData.data;
+                $scope.content.created.at = new Date(Date.parse($scope.content.created.at.replace('-', '/', 'g'))); //replace mysql date to js date format
                 $scope.content.title = $sce.trustAsHtml($scope.content.title);
                 for (item in $scope.content.Items.data) {
-                    if ($scope.content.Items.data[item].type == 'youtube' || $scope.content.Items.data[item].type == 'youtube' ||  $scope.content.Items.data[item].type == 'youtube') {
+                    if ($scope.content.Items.data[item].type == 'youtube' || $scope.content.Items.data[item].type == 'youtube' || $scope.content.Items.data[item].type == 'youtube') {
                         $scope.content.Items.data[item].embed.url = $sce.trustAsResourceUrl($scope.content.Items.data[item].embed.url);
-                    }else if($scope.content.Items.data[item].type == 'text'){
+                    } else if ($scope.content.Items.data[item].type == 'text') {
                         $scope.content.Items.data[item].description = $sce.trustAsHtml($scope.content.Items.data[item].description);
                     }
                 }

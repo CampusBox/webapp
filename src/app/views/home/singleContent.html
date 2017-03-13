@@ -28,7 +28,7 @@ md-list-item .md-button:not([disabled]):click {
                 <span  ui-sref="home.profile({studentId: content.created.by.username})" style="color: #0570c0;cursor: pointer;">
                 {{content.created.by.name}} </span> from <span style="color: #0570c0">{{content.created.by.college.name}} </span>
                 </span>
-                <span class="md-caption">{{content.created.at}} · 2 min read</span>
+                <span class="md-caption">{{content.created.at | date: 'd MMM'}}</span>
             </div>
         </md-list-item>
         <md-divider></md-divider>

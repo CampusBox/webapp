@@ -6,10 +6,11 @@
             '$scope',
             'tokenService',
             '$mdDialog',
+            '$sce',
             BlogsController
         ]);
 
-    function BlogsController($scope, tokenService, $mdDialog) {
+    function BlogsController($scope, tokenService, $mdDialog, $sce) {
         var vm = this;
         $scope.liked = false;
         $scope.contents = {};
@@ -20,9 +21,9 @@
         }
 
         $scope.bookmark = function(content, $index) {
-            $scope.contents[$index].Actions.Bookmarked.status = !$scope.contents[$index].Actions.Bookmarked.status;
-            if ($scope.contents[$index].Actions.Bookmarked.status) {
-                $scope.contents[$index].Actions.Bookmarked.total += 1;
+            $scope.finalContents[$index].Actions.Bookmarked.status = !$scope.finalContents[$index].Actions.Bookmarked.status;
+            if ($scope.finalContents[$index].Actions.Bookmarked.status) {
+                $scope.finalContents[$index].Actions.Bookmarked.total += 1;
                 tokenService.post('bookmarkedContent/' + content.id).then(function(result) {
 
                     console.log('post request');
@@ -33,7 +34,7 @@
                     }
                 });
             } else {
-                $scope.contents[$index].Actions.Bookmarked.total -= 1;
+                $scope.finalContents[$index].Actions.Bookmarked.total -= 1;
 
                 tokenService.delete('bookmarkedContent/' + content.id, '').then(function(result) {
                     console.log('post request');
@@ -46,9 +47,9 @@
             }
         }
         $scope.heart = function(content, $index) {
-            $scope.contents[$index].Actions.Appriciate.status = !$scope.contents[$index].Actions.Appriciate.status;
-            if ($scope.contents[$index].Actions.Appriciate.status) {
-                $scope.contents[$index].Actions.Appriciate.total += 1;
+            $scope.finalContents[$index].Actions.Appriciate.status = !$scope.finalContents[$index].Actions.Appriciate.status;
+            if ($scope.finalContents[$index].Actions.Appriciate.status) {
+                $scope.finalContents[$index].Actions.Appriciate.total += 1;
                 tokenService.post('appriciateContent/' + content.id).then(function(result) {
 
                     console.log('post request');
@@ -59,7 +60,7 @@
                     }
                 });
             } else {
-                $scope.contents[$index].Actions.Appriciate.total -= 1;
+                $scope.finalContents[$index].Actions.Appriciate.total -= 1;
 
                 tokenService.delete('appriciateContent/' + content.id, '').then(function(result) {
                     console.log('post request');
@@ -73,18 +74,43 @@
         }
         $scope.openUrlAdd = function(ev) {
             $mdDialog.show({
-                    controller: 'AddUrlController',
-                    templateUrl: 'app/views/partials/addUrl.html',
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose: true,
-                    fullscreen: true // Only for -xs, -sm breakpoints.
-                })
+                controller: 'AddUrlController',
+                templateUrl: 'app/views/partials/addUrl.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                fullscreen: true // Only for -xs, -sm breakpoints.
+            })
         };
         tokenService.get("contents")
             .then(function(tableData) {
                 $scope.contents = tableData.data;
                 console.log($scope.contents);
+                $scope.finalContents = [];
+                $scope.contents.forEach(function(content, index) {
+                    var cardObject = {};
+                    cardObject.title = $sce.trustAsHtml(content.title);
+                    cardObject.Actions = content.Actions;
+                    cardObject.Tags = content.Tags;
+                    cardObject.created = content.created;
+                    cardObject.created.at = new Date(Date.parse(cardObject.created.at.replace('-', '/', 'g'))); //replace mysql date to js date format
+                    cardObject.id = content.id;
+                    cardObject.links = content.links;
+                    cardObject.total = content.links;
+                    content.Items.data.forEach(function(item, itemIndex) {
+                        if (item.type == 'text') {
+                            cardObject.description = item.description;
+                        } else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
+                            cardObject.type = item.type;
+                            cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
+                        } else if (item.type == 'image' && !cardObject.type) {
+                            cardObject.type = item.type;
+                            cardObject.url = item.image;
+                        }
+                    });
+                    $scope.finalContents.push(cardObject);
+                });
+                console.log($scope.finalContents);
             });
     }
 
