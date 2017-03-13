@@ -33,9 +33,7 @@ md-list-item .md-button:not([disabled]):click {
         </md-list-item>
         <md-divider></md-divider>
         <div>
-            <h1 class="md-title" style="color:rgba(0,0,0,.8);line-height: 1.04;letter-spacing: -.028em;font-size: 40px;font-weight: 700;">
-            {{content.title}}
-        </h1>
+            <h1 class="md-title" ng-bind-html="content.title" style="color:rgba(0,0,0,.8);line-height: 1.04;letter-spacing: -.028em;font-size: 40px;font-weight: 700;"></h1>
             <div ng-repeat="item in content.Items.data">
                 <div flex="80" flex-offset="10" layout-align="center center">
                     <iframe ng-show="item.type == 'youtube'" width="100%" height="315" src="{{item.embed.url}}" frameborder="0" allowfullscreen></iframe>

@@ -99,7 +99,7 @@
         tokenService.get("content/" + $scope.contentId)
             .then(function(tableData) {
                 $scope.content = tableData.data;
-                console.log($scope.content);
+                $scope.content.title = $sce.trustAsHtml($scope.content.title);
                 for (item in $scope.content.Items.data) {
                     if ($scope.content.Items.data[item].type == 'youtube' || $scope.content.Items.data[item].type == 'youtube' ||  $scope.content.Items.data[item].type == 'youtube') {
                         $scope.content.Items.data[item].embed.url = $sce.trustAsResourceUrl($scope.content.Items.data[item].embed.url);
