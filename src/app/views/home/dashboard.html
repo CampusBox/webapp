@@ -46,36 +46,37 @@
                 <h1 class="md-headline">
                 Creative works by other students
             </h1>
-                <md-card ng-repeat="blog in blogs track by $index">
+                <md-card ng-repeat="content in contents track by $index">
                     <md-card-header>
                         <md-card-avatar>
-                            <img class="md-user-avatar" ng-src="{{blog.created.by.image}}" />
+                            <img class="md-user-avatar" ng-src="{{content.created.by.image}}" />
                         </md-card-avatar>
                         <md-card-header-text>
-                            <span class="md-subhead"><span  ui-sref="home.profile" style="color: #0570c0">{{blog.created.by.name}} </span> in <span ui-sref="home.profile" style="color: #0570c0">{{blog.type?blog.type:"Article"}} </span></span>
+                            <span class="md-subhead"><span  ui-sref="home.profile" style="color: #0570c0">{{content.created.by.name}} </span> in <span ui-sref="home.profile" style="color: #0570c0">{{content.type?content.type:"Article"}} </span></span>
                             <span class="md-subhead"></span>
-                            <span class="md-title">{{blog.created.at}} · 2 min read</span>
+                            <span class="md-title">{{content.created.at}} · 2 min read</span>
                         </md-card-header-text>
                     </md-card-header>
                     <img class="md-card-image" ng-if="$index%2==0" ng-src="https://cdn-images-1.medium.com/fit/t/800/240/1*FVxaOt4HZJ7JDT6IfvtS-w.jpeg" class="md-card-image" alt="Washed Out">
                     <md-card-title>
-                        <span class="md-headline">{{blog.title}}</span>
+                        <span class="md-headline">{{content.title}}</span>
                     </md-card-title>
                     <md-card-content>
-                        <p class="md-body-2 " style="white-space: pre-wrap;color: #8f8faf;margin-left: 10px;font-weight: 300; margin:0px; font-size: 18px; line-height: 1.58; ">{{blog.content.description | limitTo : $index%2==0?150:200}}...</p>
+                        <p class="md-body-2 " style="white-space: pre-wrap;color: #8f8faf;margin-left: 10px;font-weight: 300; margin:0px; font-size: 18px; line-height: 1.58; ">
+                        {{content.Items.data[0].description | limitTo : $index%2==0?150:200}}...</p>
                         <p class="md-subhead" style="color: #8f8faf;">
                             Read More
                         </p>
                     </md-card-content>
                     <div layout="row " layout-align="start center ">
-                        <md-button class="md-icon-button" ng-click="heart(blog, $index)" aria-label="Favorite ">
-                            <md-icon ng-class="blog.Actions.Appriciate.status? 'pink':''" md-svg-icon="{{blog.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon>
+                        <md-button class="md-icon-button" ng-click="heart(content, $index)" aria-label="Favorite ">
+                            <md-icon ng-class="content.Actions.Appriciate.status? 'pink':''" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon>
                         </md-button>
-                        <span>{{blog.Actions.Appriciate.total}}</span>
+                        <span>{{content.Actions.Appriciate.total}}</span>
                         <span flex></span>
                         <md-card-icon-actions>
-                            <md-button class="md-icon-button" ng-click="bookmark(blog, $index)" aria-label="Favorite ">
-                                <md-icon ng-class="blog.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{blog.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
+                            <md-button class="md-icon-button" ng-click="bookmark(content, $index)" aria-label="Favorite ">
+                                <md-icon ng-class="content.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
                             </md-button>
                             <md-button class="md-icon-button " aria-label="toggle ">
                                 <md-icon md-svg-icon="share"></md-icon>Share
@@ -98,11 +99,11 @@
             <md-divider></md-divider>
             </h5>
             <md-list>
-                <md-list-item class="md-2-line" ng-repeat="blog in blogs | limitTo :3 track by $index ">
-                    <img ng-src="{{blog.created.by.image}}" class="md-avatar" alt="{{todos[0].who}}" />
+                <md-list-item class="md-2-line" ng-repeat="content in contents | limitTo :3 track by $index ">
+                    <img ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{todos[0].who}}" />
                     <div class="md-list-item-text">
-                        <h3>{{blog.title}}</h3>
-                        <p>{{blog.created.by.name}}</p>
+                        <h3>{{content.title}}</h3>
+                        <p>{{content.created.by.name}}</p>
                     </div>
                 </md-list-item>
             </md-list>

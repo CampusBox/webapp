@@ -40,5 +40,6 @@
   },
   "_source": "https://github.com/TalAter/UpUp.git",
   "_target": "^0.3.0",
-  "_originalSource": "upup"
+  "_originalSource": "upup",
+  "_direct": true
 }
