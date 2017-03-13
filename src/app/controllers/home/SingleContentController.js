@@ -7,10 +7,11 @@
             'tokenService',
             '$mdDialog',
             '$stateParams',
+            '$sce',
             SingleContentController
         ]);
 
-    function SingleContentController($scope, tokenService, $mdDialog, $stateParams) {
+    function SingleContentController($scope, tokenService, $mdDialog, $stateParams, $sce) {
         var vm = this;
         $scope.contentId = $stateParams.contentId;
         $scope.liked = false;
@@ -99,6 +100,13 @@
             .then(function(tableData) {
                 $scope.content = tableData.data;
                 console.log($scope.content);
+                for (item in $scope.content.Items.data) {
+                    if ($scope.content.Items.data[item].type == 'youtube' || $scope.content.Items.data[item].type == 'youtube' ||  $scope.content.Items.data[item].type == 'youtube') {
+                        $scope.content.Items.data[item].embed.url = $sce.trustAsResourceUrl($scope.content.Items.data[item].embed.url);
+                    }else if($scope.content.Items.data[item].type == 'text'){
+                        $scope.content.Items.data[item].description = $sce.trustAsHtml($scope.content.Items.data[item].description);
+                    }
+                }
             });
     }
 
