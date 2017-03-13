@@ -695,6 +695,10 @@ form .progress {
 // add blog page 
 .angular-medium-editor.medium-editor-element p {
     margin: 0px;
+        letter-spacing: 0.02em;
+    line-height: 1.58;
+    font-size: 21px;
+    color: rgba(0,0,0,.8);
 }
 
 .medium-editor-placeholder:after {

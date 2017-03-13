@@ -9,10 +9,11 @@
             '$timeout',
             '$mdDialog',
             'allDataService',
+            'tokenService',
             AddBlogController
         ]);
 
-    function AddBlogController($scope, Upload, $sce, $timeout, $mdDialog, allDataService) {
+    function AddBlogController($scope, Upload, $sce, $timeout, $mdDialog, allDataService, tokenService) {
         var vm = this;
         $scope.progress = 0;
         $scope.content = {};
@@ -60,8 +61,6 @@
         ];
         $scope.contents = [
 
-            { 'title': 'Text', 'icon': 'comment-text' },
-            { 'title': 'Image', 'icon': 'image' },
             { 'title': 'Link', 'icon': 'link-variant' },
             { 'title': 'Embed', 'icon': 'code-tags' },
             { 'title': 'Soundcloud', 'icon': 'soundcloud' },
@@ -168,11 +167,11 @@
                             item.mediaType = 'link';
                             allDataService.get($scope.url)
                                 .then(function(blogs) {
-                                    item.embedUrl = blogs.data;        
+                                    item.embedUrl = blogs.data;
                                 });
                             $mdDialog.hide(item);
                         } else {
-                        $scope.error = 'Please enter a valid url';
+                            $scope.error = 'Please enter a valid url';
                         }
                         break;
                     default:
@@ -190,66 +189,30 @@
                     return true;
             }
         }
-        $scope.upload = function(dataUrl, name) {
-            Upload.upload({
-                url: '//upload.campusbox.org/imageUpload.php',
-                method: 'POST',
-                file: Upload.dataUrltoBlob(dataUrl, name),
-                data: {
-                    'targetPath': './media/'
-                },
-            }).then(function(response) {
-                $timeout(function() {
-                    $scope.result = response.data;
-                });
-            }, function(response) {
-                if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
-            }, function(evt) {
-                $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
-            });
-        }
-        $scope.uploadFiles = function(files, errFiles) {
-            $scope.files = files;
-            $scope.errFiles = errFiles;
-            angular.forEach(files, function(file) {
-                file.upload = Upload.upload({
-                    url: 'http://upload.campusbox.org/imageUpload.php',
-                    file: file,
-                    data: {
-                        'targetPath': './media/'
-                    }
-                });
-
-                file.upload.then(function(response) {
-                    $timeout(function() {
-                        file.result = response.data;
-                    });
-                }, function(response) {
-                    if (response.status > 0)
-                        $scope.errorMsg = response.status + ': ' + response.data;
-                }, function(evt) {
-                    file.progress = Math.min(100, parseInt(100.0 *
-                        evt.loaded / evt.total));
-                });
-            });
-        }
 
         $scope.publish = function() {
             $scope.content.items = [];
+            $scope.image={};
             $scope.content.items.push($scope.media);
             $scope.body.mediaType = "text";
             $scope.content.items.push($scope.body);
             $scope.content.tags = $scope.tags;
             $scope.content.title = $scope.title;
             $scope.content.body = $scope.body;
-            console.log($scope.content);
-            tokenService.post("addContent", $scope.content)
-                .then(function(abc) {
-                    console.log(abc);
-                }).catch(function(abc) {
-                    console.log(abc);
-                });
-        }
+            Upload.dataUrl($scope.file, true).then(function(url) {
+                $scope.image.mediaType = "image";
+                $scope.image.image = url;
+                $scope.content.items.push($scope.image);
+
+                console.log($scope.content);
+                tokenService.post("addContent", $scope.content)
+                    .then(function(abc) {
+                        console.log(abc);
+                    }).catch(function(abc) {
+                        console.log(abc);
+                    });
+            });
+        };
 
 
         // Add tags shit staeted

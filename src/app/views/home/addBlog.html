@@ -29,6 +29,14 @@
                             <md-subheader style="md-no-sticky">Add content</md-subheader>
                             <md-divider>
                             </md-divider>
+                            <md-list-item ng-click="progress=2">
+                                <md-icon md-svg-icon="comment-text"></md-icon>
+                                <p>Text</p>
+                            </md-list-item>
+                            <md-list-item ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 1024, height: 900}">
+                            <md-icon md-svg-icon="image"></md-icon>
+                            <p>Image</p>
+                            </md-list-item>
                             <md-list-item ng-click="addItem(content.title)" ng-repeat="content in contents">
                                 <md-icon md-svg-icon="{{content.icon}}"></md-icon>
                                 <p>{{content.title}}</p>
@@ -54,11 +62,26 @@
                 </md-card>
             </div>
             <div style="background: #fff" class="md-whiteframe-z1" layout-padding layout-wrap flex-gt-sm="70">
-                <p class="md-display-1" style="outline: none;" bind-options="{disableReturn: true, disableExtraSpaces: true, 'toolbar': {'buttons': [ 'italic', 'underline']}}" ng-model="title" style="display: inline; margin: 0px" medium-editor data-placeholder="Title"></p>
-                <center>
-                    <iframe ng-if="media.mediaType == 'youtube'" width="560" height="315" ng-src="{{media.embedUrl}}" frameborder="0" allowfullscreen></iframe>
-                    <iframe ng-if="media.mediaType == 'vimeo'" width="640" height="360" src="{{media.embedUrl}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                    <iframe ng-show="media.mediaType == 'soundcloud'" id="sc-widget" width="100%" height="162px" scrolling="no" frameborder="no" ng-src="{{media.embedUrl}}"></iframe>
+                <div flex-offset="10" flex="80" layout="column">
+                    <p class="md-display-1" style="outline: none;" bind-options="{disableReturn: true, disableExtraSpaces: true, 'toolbar': {'buttons': [ 'italic', 'underline']}}" ng-model="title" style="display: inline; margin: 0px" medium-editor data-placeholder="Title"></p>
+                                     <img ng-init="file=''" style="width: 100%" ngf-thumbnail="file | ngfDataUrl">
+                </div>
+
+                <center ng-show="progress<1">
+                    <img ng-src="{{user.imageUrl}}" alt="" style="border-radius: 50%; height: auto;width: 20%">
+                    <p class="md-title">Select type of creative project you want to add.</p>
+                    <div ng-repeat="itemgroup in items" flex layout="row" layout-align="center center">
+                        <span ng-repeat="item in itemgroup track by $index">                        
+                        <md-button  ng-class="item.intrested?'interest_selected':'interest'" ng-checked="exists(item, selected)" ng-click="progress=1;selectType(item.title)">                        
+                            {{ item.title }}
+                        </md-button>                    
+                    </span>
+                    </div>
+                </center>
+                <center ng-if="media.mediaType != ''">
+                    <iframe ng-if="media.mediaType == 'youtube'" width="560" height="315" ng-src="{{media.embedUrlIframe}}" frameborder="0" allowfullscreen></iframe>
+                    <iframe ng-if="media.mediaType == 'vimeo'" width="640" height="360" src="{{media.embedUrlIframe}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    <iframe ng-if="media.mediaType == 'soundcloud'" id="sc-widget" width="100%" height="162px" scrolling="no" frameborder="no" ng-src="{{media.embedUrlIframe}}"></iframe>
                     <md-card ng-if="media.mediaType == 'link'">
                         <md-card-title>
                             <md-card-title-text>
@@ -78,12 +101,6 @@
                     <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
                 </center>
                 <div layout-padding layout-wrap>
-                    <center>
-                        <iframe ng-if="media.mediaType == 'youtube'" width="560" height="315" ng-src="{{media.embedUrlIframe}}" frameborder="0" allowfullscreen></iframe>
-                        <iframe ng-if="media.mediaType == 'vimeo'" width="640" height="360" src="{{media.embedUrlIframe}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                        <iframe ng-show="media.mediaType == 'soundcloud'" id="sc-widget" width="100%" height="162px" scrolling="no" frameborder="no" ng-src="{{media.embedUrlIframe}}"></iframe>
-                        <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
-                    </center>
                     <div id="image" ng-show="media == 'image'">
                         <!-- pasted form add multiple images -->
                         <div layout="row">
@@ -107,7 +124,7 @@
                             </div>
                         </div>
                     </div>
-                    <div flex-offset="10" flex="90" layout="column">
+                    <div flex-offset="10" flex="80" layout="column">
                         <p class="md-title" ng-hide="progress<2" style="outline: none;font-family: serif;" ng-model="body.text" medium-editor data-placeholder="Tell your story..."></p>
                     </div>
                     <div flex layout="column" flex layout-align="center  " ng-show="progress==1">
@@ -115,6 +132,22 @@
                             <p class="md-title"> Start building your creative project:</p>
                         </center>
                         <div layout="row" layout-wrap layout="space-around center" flex>
+                            <div layout="column" ng-click="progress=2" flex-xs="25" flex-sm="25" flex-gt-sm="" layout-align="center center">
+                                <md-button class="md-fab">
+                                    <md-icon md-svg-icon="comment-text"></md-icon>
+                                </md-button>
+                                <p class="md-tile-content">
+                                    Text
+                                </p>
+                            </div>
+                            <div layout="column" flex-xs="25"  flex-sm="25" flex-gt-sm="" layout-align="center center">
+                                <md-button ngf-select ng-click="progress=2" ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 1024, height: 800}" class="md-fab">
+                                    <md-icon md-svg-icon="image"></md-icon>
+                                </md-button>
+                                <p class="md-tile-content">
+                                    Image
+                                </p>
+                            </div>
                             <div layout="column" ng-repeat="content in contents" flex-xs="25" flex-sm="25" flex-gt-sm="" layout-align="center center">
                                 <md-button class="md-fab" ng-click="addItem(content.title)">
                                     <md-icon md-svg-icon="{{content.icon}}"></md-icon>
@@ -130,52 +163,3 @@
             </div>
         </div>
     </div>
-    <!--                         <md-select ng-model="media" placeholder="Attach Media to power your post" class="md-no-underline">
-                            <md-option value="image">Image</md-option>
-                            <md-option value="music">Music</md-option>
-                            <md-option value="video">Video</md-option>
-                        </md-select>
-                        <div id="videoInput" ng-show="media == 'video'">
-                            <form ng-submit="submitVideo()" ng-show="media == 'video'">
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label>Enter a youtube or vimeo video url</label>
-                                    <input type="text" ng-model="url">
-                                </md-input-container>
-                            </form>
-                        </div>
-                        <div id="musicInput" ng-show="media == 'music'">>
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label>Enter a soundcloud url</label>
-                                    <input type="text" ng-model="url">
-                                </md-input-container>
-                            </form>
-                        </div> -->
-    <!-- pasted form add multiple images -->
-    <!--             <md-button class="md-primary" ng-hide="addImage" class="md-padding" ng-click="addImage = true;">Add image</md-button>
-            <div layout="row" ng-show="addImage">
-                <form name="myForm" style="width:100%;">
-                    <div layout="row" layout-align="center center">
-                        <div ngf-drop ng-model="picFile" style="margin: 0 auto;" ngf-pattern="image/*" class="cropArea" ng-show="!uploaded">
-                            <center>
-                                <h2 class="md-subhead">Add a picture to support your article </h2>
-                                <md-button ng-click="uploaded = false" class="md-primary" ngf-select ng-model="picFile" accept="image/*">
-                                    Select Picture</md-button>
-                            </center>
-                            <img-crop image="picFile  | ngfDataUrl" result-image="croppedDataUrl" ng-init="croppedDataUrl=''" area-type="square">
-                            </img-crop>
-                        </div>
-                        <div layout="row" style="margin: 0 auto;" layout-align="center center" ng-show="uploaded">
-                            <img ng-src="{{croppedDataUrl}}" style="opacity: {{progress/100}}" />
-                        </div>
-                    </div>
-                    <button ng-click="upload(croppedDataUrl, picFile.name); uploaded = true;" ng-show="!uploaded">Submit</button>
-                    <span class="progress" ng-show="progress >= 0">
-              <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
-            </span>
-                    <div layout="row" ng-show="uploaded">
-                        <md-button ng-click="uploaded = false" class="md-primary" ngf-select ng-model="picFile" accept="image/*">Change Picture</md-button>
-                        <md-button ng-click="upload(croppedDataUrl, picFile.name); uploaded = true;" ng-show="!uploaded">Submit</md-button>
-                    </div>
-                    <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
-                </form>
-            </div> -->
