@@ -15,8 +15,8 @@
         var vm = this;
         $scope.tab = $stateParams.tab;
         $scope.username = $stateParams.username;
-        $scope.demoFollow.status = true;
-
+        // $scope.demoFollow.status = true;
+        console.log('my profile called'+ $scope.username  + $scope.tab );
 
         $scope.showAdvanced = function(ev) {
             $mdDialog.show({
@@ -184,10 +184,6 @@
                 $mdDialog.hide(answer);
             };
         }
-        allDataService.get("https://dribbble.com/shots/3167358-Microinteractions-for-to-do-list-app")
-            .then(function(blogs) {
-                            console.log(blogs);
-            });
         tokenService.get("events")
             .then(function(events) {
                 $scope.events = events.data;

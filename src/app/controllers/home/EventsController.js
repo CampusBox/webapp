@@ -76,7 +76,7 @@
             $scope.events[$index].Actions.Participants.status = !$scope.events[$index].Actions.Participants.status;
             if ($scope.events[$index].Actions.Participants.status) {
                 $scope.events[$index].Actions.Participants.total += 1;
-                tokenService.post('ParticipantsEvent/' + event.id).then(function(result) {
+                tokenService.post('ParticipanteEvent/' + event.id).then(function(result) {
 
                     if (result.status != 'error') {
                         console.log(result.status);

@@ -1,4 +1,7 @@
 <div>
+    <md-button class="md-primary" ngf-select ng-model="picFile" accept="image/*">
+        Select Picture</md-button>
+        <img ngf-src="picFile" alt="" ngf-resize="{width: 20, height: 20, quality: 0.9}">
     <md-card ng-show="progress==0" flex-gt-sm="60" flex-offset-gt-sm="20" style="transition: all linear 0.5s;">
         <center>
             <img ng-src="{{user.imageUrl}}" alt="" style="border-radius: 50%; height: auto;width: 20%">

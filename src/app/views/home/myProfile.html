@@ -44,29 +44,14 @@
                         <md-icon class="md-icon-button" md-svg-icon="pencil-box-outline"></md-icon>
                     </md-button>
                 </p>
-                <md-list>
-                    <md-list-item ng-click="showAdvanced()">
-                        <md-icon md-svg-icon="facebook"></md-icon>
-                        <p>Facebook</p>
-                    </md-list-item>
-                    <md-list-item ng-click="navigateTo('data usage', $student)">
-                        <md-icon md-svg-icon="twitter"></md-icon>
-                        <p>Twitter</p>
-                    </md-list-item>
-                    <md-list-item ng-click="navigateTo('data usage', $student)">
-                        <md-icon md-svg-icon="youtube-play"></md-icon>
-                        <p>Youtube</p>
-                    </md-list-item>
-                    <md-list-item ng-click="navigateTo('data usage', $student)">
-                        <md-icon md-svg-icon="github-circle"></md-icon>
-                        <p>Github</p>
-                    </md-list-item>
-                    <md-list-item ng-click="navigateTo('data usage', $student)">
-                        <md-icon md-svg-icon="facebook"></md-icon>
-                        <p>Facebook</p>
-                    </md-list-item>
-                    <md-icon md-svg-icon="{{item.icon}}"></md-icon>
-                </md-list>
+                <!-- <md-list>
+                    <a ng-repeat="social in student.SocialAccounts.data" href="{{social.link}}" target="_blank">
+                        <md-list-item>
+                            <md-icon md-svg-icon="facebook"></md-icon>
+                            <p style="text-transform: capitalize;">{{item.type}}</p>
+                        </md-list-item>
+                        <md-icon md-svg-icon="{{item.icon}}"></md-icon>
+                </md-list> -->
             </div>
         </md-card-content>
         <md-card-actions layout="row" layout-align="end center">
