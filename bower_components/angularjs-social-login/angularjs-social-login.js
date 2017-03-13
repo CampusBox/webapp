@@ -147,7 +147,7 @@ socialLogin.directive("linkedIn", function($rootScope, social, socialLoginServic
             })
         }
     }
-})
+});
 
 socialLogin.directive("gLogin", function($rootScope, social, socialLoginService){
     return {
