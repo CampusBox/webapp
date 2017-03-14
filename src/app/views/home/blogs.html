@@ -8,18 +8,6 @@
 }
 </style>
 <div layout="column" layout-fill layout-padding>
-    <!-- <md-button class="md-primary" ng-click="openUrlAdd()">Add url</md-button> -->
-    <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
-        <md-nav-item md-nav-click="fetchType('')" name="page1">
-            All
-        </md-nav-item>
-        <md-nav-item md-nav-click="goto('page2')" name="page2">
-            Page Two
-        </md-nav-item>
-        <md-nav-item md-nav-click="goto('page3')" name="page3">
-            Page Three
-        </md-nav-item>
-    </md-nav-bar>
     <div flex layout="row" layout-wrap layout-align="center center">
         <md-card ng-show="loading" flex-gt-sm="60" ng-repeat="content in [1,2,3,4]">
             <md-card-header>
@@ -39,15 +27,20 @@
                 </md-card-avatar>
                 <md-card-header-text>
                     <span class="md-subhead"><span  ui-sref="home.profile" style="color: #0570c0">{{content.created.by.name}} </span> in <span ui-sref="home.profile" style="color: #0570c0">{{content.type?content.type:"Article"}} </span></span>
-                    <span class="md-title">{{content.created.at}} · 2 min read</span>
+                    <span class="md-title">{{content.created.at  | date: 'd MMM'}}</span>
                 </md-card-header-text>
             </md-card-header>
-            <img class="md-card-image" ng-if="$index%2!=0" ng-src="https://cdn-images-1.medium.com/fit/t/800/240/1*FVxaOt4HZJ7JDT6IfvtS-w.jpeg" alt="Washed Out">
+            <md-card-content>
+            <iframe ng-show="content.type == 'youtube'" width="100%" height="315" src="{{content.url}}" frameborder="0" allowfullscreen></iframe>
+            <iframe ng-show="content.type == 'soundcloud'" width="100%" height="166" scrolling="no" frameborder="0" src="{{content.url}}" allowfullscreen></iframe>
+            <iframe ng-show="content.type == 'vimeo'" width="100%" height="315" src="{{content.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <img ng-show="content.type == 'image'" src="{{content.url}}" alt="" style>
+            </md-card-content>
             <md-card-title>
                 <span class="md-headline">{{content.title}}</span>
             </md-card-title>
             <md-card-content>
-                <p class="md-body-2 " style="white-space: pre-wrap;margin-left: 10px;font-weight: 300; margin:0px; font-size: 18px; line-height: 1.58; ">{{content.Items.data[0].description | limitTo : $index%2==0?150:200}}...</p>
+                <p class="md-body-2" ng-bind-html="content.description | limitTo: 250" style="white-space: pre-wrap;margin-left: 10px;font-weight: 300; margin:0px; font-size: 18px; line-height: 1.58; "></p>
                 <p class="md-subhead" style="color: #8f8faf;">
                     Read More
                 </p>
