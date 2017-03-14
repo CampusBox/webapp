@@ -7,7 +7,11 @@
     <form ng-submit="doLogin(login)">
         <div class="login-box md-whiteframe-z1" layout="column">
             <div class="md-padding" layout="column">
-                <div flex layout="row" layout-align="center center">
+                <div >{{problem}}</div>
+                    <div layout="row" ng-hide="!loading" layout-sm="column" layout-align="space-around">
+                      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                    </div>
+                <div flex layout="row" layout-align="center center"  ng-show="!loading">
                     <md-button ng-click="authenticate('facebook')" md-colors="{background: 'indigo'}" class="md-raised md-primary">
                         <md-icon md-svg-icon="facebook"></md-icon>
                     </md-button>

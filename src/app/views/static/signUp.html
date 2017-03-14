@@ -176,9 +176,9 @@
                         </div> -->
                     </md-input-container>
                 <div>
-                    <center ng-if="signUp.roll">
+                    <center ng-show="signUp.roll && !loading">
                         <p>Complete setup with</p>
-                        <md-button ng-click="authenticate('facebook')" md-colors="{background: 'indigo'}" class="md-raised md-primary">
+                        <md-button ng-click="authenticate('facebook');" md-colors="{background: 'indigo'}" class="md-raised md-primary">
                             <md-icon md-svg-icon="facebook"></md-icon>
                         </md-button>
                         <md-button  g-login md-colors="{background: 'red'}" class="md-raised md-primary">
@@ -188,6 +188,11 @@
                             <md-icon md-svg-icon="linkedin"></md-icon>
                         </md-button> -->
                     </center>
+
+                    <div >{{problem}}</div>
+                    <div layout="row" ng-show="loading" layout-sm="column" layout-align="space-around">
+                      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                    </div>
                 </form>
                 </div>
                 <!-- <md-divider></md-divider> -->

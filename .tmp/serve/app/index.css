@@ -101,7 +101,10 @@ md-sidenav.md-locked-open.md-sidenav-left {
   max-width: 110px;
 }
 
-a.md-button.md-warn.md-raised, a.md-button.md-warn.md-fab, .md-button.md-warn.md-raised, .md-button.md-warn.md-fab {
+a.md-button.md-warn.md-raised,
+a.md-button.md-warn.md-fab,
+.md-button.md-warn.md-raised,
+.md-button.md-warn.md-fab {
   color: white;
 }
 
@@ -345,7 +348,8 @@ md-backdrop.md-sidenav-backdrop {
 }
 
 @keyframes cssload-tetromino1 {
-  0%, 40% {
+  0%,
+    40% {
     -webkit-transform: translate(0, 0);
             transform: translate(0, 0);
   }
@@ -353,56 +357,67 @@ md-backdrop.md-sidenav-backdrop {
     -webkit-transform: translate(47px, -26px);
             transform: translate(47px, -26px);
   }
-  60%, 100% {
+  60%,
+    100% {
     -webkit-transform: translate(94px, 0);
             transform: translate(94px, 0);
   }
 }
 @-ms-keyframes cssload-tetromino1 {
-  0%, 40% {
+  0%,
+    40% {
     -ms-transform: translate(0, 0);
   }
   50% {
     -ms-transform: translate(47px, -26px);
   }
-  60%, 100% {
+  60%,
+    100% {
     -ms-transform: translate(94px, 0);
   }
 }
 @-webkit-keyframes cssload-tetromino1 {
-  0%, 40% {
+  0%,
+    40% {
     -webkit-transform: translate(0, 0);
   }
   50% {
     -webkit-transform: translate(47px, -26px);
   }
-  60%, 100% {
+  60%,
+    100% {
     -webkit-transform: translate(94px, 0);
   }
 }
 @keyframes cssload-tetromino2 {
-  0%, 20% {
+  0%,
+    20% {
     -webkit-transform: translate(94px, 0px);
             transform: translate(94px, 0px);
   }
-  40%, 100% {
+  40%,
+    100% {
     -webkit-transform: translate(140px, 26px);
             transform: translate(140px, 26px);
   }
 }
 @-ms-keyframes cssload-tetromino2 {
-  0%, 20% {
+  0%,
+    20% {
     -ms-transform: translate(94px, 0px);
   }
-  40%, 100% {
+  40%,
+    100% {
     -ms-transform: translate(140px, 26px);
   }
 }
 @-webkit-keyframes cssload-tetromino2 {
-  0%, 20% {
+  0%,
+    20% {
     -webkit-transform: translate(94px, 0px);
   }
-  40%, 100% {
+  40%,
+    100% {
     -webkit-transform: translate(140px, 26px);
   }
 }
@@ -411,11 +426,13 @@ md-backdrop.md-sidenav-backdrop {
     -webkit-transform: translate(140px, 26px);
             transform: translate(140px, 26px);
   }
-  20%, 60% {
+  20%,
+    60% {
     -webkit-transform: translate(94px, 53px);
             transform: translate(94px, 53px);
   }
-  90%, 100% {
+  90%,
+    100% {
     -webkit-transform: translate(47px, 26px);
             transform: translate(47px, 26px);
   }
@@ -424,10 +441,12 @@ md-backdrop.md-sidenav-backdrop {
   0% {
     -ms-transform: translate(140px, 26px);
   }
-  20%, 60% {
+  20%,
+    60% {
     -ms-transform: translate(94px, 53px);
   }
-  90%, 100% {
+  90%,
+    100% {
     -ms-transform: translate(47px, 26px);
   }
 }
@@ -435,36 +454,44 @@ md-backdrop.md-sidenav-backdrop {
   0% {
     -webkit-transform: translate(140px, 26px);
   }
-  20%, 60% {
+  20%,
+    60% {
     -webkit-transform: translate(94px, 53px);
   }
-  90%, 100% {
+  90%,
+    100% {
     -webkit-transform: translate(47px, 26px);
   }
 }
 @keyframes cssload-tetromino4 {
-  0%, 60% {
+  0%,
+    60% {
     -webkit-transform: translate(47px, 26px);
             transform: translate(47px, 26px);
   }
-  90%, 100% {
+  90%,
+    100% {
     -webkit-transform: translate(0, 0);
             transform: translate(0, 0);
   }
 }
 @-ms-keyframes cssload-tetromino4 {
-  0%, 60% {
+  0%,
+    60% {
     -ms-transform: translate(47px, 26px);
   }
-  90%, 100% {
+  90%,
+    100% {
     -ms-transform: translate(0, 0);
   }
 }
 @-webkit-keyframes cssload-tetromino4 {
-  0%, 60% {
+  0%,
+    60% {
     -webkit-transform: translate(47px, 26px);
   }
-  90%, 100% {
+  90%,
+    100% {
     -webkit-transform: translate(0, 0);
   }
 }
@@ -633,6 +660,61 @@ md-icon.cross > svg {
   border: 1px solid #039BE5;
   color: #2899d1;
   text-transform: capitalize;
+}
+
+@-webkit-keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+.animated-background {
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-name: placeHolderShimmer;
+          animation-name: placeHolderShimmer;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  background: #f6f7f8;
+  color: transparent !important;
+  background: linear-gradient(to right, #f6f7f8 8%, #eee 18%, #f6f7f8 33%);
+  background-size: 800px 104px;
+  position: relative;
+}
+
+.appriciate-button {
+  text-transform: capitalize;
+  color: #e91e63;
+}
+
+.rsvp-button {
+  text-transform: capitalize;
+  color: #0570c0;
+}
+
+.appriciate-button.appriciated {
+  background: #e91e63;
+  color: white;
+  border-color: #e91e63;
+}
+
+.white-bg {
+  background-color: #fff;
 }
 
 .table {

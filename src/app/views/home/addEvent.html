@@ -13,7 +13,7 @@
 </style>
 <div flex layout-gt-xs="row" layout-xs="column">
     <md-card flex-gt-xs="50">
-        <md-tabs md-dynamic-height md-border-bottom="" md-selected="selectedIndex">
+        <md-tabs md-dynamic-height md-border-bottom="" ng-init="selectedIndex=0" md-selected="selectedIndex">
             <md-tab label="Basic Details">
                 <div class="md-padding" layout="column" layout-padding>
                     <md-input-container>
@@ -62,7 +62,7 @@
                             </md-select>
                         </md-input-container>
                         <md-input-container>
-                            <label>Am/Period</label>
+                            <label>yPeriod</label>
                             <md-select ng-model="event.fromPeriod" ng-required="true">
                                 <md-option ng-value="fromPeriod" ng-repeat="fromPeriod in ['am', 'pm']">{{fromPeriod}}</md-option>
                             </md-select>
@@ -92,7 +92,7 @@
                 <div class="md-padding" layout="column">
                     <md-input-container flex>
                         <label>Event Venue</label>
-                        <input type="text" ng-model="event.venue" md-maxlength="30">
+                        <input type="text" required="" ng-model="event.venue" md-maxlength="30">
                     </md-input-container>
                     <md-input-container>
                         <label> Online link to the event?</label>
@@ -100,7 +100,7 @@
                     </md-input-container>
                     <md-input-container>
                         <label>Description</label>
-                        <textarea ng-model="event.description" md-maxlength="300" rows="4" md-select-on-focus></textarea>
+                        <textarea required="" ng-model="event.description" md-maxlength="300" rows="4" md-select-on-focus></textarea>
                     </md-input-container>
                     <md-chips name="skills" ng-model="tags" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
                         <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Enter top 5 tags for your event">
@@ -114,11 +114,11 @@
                     <div layout-gt-sm="row">
                         <md-input-container flex>
                             <label>Organizer Name</label>
-                            <input type="text" ng-model="event.organiserName" md-maxlength="30">
+                            <input required="" type="text" ng-model="event.organiserName" md-maxlength="30">
                         </md-input-container>
                         <md-input-container flex>
                             <label>Organizer Phone</label>
-                            <input type="number" ng-model="event.organiserPhone" md-maxlength="30">
+                            <input required="" type="number" ng-model="event.organiserPhone" md-maxlength="30">
                         </md-input-container>
                         <md-input-container flex>
                             <label>Online Link to the organizer</label>
@@ -136,19 +136,22 @@
                         </img-crop>
                     </div>
                 </div>
-                <button ng-click="upload(event.croppedDataUrl, picFile.name)">Submit</button>
+                <!-- <button ng-click="upload(event.croppedDataUrl, picFile.name)">Submit</button> -->
                 <span class="progress" ng-show="progress >= 0">
                       <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
                   </span>
                 <span ng-show="result">Upload Successful</span>
                 <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+                <md-button style="float: right" class="md-raised md-primary" ng-click="submitEvent(event,tags)">
+                Create
+            </md-button>
             </md-tab>
         </md-tabs>
         <md-dialog-actions layout="row">
             <span flex></span>
-            <md-button ng-click="submitEvent(event,tags)">
-                Create
-            </md-button>
+            
+            <md-button ng-if="selectedIndex == 0" ng-click="selectedIndex = selectedIndex + 1">Previous</md-button>
+
             <md-button class="md-raised md-primary" ng-if="selectedIndex == 0" ng-click="selectedIndex = selectedIndex + 1">Next</md-button>
         </md-dialog-actions>
     </md-card>
@@ -177,7 +180,7 @@
                     <md-divider></md-divider>
                     <div layout="row">
                         <md-card-actions layout="row" layout-align="start center">
-                            <span class="md-body-2" ng-repeat="tag in tags">#{{ tag.name }}                  </span>
+                            <span class="md-body-2" ng-repeat="tag in tags"> #{{ tag.name }}     </span>
                             <span flex></span>
                             <md-button class="md-icon-button" ng-click="heart(event, $index)" aria-label="Favorite ">
                                 <md-icon ng-class="event.Actions.Bookmarked.status? 'pink':''" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>

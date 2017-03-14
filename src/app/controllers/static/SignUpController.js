@@ -10,6 +10,7 @@
 
     function SignUpController($scope, $timeout, loginData, $rootScope, $localStorage, $state, collegesListService, tokenService, $auth) {
         var vm = this;
+        $scope.loading = false;
         $scope.querySearch = querySearch;
         $scope.signUp = {};
         vm.tags = [];
@@ -22,38 +23,38 @@
             $scope.colleges = colleges;
         });
         $scope.items1 = [
-            { 'title': 'Articles','id':1, 'intrested': false },
-            { 'title': 'Poetry','id':1, 'intrested': false },
-            { 'title': 'Drama','id':1, 'intrested': false },
-            { 'title': 'Painting','id':1, 'intrested': false }
-];
+            { 'title': 'Articles', 'id': 1, 'intrested': false },
+            { 'title': 'Poetry', 'id': 1, 'intrested': false },
+            { 'title': 'Drama', 'id': 1, 'intrested': false },
+            { 'title': 'Painting', 'id': 1, 'intrested': false }
+        ];
         $scope.items2 = [
-            { 'title': 'Sketching','id':1, 'intrested': false },
-            { 'title': 'Manga','id':1, 'intrested': false },
-            { 'title': 'Craft','id':1, 'intrested': false },
-            { 'title': 'Song Covers','id':1, 'intrested': false },
-            { 'title': 'Instrumental','id':1, 'intrested': false }
-            
-];
+            { 'title': 'Sketching', 'id': 1, 'intrested': false },
+            { 'title': 'Manga', 'id': 1, 'intrested': false },
+            { 'title': 'Craft', 'id': 1, 'intrested': false },
+            { 'title': 'Song Covers', 'id': 1, 'intrested': false },
+            { 'title': 'Instrumental', 'id': 1, 'intrested': false }
+
+        ];
         $scope.items3 = [
-            { 'title': 'Music Mixing','id':1, 'intrested': false },
-            { 'title': 'Photography','id':1, 'intrested': false },
-            { 'title': 'Apps','id':1, 'intrested': false },
-            { 'title': 'Apps','id':1, 'intrested': false }
-            
-];
+            { 'title': 'Music Mixing', 'id': 1, 'intrested': false },
+            { 'title': 'Photography', 'id': 1, 'intrested': false },
+            { 'title': 'Apps', 'id': 1, 'intrested': false },
+            { 'title': 'Apps', 'id': 1, 'intrested': false }
+
+        ];
         $scope.items4 = [
-            { 'title': 'Apps','id':1, 'intrested': false },
-            { 'title': 'Apps','id':1, 'intrested': false },
-            { 'title': 'Film and Video','id':1, 'intrested': false },
-            { 'title': 'Animation','id':1, 'intrested': false },
-            { 'title': 'Graphics','id':1, 'intrested': false }
-];
+            { 'title': 'Apps', 'id': 1, 'intrested': false },
+            { 'title': 'Apps', 'id': 1, 'intrested': false },
+            { 'title': 'Film and Video', 'id': 1, 'intrested': false },
+            { 'title': 'Animation', 'id': 1, 'intrested': false },
+            { 'title': 'Graphics', 'id': 1, 'intrested': false }
+        ];
         $scope.items5 = [
 
-            { 'title': 'UI and UX','id':1, 'intrested': false },
-            { 'title': 'Webites','id':1, 'intrested': false },
-            { 'title': 'Apps','id':1, 'intrested': false }
+            { 'title': 'UI and UX', 'id': 1, 'intrested': false },
+            { 'title': 'Webites', 'id': 1, 'intrested': false },
+            { 'title': 'Apps', 'id': 1, 'intrested': false }
         ];
         // $scope.sports = [
         //     { 'title': 'Football', 'intrested': false },
@@ -132,6 +133,7 @@
         $scope.signUp = {};
 
         $scope.authenticate = function(provider) {
+            $scope.loading = true;
             $auth.authenticate(provider).then(function(response) {
                     $scope.signUp.token = response.access_token;
                     $scope.signUp.type = provider;
@@ -142,14 +144,21 @@
                     console.log("then");
                     tokenService.post("signup", $scope.signUp)
                         .then(function(abc) {
+                            console.log(abc);
                             localStorage.setItem('id_token', abc.token);
+  //                          localStorage.setItem('username', abc.student.username);
+    //                        localStorage.setItem('college_id', abc.student.college_id);
+      //                      localStorage.setItem('image', abc.student.image);
                             $rootScope.token = abc.token;
-                           $state.go("home.dashboard");
+                            $rootScope.image = abc.image;
+                            $state.go("home.dashboard");
                             return;
                         }).catch(function(abc) {
+                            console.log(abc);
                             localStorage.setItem('id_token', abc.token);
+                            $scope.problem=abc.status;
                             $rootScope.token = abc.token;
-                           // $state.go("home.dashboard");
+                             $state.go("home.dashboard");
                             return;
 
                         });
@@ -168,9 +177,10 @@
                         .then(function(abc) {
                             localStorage.setItem('id_token', abc.token);
                             $rootScope.token = abc.token;
-//                            $state.go("home.dashboard");
+                            //                            $state.go("home.dashboard");
                             return;
                         }).catch(function(abc) {
+                            $scope.loading = false;
 
                         });
                 });
@@ -199,6 +209,8 @@
         $rootScope.$on('event:social-sign-in-success', function(event, response) {
             // console.log("Social sign in success")
             // console.log(userDetails);
+                        $scope.loading = true;
+
             console.log(event);
             console.log(response);
             $scope.signUp.token = response.token;
@@ -214,10 +226,12 @@
                     console.log(abc);
                     localStorage.setItem('id_token', abc.token);
                     $rootScope.token = abc.token;
-              //      $state.go("home.dashboard");
+                    //      $state.go("home.dashboard");
                     return;
 
                 }).catch(function(abc) {
+                                $scope.loading = false;
+                                $scope.problem="Could not sign you up try again later.";
 
                 });
 
@@ -226,7 +240,7 @@
             //     $scope.currentState = 2;
             // })
             $timeout(function() {
-                $scope.currentState = 2;
+                //$scope.currentState = 2;
                 // $scope.someData = someData;
             }, 0);
         })

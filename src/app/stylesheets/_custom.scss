@@ -3,180 +3,183 @@ $main-bg-color: #fafafa;
 $text-color: #282c35;
 $accent-color: rgb(0, 150, 136);
 $warning-color: #E75753;
-
-
 // VARIABLES
 $left-sidenav-width: 110px;
 $widget-height: 310px;
 $font-weight-bold: 600;
 $font-size-large: 22px;
-
-
 // LAYOUT
 body {
-  color: $text-color;
+    color: $text-color;
 }
 
 .toolbar-button {
-  min-width: 20px;
+    min-width: 20px;
 }
 
 .share-label {
-  vertical-align: middle;
-  margin-left: 10px;
+    vertical-align: middle;
+    margin-left: 10px;
 }
 
 .page-content {
-  background-color: $main-bg-color;
+    background-color: $main-bg-color;
 }
 
 .widget-progress {
-  width: 95% !important;
-  margin-left: 10px;
+    width: 95% !important;
+    margin-left: 10px;
 }
-div.pageContainer{
-  height:auto;
+
+div.pageContainer {
+    height: auto;
 }
 
 // UTILS
 .capitalize {
-  text-transform: capitalize;
+    text-transform: capitalize;
 }
 
 .img-circle {
-  height: 50px;
-  border-radius: 50%;
-  margin: 0 10px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 0 10px;
 }
-
 
 // COMPONENTS
 .messages {
-  position: relative;
-
-  &-content {
-    height: 100vh;
-  }
+    position: relative;
+    &-content {
+        height: 100vh;
+    }
 }
 
 .notifications-label {
-  width: 16px;
-  height: 16px;
-  line-height: 16px;
-  text-align: center;
-  border-radius: 50%;
-  position: absolute;
-  font-size: 12px;
-  top: 2px;
-  right: 2px;
-  background-color: $warning-color;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+    border-radius: 50%;
+    position: absolute;
+    font-size: 12px;
+    top: 2px;
+    right: 2px;
+    background-color: $warning-color;
 }
 
 // panel-widget
 .panel-widget {
-  background-color: white;
-
-  &-toolbar {
-    box-shadow: none;
-    margin: 0;
-  }
-
-  &-tittle {
-    color: $text-color;
-  }
+    background-color: white;
+    &-toolbar {
+        box-shadow: none;
+        margin: 0;
+    }
+    &-tittle {
+        color: $text-color;
+    }
 }
 
 .options {
-  -webkit-transition:all linear 0.5s;
-  transition:all linear 0.5s;
+    -webkit-transition: all linear 0.5s;
+    transition: all linear 0.5s;
 }
 
 .options.ng-hide {
-  opacity:0;
+    opacity: 0;
 }
 
 .fixed-height-widget {
-  height: $widget-height;
+    height: $widget-height;
 }
 
 // charts
-.donut-chart-title{
-  text-align: center;
+.donut-chart-title {
+    text-align: center;
 }
 
 .custom-tooltip {
-  font-size: $font-size-large;
-  color: $text-color;
-  text-align: center;
+    font-size: $font-size-large;
+    color: $text-color;
+    text-align: center;
 }
-
 
 // OVERRIDES
 // angular material overrides
 md-radio-group {
-  border: none;
+    border: none;
 }
 
 md-icon {
-  height: auto;
+    height: auto;
 }
 
 md-sidenav.md-locked-open.md-sidenav-left {
-  width: $left-sidenav-width;
-  min-width: $left-sidenav-width;
-  max-width: $left-sidenav-width;
+    width: $left-sidenav-width;
+    min-width: $left-sidenav-width;
+    max-width: $left-sidenav-width;
 }
 
-a.md-button.md-warn.md-raised, a.md-button.md-warn.md-fab, .md-button.md-warn.md-raised, .md-button.md-warn.md-fab {
-  color: white;
+a.md-button.md-warn.md-raised,
+a.md-button.md-warn.md-fab,
+.md-button.md-warn.md-raised,
+.md-button.md-warn.md-fab {
+    color: white;
 }
 
 md-radio-button.md-accent.md-checked .md-label span {
-  color: $accent-color;
+    color: $accent-color;
 }
 
 .md-toolbar-tools h1 {
-  font-size: $font-size-large;
+    font-size: $font-size-large;
 }
 
-
 md-backdrop.md-sidenav-backdrop {
-  position: fixed;
+    position: fixed;
 }
 
 // libs overrides
 .material-icons {
-  vertical-align: middle;
+    vertical-align: middle;
 }
 
-.material-icons.md-18 { font-size: 18px; }
-.material-icons.md-24 { font-size: 24px; }
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-48 { font-size: 48px; }
+.material-icons.md-18 {
+    font-size: 18px;
+}
+
+.material-icons.md-24 {
+    font-size: 24px;
+}
+
+.material-icons.md-36 {
+    font-size: 36px;
+}
+
+.material-icons.md-48 {
+    font-size: 48px;
+}
 
 .nvd3.nv-pie .nv-pie-title {
-  fill: rgb(68, 68, 68);
-  font-weight: $font-weight-bold;
-  font-size: $font-size-large !important;
+    fill: rgb(68, 68, 68);
+    font-weight: $font-weight-bold;
+    font-size: $font-size-large !important;
 }
 
 .nvtooltip {
-  background-color: transparent;
-  border: none;
-  font-weight: $font-weight-bold;
+    background-color: transparent;
+    border: none;
+    font-weight: $font-weight-bold;
 }
 
 .orange .md-bar2 {
-  background-color: orange;
+    background-color: orange;
 }
 
 .orange .md-container {
-  background-color: rgb(255, 236, 201)
+    background-color: rgb(255, 236, 201)
 }
 
-
 //events page 
-
 .flexy-16 {
     -webkit-flex: 1 1 16%;
     -ms-flex: 1 1 16%;
@@ -198,11 +201,13 @@ md-backdrop.md-sidenav-backdrop {
 }
 
 .eventListItem .md-button {
-  padding: 0 !important;
+    padding: 0 !important;
 }
+
 .eventListItem md-card {
-  margin: 1px;
+    margin: 1px;
 }
+
 .shimmer {
     /* the shimmer magic */
     background: -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(.5, #fff));
@@ -343,11 +348,13 @@ md-backdrop.md-sidenav-backdrop {
     width: 18px;
 }
 
+
 /*search autocomplete start*/
+
 .cssload-tetrominos {
-  position: absolute;
-  left: 50%;
-  transform: translate(-109px, -94px);
+    position: absolute;
+    left: 50%;
+    transform: translate(-109px, -94px);
     -o-transform: translate(-109px, -94px);
     -ms-transform: translate(-109px, -94px);
     -webkit-transform: translate(-109px, -94px);
@@ -355,19 +362,19 @@ md-backdrop.md-sidenav-backdrop {
 }
 
 .cssload-tetromino {
-  width: 94px;
-  height: 109px;
-  position: absolute;
-  transition: all ease 0.35s;
+    width: 94px;
+    height: 109px;
+    position: absolute;
+    transition: all ease 0.35s;
     -o-transition: all ease 0.35s;
     -ms-transition: all ease 0.35s;
     -webkit-transition: all ease 0.35s;
     -moz-transition: all ease 0.35s;
-  background: url('data:image/svg+xml;utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 684"%3E%3Cpath fill="%230570C0" d="M305.7 0L0 170.9v342.3L305.7 684 612 513.2V170.9L305.7 0z"/%3E%3Cpath fill="%324324" d="M305.7 80.1l-233.6 131 233.6 131 234.2-131-234.2-131"/%3E%3C/svg%3E') no-repeat top center;
+    background: url('data:image/svg+xml;utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 684"%3E%3Cpath fill="%230570C0" d="M305.7 0L0 170.9v342.3L305.7 684 612 513.2V170.9L305.7 0z"/%3E%3Cpath fill="%324324" d="M305.7 80.1l-233.6 131 233.6 131 234.2-131-234.2-131"/%3E%3C/svg%3E') no-repeat top center;
 }
 
 .cssload-box1 {
-  animation: cssload-tetromino1 1.73s ease-out infinite;
+    animation: cssload-tetromino1 1.73s ease-out infinite;
     -o-animation: cssload-tetromino1 1.73s ease-out infinite;
     -ms-animation: cssload-tetromino1 1.73s ease-out infinite;
     -webkit-animation: cssload-tetromino1 1.73s ease-out infinite;
@@ -375,7 +382,7 @@ md-backdrop.md-sidenav-backdrop {
 }
 
 .cssload-box2 {
-  animation: cssload-tetromino2 1.73s ease-out infinite;
+    animation: cssload-tetromino2 1.73s ease-out infinite;
     -o-animation: cssload-tetromino2 1.73s ease-out infinite;
     -ms-animation: cssload-tetromino2 1.73s ease-out infinite;
     -webkit-animation: cssload-tetromino2 1.73s ease-out infinite;
@@ -383,239 +390,273 @@ md-backdrop.md-sidenav-backdrop {
 }
 
 .cssload-box3 {
-  animation: cssload-tetromino3 1.73s ease-out infinite;
+    animation: cssload-tetromino3 1.73s ease-out infinite;
     -o-animation: cssload-tetromino3 1.73s ease-out infinite;
     -ms-animation: cssload-tetromino3 1.73s ease-out infinite;
     -webkit-animation: cssload-tetromino3 1.73s ease-out infinite;
     -moz-animation: cssload-tetromino3 1.73s ease-out infinite;
-  z-index: 2;
+    z-index: 2;
 }
 
 .cssload-box4 {
-  animation: cssload-tetromino4 1.73s ease-out infinite;
+    animation: cssload-tetromino4 1.73s ease-out infinite;
     -o-animation: cssload-tetromino4 1.73s ease-out infinite;
     -ms-animation: cssload-tetromino4 1.73s ease-out infinite;
     -webkit-animation: cssload-tetromino4 1.73s ease-out infinite;
     -moz-animation: cssload-tetromino4 1.73s ease-out infinite;
 }
 
-
-
-
-
-
-
-
-
 @keyframes cssload-tetromino1 {
-  0%, 40% {
-    transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(47px, -26px);
-  }
-  60%, 100% {
-    transform: translate(94px, 0);
-  }
+    0%,
+    40% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(47px, -26px);
+    }
+    60%,
+    100% {
+        transform: translate(94px, 0);
+    }
 }
 
 @-o-keyframes cssload-tetromino1 {
-  0%, 40% {
-    -o-transform: translate(0, 0);
-  }
-  50% {
-    -o-transform: translate(47px, -26px);
-  }
-  60%, 100% {
-    -o-transform: translate(94px, 0);
-  }
+    0%,
+    40% {
+        -o-transform: translate(0, 0);
+    }
+    50% {
+        -o-transform: translate(47px, -26px);
+    }
+    60%,
+    100% {
+        -o-transform: translate(94px, 0);
+    }
 }
 
 @-ms-keyframes cssload-tetromino1 {
-  0%, 40% {
-    -ms-transform: translate(0, 0);
-  }
-  50% {
-    -ms-transform: translate(47px, -26px);
-  }
-  60%, 100% {
-    -ms-transform: translate(94px, 0);
-  }
+    0%,
+    40% {
+        -ms-transform: translate(0, 0);
+    }
+    50% {
+        -ms-transform: translate(47px, -26px);
+    }
+    60%,
+    100% {
+        -ms-transform: translate(94px, 0);
+    }
 }
 
 @-webkit-keyframes cssload-tetromino1 {
-  0%, 40% {
-    -webkit-transform: translate(0, 0);
-  }
-  50% {
-    -webkit-transform: translate(47px, -26px);
-  }
-  60%, 100% {
-    -webkit-transform: translate(94px, 0);
-  }
+    0%,
+    40% {
+        -webkit-transform: translate(0, 0);
+    }
+    50% {
+        -webkit-transform: translate(47px, -26px);
+    }
+    60%,
+    100% {
+        -webkit-transform: translate(94px, 0);
+    }
 }
 
 @-moz-keyframes cssload-tetromino1 {
-  0%, 40% {
-    -moz-transform: translate(0, 0);
-  }
-  50% {
-    -moz-transform: translate(47px, -26px);
-  }
-  60%, 100% {
-    -moz-transform: translate(94px, 0);
-  }
+    0%,
+    40% {
+        -moz-transform: translate(0, 0);
+    }
+    50% {
+        -moz-transform: translate(47px, -26px);
+    }
+    60%,
+    100% {
+        -moz-transform: translate(94px, 0);
+    }
 }
 
 @keyframes cssload-tetromino2 {
-  0%, 20% {
-    transform: translate(94px, 0px);
-  }
-  40%, 100% {
-    transform: translate(140px, 26px);
-  }
+    0%,
+    20% {
+        transform: translate(94px, 0px);
+    }
+    40%,
+    100% {
+        transform: translate(140px, 26px);
+    }
 }
 
 @-o-keyframes cssload-tetromino2 {
-  0%, 20% {
-    -o-transform: translate(94px, 0px);
-  }
-  40%, 100% {
-    -o-transform: translate(140px, 26px);
-  }
+    0%,
+    20% {
+        -o-transform: translate(94px, 0px);
+    }
+    40%,
+    100% {
+        -o-transform: translate(140px, 26px);
+    }
 }
 
 @-ms-keyframes cssload-tetromino2 {
-  0%, 20% {
-    -ms-transform: translate(94px, 0px);
-  }
-  40%, 100% {
-    -ms-transform: translate(140px, 26px);
-  }
+    0%,
+    20% {
+        -ms-transform: translate(94px, 0px);
+    }
+    40%,
+    100% {
+        -ms-transform: translate(140px, 26px);
+    }
 }
 
 @-webkit-keyframes cssload-tetromino2 {
-  0%, 20% {
-    -webkit-transform: translate(94px, 0px);
-  }
-  40%, 100% {
-    -webkit-transform: translate(140px, 26px);
-  }
+    0%,
+    20% {
+        -webkit-transform: translate(94px, 0px);
+    }
+    40%,
+    100% {
+        -webkit-transform: translate(140px, 26px);
+    }
 }
 
 @-moz-keyframes cssload-tetromino2 {
-  0%, 20% {
-    -moz-transform: translate(94px, 0px);
-  }
-  40%, 100% {
-    -moz-transform: translate(140px, 26px);
-  }
+    0%,
+    20% {
+        -moz-transform: translate(94px, 0px);
+    }
+    40%,
+    100% {
+        -moz-transform: translate(140px, 26px);
+    }
 }
 
 @keyframes cssload-tetromino3 {
-  0% {
-    transform: translate(140px, 26px);
-  }
-  20%, 60% {
-    transform: translate(94px, 53px);
-  }
-  90%, 100% {
-    transform: translate(47px, 26px);
-  }
+    0% {
+        transform: translate(140px, 26px);
+    }
+    20%,
+    60% {
+        transform: translate(94px, 53px);
+    }
+    90%,
+    100% {
+        transform: translate(47px, 26px);
+    }
 }
 
 @-o-keyframes cssload-tetromino3 {
-  0% {
-    -o-transform: translate(140px, 26px);
-  }
-  20%, 60% {
-    -o-transform: translate(94px, 53px);
-  }
-  90%, 100% {
-    -o-transform: translate(47px, 26px);
-  }
+    0% {
+        -o-transform: translate(140px, 26px);
+    }
+    20%,
+    60% {
+        -o-transform: translate(94px, 53px);
+    }
+    90%,
+    100% {
+        -o-transform: translate(47px, 26px);
+    }
 }
 
 @-ms-keyframes cssload-tetromino3 {
-  0% {
-    -ms-transform: translate(140px, 26px);
-  }
-  20%, 60% {
-    -ms-transform: translate(94px, 53px);
-  }
-  90%, 100% {
-    -ms-transform: translate(47px, 26px);
-  }
+    0% {
+        -ms-transform: translate(140px, 26px);
+    }
+    20%,
+    60% {
+        -ms-transform: translate(94px, 53px);
+    }
+    90%,
+    100% {
+        -ms-transform: translate(47px, 26px);
+    }
 }
 
 @-webkit-keyframes cssload-tetromino3 {
-  0% {
-    -webkit-transform: translate(140px, 26px);
-  }
-  20%, 60% {
-    -webkit-transform: translate(94px, 53px);
-  }
-  90%, 100% {
-    -webkit-transform: translate(47px, 26px);
-  }
+    0% {
+        -webkit-transform: translate(140px, 26px);
+    }
+    20%,
+    60% {
+        -webkit-transform: translate(94px, 53px);
+    }
+    90%,
+    100% {
+        -webkit-transform: translate(47px, 26px);
+    }
 }
 
 @-moz-keyframes cssload-tetromino3 {
-  0% {
-    -moz-transform: translate(140px, 26px);
-  }
-  20%, 60% {
-    -moz-transform: translate(94px, 53px);
-  }
-  90%, 100% {
-    -moz-transform: translate(47px, 26px);
-  }
+    0% {
+        -moz-transform: translate(140px, 26px);
+    }
+    20%,
+    60% {
+        -moz-transform: translate(94px, 53px);
+    }
+    90%,
+    100% {
+        -moz-transform: translate(47px, 26px);
+    }
 }
 
 @keyframes cssload-tetromino4 {
-  0%, 60% {
-    transform: translate(47px, 26px);
-  }
-  90%, 100% {
-    transform: translate(0, 0);
-  }
+    0%,
+    60% {
+        transform: translate(47px, 26px);
+    }
+    90%,
+    100% {
+        transform: translate(0, 0);
+    }
 }
 
 @-o-keyframes cssload-tetromino4 {
-  0%, 60% {
-    -o-transform: translate(47px, 26px);
-  }
-  90%, 100% {
-    -o-transform: translate(0, 0);
-  }
+    0%,
+    60% {
+        -o-transform: translate(47px, 26px);
+    }
+    90%,
+    100% {
+        -o-transform: translate(0, 0);
+    }
 }
 
 @-ms-keyframes cssload-tetromino4 {
-  0%, 60% {
-    -ms-transform: translate(47px, 26px);
-  }
-  90%, 100% {
-    -ms-transform: translate(0, 0);
-  }
+    0%,
+    60% {
+        -ms-transform: translate(47px, 26px);
+    }
+    90%,
+    100% {
+        -ms-transform: translate(0, 0);
+    }
 }
 
 @-webkit-keyframes cssload-tetromino4 {
-  0%, 60% {
-    -webkit-transform: translate(47px, 26px);
-  }
-  90%, 100% {
-    -webkit-transform: translate(0, 0);
-  }
+    0%,
+    60% {
+        -webkit-transform: translate(47px, 26px);
+    }
+    90%,
+    100% {
+        -webkit-transform: translate(0, 0);
+    }
 }
 
 @-moz-keyframes cssload-tetromino4 {
-  0%, 60% {
-    -moz-transform: translate(47px, 26px);
-  }
-  90%, 100% {
-    -moz-transform: translate(0, 0);
-  }
+    0%,
+    60% {
+        -moz-transform: translate(47px, 26px);
+    }
+    90%,
+    100% {
+        -moz-transform: translate(0, 0);
+    }
 }
+
+
 /*
 Optional adjustments for md-autocomplete in mobile screens
 */
@@ -632,7 +673,10 @@ Optional adjustments for md-autocomplete in mobile screens
         padding-bottom: 0;
     }
 }
+
+
 /*image upload start*/
+
 .cropArea {
     background: #E4E4E4;
     overflow: hidden;
@@ -658,7 +702,6 @@ form .progress {
 
 
 /*image upload end*/
-
 
 // sign up page 
 .interest {
@@ -691,21 +734,23 @@ form .progress {
     min-width: 50%;
     background: #fff;
 }
+
 // show blog page 
 .content-text p {
     margin: 0px;
-        letter-spacing: 0.02em;
+    letter-spacing: 0.02em;
     line-height: 1.58;
     font-size: 21px;
-    color: rgba(0,0,0,.8);
+    color: rgba(0, 0, 0, .8);
 }
+
 // add blog page 
 .angular-medium-editor.medium-editor-element p {
     margin: 0px;
-        letter-spacing: 0.02em;
+    letter-spacing: 0.02em;
     line-height: 1.58;
     font-size: 21px;
-    color: rgba(0,0,0,.8);
+    color: rgba(0, 0, 0, .8);
 }
 
 .medium-editor-placeholder:after {
@@ -792,13 +837,12 @@ md-icon.cross>svg {
     text-transform: capitalize;
 }
 
-
 // shimmer loading effect 
-    @keyframes placeHolderShimmer{
-    0%{
+@keyframes placeHolderShimmer {
+    0% {
         background-position: -468px 0
     }
-    100%{
+    100% {
         background-position: 468px 0
     }
 }
@@ -810,8 +854,28 @@ md-icon.cross>svg {
     animation-name: placeHolderShimmer;
     animation-timing-function: linear;
     background: #f6f7f8;
-    color: transparent;
+    color: transparent!important;
     background: linear-gradient(to right, #f6f7f8 8%, #eee 18%, #f6f7f8 33%);
     background-size: 800px 104px;
     position: relative;
+}
+
+// button styles 
+.appriciate-button {
+    text-transform: capitalize;
+    color: rgb(233, 30, 99);
+}
+.rsvp-button {
+    text-transform: capitalize;
+    color: #0570c0;
+}
+
+.appriciate-button.appriciated {
+    background: rgb(233, 30, 99);
+    color: white;
+    border-color: rgb(233, 30, 99);
+}
+
+.white-bg{
+    background-color: #fff;
 }

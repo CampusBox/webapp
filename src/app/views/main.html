@@ -2,6 +2,9 @@
 .whiteText {
     color: #fff;
 }
+md-toolbar{
+background-color: #0570c0 !important; 
+}
 </style>
 <!-- <md-button class="md-fab md-fab-bottom-right" aria-label="upload photo">
     +
@@ -14,10 +17,10 @@
         </section>
         <section layout-align="start center" flex>
             <form hide-sm hide-xs ng-submit="$event.preventDefault();openSearch(searchText)">
-                <md-autocomplete ng-disabled="isDisabled" md-no-cache="false" md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item)" md-items="item in searchData" md-item-text="item.title" md-min-length="0" placeholder="Search for anything here" md-menu-class="autocomplete-custom-template">
+                <md-autocomplete ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item)" md-items="item in searchData" md-item-text="item.title" md-min-length="0" placeholder="Search for anything here" md-menu-class="autocomplete-custom-template">
                     <md-item-template>
-                        <md-list-item class="noright" ng-href="item.url">
-                            <img alt="{{ person.title }}" ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{item.id}}.jpg" class="md-avatar" />
+                        <md-list-item class="noright" ng-href="{{item.title}}">
+                            <img alt="{{ person.title }}" ng-src="{{item.image}}" class="md-avatar" />
                             <p>{{ item.title }}---</p>
                             <md-icon md-svg-icon="account" class="md-secondary md-hue-3"></md-icon>
                             <!-- <md-icon md-svg-icon="calendar" class="md-secondary md-hue-3" ></md-icon> -->
@@ -28,7 +31,7 @@
             </form>
         </section>
         <section layout-align="end start" >
-            <md-button hide-sm hide-xs style="height: 61px;margin-top: 3px;margin-bottom: 0px;" ng-repeat="item in vm.menuItems" layout-align="center center" flex class="capitalize " ng-click="vm.selectItem(item)" ui-sref-active="whiteText" ui-sref="{{item.sref}}">
+            <md-button hide-sm hide-xs style="height: 53px;margin-top: 3px;margin-bottom: 0px;" ng-repeat="item in vm.menuItems" layout-align="center center" flex class="capitalize " ng-click="vm.selectItem(item)" ui-sref-active="whiteText" ui-sref="{{item.sref}}">
                 <div class="md-tile-content" layout="column">
                     <md-icon md-svg-icon="{{item.icon}}"></md-icon>
                 </div>
@@ -36,10 +39,10 @@
                     {{item.name}}
                 </div>
             </md-button>
-            <md-button style="height: 61px;margin-top: 3px;margin-bottom: 0px;" hide-sm hide-xs layout-align="center center" flex class="capitalize " aria-label="Notifications " ng-click="vm.toggleRightSidebar() ">
-                <div hide-sm hide-xs class="md-tile-content">
+            <md-button style="height: 53px;margin-top: 3px;margin-bottom: 0px;" hide-sm hide-xs layout-align="center center" flex class="capitalize " aria-label="Notifications " ng-click="vm.toggleRightSidebar() ">
+                <div hide-sm hide-xs class="md-tile-content" layout="column">
                     <md-icon md-svg-icon="bell-outline"></md-icon>
-                    <span style="color:#fff" class="notifications-label "> </span>
+                    <!-- <span style="color:#fff" class="notifications-label "> </span> -->
                 </div>
                 <div class="md-tile-content">
                     notifications
@@ -48,8 +51,8 @@
         </section>
         <section class="md-warn " layout="row " layout-align="center center ">
             <md-menu>
-                <md-button layout-align="center center" flex class="capitalize " aria-label="Notifications " ng-click="$mdOpenMenu()">
-                    <div hide-sm hide-xs class="md-tile-content">
+                <md-button style="height: 53px;margin-top: 3px;margin-bottom: 0px;" layout-align="center center" flex class="capitalize " aria-label="Notifications " ng-click="$mdOpenMenu()">
+                    <div hide-sm hide-xs class="md-tile-content" layout="column">
                         <md-icon md-svg-icon="account"></md-icon>
                     </div>
                     <div class="md-tile-content">
@@ -68,7 +71,7 @@
                     <md-menu-item>
                         <md-button ng-click="$mdCloseMenu() " ui-sref="home.addBlog">
                             <div layout="row " flex=" " class="ng-scope layout-row flex ">
-                                <p flex=" " class="flex ">Add Cretivity</p>
+                                <p flex=" " class="flex ">Add Creativity</p>
                                 <md-icon md-svg-icon="calendar"></md-icon>
                             </div>
                         </md-button>
@@ -151,7 +154,7 @@
                     <md-menu-item>
                         <md-button ng-click="$mdCloseMenu() " ui-sref="home.addBlog">
                             <div layout="row " flex=" " class="ng-scope layout-row flex ">
-                                <p flex=" " class="flex ">Add Cretivity</p>
+                                <p flex=" " class="flex ">Add Creativity</p>
                                 <md-icon md-svg-icon="calendar"></md-icon>
                             </div>
                         </md-button>

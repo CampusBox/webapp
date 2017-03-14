@@ -10,11 +10,13 @@
 
     function LoginController($scope, loginData, $rootScope, $localStorage, $state, $auth, tokenService) {
         var vm = this;
+        $scope.loading = false;
         if (localStorage.getItem('id_token') != null) {
             $state.go("home.dashboard");
         }
 
         $scope.authenticate = function(provider) {
+            $scope.loading = true;
             $auth.authenticate(provider).then(function(response) {
                     response.type = "facebook";
 
@@ -24,22 +26,26 @@
                         .then(function(abc) {
                             localStorage.setItem('id_token', abc.token);
                             $rootScope.token = abc.token;
+
                             $state.go("home.dashboard");
 
 
                         }).catch(function(abc) {
                             console.log(abc);
-                            // Something went wrong.
+                            $scope.problem = $abc.status;
+                            $scope.loading = false;
                         });
                 })
                 .catch(function(response) {
                     console.log(response);
+                    $scope.loading = false;
                     // Something went wrong.
                 });
         };
 
         $scope.login = {};
         $rootScope.$on('event:social-sign-in-success', function(event, response) {
+            $scope.loading = true;
             console.log(response);
             $scope.login = response;
             $scope.login.type = response.provider;
@@ -54,7 +60,10 @@
 
 
                 }).catch(function(abc) {
-
+                    console.log(response);
+                    $scope.loading = false;
+                            $state.go("static.signup");
+                    
                 });
         })
 
