@@ -3,9 +3,9 @@
         <h1 class="md-headline">
             Events for you
         </h1>
-        <div layout="column" layout-wrap layout-align="center center">
+        <div layout="column" layout-wrap layout-align="center">
             <md-list flex>
-                <md-list-item style="margin-bottom: 10px;" ng-repeat="event in events" ng-click="showEvent(event, $index)" class="secondary-button-padding eventListItem">
+                <md-list-item style="margin-bottom: 10px;" ng-repeat="event in events | limitTo : 3" ng-click="showEvent(event, $index)" class="secondary-button-padding eventListItem">
                     <md-card flex>
                         <md-card-title style="padding: 0px;">
                             <div class="md-media-sm" style="width: 200px;height:200px;">
@@ -41,11 +41,41 @@
                         </md-card-title>
                     </md-card>
                 </md-list-item>
+                 <md-list-item ng-show="eventLoading" style="margin-bottom: 10px;" ng-repeat="event in [1,2,3]"  class="secondary-button-padding eventListItem">
+                    <md-card flex>
+                        <md-card-title style="padding: 0px;">
+                            <div class="md-media-sm" style="width: 200px;height:200px;">
+                                <img class="" style="width: 200px;height:200px;background-color: #f1f1f1" alt="">
+                            </div>
+                            <div style="padding:  14px 23px 0px 33px;" flex layout="column">
+                                <!-- <span class="md-body-2">{{event.timings.date.start? event.timings.date.start:"Fri, Mar 24 2:00 PM" }}</span> -->
+                                <span class="animated-background" style="margin-top: 0px; background-color: #eee;color: transparent;" >Date  · Time </span>
+                                <br>
+                                <span class="md-title animated-background" style="font-weight: 600;margin: 0px; background-color: #eee;color: transparent;"">
+                                    CampusBox launch
+                                </span>
+                                <p style="margin:0;background-color: #eee;color: transparent;" class="md-caption animated-background">Main Auditorium, Thapar University</p>
+                                    
+                            </div>
+                        </md-card-title>
+                    </md-card>
+                </md-list-item>
             </md-list>
             <div>
                 <h1 class="md-headline">
                 Creative works by other students
             </h1>
+            <md-card ng-show="contentLoading" flex-gt-sm="60" ng-repeat="content in [1,2,3,4]">
+                <md-card-header>
+                    <md-card-avatar style="background: #f6f7f8">
+                        <img class="md-user-avatar" />
+                    </md-card-avatar>
+                    <md-card-header-text>
+                        <span style="width: 30%" class=" animated-background">Anything here </span>
+                    </md-card-header-text>
+                </md-card-header>
+                <span class="md-headline animated-background " flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
+            </md-card>
                 <md-card ng-repeat="content in contents track by $index">
                     <md-card-header>
                         <md-card-avatar>

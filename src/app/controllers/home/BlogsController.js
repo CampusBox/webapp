@@ -1,3 +1,5 @@
+'use strict';
+
 (function() {
 
     angular
@@ -12,7 +14,21 @@
     function BlogsController($scope, tokenService, $mdDialog) {
         var vm = this;
         $scope.liked = false;
-        $scope.contents = {};
+        $scope.loading = false;
+
+        $scope.contents = [];
+
+        $scope.myPagingFunction = function() {
+            console.log("abc");
+            if ($scope.loading == false) {
+                $scope.loading = true;
+                tokenService.get("contents")
+                    .then(function(tableData) {
+                        $scope.loading = false;
+                        $scope.contents = $scope.contents.concat(tableData.data);
+                    });
+            }
+        }
 
         $scope.toggleLike = function(contentId) {
             console.log(contentId);
@@ -73,19 +89,14 @@
         }
         $scope.openUrlAdd = function(ev) {
             $mdDialog.show({
-                    controller: 'AddUrlController',
-                    templateUrl: 'app/views/partials/addUrl.html',
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose: true,
-                    fullscreen: true // Only for -xs, -sm breakpoints.
-                })
+                controller: 'AddUrlController',
+                templateUrl: 'app/views/partials/addUrl.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                fullscreen: true // Only for -xs, -sm breakpoints.
+            })
         };
-        tokenService.get("contents")
-            .then(function(tableData) {
-                $scope.contents = tableData.data;
-                console.log($scope.contents);
-            });
-    }
 
-})();
+    }
+}());

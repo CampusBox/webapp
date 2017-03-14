@@ -7,8 +7,8 @@
         <md-icon md-svg-icon="view-list "></md-icon>
     </md-button>
 </div>
-<div layout-gt-sm="row" layout="column" layout-align-gt-xs="center start" layout-align-xs="center strech">
-    <md-card hide-gt-xs flex-xs="100">
+<div layout-gt-sm="row" layout="column" layout-align-gt-xs="start start" layout-align-xs="center strech">
+    <md-card hide-gt-sm flex-xs="100">
         <md-card-content flex layout="column" layout-align="space-between">
             <div class="md-headline">
                 Filters
@@ -103,7 +103,9 @@
         </md-card-content>
     </md-card>
     <div layout="column" flex-offset="{{grid?0:5}}" flex-gt-sm="{{grid?80:60}}">
-        <div flex layout="row" layout-align="space-around" layout-wrap infinite-scroll="myPagingFunction()" infinite-scroll-disabled='serverBusy' infinite-scroll-distance="4">
+           <div flex layout="row" layout-align="space-around" layout-wrap>
+               
+           
             <md-card ng-show="grid" ng-click="openEvent(event)" style="width: {{width}}%" ng-repeat="event in events track by $index">
                 <img style="height:auto !important;  background: #aaa; width:100%" ng-src="{{event.image}}" class="md-card-image " alt="Washed Out ">
                 <md-card-title>
@@ -156,7 +158,7 @@
                     </md-menu>
                 </md-card-actions>
             </md-card>
-        </div>
+       </div>
         <md-list ng-show="!grid">
              <md-list-item style="margin-bottom: 10px;" ng-repeat="event in events" ng-click="openEvent(event)" class="secondary-button-padding eventListItem">
                     <md-card flex>
@@ -194,16 +196,29 @@
                         </md-card-title>
                     </md-card>
                 </md-list-item>
+                <md-list-item ng-show="loading" style="margin-bottom: 10px;" ng-repeat="event in [1,2,3]"  class="secondary-button-padding eventListItem">
+                    <md-card flex>
+                        <md-card-title style="padding: 0px;">
+                            <div class="md-media-sm" style="width: 200px;height:200px;">
+                                <img class="" style="width: 200px;height:200px;background-color: #f1f1f1" alt="">
+                            </div>
+                            <div style="padding:  14px 23px 0px 33px;" flex layout="column">
+                                <!-- <span class="md-body-2">{{event.timings.date.start? event.timings.date.start:"Fri, Mar 24 2:00 PM" }}</span> -->
+                                <span class="animated-background" style="margin-top: 0px; " >Date  · Time </span>
+                                <br>
+                                <span class="md-title animated-background" style="font-weight: 600;margin: 0px; "">
+                                    CampusBox launch
+                                </span>
+                                <p style="margin:0;" class="md-caption animated-background">Main Auditorium, Thapar University</p>
+                                    
+                            </div>
+                        </md-card-title>
+                    </md-card>
+                </md-list-item>
         </md-list>
-        <md-card ng-if="!serverBusy" flex layout="row " ng-hide="vm.tableData[0].id>0" style="min-height: 171px" layout-sm="column" layout-align="center center">
-            <div class="cssload-tetrominos">
-                <div class="cssload-tetromino cssload-box1"></div>
-                <div class="cssload-tetromino cssload-box2"></div>
-                <div class="cssload-tetromino cssload-box3"></div>
-                <div class="cssload-tetromino cssload-box4"></div>
-            </div>
-            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-        </md-card>
+         <div  infinite-scroll="myPagingFunction()" infinite-scroll-disabled='loading' infinite-scroll-distance="4">
+        </div>
+       
     </div>
 </div>
 <!-- all the code before editing -->

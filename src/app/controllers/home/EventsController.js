@@ -17,8 +17,22 @@
     function EventsController($mdDialog, $scope, $element, tokenService, Upload, $timeout, $location, $state) {
         var vm = this;
         $scope.grid = false;
-        $scope.width = 18;
+        $scope.width = 28;
+        $scope.loading = false;
         $scope.events = [];
+
+        $scope.myPagingFunction = function() {
+                        console.log("abc");
+            if ($scope.loading == false) {
+                $scope.loading = true;
+                tokenService.get("events")
+                    .then(function(tableData) {
+
+                        $scope.loading = false;
+                        $scope.events = $scope.events.concat(tableData.data);
+                    });
+            }
+        };
         $scope.filters = [];
         $scope.showEvent = function(ev, index) {
             $mdDialog.show({
@@ -96,21 +110,8 @@
                 });
             }
         }
-        $scope.serverBusy = false;
 
 
-        $scope.myPagingFunction = function() {
-            if ($scope.serverBusy == false) {
-                $scope.serverBusy = true;
-                tokenService.get("events")
-                    .then(function(tableData) {
-                        console.log('events called');
-                        $scope.serverBusy = true;
-                        $scope.events = $scope.events.concat(tableData.data);
-                        console.log($scope.events);
-                    });
-            }
-        }
         $scope.searchTerm;
         $scope.clearSearchTerm = function() {
             $scope.searchTerm = '';

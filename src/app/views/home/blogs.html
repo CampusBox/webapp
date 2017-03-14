@@ -21,6 +21,17 @@
         </md-nav-item>
     </md-nav-bar>
     <div flex layout="row" layout-wrap layout-align="center center">
+        <md-card ng-show="loading" flex-gt-sm="60" ng-repeat="content in [1,2,3,4]">
+            <md-card-header>
+                <md-card-avatar style="background: #f6f7f8">
+                    <img class="md-user-avatar" />
+                </md-card-avatar>
+                <md-card-header-text>
+                    <span style="width: 30%" class=" animated-background">Anything here </span>
+                </md-card-header-text>
+            </md-card-header>
+            <span class="md-headline animated-background " flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
+        </md-card>
         <md-card flex-gt-sm="60" ng-repeat="content in contents track by $index">
             <md-card-header>
                 <md-card-avatar>
@@ -48,14 +59,16 @@
                 <span>{{content.Actions.Appriciate.total}}</span>
                 <span flex></span>
                 <md-card-icon-actions>
-                <md-button class="md-icon-button" ng-click="bookmark(content, $index)" aria-label="Favorite ">
-                    <md-icon ng-class="content.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
-                </md-button>
+                    <md-button class="md-icon-button" ng-click="bookmark(content, $index)" aria-label="Favorite ">
+                        <md-icon ng-class="content.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
+                    </md-button>
                     <md-button class="" aria-label="toggle ">
                         <md-icon md-svg-icon="share"></md-icon>Share
                     </md-button>
                 </md-card-icon-actions>
             </div>
         </md-card>
+        <div infinite-scroll="myPagingFunction()" infinite-scroll-disabled='loading' infinite-scroll-distance="4">
+        </div>
     </div>
 </div>
