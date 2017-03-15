@@ -3,20 +3,20 @@
   angular
     .module('app')
     .controller('NotificationsController', [
-      'notificationsService',
+      'tokenService',
       NotificationsController
     ]);
 
-  function NotificationsController(notificationsService) {
+  function NotificationsController(tokenService) {
     var vm = this;
 
     vm.messages = [];
 
-    notificationsService
-      .loadAllItems()
-      .then(function(messages) {
-        vm.messages = [].concat(messages);
-      });
+    tokenService.get("notifications")
+                    .then(function(response) {
+                        $scope.loading = false;
+                        $scope.notifications = response.data;
+                    });
   }
 
 })();

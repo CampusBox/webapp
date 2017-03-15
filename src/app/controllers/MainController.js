@@ -16,11 +16,17 @@
             localStorage.clear();
             $state.go('static.login');
         };
+
+        tokenService.get("notifications")
+            .then(function(response) {
+
+                console.log(response);
+                $scope.notifications = response;
+            });
         var expToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3NhbXBsZXMuYXV0aDAuY29tLyIsInN1YiI6ImZhY2Vib29rfDEwMTU0Mjg3MDI3NTEwMzAyIiwiYXVkIjoiQlVJSlNXOXg2MHNJSEJ3OEtkOUVtQ2JqOGVESUZ4REMiLCJleHAiOjE0MTIyMzQ3MzAsImlhdCI6MTQxMjE5ODczMH0.7M5sAV50fF1-_h9qVbdSgqAnXVF7mz3I6RjS6JiH0H8';
         $scope.user = $localStorage.user;
         vm.menuItems = [];
         vm.selectItem = selectItem;
-        vm.toggleItemsList = toggleItemsList;
         vm.showActions = showActions;
         vm.title = $state.current.data.title;
         vm.toggleRightSidebar = toggleRightSidebar;
@@ -35,13 +41,7 @@
             $mdSidenav('right').toggle();
         }
 
-        function toggleItemsList() {
-            var pending = $mdBottomSheet.hide() || $q.when(true);
-
-            pending.then(function() {
-                $mdSidenav('left').toggle();
-            });
-        }
+       
 
         function selectItem(item) {
             vm.title = item.name;

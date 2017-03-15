@@ -2,9 +2,11 @@
 .whiteText {
     color: #fff;
 }
-md-toolbar{
-background-color: #0570c0 !important; 
+
+md-toolbar {
+    background-color: #0570c0 !important;
 }
+
 .md-virtual-repeat-container.md-autocomplete-suggestions-container {
     height: 400px;
     /*min-height: 12vh;*/
@@ -15,7 +17,7 @@ background-color: #0570c0 !important;
     +
 </md-button> -->
 <div layout="column" flex>
-    <md-toolbar  hide-xs  hide-sm layout="row" layout-align="center center">
+    <md-toolbar hide-xs hide-sm layout="row" layout-align="center center">
         <section layout-align="start center">
             <md-button hide-sm hide-xs layout="row" layout-align="center center" class="md-toolbar-tools" aria-label="Home">
             </md-button>
@@ -25,7 +27,7 @@ background-color: #0570c0 !important;
                 <md-autocomplete ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item)" md-items="item in searchData.data" md-item-text="item.title" md-min-length="0" placeholder="Search for anything here" md-menu-class="autocomplete-custom-template">
                     <md-item-template>
                         <md-list-item class="noright" ng-click="searched(item)">
-                            <md-icon  ng-if="(!item.image)"   md-svg-icon="{{!(item.type=='event')?'comment-text':'calendar'}}" class=" md-hue-3"></md-icon>
+                            <md-icon ng-if="(!item.image)" md-svg-icon="{{!(item.type=='event')?'comment-text':'calendar'}}" class=" md-hue-3"></md-icon>
                             <img ng-if="item.image" alt="{{ person.title }}" ng-src="{{item.image}}" class="md-avatar" />
                             <p>{{ item.title }}</p>
                             <!-- <md-icon md-svg-icon="calendar" class="md-secondary md-hue-3" ></md-icon> -->
@@ -35,7 +37,7 @@ background-color: #0570c0 !important;
                 </md-autocomplete>
             </form>
         </section>
-        <section layout-align="end start" >
+        <section layout-align="end start">
             <md-button hide-sm hide-xs style="height: 53px;margin-top: 3px;margin-bottom: 0px;" ng-repeat="item in vm.menuItems" layout-align="center center" flex class="capitalize " ng-click="vm.selectItem(item)" ui-sref-active="whiteText" ui-sref="{{item.sref}}">
                 <div class="md-tile-content" layout="column">
                     <md-icon md-svg-icon="{{item.icon}}"></md-icon>
@@ -139,33 +141,33 @@ background-color: #0570c0 !important;
         </section>
           <section class="md-warn " layout="row " layout-align="center center ">
             <md-menu>
-                <md-button layout-align="center center" flex class="capitalize " aria-label="Notifications " ng-click="$mdOpenMenu()">
-                    <div class="md-tile-content">
-                        <md-icon md-svg-icon="account"></md-icon>
+                <md-button layout-align="center center " flex class="capitalize " aria-label="Notifications " ng-click="$mdOpenMenu() ">
+                    <div class="md-tile-content ">
+                        <md-icon md-svg-icon="account "></md-icon>
                     </div>
-                    <div class="md-tile-content">
+                    <div class="md-tile-content ">
                         Profile
                     </div>
                 </md-button>
-                <md-menu-content width="5">
+                <md-menu-content width="5 ">
                     <md-menu-item>
-                        <md-button ng-click="$mdCloseMenu() " ui-sref="home.addEvent">
+                        <md-button ng-click="$mdCloseMenu() " ui-sref="home.addEvent ">
                             <div layout="row " flex=" " class="ng-scope layout-row flex ">
                                 <p flex=" " class="flex ">Add Events</p>
-                                <md-icon md-svg-icon="calendar"></md-icon>
+                                <md-icon md-svg-icon="calendar "></md-icon>
                             </div>
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
-                        <md-button ng-click="$mdCloseMenu() " ui-sref="home.addBlog">
+                        <md-button ng-click="$mdCloseMenu() " ui-sref="home.addBlog ">
                             <div layout="row " flex=" " class="ng-scope layout-row flex ">
                                 <p flex=" " class="flex ">Add Creativity</p>
-                                <md-icon md-svg-icon="calendar"></md-icon>
+                                <md-icon md-svg-icon="calendar "></md-icon>
                             </div>
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
-                        <md-button ng-click="$mdCloseMenu() " ui-sref="home.myProfile">
+                        <md-button ng-click="$mdCloseMenu() " ui-sref="home.myProfile ">
                             <div layout="row " flex=" " class="ng-scope layout-row flex ">
                                 <p flex=" " class="flex ">My Profile</p>
                                 <md-icon md-svg-icon="account "></md-icon>
@@ -184,92 +186,36 @@ background-color: #0570c0 !important;
             </md-menu>
         </section>
     </md-toolbar>
-<md-sidenav md-component-id="right" class="md-sidenav-right " >
-    <section>
-    <md-tabs md-stretch-tabs="always " >
-      <md-tab label="Notifications ">
-                    <!-- <div ng-include src=" 'app/views/partials/messages.html' "></div> -->
-   
-<div class="messages ">
-    <md-content class="messages-content ">
+    <md-sidenav md-component-id="right" class="md-sidenav-right ">
+        <section>
+            <!-- <div ng-include src=" 'app/views/partials/messages.html' "></div> -->
+            <div class="messages " layout-fill>
+                <md-content class="messages-content " layout-fill>
+                    <center>
+                        
+                    <h3>Notifications</h3>
+                    </center>
                     <md-list>
-                        <md-list-item class="md-3-line md-long-text ">
-                                  <img ng-src=" " class="md-avatar " alt="{{}} "
-                                       />
-                                  <div class="md-list-item-text " ng-class="{ 'md-offset': phone.options.offset } ">
-                                    <h3>Event name</h3>
-                                    <p> This is an event uhis is an event uhis is an event uhis is an event uhis is an event uhis is an event uhis is an event uhis is an event uhis is an event uhis is an event uhis is an event update 
-                                    <br>
-                                    <span>pushed on date</span>
-                                    </p>
-                                  </div>
-                                  <md-button class="md-secondary md-icon-button " ng-click="doSecondaryAction($event) " ng-if="phone.options.actionIcon " aria-label="call ">
-                                    <md-icon md-svg-icon="{{phone.options.actionIcon}} "></md-icon>
-                                  </md-button>
-                                </md-list-item>
-                   
-                        <md-list-item class="md-2-line ">
-                                  <img ng-src=" " class="md-avatar " alt="{{}} "
-                                       />
-                                  <div class="md-list-item-text " ng-class="{ 'md-offset': phone.options.offset } ">
-                                    <h3>Person name <span class="md-body-1 ">has posted a new thing</span></h3>
-                                    <p> object name with link 
-                                    <br>
-                                    <span>pushed on date</span>
-                                    </p>
-                                  </div>
-                                  <md-button class="md-secondary md-icon-button " ng-click="doSecondaryAction($event) " ng-if="phone.options.actionIcon " aria-label="call ">
-                                    <md-icon md-svg-icon="{{phone.options.actionIcon}} "></md-icon>
-                                  </md-button>
-                                </md-list-item>
-                                <md-list-item class="md-2-line ">
-                                  <img ng-src=" " class="md-avatar " alt="{{}} "
-                                       />
-                                  <div class="md-list-item-text " ng-class="{ 'md-offset': phone.options.offset } ">
-                                    <h3>Person name <span class="md-body-1 ">has liked</span></h3>
-                                    <p> you post with link
-                                    <br>
-                                    <span>pushed on date</span>
-                                    </p>
-                                  </div>
-                                </md-list-item>
-                                <md-list-item class="md-2-line ">
-                                  <img ng-src=" " class="md-avatar " alt="{{}} "
-                                       />
-                                  <div class="md-list-item-text " ng-class="{ 'md-offset': phone.options.offset } ">
-                                    <h3>Person name</h3>
-                                    <p> has started following you 
-                                    <br>
-                                    <span>pushed on date</span>
-                                    </p>
-                                  </div>
-                                  <md-button class="md-secondary md-icon-button " ng-click="doSecondaryAction($event) " ng-if="phone.options.actionIcon " aria-label="call ">
-                                    <md-icon md-svg-icon="{{phone.options.actionIcon}} "></md-icon>
-                                  </md-button>
-                                </md-list-item>
-                                <md-list-item class="md-2-line ">
-                                  <img ng-src=" " class="md-avatar " alt="{{}} "
-                                       />
-                                  <div class="md-list-item-text " ng-class="{ 'md-offset': phone.options.offset } ">
-                                    <h3>Person name <span class="md-body-1 ">has liked</span></h3>
-                                    <p> you post with link
-                                    <br>
-                                    <span>pushed on date</span>
-                                    </p>
-                                  </div>
-                                </md-list-item>
+                        <md-list-item class="md-2-line " ng-repeat="notification in notifications" ui-sref="home.singleContent({contentId: notification.content_id})">
+                            <img ng-src="{{notification.image}}" class="md-avatar " alt="{{}} " />
+                            <div class="md-list-item-text ">
+                                <p>{{notification.total}} {{(notification.total>1)?'people have':'person has'}} appreciated the creativity you uploaded</p>
+                            </div>
+                            <md-button class="md-secondary md-icon-button " ng-click="doSecondaryAction($event) " ng-if="phone.options.actionIcon " aria-label="call ">
+                                <md-icon md-svg-icon="{{phone.options.actionIcon}} "></md-icon>
+                            </md-button>
+                        </md-list-item>
                     </md-list>
-                    </md-content>
-                    </div>
-    </md-content>
-    </md-tab>
-      <md-tab label="Search " data-ng-if="windowWidth<587 ">
+                </md-content>
+            </div>
+            </md-content>
+            <!-- </md-tab>
+            <md-tab label="Search " data-ng-if="windowWidth<587 ">
                 <md-content class="md-padding ">
                     <div ng-include src=" 'app/views/partials/searchSidebar.html' "></div>
                 </md-content>
-          
-      </md-tab>
-    </md-tabs>
-     </section>
-</md-sidenav>
+            </md-tab>
+            </md-tabs> -->
+        </section>
+    </md-sidenav>
 </div>
