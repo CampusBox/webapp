@@ -74,16 +74,29 @@
             }
         }
 
+        $scope.searched = function(item) {
+            console.log(item.type);
+            if (item.type == 'event') {
+                $state.go('home.singleEvent', { eventId: item.id });
+            }
+            if (item.type == 'content') {
+                $state.go('home.singleContent', { contentId: item.id });
+            }
+            if (item.type == 'student') {
+                $state.go('home.profile', { username: item.username });
+            }
+        };
+
         function showSimpleToast(title) {
             $mdToast.show(
                 $mdToast.simple()
                 .content(title)
                 .hideDelay(2000)
-                .position('bottom right')
+                .position('top right')
             );
         }
         $scope.openSearch = function(q) {
-                $location.path('/search').search({'q':q});
+                $location.path('/search').search({ 'q': q });
             }
             //Search Autocomplete start
 
@@ -94,21 +107,22 @@
             'watchers': '3,623',
             'forks': '16,175',
         }];
-        $scope.searchData = [];
-        tokenService.get("search/"+"a")
+        $scope.searchData = {};
+        $scope.searchData.data = [];
+        tokenService.get("search/" + "M")
             .then(function(tableData) {
-                $scope.searchData = [].concat(tableData.data);
+                $scope.searchData.data = [].concat(tableData);
             });
         $scope.querySearch = querySearch;
 
         function querySearch(query) {
             console.log(query);
-            $timeout(            tokenService.get("search/" + query)
+            $timeout(tokenService.get("search/" + query)
                 .then(function(tableData) {
                     $scope.searchData = tableData;
-                    console.log($scope.searchData);
+                    console.log($scope.searchData.data);
                     return $scope.searchData;
-                }),10000);
+                }), 10000);
         }
 
         // Search Autocomplete End

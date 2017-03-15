@@ -9,15 +9,21 @@
             'tokenService',
             '$mdDialog',
             '$sce',
+            '$state',
             BlogsController
         ]);
 
-    function BlogsController($scope, tokenService, $mdDialog, $sce) {
+    function BlogsController($scope, tokenService, $mdDialog, $sce,$state) {
         var vm = this;
         $scope.liked = false;
         $scope.loading = false;
 
         $scope.contents = [];
+        $scope.clicked = function(item) {
+            console.log(item);
+            $state.go('home.singleContent', { contentId: item });
+
+        };
 
         $scope.myPagingFunction = function() {
             console.log("abc");

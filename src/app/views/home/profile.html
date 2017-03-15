@@ -10,7 +10,7 @@
 <div layout="row" layout-xs="column" layout-align="start">
     <md-card flex="30" flex-xs="100">
         <center>
-            <img style="border-radius: 50%; width: 40%; margin-top:20px;" ng-src="{{profile.photo}}" class="md-card-image" alt="Washed Out">
+            <img style="border-radius: 50%; width: 40%; margin-top:20px; background-color: #ccc;" ng-src="{{profile.photo}}" class="md-card-image" alt="{{profile.name}}">
             <md-card-title>
                 <md-card-title-text>
                     <span class="md-headline">{{profile.name}}</span>
@@ -18,19 +18,19 @@
                     <md-button ng-class="demoFollow.status? 'md-primary' : 'md-raised md-primary'" ng-click="follow()">{{demoFollow.status? 'Following':'Follow' }}</md-button>
                 </md-card-title-text>
             </md-card-title>
-        </center>.
+        </center>
         <md-card-content>
             <p class="md-body-2">
                 {{profile.subtitle}}
             </p>
             <md-divider></md-divider>
-            <p class="md-title">
+            <p class="md-title" ng-if="profile.Skills.data.length>0">
                 Skills
             </p>
             <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
-                <li ng-repeat="skill in profile.Skills.data" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">{{skill.name}}</li>
+                <li ng-repeat="skill in profile.Skills.data" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">{{skill.skill_name}}</li>
             </ul>
-            <md-divider></md-divider>
+            <md-divider ng-if="profile.Skills.data.length>0"></md-divider>
             <p class="md-title">
                 Social Accounts
             </p>
@@ -57,7 +57,7 @@
                             <div flex>
                                 <md-card-title style="padding: 0px;">
                                     <div class="md-media-sm" style="width: 200px;height:140px;">
-                                        <img style="width: 200px;  position: absolute;    clip: rect(00px,200px,140px,0px); margin-right: " ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.id}}.jpg" alt="">
+                                        <img style="width: 200px;  position: absolute;    clip: rect(00px,200px,140px,0px); margin-right: " ng-src="{{event.image}}" alt="">
                                     </div>
                                     <div style="padding: 10px 18px;" flex layout="column">
                                         <span class="md-body-2">{{event.timings.date.start? event.timings.date.start:"Fri, Mar 24 2:00 PM" }}</span>
@@ -93,7 +93,7 @@
                     <h3>Liked Items</h3>
                     <md-list>
                         <md-list-item class="md-2-line" ng-repeat="event in profile.Events.data | limitTo:6">
-                            <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}}" class="md-avatar" alt="{{item.who}}">
+                            <img ng-src="{{event.image}}" class="md-avatar" alt="{{item.who}}">
                             <div class="md-list-item-text">
                                 <h3>{{event.title}}</h3>
                                 <h4>Description</h4>
@@ -152,7 +152,7 @@
                                 <div flex>
                                     <md-card-title style="padding: 0px;">
                                         <div class="md-media-sm" style="width: 200px;height:140px;">
-                                            <img style="width: 200px;  position: absolute;    clip: rect(00px,200px,140px,0px); margin-right: " ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.id}}.jpg" alt="">
+                                            <img style="width: 200px;  position: absolute;    clip: rect(00px,200px,140px,0px); margin-right: " ng-src="{{event.image}}" alt="">
                                         </div>
                                         <div style="padding: 10px 18px;" flex layout="column">
                                             <span class="md-body-2">{{event.timings.date.start? event.timings.date.start:"Fri, Mar 24 2:00 PM" }}</span>

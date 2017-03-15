@@ -5,6 +5,11 @@
 md-toolbar{
 background-color: #0570c0 !important; 
 }
+.md-virtual-repeat-container.md-autocomplete-suggestions-container {
+    height: 400px;
+    /*min-height: 12vh;*/
+    max-height: 400px !important;
+}
 </style>
 <!-- <md-button class="md-fab md-fab-bottom-right" aria-label="upload photo">
     +
@@ -17,12 +22,12 @@ background-color: #0570c0 !important;
         </section>
         <section layout-align="start center" flex>
             <form hide-sm hide-xs ng-submit="$event.preventDefault();openSearch(searchText)">
-                <md-autocomplete ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item)" md-items="item in searchData" md-item-text="item.title" md-min-length="0" placeholder="Search for anything here" md-menu-class="autocomplete-custom-template">
+                <md-autocomplete ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item)" md-items="item in searchData.data" md-item-text="item.title" md-min-length="0" placeholder="Search for anything here" md-menu-class="autocomplete-custom-template">
                     <md-item-template>
-                        <md-list-item class="noright" ng-href="{{item.title}}">
-                            <img alt="{{ person.title }}" ng-src="{{item.image}}" class="md-avatar" />
-                            <p>{{ item.title }}---</p>
-                            <md-icon md-svg-icon="account" class="md-secondary md-hue-3"></md-icon>
+                        <md-list-item class="noright" ng-click="searched(item)">
+                            <md-icon  ng-if="(!item.image)"   md-svg-icon="{{!(item.type=='event')?'comment-text':'calendar'}}" class=" md-hue-3"></md-icon>
+                            <img ng-if="item.image" alt="{{ person.title }}" ng-src="{{item.image}}" class="md-avatar" />
+                            <p>{{ item.title }}</p>
                             <!-- <md-icon md-svg-icon="calendar" class="md-secondary md-hue-3" ></md-icon> -->
                             <!-- <md-icon md-svg-icon="brush" class="md-secondary md-hue-3" ></md-icon> -->
                         </md-list-item>
