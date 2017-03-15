@@ -20,6 +20,8 @@
         $scope.creativity.items = [];
         $scope.title = "";
         $scope.body = {};
+                $scope.loading = false;
+
         $scope.body.text = "";
         $scope.url = "";
         $scope.media = {};
@@ -195,6 +197,17 @@
         }
         $scope.addImage = function(file) {
                 console.log('abc');
+        };
+        $scope.publish = function() {
+                        $scope.loading = true;
+
+            $scope.creativity.body = $scope.body;
+            $scope.body.mediaType = "text";
+            $scope.creativity[0]=$scope.body;
+            $scope.image = {};
+
+            $scope.creativity.tags = $scope.tags;
+            $scope.creativity.title = $scope.title;
             Upload.dataUrl($scope.file, true).then(function(url) {
                 $scope.image.mediaType = "image";
                 $scope.image.image = url;
@@ -209,15 +222,6 @@
                         console.log(status);
                     });
             });
-        };
-        $scope.publish = function() {
-            $scope.creativity.body = $scope.body;
-            $scope.body.mediaType = "text";
-            $scope.creativity.items.push($scope.body);
-            $scope.image = {};
-
-            $scope.creativity.tags = $scope.tags;
-            $scope.creativity.title = $scope.title;
         };
 
 

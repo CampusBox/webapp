@@ -30,7 +30,7 @@
                     <span class="md-title">{{content.created.at  | date: 'd MMM'}}</span>
                 </md-card-header-text>
             </md-card-header>
-            <md-card-content ng-if="content.type in ['youtube','vimeo','soundcloud','image']">
+            <md-card-content ng-if="(content.type=='youtube' || content.type=='vimeo' || content.type=='soundcloud' || content.type=='image')">
             <iframe ng-show="content.type == 'youtube'" width="100%" height="315" src="{{content.url}}" frameborder="0" allowfullscreen></iframe>
             <iframe ng-show="content.type == 'soundcloud'" width="100%" height="166" scrolling="no" frameborder="0" src="{{content.url}}" allowfullscreen></iframe>
             <iframe ng-show="content.type == 'vimeo'" width="100%" height="315" src="{{content.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>

@@ -6,7 +6,7 @@
   "version": "1.3.0",
   "dependencies": {
     "jquery": "~3.1.1",
-    "angular-animate": "^1.5.0",
+    "angular-animate": "^1.6.3",
     "angular-cookies": "^1.5.0",
     "angular-touch": "^1.5.0",
     "angular-sanitize": "^1.5.0",
@@ -24,11 +24,11 @@
     "angular-jwt": "^0.1.9",
     "ngInfiniteScroll": "^1.3.4",
     "satellizer": "^0.15.5",
+    "angular-messages": "^1.6.3",
     "upup": "^0.3.0",
     "angular-tawk-to": "^0.0.2",
     "ng-file-upload-shim": "^12.2.13",
-    "ng-file-upload": "^12.2.13",
-    "angular-messages": "^1.6.3"
+    "ng-file-upload": "^12.2.13"
   },
   "devDependencies": {},
   "resolutions": {

@@ -56,7 +56,10 @@
                         </md-chips>
                     </form>
                     </md-card-content>
-                    <md-card-actions layout="row" layout-align="end center">
+                    <md-card-actions layout="row" layout-align="end center" ng-show="loading">
+                    <div layout="row" ng-hide="!loading" layout-sm="column" layout-align="space-around">
+                      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                    </div>
                         <md-button ng-disabled=" ! (title && body.text)" ng-class="(title && body)? 'publish-button' : 'md-raised md-primary' " ng-click="publish()">Publish</md-button>
                     </md-card-actions>
                 </md-card>
