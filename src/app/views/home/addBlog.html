@@ -17,8 +17,8 @@
         <div layout-gt-sm="row" layout-xs="column" layout-sm="column" layout-align="start start">
             <div layout="column" flex-gt-sm="30">
                 <md-card flex="100">
-                    <md-list>
                         <md-card-content>
+                    <md-list>
                             <md-list-item class="md-2-line">
                                 <img ng-src="assets/images/lakshit.jpg" class="md-avatar" alt="{{todos[0].who}}" />
                                 <div class="md-list-item-text">
@@ -26,16 +26,16 @@
                                     <p>Draft</p>
                                 </div>
                             </md-list-item>
-                            <md-subheader style="md-no-sticky">Add content</md-subheader>
+                            <md-subheader class="md-no-sticky">Add content</md-subheader>
                             <md-divider>
                             </md-divider>
                             <md-list-item ng-click="progress=2">
                                 <md-icon md-svg-icon="comment-text"></md-icon>
                                 <p>Text</p>
                             </md-list-item>
-                            <md-list-item ngf-change="console.log('i workkkkk');addImage();" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 1024, height: 900}">
-                            <md-icon md-svg-icon="image"></md-icon>
-                            <p>Image</p>
+                            <md-list-item ngf-select ng-click="progress=2" ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 1024, height: 500}">
+                                <md-icon md-svg-icon="image"></md-icon>
+                                <p>Image</p>
                             </md-list-item>
                             <md-list-item ng-click="addItem(content.title)" ng-repeat="content in contents">
                                 <md-icon md-svg-icon="{{content.icon}}"></md-icon>
@@ -44,32 +44,33 @@
                     </md-list>
                     <md-button ng-show="media == 'image'" style="float: right;" class="md-primary md-raised" md-colors="{background: 'teal'}" ngf-select="uploadFiles($files, $invalidFiles)" multiple accept="image/*" ng-focus="expression" max-height="1000" ngf-max-size="1MB">
                         <md-icon md-svg-icon="plus"></md-icon>Add more images</md-button>
-                    <form name="skillsForm">
-                        <span style="font-size: 14px;color: rgba(0,0,0,.6);" class="md-body-1">Add tags (up to 5) so your story reaches more people:</span>
-                        <md-chips name="skills" ng-model="tags" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
-                            <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Enter top 5 Tags">
-                                <span md-highlight-text="searchText">{{item.name}}</span>
-                            </md-autocomplete>
-                            <md-chip-template custom-chip class="your-custom-chip">
-                                <span><strong>{{$chip.name}}</strong></span>
-                            </md-chip-template>
-                        </md-chips>
-                    </form>
+                    <span style="font-size: 14px;color: rgba(0,0,0,.6);" class="md-body-1">Add tags (up to 5) so your story reaches more people:</span>
+                    <md-chips name="skills" ng-model="tags" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
+                        <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Enter top 5 Tags">
+                            <span md-highlight-text="searchText">{{item.name}}</span>
+                        </md-autocomplete>
+                        <md-chip-template custom-chip class="your-custom-chip">
+                            <span><strong>{{$chip.name}}</strong></span>
+                        </md-chip-template>
+                    </md-chips>
                     </md-card-content>
-                    <md-card-actions layout="row" layout-align="end center" >
-                    <div layout="row" ng-hide="!loading" layout-sm="column" layout-align="space-around">
-                      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-                    </div>
-                        <md-button ng-disabled=" ! (title && body.text && loading) " class="md-raised md-primary" ng-click="publish()">Publish</md-button>
+                    <md-card-actions layout="row" layout-align="end center">
+                        <div layout="row" ng-hide="!loading" layout-sm="column" layout-align="space-around">
+                        <p>Uploading images and all content.</p>
+                            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                        </div>
+                        <md-button ng-disabled=" (!(title && body.text) || loading)" class="md-raised md-primary" ng-click="publish()">Publish</md-button>
                     </md-card-actions>
                 </md-card>
             </div>
             <div style="background: #fff" class="md-whiteframe-z1" layout-padding layout-wrap flex-gt-sm="70">
                 <div flex-offset="10" flex="80" layout="column">
-                    <p class="md-display-1" style="outline: none;" bind-options="{disableReturn: true, disableExtraSpaces: true, 'toolbar': {'buttons': [ 'italic', 'underline']}}" ng-model="title" style="display: inline; margin: 0px" medium-editor data-placeholder="Title"></p>
-                                     <img ng-init="file=''" style="width: 100%" ngf-thumbnail="file | ngfDataUrl">
+                    <p class="md-display-1" style="outline: none;" bind-options="{disableReturn: true, disableExtraSpaces: true, 'toolbar': {'buttons': [ 'italic', 'underline']}}" ng-model="title" style="display: inline; margin: 0px" medium-editor data-placeholder="Title to your creative content"></p>
+                    <center>
+                        
+                    <img ng-init="file=''"  ngf-thumbnail="file | ngfDataUrl">
+                    </center>
                 </div>
-
                 <center ng-show="progress<1">
                     <img ng-src="{{user.imageUrl}}" alt="" style="border-radius: 50%; height: auto;width: 20%">
                     <p class="md-title">Select type of creative project you want to add.</p>
@@ -93,7 +94,7 @@
                             </md-card-title-text>
                             <md-card-title-media>
                                 <div class="md-media-sm card-media">
-                                    <img src="{{item.embedUrl.image}}" alt="">
+                                    <img ng-src="{{item.embedUrl.image}}" alt="">
                                 </div>
                             </md-card-title-media>
                         </md-card-title>
@@ -104,31 +105,8 @@
                     <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
                 </center>
                 <div layout-padding layout-wrap>
-                    <div id="image" ng-show="media == 'image'">
-                        <!-- pasted form add multiple images -->
-                        <div layout="row">
-                            <div>
-                                <div layout="column">
-                                    <div layout="row" layout-wrap>
-                                        <div ng-repeat="f in [1,2,3]" layout="row" style="background-color: rgba(190, 165, 165, 0.46); height:255px; width:255px;margin:10px;padding:5px;">
-                                            <div>
-                                                <!-- <img ngf-src="f" class="uploadedImage" style="opacity: {{f.progress/100}}"> -->
-                                                <img src="https://developers.google.com/open-source/gsoc/images/gsoc2016-sun-373x373.png" class="uploadedImage">
-                                            </div>
-                                            <div>
-                                                <md-button style="margin:-35px;" class="md-icon-button">
-                                                    <md-icon class="cross" md-svg-icon="close"></md-icon>
-                                                </md-button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {{errorMsg}}
-                            </div>
-                        </div>
-                    </div>
                     <div flex-offset="10" flex="80" layout="column">
-                        <p class="md-title" ng-hide="progress<2" style="outline: none;font-family: serif;" ng-model="body.text" medium-editor data-placeholder="Tell your story..."></p>
+                        <p class="md-title" ng-hide="progress<1" style="outline: none;font-family: serif;" ng-model="body.text" medium-editor data-placeholder="Tell your story..."></p>
                     </div>
                     <div flex layout="column" flex layout-align="center  " ng-show="progress==1">
                         <center>
@@ -143,8 +121,8 @@
                                     Text
                                 </p>
                             </div>
-                            <div layout="column" flex-xs="25"  flex-sm="25" flex-gt-sm="" layout-align="center center">
-                                <md-button  ngf-select ng-click="progress=2" ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 1024, height: 800}" class="md-fab">
+                            <div layout="column" flex-xs="25" flex-sm="25" flex-gt-sm="" layout-align="center center">
+                                <md-button ngf-select ng-click="progress=2" ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 1024, height: 500}" class="md-fab">
                                     <md-icon md-svg-icon="image"></md-icon>
                                 </md-button>
                                 <p class="md-tile-content">

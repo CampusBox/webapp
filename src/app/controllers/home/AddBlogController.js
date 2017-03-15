@@ -20,8 +20,18 @@
         $scope.creativity.items = [];
         $scope.title = "";
         $scope.body = {};
-                $scope.loading = false;
+        $scope.loading = false;
+        $mdDialog.show({
+            templateUrl: 'app/views/partials/addBlogTutorial.html',
+            parent: angular.element(document.body),
+            // targetEvent: ev,
+            locals: {
+                title: "tutorial"
+            },
+            clickOutsideToClose: true,
+            escapeToClose: true
 
+        });
         $scope.body.text = "";
         $scope.url = "";
         $scope.media = {};
@@ -82,11 +92,18 @@
                     controller: AddItemController,
                     templateUrl: 'app/views/partials/addItem.html',
                     parent: angular.element(document.body),
-                    // targetEvent: ev,
-                    locals: {
-                        title: title
-                    },
+                    targetEvent: title,
+                    scope: $scope,
+                    preserveScope: true,
+                    escapeToClose: true,
+
                     clickOutsideToClose: true,
+                    controller: function DialogController($scope, $mdDialog) {
+                        $scope.closeDialog = function() {
+                            $mdDialog.hide();
+                        };
+                    },
+                    controllerAs: 'dc'
                 }).then(function(media) {
                     $scope.progress = 2;
                     $scope.creativity.items.push(media);
@@ -196,14 +213,14 @@
             }
         }
         $scope.addImage = function(file) {
-                console.log('abc');
+            console.log('abc');
         };
         $scope.publish = function() {
-                        $scope.loading = true;
+            $scope.loading = true;
 
             $scope.creativity.body = $scope.body;
             $scope.body.mediaType = "text";
-            $scope.creativity[0]=$scope.body;
+            $scope.creativity[0] = $scope.body;
             $scope.image = {};
 
             $scope.creativity.tags = $scope.tags;

@@ -1,63 +1,69 @@
-<style>
-.lime {
-    background: rgb(139, 195, 74) !important;
+<style type="text/css">
+.grey-text {
+    color: #666A73;
+    font-weight: 500;
 }
 </style>
-<md-content>
-    <div layout="column" class="md-padding">
-        <div layout-gt-xs="row" layout-xs="column">
-            <!-- <img style="max-width: 100%;max-height: 100%" ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}}" class="md-card-image" alt="Event title "> -->
-            <div layout="column" flex-gt-xs="30" flex-xs="100" style="margin-right: 15px;">
-                <img style="max-width: 100%;max-height: 100%" ng-src="{{event.image}}" class="md-card-image" alt="Event title ">
-            </div>
-            <div layout-gt-xs="column" layout-xs="row" flex="40" flex-xs="100">
-                <div layout-xs="column" layout-align-xs="center center" flex-xs="20">
-                    <span class="md-title" style="color: #666A73;">{{event.timings.from.date | date: 'd MMM'}}</span>
-                </div>
-                <div layout="column" flex-xs="80">
-                    <h1 class="md-display-2" style="margin-top: 13px;margin-bottom: 10px;">{{event.title}}</h1>
-                    <span class="md-subhead" style="color: #666A73;">{{event.details.venue}}, COLLEGE NAME</span>
-                    <span flex></span>
-                    <span class="md-subhead" style="color: #666A73;">Price : {{event.details.price? event.details.price : 'Free'}}</span>
-                </div>
+<div layout="column" class="md-whiteframe-1dp white-bg" flex-gt-xs="80" flex-offset-gt-xs="10">
+    <div layout-gt-xs="row" layout-xs="column" layout-align="start start">
+        <img flex-sm="40" flex-md="40" flex-lg="30" flex-xs="100" ng-src="{{event.image}}" class="md-card-image" alt="Event title">
+        <div layout-gt-xs="column" layout-xs="row" flex flex-xs="100">
+            <div layout="column" layout-align-xs="center center">
+                <h1 class="md-headline section-heading" style="padding: 0px 16px">
+                    {{event.title}}</h1>
+                <span class="md-title" style="padding: 0px 16px">
+                        {{event.subtitle}}</span>
+                <md-list layout="column" layout-align="start start">
+                    <md-list-item layout="row">
+                        <md-icon md-svg-icon="calendar-clock" class=" grey-text" aria-label="Alarm Icon"></md-icon>
+                        <h3 class="md-body-1 grey-text" >
+
+                                    {{event.timings.from.date | date: ' d MMM'}} · {{event.timings.from.time}}{{event.timings.from.period}} - {{event.timings.to.date==event.timings.from.date?null:event.timings.to.date | date: ' d MMM'}} · {{ event.timings.to.time}}{{event.timings.to.period}}
+                                </h3>
+                    </md-list-item>
+                    <md-list-item>
+                        <md-icon md-svg-icon="map-marker" class="grey-text" aria-label="Alarm Icon"></md-icon>
+                        <h3 class="md-body-1 grey-text" >
+                                    {{event.details.venue}}
+                                </h3>
+                    </md-list-item>
+                    <md-list-item>
+                        <md-icon md-svg-icon="account-circle" class="grey-text" aria-label="Alarm Icon"></md-icon>
+                        <h3 class="md-body-1 grey-text">
+                                    By : <a href="{{event.organiser.link}}" target="_blank"> {{event.organiser.name}} </a>
+                                </h3>
+                    </md-list-item>
+                    <md-list-item>
+                        <md-icon md-svg-icon="currency-inr" class="grey-text" aria-label="Alarm Icon"></md-icon>
+                        <h3 class="md-body-1 grey-text">{{event.details.price? event.details.price+' /-' : 'Free'}}</h3>
+                    </md-list-item>
+                </md-list>
             </div>
         </div>
-        <md-divider></md-divider>
-        <div layout="row">
-            <span flex></span>
-            <md-button class="md-icon-button" ng-click="heart(event)" aria-label="Favorite ">
-                <md-icon ng-class="event.Actions.Bookmarked.status? 'pink':''" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>
-            </md-button>
-            <span class="md-subhead" style="padding-top: 10px;margin-right: 15px;">{{event.Actions.Bookmarked.total}}</span>
-            <md-button ng-class="event.Actions.Participants.status? ' md-raised lime':'md-primary'" ng-click="update(event)" aria-label="Favorite ">
-                {{event.Actions.Participants.status? 'RSVP':'RSVP\'d'}}
-            </md-button>
-        </div>
-        <md-divider></md-divider>
-        <div layout-gt-xs="row" layout-xs="column" style="margin-top: 10px;">
+    </div>
+    <md-divider></md-divider>
+    <div layout="row" class="md-padding">
+        <md-button ng-repeat="tag in event.Tags.data" style="cursor: default;border-radius: 5px;font-size:12px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">#{{tag.name}}</md-button>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="heart(event)" aria-label="Favorite">
+            <md-icon ng-class="event.Actions.Bookmarked.status? 'pink': ''" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>
+        </md-button>
+        <span class="md-subhead" style="padding-top: 10px;margin-right: 15px;">{{event.Actions.Bookmarked.total}}</span>
+        <md-button ng-class="event.Actions.Participants.status? ' md-raised lime': 'md-primary'" ng-click="update(event)" aria-label="Favorite">
+            {{event.Actions.Participants.status? 'RSVP':'RSVP\'d'}}
+        </md-button>
+    </div>
+    <md-divider></md-divider>
+    <md-tabs md-dynamic-height md-border-bottom md-selected="tab">
+        <md-tab label="Description">
             <div layout="column" flex-gt-xs="60" flex-xs="100" flex-order-xs="1">
                 <h2 class="md-headline" style="margin-bottom:10px;">Description</h2>
                 <p>{{event.details.description}}</p>
             </div>
-            <div layout="column" flex-gt-xs="40" flex-xs="100" flex-order-xs="0">
-                <h4 class="md-title" style="margin-bottom:10px;">Date and Time</h4>
-                <span class="md-body-2">{{event.timings.from.date | date: 'EEE, d MMM'}}, {{event.timings.from.time}} {{event.timings.from.preiod? 'PM': 'Am'}}</span>
-                <span>--</span>
-                <span class="md-body-2">{{event.timings.to.date | date: 'EEE, d MMM'}}, {{event.timings.to.time}} {{event.timings.to.preiod? 'PM': 'Am'}}</span>
-            </div>
-        </div>
-        <div layout="row" class="md-padding">
-            <span ng-repeat="tag in event.Tags.data" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">{{tag.name}}</span>
-        </div>
-        <div layout="column" layout-align="center center">
-            <h3 class="md-title">{{event.organiser.name}}</h3>
-            <span class="md-body-2"><md-icon md-svg-icon="phone"></md-icon> 
-            <a ng-href="tel:{{event.organiser.phone}}">{{event.organiser.phone}}</a>
-            </span>
-            <p class="md-body-2">
-                <md-icon md-svg-icon="link-variant"></md-icon>
-                <a style="text-decoration: none;" target="_blank" ng-href="{{event.organiser.link}}">{{event.organiser.link}}</a>
-            </p>
-        </div>
-    </div>
-</md-content>
+        </md-tab>
+        <md-tab label="Rules">
+            <md-content class="md-padding">
+            </md-content>
+        </md-tab>
+    </md-tabs>
+</div>

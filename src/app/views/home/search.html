@@ -50,7 +50,7 @@
             <h3>Results in events</h3>
             <md-list>
                 <md-list-item class="md-2-line" ng-repeat="event in events | limitTo:6">
-                    <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}}" class="md-avatar" alt="{{item.who}}">
+                    <img ng-src="{{event.image}}" class="md-avatar" alt="{{item.who}}">
                     <div class="md-list-item-text">
                         <h3>{{event.name}}</h3>
                         <p>Created: date</p>
@@ -62,7 +62,7 @@
             <h3>Results in content</h3>
             <md-list>
                 <md-list-item class="md-2-line" ng-repeat="event in events | limitTo:6">
-                    <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}}" class="md-avatar" alt="{{item.who}}">
+                    <img ng-src="{{event.image}}" class="md-avatar" alt="{{item.who}}">
                     <div class="md-list-item-text">
                         <h3>{{event.name}}</h3>
                         <h4>Description</h4>
@@ -128,7 +128,7 @@
                 <md-content class="md-padding">
                     <md-list>
                         <md-list-item class="md-2-line" ng-repeat="event in events">
-                            <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}}" class="md-avatar" alt="{{item.who}}">
+                            <img ng-src="{{event.image}}" class="md-avatar" alt="{{item.who}}">
                             <div class="md-list-item-text">
                                 <h3>{{event.name}}</h3>
                                 <p>Created: date</p>

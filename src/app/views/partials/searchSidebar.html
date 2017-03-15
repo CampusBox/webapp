@@ -29,7 +29,7 @@
     </div>
     <md-list>
         <md-list-item class="md-2-line" ng-repeat="event in events | limitTo:6">
-            <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}}" class="md-avatar" alt="{{item.who}}">
+            <img ng-src="{{event.image}}" class="md-avatar" alt="{{item.who}}">
             <div class="md-list-item-text">
                 <h3>{{event.name}}</h3>
                 <p>Created: date</p>
@@ -45,7 +45,7 @@
     </div>
     <md-list>
         <md-list-item class="md-2-line" ng-repeat="event in events | limitTo:6">
-            <img ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.image}}" class="md-avatar" alt="{{item.who}}">
+            <img ng-src="{{event.image}}" class="md-avatar" alt="{{item.who}}">
             <div class="md-list-item-text">
                 <h3>{{event.name}}</h3>
                 <h4>Description</h4>

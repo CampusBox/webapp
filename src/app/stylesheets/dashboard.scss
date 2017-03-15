@@ -1,0 +1,21 @@
+.event-description {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: #555555;
+}
+
+@media screen and (min-width: 480px) {
+    .event-description {
+        /*margin-top: -10px;*/
+        /*margin-bottom: -1px;*/
+        color: #555555;
+    }
+    md-card-actions.event-actions {
+        margin: 0px;
+    }
+}
+
+.section-heading {
+    font-size: 29px;
+    font-weight: 300;
+}

@@ -17,7 +17,7 @@
             template: ''+
                     '<div flex layout="row" layout-align="space-around" layout-wrap>' +
                     '<md-card style="float:left ; display:inline-flex; !important;" ng-repeat="event in events track by $index">' +
-                    '<img style="height:{{width*10}}px !important; min-height: 200px; background: #aaa; width:auto;" ng-src="http://thapar.brinjal.in/superadmin/eventimg/{{event.id}}.jpg " class="md-card-image " alt="Washed Out ">' +
+                    '<img style="height:{{width*10}}px !important; min-height: 200px; background: #aaa; width:auto;" ng-src="{{event.image}}" class="md-card-image " alt="Washed Out ">' +
                     '<md-card-title>' +
                     '<md-card-title-text>' +
                     '<span>{{event.title  | limitTo : 25}}</span>' +
