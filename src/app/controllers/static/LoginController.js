@@ -24,6 +24,10 @@
 
                     tokenService.post("login", response)
                         .then(function(abc) {
+                            if(abc.registered==false){
+                            $state.go("static.signup");
+                                
+                            }
                             localStorage.setItem('id_token', abc.token);
                             $rootScope.token = abc.token;
 
@@ -32,6 +36,10 @@
 
                         }).catch(function(abc) {
                             console.log(abc);
+                            if(abc.registered==false){
+                            $state.go("static.signup");
+                                
+                            }
                             $scope.problem = $abc.status;
                             $scope.loading = false;
                         });
@@ -53,6 +61,10 @@
 
             tokenService.post("login", $scope.login)
                 .then(function(abc) {
+                    if(abc.registered==false){
+                            $state.go("static.signup");
+                                
+                            }
                     console.log(abc);
                     localStorage.setItem('id_token', abc.token);
                     $rootScope.token = abc.token;
@@ -60,6 +72,10 @@
 
 
                 }).catch(function(abc) {
+                    if(abc.registered==false){
+                            $state.go("static.signup");
+                                
+                            }
                     console.log(response);
                     $scope.loading = false;
                             $state.go("static.signup");

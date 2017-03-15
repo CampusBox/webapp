@@ -11,10 +11,11 @@
             'tokenService',
             'Upload',
             '$timeout',
+            '$state',
             AddEventController
         ]);
 
-    function AddEventController($mdDialog, $scope, tokenService, Upload, $timeout) {
+    function AddEventController($mdDialog, $scope, tokenService, Upload, $timeout,$state) {
         $scope.event = {};
         $scope.place = null;
 
@@ -83,6 +84,7 @@ $scope.categories = [
 
             tokenService.post("addEvent", $scope.body)
                 .then(function(abc) {
+                    $state.go(home.dashboard);
                     console.log(abc);
                 }).catch(function(abc) {
                     console.log(abc);
