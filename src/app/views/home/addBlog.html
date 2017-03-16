@@ -31,7 +31,7 @@
                         </md-list>
                         <md-button ng-show="media == 'image'" style="float: right;" class="md-primary md-raised" md-colors="{background: 'teal'}" ngf-select="uploadFiles($files, $invalidFiles)" multiple accept="image/*" ng-focus="expression" max-height="1000" ngf-max-size="1MB">
                             <md-icon md-svg-icon="plus"></md-icon>Add more images</md-button>
-                        <span style="font-size: 14px;color: rgba(0,0,0,.6);" class="md-body-1">Add tags (up to 5) so your story reaches more people:</span>
+                        <span style="font-size: 14px;color: rgba(0,0,0,.6);" class="md-body-1">Add tags (up to 5) so your creativity reaches the right people:</span>
                         <md-chips name="skills" ng-model="tags" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
                             <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Enter top 5 Tags">
                                 <span md-highlight-text="searchText">{{item.name}}</span>
@@ -52,12 +52,14 @@
             </div>
             <div style="background: #fff" class="md-whiteframe-z1" layout-padding layout-wrap flex-gt-sm="70">
                 <div flex-offset="10" flex="80" layout="column">
-                    <p class="md-display-1" style="outline: none;" bind-options="{disableReturn: true, disableExtraSpaces: true, 'toolbar': {'buttons': [ 'italic', 'underline']}}" ng-model="title" style="display: inline; margin: 0px" medium-editor data-placeholder="Title to your creative content"></p>
+                    <p class="md-display-1" style="outline: none; margin-bottom: 0px" bind-options="{disableReturn: true, disableExtraSpaces: true, 'toolbar': {'buttons': [ 'italic', 'underline']}}" ng-model="title" style="display: inline; margin: 0px" medium-editor data-placeholder="Title to your creative content"></p>
+                        <p class="md-title" ng-hide="progress<1" style="outline: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;" ng-model="creativity.items[0].text" medium-editor data-placeholder="Tell your story..."></p>
                     <center ng-repeat="item in creativity.items">
                         <!-- <img   style="max-width: 100%" ng-src="{{item.image}}" /> -->
                         <img style="max-width: 100%" ngf-thumbnail="item.image" />
                     </center>
                 </div>
+                
                 <center ng-show="progress<1">
                     <img ng-src="{{user.imageUrl}}" alt="" style="border-radius: 50%; height: auto;width: 20%">
                     <p class="md-title">Select type of creative project you want to add.</p>
@@ -65,7 +67,8 @@
                         <span ng-repeat="item in itemgroup track by $index">                        
                         <md-button  ng-class="item.intrested?'interest_selected':'interest'" ng-checked="exists(item, selected)" ng-click="progress=1;selectType(item.title)">                        
                             {{ item.title }}
-                        </md-button>                    
+                        </md-button>    
+
                     </span>
                     </div>
                 </center>
@@ -92,9 +95,7 @@
                     <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
                 </center>
                 <div layout-padding layout-wrap>
-                    <div flex-offset="10" flex="80" layout="column">
-                        <p class="md-title" ng-hide="progress<1" style="outline: none;font-family: serif;" ng-model="creativity.items[0].text" medium-editor data-placeholder="Tell your story..."></p>
-                    </div>
+                    
                     <div flex layout="column" flex layout-align="center  " ng-show="progress==1">
                         <center>
                             <p class="md-title"> Start building your creative project:</p>
