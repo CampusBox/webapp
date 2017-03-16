@@ -8,7 +8,7 @@ md-list-item .md-button:not([disabled]):click {
     background-color: transparent;
 }
 </style>
-<div layout="row" style="background: white;">
+<div layout="row " class="white-bg ">
     <div flex="10">
         <div layout="column" layout-align="center center" style="position: fixed;left: 15px;top: 45%;">
             <md-button class="md-icon-button" ng-click="heart(content)" aria-label="Favorite" sticky>
@@ -20,7 +20,18 @@ md-list-item .md-button:not([disabled]):click {
             </md-button>
         </div>
     </div>
-    <div flex="80">
+    <md-card ng-show="loading" flex-gt-sm="80" style="box-shadow: 0px white">
+        <md-card-header>
+            <md-card-avatar style="background: #f6f7f8">
+                <img class="md-user-avatar" />
+            </md-card-avatar>
+            <md-card-header-text>
+                <span style="width: 30%" class=" animated-background">Anything here </span>
+            </md-card-header-text>
+        </md-card-header>
+        <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 80px; margin-bottom: 50px; margin-top: 15px;">and again</span>
+    </md-card>
+    <div flex="80" ng-show="!loading">
         <md-list-item class="md-3-line" ng-click="false" md-ink-ripple="0">
             <img style="z-index:10000" ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
             <div class="md-list-item-text" style="z-index:10000;user-select:text;" layout="column">
@@ -46,9 +57,9 @@ md-list-item .md-button:not([disabled]):click {
             </div>
             <p>
                 <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
-                        <li ng-repeat="tag in content.Tags.data" style="cursor: auto;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">
-                            {{tag.name}}
-                        </li>
+                    <li ng-repeat="tag in content.Tags.data" style="cursor: auto;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">
+                        {{tag.name}}
+                    </li>
                 </ul>
                 <md-button class="md-icon-button" ng-click="heart(content)" aria-label="Favorite" sticky>
                     <md-icon ng-class="content.Actions.Appriciate.status? 'pink':''" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon>

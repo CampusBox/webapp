@@ -2,7 +2,9 @@
 .whiteText {
     color: #fff;
 }
-
+.color-blue{
+    color: #0570c0;
+}
 md-toolbar {
     background-color: #0570c0 !important;
 }
@@ -46,24 +48,16 @@ md-toolbar {
                     {{item.name}}
                 </div>
             </md-button>
-            <md-button style="height: 53px;margin-top: 3px;margin-bottom: 0px;" hide-sm hide-xs layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
-                <div hide-sm hide-xs class="md-tile-content" layout="column">
-                    <md-icon md-svg-icon="bell-outline"></md-icon>
-                    <!-- <span style="color:#fff" class="notifications-label"> </span> -->
-                </div>
-                <div class="md-tile-content">
-                    notifications
-                </div>
-            </md-button>
+           
         </section>
         <section class="md-warn" layout="row" layout-align="center center">
             <md-menu>
                 <md-button style="height: 53px;margin-top: 3px;margin-bottom: 0px;" layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="$mdOpenMenu()">
                     <div hide-sm hide-xs class="md-tile-content" layout="column">
-                        <md-icon md-svg-icon="account"></md-icon>
+                        <md-icon md-svg-icon="plus-circle"></md-icon>
                     </div>
                     <div class="md-tile-content">
-                        Profile
+                        Add
                     </div>
                 </md-button>
                 <md-menu-content width="5">
@@ -79,81 +73,72 @@ md-toolbar {
                         <md-button ng-click="$mdCloseMenu()" ui-sref="home.addBlog">
                             <div layout="row" flex="" class="ng-scope layout-row flex">
                                 <p flex="" class="flex">Add Creativity</p>
-                                <md-icon md-svg-icon="calendar"></md-icon>
+                                <md-icon md-svg-icon="all-inclusive"></md-icon>
                             </div>
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
-                        <md-button ng-click="$mdCloseMenu()" ui-sref="home.myProfile">
+                        <md-button ng-click="addUpdate();$mdCloseMenu()" ui-sref="home.myProfile">
                             <div layout="row" flex="" class="ng-scope layout-row flex">
-                                <p flex="" class="flex">My Profile</p>
+                                <p flex="" class="flex">Add Update</p>
                                 <md-icon md-svg-icon="account"></md-icon>
-                            </div>
-                        </md-button>
-                    </md-menu-item>
-                    <md-menu-item>
-                        <md-button ng-click="logout();$mdCloseMenu();">
-                            <div layout="row" flex="" class="ng-scope layout-row flex">
-                                <p flex=""">Sign Out</p>
-                                <md-icon md-svg-icon="logout-variant"></md-icon>
                             </div>
                         </md-button>
                     </md-menu-item>
                 </md-menu-content>
             </md-menu>
         </section>
+        <section layout-align="end start">
+
+        <md-button style="height: 53px;margin-top: 3px;margin-bottom: 0px;" hide-sm hide-xs layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
+                <div hide-sm hide-xs class="md-tile-content" layout="column">
+                    <md-icon md-svg-icon="account"></md-icon>
+                    <!-- <span style="color:#fff" class="notifications-label"> </span> -->
+                </div>
+                <div class="md-tile-content">
+                    Profile
+                </div>
+            </md-button>
+        </section>
     </md-toolbar>
     <md-content flex class="md-padding page-content">
-        <div ui-view >
+        <div ui-view>
         </div>
     </md-content>
     <md-toolbar hide-gt-sm>
     </md-toolbar>
     <md-toolbar hide-gt-sm layout="row" style="position: fixed;bottom: 0px;" layout-align="center center">
-      
-        <section layout-align="center center" layout="row">
             <md-button ng-repeat="item in vm.menuItems" layout-align="center center" flex class="capitalize" ng-click="vm.selectItem(item)" ui-sref-active="" ui-sref="{{item.sref}}">
-                <div  hide-md class="md-tile-content">
+                <div hide-md class="md-tile-content">
                     <md-icon md-svg-icon="{{item.icon}}"></md-icon>
                 </div>
                 <div class="md-tile-content">
                     {{item.name}}
                 </div>
             </md-button>
-             <md-button layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="">
-                <div  hide-md class="md-tile-content">
+            <md-button layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="">
+                <div hide-md class="md-tile-content">
                     <md-icon md-svg-icon="magnify"></md-icon>
                 </div>
                 <div class="md-tile-content">
                     Search
                 </div>
             </md-button>
-            
-        </section>
-          <section class="md-warn" layout="row" layout-align="center center">
             <md-menu>
                 <md-button layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="$mdOpenMenu()">
-                    <div class="md-tile-content">
-                        <md-icon md-svg-icon="account"></md-icon>
+                    <div class="md-tile-content" layout="column">
+                        <md-icon md-svg-icon="plus"></md-icon>
                     </div>
                     <div class="md-tile-content">
-                        Profile
+                        Add
                     </div>
                 </md-button>
                 <md-menu-content width="5">
                     <md-menu-item>
-                        <md-button ng-click="$mdCloseMenu();vm.toggleRightSidebar();" ui-sref="home.addEvent">
-                            <div layout="row" flex="" class="ng-scope layout-row flex">
-                                <p flex="" class="flex">Notifications</p>
-                                <md-icon md-svg-icon="bell-outline"></md-icon>
-                            </div>
-                        </md-button>
-                    </md-menu-item>
-<md-menu-item>
-                        <md-button ng-click="vm.toggleRightSidebar();$mdCloseMenu" ui-sref="home.addEvent">
+                        <md-button ng-click="$mdCloseMenu()" ui-sref="home.addEvent">
                             <div layout="row" flex="" class="ng-scope layout-row flex">
                                 <p flex="" class="flex">Add Events</p>
-                                <md-icon md-svg-icon=""></md-icon>
+                                <md-icon md-svg-icon="calendar"></md-icon>
                             </div>
                         </md-button>
                     </md-menu-item>
@@ -161,7 +146,53 @@ md-toolbar {
                         <md-button ng-click="$mdCloseMenu()" ui-sref="home.addBlog">
                             <div layout="row" flex="" class="ng-scope layout-row flex">
                                 <p flex="" class="flex">Add Creativity</p>
+                                <md-icon md-svg-icon="all-inclusive"></md-icon>
+                            </div>
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="$mdCloseMenu()" ui-sref="home.myProfile">
+                            <div layout="row" flex="" class="ng-scope layout-row flex">
+                                <p flex="" class="flex">Add Update</p>
+                                <md-icon md-svg-icon="account"></md-icon>
+                            </div>
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+                <md-button layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
+                    <div class="md-tile-content">
+                        <md-icon md-svg-icon="account"></md-icon>
+                    </div>
+                    <div class="md-tile-content">
+                        Profile
+                    </div>
+                </md-button>
+               
+            </md-menu>
+    </md-toolbar>
+    <md-sidenav md-component-id="right" class="md-sidenav-right">
+        <section>
+            <!-- <div ng-include src=" 'app/views/partials/messages.html'"></div> -->
+            <div class="messages" layout-fill>
+                <md-content class="messages-content">
+                    <center>
+                        <h3 class="color-blue">Profile</h3>
+                    <md-divider ></md-divider>
+                    </center>
+                    <md-menu-item>
+                        <md-button ng-click="vm.toggleRightSidebar()" ui-sref="home.addEvent">
+                            <div layout="row" flex="" class="ng-scope layout-row flex">
+                                <p flex="" class="flex">My Events</p>
                                 <md-icon md-svg-icon="calendar"></md-icon>
+                            </div>
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="$mdCloseMenu()" ui-sref="home.addBlog">
+                            <div layout="row" flex="" class="ng-scope layout-row flex">
+                                <p flex="" class="flex">My Creativity</p>
+                                <md-icon md-svg-icon="all-inclusive"></md-icon>
                             </div>
                         </md-button>
                     </md-menu-item>
@@ -173,26 +204,9 @@ md-toolbar {
                             </div>
                         </md-button>
                     </md-menu-item>
-                    <md-menu-item>
-                        <md-button ng-click="logout();$mdCloseMenu();">
-                            <div layout="row" flex="" class="ng-scope layout-row flex">
-                                <p flex=""">Sign Out</p>
-                                <md-icon md-svg-icon="logout-variant"></md-icon>
-                            </div>
-                        </md-button>
-                    </md-menu-item>
-                </md-menu-content>
-            </md-menu>
-        </section>
-    </md-toolbar>
-    <md-sidenav md-component-id="right" class="md-sidenav-right">
-        <section>
-            <!-- <div ng-include src=" 'app/views/partials/messages.html'"></div> -->
-            <div class="messages" layout-fill>
-                <md-content class="messages-content" layout-fill>
                     <center>
-                        
-                    <h3>Notifications</h3>
+                        <h3 class="color-blue">Notifications</h3>
+                    <md-divider ></md-divider>
                     </center>
                     <md-list>
                         <md-list-item class="md-2-line" ng-repeat="notification in notifications" ui-sref="home.singleContent({contentId: notification.content_id})">
@@ -204,10 +218,19 @@ md-toolbar {
                                 <md-icon md-svg-icon="{{phone.options.actionIcon}}"></md-icon>
                             </md-button>
                         </md-list-item>
+                    <md-divider ></md-divider>
                     </md-list>
+                    <div flex></div>
+                    <md-menu-item>
+                        <md-button ng-click="logout();$mdCloseMenu();">
+                            <div layout="row" flex="" class="ng-scope layout-row flex">
+                                <p flex="">Sign Out</p>
+                                <md-icon md-svg-icon="logout-variant"></md-icon>
+                            </div>
+                        </md-button>
+                    </md-menu-item>
                 </md-content>
             </div>
-            </md-content>
             <!-- </md-tab>
             <md-tab label="Search" data-ng-if="windowWidth<587">
                 <md-content class="md-padding">

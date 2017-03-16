@@ -11,7 +11,7 @@
     var menuItems = [
       {
         name: 'Home',
-        icon: 'home-outline',
+        icon: 'home',
         sref: '.dashboard'
       },
       
@@ -26,8 +26,8 @@
       //   sref: '.societies'
       // },
       {
-        name: 'Blogs',
-        icon: 'comment-text-outline',
+        name: 'Creativity',
+        icon: 'all-inclusive',
         sref: '.blogs'
       }
       // {

@@ -16,11 +16,13 @@
 
     function SingleEventController($mdDialog, $scope, Upload, $timeout, tokenService, $stateParams) {
         $scope.event = {};
+        $scope.loading=true;
         $scope.eventId = $stateParams.eventId;
         console.log($scope.eventId);
         tokenService.get("event/" + $scope.eventId)
             .then(function(tableData) {
                 $scope.event = tableData.data[0];
+                $scope.loading=false;
                 console.log($scope.event);
             });
         // $scope.event = {

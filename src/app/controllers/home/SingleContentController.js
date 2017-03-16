@@ -15,11 +15,12 @@
         var vm = this;
         $scope.contentId = $stateParams.contentId;
         $scope.liked = false;
+        $scope.loading = true;
         $scope.content = {};
         $scope.toggleLike = function(blogId) {
             console.log(blogId);
             vm.liked = !vm.liked;
-        }
+        };
 
         $scope.bookmark = function(content) {
             $scope.content.Actions.Bookmarked.status = !$scope.content.Actions.Bookmarked.status;
@@ -98,6 +99,7 @@
         };
         tokenService.get("content/" + $scope.contentId)
             .then(function(tableData) {
+        $scope.loading = false;
                 $scope.content = tableData.data;
                 $scope.content.created.at = new Date(Date.parse($scope.content.created.at.replace('-', '/', 'g'))); //replace mysql date to js date format
                 $scope.content.title = $sce.trustAsHtml($scope.content.title);

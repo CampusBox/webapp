@@ -1,3 +1,5 @@
+'use strict';
+
 (function() {
 
     angular
@@ -10,16 +12,20 @@
             '$mdDialog',
             'allDataService',
             'tokenService',
+            '$state',
             AddBlogController
         ]);
 
-    function AddBlogController($scope, Upload, $sce, $timeout, $mdDialog, allDataService, tokenService) {
+    function AddBlogController($scope, Upload, $sce, $timeout, $mdDialog, allDataService, tokenService, $state) {
         var vm = this;
         $scope.progress = 0;
+        var body = {};
         $scope.creativity = {};
         $scope.creativity.items = [];
+        body.text = "";
+        body.mediaType = "text";
+        $scope.creativity.items[0] = body;
         $scope.title = "";
-        $scope.body = {};
         $scope.loading = false;
         $mdDialog.show({
             templateUrl: 'app/views/partials/addBlogTutorial.html',
@@ -32,7 +38,6 @@
             escapeToClose: true
 
         });
-        $scope.body.text = "";
         $scope.url = "";
         $scope.media = {};
         $scope.media.embedUrl = $scope.media.mediaType = "";
@@ -84,6 +89,22 @@
             $scope.progress = 1;
             $scope.creativity.type = type;
         };
+        $scope.uploadFiles = function(files) {
+            $scope.files = files;
+            if (files && files.length) {
+                console.log('media');
+
+                angular.forEach(files, function(file) {
+                    Upload.dataUrl(file, true).then(function(url) {
+                        var media = {};
+                        media.mediaType = 'image';
+                        media.image = url;
+                        console.log(media);
+                        $scope.creativity.items.push(media);
+                    })
+                })
+            }
+        };
         $scope.addItem = function(title) {
             if (title == "Text") {
                 $scope.progress = 2;
@@ -93,16 +114,13 @@
                     templateUrl: 'app/views/partials/addItem.html',
                     parent: angular.element(document.body),
                     targetEvent: title,
+                    title: title,
                     scope: $scope,
                     preserveScope: true,
                     escapeToClose: true,
 
                     clickOutsideToClose: true,
-                    controller: function DialogController($scope, $mdDialog) {
-                        $scope.closeDialog = function() {
-                            $mdDialog.hide();
-                        };
-                    },
+
                     controllerAs: 'dc'
                 }).then(function(media) {
                     $scope.progress = 2;
@@ -199,46 +217,38 @@
                         break;
                     default:
                 }
-            }
+            };
             $scope.validateSoundcloud = function(url) {
                 var regexp = /^https?:\/\/(soundcloud\.com|snd\.sc)\/(.*)$/;
                 return url.match(regexp) && url.match(regexp)[2]
-            }
+            };
             $scope.validateUrl = function(url) {
                 var res = url.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
                 if (res == null)
                     return false;
                 else
                     return true;
-            }
+            };
         }
         $scope.addImage = function(file) {
             console.log('abc');
         };
         $scope.publish = function() {
             $scope.loading = true;
-
-            $scope.creativity.body = $scope.body;
-            $scope.body.mediaType = "text";
-            $scope.creativity[0] = $scope.body;
             $scope.image = {};
 
             $scope.creativity.tags = $scope.tags;
             $scope.creativity.title = $scope.title;
-            Upload.dataUrl($scope.file, true).then(function(url) {
-                $scope.image.mediaType = "image";
-                $scope.image.image = url;
-                $scope.creativity.items.push($scope.image);
+            tokenService.post("addContent", $scope.creativity)
+                .then(function(status) {
+                    alert(status.status);
+                    $state.go('home.dashboard');
+                }).catch(function(status) {
+                    alert(status.status);
+                    $state.go('home.dashboard');
+                    console.log(status);
+                });
 
-                console.log($scope.creativity);
-                tokenService.post("addContent", $scope.creativity)
-                    .then(function(status) {
-                        alert(status.status);
-                        state.go(home.dashboard);
-                    }).catch(function(status) {
-                        console.log(status);
-                    });
-            });
         };
 
 
@@ -254,11 +264,6 @@
         }, {
             'name': 'Cabbage'
         }];
-        numberChips = [];
-        numberChips2 = [];
-        numberBuffer = '';
-        $scope.autocompleteDemoRequireMatch = false;
-        $scope.transformChip = transformChip;
 
         /**
          * Return the proper object when the append is called.
@@ -268,9 +273,8 @@
             if (angular.isObject(chip)) {
                 return chip;
             }
-
             // Otherwise, create a new one
-            return { name: chip }
+            return { name: chip };
         }
 
         /**
@@ -281,6 +285,11 @@
             var results = query ? $scope.vegetables.filter(createFilterFor(query)) : [];
             return results;
         }
+        var numberChips = [];
+        var numberChips2 = [];
+        var numberBuffer = '';
+        $scope.autocompleteDemoRequireMatch = false;
+        $scope.transformChip = transformChip;
 
         /**
          * Create filter function for a query string

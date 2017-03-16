@@ -18,7 +18,7 @@
                 <div class="md-padding" layout="column" layout-padding>
                     <md-input-container>
                         <label>Title</label>
-                        <input  ng-required="true" type="text" ng-model="event.title" md-maxlength="30">
+                        <input  md-autofocus="" ng-required="true" type="text" ng-model="event.title" md-maxlength="30">
                     </md-input-container>
                     <md-input-container>
                         <label>Sub title</label>
@@ -199,7 +199,7 @@
                 </md-card>
             </md-list-item>
         </md-list>
-        <md-card flex="60" flex-offset="20">
+       <!--  <md-card flex="60" flex-offset="20">
             <div>
                 <img style="    width: 100%;height:auto; min-height: 200px; background: #ccc;" ng-src="{{event.croppedDataUrl" class="md-card-image ">
             </div>
@@ -260,5 +260,5 @@
                     </md-menu-content>
                 </md-menu>
             </md-card-actions>
-        </md-card>
+        </md-card> -->
     </div>
