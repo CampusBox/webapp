@@ -5,7 +5,7 @@
         <md-tab label="top">
             <h3>Results in people</h3>
             <div layout="row" layout-wrap>
-                <md-card ng-repeat="item in [1,2,3,4,5,6]" flex="30" flex-xs="100">
+                <md-card flex="30" flex-xs="100">
                     <center>
                         <img style="border-radius: 50%; width: 40%; margin-top:20px;" ng-src="https://avatars2.githubusercontent.com/u/14099191?v=3&u=e03e9a657eb1e4de7da062cc5a5611092f0f2d7e&s=400" class="md-card-image" alt="Washed Out">
                         <md-card-title style="padding: 0px;">
@@ -45,6 +45,37 @@
                     </md-card-content>
                     <md-card-actions layout="row" layout-align="end center">
                     </md-card-actions>
+                </md-card>
+                <md-card ng-repeat="student in searchData" flex="30" flex-xs="100">
+                    <md-card-header>
+                        <md-card-avatar>
+                            <img class="md-user-avatar" src="https://avatars2.githubusercontent.com/u/14099191?v=3&u=e03e9a657eb1e4de7da062cc5a5611092f0f2d7e&s=400" />
+                        </md-card-avatar>
+                        <md-card-header-text>
+                            <span class="md-title">User</span>
+                            <span class="md-subhead">subhead</span>
+                        </md-card-header-text>
+                    </md-card-header>
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">In-card mixed actions</span>
+                            <span class="md-subhead">Reversed</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-actions layout="row" layout-align="start center">
+                        <md-button>Action 1</md-button>
+                        <md-button>Action 2</md-button>
+                        <md-card-icon-actions>
+                            <md-button class="md-icon-button" aria-label="toggle">
+                                <md-icon md-svg-icon="md-toggle-arrow"></md-icon>
+                            </md-button>
+                        </md-card-icon-actions>
+                    </md-card-actions>
+                    <md-card-content>
+                        <p>
+                            The titles of Washed Out's breakthrough song and the first single from Paracosm share the two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
+                        </p>
+                    </md-card-content>
                 </md-card>
             </div>
             <h3>Results in events</h3>
