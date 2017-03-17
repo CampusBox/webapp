@@ -2,9 +2,11 @@
 .whiteText {
     color: #fff;
 }
-.color-blue{
+
+.color-blue {
     color: #0570c0;
 }
+
 md-toolbar {
     background-color: #0570c0 !important;
 }
@@ -26,16 +28,28 @@ md-toolbar {
         </section>
         <section layout-align="start center" flex>
             <form hide-sm hide-xs ng-submit="$event.preventDefault();openSearch(searchText)">
-                <md-autocomplete ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item)" md-items="item in searchData.data" md-item-text="item.title" md-min-length="0" placeholder="Search for anything here" md-menu-class="autocomplete-custom-template">
+                <md-autocomplete ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item)" md-items="item in searchTypes" md-item-text="item.title" md-min-length="0" placeholder="Search for anything here" md-menu-class="autocomplete-custom-template">
                     <md-item-template>
+                        <md-list-item class="noright" ng-click="searched(item,searchText)">
+                            <md-icon md-svg-icon="{{item.icon}}" class=" md-hue-3"></md-icon>
+                            <p > Search "{{searchText}}" in <em> {{item.title}}</em> </p>
+                        </md-list-item>
+                      <!--   <md-list-item class="noright" ng-click="searched(item)">
+                            <md-icon md-svg-icon="{{item.icon}}" class=" md-hue-3"></md-icon>
+                            <p> Search "{{searchText}}" in <em>{{item.title}}</em></p>
+                        </md-list-item>
+                        <md-list-item class="noright" ng-click="searched(item)">
+                            <md-icon md-svg-icon="{{item.icon}}" class=" md-hue-3"></md-icon>
+                            <p> Search "{{searchText}}" in <em>{{item.title}}</em></p>
+                        </md-list-item> -->
+                    </md-item-template>
+                    <!--  <md-item-template>
                         <md-list-item class="noright" ng-click="searched(item)">
                             <md-icon ng-if="(!item.image)" md-svg-icon="{{!(item.type=='event')?'comment-text':'calendar'}}" class=" md-hue-3"></md-icon>
                             <img ng-if="item.image" alt="{{ person.title }}" ng-src="{{item.image}}" class="md-avatar" />
                             <p>{{ item.title }}</p>
-                            <!-- <md-icon md-svg-icon="calendar" class="md-secondary md-hue-3" ></md-icon> -->
-                            <!-- <md-icon md-svg-icon="brush" class="md-secondary md-hue-3" ></md-icon> -->
                         </md-list-item>
-                    </md-item-template>
+                    </md-item-template> -->
                 </md-autocomplete>
             </form>
         </section>
@@ -48,7 +62,6 @@ md-toolbar {
                     {{item.name}}
                 </div>
             </md-button>
-           
         </section>
         <section class="md-warn" layout="row" layout-align="center center">
             <md-menu>
@@ -89,8 +102,7 @@ md-toolbar {
             </md-menu>
         </section>
         <section layout-align="end start">
-
-        <md-button style="height: 53px;margin-top: 3px;margin-bottom: 0px;" hide-sm hide-xs layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
+            <md-button style="height: 53px;margin-top: 3px;margin-bottom: 0px;" hide-sm hide-xs layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
                 <div hide-sm hide-xs class="md-tile-content" layout="column">
                     <md-icon md-svg-icon="account"></md-icon>
                     <!-- <span style="color:#fff" class="notifications-label"> </span> -->
@@ -108,68 +120,67 @@ md-toolbar {
     <md-toolbar hide-gt-sm>
     </md-toolbar>
     <md-toolbar hide-gt-sm layout="row" style="position: fixed;bottom: 0px;" layout-align="center center">
-            <md-button ng-repeat="item in vm.menuItems" layout-align="center center" flex class="capitalize" ng-click="vm.selectItem(item)" ui-sref-active="" ui-sref="{{item.sref}}">
-                <div hide-md class="md-tile-content">
-                    <md-icon md-svg-icon="{{item.icon}}"></md-icon>
+        <md-button ng-repeat="item in vm.menuItems" layout-align="center center" flex class="capitalize" ng-click="vm.selectItem(item)" ui-sref-active="" ui-sref="{{item.sref}}">
+            <div hide-md class="md-tile-content">
+                <md-icon md-svg-icon="{{item.icon}}"></md-icon>
+            </div>
+            <div class="md-tile-content">
+                {{item.name}}
+            </div>
+        </md-button>
+        <md-button layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="">
+            <div hide-md class="md-tile-content">
+                <md-icon md-svg-icon="magnify"></md-icon>
+            </div>
+            <div class="md-tile-content">
+                Search
+            </div>
+        </md-button>
+        <md-menu>
+            <md-button layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="$mdOpenMenu()">
+                <div class="md-tile-content" layout="column">
+                    <md-icon md-svg-icon="plus"></md-icon>
                 </div>
                 <div class="md-tile-content">
-                    {{item.name}}
+                    Add
                 </div>
             </md-button>
-            <md-button layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="">
-                <div hide-md class="md-tile-content">
-                    <md-icon md-svg-icon="magnify"></md-icon>
-                </div>
-                <div class="md-tile-content">
-                    Search
-                </div>
-            </md-button>
-            <md-menu>
-                <md-button layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="$mdOpenMenu()">
-                    <div class="md-tile-content" layout="column">
-                        <md-icon md-svg-icon="plus"></md-icon>
-                    </div>
-                    <div class="md-tile-content">
-                        Add
-                    </div>
-                </md-button>
-                <md-menu-content width="5">
-                    <md-menu-item>
-                        <md-button ng-click="$mdCloseMenu()" ui-sref="home.addEvent">
-                            <div layout="row" flex="" class="ng-scope layout-row flex">
-                                <p flex="" class="flex">Add Events</p>
-                                <md-icon md-svg-icon="calendar"></md-icon>
-                            </div>
-                        </md-button>
-                    </md-menu-item>
-                    <md-menu-item>
-                        <md-button ng-click="$mdCloseMenu()" ui-sref="home.addBlog">
-                            <div layout="row" flex="" class="ng-scope layout-row flex">
-                                <p flex="" class="flex">Add Creativity</p>
-                                <md-icon md-svg-icon="all-inclusive"></md-icon>
-                            </div>
-                        </md-button>
-                    </md-menu-item>
-                    <md-menu-item>
-                        <md-button ng-click="$mdCloseMenu()" ui-sref="home.myProfile">
-                            <div layout="row" flex="" class="ng-scope layout-row flex">
-                                <p flex="" class="flex">Add Update</p>
-                                <md-icon md-svg-icon="account"></md-icon>
-                            </div>
-                        </md-button>
-                    </md-menu-item>
-                </md-menu-content>
-            </md-menu>
-                <md-button layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
-                    <div class="md-tile-content">
-                        <md-icon md-svg-icon="account"></md-icon>
-                    </div>
-                    <div class="md-tile-content">
-                        Profile
-                    </div>
-                </md-button>
-               
-            </md-menu>
+            <md-menu-content width="5">
+                <md-menu-item>
+                    <md-button ng-click="$mdCloseMenu()" ui-sref="home.addEvent">
+                        <div layout="row" flex="" class="ng-scope layout-row flex">
+                            <p flex="" class="flex">Add Events</p>
+                            <md-icon md-svg-icon="calendar"></md-icon>
+                        </div>
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="$mdCloseMenu()" ui-sref="home.addBlog">
+                        <div layout="row" flex="" class="ng-scope layout-row flex">
+                            <p flex="" class="flex">Add Creativity</p>
+                            <md-icon md-svg-icon="all-inclusive"></md-icon>
+                        </div>
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="$mdCloseMenu()" ui-sref="home.myProfile">
+                        <div layout="row" flex="" class="ng-scope layout-row flex">
+                            <p flex="" class="flex">Add Update</p>
+                            <md-icon md-svg-icon="account"></md-icon>
+                        </div>
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+        <md-button layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
+            <div class="md-tile-content">
+                <md-icon md-svg-icon="account"></md-icon>
+            </div>
+            <div class="md-tile-content">
+                Profile
+            </div>
+        </md-button>
+        </md-menu>
     </md-toolbar>
     <md-sidenav md-component-id="right" class="md-sidenav-right">
         <section>
@@ -178,7 +189,7 @@ md-toolbar {
                 <md-content class="messages-content">
                     <center>
                         <h3 class="color-blue">Profile</h3>
-                    <md-divider ></md-divider>
+                        <md-divider></md-divider>
                     </center>
                     <md-menu-item>
                         <md-button ng-click="vm.toggleRightSidebar()" ui-sref="home.addEvent">
@@ -206,7 +217,7 @@ md-toolbar {
                     </md-menu-item>
                     <center>
                         <h3 class="color-blue">Notifications</h3>
-                    <md-divider ></md-divider>
+                        <md-divider></md-divider>
                     </center>
                     <md-list>
                         <md-list-item class="md-2-line" ng-repeat="notification in notifications" ui-sref="home.singleContent({contentId: notification.content_id})">
@@ -218,7 +229,7 @@ md-toolbar {
                                 <md-icon md-svg-icon="{{phone.options.actionIcon}}"></md-icon>
                             </md-button>
                         </md-list-item>
-                    <md-divider ></md-divider>
+                        <md-divider></md-divider>
                     </md-list>
                     <div flex></div>
                     <md-menu-item>

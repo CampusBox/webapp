@@ -7,7 +7,7 @@
     fill: rgb(255, 235, 59) !important;
 }
 </style>
-<div layout="column" layout-fill>
+<div layout="column" layout-fill ng-controller="SearchCreativityController">
     <div flex layout="row" layout-wrap layout-align="center center">
         <md-card ng-show="loading" flex="100" flex-gt-sm="60" ng-repeat="content in [1,2,3,4]">
             <md-card-header>

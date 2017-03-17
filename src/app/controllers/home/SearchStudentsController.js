@@ -2,15 +2,17 @@
 
     angular
         .module('app')
-        .controller('SearchController', [
-            '$scope', '$timeout', '$q', 'tokenService',
+        .controller('SearchStudentsController', [
+            '$scope', '$timeout', '$q', 'tokenService','$stateParams',
             SearchController
         ]);
 
-    function SearchController($scope, $timeout, $q, tokenService) {
+    function SearchController($scope, $timeout, $q, tokenService,$stateParams) {
         var vm = this;
         $scope.tests = 'test';
         $scope.events ={};
+                $scope.query = $stateParams.query;
+
         $scope.followers = [{
             'name': 'Rohan Goel',
             'image': 'https://avatars2.githubusercontent.com/u/14099191?v=3&u=e03e9a657eb1e4de7da062cc5a5611092f0f2d7e&s=400',

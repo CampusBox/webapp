@@ -93,7 +93,7 @@
             $scope.files = files;
             if (files && files.length) {
                 console.log('media');
-
+                $scope.progress=2;
                 angular.forEach(files, function(file) {
                     Upload.dataUrl(file, true).then(function(url) {
                         var media = {};

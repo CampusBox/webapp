@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload', 'satellizer', 
-        'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop', 'angular-jwt', 'infinite-scroll', 
+angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload', 'satellizer',
+        'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop', 'angular-jwt', 'infinite-scroll',
     ])
     //remove setellizer
     .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, $authProvider,
-        $mdIconProvider, socialProvider, jwtInterceptorProvider, jwtOptionsProvider, $httpProvider, $mdDateLocaleProvider,$mdAriaProvider) {
+        $mdIconProvider, socialProvider, jwtInterceptorProvider, jwtOptionsProvider, $httpProvider, $mdDateLocaleProvider, $mdAriaProvider) {
 
         $mdDateLocaleProvider.formatDate = function(date) {
             return moment(date).format('DD-MMM-YY');
@@ -108,11 +108,31 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                     title: 'Dashboard'
                 }
             })
-            .state('home.search', {
-                url: '/search',
-                controler: 'SearchController',
+            .state('home.searchEvents', {
+                url: '/search/events/:query',
+                controler: 'SearchEventsController',
                 controllerAs: 'vm',
-                templateUrl: 'app/views/home/search.html',
+                templateUrl: 'app/views/home/searchEvents.html',
+                data: {
+                    requiresLogin: true,
+                    title: 'Dashboard'
+                }
+            })
+            .state('home.searchCreativity', {
+                url: '/search/creativity/:query',
+                controler: 'SearchCreativityController',
+                controllerAs: 'vm',
+                templateUrl: 'app/views/home/searchCreativity.html',
+                data: {
+                    requiresLogin: true,
+                    title: 'Dashboard'
+                }
+            })
+            .state('home.searchStudents', {
+                url: '/search/students/:query',
+                controler: 'SearchStudentsController',
+                controllerAs: 'vm',
+                templateUrl: 'app/views/home/searchStudents.html',
                 data: {
                     requiresLogin: true,
                     title: 'Dashboard'

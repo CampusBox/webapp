@@ -12,7 +12,7 @@
                                     <p>Draft</p>
                                 </div>
                             </md-list-item>
-                            <md-subheader class="md-no-sticky">Add content</md-subheader>
+                            <md-subheader class="md-no-sticky">Add more content</md-subheader>
                             <md-divider>
                             </md-divider>
                             <!-- <md-list-item ng-click="progress=2">
@@ -41,9 +41,9 @@
                             </md-chip-template>
                         </md-chips>
                     </md-card-content>
-                    <md-card-actions layout="row" layout-align="end center">
+                    <md-card-actions layout="column" layout-align="end center">
                         <div layout="row" ng-hide="!loading" layout-sm="column" layout-align="space-around">
-                            <p>Uploading images and all content.</p>
+                            <p>Please wait, we are uploading images and all content.<br> This can take upto a minute.</p>
                             <md-progress-circular md-mode="indeterminate"></md-progress-circular>
                         </div>
                         <md-button ng-disabled=" (!(title && creativity.items[0].text) || loading)" class="md-raised md-primary" ng-click="publish()">Publish</md-button>
@@ -110,7 +110,7 @@
                                 </p>
                             </div> -->
                             <div layout="column" flex-xs="25" flex-sm="25" flex-gt-sm="" layout-align="center center">
-                                <md-button ngf-select="uploadFiles($files, $invalidFiles)" multiple ngf-select ng-click="progress=2" ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 9001024, height: 500}" class="md-fab">
+                                <md-button ngf-select="uploadFiles($files, $invalidFiles)" multiple ngf-select  ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 9001024, height: 500}" class="md-fab">
                                     <md-icon md-svg-icon="image"></md-icon>
                                 </md-button>
                                 <p class="md-tile-content">
