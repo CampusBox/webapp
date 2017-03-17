@@ -9,7 +9,7 @@
 </style>
 <div layout="column" layout-fill>
     <div flex layout="row" layout-wrap layout-align="center center">
-        <md-card ng-show="loading" flex="100" flex-gt-sm="60" ng-repeat="content in [1,2,3,4]">
+        <!-- <md-card ng-show="loading" flex="100" flex-gt-sm="60" ng-repeat="content in [1,2,3,4]">
             <md-card-header>
                 <md-card-avatar style="background: #f6f7f8">
                     <img class="md-user-avatar" />
@@ -19,8 +19,8 @@
                 </md-card-header-text>
             </md-card-header>
             <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
-        </md-card>
-        <md-card flex-gt-sm="60" flex="100" ng-repeat="content in contents track by $index">
+        </md-card> -->
+        <md-card flex-gt-sm="60" flex="100" ng-repeat="content in finalContents track by $index">
             <md-card-header>
                 <md-card-avatar>
                     <img class="md-user-avatar" ng-src="{{content.created.by.image}}" />
@@ -34,16 +34,17 @@
             <md-card-title ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer">
                 <span class="md-headline" >{{content.title}}</span>
             </md-card-title>
-             <div ng-repeat="item in content.Items.data  track by $index">
-                <div flex="80" flex-offset="10"  ng-if="(item.type == 'image' || item.type == 'youtube' || $scope.content.Items.data[item].type == 'youtube' || $scope.content.Items.data[item].type == 'youtube')" layout-align="center center">
-                    <iframe ng-show="(item.type == 'youtube' && $index <1)" width="100%" height="315" src="{{item.embed.url}}" frameborder="0" allowfullscreen></iframe>
-                    <iframe ng-show="(item.type == 'soundcloud' && $index <1)" width="100%" height="166" scrolling="no" frameborder="0" src="{{item.embed.url}}" allowfullscreen></iframe>
-                    <iframe ng-show="(item.type == 'vimeo'&& $index <1)" width="640" height="360" src="{{item.embed.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                    <img ng-show="(item.type == 'image' && $index <1)" src="{{item.image}}" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" alt="">
+            <div>
+                <div flex="80" flex-offset="10"  ng-if="content.type == 'image' || content.type == 'youtube' || content.type == 'vimeo' || content.type == 'soundcloud' " layout-align="center center">
+                    <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" src="{{content.url}}" frameborder="0" allowfullscreen></iframe>
+                    <iframe ng-show="(content.type == 'soundcloud')" width="100%" height="166" scrolling="no" frameborder="0" src="{{content.url}}" allowfullscreen></iframe>
+                    <iframe ng-show="(content.type == 'vimeo')" width="640" height="360" src="{{content.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    <img ng-show="(content.type == 'image')" src="{{content.url}}" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" alt="">
                 </div>
-                <p class="md-body-1" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="item.description | limitTo: 150" style="white-space: pre-wrap; color:rgba(0,0,0,.8); margin-left: 10px;font-weight: 300; margin:0px; font-size: 21px;line-height: 1.58;letter-spacing: -.003em;">
+                <p class="md-body-1" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="content.description | limitTo: 150" style="white-space: pre-wrap; color:rgba(0,0,0,.8); margin-left: 10px;font-weight: 300; margin:0px; font-size: 21px;line-height: 1.58;letter-spacing: -.003em;">
                 </p>
             </div>
+            
             <md-card-content>
                 <p class="md-subhead" style="color: #8f8faf;">
                     Read More

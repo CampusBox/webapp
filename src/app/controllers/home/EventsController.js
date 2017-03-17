@@ -30,6 +30,7 @@
 
                         $scope.loading = false;
                         $scope.events = $scope.events.concat(tableData.data);
+                        console.log($scope.events);
                     });
             }
         };
@@ -86,11 +87,11 @@
                 });
             }
         }
-        $scope.update = function(event, $index) {
+        $scope.rsvpEvent = function(event, $index) {
             $scope.events[$index].Actions.Participants.status = !$scope.events[$index].Actions.Participants.status;
             if ($scope.events[$index].Actions.Participants.status) {
                 $scope.events[$index].Actions.Participants.total += 1;
-                tokenService.post('ParticipanteEvent/' + event.id).then(function(result) {
+                tokenService.post('rsvpEvent/' + event.id).then(function(result) {
 
                     if (result.status != 'error') {
                         console.log(result.status);
@@ -101,7 +102,7 @@
             } else {
                 $scope.events[$index].Actions.Participants.total -= 1;
 
-                tokenService.delete('ParticipantsEvent/' + event.id, '').then(function(result) {
+                tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
                     if (result.status != 'error') {
                         console.log(result.status);
                     } else {

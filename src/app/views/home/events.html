@@ -123,7 +123,7 @@
                     <md-button style="text-transform: capitalize;" ng-click="heart(event, $index)" aria-label="Favorite ">
                         <md-icon md-svg-icon="heart-outline"></md-icon> Appreciate
                     </md-button>
-                    <md-button style="text-transform: capitalize;" ng-click="update(event, $index)" aria-label="Favorite ">
+                    <md-button style="text-transform: capitalize;" ng-click="rsvpEvent(event, $index)" aria-label="Favorite ">
                         <md-icon ng-class="!event.Actions.Participants.status? 'blue':''" md-svg-icon="{{!event.Actions.Participants.status? 'account-check' : 'plus-one' }}"></md-icon> Rsvp
                     </md-button>
                     <md-menu md-offset="0 3">
@@ -196,7 +196,7 @@
                                 <md-button class="appriciate-button" ng-click="heart(event, $index)" aria-label="Favorite ">
                                     <md-icon class="pink" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon> Appreciate
                                 </md-button>
-                                <md-button class="rsvp-button" ng-click="update(event, $index)" aria-label="Favorite ">
+                                <md-button class="rsvp-button" ng-click="rsvpEvent(event, $index)" aria-label="Favorite ">
                                     <md-icon ng-class="!event.Actions.Participants.status? 'blue':'blue'" md-svg-icon="{{!event.Actions.Participants.status? 'account-check' : 'plus-one' }}"></md-icon> Rsvp
                                 </md-button>
                             </md-card-actions>

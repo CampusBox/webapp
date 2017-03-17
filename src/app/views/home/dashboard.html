@@ -68,10 +68,10 @@
                                     <p hide-xs style="margin:0;color:#555555" class="md-caption">{{event.venue?event.venue:"Main Auditorium, Thapar University"}}</p>
                                     <!-- <span class="md-body-2" ng-repeat="tag in tags">#{{ tag.name }}                  </span> -->
                                     <span flex></span>
-                                    <md-button class="appriciate-button" ng-click="heart(event, $index)" aria-label="Favorite ">
+                                    <md-button class="appriciate-button" ng-click="heartEvent(event, $index)" aria-label="Favorite ">
                                         <md-icon class="pink" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon> Appreciate
                                     </md-button>
-                                    <md-button class="rsvp-button" ng-click="update(event, $index)" aria-label="Favorite ">
+                                    <md-button class="rsvp-button" ng-click="rsvpEvent(event, $index)" aria-label="Favorite ">
                                         <md-icon ng-class="!event.Actions.Participants.status? 'blue':'blue'" md-svg-icon="{{!event.Actions.Participants.status? 'account-check' : 'plus-one' }}"></md-icon> Rsvp
                                     </md-button>
                                 </md-card-actions>
@@ -180,11 +180,11 @@
             <h5 class="md-subhead ">Top Events<br><small style="color: rgba(0,0,0,.44); " class="md-caption ">Most popular this week</small></h5>
             <md-divider></md-divider>
             <md-list>
-                <md-list-item class="md-2-line " ng-repeat="event in events | limitTo:3 ">
+                <md-list-item class="md-2-line" ng-click="openEvent(event)" ng-repeat="event in eventsTop">
                     <img ng-src="{{event.image}}" class="md-avatar " alt="{{item.who}} ">
                     <div class="md-list-item-text ">
-                        <h3>{{event.name}}</h3>
-                        <p>Date | Venue</p>
+                        <h3>{{event.title}}</h3>
+                        <p>{{event.timings.from.date | date: 'd MMM'}} | {{event.details.venue}}</p>
                     </div>
                     <md-divider md-inset ng-if="!$last "></md-divider>
                 </md-list-item>
