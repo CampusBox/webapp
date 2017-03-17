@@ -18,6 +18,14 @@
         // $scope.demoFollow.status = true;
         console.log('my profile called'+ $scope.username  + $scope.tab );
 
+        tokenService.get("myProfile" )
+            .then(function(student) {
+                $scope.student = student.data;
+                console.log($scope.student);
+            });
+
+
+
         $scope.showAdvanced = function(ev) {
             $mdDialog.show({
                 controller: DialogController,
@@ -184,16 +192,7 @@
                 $mdDialog.hide(answer);
             };
         }
-        tokenService.get("events")
-            .then(function(events) {
-                $scope.events = events.data;
-            });
-        tokenService.get("student/" + $scope.username)
-            .then(function(student) {
-                $scope.student = student.data;
-                console.log($scope.student);
-            });
-
+     
     }
 
 })();
