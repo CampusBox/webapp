@@ -26,7 +26,7 @@
             $state.go('home.singleContent', { contentId: item });
 
         };
-                tokenService.get("/search/creativity"+$scope.query)
+                tokenService.get("search/creativity/"+$scope.query)
                     .then(function(tableData) {
                         $scope.loading = false;
                         $scope.contents = $scope.contents.concat(tableData.data);

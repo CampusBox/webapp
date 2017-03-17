@@ -160,7 +160,7 @@
             </div>
         </div>
     </div>
-    <div layout="column" class="md-padding" flex-gt-sm="20" flex-offset-gt-sm="10" hide show-gt-sm>
+    <div layout="column" class="md-padding" flex-gt-sm="30" flex-offset-gt-sm="10" hide show-gt-sm>
         <div layout="column">
             <h5 class="md-subhead" >Top stories <br>
             <small style="color: rgba(0,0,0,.44);" class="md-caption">Most popular this week</small>
@@ -168,7 +168,7 @@
             </h5>
             <md-list>
                 <md-list-item class="md-2-line" ng-repeat="content in contentsTop | limitTo :3 track by $index">
-                    <img ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{todos[0].who}}" />
+                    <!-- <img ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{todos[0].who}}" /> -->
                     <div class="md-list-item-text">
                         <h3>{{content.title}}</h3>
                         <p>{{content.created.by.name}}</p>

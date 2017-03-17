@@ -18,14 +18,14 @@
             });
 
         $scope.searchTypes = [{
-            'title': 'students',
-            'icon': 'school'
-        }, {
             'title': 'events',
             'icon': 'calendar'
         }, {
             'title': 'creativity',
             'icon': 'all-inclusive'
+        }, {
+            'title': 'students',
+            'icon': 'school'
         }];
         $scope.searchData = {};
         $scope.searchData.data = [];

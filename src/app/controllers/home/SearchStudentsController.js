@@ -26,9 +26,12 @@
             'college': 'Thapar University',
             'skills': ['cabbage', 'anal', 'missionary']
         }];
-        tokenService.get("events")
-            .then(function(events) {
-                $scope.events = [].concat(events.data);
+      tokenService.get("search/students/" + $scope.query)
+            .then(function(tableData) {
+
+                $scope.loading = false;
+                $scope.followers = $scope.events.concat(tableData.data);
+                console.log($scope.events);
             });
     }
 })();

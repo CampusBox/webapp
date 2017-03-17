@@ -56,7 +56,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                 abstract: true
             })
             .state('home.myProfile', {
-                url: '/myProfile/:username/:tab',
+                url: '/myProfile/:tab',
                 templateUrl: 'app/views/home/myProfile.html',
                 controller: 'MyProfileController',
                 controllerAs: 'vm',
@@ -159,7 +159,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
             })
             .state('home.singleContent', {
                 url: '/singleContent/:contentId',
-                templateUrl: 'app/views/home/singleContent.html',
+                templateUrl: 'app/views/home/singleCreativtiy.html',
                 controller: 'SingleContentController',
                 controllerAs: 'vm',
                 data: {
@@ -200,7 +200,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
 
         .state('home.blogs', {
                 url: '/blogs',
-                templateUrl: 'app/views/home/blogs.html',
+                templateUrl: 'app/views/home/creativity.html',
                 controller: 'BlogsController',
                 controllerAs: 'vm',
                 data: {
@@ -208,19 +208,10 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                     title: 'Profile'
                 }
             })
-            .state('home.myBlogs', {
-                url: '/myBlogs',
-                templateUrl: 'app/views/home/myBlogs.html',
-                controller: 'BlogsController',
-                controllerAs: 'vm',
-                data: {
-                    requiresLogin: true,
-                    title: 'My Blogs'
-                }
-            })
+           
             .state('home.addBlog', {
                 url: '/addBlog',
-                templateUrl: 'app/views/home/addBlog.html',
+                templateUrl: 'app/views/home/addCreativity.html',
                 controller: 'AddBlogController',
                 controllerAs: 'vm',
                 data: {

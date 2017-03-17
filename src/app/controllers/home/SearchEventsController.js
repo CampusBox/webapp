@@ -23,7 +23,7 @@
 
         $scope.events = [];
         $scope.loading = true;
-        tokenService.get("/search/events" + $scope.query)
+        tokenService.get("search/events/" + $scope.query)
             .then(function(tableData) {
 
                 $scope.loading = false;

@@ -27,17 +27,26 @@
         $scope.creativity.items[0] = body;
         $scope.title = "";
         $scope.loading = false;
-        $mdDialog.show({
-            templateUrl: 'app/views/partials/addBlogTutorial.html',
-            parent: angular.element(document.body),
-            // targetEvent: ev,
-            locals: {
-                title: "tutorial"
-            },
-            clickOutsideToClose: true,
-            escapeToClose: true
+        if (localStorage.getItem('tutorial') != 4) {
 
-        });
+            $mdDialog.show({
+                templateUrl: 'app/views/partials/addBlogTutorial.html',
+                parent: angular.element(document.body),
+                // targetEvent: ev,
+                locals: {
+                    title: "tutorial"
+                },
+                clickOutsideToClose: true,
+                escapeToClose: true
+
+            }).then(function() {
+                    localStorage.setItem('tutorial', 4);
+                }, function() {
+                    localStorage.setItem('tutorial', 4);
+                }
+
+            );
+        }
         $scope.url = "";
         $scope.media = {};
         $scope.media.embedUrl = $scope.media.mediaType = "";
@@ -93,7 +102,7 @@
             $scope.files = files;
             if (files && files.length) {
                 console.log('media');
-                $scope.progress=2;
+                $scope.progress = 2;
                 angular.forEach(files, function(file) {
                     Upload.dataUrl(file, true).then(function(url) {
                         var media = {};
