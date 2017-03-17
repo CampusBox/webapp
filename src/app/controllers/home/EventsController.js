@@ -56,9 +56,7 @@
                     $scope.status = 'You cancelled the dialog.';
                 });
         };
-       $scope.openEvent = function(event){
-        $location.path('/singleEvent/'+event.id);
-       }
+       
         $scope.report = function() {
             console.log('testing report function');
         }
