@@ -64,9 +64,11 @@
         };
         $scope.about = function() {
             if ($scope.editAbout) {
-                tokenService.post("addEvent", $scope.body)
+                tokenService.post("about", $scope.student.subtitle)
                     .then(function(abc) {
                         $scope.editAbout = false;
+                    }).catch(function(error){
+                        console.log(error);
                     });
             } else {
                 $scope.editAbout = true;
@@ -182,8 +184,19 @@
         //     });
         // }
         $scope.skillsEdit = function() {
-            $scope.readonly = !$scope.readonly;
-            $scope.removable = !$scope.removable;
+            if ($scope.readonly) {
+                $scope.readonly = !$scope.readonly;
+                $scope.removable = !$scope.removable;
+            } else {
+                console.log($scope.student.Skills);
+                tokenService.post("skills", $scope.student.Skills)
+                    .then(function(abc) {
+                        $scope.readonly = !$scope.readonly;
+                        $scope.removable = !$scope.removable;
+                    }).catch(function(error){
+                        console.log(error);
+                    });
+            }
         }
 
         // SKILLS CHIP SHIT ENDED
