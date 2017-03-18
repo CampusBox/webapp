@@ -91,6 +91,14 @@ $scope.categories = [
                 });
         };
 
+$scope.max = 2;
+  $scope.selectedIndex = 0;
+  $scope.nextTab = function() {
+    var index = ($scope.selectedIndex == $scope.max) ? 0 : $scope.selectedIndex + 1;
+    $scope.selectedIndex = index;
+
+  };
+
         /**
          * Return the proper object when the append is called.
          */
