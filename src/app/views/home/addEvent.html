@@ -13,7 +13,7 @@
 </style>
 <div flex layout-gt-xs="row" layout-xs="column">
     <md-card flex-gt-xs="50">
-        <form name="eventForm" novalidate ng-submit="eventForm.$valid  && ">
+        <form name="eventForm" novalidate ng-submit="eventForm.$valid  && submitEvent(event,tags)">
             <md-tabs md-dynamic-height md-border-bottom=""  md-selected="selectedIndex">
                 <md-tab label="Basic Details">
                     <div class="md-padding" layout="column" layout-padding>
@@ -23,7 +23,7 @@
                         </md-input-container>
                         <md-input-container md-no-float>
                             <label>Sub title</label>
-                            <textarea placeholder="My demo event" ng-required="true" ng-model="event.subtitle" md-maxlength="100" rows="2" md-select-on-focus></textarea>
+                            <textarea placeholder="Use this space to explain what exactly is your event." ng-required="true" ng-model="event.subtitle" md-maxlength="100" rows="2" md-select-on-focus></textarea>
                         </md-input-container>
                         <div layout-gt-sm="row" flex>
                             <md-input-container md-no-float flex>
@@ -32,34 +32,34 @@
                                     <md-option ng-value="type.id" ng-repeat="type in types">{{type.title}}</md-option>
                                 </md-select>
                             </md-input-container>
-                            <md-input-container md-no-float flex>
+                           <!--  <md-input-container md-no-float flex>
                                 <label>Event Category</label>
                                 <md-select ng-required="true" ng-model="event.category">
                                     <md-option ng-value="category.id" ng-repeat="category in categories">{{category.title}}</md-option>
                                 </md-select>
-                            </md-input-container>
+                            </md-input-container> -->
                         </div>
                         <div layout-gt-sm="row" flex>
                             <md-input-container md-no-float flex>
-                                <label>Event Target Audiende</label>
+                                <label>Event Target Audience</label>
                                 <md-select ng-required="true" ng-model="event.audience">
-                                    <md-option ng-value="audience" ng-repeat="audience in ['Intra College', 'Intra University','All Students','Everyone']">{{audience}}</md-option>
+                                    <md-option ng-value="audience.id" ng-repeat="audience in audiences">{{audience.title}}</md-option>
                                 </md-select>
                             </md-input-container>
                             <md-input-container md-no-float flex>
                                 <label>Entry Fees</label>
-                                <input placeholder="My demo event" ng-required="true" type="number" min="0" value="0" ng-model="event.price">
+                                <input placeholder="0 = no entry fees" ng-required="true" type="number" min="0" value="0" ng-model="event.price">
                             </md-input-container>
                         </div>
                         <div layout-gt-sm="row" flex>
                             <md-input-container  flex class="md-block">
                                 <label>From Date</label>
-                                <md-datepicker ng-model="event.fromDate" ng-init="event.fromDate = new Date();" ng-required="true" md-placeholder="Enter date" ></md-datepicker>
+                                <md-datepicker ng-model="event.fromDate"  ng-change="event.toDate=event.fromDate"  ng-required="true" md-placeholder="Enter date" ></md-datepicker>
                             </md-input-container>
                             <md-input-container md-no-float flex>
                                 <label>Start Time</label>
                                 <md-select ng-model="event.fromTime" placeholder="Start Time" ng-required="true">
-                                    <md-option ng-value="b" ng-repeat="b in  ['1:00','1:30','2:00','2:30','3:00','3:30','4:00','4:30','5:00','5:30','6:00','6:30','7:00','7:30','8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30','12:00','12:30'] ">{{b}}</md-option>
+                                    <md-option ng-value="b" ng-repeat="b in  ['12:00','12:30','1:00','1:30','2:00','2:30','3:00','3:30','4:00','4:30','5:00','5:30','6:00','6:30','7:00','7:30','8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30'] ">{{b}}</md-option>
                                 </md-select>
                             </md-input-container>
                             <md-input-container md-no-float flex>
@@ -77,7 +77,7 @@
                             <md-input-container md-no-float flex>
                                 <label>End Time</label>
                                 <md-select ng-model="event.toTime" placeholder="End Time" ng-disabled="!event.fromTime" ng-required="true">
-                                    <md-option ng-value="b" ng-repeat="b in  ['1:00','1:30','2:00','2:30','3:00','3:30','4:00','4:30','5:00','5:30','6:00','6:30','7:00','7:30','8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30','12:00','12:30']">{{b}}</md-option>
+                                    <md-option ng-value="b" ng-repeat="b in  ['12:00','12:30','1:00','1:30','2:00','2:30','3:00','3:30','4:00','4:30','5:00','5:30','6:00','6:30','7:00','7:30','8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30']">{{b}}</md-option>
                                 </md-select>
                             </md-input-container>
                             <md-input-container md-no-float flex>
@@ -93,15 +93,15 @@
                     <div class="md-padding" layout="column">
                         <md-input-container md-no-float flex>
                             <label>Event Venue</label>
-                            <input placeholder="My demo event" type="text" required="" ng-model="event.venue" md-maxlength="30">
+                            <input placeholder="Mention college name if event is open for all participants" type="text" required="" ng-model="event.venue" md-maxlength="30">
                         </md-input-container>
                         <md-input-container md-no-float>
                             <label>Link to the event (website or facebook page)</label>
-                            <input placeholder="My demo event" type="text" ng-model="event.link">
+                            <input placeholder="http://" type="text" ng-model="event.link">
                         </md-input-container>
                         <md-input-container md-no-float>
                             <label>Description</label>
-                            <textarea placeholder="My demo event" required="" ng-model="event.description" md-maxlength="300" rows="4" md-select-on-focus></textarea>
+                            <textarea placeholder="Mention complete details here with rules(if a competition)" required="" ng-model="event.description" md-maxlength="300" rows="4" md-select-on-focus></textarea>
                         </md-input-container>
                         <md-input-container md-no-float>
                             <label>Enter tags for your event</label>
@@ -118,16 +118,16 @@
                         <div layout-gt-sm="row">
                             <md-input-container md-no-float flex>
                                 <label>Organizer Name</label>
-                                <input placeholder="My demo event" required="" type="text" ng-model="event.organiserName" md-maxlength="30">
+                                <input placeholder="Society or entitity behind the event." required="" type="text" ng-model="event.organiserName" md-maxlength="30">
                             </md-input-container>
                             <md-input-container md-no-float flex>
                                 <label>Organizer Phone</label>
-                                <input placeholder="My demo event" required="" type="number" ng-model="event.organiserPhone" md-maxlength="30">
+                                <input placeholder="987654321" required="" type="number" ng-model="event.organiserPhone" min="1000000000" max="9999999999">
                             </md-input-container>
                         </div>
                         <md-input-container md-no-float flex>
                             <label>Online Link to the organizer (website or facebook page)</label>
-                            <input placeholder="Http://facebook.com/campusbox" type="text" ng-model="event.organiserLink">
+                            <input placeholder="http://" type="text" ng-model="event.organiserLink">
                         </md-input-container>
                     </div>
                 </md-tab>

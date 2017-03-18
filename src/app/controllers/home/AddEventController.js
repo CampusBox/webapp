@@ -15,25 +15,22 @@
             AddEventController
         ]);
 
-    function AddEventController($mdDialog, $scope, tokenService, Upload, $timeout,$state) {
+    function AddEventController($mdDialog, $scope, tokenService, Upload, $timeout, $state) {
         $scope.event = {};
+        $scope.event.fromDate = new Date();
         $scope.place = null;
-
         $scope.types = [
-            { 'id': '1', 'title': 'Dancing' },
-            { 'id': '1', 'title': 'Acting' },
-            { 'id': '1', 'title': 'Debating' },
-            { 'id': '1', 'title': 'Film Making' },
-            { 'id': '1', 'title': 'Music' },
-            { 'id': '1', 'title': 'Photography' }
+            { 'id': 1, 'title': 'Competition', },
+            { 'id': 2, 'title': 'Conference', },
+            { 'id': 3, 'title': 'Exhibition', },
+            { 'id': 4, 'title': 'Performance', },
+            { 'id': 5, 'title': 'Workshop', },
+            { 'id': 6, 'title': 'Seminar', },
+            { 'id': 7, 'title': 'Other', }
         ];
-$scope.categories = [
-            { 'id': '1', 'title': 'Dancing' },
-            { 'id': '1', 'title': 'Acting' },
-            { 'id': '1', 'title': 'Debating' },
-            { 'id': '1', 'title': 'Film Making' },
-            { 'id': '1', 'title': 'Music' },
-            { 'id': '1', 'title': 'Photography' }
+        $scope.audiences = [
+            { 'id': '0', 'title': 'My college' },
+            { 'id': '1', 'title': 'Everyone ' }
         ];
 
         $scope.consoleTag = function(tags) {
@@ -91,13 +88,13 @@ $scope.categories = [
                 });
         };
 
-$scope.max = 2;
-  $scope.selectedIndex = 0;
-  $scope.nextTab = function() {
-    var index = ($scope.selectedIndex == $scope.max) ? 0 : $scope.selectedIndex + 1;
-    $scope.selectedIndex = index;
+        $scope.max = 2;
+        $scope.selectedIndex = 0;
+        $scope.nextTab = function() {
+            var index = ($scope.selectedIndex == $scope.max) ? 0 : $scope.selectedIndex + 1;
+            $scope.selectedIndex = index;
 
-  };
+        };
 
         /**
          * Return the proper object when the append is called.
