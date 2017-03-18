@@ -19,7 +19,6 @@
         $scope.followers = [];
         $scope.demoFollow = [{ 'status:': true }];
         $scope.username = $stateParams.username;
-        console.log($scope.username);
         $scope.showAdvanced = function(ev) {
             $mdDialog.show({
                     controller: DialogController,
@@ -84,7 +83,6 @@
             } else {
                 // SEND FOLLOWER ID IN DELETE
                 tokenService.delete('studentFollow/').then(function(result) {
-                    console.log('post request');
                     if (result.status != 'error') {
                         console.log(result.status);
                     } else {
@@ -97,12 +95,10 @@
             $location.path('/profile'+ student.username);
         };
         $scope.heart = function(event, $index) {
-            console.log('heart called');
             $scope.profile.Events.data[$index].Actions.Bookmarked.status = !$scope.profile.Events.data[$index].Actions.Bookmarked.status;
             if ($scope.profile.Events.data[$index].Actions.Bookmarked.status) {
                 $scope.profile.Events.data[$index].Actions.Bookmarked.total += 1;
                 tokenService.post('bookmarkEvent/' + event.id).then(function(result) {
-                    console.log('post request');
                     if (result.status != 'error') {
                         console.log(result.status);
                     } else {
@@ -113,7 +109,6 @@
                 $scope.profile.Events.data[$index].Actions.Bookmarked.total -= 1;
 
                 tokenService.delete('bookmarkEvent/' + event.id, '').then(function(result) {
-                    console.log('post request');
                     if (result.status != 'error') {
                         console.log(result.status);
                     } else {
@@ -128,7 +123,6 @@
                 $scope.profile.Events.data[$index].Actions.Participants.total += 1;
                 tokenService.post('ParticipantsEvent/' + event.id).then(function(result) {
 
-                    console.log('post request');
                     if (result.status != 'error') {
                         console.log(result.status);
                     } else {
@@ -139,7 +133,6 @@
                 $scope.profile.Events.data[$index].Actions.Participants.total -= 1;
 
                 tokenService.delete('ParticipantsEvent/' + event.id, '').then(function(result) {
-                    console.log('post request');
                     if (result.status != 'error') {
                         console.log(result.status);
                     } else {
@@ -150,7 +143,6 @@
         }
         tokenService.get("student/" + $scope.username)
             .then(function(response) {
-                console.log(response);
                 $scope.profile = response.data;
                 console.log($scope.profile);
             });
