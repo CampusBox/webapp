@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload', 'satellizer', 
-        'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop', 'angular-jwt', 'infinite-scroll', 
+angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload', 'satellizer',
+        'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop', 'angular-jwt', 'infinite-scroll',
     ])
     //remove setellizer
     .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, $authProvider,
-        $mdIconProvider, socialProvider, jwtInterceptorProvider, jwtOptionsProvider, $httpProvider, $mdDateLocaleProvider,$mdAriaProvider) {
+        $mdIconProvider, socialProvider, jwtInterceptorProvider, jwtOptionsProvider, $httpProvider, $mdDateLocaleProvider, $mdAriaProvider) {
 
         $mdDateLocaleProvider.formatDate = function(date) {
             return moment(date).format('DD-MMM-YY');
@@ -56,7 +56,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                 abstract: true
             })
             .state('home.myProfile', {
-                url: '/myProfile/:username/:tab',
+                url: '/myProfile/:tab',
                 templateUrl: 'app/views/home/myProfile.html',
                 controller: 'MyProfileController',
                 controllerAs: 'vm',
@@ -108,11 +108,31 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                     title: 'Dashboard'
                 }
             })
-            .state('home.search', {
-                url: '/search',
-                controler: 'SearchController',
+            .state('home.searchEvents', {
+                url: '/search/events/:query',
+                controler: 'SearchEventsController',
                 controllerAs: 'vm',
-                templateUrl: 'app/views/home/search.html',
+                templateUrl: 'app/views/home/searchEvents.html',
+                data: {
+                    requiresLogin: true,
+                    title: 'Dashboard'
+                }
+            })
+            .state('home.searchCreativity', {
+                url: '/search/creativity/:query',
+                controler: 'SearchCreativityController',
+                controllerAs: 'vm',
+                templateUrl: 'app/views/home/searchCreativity.html',
+                data: {
+                    requiresLogin: true,
+                    title: 'Dashboard'
+                }
+            })
+            .state('home.searchStudents', {
+                url: '/search/students/:query',
+                controler: 'SearchStudentsController',
+                controllerAs: 'vm',
+                templateUrl: 'app/views/home/searchStudents.html',
                 data: {
                     requiresLogin: true,
                     title: 'Dashboard'
@@ -139,7 +159,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
             })
             .state('home.singleContent', {
                 url: '/singleContent/:contentId',
-                templateUrl: 'app/views/home/singleContent.html',
+                templateUrl: 'app/views/home/singleCreativtiy.html',
                 controller: 'SingleContentController',
                 controllerAs: 'vm',
                 data: {
@@ -180,7 +200,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
 
         .state('home.blogs', {
                 url: '/blogs',
-                templateUrl: 'app/views/home/blogs.html',
+                templateUrl: 'app/views/home/creativity.html',
                 controller: 'BlogsController',
                 controllerAs: 'vm',
                 data: {
@@ -188,19 +208,10 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                     title: 'Profile'
                 }
             })
-            .state('home.myBlogs', {
-                url: '/myBlogs',
-                templateUrl: 'app/views/home/myBlogs.html',
-                controller: 'BlogsController',
-                controllerAs: 'vm',
-                data: {
-                    requiresLogin: true,
-                    title: 'My Blogs'
-                }
-            })
+           
             .state('home.addBlog', {
                 url: '/addBlog',
-                templateUrl: 'app/views/home/addBlog.html',
+                templateUrl: 'app/views/home/addCreativity.html',
                 controller: 'AddBlogController',
                 controllerAs: 'vm',
                 data: {
