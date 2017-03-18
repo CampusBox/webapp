@@ -47,11 +47,10 @@
         <md-card-content>
             <md-tabs md-dynamic-height md-border-bottom md-selected="tab">
                 <md-tab label="Overview">
-                    <h2 class="md-title"> Activity </h2>
                     <br>
-                    <h3 class="md-subhead">Top Events Created</h3>
+                    <h3 class="md-subhead" ng-show="profile.Events.data.length>0">Top Events Created</h3>
                     <md-list>
-                        <md-list-item style="margin-bottom: 10px;" ng-click="showEvent(event, $index)" class="secondary-button-padding eventListItem" ng-repeat="event in profile.Events.data track by $index | limitTo:6">
+                        <md-list-item style="margin-bottom: 10px;" ng-click="showEvent(event, $index)" class="secondary-button-padding eventListItem" ng-repeat="event in profile.Events.data track by $index | limitTo:2">
                             <div flex>
                                 <md-card-title style="padding: 0px;">
                                     <div class="md-media-sm" style="width: 200px;height:140px;">
@@ -102,9 +101,9 @@
                         </md-list-item>
                     </md-list>
                 </md-tab>
-                <md-tab label="Creative Content">
+                <md-tab label="Creative Content" ng-if="profile.CreativeContents.data.length>0">
                     <div layout="column" layout-wrap layout-align="center center">
-                        <md-card flex-gt-sm="60" ng-repeat="blog in profile.Content.data track by $index">
+                        <md-card flex-gt-sm="60" ng-repeat="blog in profile.CreativeContents.data track by $index">
                             <md-card-header>
                                 <md-card-avatar>
                                     <img class="md-user-avatar" ng-src="{{blog.created.by.image}}" />
@@ -143,12 +142,48 @@
                         </md-card>
                     </div>
                 </md-tab>
-                <md-tab label="Events Created">
+                <md-tab label="Events Created" ng-if="profile.Events.data.length>0">
                     <md-content class="md-padding">
-                    
+                    <md-list>
+                        <md-list-item style="margin-bottom: 10px;" ng-click="showEvent(event, $index)" class="secondary-button-padding eventListItem" ng-repeat="event in profile.Events.data track by $index ">
+                            <div flex>
+                                <md-card-title style="padding: 0px;">
+                                    <div class="md-media-sm" style="width: 200px;height:140px;">
+                                        <img style="width: 200px;  position: absolute;    clip: rect(00px,200px,140px,0px); margin-right: " ng-src="{{event.image}}" alt="">
+                                    </div>
+                                    <div style="padding: 10px 18px;" flex layout="column">
+                                        <span class="md-body-2">{{event.timings.date.start? event.timings.date.start:"Fri, Mar 24 2:00 PM" }}</span>
+                                        <div class="md-subhead" style="font-weight: 600">
+                                            {{event.title}}
+                                        </div>
+                                        <span class="md-subhead">
+
+                                        <p class="md-body-2">{{event.details.description}}</p>
+                                            </span>
+                                    </div>
+                                </md-card-title>
+                                <div layou="row">
+                                    <md-card-actions layout="row" layout-align="start center">
+                                        <span class="md-body-2">#FUCKEDUP </span>
+                                        <span class="md-body-2"> #BtAwesome</span>
+                                        <md-button ng-repeat="tag in event.tags" class="md-subhead">{{tag.name}}</md-button>
+                                        <span flex></span>
+                                        <md-button class="md-icon-button" ng-click="heart(event, $index)" aria-label="Favorite ">
+                                            <md-icon ng-class="event.Actions.Bookmarked.status? 'pink':''" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>
+                                        </md-button>
+                                        <span>{{event.Actions.Bookmarked.total}}</span>
+                                        <md-button class="md-icon-button" ng-click="update(event, $index)" aria-label="Favorite ">
+                                            <md-icon ng-class="!event.Actions.Participants.status? 'blue':''" md-svg-icon="{{!event.Actions.Participants.status? 'account-plus' : 'account-check' }}"></md-icon>
+                                        </md-button>
+                                    </md-card-actions>
+                                </div>
+                            </div>
+                            <md-divider></md-divider>
+                        </md-list-item>
+                    </md-list>
                     </md-content>
                 </md-tab>
-                <md-tab label="following">
+                <md-tab label="following" ng-if="profile.Followed.data.length>0">
                     <md-list flex>
                         <md-list-item class="md-3-line" ng-repeat="item in profile.Followed.data" ng-click="openProfile(item)">
                             <img ng-src="{{item.photo}}" class="md-avatar" alt="{{item.who}}" />
@@ -165,7 +200,7 @@
                         <md-divider></md-divider>
                     </md-list>
                 </md-tab>
-                <md-tab label="Recomended">
+                <md-tab label="Recomended"  ng-if="profile.BookmarkedContents.data.length>0">
                     <md-content class="md-padding">
                         <div flex layout="row" layout-wrap layout-align="center center">
                             <md-card flex-gt-sm="60" ng-repeat="blog in profile.BookmarkedContents.data track by $index">

@@ -8,6 +8,12 @@
 }
 </style>
 <div layout="column" layout-fill ng-controller="SearchCreativityController">
+  <md-nav-bar nav-bar-aria-label="navigation links">
+            <md-nav-item md-nav-sref="home.searchStudents({query: query})" >Students</md-nav-item>
+            <md-nav-item  md-nav-sref="home.searchEvents({query: query})" >Events</md-nav-item>
+            <md-nav-item class="active"  md-nav-sref="home.searchCreativity({query: query})" >Creativity</md-nav-item>
+        </md-nav-bar>
+        <h2>Results for "{{query}}" in Creativity</h2>
     <div flex layout="row" layout-wrap layout-align="center center">
         <md-card ng-show="loading" flex="100" flex-gt-sm="60" ng-repeat="content in [1,2,3,4]">
             <md-card-header>
