@@ -32,7 +32,6 @@
             $mdDialog.show({
                 templateUrl: 'app/views/partials/addBlogTutorial.html',
                 parent: angular.element(document.body),
-                // targetEvent: ev,
                 locals: {
                     title: "tutorial"
                 },
