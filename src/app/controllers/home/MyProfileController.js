@@ -15,10 +15,10 @@
         var vm = this;
         $scope.tab = $stateParams.tab;
         $scope.username = $stateParams.username;
-        // $scope.demoFollow.status = true;
-        console.log('my profile called'+ $scope.username  + $scope.tab );
+        $scope.editAbout = false;
+        console.log('my profile called' + $scope.username + $scope.tab);
 
-        tokenService.get("myProfile" )
+        tokenService.get("myProfile")
             .then(function(student) {
                 $scope.student = student.data;
                 console.log($scope.student);
@@ -62,6 +62,16 @@
         $scope.deactivate = function(student) {
 
         };
+        $scope.about = function() {
+            if ($scope.editAbout) {
+                tokenService.post("addEvent", $scope.body)
+                    .then(function(abc) {
+                        $scope.editAbout = false;
+                    });
+            } else {
+                $scope.editAbout = true;
+            }
+        }
         $scope.follow = function() {
                 $scope.demoFollow.status = !$scope.demoFollow.status;
                 if ($scope.demoFollow.status) {
@@ -192,7 +202,7 @@
                 $mdDialog.hide(answer);
             };
         }
-     
+
     }
 
 })();
