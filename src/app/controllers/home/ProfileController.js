@@ -94,53 +94,55 @@
         $scope.openProfile = function(stuent) {
             $location.path('/profile'+ student.username);
         };
-        $scope.heart = function(event, $index) {
-            $scope.profile.Events.data[$index].Actions.Bookmarked.status = !$scope.profile.Events.data[$index].Actions.Bookmarked.status;
-            if ($scope.profile.Events.data[$index].Actions.Bookmarked.status) {
-                $scope.profile.Events.data[$index].Actions.Bookmarked.total += 1;
-                tokenService.post('bookmarkEvent/' + event.id).then(function(result) {
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
-                });
-            } else {
-                $scope.profile.Events.data[$index].Actions.Bookmarked.total -= 1;
+        
+        $scope.heart = function(event, $index, type) {
+                    $scope.profile[type].data[$index].Actions.Bookmarked.status = !$scope.profile[type].data[$index].Actions.Bookmarked.status;
+                    if ($scope.profile[type].data[$index].Actions.Bookmarked.status) {
+                        $scope.profile[type].data[$index].Actions.Bookmarked.total += 1;
+                        tokenService.post('bookmarkEvent/' + event.id).then(function(result) {
 
-                tokenService.delete('bookmarkEvent/' + event.id, '').then(function(result) {
-                    if (result.status != 'error') {
-                        console.log(result.status);
+                            if (result.status != 'error') {
+                                console.log(result.status);
+                            } else {
+                                console.log(result);
+                            }
+                        });
                     } else {
-                        console.log(result);
-                    }
-                });
-            }
-        }
-        $scope.update = function(event, $index) {
-            $scope.profile.Events.data[$index].Actions.Participants.status = !$scope.profile.Events.data[$index].Actions.Participants.status;
-            if ($scope.profile.Events.data[$index].Actions.Participants.status) {
-                $scope.profile.Events.data[$index].Actions.Participants.total += 1;
-                tokenService.post('ParticipantsEvent/' + event.id).then(function(result) {
+                        $scope.profile[type].data[$index].Actions.Bookmarked.total -= 1;
 
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
+                        tokenService.delete('bookmarkEvent/' + event.id, '').then(function(result) {
+                            if (result.status != 'error') {
+                                console.log(result.status);
+                            } else {
+                                console.log(result);
+                            }
+                        });
                     }
-                });
-            } else {
-                $scope.profile.Events.data[$index].Actions.Participants.total -= 1;
+                }
+                $scope.rsvpEvent = function(event, $index, type) {
+                    $scope.profile[type].data[$index].Actions.Participants.status = !$scope.profile[type].data[$index].Actions.Participants.status;
+                    if ($scope.profile[type].data[$index].Actions.Participants.status) {
+                        $scope.profile[type].data[$index].Actions.Participants.total += 1;
+                        tokenService.post('rsvpEvent/' + event.id).then(function(result) {
 
-                tokenService.delete('ParticipantsEvent/' + event.id, '').then(function(result) {
-                    if (result.status != 'error') {
-                        console.log(result.status);
+                            if (result.status != 'error') {
+                                console.log(result.status);
+                            } else {
+                                console.log(result);
+                            }
+                        });
                     } else {
-                        console.log(result);
+                        $scope.profile[type].data[$index].Actions.Participants.total -= 1;
+
+                        tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
+                            if (result.status != 'error') {
+                                console.log(result.status);
+                            } else {
+                                console.log(result);
+                            }
+                        });
                     }
-                });
-            }
-        }
+                }
         tokenService.get("student/" + $scope.username)
             .then(function(response) {
                 $scope.profile = response.data;

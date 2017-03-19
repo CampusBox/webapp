@@ -168,8 +168,8 @@
                             <img style="width: 100% ;" ng-src="{{event.image}}" alt="">
                         </div>
                         <div style="padding:  5px 0px 0px 12px;" flex layout="column">
-                            <!-- <span class="md-body-2">{{event.timings.date.start? event.timings.date.start:"Fri, Mar 24 2:00 PM" }}</span> -->
-                            <span style="margin-top: 0px; color: #555555;text-align: right;margin-right: 28px;" class="md-body-2">{{event.timings.from.date | date: ' d MMM'}} <!-- · {{event.timings.from.time}}{{event.timings.from.period}} --> - {{event.timings.to.date==event.timings.from.date?null:event.timings.to.date | date: ' d MMM'}} <!-- · {{ event.timings.to.time}}{{event.timings.to.period}} --></span>
+                            <span style="margin-top: 0px; color: #555555;text-align: right;margin-right: 28px;" class="md-body-2">{{event.timings.from.date | date: ' d MMM'}} {{event.timings.to.date==event.timings.from.date?null:event.timings.to.date | date: '- d MMM'}}
+                            </span>
                             <p class="md-title" style="font-weight: 600;margin: 0px;margin-top: -15px  ">
                                 {{(event.title?event.title:"CampusBox launch ") | limitTo : 30}}
                             </p>

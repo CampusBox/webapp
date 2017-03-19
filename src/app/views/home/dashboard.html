@@ -68,10 +68,10 @@
                                     <p hide-xs style="margin:0;color:#555555" class="md-caption">{{event.venue?event.venue:"Main Auditorium, Thapar University"}}</p>
                                     <!-- <span class="md-body-2" ng-repeat="tag in tags">#{{ tag.name }}                  </span> -->
                                     <span flex></span>
-                                    <md-button class="appriciate-button" ng-click="heartEvent(event, $index)" aria-label="Favorite">
+                                    <md-button class="appriciate-button" ng-click="heartEvent(event, $index, 'events')" aria-label="Favorite">
                                         <md-icon class="pink" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon> Appreciate
                                     </md-button>
-                                    <md-button class="rsvp-button" ng-click="rsvpEvent(event, $index)" aria-label="Favorite">
+                                    <md-button class="rsvp-button" ng-click="rsvpEvent(event, $index, 'events')" aria-label="Favorite">
                                         <md-icon ng-class="!event.Actions.Participants.status? 'blue':'blue'" md-svg-icon="{{!event.Actions.Participants.status? 'account-check' : 'plus-one' }}"></md-icon> Rsvp
                                     </md-button>
                                 </md-card-actions>
@@ -168,10 +168,10 @@
             </h5>
             <md-list>
                 <md-list-item class="md-2-line" ng-repeat="content in contentsTop | limitTo :3 track by $index">
-                    <!-- <img ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{todos[0].who}}" /> -->
+                    <img ui-sref="home.profile({studentId: content.created.by.username})" ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.content.created.by.username}}" title="content.content.created.by.username"/>
                     <div class="md-list-item-text">
-                        <h3>{{content.title}}</h3>
-                        <p>{{content.created.by.name}}</p>
+                        <h3 ui-sref="home.singleContent({contentId: content.id})" title="content.title">{{content.title}}</h3>
+                        <p ui-sref="home.profile({studentId: content.created.by.username})" title="{{content.created.by.name}}">{{content.created.by.name}}</p>
                     </div>
                 </md-list-item>
             </md-list>

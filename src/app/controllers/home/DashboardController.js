@@ -60,10 +60,10 @@
             $location.path('/singleEvent/' + event.id);
         }
 
-        $scope.heartEvent = function(event, $index) {
-            $scope.events[$index].Actions.Bookmarked.status = !$scope.events[$index].Actions.Bookmarked.status;
-            if ($scope.events[$index].Actions.Bookmarked.status) {
-                $scope.events[$index].Actions.Bookmarked.total += 1;
+        $scope.heartEvent = function(event, $index, type) {
+            $scope[type][$index].Actions.Bookmarked.status = !$scope[type][$index].Actions.Bookmarked.status;
+            if ($scope[type][$index].Actions.Bookmarked.status) {
+                $scope[type][$index].Actions.Bookmarked.total += 1;
                 tokenService.post('bookmarkEvent/' + event.id).then(function(result) {
 
                     if (result.status != 'error') {
@@ -73,7 +73,7 @@
                     }
                 });
             } else {
-                $scope.events[$index].Actions.Bookmarked.total -= 1;
+                $scope[type][$index].Actions.Bookmarked.total -= 1;
 
                 tokenService.delete('bookmarkEvent/' + event.id, '').then(function(result) {
                     if (result.status != 'error') {
@@ -84,10 +84,11 @@
                 });
             }
         }
-        $scope.rsvpEvent = function(event, $index) {
-            $scope.events[$index].Actions.Participants.status = !$scope.events[$index].Actions.Participants.status;
-            if ($scope.events[$index].Actions.Participants.status) {
-                $scope.events[$index].Actions.Participants.total += 1;
+        $scope.rsvpEvent = function(event, $index, type) {
+console.log(type);
+            $scope[type][$index].Actions.Participants.status = !$scope[type][$index].Actions.Participants.status;
+            if ($scope[type][$index].Actions.Participants.status) {
+                $scope[type][$index].Actions.Participants.total += 1;
                 tokenService.post('rsvpEvent/' + event.id).then(function(result) {
 
                     if (result.status != 'error') {
@@ -97,7 +98,7 @@
                     }
                 });
             } else {
-                $scope.events[$index].Actions.Participants.total -= 1;
+                $scope[type][$index].Actions.Participants.total -= 1;
 
                 tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
                     if (result.status != 'error') {
@@ -109,7 +110,7 @@
             }
         }
 
-       
+
     }
 
 
