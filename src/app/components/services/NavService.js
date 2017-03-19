@@ -28,7 +28,7 @@
       {
         name: 'Creativity',
         icon: 'all-inclusive',
-        sref: '.blogs'
+        sref: '.creativity'
       }
       // {
       //   name: 'Profile',

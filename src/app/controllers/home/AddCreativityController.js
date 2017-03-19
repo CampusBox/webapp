@@ -28,10 +28,10 @@
         $scope.creativity.items[0] = body;
         $scope.title = "";
         $scope.loading = false;
-         if (!localStorage.getItem('tutorial')) {
-                    localStorage.setItem('tutorial', 1);
-            
-         }
+        if (!localStorage.getItem('tutorial')) {
+            localStorage.setItem('tutorial', 1);
+
+        }
         if (localStorage.getItem('tutorial') < 12) {
 
             $mdDialog.show({
@@ -44,9 +44,9 @@
                 escapeToClose: true
 
             }).then(function() {
-                    localStorage.setItem('tutorial', localStorage.getItem('tutorial')+1);
+                    localStorage.setItem('tutorial', localStorage.getItem('tutorial') + 1);
                 }, function() {
-                    localStorage.setItem('tutorial',  localStorage.getItem('tutorial')+1);
+                    localStorage.setItem('tutorial', localStorage.getItem('tutorial') + 1);
                 }
 
             );
@@ -133,7 +133,7 @@
                 $scope.progress = 2;
             } else {
                 $mdDialog.show({
-                    controller: AddItemController,
+                    controller: 'AddItemController',
                     templateUrl: 'app/views/partials/addItem.html',
                     parent: angular.element(document.body),
                     targetEvent: title,
@@ -167,24 +167,28 @@
             }
         };
 
-     
-        $scope.addImage = function(file) {
-            console.log('abc');
-        };
+
+        $scope.addImage = function(file) {};
         $scope.publish = function() {
             $scope.loading = true;
             $scope.image = {};
 
             $scope.creativity.tags = $scope.tags;
             $scope.creativity.title = $scope.title;
+            console.log($scope.creativity);
             tokenService.post("addContent", $scope.creativity)
                 .then(function(status) {
-                    alert(status.status);
-                    $state.go('home.dashboard');
+                    alert(status.message);
+                    if (status.status) {
+
+                        $state.go('home.dashboard');
+                    }
                 }).catch(function(status) {
-                    alert(status.status);
-                    $state.go('home.dashboard');
-                    console.log(status);
+                    alert(status.message);
+                    if (status.status) {
+
+                        $state.go('home.dashboard');
+                    }
                 });
 
         };

@@ -7,7 +7,7 @@
     fill: rgb(255, 235, 59) !important;
 }
 </style>
-<div layout="column" layout-fill ng-controller="SearchCreativityController">
+<div layout="column" layout-fill ng-controller="CreativityController">
     <div flex layout="row" layout-wrap layout-align="center center">
         <md-card ng-show="loading" flex="100" flex-gt-sm="60" ng-repeat="content in [1,2,3,4]">
             <md-card-header>
@@ -35,13 +35,13 @@
                 <span class="md-headline" >{{content.title}}</span>
             </md-card-title>
             <div>
-                <div flex="80" flex-offset="10"  ng-if="content.type == 'image' || content.type == 'youtube' || content.type == 'vimeo' || content.type == 'soundcloud' " layout-align="center center">
-                    <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" src="{{content.url}}" frameborder="0" allowfullscreen></iframe>
+                <div flex="80" flex-offset="10"  ng-if="(content.type == 'cover') || (content.type == 'youtube') || (content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
+                    <!-- <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" src="{{content.url}}" frameborder="0" allowfullscreen></iframe> -->
                     <iframe ng-show="(content.type == 'soundcloud')" width="100%" height="166" scrolling="no" frameborder="0" src="{{content.url}}" allowfullscreen></iframe>
                     <iframe ng-show="(content.type == 'vimeo')" width="640" height="360" src="{{content.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                    <img ng-show="(content.type == 'image')" src="{{content.url}}" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" alt="">
+                    <img ng-show="(content.type == 'cover')" src="{{content.url}}" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" alt="">
                 </div>
-                <p class="md-body-1" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="content.description | limitTo: 150" style="white-space: pre-wrap; color:rgba(0,0,0,.8); margin-left: 10px;font-weight: 300; margin:0px; font-size: 21px;line-height: 1.58;letter-spacing: -.003em;">
+                <p class="md-body-1" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="content.description" style="white-space: pre-wrap; color:rgba(0,0,0,.8); margin-left: 10px;font-weight: 300; margin:0px; font-size: 21px;line-height: 1.58;letter-spacing: -.003em;">
                 </p>
             </div>
             
