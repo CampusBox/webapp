@@ -62,10 +62,8 @@ md-toolbar {
                     {{item.name}}
                 </div>
             </md-button>
-        </section>
-        <section class="md-warn" layout="row" layout-align="center center">
             <md-menu>
-                <md-button style="height: 53px;margin-top: 3px;margin-bottom: 0px;" layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="$mdOpenMenu()">
+                <md-button style="height: 53px;margin-top: 3px;margin-bottom: 0px;min-width: 0px " layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="$mdOpenMenu()">
                     <div hide-sm hide-xs class="md-tile-content" layout="column">
                         <md-icon md-svg-icon="plus-circle"></md-icon>
                     </div>
@@ -83,7 +81,7 @@ md-toolbar {
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
-                        <md-button ng-click="$mdCloseMenu()" ui-sref="home.addBlog">
+                        <md-button ng-click="$mdCloseMenu()" ui-sref="home.addCreativity">
                             <div layout="row" flex="" class="ng-scope layout-row flex">
                                 <p flex="" class="flex">Add Creativity</p>
                                 <md-icon md-svg-icon="all-inclusive"></md-icon>
@@ -108,7 +106,7 @@ md-toolbar {
                     <!-- <span style="color:#fff" class="notifications-label"> </span> -->
                 </div>
                 <div class="md-tile-content">
-                    Profile
+                    Me
                 </div>
             </md-button>
         </section>
@@ -137,8 +135,8 @@ md-toolbar {
             </div>
         </md-button>
         <md-menu>
-            <md-button layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="$mdOpenMenu()">
-                <div class="md-tile-content" layout="column">
+            <md-button style="min-width: 0;" layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="$mdOpenMenu()">
+                <div class="md-tile-content" >
                     <md-icon md-svg-icon="plus"></md-icon>
                 </div>
                 <div class="md-tile-content">
@@ -155,7 +153,7 @@ md-toolbar {
                     </md-button>
                 </md-menu-item>
                 <md-menu-item>
-                    <md-button ng-click="$mdCloseMenu()" ui-sref="home.addBlog">
+                    <md-button ng-click="$mdCloseMenu()" ui-sref="home.addCreativity">
                         <div layout="row" flex="" class="ng-scope layout-row flex">
                             <p flex="" class="flex">Add Creativity</p>
                             <md-icon md-svg-icon="all-inclusive"></md-icon>
@@ -177,7 +175,7 @@ md-toolbar {
                 <md-icon md-svg-icon="account"></md-icon>
             </div>
             <div class="md-tile-content">
-                Profile
+                Me
             </div>
         </md-button>
         </md-menu>
@@ -200,7 +198,7 @@ md-toolbar {
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
-                        <md-button ng-click="$mdCloseMenu()" ui-sref="home.addBlog">
+                        <md-button ng-click="$mdCloseMenu()" ui-sref="home.addCreativity">
                             <div layout="row" flex="" class="ng-scope layout-row flex">
                                 <p flex="" class="flex">My Creativity</p>
                                 <md-icon md-svg-icon="all-inclusive"></md-icon>

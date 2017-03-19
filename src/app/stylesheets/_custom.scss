@@ -878,3 +878,13 @@ md-icon.cross>svg {
 .white-bg{
     background-color: #fff;
 }
+
+  @media only screen and (max-width: 500px) {
+        .interest{
+
+        padding: 0px 7px;
+        min-width: 0px;
+        font-size: 12px;
+        margin: 7px 2px;
+        }
+    }

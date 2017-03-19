@@ -209,10 +209,10 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                 }
             })
            
-            .state('home.addBlog', {
-                url: '/addBlog',
+            .state('home.addCreativity', {
+                url: '/addCreativity',
                 templateUrl: 'app/views/home/addCreativity.html',
-                controller: 'AddBlogController',
+                controller: 'AddCreativityController',
                 controllerAs: 'vm',
                 data: {
                     title: 'Add a Post'
@@ -221,7 +221,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
             .state('home.addImages', {
                 url: '/addImages',
                 templateUrl: 'app/views/home/addImages.html',
-                controller: 'AddBlogController',
+                controller: 'AddCreativityController',
                 controllerAs: 'vm',
                 data: {
                     title: 'Add Pictures'
