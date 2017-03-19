@@ -19,7 +19,6 @@
         $scope.liked = false;
         $scope.loading = false;
         $scope.query = $stateParams.query;
-
         $scope.contents = [];
         $scope.clicked = function(item) {
             console.log(item);
@@ -60,7 +59,6 @@
 
                     });
         $scope.myPagingFunction = function() {
-            console.log("abc");
             if ($scope.loading == false) {
                 $scope.loading = true;
 
@@ -98,6 +96,15 @@
                 });
             }
         }
+        $scope.searched = function(item, text) {
+            if (item == 'events') {
+                $state.go('home.searchEvents', { query: text });
+            } else if (item == 'creativity') {
+                $state.go('home.searchCreativity', { query: text });
+            } else if (item == 'students') {
+                $state.go('home.searchStudents', { query: text });
+            }
+        };
         $scope.heart = function(content, $index) {
             $scope.finalContents[$index].Actions.Appriciate.status = !$scope.finalContents[$index].Actions.Appriciate.status;
             if ($scope.finalContents[$index].Actions.Appriciate.status) {

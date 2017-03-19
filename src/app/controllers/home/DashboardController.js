@@ -34,12 +34,6 @@
                 console.log($scope.updates);
             });
 
-        tokenService.get("/eventsTop")
-            .then(function(eventsTop) {
-                $scope.eventsTop = eventsTop.data;
-                $scope.eventTopLoading = false;
-                console.log($scope.eventsTop);
-            });
         tokenService.get("/contentsDashboard")
             .then(function(contentsDashboard) {
                 $scope.contentsDashboard = contentsDashboard.data;

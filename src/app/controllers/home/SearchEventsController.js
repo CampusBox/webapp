@@ -101,7 +101,15 @@
             }
         }
 
-
+        $scope.searched = function(item, text) {
+            if (item == 'events') {
+                $state.go('home.searchEvents', { query: text });
+            } else if (item == 'creativity') {
+                $state.go('home.searchCreativity', { query: text });
+            } else if (item == 'students') {
+                $state.go('home.searchStudents', { query: text });
+            }
+        };
         $scope.searchTerm;
         $scope.clearSearchTerm = function() {
             $scope.searchTerm = '';

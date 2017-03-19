@@ -133,7 +133,7 @@
                 $scope.progress = 2;
             } else {
                 $mdDialog.show({
-                    controller: AddItemController,
+                    controller: 'AddItemController',
                     templateUrl: 'app/views/partials/addItem.html',
                     parent: angular.element(document.body),
                     targetEvent: title,
