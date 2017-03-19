@@ -22,39 +22,39 @@
         tokenService.get("colleges").then(function(colleges) {
             $scope.colleges = colleges;
         });
-        $scope.items1 = [
-            { 'title': 'Articles', 'id': 1, 'intrested': false },
-            { 'title': 'Poetry', 'id': 1, 'intrested': false },
-            { 'title': 'Drama', 'id': 1, 'intrested': false },
-            { 'title': 'Painting', 'id': 1, 'intrested': false }
+                $scope.items = [];
+
+          $scope.items[0] = [
+            { 'title': 'Articles', 'id': 1 },
+            { 'title': 'Poetry', 'id': 2 },
+            { 'title': 'Drama', 'id': 3 }
         ];
-        $scope.items2 = [
-            { 'title': 'Sketching', 'id': 1, 'intrested': false },
-            { 'title': 'Manga', 'id': 1, 'intrested': false },
-            { 'title': 'Craft', 'id': 1, 'intrested': false },
-            { 'title': 'Song Covers', 'id': 1, 'intrested': false },
-            { 'title': 'Instrumental', 'id': 1, 'intrested': false }
+        $scope.items[1] = [
+            { 'title': 'Paint and Colour', 'id': 4 },
+            { 'title': 'Drawing ', 'id': 5 },
+            { 'title': 'Sewing and Fabric', 'id': 6 },
+            { 'title': 'Craft', 'id': 7 },
+            { 'title': 'Clay', 'id': 8 }
+        ];
+        $scope.items[2] = [
+            { 'title': 'Singing', 'id': 9 },
+            { 'title': 'Instrumental', 'id': 10 },
+            { 'title': 'Music Mixing', 'id': 11 },
+            { 'title': 'Photography', 'id': 12 }
 
         ];
-        $scope.items3 = [
-            { 'title': 'Music Mixing', 'id': 1, 'intrested': false },
-            { 'title': 'Photography', 'id': 1, 'intrested': false },
-            { 'title': 'Apps', 'id': 1, 'intrested': false },
-            { 'title': 'Apps', 'id': 1, 'intrested': false }
-
+        $scope.items[3] = [
+            { 'title': 'Film and Video', 'id': 13 },
+            { 'title': 'Animation', 'id': 14 },
+            { 'title': 'Graphics', 'id': 15 },
+            { 'title': 'UI and UX', 'id': 16 },
+            { 'title': 'Webites', 'id': 17 }
         ];
-        $scope.items4 = [
-            { 'title': 'Apps', 'id': 1, 'intrested': false },
-            { 'title': 'Apps', 'id': 1, 'intrested': false },
-            { 'title': 'Film and Video', 'id': 1, 'intrested': false },
-            { 'title': 'Animation', 'id': 1, 'intrested': false },
-            { 'title': 'Graphics', 'id': 1, 'intrested': false }
-        ];
-        $scope.items5 = [
-
-            { 'title': 'UI and UX', 'id': 1, 'intrested': false },
-            { 'title': 'Webites', 'id': 1, 'intrested': false },
-            { 'title': 'Apps', 'id': 1, 'intrested': false }
+        $scope.items[4] = [
+            { 'title': 'Programming', 'id': 18 },
+            { 'title': 'Apps', 'id': 19 },
+            { 'title': 'Electronics', 'id': 20 },
+            { 'title': 'DIY', 'id': 21 }
         ];
         // $scope.sports = [
         //     { 'title': 'Football', 'intrested': false },

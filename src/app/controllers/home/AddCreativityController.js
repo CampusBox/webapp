@@ -4,7 +4,7 @@
 
     angular
         .module('app')
-        .controller('AddBlogController', [
+        .controller('AddCreativityController', [
             '$scope',
             'Upload',
             '$sce',
@@ -13,21 +13,26 @@
             'allDataService',
             'tokenService',
             '$state',
-            AddBlogController
+            AddCreativityController
         ]);
 
-    function AddBlogController($scope, Upload, $sce, $timeout, $mdDialog, allDataService, tokenService, $state) {
+    function AddCreativityController($scope, Upload, $sce, $timeout, $mdDialog, allDataService, tokenService, $state) {
         var vm = this;
         $scope.progress = 0;
         var body = {};
         $scope.creativity = {};
+        $scope.coverStatus = 0;
         $scope.creativity.items = [];
         body.text = "";
         body.mediaType = "text";
         $scope.creativity.items[0] = body;
         $scope.title = "";
         $scope.loading = false;
-        if (localStorage.getItem('tutorial') != 4) {
+         if (!localStorage.getItem('tutorial')) {
+                    localStorage.setItem('tutorial', 1);
+            
+         }
+        if (localStorage.getItem('tutorial') < 12) {
 
             $mdDialog.show({
                 templateUrl: 'app/views/partials/addBlogTutorial.html',
@@ -39,9 +44,9 @@
                 escapeToClose: true
 
             }).then(function() {
-                    localStorage.setItem('tutorial', 4);
+                    localStorage.setItem('tutorial', localStorage.getItem('tutorial')+1);
                 }, function() {
-                    localStorage.setItem('tutorial', 4);
+                    localStorage.setItem('tutorial',  localStorage.getItem('tutorial')+1);
                 }
 
             );
@@ -52,38 +57,36 @@
         $scope.linkPreview = {};
         $scope.items = [];
         $scope.items[0] = [
-            { 'title': 'Articles', 'id': 1, 'intrested': false },
-            { 'title': 'Poetry', 'id': 1, 'intrested': false },
-            { 'title': 'Drama', 'id': 1, 'intrested': false },
-            { 'title': 'Painting', 'id': 1, 'intrested': false }
+            { 'title': 'Articles', 'id': 1 },
+            { 'title': 'Poetry', 'id': 2 },
+            { 'title': 'Drama', 'id': 3 }
         ];
         $scope.items[1] = [
-            { 'title': 'Sketching', 'id': 1, 'intrested': false },
-            { 'title': 'Manga', 'id': 1, 'intrested': false },
-            { 'title': 'Craft', 'id': 1, 'intrested': false },
-            { 'title': 'Song Covers', 'id': 1, 'intrested': false },
-            { 'title': 'Instrumental', 'id': 1, 'intrested': false }
-
+            { 'title': 'Paint and Colour', 'id': 4 },
+            { 'title': 'Drawing ', 'id': 5 },
+            { 'title': 'Sewing and Fabric', 'id': 6 },
+            { 'title': 'Craft', 'id': 7 },
+            { 'title': 'Clay', 'id': 8 }
         ];
         $scope.items[2] = [
-            { 'title': 'Music Mixing', 'id': 1, 'intrested': false },
-            { 'title': 'Photography', 'id': 1, 'intrested': false },
-            { 'title': 'Apps', 'id': 1, 'intrested': false },
-            { 'title': 'Apps', 'id': 1, 'intrested': false }
+            { 'title': 'Singing', 'id': 9 },
+            { 'title': 'Instrumental', 'id': 10 },
+            { 'title': 'Music Mixing', 'id': 11 },
+            { 'title': 'Photography', 'id': 12 }
 
         ];
         $scope.items[3] = [
-            { 'title': 'Apps', 'id': 1, 'intrested': false },
-            { 'title': 'Apps', 'id': 1, 'intrested': false },
-            { 'title': 'Film and Video', 'id': 1, 'intrested': false },
-            { 'title': 'Animation', 'id': 1, 'intrested': false },
-            { 'title': 'Graphics', 'id': 1, 'intrested': false }
+            { 'title': 'Film and Video', 'id': 13 },
+            { 'title': 'Animation', 'id': 14 },
+            { 'title': 'Graphics', 'id': 15 },
+            { 'title': 'UI and UX', 'id': 16 },
+            { 'title': 'Webites', 'id': 17 }
         ];
         $scope.items[4] = [
-
-            { 'title': 'UI and UX', 'id': 1, 'intrested': false },
-            { 'title': 'Webites', 'id': 1, 'intrested': false },
-            { 'title': 'Apps', 'id': 1, 'intrested': false }
+            { 'title': 'Programming', 'id': 18 },
+            { 'title': 'Apps', 'id': 19 },
+            { 'title': 'Electronics', 'id': 20 },
+            { 'title': 'DIY', 'id': 21 }
         ];
         $scope.contents = [
 
@@ -95,7 +98,7 @@
         ];
         $scope.selectType = function(type) {
             $scope.progress = 1;
-            $scope.creativity.type = type;
+            $scope.creativity.type = type.id;
         };
         $scope.uploadFiles = function(files) {
             $scope.files = files;
@@ -111,6 +114,18 @@
                         $scope.creativity.items.push(media);
                     })
                 })
+            }
+        };
+        $scope.uploadCover = function(file) {
+            if (file) {
+                $scope.coverStatus = 1;
+                Upload.dataUrl(file, true).then(function(url) {
+                    var cover = {};
+                    cover.mediaType = 'cover';
+                    cover.image = url;
+                    console.log(cover);
+                    $scope.creativity.items.push(cover);
+                });
             }
         };
         $scope.addItem = function(title) {
@@ -152,92 +167,7 @@
             }
         };
 
-        function AddItemController($mdDialog, $scope, Upload, $timeout, title) {
-            $scope.error = '';
-            $scope.url = '';
-            $scope.mediaType = "";
-            $scope.title = title;
-
-            $scope.cancel = function() {
-                $mdDialog.cancel();
-            };
-            $scope.submitUrl = function(url) {
-                $scope.url = url;
-                console.log($scope.url)
-                switch (title) {
-                    case 'Youtube':
-                        $scope.error = '';
-                        $scope.item = {};
-                        var videoid = $scope.url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
-                        if (videoid != null) {
-                            $scope.item.mediaType = "youtube";
-                            $scope.item.embedUrl = "//www.youtube.com/embed/" + videoid[1];
-                            $scope.item.embedUrlIframe = $sce.trustAsResourceUrl($scope.item.embedUrl);
-                            $mdDialog.hide($scope.item);
-                        } else {
-                            $scope.error = 'Invalid youtube url';
-                            console.log('Invalid youtube url');
-                        }
-                        break;
-                    case 'Soundcloud':
-                        $scope.error = '';
-                        $scope.item = {};
-                        if ($scope.validateSoundcloud($scope.url)) {
-                            $scope.item.mediaType = "soundcloud";
-                            $scope.item.embedUrl = "//w.soundcloud.com/player/?url=" + $scope.url;
-                            $scope.item.embedUrlIframe = $sce.trustAsResourceUrl($scope.item.embedUrl);
-
-                            $mdDialog.hide($scope.item);
-                        } else {
-                            $scope.error = 'Invalid soundcloud url';
-                            console.log('Invalid soundcloud url');
-                            $scope.mediaType = "";
-                        }
-                        break;
-                    case 'Vimeo':
-                        $scope.error = '';
-                        var videoid = $scope.url.match(/https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/);
-                        if (videoid != null) {
-                            $scope.item = {};
-                            $scope.item.mediaType = "vimeo";
-                            $scope.item.embedUrl = "//player.vimeo.com/video/" + videoid[3] + '?color=ffffff&title=0&byline=0&portrait=0&badge=0';
-                            $scope.item.embedUrlIframe = $sce.trustAsResourceUrl($scope.item.embedUrl);
-                            $mdDialog.hide($scope.item);
-                        } else {
-                            $scope.error = 'Invalid vimeo url';
-                            console.log("Invalid vimeo url");
-                            $scope.mediaType = "";
-                        }
-                        break;
-                    case 'Link':
-                        $scope.error = '';
-                        if ($scope.validateUrl($scope.url)) {
-                            var item = {};
-                            item.mediaType = 'link';
-                            allDataService.get($scope.url)
-                                .then(function(blogs) {
-                                    item.embedUrl = blogs.data;
-                                });
-                            $mdDialog.hide(item);
-                        } else {
-                            $scope.error = 'Please enter a valid url';
-                        }
-                        break;
-                    default:
-                }
-            };
-            $scope.validateSoundcloud = function(url) {
-                var regexp = /^https?:\/\/(soundcloud\.com|snd\.sc)\/(.*)$/;
-                return url.match(regexp) && url.match(regexp)[2]
-            };
-            $scope.validateUrl = function(url) {
-                var res = url.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
-                if (res == null)
-                    return false;
-                else
-                    return true;
-            };
-        }
+     
         $scope.addImage = function(file) {
             console.log('abc');
         };
@@ -267,11 +197,7 @@
         $scope.searchText = null;
         $scope.querySearch = querySearch;
         $scope.vegetables = loadVegetables();
-        $scope.tags = [{
-            'name': 'Broccoli'
-        }, {
-            'name': 'Cabbage'
-        }];
+        $scope.tags = [];
 
         /**
          * Return the proper object when the append is called.
@@ -313,17 +239,7 @@
         }
 
         function loadVegetables() {
-            var veggies = [{
-                'name': 'Broccoli'
-            }, {
-                'name': 'Cabbage'
-            }, {
-                'name': 'Carrot'
-            }, {
-                'name': 'Lettuce'
-            }, {
-                'name': 'Spinach'
-            }];
+            var veggies = [];
 
             return veggies.map(function(veg) {
                 veg._lowername = veg.name.toLowerCase();
