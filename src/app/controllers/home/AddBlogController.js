@@ -4,7 +4,7 @@
 
     angular
         .module('app')
-        .controller('AddBlogController', [
+        .controller('AddCreativityController', [
             '$scope',
             'Upload',
             '$sce',
@@ -13,10 +13,10 @@
             'allDataService',
             'tokenService',
             '$state',
-            AddBlogController
+            AddCreativityController
         ]);
 
-    function AddBlogController($scope, Upload, $sce, $timeout, $mdDialog, allDataService, tokenService, $state) {
+    function AddCreativityController($scope, Upload, $sce, $timeout, $mdDialog, allDataService, tokenService, $state) {
         var vm = this;
         $scope.progress = 0;
         var body = {};
