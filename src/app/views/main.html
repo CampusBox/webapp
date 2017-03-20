@@ -24,6 +24,8 @@ md-toolbar {
     <md-toolbar hide-xs hide-sm layout="row" layout-align="center center">
         <section layout-align="start center">
             <md-button hide-sm hide-xs layout="row" layout-align="center center" class="md-toolbar-tools" aria-label="Home">
+                                <md-icon md-svg-icon="school"></md-icon>
+
             </md-button>
         </section>
         <section layout-align="start center" flex>
@@ -115,7 +117,7 @@ md-toolbar {
         <div ui-view>
         </div>
     </md-content>
-    <md-toolbar hide-gt-sm>
+    <md-toolbar hide-gt-sm    style="height: 84px;"">
     </md-toolbar>
     <md-toolbar hide-gt-sm layout="row" style="position: fixed;bottom: 0px;" layout-align="center center">
         <md-button ng-repeat="item in vm.menuItems" layout-align="center center" flex class="capitalize" ng-click="vm.selectItem(item)" ui-sref-active="" ui-sref="{{item.sref}}">

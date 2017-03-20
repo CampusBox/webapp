@@ -9,10 +9,11 @@
             'Upload',
             '$timeout',
             'title',
+            '$sce',
             AddItemController
         ]);
 
-        function AddItemController($mdDialog, $scope, Upload, $timeout, title) {
+        function AddItemController($mdDialog, $scope, Upload, $timeout, title,$sce) {
             $scope.error = '';
             $scope.url = '';
             $scope.mediaType = "";

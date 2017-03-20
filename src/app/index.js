@@ -159,7 +159,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
             })
             .state('home.singleContent', {
                 url: '/singleContent/:contentId',
-                templateUrl: 'app/views/home/singleCreativtiy.html',
+                templateUrl: 'app/views/home/singleCreativity.html',
                 controller: 'SingleContentController',
                 controllerAs: 'vm',
                 data: {
@@ -198,10 +198,10 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                 }
             })
 
-        .state('home.blogs', {
-                url: '/blogs',
+        .state('home.creativity', {
+                url: '/creativity',
                 templateUrl: 'app/views/home/creativity.html',
-                controller: 'BlogsController',
+                controller: 'CreativityController',
                 controllerAs: 'vm',
                 data: {
                     requiresLogin: true,
