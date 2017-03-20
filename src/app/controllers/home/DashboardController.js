@@ -8,10 +8,12 @@
             'tokenService',
             'Upload',
             '$location',
+            '$sce',
+            '$filter',
             DashboardController
         ]);
 
-    function DashboardController($mdDialog, $scope, tokenService, Upload, $location) {
+    function DashboardController($mdDialog, $scope, tokenService, Upload, $location, $sce, $filter) {
         $scope.events = {};
         $scope.updatesLoading = true;
         $scope.eventLoading = true;
@@ -19,33 +21,63 @@
         $scope.contentLoading = true;
         $scope.contentTopLoading = true;
         $scope.tags = ['AngularJs', 'Web Developement', 'Elon Musk', 'Poetry', 'Artificial Intelligence', 'Product Design', 'Feminism', 'Technology', 'Self Driving Cars'];
+        var cardObject = {};
+        $scope.finalContents = [];
 
         tokenService.get("/eventsDashboard")
             .then(function(events) {
                 $scope.events = events.data;
                 $scope.eventLoading = false;
-                console.log($scope.events);
+
+                tokenService.get("/contentsDashboard")
+                    .then(function(contentsDashboard) {
+                        $scope.contents = contentsDashboard.data;
+                        $scope.contentsTop = contentsDashboard.data;
+                        $scope.contentLoading = false;
+                        $scope.contentTopLoading = false;
+                        $scope.contents.forEach(function(content) {
+                            cardObject = {}
+                            $scope.loading == false;
+                            cardObject.Actions = content.Actions;
+                            cardObject.Tags = content.Tags;
+                            cardObject.created = content.created;
+                            cardObject.created.at = Date.parse(cardObject.created.at.replace('-', '/', 'g')); //replace mysql date to js date format
+                            cardObject.id = content.id;
+                            cardObject.title = $sce.trustAsHtml(content.title);
+                            cardObject.links = content.links;
+                            cardObject.total = content.links;
+                            content.Items.data.forEach(function(item) {
+                                if (item.type == 'text') {
+                                    console.log(item);
+                                    // cardObject.description = item.description;
+                                    cardObject.description = $filter('limitTo')(item.description, 110, 0)
+                                    cardObject.description = $sce.trustAsHtml(cardObject.description);
+                                    console.log(cardObject.description);
+                                } else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
+                                    cardObject.type = item.type;
+                                    cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
+                                } else if ((item.type == 'cover') && !cardObject.type) {
+                                    cardObject.type = item.type;
+                                    cardObject.url = item.image;
+                                }
+                            });
+                            $scope.finalContents.push(cardObject);
+                            content = {};
+                            $scope.loading = false;
+                        });
+                    });
             });
 
         tokenService.get("/college_updates")
             .then(function(updates) {
                 $scope.updates = updates.data;
                 $scope.updatesLoading = false;
-                console.log($scope.updates);
             });
-
-        tokenService.get("/contentsDashboard")
-            .then(function(contentsDashboard) {
-                $scope.contentsDashboard = contentsDashboard.data;
-                $scope.contentLoading = false;
-                console.log($scope.contentsDashboard);
-            });
-        tokenService.get("/contentsTop")
-            .then(function(contentsTop) {
-                $scope.contentsTop = contentsTop.data;
-                $scope.contentTopLoading = false;
-                console.log($scope.contentsTop);
-            });
+        // tokenService.get("/contentsTop")
+        //     .then(function(contentsTop) {
+        //         $scope.contentsTop = contentsTop.data;
+        //         $scope.contentTopLoading = false;
+        //     });
 
 
 
@@ -79,7 +111,7 @@
             }
         }
         $scope.rsvpEvent = function(event, $index, type) {
-console.log(type);
+            console.log(type);
             $scope[type][$index].Actions.Participants.status = !$scope[type][$index].Actions.Participants.status;
             if ($scope[type][$index].Actions.Participants.status) {
                 $scope[type][$index].Actions.Participants.total += 1;

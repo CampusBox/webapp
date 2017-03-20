@@ -10,10 +10,11 @@
             '$mdDialog',
             '$sce',
             '$state',
+            '$filter',
             CreativityController
         ]);
 
-    function CreativityController($scope, tokenService, $mdDialog, $sce, $state) {
+    function CreativityController($scope, tokenService, $mdDialog, $sce, $state, $filter) {
         var vm = this;
         $scope.liked = false;
         $scope.loading = false;
@@ -25,10 +26,9 @@
             $state.go('home.singleContent', { contentId: item });
 
         };
-                    var cardObject = {};
+        var cardObject = {};
         tokenService.get("contents")
             .then(function(tableData) {
-                $scope.loading = false;
                 $scope.contents = $scope.contents.concat(tableData.data);
                 $scope.contents.forEach(function(content) {
                     cardObject = {};
@@ -42,10 +42,11 @@
                     cardObject.total = content.links;
                     content.Items.data.forEach(function(item) {
                         if (item.type == 'text') {
-                        console.log(item);
+                            console.log(item);
                             // cardObject.description = item.description;
-                            cardObject.description = $sce.trustAsHtml(item.description);
-                        console.log(cardObject.description);
+                            cardObject.description = $filter('limitTo')(item.description, 110, 0)
+                            cardObject.description = $sce.trustAsHtml(cardObject.description);
+                            console.log(cardObject.description);
                         } else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
                             cardObject.type = item.type;
                             cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
@@ -55,10 +56,11 @@
                         }
                     });
                     $scope.finalContents.push(cardObject);
+                    content = {};
+                    $scope.loading = false;
                 });
-                console.log($scope.finalContents);
+                $scope.contents = [];
             });
-        $scope.loading == false;
         $scope.myPagingFunction = function() {
             console.log("abc");
             if ($scope.loading == false) {

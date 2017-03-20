@@ -25,7 +25,7 @@
                             </md-list-item> -->
                             <span  ng-hide="coverStatus" style="font-size: 14px;color: rgba(0,0,0,.6);" class="md-body-1">Adding cover helps your creativity have more views.<br><a href="http://unsplash.com" target="_blank">Get one from here.</a></span>
                             <md-list-item ng-hide="coverStatus">
-                                <md-button  flex ngf-select="uploadCover($file)"  name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="300" ngf-min-width="400" ngf-resize="{width: 1000, height: 800}" ngf-resize-if="$width > 1000 || $height > 800">
+                                <md-button  flex ngf-select="uploadCover($file)"  name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="300" ngf-min-width="400" ngf-resize="{width: 1000, height: 800}" ngf-resize-if="$width > 1000 || $height > 800">
                                     <p >Add cover picture</p>
                                 </md-button>
                             </md-list-item>

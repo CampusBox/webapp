@@ -6,16 +6,15 @@
     </md-nav-bar>
     <h2>Results for "{{query}}" in students</h2>
     <div layout="row" layout-wrap>
-        <md-card ng-repeat="student in students" flex="30" flex-xs="100">
+        <md-card ng-repeat="student in students" style="cursor: pointer;" flex="30" flex-xs="100"  ui-sref="home.profile({username: student.username})">
             <center>
-                <img style="border-radius: 50%; width: 40%; margin-top:20px;" ng-src="{{student.photo}}" class="md-card-image" alt="Washed Out">
-                <md-card-title style="padding: 0px;">
-                    <md-card-title-text>
-                        <span class="md-headline">{{student.title}} <span class="md-body-1" md-colors="{color: 'grey'}">{{student.username}}</span> </span>
-                        <span class="md-subhead" style="padding:0px;">{{student.college.name}}</span>
-                        <md-button class=" md-primary">Follow</md-button>
-                    </md-card-title-text>
-                </md-card-title>
+                <img style="border-radius: 50%; width: 40%; margin-top:20px;" ng-src="{{student.photo}}" class="md-card-image" alt="{{student.title}}">
+                    <div layout="column" layout-align="center center">
+                        <span class="md-headline">{{student.title}} </span>
+                        <span class="md-subhead" style="padding:0px;color: #ccc">{{student.college.name?"":"Unknown College"}}</span>
+                        <md-button flex="50" class=" md-primary md-raised">Follow</md-button>
+                            
+                    </div>
             </center>
             <md-card-content style="padding-top: 0px;">
                 <center>

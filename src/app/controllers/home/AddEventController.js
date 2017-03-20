@@ -85,6 +85,7 @@
                     console.log(abc);
                 }).catch(function(abc) {
                     console.log(abc);
+                    $state.go(home.dashboard);
                 });
         };
 
