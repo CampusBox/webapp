@@ -20,9 +20,29 @@
         $scope.width = 28;
         $scope.loading = false;
         $scope.events = [];
-
+        $scope.types = [
+            { 'id': 0, 'title': 'All', },
+            { 'id': 1, 'title': 'Competition', },
+            { 'id': 2, 'title': 'Conference', },
+            { 'id': 3, 'title': 'Exhibition', },
+            { 'id': 4, 'title': 'Performance', },
+            { 'id': 5, 'title': 'Workshop', },
+            { 'id': 6, 'title': 'Seminar', },
+            { 'id': 7, 'title': 'Other', }
+        ];
+        $scope.timings = [
+            { 'id': 0, 'title': 'All' },
+            { 'id': 1, 'title': 'Today' },
+            { 'id': 2, 'title': 'Tommorrow' },
+            { 'id': 3, 'title': 'This Week' },
+            { 'id': 4, 'title': 'This Month' }
+        ];
+        $scope.colleges = [
+            { 'id': 0, 'title': 'All', },
+            { 'id': 1, 'title': 'My College', },
+            { 'id': 2, 'title': 'Other colleges' }
+        ];
         $scope.myPagingFunction = function() {
-                        console.log("abc");
             if ($scope.loading == false) {
                 $scope.loading = true;
                 tokenService.get("events")
@@ -30,7 +50,6 @@
 
                         $scope.loading = false;
                         $scope.events = $scope.events.concat(tableData.data);
-                        console.log($scope.events);
                     });
             }
         };
@@ -46,7 +65,6 @@
                         index: index
                     },
                     closeTo: '#left',
-                    targetEvent: ev,
                     clickOutsideToClose: true,
                     fullscreen: true // Only for -xs, -sm breakpoints.
                 })
@@ -56,10 +74,10 @@
                     $scope.status = 'You cancelled the dialog.';
                 });
         };
-       
+
         $scope.report = function() {
             console.log('testing report function');
-        }
+        };
 
         $scope.heart = function(event, $index) {
             $scope.events[$index].Actions.Bookmarked.status = !$scope.events[$index].Actions.Bookmarked.status;
@@ -111,9 +129,18 @@
         }
 
 
-        $scope.searchTerm;
         $scope.clearSearchTerm = function() {
             $scope.searchTerm = '';
+        };
+        $scope.applyFilters = function(filters) {
+            tokenService.post('eventsFilter', filters).then(function(result) {
+
+                if (result.status != 'error') {
+                    console.log(result.status);
+                } else {
+                    console.log(result);
+                }
+            });
         };
         // The md-select directive eats keydown events for some quick select
         // logic. Since we have a search input here, we don't need that logic.

@@ -6,7 +6,7 @@
         <div class="md-whiteframe-1dp white-bg">
             <div layout="column" layout-wrap layout-align="center">
                 <md-list flex>
-                    <md-list-item ng-href="{{update.link}}" target="_blank" ng-show="updatesLoading" class="md-2-line" ng-repeat="update in updates">
+                    <md-list-item ng-href="{{update.link}}" target="_blank" ng-hide="updatesLoading" class="md-2-line" ng-repeat="update in updates">
                         <md-icon md-svg-icon="bell-outline"></md-icon>
                         <div class="md-list-item-text">
                             <h3>{{update.title}}</h3>
@@ -53,7 +53,7 @@
                                 </p>
                                 <div flex></div>
                                 <p hide-gt-xs style="margin:0;color:#555555" class="md-caption">
-                                    <md-button class="md-icon-button" class="md-icon-button" aria-label="Favorite">
+                                    <md-button hide-xs class="md-icon-button" class="md-icon-button" aria-label="Favorite">
                                         <a target="_blank" ng-href="{{event.link}}">
                                             <md-icon ng-class="!event.Actions.Participants.status? 'blue':''" md-svg-icon="link-variant"></md-icon>
                                         </a>
@@ -69,7 +69,7 @@
                                     <!-- <span class="md-body-2" ng-repeat="tag in tags">#{{ tag.name }}                  </span> -->
                                     <span flex></span>
                                     <md-button class="appriciate-button" ng-click="heartEvent(event, $index, 'events')" aria-label="Favorite">
-                                        <md-icon class="pink" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon> {{event.Actions.Bookmarked.status? 'Appreciate' : 'Appreciated' }} 
+                                        <md-icon class="pink" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon> {{event.Actions.Bookmarked.status? 'Appreciate' : 'Appreciated' }}
                                     </md-button>
                                     <md-button class="rsvp-button" ng-click="rsvpEvent(event, $index, 'events')" aria-label="Favorite">
                                         <md-icon ng-class="!event.Actions.Participants.status? 'blue':'blue'" md-svg-icon="{{!event.Actions.Participants.status? 'account-check' : 'plus-one' }}"></md-icon> Rsvp
@@ -82,7 +82,7 @@
                 <md-list-item ng-show="eventLoading" style="margin-bottom: 10px;" flex="100" ng-repeat="event in [1,2,3]" class="secondary-button-padding eventListItem">
                     <md-card flex>
                         <md-card-title style="padding: 0px;">
-                            <div class="md-media-sm" style="width: 200px;height:200px;">
+                            <div class="md-media-sm" style="width: 200px;height:200px; background-color: #eee">
                                 <img class="" style="width: 200px;height:200px;background-color: #f1f1f1" alt="">
                             </div>
                             <div style="padding:  14px 23px 0px 33px;" flex layout="column">
@@ -93,74 +93,68 @@
                                     CampusBox launch
                                 </span>
                                 <p style="margin:0;background-color: #eee;color: transparent;" class="md-caption animated-background">Main Auditorium, Thapar University</p>
-                                    
                             </div>
                         </md-card-title>
                     </md-card>
                 </md-list-item>
             </md-list>
             <div>
-                <h1 class="md-headline section-heading">
+               <!--  <h1 class="md-headline section-heading">
                 Creative works by other students
-            </h1>
-            <md-card ng-show="contentLoading" ng-repeat="content in [1,2,3,4]">
-                <md-card-header>
-                    <md-card-avatar style="background: #f6f7f8">
-                        <img class="md-user-avatar" />
-                    </md-card-avatar>
-                    <md-card-header-text>
-                        <span style="width: 30%" class=" animated-background">Anything here </span>
-                    </md-card-header-text>
-                </md-card-header>
-                <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
-            </md-card>
+            </h1> -->
+                <md-card ng-show="contentLoading" ng-repeat="content in [1,2,3,4]">
+                    <md-card-header>
+                        <md-card-avatar style="background: #f6f7f8">
+                            <img class="md-user-avatar" />
+                        </md-card-avatar>
+                        <md-card-header-text>
+                            <span style="width: 30%" class=" animated-background">Anything here </span>
+                        </md-card-header-text>
+                    </md-card-header>
+                    <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
+                </md-card>
                 <md-card ng-repeat="content in finalContents track by $index">
-            <md-card-header>
-                <md-card-avatar>
-                    <img class="md-user-avatar" ng-src="{{content.created.by.image}}" />
-                </md-card-avatar>
-                <md-card-header-text ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer">
-                    <span class="md-subhead"><span  ui-sref="home.profile" style="color: #0570c0">{{content.created.by.name}} </span> in <span ui-sref="home.profile" style="color: #0570c0">{{content.type?content.type:"Article"}} </span></span>
-                    <span class="md-title">{{content.created.at  | date: 'd MMM'}}</span>
-                </md-card-header-text>
-            </md-card-header>
-            
-                    <img  ng-if="(content.type == 'cover')" src="{{content.url}}" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer;height: 200px; object-fit: none; width: 100%" alt="">
-            <md-card-title ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer">
-                <span flex-offset="10" class="md-headline" >{{content.title}}</span>
-            </md-card-title>
-            <div flex="80" flex-offset="10">
-                <div   ng-if="(content.type == 'cover') || (content.type == 'youtube') || (content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
-                    <!-- <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" src="{{content.url}}" frameborder="0" allowfullscreen></iframe> -->
-                    <iframe ng-show="(content.type == 'soundcloud')" width="100%" height="166" scrolling="no" frameborder="0" src="{{content.url}}" allowfullscreen></iframe>
-                    <iframe ng-show="(content.type == 'vimeo')" width="640" height="360" src="{{content.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                </div>
-                    
-                <p class="creativity-description" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="content.description  | limitTo: 200" >
-                </p><span>...</span>
-                <p ui-sref="home.singleContent({contentId: content.id})" class="md-subhead" style="color: #8f8faf;">
-                    Read More
-                </p>
-            </div>
-            
-            <div layout="row" layout-align="start center">
-               
-                 <md-button style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite ">
-                        <md-icon md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon> {{content.Actions.Appriciate.status? 'Appreciate' : 'Appreciated' }}
-                    </md-button>
-                   
-                <span>{{content.Actions.Appriciate.total}}</span>
-                <span flex></span>
-                <md-card-icon-actions>
-                    <md-button class="md-icon-button" ng-click="bookmark(content, $index)" aria-label="Favorite">
-                        <md-icon ng-class="content.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
-                    </md-button>
-                    <md-button class="" aria-label="toggle">
-                        <md-icon md-svg-icon="share"></md-icon>Share
-                    </md-button>
-                </md-card-icon-actions>
-            </div>
-        </md-card>
+                    <md-card-header>
+                        <md-card-avatar>
+                            <img class="md-user-avatar" ng-src="{{content.created.by.image}}" />
+                        </md-card-avatar>
+                        <md-card-header-text ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer">
+                            <span class="md-subhead"><span  ui-sref="home.profile" style="color: #0570c0">{{content.created.by.name}} </span> in <span ui-sref="home.profile" style="color: #0570c0">{{content.type?content.type:"Article"}} </span></span>
+                            <span class="md-title">{{content.created.at  | date: 'd MMM'}}</span>
+                        </md-card-header-text>
+                    </md-card-header>
+                    <img ng-if="(content.type == 'cover')" ng-src="{{content.url}}" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer;height: 200px; object-fit: none; width: 100%" alt="">
+                    <md-card-title ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer">
+                        <span flex-offset="10" class="md-headline">{{content.title}}</span>
+                    </md-card-title>
+                    <div flex="80" flex-offset="10">
+                        <div ng-if="(content.type == 'youtube') || (content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
+                            <!-- <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" ng-src="{{content.url}}" frameborder="0" allowfullscreen></iframe> -->
+                            <iframe ng-show="(content.type == 'soundcloud')" width="100%" height="166" scrolling="no" frameborder="0" ng-src="{{content.url}}" allowfullscreen></iframe>
+                            <iframe ng-show="(content.type == 'vimeo')" width="640" height="360" ng-src="{{content.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                        </div>
+                        <p class="creativity-description" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="content.description  | limitTo: 200">
+                        </p><span>...</span>
+                        <p ui-sref="home.singleContent({contentId: content.id})" class="md-subhead" style="color: #8f8faf;">
+                            Read More
+                        </p>
+                    </div>
+                    <div layout="row" layout-align="start center">
+                        <md-button style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite ">
+                            <md-icon md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon> {{content.Actions.Appriciate.status? 'Appreciate' : 'Appreciated' }}
+                        </md-button>
+                        <span>{{content.Actions.Appriciate.total}}</span>
+                        <span flex></span>
+                        <md-card-icon-actions>
+                            <md-button class="md-icon-button" ng-click="bookmark(content, $index)" aria-label="Favorite">
+                                <md-icon ng-class="content.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
+                            </md-button>
+                            <md-button class="" aria-label="toggle">
+                                <md-icon md-svg-icon="share"></md-icon>Share
+                            </md-button>
+                        </md-card-icon-actions>
+                    </div>
+                </md-card>
             </div>
             <div>
                 <h1 class="md-headline">
@@ -171,13 +165,13 @@
     </div>
     <div layout="column" class="md-padding" flex-gt-sm="30" flex-offset-gt-sm="10" hide show-gt-sm>
         <div layout="column">
-            <h5 class="md-subhead" >Top stories <br>
+            <h5 class="md-subhead">Top stories <br>
             <small style="color: rgba(0,0,0,.44);" class="md-caption">Most popular this week</small>
             <md-divider></md-divider>
             </h5>
             <md-list>
                 <md-list-item class="md-2-line" ng-repeat="content in contentsTop | limitTo :3 track by $index">
-                    <img ui-sref="home.profile({studentId: content.created.by.username})" ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.content.created.by.username}}" title="content.content.created.by.username"/>
+                    <img ui-sref="home.profile({studentId: content.created.by.username})" ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.content.created.by.username}}" title="content.content.created.by.username" />
                     <div class="md-list-item-text">
                         <h3 ui-sref="home.singleContent({contentId: content.id})" title="content.title">{{content.title}}</h3>
                         <p ui-sref="home.profile({studentId: content.created.by.username})" title="{{content.created.by.name}}">{{content.created.by.name}}</p>
