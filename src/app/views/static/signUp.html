@@ -471,7 +471,15 @@
             </center>
             <form>
                 <center>
-                    <div flex layout="row" layout-align="center center" ng-repeat="itemgroup in items">
+                    <div flex hide-xs layout="row" layout-align="center center" ng-repeat="itemgroup in items">
+                        <span ng-repeat="item in itemgroup track by $index">                        
+                            <md-button  ng-class="item.intrested?'interest_selected':'interest'" ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">                        
+                                {{ item.title }}
+                            </md-button>
+                            <!-- <br ng-show="{{$index==3 || $index==8|| $index==12 ||$index==17 || $index==21  }}"> -->
+                    </span>
+                    </div>
+                  <div hide-gt-xs flex layout="row" layout-align="center center" ng-repeat="itemgroup in itemsMobile">
                         <span ng-repeat="item in itemgroup track by $index">                        
                             <md-button  ng-class="item.intrested?'interest_selected':'interest'" ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">                        
                                 {{ item.title }}

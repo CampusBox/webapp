@@ -8,7 +8,7 @@
 <div layout="row" layout-xs="column">
     <md-card flex="30" flex-xs="100">
         <center>
-            <img style="border-radius: 50%; width: 40%; margin-top:20px;" ng-src="{{student.photo}}" class="md-card-image" alt="Washed Out">
+            <img style="border-radius: 50%; width: 40%; margin-top:20px;" ng-src="{{student.photo}}" class="md-card-image" alt="">
             <md-card-title>
                 <md-card-title-text>
                     <span class="md-headline">{{student.name}}</span>
@@ -22,14 +22,14 @@
                     <!-- {{student.subtitle}} -->
                 </p>
                 <md-button class="md-icon-button" ng-click="about()">
-                    <md-icon md-colors="{fill: 'amber'}" md-svg-icon="pencil-box-outline"></md-icon>
+                    <md-icon md-svg-icon="pencil"></md-icon>
                 </md-button>
             </div>
             <div class="md-body-2" layout="row" ng-show="editAbout">
                 <div class="md-body-2" md-colors="{color: 'grey'}" contenteditable ng-model="student.subtitle">
                 </div>
                 <md-button class="md-icon-button md-primary" ng-click="about()">
-                    <md-icon class="md-icon-button" md-colors="{fill: 'lime'}" md-svg-icon="checkbox-marked-outline"></md-icon>
+                    <md-icon class="md-icon-button" md-svg-icon="checkbox-marked-outline"></md-icon>
                 </md-button>
             </div>
             <br>
@@ -41,8 +41,8 @@
                     </p>
                     <span flex></span>
                     <md-button ng-click="skillsEdit()" class="md-icon-button">
-                        <md-icon md-svg-icon="pencil-box-outline" ng-show="readonly" md-colors="{fill: 'amber'}"></md-icon>
-                        <md-icon md-svg-icon="checkbox-marked-outline" ng-hide="readonly" md-colors="{fill: 'lime'}"></md-icon>
+                        <md-icon md-svg-icon="pencil" ng-show="readonly"></md-icon>
+                        <md-icon md-svg-icon="checkbox-marked-outline" ng-hide="readonly"></md-icon>
                     </md-button>
                 </div>
                 <form name="skillsForm">
@@ -64,8 +64,8 @@
                 </p>
                 <!-- <span class="md-body-2" md-colors="{color: 'grey'}"> -->
                 <md-button class="md-body-2" md-colors="{color: 'grey'}" title="Add skills" ng-click="addSkill = true;skillsEdit()" class="">
-                Add skills you can brag about
-                    <md-icon class="md-primary" md-svg-icon="shape-circle-plus"></md-icon>
+                    <md-icon class="md-primary" md-svg-icon="plus"></md-icon>
+                    Add skills you can brag about
                 </md-button>
                 <!-- </span> -->
             </div>
@@ -84,48 +84,79 @@
     </md-card>
     <md-card flex="70" flex-xs="100">
         <md-card-content>
-                <md-tabs md-dynamic-height md-border-bottom md-selected="tab">
-                    <md-tab label="Events Uploaded">
-                        <div class="md-padding">
-                            <!-- TODO: Replace table to table component when https://github.com/angular/material/issues/796 will closed -->
-                            <div layout="row" ng-hide="!vm.activated" layout-sm="column" layout-align="space-around">
-                                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-                            </div>
-                                <md-list>
-                                    <md-list-item ng-click="showAdvanced($student)" class="secondary-button-padding" ng-repeat="student in student.Events.data ">
-                                        <img ng-src="{{student.image}}" class="md-avatar" alt="{{item.who}}">
-                                        <p>{{student.title}}</p>
-                                        <md-button class="md-primary" aria-label="participants" ng-click="showParticipants(student)" md-ripple-size="auto">Participants</md-button>
-                                        <md-switch ng-init="activated=true" ng-model="activated" aria-label="Deactivate" ng-change="deactivate(student)">
+            <md-tabs md-dynamic-height md-border-bottom md-selected="tab">
+                <md-tab label="Events">
+                    <div class="md-padding">
+                        <!-- TODO: Replace table to table component when https://github.com/angular/material/issues/796 will closed -->
+                        <div layout="row" ng-hide="!vm.activated" layout-sm="column" layout-align="space-around">
+                            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                        </div>
+                        <md-list>
+                            <md-list-item ng-click="showAdvanced($student)" class="secondary-button-padding" ng-repeat="student in student.Events.data ">
+                                <img ng-src="{{student.image}}" class="md-avatar" alt="{{item.who}}">
+                                <p>{{student.title}}</p>
+                                <md-button class="md-primary" aria-label="participants" ng-click="showParticipants(student)" md-ripple-size="auto">Participants</md-button>
+                                <!-- <md-switch ng-init="activated=true" ng-model="activated" aria-label="Deactivate" ng-change="deactivate(student)">
                                             {{ activated? 'Activated':'Deactivated' }}
-                                        </md-switch>
-                                        <md-divider md-inset ng-if="!$last"></md-divider>
-                                    </md-list-item>
-                                </md-list>
-                            </div>
-                    </md-tab>
-                    <md-tab label="Content Uploaded">
-                    </md-tab>
-                    <md-tab label="Followers">
-                        <md-list flex>
-                            <md-list-item class="md-3-line" ng-repeat="item in student.Followed.data" ng-click="null">
-                                <img ng-src="{{item.image}}" class="md-avatar" alt="{{item.who}}" />
-                                <div class="md-list-item-text" layout="row">
-                                    <div layout="column">
-                                        <h3>{{ item.name }} </h3>
-                                        <h4> {{ item.college }}</h4>
-                                        <p>{{ item.about }}</p>
-                                    </div>
-                                    <span flex></span>
-                                    <md-button ng-class="demoFollow.status? 'md-primary' : 'md-raised md-primary'" ng-click="follow()">{{demoFollow.status? 'Following':'Follow' }}</md-button>
-                                    <md-button md-no-ink class="md-flat">Follow</md-button>
-                                </div>
+                                        </md-switch> -->
+                                <md-divider md-inset ng-if="!$last"></md-divider>
                             </md-list-item>
-                            <md-divider></md-divider>
                         </md-list>
-                    </md-tab>
-                    <md-tab label="Following">
-                    </md-tab>
-                </md-tabs>
+                    </div>
+                </md-tab>
+                <md-tab label="Content">
+                    <md-list>
+                        <md-list-item ui-sref="home.singleContent({contentId: creativity.id})" class="secondary-button-padding" ng-repeat="creativity in student.CreativeContents.data ">
+                            <!-- <img ng-src="{{creativity.image}}" class="md-avatar" alt="{{item.who}}"> -->
+                            <p>{{creativity.title}}</p>
+                            <md-divider md-inset ng-if="!$last"></md-divider>
+                        </md-list-item>
+                    </md-list>
+                </md-tab>
+                <md-tab label="Bookmarks">
+                    <md-list>
+                        <md-list-item ui-sref="home.singleContent({contentId: creativity.id})" class="secondary-button-padding" ng-repeat="creativity in student.BookmarkedContents.data ">
+                            <!-- <img ng-src="{{creativity.image}}" class="md-avatar" alt="{{item.who}}"> -->
+                            <p>{{creativity.title}}</p>
+                            <md-divider md-inset ng-if="!$last"></md-divider>
+                        </md-list-item>
+                    </md-list>
+                </md-tab>
+                 <md-tab label="RSVPs">
+                    <div class="md-padding">
+                        <!-- TODO: Replace table to table component when https://github.com/angular/material/issues/796 will closed -->
+                        <div layout="row" ng-hide="!vm.activated" layout-sm="column" layout-align="space-around">
+                            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                        </div>
+                        <md-list>
+                            <md-list-item ng-click="showAdvanced($student)" class="secondary-button-padding" ng-repeat="student in student.AttendingEvents.data ">
+                                <img ng-src="{{student.image}}" class="md-avatar" alt="{{item.who}}">
+                                <p>{{student.title}}</p>
+                                <md-button class="md-primary" aria-label="participants"  md-ripple-size="auto">Cancel</md-button>
+                                <md-divider md-inset ng-if="!$last"></md-divider>
+                            </md-list-item>
+                        </md-list>
+                    </div>
+                </md-tab>
+                <md-tab label="Following">
+                    <md-list flex>
+                        <md-list-item class="md-3-line" ui-sref="home.profile({username: item.username})" ng-repeat="item in student.Followed.data" ng-click="null">
+                            <img ng-src="{{item.photo}}" class="md-avatar" alt="" />
+                            <div class="md-list-item-text" layout="row">
+                                <div layout="column">
+                                    <h3>{{ item.title }} </h3>
+                                    <p>{{ item.about }}</p>
+                                </div>
+                                <span flex></span>
+                                <md-button ng-class="demoFollow.status? 'md-primary' : 'md-raised md-primary'" ng-click="follow()">{{demoFollow.status? 'Following':'Follow' }}</md-button>
+                            </div>
+                        </md-list-item>
+                        <md-divider></md-divider>
+                    </md-list>
+                </md-tab>
+               
+                <md-tab label="Followers">
+                </md-tab>
+            </md-tabs>
     </md-card>
 </div>

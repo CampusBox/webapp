@@ -40,7 +40,7 @@
                             $state.go("static.signup");
                                 
                             }
-                            $scope.problem = $abc.status;
+                            $scope.problem = abc.status;
                             $scope.loading = false;
                         });
                 })

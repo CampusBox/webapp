@@ -29,7 +29,7 @@
                       '<md-icon md-svg-icon="share "></md-icon>'+
                       '</md-button>'+
                       '<md-menu md-offset="0 3">'+
-                      '<md-button class="md-icon-button " aria-label="Settings " ng-click="$mdOpenMenu($event)">'+
+                      '<md-button class="md-icon-button " aria-label="Settings " ng-click="$mdMenu.open($event)">'+
                       '<md-icon md-svg-icon="dots-vertical "></md-icon>'+
                       '</md-button>'+
                       '<md-menu-content width="3">'+

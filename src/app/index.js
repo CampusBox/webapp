@@ -56,7 +56,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload'
                 abstract: true
             })
             .state('home.myProfile', {
-                url: '/myProfile/:tab',
+                url: '/myProfile',
                 templateUrl: 'app/views/home/myProfile.html',
                 controller: 'MyProfileController',
                 controllerAs: 'vm',

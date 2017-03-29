@@ -164,76 +164,73 @@
                                                             <span class="animated-background" style="margin-top: 0px; ">Date  · Time </span>
                                                             <br>
                                                             <span class="md-title animated-background" style="font-weight: 600;margin: 0px;">CampusBox launch</span>
-                                            <p style="margin:0; " class="md-caption animated-background ">Main Auditorium, Thapar University</p>
-                                                
-                                        </div>
-                                    </md-card-title>
-                                </md-card>
-                            </md-list-item>
-                    </md-list>
-                    </div>
-
-                    <br>
-                    <div ng-show="profile.BookmarkedContents.data.length ">
-                    <h3 class="md-subhead ">Liked Items</h3>
-                        
-                    </div>
+                                                            <p style="margin:0; " class="md-caption animated-background ">Main Auditorium, Thapar University</p>
+                                                        </div>
+                                                    </md-card-title>
+                                                </md-card>
+                                            </md-list-item>
+                                        </md-list>
+                                    </div>
+                                    <br>
+                                    <div ng-show="profile.BookmarkedContents.data.length ">
+                                        <h3 class="md-subhead ">Liked Items</h3>
+                                    </div>
                 </md-tab>
                 <md-tab label="Creative Content " ng-if="profile.CreativeContents.data.length>0">
-                                                            <div layout="column" layout-wrap layout-align="center center">
-                                                            </div>
+                    <div layout="column" layout-wrap layout-align="center center">
+                    </div>
                 </md-tab>
                 <md-tab label="Events Created" ng-if="profile.Events.data.length>0">
-                        <md-list>
-                            <md-list-item style="margin-bottom: 10px;" ng-repeat="event in profile.Events.data" ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding eventListItem">
-                                <md-card flex>
-                                    <md-card-title style="padding-bottom: 0px;">
-                                        <div style="padding:  5px 0px 0px 12px;" flex layout="column">
-                                            <span style="margin-top: 0px; color: #555555;text-align: right;margin-right: 28px;" class="md-body-2">{{event.timings.from.date | date: ' d MMM'}} {{event.timings.to.date==event.timings.from.date?null:event.timings.to.date | date: '- d MMM'}} 
+                    <md-list>
+                        <md-list-item style="margin-bottom: 10px;" ng-repeat="event in profile.Events.data" ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding eventListItem">
+                            <md-card flex>
+                                <md-card-title style="padding-bottom: 0px;">
+                                    <div style="padding:  5px 0px 0px 12px;" flex layout="column">
+                                        <span style="margin-top: 0px; color: #555555;text-align: right;margin-right: 28px;" class="md-body-2">{{event.timings.from.date | date: ' d MMM'}} {{event.timings.to.date==event.timings.from.date?null:event.timings.to.date | date: '- d MMM'}} 
                                         </span>
-                                            <p class="md-title" style="font-weight: 600;margin: 0px;margin-top: -15px  ">
-                                                {{(event.title?event.title:"CampusBox launch ") | limitTo : 30}}
-                                            </p>
-                                            <p style="margin-top: 0px; color: #555555;width: 85%" class="md-body-2">
-                                                {{event.subtitle?event.subtitle:"We will showcase all the features of CampusBox ver 0.1.3 and give away goodies to everyone" | limitTo : 100}}
-                                            </p>
-                                            <div flex></div>
-                                            <p hide-gt-xs style="margin:0;color:#555555" class="md-caption">
-                                                <md-button class="md-icon-button" class="md-icon-button" aria-label="Favorite ">
-                                                    <a target="_blank" ng-href="{{event.link}}">
-                                                        <md-icon ng-class="!event.Actions.Participants.status? 'blue':''" md-svg-icon="link-variant"></md-icon>
-                                                    </a>
-                                                </md-button>
-                                                {{event.venue?event.venue:"Main Auditorium, Thapar University"}}</p>
-                                            <md-card-actions layout="row" layout-align="start center">
-                                                <md-button hide-xs class="md-icon-button" aria-label="Favorite ">
-                                                    <a target="_blank" ng-href="{{event.link}}">
-                                                        <md-icon ng-class="!event.Actions.Participants.status? 'blue':''" md-svg-icon="link-variant"></md-icon>
-                                                    </a>
-                                                </md-button>
-                                                <p hide-xs style="margin:0;color:#555555" class="md-caption">{{event.venue?event.venue:"Main Auditorium, Thapar University"}}</p>
-                                                <span flex></span>
-                                                <md-button class="appriciate-button" ng-click="heart(event, $index, 'Events')" aria-label="Favorite ">
-                                                    <md-icon class="pink" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon> Appreciate
-                                                </md-button>
-                                                <md-button class="rsvp-button" ng-click="rsvpEvent(event, $index, 'Events')" aria-label="Favorite ">
-                                                    <md-icon ng-class="!event.Actions.Participants.status? 'blue':'blue'" md-svg-icon="{{!event.Actions.Participants.status? 'account-check' : 'plus-one' }}"></md-icon> Rsvp
-                                                </md-button>
-                                            </md-card-actions>
-                                        </div>
-                                    </md-card-title>
-                                </md-card>
-                            </md-list-item>
-                            <md-list-item ng-show="loading" style="margin-bottom: 15px;" ng-repeat="event in [1,2,3]" class="secondary-button-padding eventListItem">
-                                <md-card flex>
-                                    <md-card-title style="padding: 0px;">
-                                        <div class="md-media-sm" style="width: 200px;height:200px;">
-                                            <img class="" style="width: 200px;height:200px;background-color: #f1f1f1" alt="">
-                                        </div>
-                                        <div style="padding:  14px 23px 0px 33px;" flex layout="column">
-                                            <span class="animated-background" style="margin-top: 0px; ">Date  · Time </span>
-                                            <br>
-                                            <span class="md-title animated-background" style="font-weight: 600;margin: 0px; " ">
+                                        <p class="md-title" style="font-weight: 600;margin: 0px;margin-top: -15px  ">
+                                            {{(event.title?event.title:"CampusBox launch ") | limitTo : 30}}
+                                        </p>
+                                        <p style="margin-top: 0px; color: #555555;width: 85%" class="md-body-2">
+                                            {{event.subtitle?event.subtitle:"We will showcase all the features of CampusBox ver 0.1.3 and give away goodies to everyone" | limitTo : 100}}
+                                        </p>
+                                        <div flex></div>
+                                        <p hide-gt-xs style="margin:0;color:#555555" class="md-caption">
+                                            <md-button class="md-icon-button" class="md-icon-button" aria-label="Favorite ">
+                                                <a target="_blank" ng-href="{{event.link}}">
+                                                    <md-icon ng-class="!event.Actions.Participants.status? 'blue':''" md-svg-icon="link-variant"></md-icon>
+                                                </a>
+                                            </md-button>
+                                            {{event.venue?event.venue:"Main Auditorium, Thapar University"}}</p>
+                                        <md-card-actions layout="row" layout-align="start center">
+                                            <md-button hide-xs class="md-icon-button" aria-label="Favorite ">
+                                                <a target="_blank" ng-href="{{event.link}}">
+                                                    <md-icon ng-class="!event.Actions.Participants.status? 'blue':''" md-svg-icon="link-variant"></md-icon>
+                                                </a>
+                                            </md-button>
+                                            <p hide-xs style="margin:0;color:#555555" class="md-caption">{{event.venue?event.venue:"Main Auditorium, Thapar University"}}</p>
+                                            <span flex></span>
+                                            <md-button class="appriciate-button" ng-click="heart(event, $index, 'Events')" aria-label="Favorite ">
+                                                <md-icon class="pink" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon> Appreciate
+                                            </md-button>
+                                            <md-button class="rsvp-button" ng-click="rsvpEvent(event, $index, 'Events')" aria-label="Favorite ">
+                                                <md-icon ng-class="!event.Actions.Participants.status? 'blue':'blue'" md-svg-icon="{{!event.Actions.Participants.status? 'account-check' : 'plus-one' }}"></md-icon> Rsvp
+                                            </md-button>
+                                        </md-card-actions>
+                                    </div>
+                                </md-card-title>
+                            </md-card>
+                        </md-list-item>
+                        <md-list-item ng-show="loading" style="margin-bottom: 15px;" ng-repeat="event in [1,2,3]" class="secondary-button-padding eventListItem">
+                            <md-card flex>
+                                <md-card-title style="padding: 0px;">
+                                    <div class="md-media-sm" style="width: 200px;height:200px;">
+                                        <img class="" style="width: 200px;height:200px;background-color: #f1f1f1" alt="">
+                                    </div>
+                                    <div style="padding:  14px 23px 0px 33px;" flex layout="column">
+                                        <span class="animated-background" style="margin-top: 0px; ">Date  · Time </span>
+                                        <br>
+                                        <span class="md-title animated-background" style="font-weight: 600;margin: 0px; " ">
                                                 CampusBox launch
                                             </span>
                                             <p style="margin:0; " class="md-caption animated-background ">Main Auditorium, Thapar University</p>
@@ -245,24 +242,24 @@
                     </md-list>
                 </md-tab>
                 <md-tab label="following " ng-if="profile.Followed.data.length>0">
-                                            <md-list flex>
-                                                <md-list-item class="md-3-line" ng-repeat="item in profile.Followed.data" ng-click="openProfile(item)">
-                                                    <img ng-src="{{item.image}}" class="md-avatar" alt="{{item.subtitle}}" />
-                                                    <div class="md-list-item-text" layout="row">
-                                                        <div layout="column">
-                                                            <h3>{{ item.title }} </h3>
-                                                            <h4> {{ item.college.name }}</h4>
-                                                            <p>{{ item.subtitle | limitTo: 50}}</p>
-                                                        </div>
+                                        <md-list flex>
+                                            <md-list-item class="md-3-line" ng-repeat="item in profile.Followed.data" ui-sref="">
+                                                <img ng-src="{{item.image}}" class="md-avatar" alt="{{item.subtitle}}" />
+                                                <div class="md-list-item-text" layout="row">
+                                                    <div layout="column">
+                                                        <h3>{{ item.title }} </h3>
+                                                        <h4> {{ item.college.name }}</h4>
+                                                        <p>{{ item.subtitle | limitTo: 50}}</p>
                                                     </div>
-                                                    <md-button ng-class="demoFollow.status? 'md-primary' : 'md-raised md-primary'" ng-click="follow()">{{demoFollow.status? 'Following':'Follow' }}</md-button>
-                                                </md-list-item>
-                                                <md-divider></md-divider>
-                                            </md-list>
+                                                </div>
+                                                <md-button ng-class="demoFollow.status? 'md-primary' : 'md-raised md-primary'" ng-click="follow()">{{demoFollow.status? 'Following':'Follow' }}</md-button>
+                                            </md-list-item>
+                                            <md-divider></md-divider>
+                                        </md-list>
                 </md-tab>
                 <md-tab label="Recomended" ng-if="profile.BookmarkedContents.data.length>0">
-                        <div flex layout="row" layout-wrap layout-align="center center">
-                        </div>
+                    <div flex layout="row" layout-wrap layout-align="center center">
+                    </div>
                 </md-tab>
             </md-tabs>
             </md-card>

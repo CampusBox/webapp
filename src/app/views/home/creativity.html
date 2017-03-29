@@ -9,7 +9,7 @@
 </style>
 <div layout="column" layout-fill ng-controller="CreativityController">
     <div flex layout="row" layout-wrap layout-align="center center">
-        <md-card ng-show="loading" flex="100" flex-gt-sm="60" ng-repeat="content in [1,2,3,4]">
+        <md-card ng-show="!loading" flex="100" flex-gt-sm="60" ng-repeat="content in [1,2,3,4]">
             <md-card-header>
                 <md-card-avatar style="background: #f6f7f8">
                     <img class="md-user-avatar" />
@@ -20,7 +20,7 @@
             </md-card-header>
             <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
         </md-card>
-        <md-card flex-gt-sm="60" flex="100" ng-repeat="content in finalContents track by $index">
+        <md-card flex-gt-sm="60" flex="100" ng-show="loading" ng-repeat="content in finalContents track by $index">
             <md-card-header>
                 <md-card-avatar>
                     <img class="md-user-avatar" ng-src="{{content.created.by.image}}" />
@@ -31,15 +31,15 @@
                 </md-card-header-text>
             </md-card-header>
             
-                    <img  ng-if="(content.type == 'cover')" src="{{content.url}}" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer;height: 200px; object-fit: none; width: 100%" alt="{{content.title}}">
+                    <img  ng-if="(content.type == 'cover')" ng-src="{{content.url}}" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer;height: 200px; object-fit: none; width: 100%" alt="{{content.title}}">
             <md-card-title ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer">
                 <span flex-offset="10" class="md-headline" >{{content.title}}</span>
             </md-card-title>
             <div flex="80" flex-offset="10">
-                <div   ng-if="(content.type == 'cover') || (content.type == 'youtube') || (content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
-                    <!-- <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" src="{{content.url}}" frameborder="0" allowfullscreen></iframe> -->
-                    <iframe ng-show="(content.type == 'soundcloud')" width="100%" height="166" scrolling="no" frameborder="0" src="{{content.url}}" allowfullscreen></iframe>
-                    <iframe ng-show="(content.type == 'vimeo')" width="640" height="360" src="{{content.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                <div   ng-if=" (content.type == 'youtube') || (content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
+                    <!-- <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" ng-src="{{content.url}}" frameborder="0" allowfullscreen></iframe> -->
+                    <iframe ng-show="(content.type == 'soundcloud')" width="100%" height="166" scrolling="no" frameborder="0" ng-src="{{content.url}}" allowfullscreen></iframe>
+                    <iframe ng-show="(content.type == 'vimeo')" width="640" height="360" ng-src="{{content.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                 </div>
                     
                 <p class="creativity-description" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="content.description  | limitTo: 200" >

@@ -42,11 +42,9 @@
                     cardObject.total = content.links;
                     content.Items.data.forEach(function(item) {
                         if (item.type == 'text') {
-                            console.log(item);
                             // cardObject.description = item.description;
                             cardObject.description = $filter('limitTo')(item.description, 110, 0)
                             cardObject.description = $sce.trustAsHtml(cardObject.description);
-                            console.log(cardObject.description);
                         } else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
                             cardObject.type = item.type;
                             cardObject.url = $sce.trustAsResourceUrl(item.embed.url);

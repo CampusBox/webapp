@@ -545,14 +545,14 @@ md-chips.md-default-theme md-chip.mdfocused,
 md-chips md-chip.md-focused {
     background-color: #fafafa !important;
     color: rgba(0, 0, 0, .44);
-    border: 1px solid rgba(2, 184, 117, 0.8) !important;
+    border: 1px solid rgb(97,97,97) !important;
 }
 
 md-chips.md-default-theme md-chip,
 md-chips md-chip,
 md-chips md-chip.md-focused {
     /*border-color: rgba(2, 184, 117, 0.8);*/
-    border: 1px solid rgba(2, 184, 117, 0.8) !important;
+    border: 1px solid rgb(97,97,97) !important;
 }
 
 md-chips.md-default-theme md-chip.md-focused md-icon,

@@ -65,7 +65,7 @@ md-toolbar {
                 </div>
             </md-button>
             <md-menu>
-                <md-button style="height: 53px;margin-top: 3px;margin-bottom: 0px;min-width: 0px " layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="$mdOpenMenu()">
+                <md-button style="height: 53px;margin-top: 3px;margin-bottom: 0px;min-width: 0px " layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="$mdMenu.open()">
                     <div hide-sm hide-xs class="md-tile-content" layout="column">
                         <md-icon md-svg-icon="plus-circle"></md-icon>
                     </div>
@@ -91,7 +91,7 @@ md-toolbar {
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
-                        <md-button ng-click="addUpdate();$mdCloseMenu()" ui-sref="home.myProfile">
+                        <md-button ng-click="addUpdate();$mdCloseMenu()">
                             <div layout="row" flex="" class="ng-scope layout-row flex">
                                 <p flex="" class="flex">Add Update</p>
                                 <md-icon md-svg-icon="account"></md-icon>
@@ -137,7 +137,7 @@ md-toolbar {
             </div>
         </md-button>
         <md-menu>
-            <md-button style="min-width: 0;" layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="$mdOpenMenu()">
+            <md-button style="min-width: 0;" layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="$mdMenu.open()">
                 <div class="md-tile-content" >
                     <md-icon md-svg-icon="plus"></md-icon>
                 </div>
@@ -220,6 +220,24 @@ md-toolbar {
                         <md-divider></md-divider>
                     </center>
                     <md-list>
+                        <md-list-item class="md-2-line" ng-repeat="notification in notifications" ui-sref="home.singleContent({contentId: notification.content_id})">
+                            <img ng-src="{{notification.image}}" class="md-avatar" alt="{{}}" />
+                            <div class="md-list-item-text">
+                                <p>{{notification.total}} {{(notification.total>1)?'people have':'person has'}} appreciated the creativity you uploaded</p>
+                            </div>
+                            <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon" aria-label="call">
+                                <md-icon md-svg-icon="{{phone.options.actionIcon}}"></md-icon>
+                            </md-button>
+                        </md-list-item>
+                        <md-list-item class="md-2-line" ng-repeat="notification in notifications" ui-sref="home.singleContent({contentId: notification.content_id})">
+                            <img ng-src="{{notification.image}}" class="md-avatar" alt="{{}}" />
+                            <div class="md-list-item-text">
+                                <p>{{notification.total}} {{(notification.total>1)?'people have':'person has'}} appreciated the creativity you uploaded</p>
+                            </div>
+                            <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon" aria-label="call">
+                                <md-icon md-svg-icon="{{phone.options.actionIcon}}"></md-icon>
+                            </md-button>
+                        </md-list-item>
                         <md-list-item class="md-2-line" ng-repeat="notification in notifications" ui-sref="home.singleContent({contentId: notification.content_id})">
                             <img ng-src="{{notification.image}}" class="md-avatar" alt="{{}}" />
                             <div class="md-list-item-text">
