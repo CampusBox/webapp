@@ -16,12 +16,74 @@
         $scope.tab = $stateParams.tab;
         $scope.username = $stateParams.username;
         $scope.editAbout = false;
+        $scope.BookmarkedContents = [];
+        $scope.CreativeContents = [];
         console.log('my profile called' + $scope.username + $scope.tab);
 
         tokenService.get("myProfile")
             .then(function(student) {
                 $scope.student = student.data;
                 console.log($scope.student);
+                        $scope.myProfile.BookmarkedContents.data.forEach(function(content) {
+                            cardObject = {}
+                            $scope.loading == false;
+                            cardObject.Actions = content.Actions;
+                            cardObject.Tags = content.Tags;
+                            cardObject.created = content.created;
+                            cardObject.created.at = Date.parse(cardObject.created.at.replace('-', '/', 'g')); //replace mysql date to js date format
+                            cardObject.id = content.id;
+                            cardObject.title = $sce.trustAsHtml(content.title);
+                            cardObject.links = content.links;
+                            cardObject.total = content.links;
+                            content.Items.data.forEach(function(item) {
+                                if (item.type == 'text') {
+                                    cardObject.description = $filter('limitTo')(item.description, 110, 0)
+                                    cardObject.description = $sce.trustAsHtml(cardObject.description);
+                                } else if ((item.type == 'cover' && !cardObject.type)) {
+                                    cardObject.type = item.type;
+                                    cardObject.url = item.image;
+                                } else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
+                                    cardObject.type = item.type;
+                                    cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
+                                } else if (((item.type == 'cover') || (item.type == 'image')) && !cardObject.type) {
+                                    cardObject.type = item.type;
+                                    cardObject.url = item.image;
+                                }
+                            });
+                            $scope.BookmarkedContents.push(cardObject);
+                            content = {};
+                            $scope.loading = false;
+                        });
+                $scope.myProfile.CreativeContents.data.forEach(function(content) {
+                    cardObject = {}
+                    $scope.loading == false;
+                    cardObject.Actions = content.Actions;
+                    cardObject.Tags = content.Tags;
+                    cardObject.created = content.created;
+                    cardObject.created.at = Date.parse(cardObject.created.at.replace('-', '/', 'g')); //replace mysql date to js date format
+                    cardObject.id = content.id;
+                    cardObject.title = $sce.trustAsHtml(content.title);
+                    cardObject.links = content.links;
+                    cardObject.total = content.links;
+                    content.Items.data.forEach(function(item) {
+                        if (item.type == 'text') {
+                            cardObject.description = $filter('limitTo')(item.description, 110, 0)
+                            cardObject.description = $sce.trustAsHtml(cardObject.description);
+                        } else if ((item.type == 'cover' && !cardObject.type)) {
+                            cardObject.type = item.type;
+                            cardObject.url = item.image;
+                        } else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
+                            cardObject.type = item.type;
+                            cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
+                        } else if (((item.type == 'cover') || (item.type == 'image')) && !cardObject.type) {
+                            cardObject.type = item.type;
+                            cardObject.url = item.image;
+                        }
+                    });
+                    $scope.CreativeContents.push(cardObject);
+                    content = {};
+                    $scope.loading = false;
+                });
             });
 
 

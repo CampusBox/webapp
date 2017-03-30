@@ -13,18 +13,22 @@ body {
     color: $text-color;
 }
 
-.creativity-description-single{
-        margin-top: 29px;
+.creativity-description-single {
+    margin-top: 29px;
 }
+
 .creativity-description {
-   margin: 0px;
-    font-size: 21px;
-    line-height: 1.58;
-    letter-spacing: 0.01em;
+    margin: 0px;
+    font-size: 23px;
+    line-height: 1.22;
+    letter-spacing: -.022em;
     word-spacing: 0.1em;
     font-weight: 300;
+    color: rgba(0, 0, 0, .44);
+    font-style: normal;
     font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
 }
+
 .creativity-description p {
     margin: 0px;
     font-size: 21px;
@@ -545,14 +549,14 @@ md-chips.md-default-theme md-chip.mdfocused,
 md-chips md-chip.md-focused {
     background-color: #fafafa !important;
     color: rgba(0, 0, 0, .44);
-    border: 1px solid rgb(97,97,97) !important;
+    border: 1px solid rgb(97, 97, 97) !important;
 }
 
 md-chips.md-default-theme md-chip,
 md-chips md-chip,
 md-chips md-chip.md-focused {
     /*border-color: rgba(2, 184, 117, 0.8);*/
-    border: 1px solid rgb(97,97,97) !important;
+    border: 1px solid rgb(97, 97, 97) !important;
 }
 
 md-chips.md-default-theme md-chip.md-focused md-icon,

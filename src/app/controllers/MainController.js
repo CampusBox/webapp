@@ -15,6 +15,7 @@
             .then(function(response) {
 
                 $scope.notifications = response;
+                console.log($scope.notifications);
             });
 
         $scope.searchTypes = [{

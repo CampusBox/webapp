@@ -1,3 +1,18 @@
+<style>
+.creativity-description {
+    margin: 0px;
+    font-size: 23px;
+    line-height: 1.22;
+    letter-spacing: -.022em;
+    word-spacing: 0.1em;
+    font-weight: 300;
+    color: rgba(0, 0, 0, .44);
+    margin-top: 5px;
+    font-style: normal;
+    font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+}
+
+</style>
 <div layout="row" layout-align="center" ng-controller="DashboardController">
     <div layout="column" flex-gt-sm="60" flex-offset-gt-sm="10" flex="100">
         <h1 class="md-headline section-heading">
@@ -69,7 +84,7 @@
                                     <!-- <span class="md-body-2" ng-repeat="tag in tags">#{{ tag.name }}                  </span> -->
                                     <span flex></span>
                                     <md-button class="appriciate-button" ng-click="heartEvent(event, $index, 'events')" aria-label="Favorite">
-                                        <md-icon class="pink" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon> {{event.Actions.Bookmarked.status? 'Appreciate' : 'Appreciated' }}
+                                        <md-icon class="pink" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon> {{event.Actions.Bookmarked.status? 'Appreciated' : 'Appreciate' }}
                                     </md-button>
                                     <md-button class="rsvp-button" ng-click="rsvpEvent(event, $index, 'events')" aria-label="Favorite">
                                         <md-icon ng-class="!event.Actions.Participants.status? 'blue':'blue'" md-svg-icon="{{!event.Actions.Participants.status? 'account-check' : 'plus-one' }}"></md-icon> Rsvp
@@ -99,9 +114,6 @@
                 </md-list-item>
             </md-list>
             <div>
-               <!--  <h1 class="md-headline section-heading">
-                Creative works by other students
-            </h1> -->
                 <md-card ng-show="contentLoading" ng-repeat="content in [1,2,3,4]">
                     <md-card-header>
                         <md-card-avatar style="background: #f6f7f8">
@@ -123,25 +135,25 @@
                             <span class="md-title">{{content.created.at  | date: 'd MMM'}}</span>
                         </md-card-header-text>
                     </md-card-header>
-                    <img ng-if="(content.type == 'cover')" ng-src="{{content.url}}" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer;height: 200px; object-fit: none; width: 100%" alt="">
-                    <md-card-title ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer">
-                        <span flex-offset="10" class="md-headline">{{content.title}}</span>
-                    </md-card-title>
-                    <div flex="80" flex-offset="10">
+                    <img ng-if="(content.type == 'cover' || content.type == 'image')" ng-src="{{content.url}}" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer;height: 200px; object-fit: none; width: 100%" alt="">
+                    <md-card-content>
                         <div ng-if="(content.type == 'youtube') || (content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
-                            <!-- <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" ng-src="{{content.url}}" frameborder="0" allowfullscreen></iframe> -->
+                            <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" ng-src="{{content.url}}" frameborder="0" allowfullscreen></iframe>
                             <iframe ng-show="(content.type == 'soundcloud')" width="100%" height="166" scrolling="no" frameborder="0" ng-src="{{content.url}}" allowfullscreen></iframe>
                             <iframe ng-show="(content.type == 'vimeo')" width="640" height="360" ng-src="{{content.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                         </div>
+                    <!-- <div flex="80" flex-offset="10"> -->
+                        <span style="margin-top: 31px;font-size: 29px;margin-left: -1.81px;line-height: 1.04;letter-spacing: -.028em;font-weight: 700;color: rgba(0,0,0,.8);">{{content.title}} </span>
                         <p class="creativity-description" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="content.description  | limitTo: 200">
-                        </p><span>...</span>
-                        <p ui-sref="home.singleContent({contentId: content.id})" class="md-subhead" style="color: #8f8faf;">
-                            Read More
                         </p>
-                    </div>
+                        <p ui-sref="home.singleContent({contentId: content.id})" class="md-subhead" style="color: rgba(0,0,0,.44);font-size: 13px;cursor: pointer;    transition: .1s background-color,.1s border-color,.1s color,.1s fill;">
+                            Read more...
+                        </p>
+                    <!-- </div> -->
+                    </md-card-content>
                     <div layout="row" layout-align="start center">
-                        <md-button style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite ">
-                            <md-icon md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon> {{content.Actions.Appriciate.status? 'Appreciate' : 'Appreciated' }}
+                        <md-button class="appriciate-button" style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
+                            <md-icon class="pink" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon> {{content.Actions.Appriciate.status? 'Appreciated' : 'Appreciate' }}
                         </md-button>
                         <span>{{content.Actions.Appriciate.total}}</span>
                         <span flex></span>

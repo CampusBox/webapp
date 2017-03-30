@@ -29,9 +29,10 @@
                 $scope.events = events.data;
                 $scope.eventLoading = false;
 
-                tokenService.get("/contentsDashboard")
+                tokenService.get("contentsDashboard")
                     .then(function(contentsDashboard) {
                         $scope.contents = contentsDashboard.data;
+                        console.log($scope.contents);
                         $scope.contentsTop = contentsDashboard.data;
                         $scope.contentLoading = false;
                         $scope.contentTopLoading = false;
@@ -48,13 +49,15 @@
                             cardObject.total = content.links;
                             content.Items.data.forEach(function(item) {
                                 if (item.type == 'text') {
-                                    // cardObject.description = item.description;
                                     cardObject.description = $filter('limitTo')(item.description, 110, 0)
                                     cardObject.description = $sce.trustAsHtml(cardObject.description);
-                                } else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
+                                }else if((item.type == 'cover' && !cardObject.type)){
+                                    cardObject.type = item.type;
+                                    cardObject.url = item.image;
+                                }else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
                                     cardObject.type = item.type;
                                     cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
-                                } else if ((item.type == 'cover') && !cardObject.type) {
+                                } else if (((item.type == 'cover') || (item.type == 'image')) && !cardObject.type) {
                                     cardObject.type = item.type;
                                     cardObject.url = item.image;
                                 }
@@ -63,6 +66,7 @@
                             content = {};
                             $scope.loading = false;
                         });
+                        console.log($scope.finalContents);
                     });
             });
 
