@@ -23,7 +23,7 @@ md-toolbar {
 <div layout="column" flex>
     <md-toolbar hide-xs hide-sm layout="row" layout-align="center center">
         <section layout-align="start center">
-            <md-button hide-sm hide-xs layout="row" layout-align="center center" class="md-toolbar-tools" aria-label="Home">
+            <md-button hide-sm hide-xs layout="row" ui-sref="home.dashboard" layout-align="center center" class="md-toolbar-tools" aria-label="Home">
                                 <md-icon md-svg-icon="school"></md-icon>
 
             </md-button>
@@ -220,28 +220,14 @@ md-toolbar {
                         <md-divider></md-divider>
                     </center>
                     <md-list>
-                        <md-list-item class="md-2-line" ng-repeat="notification in notifications" ui-sref="home.singleContent({contentId: notification.content_id})">
-                            <img ng-src="{{notification.image}}" class="md-avatar" alt="{{}}" />
+                        <md-list-item class="md-2-line" ng-repeat="notification in notifications" >
+                                <md-icon ng-if="notification.type=='follower'" md-svg-icon="account"></md-icon>
+                                <md-icon ng-if="notification.type=='event_rsvps'" md-svg-icon="calendar"></md-icon>
+                                <md-icon ng-if="notification.type=='content_appreciate'" md-svg-icon="all-inclusive"></md-icon>
                             <div class="md-list-item-text">
-                                <p>{{notification.total}} {{(notification.total>1)?'people have':'person has'}} appreciated the creativity you uploaded</p>
-                            </div>
-                            <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon" aria-label="call">
-                                <md-icon md-svg-icon="{{phone.options.actionIcon}}"></md-icon>
-                            </md-button>
-                        </md-list-item>
-                        <md-list-item class="md-2-line" ng-repeat="notification in notifications" ui-sref="home.singleContent({contentId: notification.content_id})">
-                            <img ng-src="{{notification.image}}" class="md-avatar" alt="{{}}" />
-                            <div class="md-list-item-text">
-                                <p>{{notification.total}} {{(notification.total>1)?'people have':'person has'}} appreciated the creativity you uploaded</p>
-                            </div>
-                            <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon" aria-label="call">
-                                <md-icon md-svg-icon="{{phone.options.actionIcon}}"></md-icon>
-                            </md-button>
-                        </md-list-item>
-                        <md-list-item class="md-2-line" ng-repeat="notification in notifications" ui-sref="home.singleContent({contentId: notification.content_id})">
-                            <img ng-src="{{notification.image}}" class="md-avatar" alt="{{}}" />
-                            <div class="md-list-item-text">
-                                <p>{{notification.total}} {{(notification.total>1)?'people have':'person has'}} appreciated the creativity you uploaded</p>
+                                <p ng-if="notification.type=='follower'" ui-sref="home.profile({studentId: notification.follower_username})">{{notification.follower_username}} started following you.</p>
+                                <p ng-if="notification.type=='event_rsvps'" ui-sref="home.singleEvent({eventId: notification.event_id})">{{notification.total}} {{(notification.total>1)?'people have':'person has'}} RSVP'd your event "{{notification.title}}" </p>
+                                <p ng-if="notification.type=='content_appreciate'" ui-sref="home.singleContent({contentId: notification.content_id})">{{notification.total}} {{(notification.total>1)?'people have':'person has'}} appreciated your creativity.</p>
                             </div>
                             <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon" aria-label="call">
                                 <md-icon md-svg-icon="{{phone.options.actionIcon}}"></md-icon>
