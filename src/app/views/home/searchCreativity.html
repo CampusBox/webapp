@@ -20,6 +20,16 @@
 }
 </style>
 <div layout="column" layout-fill ng-controller="SearchCreativityController">
+<form hide-gt-sm ng-submit="$event.preventDefault();openSearch(searchText)">
+    <md-autocomplete ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text="searchText" md-items="item in searchTypes" md-item-text="searchText" md-min-length="0" placeholder="Search for anything here" md-menu-class="autocomplete-custom-template">
+        <md-item-template>
+            <md-list-item class="noright" ng-click="searched(item.title,searchText)">
+                <md-icon md-svg-icon="{{item.icon}}" class=" md-hue-3"></md-icon>
+                <p> Search "{{searchText}}" in <em> {{item.title}}</em> </p>
+            </md-list-item>
+        </md-item-template>
+    </md-autocomplete>
+</form>
   <md-nav-bar nav-bar-aria-label="navigation links">
             <md-nav-item md-nav-click="searched('students', query)">Students</md-nav-item>
             <md-nav-item md-nav-click="searched('events', query)">Events</md-nav-item>

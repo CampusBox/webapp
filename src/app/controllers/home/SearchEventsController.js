@@ -20,7 +20,7 @@
         $scope.grid = false;
         $scope.width = 28;
         $scope.query = $stateParams.query;
-
+        $scope.searchText = $stateParams.query;
         $scope.events = [];
         $scope.loading = true;
         tokenService.get("search/events/" + $scope.query)
@@ -47,7 +47,16 @@
                     fullscreen: true 
                 });
         };
-
+        $scope.searchTypes = [{
+            'title': 'events',
+            'icon': 'calendar'
+        }, {
+            'title': 'creativity',
+            'icon': 'all-inclusive'
+        }, {
+            'title': 'students',
+            'icon': 'school'
+        }];
         $scope.report = function() {
             console.log('testing report function');
         }

@@ -24,36 +24,36 @@
             .then(function(student) {
                 $scope.student = student.data;
                 console.log($scope.student);
-                        $scope.myProfile.BookmarkedContents.data.forEach(function(content) {
-                            cardObject = {}
-                            $scope.loading == false;
-                            cardObject.Actions = content.Actions;
-                            cardObject.Tags = content.Tags;
-                            cardObject.created = content.created;
-                            cardObject.created.at = Date.parse(cardObject.created.at.replace('-', '/', 'g')); //replace mysql date to js date format
-                            cardObject.id = content.id;
-                            cardObject.title = $sce.trustAsHtml(content.title);
-                            cardObject.links = content.links;
-                            cardObject.total = content.links;
-                            content.Items.data.forEach(function(item) {
-                                if (item.type == 'text') {
-                                    cardObject.description = $filter('limitTo')(item.description, 110, 0)
-                                    cardObject.description = $sce.trustAsHtml(cardObject.description);
-                                } else if ((item.type == 'cover' && !cardObject.type)) {
-                                    cardObject.type = item.type;
-                                    cardObject.url = item.image;
-                                } else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
-                                    cardObject.type = item.type;
-                                    cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
-                                } else if (((item.type == 'cover') || (item.type == 'image')) && !cardObject.type) {
-                                    cardObject.type = item.type;
-                                    cardObject.url = item.image;
-                                }
-                            });
-                            $scope.BookmarkedContents.push(cardObject);
-                            content = {};
-                            $scope.loading = false;
-                        });
+                $scope.myProfile.BookmarkedContents.data.forEach(function(content) {
+                    cardObject = {}
+                    $scope.loading == false;
+                    cardObject.Actions = content.Actions;
+                    cardObject.Tags = content.Tags;
+                    cardObject.created = content.created;
+                    cardObject.created.at = Date.parse(cardObject.created.at.replace('-', '/', 'g')); //replace mysql date to js date format
+                    cardObject.id = content.id;
+                    cardObject.title = $sce.trustAsHtml(content.title);
+                    cardObject.links = content.links;
+                    cardObject.total = content.links;
+                    content.Items.data.forEach(function(item) {
+                        if (item.type == 'text') {
+                            cardObject.description = $filter('limitTo')(item.description, 110, 0)
+                            cardObject.description = $sce.trustAsHtml(cardObject.description);
+                        } else if ((item.type == 'cover' && !cardObject.type)) {
+                            cardObject.type = item.type;
+                            cardObject.url = item.image;
+                        } else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
+                            cardObject.type = item.type;
+                            cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
+                        } else if (((item.type == 'cover') || (item.type == 'image')) && !cardObject.type) {
+                            cardObject.type = item.type;
+                            cardObject.url = item.image;
+                        }
+                    });
+                    $scope.BookmarkedContents.push(cardObject);
+                    content = {};
+                    $scope.loading = false;
+                });
                 $scope.myProfile.CreativeContents.data.forEach(function(content) {
                     cardObject = {}
                     $scope.loading == false;
@@ -129,29 +129,30 @@
                 tokenService.post("about", $scope.student.subtitle)
                     .then(function(abc) {
                         $scope.editAbout = false;
-                    }).catch(function(error){
+                    }).catch(function(error) {
                         console.log(error);
                     });
             } else {
                 $scope.editAbout = true;
             }
         }
-        $scope.follow = function() {
-                $scope.demoFollow.status = !$scope.demoFollow.status;
-                if ($scope.demoFollow.status) {
-                    // SEND FOLLOWER ID AND FOLLOWING ID IN POST
-                    tokenService.post('studentFollow/').then(function(result) {
+        $scope.follow = function(type, index) {
+                // SEND FOLLOWER ID AND FOLLOWING ID IN POST
+                if ($scope.student[type].data[index].following) {
+                    tokenService.post('studentFollow/' + $scope.student[type].data[index].username).then(function(result) {
                         if (result.status != 'error') {
                             console.log(result.status);
+                            $scope.student[type].data[index].following = !$scope.student[type].data[index].following;
                         } else {
                             console.log(result);
                         }
                     });
                 } else {
                     // SEND FOLLOWER ID IN DELETE
-                    tokenService.delete('studentFollow/').then(function(result) {
+                    tokenService.delete('studentFollow/' + $scope.student[type].data[index].username).then(function(result) {
                         console.log('post request');
                         if (result.status != 'error') {
+                            $scope.student[type].data[index].following = !$scope.student[type].data[index].following;
                             console.log(result.status);
                         } else {
                             console.log(result);
@@ -251,11 +252,11 @@
                 $scope.removable = !$scope.removable;
             } else {
                 console.log($scope.student.Skills);
-                tokenService.post("skills", $scope.student.Skills)
+                tokenService.post("addStudentSkills", $scope.student.Skills)
                     .then(function(abc) {
                         $scope.readonly = !$scope.readonly;
                         $scope.removable = !$scope.removable;
-                    }).catch(function(error){
+                    }).catch(function(error) {
                         console.log(error);
                     });
             }

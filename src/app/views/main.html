@@ -30,28 +30,13 @@ md-toolbar {
         </section>
         <section layout-align="start center" flex>
             <form hide-sm hide-xs ng-submit="$event.preventDefault();openSearch(searchText)">
-                <md-autocomplete ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item)" md-items="item in searchTypes" md-item-text="searchText" md-min-length="0" placeholder="Search for anything here" md-menu-class="autocomplete-custom-template">
+                <md-autocomplete ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText"  md-items="item in searchTypes" md-item-text="searchText" md-min-length="0" placeholder="Search for anything here" md-menu-class="autocomplete-custom-template">
                     <md-item-template>
                         <md-list-item class="noright" ng-click="searched(item,searchText)">
                             <md-icon md-svg-icon="{{item.icon}}" class=" md-hue-3"></md-icon>
                             <p > Search "{{searchText}}" in <em> {{item.title}}</em> </p>
                         </md-list-item>
-                      <!--   <md-list-item class="noright" ng-click="searched(item)">
-                            <md-icon md-svg-icon="{{item.icon}}" class=" md-hue-3"></md-icon>
-                            <p> Search "{{searchText}}" in <em>{{item.title}}</em></p>
-                        </md-list-item>
-                        <md-list-item class="noright" ng-click="searched(item)">
-                            <md-icon md-svg-icon="{{item.icon}}" class=" md-hue-3"></md-icon>
-                            <p> Search "{{searchText}}" in <em>{{item.title}}</em></p>
-                        </md-list-item> -->
                     </md-item-template>
-                    <!--  <md-item-template>
-                        <md-list-item class="noright" ng-click="searched(item)">
-                            <md-icon ng-if="(!item.image)" md-svg-icon="{{!(item.type=='event')?'comment-text':'calendar'}}" class=" md-hue-3"></md-icon>
-                            <img ng-if="item.image" alt="{{ person.title }}" ng-src="{{item.image}}" class="md-avatar" />
-                            <p>{{ item.title }}</p>
-                        </md-list-item>
-                    </md-item-template> -->
                 </md-autocomplete>
             </form>
         </section>

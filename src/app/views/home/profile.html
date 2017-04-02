@@ -6,6 +6,14 @@
 .yellow {
     fill: rgb(255, 235, 59) !important;
 }
+
+.badge {
+    margin: 0 0 0 8px;
+    background-color: #8BC34A;
+    color: white;
+    padding: 2px 4px;
+    border-radius: 2px;
+}
 </style>
 <div layout="row" layout-xs="column" layout-align="start">
     <md-card flex="30" flex-xs="100">
@@ -15,7 +23,7 @@
                 <md-card-title-text>
                     <span class="md-headline">{{profile.name}}</span>
                     <span class="md-subhead">{{profile.college.name}}</span>
-                    <md-button ng-class="demoFollow.status? 'md-primary' : 'md-raised md-primary'" ng-click="follow()">{{demoFollow.status? 'Following':'Follow' }}</md-button>
+                    <md-button ng-class="profile.following? 'md-primary' : 'md-raised md-primary'" ng-click="follow()">{{profile.following? 'Following':'Follow' }}</md-button>
                 </md-card-title-text>
             </md-card-title>
         </center>
@@ -177,67 +185,67 @@
                                     </div>
                 </md-tab>
                 <md-tab label="Creative Content " ng-if="profile.CreativeContents.data.length>0">
-                <div layout="column" layout-fill ng-controller="CreativityController">
-                    <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in [1,2,3,4]">
-                        <md-card ng-show="!loading" flex="100" flex-gt-sm="60">
-                            <md-card-header>
-                                <md-card-avatar style="background: #f6f7f8">
-                                    <img class="md-user-avatar" />
-                                </md-card-avatar>
-                                <md-card-header-text>
-                                    <span style="width: 30%" class=" animated-background">Anything here </span>
-                                </md-card-header-text>
-                            </md-card-header>
-                            <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
-                        </md-card>
-                    </div>
-                    <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in CreativeContents track by $index">
-                        <md-card flex-gt-sm="60" flex="100" ng-show="loading">
-                            <md-card-header>
-                                <md-card-avatar>
-                                    <img class="md-user-avatar" ng-src="{{content.created.by.image}}" />
-                                </md-card-avatar>
-                                <md-card-header-text ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer">
-                                    <span class="md-subhead"><span  ui-sref="home.profile" style="color: #0570c0">{{content.created.by.name}} </span> in <span ui-sref="home.profile" style="color: #0570c0">{{content.type?content.type:"Article"}} </span></span>
-                                    <span class="md-title">{{content.created.at  | date: 'd MMM'}}</span>
-                                </md-card-header-text>
-                            </md-card-header>
-                            <img ng-if="(content.type == 'cover' || content.type == 'image')" ng-src="{{content.url}}" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer;height: 200px; object-fit: none; width: 100%" alt="">
-                            <md-card-content>
-                                <div ng-if="(content.type == 'youtube') || (content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
-                                    <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" ng-src="{{content.url}}" frameborder="0" allowfullscreen></iframe>
-                                    <iframe ng-show="(content.type == 'soundcloud')" width="100%" height="166" scrolling="no" frameborder="0" ng-src="{{content.url}}" allowfullscreen></iframe>
-                                    <iframe ng-show="(content.type == 'vimeo')" width="640" height="360" ng-src="{{content.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    <div layout="column" layout-fill ng-controller="CreativityController">
+                        <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in [1,2,3,4]">
+                            <md-card ng-show="!loading" flex="100" flex-gt-sm="60">
+                                <md-card-header>
+                                    <md-card-avatar style="background: #f6f7f8">
+                                        <img class="md-user-avatar" />
+                                    </md-card-avatar>
+                                    <md-card-header-text>
+                                        <span style="width: 30%" class=" animated-background">Anything here </span>
+                                    </md-card-header-text>
+                                </md-card-header>
+                                <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
+                            </md-card>
+                        </div>
+                        <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in CreativeContents track by $index">
+                            <md-card flex-gt-sm="60" flex="100" ng-show="loading">
+                                <md-card-header>
+                                    <md-card-avatar>
+                                        <img class="md-user-avatar" ng-src="{{content.created.by.image}}" />
+                                    </md-card-avatar>
+                                    <md-card-header-text ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer">
+                                        <span class="md-subhead"><span  ui-sref="home.profile" style="color: #0570c0">{{content.created.by.name}} </span> in <span ui-sref="home.profile" style="color: #0570c0">{{content.type?content.type:"Article"}} </span></span>
+                                        <span class="md-title">{{content.created.at  | date: 'd MMM'}}</span>
+                                    </md-card-header-text>
+                                </md-card-header>
+                                <img ng-if="(content.type == 'cover' || content.type == 'image')" ng-src="{{content.url}}" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer;height: 200px; object-fit: none; width: 100%" alt="">
+                                <md-card-content>
+                                    <div ng-if="(content.type == 'youtube') || (content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
+                                        <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" ng-src="{{content.url}}" frameborder="0" allowfullscreen></iframe>
+                                        <iframe ng-show="(content.type == 'soundcloud')" width="100%" height="166" scrolling="no" frameborder="0" ng-src="{{content.url}}" allowfullscreen></iframe>
+                                        <iframe ng-show="(content.type == 'vimeo')" width="640" height="360" ng-src="{{content.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                    </div>
+                                    <!-- <div flex="80" flex-offset="10"> -->
+                                    <span style="margin-top: 31px;font-size: 29px;margin-left: -1.81px;line-height: 1.04;letter-spacing: -.028em;font-weight: 700;color: rgba(0,0,0,.8);">{{content.title}} </span>
+                                    <p class="creativity-description" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="content.description  | limitTo: 200">
+                                    </p>
+                                    <p ui-sref="home.singleContent({contentId: content.id})" class="md-subhead" style="color: rgba(0,0,0,.44);font-size: 13px;cursor: pointer;    transition: .1s background-color,.1s border-color,.1s color,.1s fill;">
+                                        Read more...
+                                    </p>
+                                    <!-- </div> -->
+                                </md-card-content>
+                                <div layout="row" layout-align="start center">
+                                    <md-button class="appriciate-button" style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
+                                        <md-icon class="pink" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon> {{content.Actions.Appriciate.status? 'Appreciated' : 'Appreciate' }}
+                                    </md-button>
+                                    <span>{{content.Actions.Appriciate.total}}</span>
+                                    <span flex></span>
+                                    <md-card-icon-actions>
+                                        <md-button class="md-icon-button" ng-click="bookmark(content, $index)" aria-label="Favorite">
+                                            <md-icon ng-class="content.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
+                                        </md-button>
+                                        <md-button class="" aria-label="toggle">
+                                            <md-icon md-svg-icon="share"></md-icon>Share
+                                        </md-button>
+                                    </md-card-icon-actions>
                                 </div>
-                                <!-- <div flex="80" flex-offset="10"> -->
-                                <span style="margin-top: 31px;font-size: 29px;margin-left: -1.81px;line-height: 1.04;letter-spacing: -.028em;font-weight: 700;color: rgba(0,0,0,.8);">{{content.title}} </span>
-                                <p class="creativity-description" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="content.description  | limitTo: 200">
-                                </p>
-                                <p ui-sref="home.singleContent({contentId: content.id})" class="md-subhead" style="color: rgba(0,0,0,.44);font-size: 13px;cursor: pointer;    transition: .1s background-color,.1s border-color,.1s color,.1s fill;">
-                                    Read more...
-                                </p>
-                                <!-- </div> -->
-                            </md-card-content>
-                            <div layout="row" layout-align="start center">
-                                <md-button class="appriciate-button" style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
-                                    <md-icon class="pink" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon> {{content.Actions.Appriciate.status? 'Appreciated' : 'Appreciate' }}
-                                </md-button>
-                                <span>{{content.Actions.Appriciate.total}}</span>
-                                <span flex></span>
-                                <md-card-icon-actions>
-                                    <md-button class="md-icon-button" ng-click="bookmark(content, $index)" aria-label="Favorite">
-                                        <md-icon ng-class="content.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
-                                    </md-button>
-                                    <md-button class="" aria-label="toggle">
-                                        <md-icon md-svg-icon="share"></md-icon>Share
-                                    </md-button>
-                                </md-card-icon-actions>
-                            </div>
-                        </md-card>
-                        <!-- <div infinite-scroll="myPagingFunction()" infinite-scroll-disabled='loading' infinite-scroll-distance="4">
+                            </md-card>
+                            <!-- <div infinite-scroll="myPagingFunction()" infinite-scroll-disabled='loading' infinite-scroll-distance="4">
                         </div> -->
+                        </div>
                     </div>
-                </div>
                 </md-tab>
                 <md-tab label="Events Created" ng-if="profile.Events.data.length>0">
                     <md-list>
@@ -300,21 +308,43 @@
                             </md-list-item>
                     </md-list>
                 </md-tab>
-                <md-tab label="following " ng-if="profile.Followed.data.length>0">
-                                        <md-list flex>
-                                            <md-list-item class="md-3-line" ng-repeat="item in profile.Followed.data" ui-sref="">
-                                                <img ng-src="{{item.image}}" class="md-avatar" alt="{{item.subtitle}}" />
-                                                <div class="md-list-item-text" layout="row">
-                                                    <div layout="column">
-                                                        <h3>{{ item.title }} </h3>
-                                                        <h4> {{ item.college.name }}</h4>
-                                                        <p>{{ item.subtitle | limitTo: 50}}</p>
+                <md-tab ng-if="profile.Following.data.length>0">
+                                        <md-tab-label>Following <span class="badge">{{profile.Following.data.length}}</span></md-tab-label>
+                                        <md-tab-body>
+                                            <md-list flex>
+                                                <md-list-item class="md-3-line" ui-sref="home.profile({username: item.username})" ng-repeat="item in profile.Following.data track by $index" ng-click="null">
+                                                    <img ng-src="{{item.photo}}" class="md-avatar" alt="" />
+                                                    <div class="md-list-item-text" layout="row">
+                                                        <div layout="column">
+                                                            <h3>{{ item.title }} </h3>
+                                                            <h4>{{ item.college.name }}</h4>
+                                                            <p>{{ item.about }}</p>
+                                                        </div>
+                                                        <span flex></span>
+                                                        <md-button style="max-height: 36px;" ng-class="item.following.status? 'md-primary' : 'md-raised md-primary'" ng-click="follow('Following', $index)">{{item.following.status? 'Following':'Follow' }}</md-button>
                                                     </div>
-                                                </div>
-                                                <md-button ng-class="demoFollow.status? 'md-primary' : 'md-raised md-primary'" ng-click="follow()">{{demoFollow.status? 'Following':'Follow' }}</md-button>
-                                            </md-list-item>
-                                            <md-divider></md-divider>
-                                        </md-list>
+                                                </md-list-item>
+                                            </md-list>
+                                        </md-tab-body>
+                </md-tab>
+                <md-tab ng-if="profile.Follower.data.length>0">
+                    <md-tab-label>Followers <span class="badge">{{profile.Follower.data.length}}</span></md-tab-label>
+                    <md-tab-body>
+                        <md-list flex>
+                            <md-list-item class="md-3-line" ui-sref="home.profile({username: item.username})" ng-repeat="item in profile.Follower.data track by $index" ng-click="null">
+                                <img ng-src="{{item.photo}}" class="md-avatar" alt="" />
+                                <div class="md-list-item-text" layout="row">
+                                    <div layout="column">
+                                        <h3>{{ item.title }} </h3>
+                                        <h4>{{ item.college.name }}</h4>
+                                        <p>{{ item.about }}</p>
+                                    </div>
+                                    <span flex></span>
+                                    <md-button style="max-height: 36px;" ng-class="item.following.status? 'md-primary' : 'md-raised md-primary'" ng-click="follow('Follower', $index)">{{item.following.status? 'Following':'Follow' }}</md-button>
+                                </div>
+                            </md-list-item>
+                        </md-list>
+                    </md-tab-body>
                 </md-tab>
                 <md-tab label="Recomended" ng-if="profile.BookmarkedContents.data.length>0">
                     <div layout="column" layout-fill ng-controller="CreativityController">

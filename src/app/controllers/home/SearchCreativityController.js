@@ -20,6 +20,7 @@
         $scope.liked = false;
         $scope.loading = false;
         $scope.query = $stateParams.query;
+        $scope.searchText = $stateParams.query;
         $scope.contents = [];
         $scope.finalContents = [];
         $scope.clicked = function(item) {
@@ -27,6 +28,16 @@
             $state.go('home.singleContent', { contentId: item });
 
         };
+        $scope.searchTypes = [{
+            'title': 'events',
+            'icon': 'calendar'
+        }, {
+            'title': 'creativity',
+            'icon': 'all-inclusive'
+        }, {
+            'title': 'students',
+            'icon': 'school'
+        }];
         var cardObject = {};
         tokenService.get("search/creativity/" + $scope.query)
             .then(function(tableData) {

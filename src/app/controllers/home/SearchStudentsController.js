@@ -12,7 +12,17 @@
         $scope.tests = 'test';
         $scope.events = {};
         $scope.query = $stateParams.query;
-
+        $scope.searchText = $stateParams.query;
+        $scope.searchTypes = [{
+            'title': 'events',
+            'icon': 'calendar'
+        }, {
+            'title': 'creativity',
+            'icon': 'all-inclusive'
+        }, {
+            'title': 'students',
+            'icon': 'school'
+        }];
         $scope.followers = [{
             'name': 'Rohan Goel',
             'image': 'https://avatars2.githubusercontent.com/u/14099191?v=3&u=e03e9a657eb1e4de7da062cc5a5611092f0f2d7e&s=400',

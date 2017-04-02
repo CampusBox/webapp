@@ -35,6 +35,7 @@
         if (localStorage.getItem('tutorial') < 12) {
 
             $mdDialog.show({
+                controller: tutorialController,
                 templateUrl: 'app/views/partials/addBlogTutorial.html',
                 parent: angular.element(document.body),
                 locals: {
@@ -92,9 +93,9 @@
 
             // { 'title': 'Link', 'icon': 'link-variant' },
             // { 'title': 'Embed', 'icon': 'code-tags' },
-            { 'title': 'Soundcloud', 'icon': 'soundcloud' },
-            { 'title': 'Youtube', 'icon': 'youtube-play' },
-            { 'title': 'Vimeo', 'icon': 'vimeo' }
+            { 'title': 'Soundcloud', 'icon': 'soundcloud', 'style': '{fill: "#ff7700"}' },
+            { 'title': 'Youtube', 'icon': 'youtube-play', 'style': '{fill: "#bb0000"}' },
+            { 'title': 'Vimeo', 'icon': 'vimeo', 'style': '{fill: "#4EBBFF"}' }
         ];
         $scope.selectType = function(type) {
             $scope.progress = 1;
@@ -116,6 +117,15 @@
                 })
             }
         };
+        function tutorialController($scope, $mdDialog) {
+            $scope.hide = function() {
+                $mdDialog.hide();
+            };
+
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+        }
         $scope.uploadCover = function(file) {
             if (file) {
                 $scope.coverStatus = 1;
@@ -167,7 +177,10 @@
             }
         };
 
-
+        tokenService.get("userImage")
+            .then(function(response) {
+                $scope.user = response;
+            });
         $scope.addImage = function(file) {};
         $scope.publish = function() {
             $scope.loading = true;
