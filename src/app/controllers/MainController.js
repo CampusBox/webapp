@@ -15,7 +15,6 @@
             .then(function(response) {
 
                 $scope.notifications = response;
-                console.log($scope.notifications);
             });
 
         $scope.searchTypes = [{
@@ -50,7 +49,10 @@
             localStorage.clear();
             $state.go('static.login');
         };
-
+        $scope.submitSearch = function(item, searchText){
+            console.log(item);
+            console.log('searchText: ' + searchText)
+        }
         $scope.addUpdate = function() {
             $mdDialog.show({
                 controller: AddUpdateController,

@@ -32,7 +32,6 @@
                 tokenService.get("contentsDashboard")
                     .then(function(contentsDashboard) {
                         $scope.contents = contentsDashboard.data;
-                        console.log($scope.contents);
                         $scope.contentsTop = contentsDashboard.data;
                         $scope.contentLoading = false;
                         $scope.contentTopLoading = false;
@@ -66,7 +65,6 @@
                             content = {};
                             $scope.loading = false;
                         });
-                        console.log($scope.finalContents);
                     });
             });
 
