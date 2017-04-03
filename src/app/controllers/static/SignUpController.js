@@ -20,7 +20,7 @@
         $scope.skills = loadSkills();
         $scope.signUp.collegeId = 0;
         tokenService.get("colleges").then(function(colleges) {
-            $scope.colleges = colleges;
+            $scope.colleges = colleges.data;
         });
                 $scope.items = [];
                 $scope.itemsMobile = [];
@@ -174,7 +174,6 @@
                     $scope.signUp.type = provider;
                     $scope.signUp.skills = $scope.selectedSkills;
                     $scope.signUp.intrests = $scope.interests;
-                    $scope.signUp.college_id = $scope.college;
                     $scope.signUp.college_id = 1;
                     console.log("then");
                     tokenService.post("signup", $scope.signUp)

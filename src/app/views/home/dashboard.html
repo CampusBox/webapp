@@ -93,7 +93,7 @@
                         </md-card-title>
                     </md-card>
                 </md-list-item>
-                <md-list-item ng-show="eventLoading" style="margin-bottom: 10px;" flex="100" ng-repeat="event in [1,2,3]" class="secondary-button-padding eventListItem">
+                <md-list-item ng-if="eventLoading" style="margin-bottom: 10px;" flex="100" ng-repeat="event in [1,2,3]" class="secondary-button-padding eventListItem">
                     <md-card flex>
                         <md-card-title style="padding: 0px;">
                             <div class="md-media-sm" style="width: 200px;height:200px; background-color: #eee">
@@ -113,7 +113,10 @@
                 </md-list-item>
             </md-list>
             <div>
-                <md-card ng-show="contentLoading" ng-repeat="content in [1,2,3,4]">
+                <h1 class="md-headline section-heading">
+                Creative works by other students
+            </h1>
+                <md-card ng-if="contentLoading" ng-repeat="content in [1,2,3,4]">
                     <md-card-header>
                         <md-card-avatar style="background: #f6f7f8">
                             <img class="md-user-avatar" />
@@ -124,7 +127,7 @@
                     </md-card-header>
                     <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
                 </md-card>
-                <md-card ng-repeat="content in finalContents track by $index">
+                <md-card ng-repeat="content in finalContents track by $index" style="margin: 0px;">
                     <md-card-header>
                         <md-card-avatar>
                             <img class="md-user-avatar" ng-src="{{content.created.by.image}}" />

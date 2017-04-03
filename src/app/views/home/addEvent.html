@@ -169,7 +169,7 @@
                 <span flex></span>
                 <!-- <md-button ng-click="nextTab()">Previous</md-button> -->
                 <md-button class=" md-primary" ng-click="nextTab()">Next</md-button>
-                <md-button class="md-raised md-primary" ng-disabled="(event.croppedDataUrl=='')" ng-click="submitEvent(event,tags)" type="submit">Create</md-button>
+                <md-button class="md-raised md-primary" ng-disabled="(event.croppedDataUrl=='') || !eventForm.$valid" type="submit">Create</md-button>
             </md-dialog-actions>
         </form>
     </md-card>
