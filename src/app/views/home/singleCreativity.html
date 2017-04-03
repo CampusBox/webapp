@@ -10,7 +10,7 @@ md-list-item .md-button:not([disabled]):click {
 
 </style>
 <div layout="row " class="white-bg ">
-    <div flex="10">
+    <div flex-gt-xs="10" hide-xs>
         <div layout="column" layout-align="center center" style="position: fixed;left: 15px;top: 45%;">
             <md-button class="md-icon-button" ng-click="heart(content)" aria-label="Favorite" sticky>
                 <md-icon ng-class="content.Actions.Appriciate.status? 'pink':''" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon>
@@ -32,8 +32,8 @@ md-list-item .md-button:not([disabled]):click {
         </md-card-header>
         <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 80px; margin-bottom: 50px; margin-top: 15px;">and again</span>
     </md-card>
-    <div flex="80" ng-if="!loading">
-        <md-list-item flex-offset="10" class="md-3-line" ng-click="false" md-ink-ripple="0">
+    <div flex-gt-xs="80" flex-xs="100" ng-if="!loading">
+        <md-list-item flex-offset-gt-xs="10" class="md-3-line" ng-click="false" md-ink-ripple="0">
             <img style="z-index:10000" ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
             <div class="md-list-item-text" style="z-index:10000;user-select:text;" layout="column">
                 <!-- <span class="md-subhead">
@@ -51,7 +51,7 @@ md-list-item .md-button:not([disabled]):click {
             </div>
         </md-list-item>
         <div>
-            <h1 flex-offset="10" flex="80"  class="md-title" ng-bind-html="content.title" style="color:rgba(0,0,0,.8);line-height: 1.04;letter-spacing: -.028em;font-size: 40px;font-weight: 700;"></h1>
+            <h1 flex-offset-gt-xs="10" flex-gt-xs="80" flex-xs="100" class="md-title" ng-bind-html="content.title" style="color:rgba(0,0,0,.8);line-height: 1.04;letter-spacing: -.028em;font-size: 40px;font-weight: 700;"></h1>
 
             <div flex-offset="10" flex="80"  ng-repeat="item in content.Items.data">
                 <div flex="80" layout-align="center center">

@@ -8,7 +8,7 @@
             '$q',
             function($rootScope, $http, $q, $location) {
                 // console.log($rootScope.token);
-                var serviceBase = 'http://app.campusbox.org/api/public/';
+                var serviceBase = '/api/public/';
                 $rootScope.config = function() {
                     return {
                         headers: {

@@ -8,7 +8,7 @@
     <div layout-gt-xs="row" layout-xs="column" layout-align="start" layout-align-xs="strech start">
         <img flex-sm="40" flex-md="40" flex-lg="30" flex-xs="100" style="background-color: #eee;    min-height: 250px;" class="md-card-image">
         <div layout-gt-xs="column" layout-xs="row" flex flex-xs="100">
-            <div layout="column" layout-align-xs="center center" flex-xs flex-offset="5">
+            <div layout="column" layout-align-xs="center" flex-xs flex-offset="5">
                 <h1 style="width:80%;" class="md-headline section-heading animated-background" style="padding: 0px 16px">
                     event.title</h1>
                 <span style="width:80%;" class="md-title animated-background" style="padding: 0px 16px">
@@ -35,7 +35,7 @@
     <div layout-gt-xs="row" layout-xs="column" layout-align="start start">
         <img flex-sm="40" flex-md="40" flex-lg="30" flex-xs="100" ng-src="{{event.image}}" class="md-card-image" alt="Event title">
         <div layout-gt-xs="column" layout-xs="row" flex flex-xs="100">
-            <div layout="column" layout-align-xs="center center">
+            <div layout="column" layout-align-xs="center">
                 <h1 class="md-headline section-heading" style="padding: 0px 16px">
                     {{event.title}}</h1>
                 <span class="md-title" style="padding: 0px 16px">
@@ -69,7 +69,7 @@
         </div>
     </div>
     <md-divider></md-divider>
-    <div layout-gt-xs="row" layout-xs="column" >
+    <div layout-gt-xs="row" layout-xs="column">
         <div layout="row" class="md-padding" layout-align="space-around">
             <md-button ng-repeat="tag in event.Tags.data" style="cursor: default;border-radius: 5px;font-size:12px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">#{{tag.name}}</md-button>
         </div>
@@ -78,8 +78,8 @@
             <md-button class="appriciate-button" ng-click="heart(event, $index)" aria-label="Favorite ">
                 <md-icon class="pink" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>{{event.Actions.Bookmarked.status? 'Appreciate' : 'Appreciated' }}
             </md-button>
-            <md-button class="rsvp-button" ng-click="rsvpEvent(event, $index)" aria-label="Favorite ">
-                <md-icon ng-class="!event.Actions.Participants.status? 'blue':'blue'" md-svg-icon="{{!event.Actions.Participants.status? 'account-check' : 'plus-one' }}"></md-icon> Rsvp
+            <md-button class="rsvp-button" ng-class="(event.Actions.Participants.status)? 'md-raised md-primary' : ''" ng-click="rsvpEvent(event, $index, 'events')" aria-label="Favorite">
+                <md-icon ng-class="(event.Actions.Participants.status)? '':'blue'" md-svg-icon="{{!event.Actions.Participants.status? 'account-check' : 'plus-one' }}"></md-icon> {{!event.Actions.Participants.status? 'attending' : 'RSVP' }}
             </md-button>
         </div>
     </div>
