@@ -37,8 +37,6 @@
             $mdDialog.show({
                 controller: tutorialController,
                 templateUrl: 'app/views/partials/addBlogTutorial.html',
-                controller: 'AddItemController',
-
                 parent: angular.element(document.body),
                 locals: {
                     title: "tutorial"
