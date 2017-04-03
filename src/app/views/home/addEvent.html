@@ -28,7 +28,7 @@
                         <div layout-gt-sm="row" flex>
                             <md-input-container md-no-float flex>
                                 <label>Event Type</label>
-                                <md-select required="" ng-model="event.type" placeholder="Event Type">
+                                <md-select required="" flex-xs ng-model="event.type" placeholder="Event Type">
                                     <md-option ng-value="type.id" ng-repeat="type in types">{{type.title}}</md-option>
                                 </md-select>
                             </md-input-container>
@@ -42,7 +42,7 @@
                         <div layout-gt-sm="row" flex>
                             <md-input-container md-no-float flex>
                                 <label>Event Target Audience</label>
-                                <md-select ng-required="true" ng-model="event.audience">
+                                <md-select ng-required="true" flex-xs ng-model="event.audience">
                                     <md-option ng-value="audience.id" ng-repeat="audience in audiences">{{audience.title}}</md-option>
                                 </md-select>
                             </md-input-container>
@@ -52,7 +52,7 @@
                             </md-input-container>
                         </div>
                         <div layout-gt-sm="row" layout="column" flex>
-                            <md-input-container flex-gt-sm="40" class="md-block">
+                            <md-input-container flex-gt-sm="40" flex-xs class="md-block">
                                 <label>From Date</label>
                                 <md-datepicker ng-model="event.fromDate" ng-change="event.toDate=event.fromDate" ng-required="true" md-placeholder="Enter date"></md-datepicker>
                             </md-input-container>

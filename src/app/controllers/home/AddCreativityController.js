@@ -17,9 +17,9 @@
         ]);
 
     function AddCreativityController($scope, Upload, $sce, $timeout, $mdDialog, allDataService, tokenService, $state) {
-        var vm = this;
-        $scope.progress = 0;
         var body = {};
+        $scope.progress = 0;
+
         $scope.creativity = {};
         $scope.coverStatus = 0;
         $scope.creativity.items = [];
@@ -35,7 +35,6 @@
         if (localStorage.getItem('tutorial') < 12) {
 
             $mdDialog.show({
-                controller: tutorialController,
                 templateUrl: 'app/views/partials/addBlogTutorial.html',
                 controller: 'AddItemController',
 
@@ -56,9 +55,11 @@
         }
         $scope.url = "";
         $scope.media = {};
-        $scope.media.embedUrl = $scope.media.mediaType = "";
+        $scope.media.embedUrl = "";
+        $scope.media.mediaType = "";
         $scope.linkPreview = {};
         $scope.items = [];
+        $scope.itemsMobile = [];
         $scope.items[0] = [
             { 'title': 'Articles', 'id': 1 },
             { 'title': 'Poetry', 'id': 2 },
@@ -91,6 +92,41 @@
             { 'title': 'Electronics', 'id': 20 },
             { 'title': 'DIY', 'id': 21 }
         ];
+         $scope.itemsMobile[0] = [
+            { 'title': 'Articles', 'id': 1 },
+            { 'title': 'Poetry', 'id': 2 },
+            { 'title': 'Drama', 'id': 3 }
+        ];
+        $scope.itemsMobile[1] = [
+            { 'title': 'Paint and Colour', 'id': 4 },
+            { 'title': 'Drawing ', 'id': 5 },
+            { 'title': 'Sewing and Fabric', 'id': 6 },
+        ];
+        $scope.itemsMobile[2] = [
+            { 'title': 'Craft', 'id': 7 },
+            { 'title': 'Clay', 'id': 8 },
+            { 'title': 'Singing', 'id': 9 },
+            { 'title': 'Instrumental', 'id': 10 }
+
+        ];
+        $scope.itemsMobile[3] = [
+            { 'title': 'Music Mixing', 'id': 11 },
+            { 'title': 'Photography', 'id': 12 },
+            { 'title': 'Film and Video', 'id': 13 }
+        ];
+        $scope.itemsMobile[4] = [
+            { 'title': 'Animation', 'id': 14 },
+            { 'title': 'Graphics', 'id': 15 },
+            { 'title': 'UI and UX', 'id': 16 }
+        ];
+        $scope.itemsMobile[5] = [
+            { 'title': 'Webites', 'id': 17 },
+            { 'title': 'Programming', 'id': 18 },
+            { 'title': 'Apps', 'id': 19 },
+            { 'title': 'Electronics', 'id': 20 },
+            { 'title': 'DIY', 'id': 21 }
+        ];
+        
         $scope.contents = [
 
             // { 'title': 'Link', 'icon': 'link-variant' },
@@ -106,17 +142,15 @@
         $scope.uploadFiles = function(files) {
             $scope.files = files;
             if (files && files.length) {
-                console.log('media');
                 $scope.progress = 2;
                 angular.forEach(files, function(file) {
                     Upload.dataUrl(file, true).then(function(url) {
                         var media = {};
                         media.mediaType = 'image';
                         media.image = url;
-                        console.log(media);
                         $scope.creativity.items.push(media);
-                    })
-                })
+                    });
+                });
             }
         };
         function tutorialController($scope, $mdDialog) {
@@ -135,7 +169,6 @@
                     var cover = {};
                     cover.mediaType = 'cover';
                     cover.image = url;
-                    console.log(cover);
                     $scope.creativity.items.push(cover);
                 });
             }

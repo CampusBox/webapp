@@ -463,7 +463,7 @@ ul.teeth li:last-child {
         </md-toolbar> -->
         <div ng-show="currentState==1" class="md-p adding autocomplete" layout="column">
             <center>
-                <img ng-src="{{user.imageUrl}}" alt="" style="border-radius: 50%; height: auto;width: 20%">
+                <p class="md-headline"> Signing up for new account.</p>
                 <p class="md-title">Select atleast 3 topics to
                     <br>personalise your content stream.</p>
             </center>
@@ -588,91 +588,96 @@ ul.teeth li:last-child {
                     <md-input-container class="md-block">
                         <label>Name of your college</label>
                         <md-select name="" ng-model="signUp.college" required placeholder="My College">
-                            <md-option ng-value="college.id" ng-repeat="college in colleges">{{college.name}}</md-option>
-                            <md-option ng-value="0">Not in the list?</md-option>
+                            <md-select-header class="demo-select-header">
+                                <input ng-model="searchTerm" autofocus="" type="search" placeholder="Search for your college.." >
+                            </md-select-header>
+                            <md-optgroup label="colleges">
+                                 <md-option ng-value="college.id" ng-repeat="college in colleges | filter:searchTerm" >{{college.name}}</md-option>
+                                <md-option ng-value="0 ">Not in the list?</md-option>
+                            </md-optgroup>
                         </md-select>
-                        <!-- <div class="hint">This will be visible on your profile.</div> -->
+                        <!-- <div class="hint ">This will be visible on your profile.</div> -->
                     </md-input-container>
-                    <md-input-container ng-if="(signUp.college==0)" class="md-block">
+                    <md-input-container ng-if="(signUp.college==0) " class="md-block ">
                         <label>Enter the name of your college</label>
-                        <input required="" ng-disabled="signUp.college<0" ng-model="signUp.college_Name" type="text" autocomplete="" />
-                        <!-- <div class="hint">Must match your college id.</div> -->
-                        <!-- <div ng-messages="userForm.name.$error" ng-if="!showHints">
-                            <div ng-message="required">Name is required.</div>
-                            <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                        <input required=" " ng-disabled="signUp.college<0 " ng-model="signUp.college_Name " type="text " autocomplete=" " />
+                        <!-- <div class="hint ">Must match your college id.</div> -->
+                        <!-- <div ng-messages="userForm.name.$error " ng-if="!showHints ">
+                            <div ng-message="required ">Name is required.</div>
+                            <div ng-message="md-maxlength ">The name has to be less than 30 characters long.</div>
                         </div> -->
                     </md-input-container>
-                    <md-input-container class="md-block">
+                    <md-input-container class="md-block ">
                         <label>Your Roll Number</label>
-                        <input required="" ng-disabled="college<0" ng-model="signUp.roll" type="text" autocomplete="" />
-                        <!-- <div class="hint">Must match your college id.</div> -->
-                        <!-- <div ng-messages="userForm.name.$error" ng-if="!showHints">
-                            <div ng-message="required">Name is required.</div>
-                            <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                        <input required=" " ng-disabled="college<0 " ng-model="signUp.roll " type="text " autocomplete=" " />
+                        <!-- <div class="hint ">Must match your college id.</div> -->
+                        <!-- <div ng-messages="userForm.name.$error " ng-if="!showHints ">
+                            <div ng-message="required ">Name is required.</div>
+                            <div ng-message="md-maxlength ">The name has to be less than 30 characters long.</div>
                         </div> -->
                     </md-input-container>
                     <div>
                         <center ng-show="signUp.roll && !loading && (signUp.college>0 || signUp.college_Name)">
-                            <p>Complete setup with</p>
-                            <md-button ng-click="authenticate('facebook');" md-colors="{background: 'indigo'}" class="md-raised md-primary">
-                                <md-icon md-svg-icon="facebook"></md-icon>
-                            </md-button>
-                            <md-button g-login md-colors="{background: 'red'}" class="md-raised md-primary">
-                                <md-icon md-svg-icon="google"></md-icon>+
-                            </md-button>
-                            <!-- <md-button ng-disabled="signUp.roll<100000" linked-in md-colors="{background: 'blue'}" class="md-raised md-primary">
+                                    <p>Complete setup with</p>
+                                    <md-button ng-click="authenticate('facebook');" md-colors="{background: 'indigo'}" class="md-raised md-primary">
+                                        <md-icon md-svg-icon="facebook"></md-icon>
+                                    </md-button>
+                                    <md-button g-login md-colors="{background: 'red'}" class="md-raised md-primary">
+                                        <md-icon md-svg-icon="google"></md-icon>+
+                                    </md-button>
+                                    <!-- <md-button ng-disabled="signUp.roll<100000" linked-in md-colors="{background: 'blue'}" class="md-raised md-primary">
                             <md-icon md-svg-icon="linkedin"></md-icon>
                         </md-button> -->
-                        </center>
-                        <div>{{problem}}</div>
-                        <div layout="row" ng-show="loading" layout-sm="column" layout-align="space-around">
-                            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-                        </div>
+                                    </center>
+                                    <div>{{problem}}</div>
+                                    <div layout="row" ng-show="loading" layout-sm="column" layout-align="space-around">
+                                        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                    </div>
                 </form>
-                </div>
-                <!-- <md-divider></md-divider> -->
             </div>
+            <!-- <md-divider></md-divider> -->
         </div>
     </div>
-    <div layout="column" layout-align="space-between ">
-        <p class="md-display-1" hide-xs style="font-weight: 300; color: white; margin-left: 50px">Welcome to CampusBox</p>
-        <!-- <p class="md-headline" style=" color: white">You are setting up a new student account.</p> -->
-        <div class="minion" hide-xs hide-sm>
-            <div class="hands">
-                <div class="left"></div>
-                <div class="right"></div>
-                <div class="fingers-l"></div>
-                <div class="fingers-r"></div>
-                <div class="glove-l"></div>
-                <div class="glove-r"></div>
+</div>
+<div layout="column" layout-align="space-between ">
+    <p class="md-display-1" hide-xs style="font-weight: 300; color: white; margin-left: 50px">Welcome to CampusBox</p>
+    <!-- <p class="md-headline" style=" color: white">You are setting up a new student account.</p> -->
+    <div class="minion" hide-xs hide-sm>
+        <div class="hands">
+            <div class="left"></div>
+            <div class="right"></div>
+            <div class="fingers-l"></div>
+            <div class="fingers-r"></div>
+            <div class="glove-l"></div>
+            <div class="glove-r"></div>
+        </div>
+        <div class="glasses">
+            <div class="glassesline1"></div>
+            <div class="glassesline2"></div>
+            <div class="glass1">
+                <div class="eye1"></div>
             </div>
-            <div class="glasses">
-                <div class="glassesline1"></div>
-                <div class="glassesline2"></div>
-                <div class="glass1">
-                    <div class="eye1"></div>
-                </div>
-                <div class="glass2">
-                    <div class="eye2"></div>
-                </div>
-            </div>
-            <div class="mouth">
-                <ul class="teeth">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
-            </div>
-            <div class="belt-left"></div>
-            <div class="belt-right"></div>
-            <div class="pants"></div>
-            <div class="legs">
-                <div class="left"></div>
-                <div class="right"></div>
-                <div class="shoe-l"></div>
-                <div class="shoe-r"></div>
+            <div class="glass2">
+                <div class="eye2"></div>
             </div>
         </div>
+        <div class="mouth">
+            <ul class="teeth">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <div class="belt-left"></div>
+        <div class="belt-right"></div>
+        <div class="pants"></div>
+        <div class="legs">
+            <div class="left"></div>
+            <div class="right"></div>
+            <div class="shoe-l"></div>
+            <div class="shoe-r"></div>
+        </div>
     </div>
+</div>
 </div>

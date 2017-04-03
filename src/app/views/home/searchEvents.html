@@ -120,9 +120,9 @@
                                 <md-button class="appriciate-button" ng-click="heart(event, $index)" aria-label="Favorite ">
                                     <md-icon class="pink" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon> Appreciate
                                 </md-button>
-                                <md-button class="rsvp-button" ng-click="rsvpEvent(event, $index)" aria-label="Favorite ">
-                                    <md-icon ng-class="!event.Actions.Participants.status? 'blue':'blue'" md-svg-icon="{{!event.Actions.Participants.status? 'account-check' : 'plus-one' }}"></md-icon> Rsvp
-                                </md-button>
+                                 <md-button class="rsvp-button" ng-class="(event.Actions.Participants.status)? 'md-raised md-primary' : ''" ng-click="rsvpEvent(event, $index, 'events')" aria-label="Favorite">
+                                        <md-icon ng-class="(event.Actions.Participants.status)? '':'blue'" md-svg-icon="{{!event.Actions.Participants.status? 'account-check' : 'plus-one' }}"></md-icon> {{!event.Actions.Participants.status? 'attending' : 'RSVP' }}
+                                    </md-button>
                             </md-card-actions>
                         </div>
                     </md-card-title>
@@ -131,8 +131,8 @@
             <md-list-item ng-show="loading" style="margin-bottom: 15px;" ng-repeat="event in [1,2,3]" class="secondary-button-padding eventListItem">
                 <md-card flex>
                     <md-card-title style="padding: 0px;">
-                        <div class="md-media-sm" style="width: 200px;height:200px;">
-                            <img class="" style="width: 200px;height:200px;background-color: #f1f1f1" alt="">
+                        <div class="md-media-sm" style="width: 150px;height:150px;">
+                            <img class="" style="width: 150px;height:150px;background-color: #f1f1f1" alt="">
                         </div>
                         <div style="padding:  14px 23px 0px 33px;" flex layout="column">
                             <!-- <span class="md-body-2">{{event.timings.date.start? event.timings.date.start:"Fri, Mar 24 2:00 PM" }}</span> -->
