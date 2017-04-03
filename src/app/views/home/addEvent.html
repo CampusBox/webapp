@@ -115,7 +115,7 @@
                         </md-input-container>
                         <md-input-container md-no-float>
                             <label>Enter tags for your event</label>
-                            <md-chips name="skills" ng-model="tags" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
+                            <md-chips name="skills" ng-model="tags"  md-separator-keys="customKeys" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
                                 <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Press enter or semicolor after tag">
                                     <span md-highlight-text="searchText">{{item.name}}</span>
                                 </md-autocomplete>

@@ -15,110 +15,38 @@
         ]);
 
     function ProfileController($mdDialog, $scope, tokenService, $stateParams, $state, allDataService, $location, $sce) {
-        var vm = this;
+        var cardObject = {};
 
         $scope.followers = [];
         $scope.BookmarkedContents = [];
-        $scope.CreativeContents = [];
+        $scope.CreativeContentsFinal = [];
         $scope.username = $stateParams.username;
-        $scope.loading == true;
-        $scope.showAdvanced = function(ev) {
-            $mdDialog.show({
-                    controller: DialogController,
-                    templateUrl: 'app/views/partials/addEvent.html',
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose: true,
-                    fullscreen: true // Only for -xs, -sm breakpoints.
-                })
-                .then(function(answer) {
-                    $scope.status = 'You said the information was "' + answer + '".';
-                }, function() {
-                    $scope.status = 'You cancelled the dialog.';
-                });
-        };
-
-        function DialogController($scope, $mdDialog) {
-            $scope.hide = function() {
-                $mdDialog.hide();
-            };
-
-            $scope.cancel = function() {
-                $mdDialog.cancel();
-            };
-
-            $scope.answer = function(answer) {
-                $mdDialog.hide(answer);
-            };
-        }
-        $scope.showEvent = function(ev, index) {
-            $mdDialog.show({
-                    controller: 'SingleEventController',
-                    templateUrl: 'app/views/partials/singleEvent.html',
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    locals: {
-                        events: $scope.profile.Events.data,
-                        index: index
-                    },
-                    closeTo: '#left',
-                    targetEvent: ev,
-                    clickOutsideToClose: true,
-                    fullscreen: true // Only for -xs, -sm breakpoints.
-                })
-                .then(function(answer) {
-                    $scope.status = 'You said the information was "' + answer + '".';
-                }, function() {
-                    $scope.status = 'You cancelled the dialog.';
-                });
-        };
+        $scope.loading = true;
+       
+     
         $scope.follow = function(type, index) {
-                if (type) {
-                if ($scope.profile[type].data[index].following) {
-                    tokenService.post('studentFollow/' + $scope.profile[type].data[index].username).then(function(result) {
-                        if (result.status != 'error') {
-                            console.log(result.status);
-                            $scope.profile[type].data[index].following = !$scope.profile[type].data[index].following;
-                        } else {
-                            console.log(result);
-                        }
-                    });
-                } else {
-                    tokenService.delete('studentFollow/' + $scope.profile[type].data[index].username).then(function(result) {
-                        console.log('post request');
-                        if (result.status != 'error') {
-                            $scope.profile[type].data[index].following = !$scope.profile[type].data[index].following;
-                            console.log(result.status);
-                        } else {
-                            console.log(result);
-                        }
-                    });
-                }   
-                }else{
-                 if ($scope.profile.following) {
-                     tokenService.post('studentFollow/' + $scope.profile.username).then(function(result) {
-                         if (result.status != 'error') {
-                             console.log(result.status);
-                             $scope.profile.following = !$scope.profile.following;
-                         } else {
-                             console.log(result);
-                         }
-                     });
-                 } else {
-                     tokenService.delete('studentFollow/' + $scope.profile.username).then(function(result) {
-                         console.log('post request');
-                         if (result.status != 'error') {
-                             $scope.profile.following = !$scope.profile.following;
-                             console.log(result.status);
-                         } else {
-                             console.log(result);
-                         }
-                     });
-                 }   
-                }
-
-            }
-        $scope.openProfile = function(stuent) {
+            // SEND FOLLOWER ID AND FOLLOWING ID IN POST
+            if ($scope.student[type].data[index].following) {
+                tokenService.post('studentFollow/' + $scope.student[type].data[index].username).then(function(result) {
+                    if (result.status != 'error') {
+                        console.log(result.status);
+                        $scope.student[type].data[index].following = !$scope.student[type].data[index].following;
+                    } else {
+                        console.log(result);
+                    }
+                });
+            } else {
+                // SEND FOLLOWER ID IN DELETE
+                tokenService.delete('studentFollow/' + $scope.student[type].data[index].username).then(function(result) {
+                    console.log('post request');
+                    if (result.status != 'error') {
+                        $scope.student[type].data[index].following = !$scope.student[type].data[index].following;
+                        console.log(result.status);
+                    } else {
+                        console.log(result);
+                    }
+                });
+        $scope.openProfile = function(student) {
             $location.path('/profile' + student.username);
         };
 
@@ -138,10 +66,10 @@
                 $scope.profile[type].data[$index].Actions.Bookmarked.total -= 1;
 
                 tokenService.delete('bookmarkEvent/' + event.id, '').then(function(result) {
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
+                    if (result.status == 'error') {
                         console.log(result);
+                    } else {
+                        console.log(result.status);
                     }
                 });
             }
@@ -173,40 +101,26 @@
         tokenService.get("student/" + $scope.username)
             .then(function(response) {
                 $scope.profile = response.data;
-                console.log($scope.profile);
                 $scope.profile.BookmarkedContents.data.forEach(function(content) {
-                    cardObject = {}
-                    $scope.loading == false;
+                    cardObject = {};
+                    $scope.loading = false;
                     cardObject.Actions = content.Actions;
                     cardObject.Tags = content.Tags;
                     cardObject.created = content.created;
-                    cardObject.created.at = Date.parse(cardObject.created.at.replace('-', '/', 'g')); //replace mysql date to js date format
+                    //replace mysql date to js date format
+                    cardObject.created.at = Date.parse(cardObject.created.at.replace('-', '/', 'g')); 
                     cardObject.id = content.id;
                     cardObject.title = $sce.trustAsHtml(content.title);
                     cardObject.links = content.links;
                     cardObject.total = content.links;
-                    content.Items.data.forEach(function(item) {
-                        if (item.type == 'text') {
-                            cardObject.description = $filter('limitTo')(item.description, 110, 0)
-                            cardObject.description = $sce.trustAsHtml(cardObject.description);
-                        } else if ((item.type == 'cover' && !cardObject.type)) {
-                            cardObject.type = item.type;
-                            cardObject.url = item.image;
-                        } else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
-                            cardObject.type = item.type;
-                            cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
-                        } else if (((item.type == 'cover') || (item.type == 'image')) && !cardObject.type) {
-                            cardObject.type = item.type;
-                            cardObject.url = item.image;
-                        }
-                    });
+                   
                     $scope.BookmarkedContents.push(cardObject);
                     content = {};
                     $scope.loading = false;
                 });
                 $scope.profile.CreativeContents.data.forEach(function(content) {
-                    cardObject = {}
-                    $scope.loading == false;
+                    cardObject = {};
+                    $scope.loading = false;
                     cardObject.Actions = content.Actions;
                     cardObject.Tags = content.Tags;
                     cardObject.created = content.created;
@@ -215,22 +129,8 @@
                     cardObject.title = $sce.trustAsHtml(content.title);
                     cardObject.links = content.links;
                     cardObject.total = content.links;
-                    content.Items.data.forEach(function(item) {
-                        if (item.type == 'text') {
-                            cardObject.description = $filter('limitTo')(item.description, 110, 0)
-                            cardObject.description = $sce.trustAsHtml(cardObject.description);
-                        } else if ((item.type == 'cover' && !cardObject.type)) {
-                            cardObject.type = item.type;
-                            cardObject.url = item.image;
-                        } else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
-                            cardObject.type = item.type;
-                            cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
-                        } else if (((item.type == 'cover') || (item.type == 'image')) && !cardObject.type) {
-                            cardObject.type = item.type;
-                            cardObject.url = item.image;
-                        }
-                    });
-                    $scope.CreativeContents.push(cardObject);
+                    
+                    $scope.CreativeContentsFinal.push(cardObject);
                     content = {};
                     $scope.loading = false;
                 });

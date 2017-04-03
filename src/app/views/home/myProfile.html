@@ -54,8 +54,8 @@
                     </md-button>
                 </div>
                 <form name="skillsForm">
-                    <md-chips name="skills" ng-model="student.Skills.data" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
-                        <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Enter top 5 Skills">
+                    <md-chips name="skills" md-separator-keys="customKeys" ng-model="student.Skills.data" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
+                        <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Use comma to separate skills.">
                             <span md-highlight-text="searchText">{{item.name}}</span>
                         </md-autocomplete>
                         <md-chip-template>
