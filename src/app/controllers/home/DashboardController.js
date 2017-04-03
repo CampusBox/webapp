@@ -85,7 +85,32 @@
         $scope.openEvent = function(event) {
             $location.path('/singleEvent/' + event.id);
         }
+ $scope.heart = function(content, $index) {
+            $scope.finalContents[$index].Actions.Appriciate.status = !$scope.finalContents[$index].Actions.Appriciate.status;
+            if ($scope.finalContents[$index].Actions.Appriciate.status) {
+                $scope.finalContents[$index].Actions.Appriciate.total += 1;
+                tokenService.post('appriciateContent/' + content.id).then(function(result) {
 
+                    console.log('post request');
+                    if (result.status != 'error') {
+                        console.log(result.status);
+                    } else {
+                        console.log(result);
+                    }
+                });
+            } else {
+                $scope.finalContents[$index].Actions.Appriciate.total -= 1;
+
+                tokenService.delete('appriciateContent/' + content.id, '').then(function(result) {
+                    console.log('post request');
+                    if (result.status != 'error') {
+                        console.log(result.status);
+                    } else {
+                        console.log(result);
+                    }
+                });
+            }
+        }
         $scope.heartEvent = function(event, $index, type) {
             $scope[type][$index].Actions.Bookmarked.status = !$scope[type][$index].Actions.Bookmarked.status;
             if ($scope[type][$index].Actions.Bookmarked.status) {

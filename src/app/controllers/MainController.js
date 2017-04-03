@@ -5,17 +5,20 @@
     angular
         .module('app')
         .controller('MainController', [
-            'navService', '$mdSidenav', 'tokenService', '$mdDialog', '$log', '$q', '$timeout', '$state', '$mdToast', '$scope', '$localStorage', '$location',
+            'navService', '$mdSidenav', 'tokenService', '$mdDialog', '$log', '$q', '$timeout', '$state', '$mdToast', '$scope', '$localStorage', '$location','$mdConstant',
             MainController
         ]);
 
-    function MainController(navService, $mdSidenav, tokenService, $mdDialog, $log, $q, $timeout, $state, $mdToast, $scope, $localStorage, $location) {
+    function MainController(navService, $mdSidenav, tokenService, $mdDialog, $log, $q, $timeout, $state, $mdToast, $scope, $localStorage, $location,$mdConstant) {
         var vm = this;
         tokenService.get("notifications")
             .then(function(response) {
 
                 $scope.notifications = response;
             });
+                var semicolon = 186;
+
+    $scope.customKeys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, semicolon];
 
         $scope.searchTypes = [{
             'title': 'events',

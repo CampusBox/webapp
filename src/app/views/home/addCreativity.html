@@ -23,11 +23,11 @@
                                 <md-icon md-svg-icon="comment-text"></md-icon>
                                 <p>Text</p>
                             </md-list-item> -->
-                            <span ng-hide="coverStatus" style="font-size: 14px;color: rgba(0,0,0,.6);" class="md-body-1">Adding cover helps your creativity have more views <a href="http://unsplash.com" target="_blank">Get one from here.</a></span>
-                            <br>
+                                                        <md-subheader class="md-no-sticky">Adding cover helps your post, get one from <a href="http://unsplash.com" target="_blank">here.</a></md-subheader>
+
                             <md-list-item ng-hide="coverStatus">
                                 <md-button class="" flex ngf-select="uploadCover($file)" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="300" ngf-min-width="400" ngf-resize="{width: 1000, height: 800}" ngf-resize-if="$width > 1000 || $height > 800">
-                                    <md-icon style="fill: #69F0AE;" md-svg-icon="image-area"></md-icon>
+                                    <md-icon md-svg-icon="image-area"></md-icon>
                                     Add cover picture
                                 </md-button>
                             </md-list-item>
@@ -35,18 +35,18 @@
                             <md-divider>
                             </md-divider>
                             <md-list-item>
-                                <md-icon style="fill: #69F0AE;" md-svg-icon="image" ngf-select="uploadFiles($files, $invalidFiles)" multiple name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 500, height: 500}" ngf-resize-if="$width > 500 || $height > 500"></md-icon>
+                                <md-icon  md-svg-icon="image" ngf-select="uploadFiles($files, $invalidFiles)" multiple name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 500, height: 500}" ngf-resize-if="$width > 500 || $height > 500"></md-icon>
                                 <md-button flex ngf-select="uploadFiles($files, $invalidFiles)" multiple name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 500, height: 500}" ngf-resize-if="$width > 500 || $height > 500">
                                     <p class="md-subhead" style="margin: 0;text-align: start;text-transform: capitalize;">Image</p>
                                 </md-button>
                             </md-list-item>
                             <md-list-item ng-click="addItem(content.title)" ng-repeat="content in contents">
-                                <md-icon ng-style="{{content.style}}" md-svg-icon="{{content.icon}}"></md-icon>
+                                <md-icon  md-svg-icon="{{content.icon}}"></md-icon>
                                 <p>{{content.title}}</p>
                             </md-list-item>
                         </md-list>
                         <span style="font-size: 14px;color: rgba(0,0,0,.6);" class="md-body-1">Add or change tags (up to 5) so your story reaches more people:</span>
-                        <md-chips name="skills" ng-model="tags" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
+                        <md-chips name="skills" md-separator-keys="customKeys" ng-model="tags" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
                             <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Add Tags..">
                                 <span md-highlight-text="searchText">{{item.name}}</span>
                             </md-autocomplete>

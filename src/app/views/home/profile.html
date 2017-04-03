@@ -55,7 +55,7 @@
         <md-card-content>
             <md-tabs md-dynamic-height md-border-bottom md-selected="tab">
                 <md-tab label="Overview">
-                    <div layout="column" class="md-padding" layout-fill ng-controller="CreativityController">
+                    <div layout="column" class="md-padding" layout-fill >
                         <div style="margin-top: 5%;" layout="column" layout-align="center center">
                             <img style="width: 20%;height: 20%;" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDU4LjA2NCA1OC4wNjQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDU4LjA2NCA1OC4wNjQ7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cG9seWdvbiBzdHlsZT0iZmlsbDojRTdFQ0VEOyIgcG9pbnRzPSIyMiwzMC41MzIgMCwyMy4zMjQgNTguMDY0LDcuNTMyIDM2LDUwLjUzMiAiLz4KPHBvbHlnb24gc3R5bGU9ImZpbGw6I0FGQjZCQjsiIHBvaW50cz0iMjIsMzAuNTMyIDIwLDQ2LjUzMiAyOC41OTQsMzkuOTUyICIvPgo8cGF0aCBzdHlsZT0iZmlsbDojQUZCNkJCOyIgZD0iTTIxLjQ2MiwyOS42ODljLTAuMjAzLDAuMTI5LTAuMzI5LDAuMzI0LTAuMzk4LDAuNTM2TDIyLDMwLjUzMmwwLjU3NCwwLjgyTDU3LjE4OSw5LjIzN2wwLjg3NS0xLjcwNSAgbC0zLjM0NSwwLjkxTDIxLjQ2MiwyOS42ODl6Ii8+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
                         <p class="md-subhead" style="color:rgba(0,0,0,.44)">Looks like {{profile.name}} is'nt active much</p>
@@ -155,7 +155,7 @@
                                                                         <md-icon ng-class="!event.Actions.Participants.status? 'blue':''" md-svg-icon="link-variant"></md-icon>
                                                                     </a>
                                                                 </md-button>
-                                                                <p hide-xs style="margin:0;color:#555555" class="md-caption">{{event.venue?event.venue}}</p>
+                                                                <p hide-xs style="margin:0;color:#555555" class="md-caption">{{event.venue}}</p>
                                                                 <span flex></span>
                                                                 <md-button class="appriciate-button" ng-click="heart(event, $index, 'AttendingEvents')" aria-label="Favorite ">
                                                                     <md-icon class="pink" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon> Appreciate
@@ -191,9 +191,9 @@
                                     </div>
                 </md-tab>
                 <md-tab label="Creative Content " ng-if="profile.CreativeContents.data.length>0">
-                    <div layout="column" layout-fill ng-controller="CreativityController">
-                        <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in [1,2,3,4]">
-                            <md-card ng-show="!loading" flex="100" flex-gt-sm="60">
+                    <div layout="column" layout-fill >
+                        <div flex ng-if="loading" layout="row" layout-wrap layout-align="center center" ng-repeat="content in [1,2,3,4]">
+                            <md-card  flex="100" flex-gt-sm="60">
                                 <md-card-header>
                                     <md-card-avatar style="background: #f6f7f8">
                                         <img class="md-user-avatar" />
@@ -205,7 +205,7 @@
                                 <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
                             </md-card>
                         </div>
-                        <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in CreativeContents track by $index">
+                        <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in CreativeContentsFinal track by $index">
                             <md-card flex-gt-sm="60" flex="100" ng-show="loading">
                                 <md-card-header>
                                     <md-card-avatar>
@@ -353,7 +353,7 @@
                     </md-tab-body>
                 </md-tab>
                 <md-tab label="Recomended" ng-if="profile.BookmarkedContents.data.length>0">
-                    <div layout="column" layout-fill ng-controller="CreativityController">
+                    <div layout="column" layout-fill >
                         <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in [1,2,3,4]">
                             <md-card ng-show="!loading" flex="100" flex-gt-sm="60">
                                 <md-card-header>
