@@ -19,11 +19,16 @@
         $scope.loading == true;
         $scope.BookmarkedContents = [];
         $scope.CreativeContents = [];
-        console.log('my profile called' + $scope.username + $scope.tab);
 
         tokenService.get("myProfile")
             .then(function(student) {
                 $scope.student = student.data;
+                $scope.student.BookmarkedContents.data.forEach(function(content, index) {
+                $scope.student.BookmarkedContents.data[index].created.at = new Date(Date.parse($scope.student.BookmarkedContents.data[index].created.at.replace('-', '/', 'g'))); //replace mysql date to js date format
+                });
+                $scope.student.CreativeContents.data.forEach(function(content, index) {
+                $scope.student.CreativeContents.data[index].created.at = new Date(Date.parse($scope.student.CreativeContents.data[index].created.at.replace('-', '/', 'g'))); //replace mysql date to js date format
+                });
                 $scope.loading == false;
                 console.log($scope.student);
             });
