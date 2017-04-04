@@ -97,17 +97,18 @@
                     <div class="md-padding">
                         <div style="margin-top: 5%;" layout="column" ng-show="student.Events.data.length == 0" layout-align="center center">
                             <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDYwIDYwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA2MCA2MDsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI2NHB4IiBoZWlnaHQ9IjY0cHgiPgo8Zz4KCTxwYXRoIGQ9Ik01Nyw0aC03VjFjMC0wLjU1My0wLjQ0Ny0xLTEtMWgtN2MtMC41NTMsMC0xLDAuNDQ3LTEsMXYzSDE5VjFjMC0wLjU1My0wLjQ0Ny0xLTEtMWgtN2MtMC41NTMsMC0xLDAuNDQ3LTEsMXYzSDMgICBDMi40NDcsNCwyLDQuNDQ3LDIsNXYxMXY0M2MwLDAuNTUzLDAuNDQ3LDEsMSwxaDU0YzAuNTUzLDAsMS0wLjQ0NywxLTFWMTZWNUM1OCw0LjQ0Nyw1Ny41NTMsNCw1Nyw0eiBNNDMsMmg1djN2M2gtNVY1VjJ6IE0xMiwyaDUgICB2M3YzaC01VjVWMnogTTQsNmg2djNjMCwwLjU1MywwLjQ0NywxLDEsMWg3YzAuNTUzLDAsMS0wLjQ0NywxLTFWNmgyMnYzYzAsMC41NTMsMC40NDcsMSwxLDFoN2MwLjU1MywwLDEtMC40NDcsMS0xVjZoNnY5SDRWNnogICAgTTQsNThWMTdoNTJ2NDFINHoiIGZpbGw9IiM4OThkOTEiLz4KCTxwYXRoIGQ9Ik0zOCwyM2gtN2gtMmgtN2gtMmgtOXY5djJ2N3YydjloOWgyaDdoMmg3aDJoOXYtOXYtMnYtN3YtMnYtOWgtOUgzOHogTTMxLDI1aDd2N2gtN1YyNXogTTM4LDQxaC03di03aDdWNDF6IE0yMiwzNGg3djdoLTcgICBWMzR6IE0yMiwyNWg3djdoLTdWMjV6IE0xMywyNWg3djdoLTdWMjV6IE0xMywzNGg3djdoLTdWMzR6IE0yMCw1MGgtN3YtN2g3VjUweiBNMjksNTBoLTd2LTdoN1Y1MHogTTM4LDUwaC03di03aDdWNTB6IE00Nyw1MGgtNyAgIHYtN2g3VjUweiBNNDcsNDFoLTd2LTdoN1Y0MXogTTQ3LDI1djdoLTd2LTdINDd6IiBmaWxsPSIjODk4ZDkxIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" />
-                            <p class="md-subhead" style="color:rgba(0,0,0,.44)">Looks like you have'nt added anything yet</p>
-                            <md-button class="md-primary" ui-sref="home.addEvent"><md-icon class="md-primary" md-svg-icon="plus-circle-outline"></md-icon> Add event</md-button>
+                            <p class="md-subhead" style="color:rgba(0,0,0,.44)">Looks like you haven't added anything yet</p>
+                            <md-button class="md-primary" ui-sref="home.addEvent">
+                                <md-icon class="md-primary" md-svg-icon="plus-circle-outline"></md-icon> Add event</md-button>
                         </div>
                         <div layout="row" ng-hide="!vm.activated" layout-sm="column" layout-align="space-around">
                             <md-progress-circular md-mode="indeterminate"></md-progress-circular>
                         </div>
                         <md-list>
-                            <md-list-item ng-click="showAdvanced($student)" class="secondary-button-padding" ng-repeat="student in student.Events.data ">
-                                <img ng-src="{{student.image}}" class="md-avatar" alt="{{item.who}}">
-                                <p>{{student.title}}</p>
-                                <md-button class="md-primary" aria-label="participants" ng-click="showParticipants(student)" md-ripple-size="auto">Participants</md-button>
+                            <md-list-item ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding" ng-repeat="event in student.Events.data ">
+                                <img ng-src="{{event.image}}" class="md-avatar" alt="{{item.who}}">
+                                <p>{{event.title}}</p>
+                                <md-button class="md-primary" aria-label="participants" ng-click="showParticipants(event)" md-ripple-size="auto">Participants</md-button>
                                 <md-divider md-inset ng-if="!$last"></md-divider>
                             </md-list-item>
                         </md-list>
@@ -115,11 +116,12 @@
                 </md-tab>
                 <md-tab label="Content">
                     <div layout="column" class="md-padding" layout-fill ng-controller="CreativityController">
-                    <div style="margin-top: 5%;" layout="column" layout-align="center center">
-                       <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCIgdmlld0JveD0iMCAwIDE1MC4yMjMgMTUwLjIyMyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTUwLjIyMyAxNTAuMjIzOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTExNS44ODUsMzguNjMxYy0yMS4zMTIsMC0zNS40MTYsMTcuNDI1LTQ3Ljg1OSwzMi44MDJjLTEwLjYzMSwxMy4xMzYtMjAuNjcsMjUuNTQtMzIuODk3LDI1LjU0ICAgIGMtMTIuNzA5LDAtMjAuNTEyLTEzLjA2Mi0yMC41MTItMjIuNDI2YzAtOC42ODIsOC41Ni0yMS4yOTksMjEuOTc2LTIxLjI5OWMxMy4wMTgsMCwxOS44LDEwLjQxOSwyMC4xNDIsMTAuOTUzICAgIGMyLjEwOSwzLjQxMyw2LjU4Nyw0LjQ4NywxMC4wMTcsMi4zOTVjMy40NDctMi4xLDQuNTM5LTYuNTk3LDIuNDM4LTEwLjA0NGMtMC40NDYtMC43My0xMS4xNjctMTcuOTItMzIuNTk3LTE3LjkyICAgIEMxNS4wMjksMzguNjMyLDAsNTcuNTYyLDAsNzQuNTQ4YzAsMTcuNTIxLDE0LjQyNywzNy4wNDMsMzUuMTI4LDM3LjA0M2MxOS4xOTksMCwzMS45NC0xNS43NCw0NC4yNTktMzAuOTYzICAgIGMxMS4zOTYtMTQuMDc4LDIyLjE2MS0yNy4zNzksMzYuNDk4LTI3LjM3OWM4LjUzLDAsMTQuMTM1LDIuODk0LDE3LjEzMSw4Ljg0YzIuNTk2LDUuMTYsMi41OTQsMTAuOTk5LDIuNTkyLDEzLjAyMiAgICBjMCwxLjE2LTAuNjEzLDYuOTc4LTMuNDUxLDEyLjIxN2MtMy4yMzYsNS45NjgtNy44Myw4Ljc0Ni0xNC40NjksOC43NDZjLTEzLjM2OSwwLTIwLjU5Mi04LjY5LTIzLjMxMi0xMS45NjMgICAgYy0wLjcwNy0wLjg1Mi0xLjIxNi0xLjQ2NS0xLjg5Ni0yLjA0N2MtMy4wNjItMi42MjMtNy42NzgtMi4yNzEtMTAuMzA2LDAuNzk1Yy0yLjUzNCwyLjk1Ny0yLjI5LDcuMzUzLDAuNDc4LDEwLjAxNCAgICBjMC4xMzIsMC4xNSwwLjI5MSwwLjM0NywwLjQ4LDAuNTc2YzMuNTQ1LDQuMjY2LDE0LjMyNCwxNy4yNCwzNC41NTMsMTcuMjRjMjQuNTg2LDAsMzIuNTM3LTIzLjk3MywzMi41MzctMzUuNjc4ICAgIGMwLjAwMi03LjQ1NS0xLjM5NC0xNC4wMTMtNC4xNTQtMTkuNDk2QzE0Mi4xOTMsNDcuODE1LDEzMy44MDksMzguNjMxLDExNS44ODUsMzguNjMxeiIgZmlsbD0iIzg5OGQ5MSIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
-                        <p class="md-subhead" style="color:rgba(0,0,0,.44)">Looks like you have'nt added anything yet</p>
-                        <md-button class="md-primary" ui-sref="home.addCreativity"><md-icon class="md-primary" md-svg-icon="plus-circle-outline"></md-icon> Add Creative Content</md-button>
-                    </div>
+                        <div style="margin-top: 5%;" layout="column" layout-align="center center" ng-show="student.CreativeContents.data.length == 0">
+                            <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCIgdmlld0JveD0iMCAwIDE1MC4yMjMgMTUwLjIyMyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTUwLjIyMyAxNTAuMjIzOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTExNS44ODUsMzguNjMxYy0yMS4zMTIsMC0zNS40MTYsMTcuNDI1LTQ3Ljg1OSwzMi44MDJjLTEwLjYzMSwxMy4xMzYtMjAuNjcsMjUuNTQtMzIuODk3LDI1LjU0ICAgIGMtMTIuNzA5LDAtMjAuNTEyLTEzLjA2Mi0yMC41MTItMjIuNDI2YzAtOC42ODIsOC41Ni0yMS4yOTksMjEuOTc2LTIxLjI5OWMxMy4wMTgsMCwxOS44LDEwLjQxOSwyMC4xNDIsMTAuOTUzICAgIGMyLjEwOSwzLjQxMyw2LjU4Nyw0LjQ4NywxMC4wMTcsMi4zOTVjMy40NDctMi4xLDQuNTM5LTYuNTk3LDIuNDM4LTEwLjA0NGMtMC40NDYtMC43My0xMS4xNjctMTcuOTItMzIuNTk3LTE3LjkyICAgIEMxNS4wMjksMzguNjMyLDAsNTcuNTYyLDAsNzQuNTQ4YzAsMTcuNTIxLDE0LjQyNywzNy4wNDMsMzUuMTI4LDM3LjA0M2MxOS4xOTksMCwzMS45NC0xNS43NCw0NC4yNTktMzAuOTYzICAgIGMxMS4zOTYtMTQuMDc4LDIyLjE2MS0yNy4zNzksMzYuNDk4LTI3LjM3OWM4LjUzLDAsMTQuMTM1LDIuODk0LDE3LjEzMSw4Ljg0YzIuNTk2LDUuMTYsMi41OTQsMTAuOTk5LDIuNTkyLDEzLjAyMiAgICBjMCwxLjE2LTAuNjEzLDYuOTc4LTMuNDUxLDEyLjIxN2MtMy4yMzYsNS45NjgtNy44Myw4Ljc0Ni0xNC40NjksOC43NDZjLTEzLjM2OSwwLTIwLjU5Mi04LjY5LTIzLjMxMi0xMS45NjMgICAgYy0wLjcwNy0wLjg1Mi0xLjIxNi0xLjQ2NS0xLjg5Ni0yLjA0N2MtMy4wNjItMi42MjMtNy42NzgtMi4yNzEtMTAuMzA2LDAuNzk1Yy0yLjUzNCwyLjk1Ny0yLjI5LDcuMzUzLDAuNDc4LDEwLjAxNCAgICBjMC4xMzIsMC4xNSwwLjI5MSwwLjM0NywwLjQ4LDAuNTc2YzMuNTQ1LDQuMjY2LDE0LjMyNCwxNy4yNCwzNC41NTMsMTcuMjRjMjQuNTg2LDAsMzIuNTM3LTIzLjk3MywzMi41MzctMzUuNjc4ICAgIGMwLjAwMi03LjQ1NS0xLjM5NC0xNC4wMTMtNC4xNTQtMTkuNDk2QzE0Mi4xOTMsNDcuODE1LDEzMy44MDksMzguNjMxLDExNS44ODUsMzguNjMxeiIgZmlsbD0iIzg5OGQ5MSIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
+                            <p class="md-subhead" style="color:rgba(0,0,0,.44)">Looks like you haven't added anything yet</p>
+                            <md-button class="md-primary" ui-sref="home.addCreativity">
+                                <md-icon class="md-primary" md-svg-icon="plus-circle-outline"></md-icon> Add Creative Content</md-button>
+                        </div>
                         <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in [1,2,3,4]">
                             <md-card ng-show="!loading" flex="100" flex-gt-sm="60">
                                 <md-card-header>
@@ -133,51 +135,22 @@
                                 <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
                             </md-card>
                         </div>
-                        <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in CreativeContents track by $index">
-                            <md-card flex-gt-sm="60" flex="100" ng-show="loading">
-                                <md-card-header>
-                                    <md-card-avatar>
-                                        <img class="md-user-avatar" ng-src="{{content.created.by.image}}" />
-                                    </md-card-avatar>
-                                    <md-card-header-text ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer">
-                                        <span class="md-subhead"><span  ui-sref="home.profile" style="color: #0570c0">{{content.created.by.name}} </span> in <span ui-sref="home.profile" style="color: #0570c0">{{content.type?content.type:"Article"}} </span></span>
-                                        <span class="md-title">{{content.created.at  | date: 'd MMM'}}</span>
-                                    </md-card-header-text>
-                                </md-card-header>
-                                <img ng-if="(content.type == 'cover' || content.type == 'image')" ng-src="{{content.url}}" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer;height: 200px; object-fit: none; width: 100%" alt="">
-                                <md-card-content>
-                                    <div ng-if="(content.type == 'youtube') || (content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
-                                        <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" ng-src="{{content.url}}" frameborder="0" allowfullscreen></iframe>
-                                        <iframe ng-show="(content.type == 'soundcloud')" width="100%" height="166" scrolling="no" frameborder="0" ng-src="{{content.url}}" allowfullscreen></iframe>
-                                        <iframe ng-show="(content.type == 'vimeo')" width="640" height="360" ng-src="{{content.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                        <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in student.CreativeContents.data track by $index">
+                            <md-list flex>
+                                <md-list-item class="md-3-line" ui-sref="home.singleContent({contentId: content.id})">
+                                    <img ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
+                                    <div class="md-list-item-text" layout="column">
+                                        <h3>{{ content.title }}</h3>
+                                        <h4>{{ content.created.at | date: ' d MMM'}}</h4>
+                                        <p>
+                                            <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
+                                                <li ng-repeat="tag in content.Tags" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">{{tag.name}}</li>
+                                            </ul>
+                                        </p>
                                     </div>
-                                    <!-- <div flex="80" flex-offset="10"> -->
-                                    <span style="margin-top: 31px;font-size: 29px;margin-left: -1.81px;line-height: 1.04;letter-spacing: -.028em;font-weight: 700;color: rgba(0,0,0,.8);">{{content.title}} </span>
-                                    <p class="creativity-description" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="content.description  | limitTo: 200">
-                                    </p>
-                                    <p ui-sref="home.singleContent({contentId: content.id})" class="md-subhead" style="color: rgba(0,0,0,.44);font-size: 13px;cursor: pointer;    transition: .1s background-color,.1s border-color,.1s color,.1s fill;">
-                                        Read more...
-                                    </p>
-                                    <!-- </div> -->
-                                </md-card-content>
-                                <div layout="row" layout-align="start center">
-                                    <md-button class="appriciate-button" style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
-                                        <md-icon class="pink" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon> {{content.Actions.Appriciate.status? 'Appreciated' : 'Appreciate' }}
-                                    </md-button>
-                                    <span>{{content.Actions.Appriciate.total}}</span>
-                                    <span flex></span>
-                                    <md-card-icon-actions>
-                                        <md-button class="md-icon-button" ng-click="bookmark(content, $index)" aria-label="Favorite">
-                                            <md-icon ng-class="content.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
-                                        </md-button>
-                                        <md-button class="" aria-label="toggle">
-                                            <md-icon md-svg-icon="share"></md-icon>Share
-                                        </md-button>
-                                    </md-card-icon-actions>
-                                </div>
-                            </md-card>
-                            <!-- <div infinite-scroll="myPagingFunction()" infinite-scroll-disabled='loading' infinite-scroll-distance="4">
-                                       </div> -->
+                                </md-list-item>
+                                <md-divider></md-divider>
+                            </md-list>
                         </div>
                     </div>
                 </md-tab>
@@ -196,65 +169,38 @@
                                 <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
                             </md-card>
                         </div>
-                        <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in BookmarkedContents track by $index">
-                            <md-card flex-gt-sm="60" flex="100" ng-show="loading">
-                                <md-card-header>
-                                    <md-card-avatar>
-                                        <img class="md-user-avatar" ng-src="{{content.created.by.image}}" />
-                                    </md-card-avatar>
-                                    <md-card-header-text ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer">
-                                        <span class="md-subhead"><span  ui-sref="home.profile" style="color: #0570c0">{{content.created.by.name}} </span> in <span ui-sref="home.profile" style="color: #0570c0">{{content.type?content.type:"Article"}} </span></span>
-                                        <span class="md-title">{{content.created.at  | date: 'd MMM'}}</span>
-                                    </md-card-header-text>
-                                </md-card-header>
-                                <img ng-if="(content.type == 'cover' || content.type == 'image')" ng-src="{{content.url}}" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer;height: 200px; object-fit: none; width: 100%" alt="">
-                                <md-card-content>
-                                    <div ng-if="(content.type == 'youtube') || (content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
-                                        <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" ng-src="{{content.url}}" frameborder="0" allowfullscreen></iframe>
-                                        <iframe ng-show="(content.type == 'soundcloud')" width="100%" height="166" scrolling="no" frameborder="0" ng-src="{{content.url}}" allowfullscreen></iframe>
-                                        <iframe ng-show="(content.type == 'vimeo')" width="640" height="360" ng-src="{{content.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                        <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in student.BookmarkedContents.data track by $index">
+                            <md-list flex>
+                                <md-list-item class="md-3-line" ui-sref="home.singleContent({contentId: content.id})">
+                                    <img ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
+                                    <div class="md-list-item-text" layout="column">
+                                        <h3>{{ content.title }}</h3>
+                                        <h4>{{ content.created.at | date: ' d MMM'}}</h4>
+                                        <p>
+                                            <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
+                                                <li ng-repeat="tag in content.Tags" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">{{tag.name}}</li>
+                                            </ul>
+                                        </p>
                                     </div>
-                                    <!-- <div flex="80" flex-offset="10"> -->
-                                    <span style="margin-top: 31px;font-size: 29px;margin-left: -1.81px;line-height: 1.04;letter-spacing: -.028em;font-weight: 700;color: rgba(0,0,0,.8);">{{content.title}} </span>
-                                    <p class="creativity-description" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="content.description  | limitTo: 200">
-                                    </p>
-                                    <p ui-sref="home.singleContent({contentId: content.id})" class="md-subhead" style="color: rgba(0,0,0,.44);font-size: 13px;cursor: pointer;    transition: .1s background-color,.1s border-color,.1s color,.1s fill;">
-                                        Read more...
-                                    </p>
-                                    <!-- </div> -->
-                                </md-card-content>
-                                <div layout="row" layout-align="start center">
-                                    <md-button class="appriciate-button" style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
-                                        <md-icon class="pink" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon> {{content.Actions.Appriciate.status? 'Appreciated' : 'Appreciate' }}
-                                    </md-button>
-                                    <span>{{content.Actions.Appriciate.total}}</span>
-                                    <span flex></span>
-                                    <md-card-icon-actions>
-                                        <md-button class="md-icon-button" ng-click="bookmark(content, $index)" aria-label="Favorite">
-                                            <md-icon ng-class="content.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
-                                        </md-button>
-                                        <md-button class="" aria-label="toggle">
-                                            <md-icon md-svg-icon="share"></md-icon>Share
-                                        </md-button>
-                                    </md-card-icon-actions>
-                                </div>
-                            </md-card>
-                            <!-- <div infinite-scroll="myPagingFunction()" infinite-scroll-disabled='loading' infinite-scroll-distance="4">
-                                       </div> -->
+                                </md-list-item>
+                                <md-divider></md-divider>
+                            </md-list>
                         </div>
                     </div>
                 </md-tab>
-                <md-tab label="RSVPs" ng-if="student.">
+                <md-tab label="RSVPs" ng-if="student.AttendingEvents.data">
                     <div class="md-padding">
-                        <!-- TODO: Replace table to table component when https://github.com/angular/material/issues/796 will closed -->
                         <div layout="row" ng-hide="!vm.activated" layout-sm="column" layout-align="space-around">
                             <md-progress-circular md-mode="indeterminate"></md-progress-circular>
                         </div>
                         <md-list>
-                            <md-list-item ng-click="showAdvanced($student)" class="secondary-button-padding" ng-repeat="student in student.AttendingEvents.data ">
-                                <img ng-src="{{student.image}}" class="md-avatar" alt="{{item.who}}">
-                                <p>{{student.title}}</p>
-                                <md-button class="md-warn" aria-label="participants" ng-click="cancelRsvp()" md-ripple-size="auto">Cancel</md-button>
+                            <md-list-item ui-sref="home.singleEvent({eventId: event.id})" class="md-2-line" ng-repeat="event in student.AttendingEvents.data track by $index">
+                                <img ng-src="{{event.image}}" class="md-avatar" alt="{{item.who}}">
+                                <div class="md-list-item-text">
+                                    <h3>{{event.title}}</h3>
+                                    <p>{{event.timings.from.date | date: ' d MMM'}} {{event.timings.to.date==event.timings.from.date?null:event.timings.to.date | date: '- d MMM'}}</p>
+                                </div>
+                                <md-button class="md-warn" aria-label="participants" ng-click="cancelRsvp(event, $index)" md-ripple-size="auto">Cancel</md-button>
                                 <md-divider md-inset ng-if="!$last"></md-divider>
                             </md-list-item>
                         </md-list>
