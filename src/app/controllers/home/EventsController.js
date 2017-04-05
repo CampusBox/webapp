@@ -18,6 +18,8 @@
         var vm = this;
         $scope.grid = false;
         $scope.width = 28;
+        $scope.offset = 0;
+        $scope.moreItems = true;
         $scope.loading = false;
         $scope.events = [];
         $scope.types = [
@@ -43,13 +45,18 @@
             { 'id': 2, 'title': 'Other colleges' }
         ];
         $scope.myPagingFunction = function() {
-            if ($scope.loading == false) {
+            if ($scope.loading == false && $scope.moreItems == true) {
                 $scope.loading = true;
-                tokenService.get("events")
+                tokenService.get("events?offset=" + $scope.offset)
                     .then(function(tableData) {
 
                         $scope.loading = false;
+                        if (tableData.data.length < 3) {
+                            $scope.moreItems = false;
+                        }
                         $scope.events = $scope.events.concat(tableData.data);
+                        $scope.offset = tableData.meta.offset;
+                        console.log($scope.offset);
                     });
             }
         };
