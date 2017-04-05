@@ -81,12 +81,13 @@
 
             tokenService.post("addEvent", $scope.body)
                 .then(function(abc) {
-                    $state.go(home.dashboard);
+                    $state.go('home.dashboard');
                     console.log(abc);
                 }).catch(function(abc) {
+                    $state.go('home.dashboard');
                     console.log(abc);
-                    $state.go(home.dashboard);
                 });
+                    $state.go('home.dashboard');
         };
 
         $scope.max = 2;
