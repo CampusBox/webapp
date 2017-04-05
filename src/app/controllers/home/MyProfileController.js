@@ -16,74 +16,21 @@
         $scope.tab = $stateParams.tab;
         $scope.username = $stateParams.username;
         $scope.editAbout = false;
+        $scope.loading == true;
         $scope.BookmarkedContents = [];
         $scope.CreativeContents = [];
-        console.log('my profile called' + $scope.username + $scope.tab);
 
         tokenService.get("myProfile")
             .then(function(student) {
                 $scope.student = student.data;
+                $scope.student.BookmarkedContents.data.forEach(function(content, index) {
+                $scope.student.BookmarkedContents.data[index].created.at = new Date(Date.parse($scope.student.BookmarkedContents.data[index].created.at.replace('-', '/', 'g'))); //replace mysql date to js date format
+                });
+                $scope.student.CreativeContents.data.forEach(function(content, index) {
+                $scope.student.CreativeContents.data[index].created.at = new Date(Date.parse($scope.student.CreativeContents.data[index].created.at.replace('-', '/', 'g'))); //replace mysql date to js date format
+                });
+                $scope.loading == false;
                 console.log($scope.student);
-                $scope.myProfile.BookmarkedContents.data.forEach(function(content) {
-                    cardObject = {}
-                    $scope.loading == false;
-                    cardObject.Actions = content.Actions;
-                    cardObject.Tags = content.Tags;
-                    cardObject.created = content.created;
-                    cardObject.created.at = Date.parse(cardObject.created.at.replace('-', '/', 'g')); //replace mysql date to js date format
-                    cardObject.id = content.id;
-                    cardObject.title = $sce.trustAsHtml(content.title);
-                    cardObject.links = content.links;
-                    cardObject.total = content.links;
-                    content.Items.data.forEach(function(item) {
-                        if (item.type == 'text') {
-                            cardObject.description = $filter('limitTo')(item.description, 110, 0)
-                            cardObject.description = $sce.trustAsHtml(cardObject.description);
-                        } else if ((item.type == 'cover' && !cardObject.type)) {
-                            cardObject.type = item.type;
-                            cardObject.url = item.image;
-                        } else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
-                            cardObject.type = item.type;
-                            cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
-                        } else if (((item.type == 'cover') || (item.type == 'image')) && !cardObject.type) {
-                            cardObject.type = item.type;
-                            cardObject.url = item.image;
-                        }
-                    });
-                    $scope.BookmarkedContents.push(cardObject);
-                    content = {};
-                    $scope.loading = false;
-                });
-                $scope.myProfile.CreativeContents.data.forEach(function(content) {
-                    cardObject = {}
-                    $scope.loading == false;
-                    cardObject.Actions = content.Actions;
-                    cardObject.Tags = content.Tags;
-                    cardObject.created = content.created;
-                    cardObject.created.at = Date.parse(cardObject.created.at.replace('-', '/', 'g')); //replace mysql date to js date format
-                    cardObject.id = content.id;
-                    cardObject.title = $sce.trustAsHtml(content.title);
-                    cardObject.links = content.links;
-                    cardObject.total = content.links;
-                    content.Items.data.forEach(function(item) {
-                        if (item.type == 'text') {
-                            cardObject.description = $filter('limitTo')(item.description, 110, 0)
-                            cardObject.description = $sce.trustAsHtml(cardObject.description);
-                        } else if ((item.type == 'cover' && !cardObject.type)) {
-                            cardObject.type = item.type;
-                            cardObject.url = item.image;
-                        } else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
-                            cardObject.type = item.type;
-                            cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
-                        } else if (((item.type == 'cover') || (item.type == 'image')) && !cardObject.type) {
-                            cardObject.type = item.type;
-                            cardObject.url = item.image;
-                        }
-                    });
-                    $scope.CreativeContents.push(cardObject);
-                    content = {};
-                    $scope.loading = false;
-                });
             });
 
 
@@ -98,6 +45,16 @@
                 fullscreen: true // Only for -xs, -sm breakpoints.
             })
         };
+        $scope.cancelRsvp = function(event, index) {
+            tokenService.delete('bookmarkEvent/' + event.id).then(function(result) {
+                if (result.status != 'error') {
+                    $scope.student.AttendingEvents.data.splice(index, 1);
+                    console.log(result.status);
+                } else {
+                    console.log(result);
+                }
+            });
+        }
         $scope.openSocialAccounts = function(ev) {
             $mdDialog.show({
                 controller: SocialController,
@@ -120,9 +77,6 @@
                 clickOutsideToClose: true,
                 fullscreen: true // Only for -xs, -sm breakpoints.
             })
-        };
-        $scope.deactivate = function(student) {
-
         };
         $scope.about = function() {
             if ($scope.editAbout) {

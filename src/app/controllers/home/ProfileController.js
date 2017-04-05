@@ -22,32 +22,57 @@
         $scope.CreativeContentsFinal = [];
         $scope.username = $stateParams.username;
         $scope.loading = true;
-       
-     
+
+
         $scope.follow = function(type, index) {
-            // SEND FOLLOWER ID AND FOLLOWING ID IN POST
-            if ($scope.student[type].data[index].following) {
-                tokenService.post('studentFollow/' + $scope.student[type].data[index].username).then(function(result) {
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                        $scope.student[type].data[index].following = !$scope.student[type].data[index].following;
-                    } else {
-                        console.log(result);
-                    }
-                });
+            if (type) {
+                if ($scope.profile[type].data[index].following) {
+                    tokenService.post('studentFollow/' + $scope.profile[type].data[index].username).then(function(result) {
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                            $scope.profile[type].data[index].following = !$scope.profile[type].data[index].following;
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                } else {
+
+                    tokenService.delete('studentFollow/' + $scope.profile[type].data[index].username).then(function(result) {
+                        console.log('post request');
+                        if (result.status != 'error') {
+                            $scope.profile[type].data[index].following = !$scope.profile[type].data[index].following;
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                }
+
             } else {
-                // SEND FOLLOWER ID IN DELETE
-                tokenService.delete('studentFollow/' + $scope.student[type].data[index].username).then(function(result) {
-                    console.log('post request');
-                    if (result.status != 'error') {
-                        $scope.student[type].data[index].following = !$scope.student[type].data[index].following;
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
-                });
+                if ($scope.profile.following) {
+                    tokenService.post('studentFollow/' + $scope.profile.username).then(function(result) {
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                            $scope.profile.following = !$scope.profile.following;
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                } else {
+
+                    tokenService.delete('studentFollow/' + $scope.profile.username).then(function(result) {
+                        console.log('post request');
+                        if (result.status != 'error') {
+                            $scope.profile.following = !$scope.profile.following;
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                }
             }
         };
+
         $scope.openProfile = function(student) {
             $location.path('/profile' + student.username);
         };
@@ -103,6 +128,7 @@
         tokenService.get("student/" + $scope.username)
             .then(function(response) {
                 $scope.profile = response.data;
+                console.log($scope.profile);
                 $scope.profile.BookmarkedContents.data.forEach(function(content) {
                     cardObject = {};
                     $scope.loading = false;
@@ -110,12 +136,12 @@
                     cardObject.Tags = content.Tags;
                     cardObject.created = content.created;
                     //replace mysql date to js date format
-                    cardObject.created.at = Date.parse(cardObject.created.at.replace('-', '/', 'g')); 
+                    cardObject.created.at = Date.parse(cardObject.created.at.replace('-', '/', 'g'));
                     cardObject.id = content.id;
                     cardObject.title = $sce.trustAsHtml(content.title);
                     cardObject.links = content.links;
                     cardObject.total = content.links;
-                   
+
                     $scope.BookmarkedContents.push(cardObject);
                     content = {};
                     $scope.loading = false;
@@ -131,11 +157,12 @@
                     cardObject.title = $sce.trustAsHtml(content.title);
                     cardObject.links = content.links;
                     cardObject.total = content.links;
-                    
+
                     $scope.CreativeContentsFinal.push(cardObject);
                     content = {};
                     $scope.loading = false;
                 });
+                console.log($scope.CreativeContentsFinal);
             });
 
     }
