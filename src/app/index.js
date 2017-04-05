@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngFileUpload', 'satellizer',
+angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer',
         'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop', 'angular-jwt', 'infinite-scroll',
     ])
     //remove setellizer

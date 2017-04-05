@@ -87,7 +87,6 @@
                     $state.go('home.dashboard');
                     console.log(abc);
                 });
-                    $state.go('home.dashboard');
         };
 
         $scope.max = 2;

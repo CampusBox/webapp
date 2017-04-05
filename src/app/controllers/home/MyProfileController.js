@@ -140,7 +140,7 @@
             }
 
             // Otherwise, create a new one
-            return { name: chip }
+            return { name: chip };
         }
 
         /**
@@ -164,7 +164,6 @@
             console.log('myArray[i].name.match(searchTerm)');
             for (var i = 0, len = myArray.length; i < len; i++) {
                 // if (myArray[i].name == searchTerm) {
-                console.log();
                 if (myArray[i].name.match(searchTerm) != null) {
                     return i;
                 }

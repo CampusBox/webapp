@@ -22,10 +22,10 @@
         tokenService.get("colleges").then(function(colleges) {
             $scope.colleges = colleges.data;
         });
-                $scope.items = [];
-                $scope.itemsMobile = [];
+        $scope.items = [];
+        $scope.itemsMobile = [];
 
-          $scope.items[0] = [
+        $scope.items[0] = [
             { 'title': 'Articles', 'id': 1 },
             { 'title': 'Poetry', 'id': 2 },
             { 'title': 'Drama', 'id': 3 }
@@ -57,7 +57,7 @@
             { 'title': 'Electronics', 'id': 20 },
             { 'title': 'DIY', 'id': 21 }
         ];
-         $scope.itemsMobile[0] = [
+        $scope.itemsMobile[0] = [
             { 'title': 'Articles', 'id': 1 },
             { 'title': 'Poetry', 'id': 2 },
             { 'title': 'Drama', 'id': 3 }
@@ -180,9 +180,9 @@
                         .then(function(abc) {
                             console.log(abc);
                             localStorage.setItem('id_token', abc.token);
-  //                          localStorage.setItem('username', abc.student.username);
-    //                        localStorage.setItem('college_id', abc.student.college_id);
-      //                      localStorage.setItem('image', abc.student.image);
+                            //                          localStorage.setItem('username', abc.student.username);
+                            //                        localStorage.setItem('college_id', abc.student.college_id);
+                            //                      localStorage.setItem('image', abc.student.image);
                             $rootScope.token = abc.token;
                             $rootScope.image = abc.image;
                             $state.go("home.dashboard");
@@ -190,9 +190,9 @@
                         }).catch(function(abc) {
                             console.log(abc);
                             localStorage.setItem('id_token', abc.token);
-                            $scope.problem=abc.status;
+                            $scope.problem = abc.status;
                             $rootScope.token = abc.token;
-                             $state.go("home.dashboard");
+                            $state.go("home.dashboard");
                             return;
 
                         });
@@ -243,10 +243,8 @@
         $rootScope.$on('event:social-sign-in-success', function(event, response) {
             // console.log("Social sign in success")
             // console.log(userDetails);
-                        $scope.loading = true;
+            $scope.loading = true;
 
-            console.log(event);
-            console.log(response);
             $scope.signUp.token = response.token;
             $scope.signUp.type = "google";
             $scope.signUp.skills = $scope.selectedSkills;
@@ -254,18 +252,15 @@
             $scope.signUp.college_id = $scope.college;
             $scope.signUp.college_id = 1;
 
-            console.log($scope.signUp);
             tokenService.post("signup", $scope.signUp)
                 .then(function(abc) {
-                    console.log(abc);
                     localStorage.setItem('id_token', abc.token);
                     $rootScope.token = abc.token;
                     //      $state.go("home.dashboard");
-                    return;
 
                 }).catch(function(abc) {
-                                $scope.loading = false;
-                                $scope.problem="Could not sign you up try again later.";
+                    $scope.loading = false;
+                    $scope.problem = "Could not sign you up try again later.";
 
                 });
 
