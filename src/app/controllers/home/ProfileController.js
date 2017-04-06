@@ -27,7 +27,7 @@
         $scope.follow = function(type, index) {
             if (type) {
                 if ($scope.profile[type].data[index].following) {
-                    tokenService.post('studentFollow/' + $scope.profile[type].data[index].username).then(function(result) {
+                    tokenService.delete('studentFollow/' + $scope.profile[type].data[index].username).then(function(result) {
                         if (result.status != 'error') {
                             console.log(result.status);
                             $scope.profile[type].data[index].following = !$scope.profile[type].data[index].following;
@@ -37,7 +37,7 @@
                     });
                 } else {
 
-                    tokenService.delete('studentFollow/' + $scope.profile[type].data[index].username).then(function(result) {
+                    tokenService.post('studentFollow/' + $scope.profile[type].data[index].username).then(function(result) {
                         console.log('post request');
                         if (result.status != 'error') {
                             $scope.profile[type].data[index].following = !$scope.profile[type].data[index].following;
@@ -50,7 +50,7 @@
 
             } else {
                 if ($scope.profile.following) {
-                    tokenService.post('studentFollow/' + $scope.profile.username).then(function(result) {
+                    tokenService.delete('studentFollow/' + $scope.profile.username).then(function(result) {
                         if (result.status != 'error') {
                             console.log(result.status);
                             $scope.profile.following = !$scope.profile.following;
@@ -60,7 +60,7 @@
                     });
                 } else {
 
-                    tokenService.delete('studentFollow/' + $scope.profile.username).then(function(result) {
+                    tokenService.post('studentFollow/' + $scope.profile.username).then(function(result) {
                         console.log('post request');
                         if (result.status != 'error') {
                             $scope.profile.following = !$scope.profile.following;
