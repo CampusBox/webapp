@@ -54,7 +54,7 @@
                     console.log(result);
                 }
             });
-        }
+        };
         $scope.openSocialAccounts = function(ev) {
             $mdDialog.show({
                 controller: SocialController,
@@ -63,7 +63,7 @@
                 targetEvent: ev,
                 clickOutsideToClose: true,
                 fullscreen: true // Only for -xs, -sm breakpoints.
-            })
+            });
         };
         $scope.showParticipants = function(ev) {
             $mdDialog.show({
@@ -89,7 +89,7 @@
             } else {
                 $scope.editAbout = true;
             }
-        }
+        };
         $scope.follow = function(type, index) {
                 // SEND FOLLOWER ID AND FOLLOWING ID IN POST
                 if ($scope.student[type].data[index].following) {
@@ -113,7 +113,7 @@
                         }
                     });
                 }
-            }
+            };
             // SKILLS CHIP SHIT STARTED
         tokenService.get("skills")
             .then(function(tableData) {
@@ -213,7 +213,7 @@
                         console.log(error);
                     });
             }
-        }
+        };
 
         // SKILLS CHIP SHIT ENDED
         function SocialController() {}

@@ -26,7 +26,7 @@
                                                         <md-subheader class="md-no-sticky">Adding cover helps your post, get one from <a href="http://unsplash.com" target="_blank">here.</a></md-subheader>
 
                             <md-list-item ng-hide="coverStatus">
-                                <md-button class="" flex ngf-select="uploadCover($file)" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="300" ngf-min-width="400" ngf-resize="{width: 1000, height: 800}" ngf-resize-if="$width > 1000 || $height > 800">
+                                <md-button class="" flex ngf-select="uploadCover($file)" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="100MB" ngf-min-height="300" ngf-min-width="400" ngf-resize="{width: 1000, height: 800}" ngf-resize-if="$width > 1000 || $height > 800">
                                     <md-icon md-svg-icon="image-area"></md-icon>
                                     Add cover picture
                                 </md-button>
@@ -72,7 +72,7 @@
                 <!-- <img   style="max-width: 100%" ng-src="{{item.image}}" /> -->
                 <img style="padding: 0;width: 100%" ngf-thumbnail="item.image" ng-repeat="item in creativity.items" ng-if="(item.mediaType=='cover')" />
                 <div ng-show="(item.embedUrl.description.length>50)">
-                    <md-button class="md-primary" ng-hide="coverStatus" layout="row" flex ngf-select="uploadCover($file)" ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 1024, height: 800}">
+                    <md-button class="md-primary" ng-hide="coverStatus" layout="row" flex ngf-select="uploadCover($file)" ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="100MB" ngf-min-height="100" ngf-resize="{width: 1024, height: 800}">
                         <md-icon md-svg-icon="image-area"></md-icon>
                         Add cover picture to your Article
                     </md-button>

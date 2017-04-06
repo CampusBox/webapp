@@ -501,76 +501,6 @@ ul.teeth li:last-child {
                 <br>
                 <br>
         </div>
-        <div ng-show="currentState==2" class="md-padding autocomplete" layout="column">
-            <div>
-                <md-button style="position: absolute;" ng-click="currentState=1;" class="md-primary">
-                    <md-icon md-svg-icon="left-arrow"></md-icon>
-                    Back
-                </md-button>
-            </div>
-            <center>
-                <p class="md-headline"> Your Skills and Talents</p>
-                <p class="md-title">Add talents/skills, to find
-                    <br> events and connect to relevant peers.</p>
-            </center>
-            <form>
-                <md-chips name="skills" ng-model="selectedSkills" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
-                    <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Enter upto 5 skills">
-                        <span md-highlight-text="searchText">{{item.name}}</span>
-                    </md-autocomplete>
-                    <md-chip-template>
-                        <span>
-                  <strong>{{$chip.name}}</strong>
-                </span>
-                    </md-chip-template>
-                </md-chips>
-            </form>
-            <md-subheader class="md-no-sticky">Popular talents</md-subheader>
-            <md-tabs md-dynamic-height md-border-bottom>
-                <md-tab label="Sports">
-                    <div class="md-padding">
-                        <md-list class="fixedRows" flex layout="row" layout-wrap layout-align="center center">
-                            <md-list-item class="md-2-line contact-item" flex="50" ng-repeat="contact in sports">
-                                <img ng-src="{{contact.image}}" class="md-avatar" alt="{{contact.name}}" />
-                                <div class="md-list-item-text compact">
-                                    <h3>{{contact.title}}</h3>
-                                    <p>{{contact.email}}</p>
-                                </div>
-                            </md-list-item>
-                        </md-list>
-                    </div>
-                </md-tab>
-                <md-tab label="Cultural">
-                    <div class="md-padding">
-                        <md-list class="fixedRows" flex layout="row" layout-wrap layout-align="center center">
-                            <md-list-item class="md-2-line contact-item" flex="50" ng-repeat="contact in cultural">
-                                <img ng-src="{{contact.image}}" class="md-avatar" alt="{{contact.name}}" />
-                                <div class="md-list-item-text compact">
-                                    <h3>{{contact.title}}</h3>
-                                    <p>{{contact.email}}</p>
-                                </div>
-                            </md-list-item>
-                        </md-list>
-                    </div>
-                </md-tab>
-                <md-tab label="Technical">
-                    <div class="md-padding">
-                    </div>
-                </md-tab>
-            </md-tabs>
-            <!-- <div class="errors" ng-messages="register.fruitName.$error">
-                    <div ng-message="md-max-chips">Maximum number of chips reached.</div>
-                </div> -->
-            </form>
-            <br>
-            <div layout="row" flex>
-                <md-button flex="60" flex-offset="20" ng-diabled="continue" style="float:right" ng-click="currentState=3;" class="md-raised md-primary">
-                    Continue
-                </md-button>
-            </div>
-            <br>
-            <br>
-        </div>
         <div class="md-padding" layout="column" ng-show="currentState==3">
             <div>
                 <md-button style="position: absolute;" ng-click="currentState=1;" class="md-primary">
@@ -585,32 +515,19 @@ ul.teeth li:last-child {
                         <br>your profile to get important updates.</p>
                 </center>
                 <form name="register">
-                    <md-input-container class="md-block">
-                        <label>Name of your college</label>
-                        <md-autocomplete flex required
-                                   md-input-name="autocompleteField"
-                                   md-input-minlength="3"
-                                   md-input-maxlength="20"
-                                   md-no-cache="ctrl.noCache"
-                                   md-selected-item="ctrl.selectedItem"
-                                   md-search-text="ctrl.searchText"
-                                   md-items="item in ctrl.querySearch(ctrl.searchText)"
-                                   md-item-text="item.display"
-                                   md-require-match
-                                   md-floating-label="Full name of college">
-                                 <md-item-template>
-                                   <span md-highlight-text="ctrl.searchText">{{item.display}}</span>
-                                 </md-item-template>
-                                 <div ng-messages="searchForm.autocompleteField.$error" ng-if="searchForm.autocompleteField.$touched">
-                                   <div ng-message="required">You <b>must</b> have a favorite college.</div>
-                                   <div ng-message="md-require-match">Please select an existing college.</div>
-                                   <div ng-message="minlength">Your entry is not long enough.</div>
-                                   <div ng-message="maxlength">Your entry is too long.</div>
-                                 </div>
-                               </md-autocomplete>
-                        <!-- <div class="hint ">This will be visible on your profile.</div> -->
-                    </md-input-container>
-                   
+                    <label>Name of your college</label>
+                    <md-autocomplete md-no-cache="false" ng-model="signUp.college"  required md-require-match md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item.id)" md-items="item in searchData" md-item-text="item.name" md-min-length="0" placeholder="Full name of your college" md-menu-class="autocomplete-custom-template">
+                        <md-item-template>
+                            <md-list-item md-highlight-text="searchText">
+                                {{ item.name }}
+                              
+                            </md-list-item>
+                            <md-not-found>
+                                No matches found.
+                            </md-not-found>
+                        </md-item-template>
+                    </md-autocomplete>
+                    <!-- <div class="hint ">This will be visible on your profile.</div> -->
                     <md-input-container class="md-block ">
                         <label>Your Roll Number</label>
                         <input required=" " ng-disabled="college<0 " ng-model="signUp.roll " type="text " autocomplete=" " />
@@ -622,66 +539,66 @@ ul.teeth li:last-child {
                     </md-input-container>
                     <div>
                         <center ng-show="signUp.roll && !loading && (signUp.college>0 || signUp.college_Name)">
-                                    <p>Complete setup with</p>
-                                    <md-button ng-click="authenticate('facebook');" md-colors="{background: 'indigo'}" class="md-raised md-primary">
-                                        <md-icon md-svg-icon="facebook"></md-icon>
-                                    </md-button>
-                                    <md-button g-login md-colors="{background: 'red'}" class="md-raised md-primary">
-                                        <md-icon md-svg-icon="google"></md-icon>+
-                                    </md-button>
-                                    <!-- <md-button ng-disabled="signUp.roll<100000" linked-in md-colors="{background: 'blue'}" class="md-raised md-primary">
+                            <p>Complete setup with</p>
+                            <md-button ng-click="authenticate('facebook');" md-colors="{background: 'indigo'}" class="md-raised md-primary">
+                                <md-icon md-svg-icon="facebook"></md-icon>
+                            </md-button>
+                            <md-button g-login md-colors="{background: 'red'}" class="md-raised md-primary">
+                                <md-icon md-svg-icon="google"></md-icon>+
+                            </md-button>
+                            <!-- <md-button ng-disabled="signUp.roll<100000" linked-in md-colors="{background: 'blue'}" class="md-raised md-primary">
                             <md-icon md-svg-icon="linkedin"></md-icon>
                         </md-button> -->
-                                    </center>
-                                    <div>{{problem}}</div>
-                                    <div layout="row" ng-show="loading" layout-sm="column" layout-align="space-around">
-                                        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-                                    </div>
+                        </center>
+                        <div>{{problem}}</div>
+                        <div layout="row" ng-show="loading" layout-sm="column" layout-align="space-around">
+                            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                        </div>
                 </form>
+                </div>
+                <!-- <md-divider></md-divider> -->
             </div>
-            <!-- <md-divider></md-divider> -->
         </div>
     </div>
-</div>
-<div layout="column" layout-align="space-between ">
-    <p class="md-display-1" hide-xs style="font-weight: 300; color: white; margin-left: 50px">Welcome to CampusBox</p>
-    <!-- <p class="md-headline" style=" color: white">You are setting up a new student account.</p> -->
-    <div class="minion" hide-xs hide-sm>
-        <div class="hands">
-            <div class="left"></div>
-            <div class="right"></div>
-            <div class="fingers-l"></div>
-            <div class="fingers-r"></div>
-            <div class="glove-l"></div>
-            <div class="glove-r"></div>
-        </div>
-        <div class="glasses">
-            <div class="glassesline1"></div>
-            <div class="glassesline2"></div>
-            <div class="glass1">
-                <div class="eye1"></div>
+    <div layout="column" layout-align="space-between ">
+        <p class="md-display-1" hide-xs style="font-weight: 300; color: white; margin-left: 50px">Welcome to CampusBox</p>
+        <!-- <p class="md-headline" style=" color: white">You are setting up a new student account.</p> -->
+        <div class="minion" hide-xs hide-sm>
+            <div class="hands">
+                <div class="left"></div>
+                <div class="right"></div>
+                <div class="fingers-l"></div>
+                <div class="fingers-r"></div>
+                <div class="glove-l"></div>
+                <div class="glove-r"></div>
             </div>
-            <div class="glass2">
-                <div class="eye2"></div>
+            <div class="glasses">
+                <div class="glassesline1"></div>
+                <div class="glassesline2"></div>
+                <div class="glass1">
+                    <div class="eye1"></div>
+                </div>
+                <div class="glass2">
+                    <div class="eye2"></div>
+                </div>
             </div>
-        </div>
-        <div class="mouth">
-            <ul class="teeth">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </div>
-        <div class="belt-left"></div>
-        <div class="belt-right"></div>
-        <div class="pants"></div>
-        <div class="legs">
-            <div class="left"></div>
-            <div class="right"></div>
-            <div class="shoe-l"></div>
-            <div class="shoe-r"></div>
+            <div class="mouth">
+                <ul class="teeth">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div class="belt-left"></div>
+            <div class="belt-right"></div>
+            <div class="pants"></div>
+            <div class="legs">
+                <div class="left"></div>
+                <div class="right"></div>
+                <div class="shoe-l"></div>
+                <div class="shoe-r"></div>
+            </div>
         </div>
     </div>
-</div>
 </div>

@@ -4,11 +4,11 @@
         .module('app')
         .controller('SignUpController', [
 
-            '$scope', '$timeout', 'loginData', '$rootScope', '$localStorage', '$state', 'collegesListService', 'tokenService', '$auth',
+            '$scope', '$timeout', 'loginData', '$rootScope', '$localStorage', '$state', 'collegesListService', 'tokenService', '$auth', '$filter',
             SignUpController
         ]);
 
-    function SignUpController($scope, $timeout, loginData, $rootScope, $localStorage, $state, collegesListService, tokenService, $auth) {
+    function SignUpController($scope, $timeout, loginData, $rootScope, $localStorage, $state, collegesListService, tokenService, $auth, $filter) {
         var vm = this;
         $scope.loading = false;
         $scope.querySearch = querySearch;
@@ -25,6 +25,37 @@
         $scope.items = [];
         $scope.itemsMobile = [];
 
+
+
+
+        tokenService.get("colleges")
+            .then(function(tableData) {
+                $scope.filteredPeople = tableData.data;
+            });
+        $scope.filteredPeople = [
+            { 'id': '263', 'name': 'Thapar University' },
+            { 'id': '1', 'name': 'Gobar lal' },
+            { 'id': '2', 'name': 'Indraprastha ' }
+        ];
+        $scope.searchData = $filter('filter')($scope.filteredPeople, {
+            name: 'a'
+        });
+        //Search Autocomplete start
+
+        $scope.querySearch = querySearch;
+
+        function querySearch(query) {
+
+            $scope.searchData = $filter('filter')($scope.filteredPeople, {
+                name: query
+            });
+        }
+
+        // Search Autocomplete End
+
+
+
+
         $scope.items[0] = [
             { 'title': 'Articles', 'id': 1 },
             { 'title': 'Poetry', 'id': 2 },
@@ -38,9 +69,10 @@
             { 'title': 'Clay', 'id': 8 }
         ];
         $scope.items[2] = [
+            { 'title': 'Dancing', 'id': 22 },
             { 'title': 'Singing', 'id': 9 },
             { 'title': 'Instrumental', 'id': 10 },
-            { 'title': 'Music Mixing', 'id': 11 },
+            { 'title': 'Digital Music', 'id': 11 },
             { 'title': 'Photography', 'id': 12 }
 
         ];
@@ -75,7 +107,7 @@
 
         ];
         $scope.itemsMobile[3] = [
-            { 'title': 'Music Mixing', 'id': 11 },
+            { 'title': 'Digital Music', 'id': 11 },
             { 'title': 'Photography', 'id': 12 },
             { 'title': 'Film and Video', 'id': 13 }
         ];
@@ -85,9 +117,13 @@
             { 'title': 'UI and UX', 'id': 16 }
         ];
         $scope.itemsMobile[5] = [
+            { 'title': 'Dancing', 'id': 22 },
             { 'title': 'Webites', 'id': 17 },
             { 'title': 'Programming', 'id': 18 },
-            { 'title': 'Apps', 'id': 19 },
+            { 'title': 'Apps', 'id': 19 }
+
+        ];
+        $scope.itemsMobile[6] = [
             { 'title': 'Electronics', 'id': 20 },
             { 'title': 'DIY', 'id': 21 }
         ];
@@ -120,11 +156,6 @@
             return { name: chip }
         }
 
-        function querySearch(query) {
-            console.log('query funciton called');
-            var results = query ? $scope.skills.filter(createFilterFor(query)) : [];
-            return results;
-        }
 
         /**
          * Create filter function for a query string
@@ -166,7 +197,9 @@
 
 
         $scope.signUp = {};
-
+        $scope.selectedItemChange = function(id) {
+            $scope.signUp.college = id;
+        };
         $scope.authenticate = function(provider) {
             $scope.loading = true;
             $auth.authenticate(provider).then(function(response) {

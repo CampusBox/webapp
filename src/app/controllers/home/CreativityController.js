@@ -104,7 +104,7 @@
             $scope.finalContents[$index].Actions.Appriciate.status = !$scope.finalContents[$index].Actions.Appriciate.status;
             if ($scope.finalContents[$index].Actions.Appriciate.status) {
                 $scope.finalContents[$index].Actions.Appriciate.total += 1;
-                tokenService.post('appriciateContent/' + content.id).then(function(result) {
+                tokenService.post('appreciateContent/' + content.id).then(function(result) {
 
                     console.log('post request');
                     if (result.status != 'error') {
@@ -116,7 +116,7 @@
             } else {
                 $scope.finalContents[$index].Actions.Appriciate.total -= 1;
 
-                tokenService.delete('appriciateContent/' + content.id, '').then(function(result) {
+                tokenService.delete('appreciateContent/' + content.id, '').then(function(result) {
                     console.log('post request');
                     if (result.status != 'error') {
                         console.log(result.status);

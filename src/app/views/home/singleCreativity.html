@@ -43,22 +43,24 @@ md-list-item .md-button:not([disabled]):click {
                 <span class="md-caption">{{content.created.at | date: 'd MMM'}}</span> -->
                 <h3><span class="md-subhead">
                 <span  ui-sref="home.profile({studentId: content.created.by.username})" style="color: #0570c0;cursor: pointer;">
-                {{content.created.by.name}} </span> from <span style="color: #0570c0">{{content.created.by.college.name}} </span>
+                {{content.created.by.name}} </span> in <span style="color: #0570c0">{{content.created.by.college.name}} </span>
                 </span></h3>
                 <!-- <h4><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.subtitle}}</span></h4> -->
-                <h4><span style="color: rgba(0,0,0,.44);" class="md-caption">I write. I ride. I read. I rest. Contributor to Thought Catalog, Good Men’s Project, Momentum Magazine</span></h4>
+                <!-- <h4><span style="color: rgba(0,0,0,.44);" class="md-caption">I write. I ride. I read. I rest. Contributor to Thought Catalog, Good Men’s Project, Momentum Magazine</span></h4> -->
                 <p><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.at | date: 'd MMM'}}</span></p>
             </div>
         </md-list-item>
         <div>
             <h1 flex-offset-gt-xs="10" flex-gt-xs="80" flex-xs="100" class="md-title" ng-bind-html="content.title" style="color:rgba(0,0,0,.8);line-height: 1.04;letter-spacing: -.028em;font-size: 40px;font-weight: 700;"></h1>
 
-            <div flex-offset="10" flex="80"  ng-repeat="item in content.Items.data">
-                <div flex="80" layout-align="center center">
+            <div flex-offset-gt-xs="10" flex-gt-xs="80" flex-xs="100"  ng-repeat="item in content.Items.data">
                     <img style="width:100%" ng-if="(item.type == 'cover')"  ng-src="{{item.image}}" alt="">
                     <iframe ng-if="(item.type == 'youtube')" width="100%" height="315" ng-src="{{item.embed.url}}" frameborder="0" allowfullscreen></iframe>
                     <iframe ng-if="item.type == 'soundcloud'" width="100%" height="166" scrolling="no" frameborder="0" src="{{item.embed.url}}" allowfullscreen></iframe>
                     <iframe ng-if="item.type == 'vimeo'" width="640" height="360" src="{{item.embed.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    </div>
+            <div flex-offset-gt-xs="10" flex-gt-xs="80" flex-xs="100"  ng-repeat="item in content.Items.data">
+                <div layout-align="center center">
                     <img ng-if="(item.type == 'image')" ng-src="{{item.image}}" alt="">
                 </div>
                 <p class="md-body-1 creativity-description" style="margin-bottom:10px;" ng-bind-html="item.description" >
