@@ -17,7 +17,6 @@
         if (localStorage.getItem('id_token') != null) {
             $state.go("home.dashboard");
         }
-        $scope.skills = loadSkills();
         $scope.signUp.collegeId = 0;
         tokenService.get("colleges").then(function(colleges) {
             $scope.colleges = colleges.data;
