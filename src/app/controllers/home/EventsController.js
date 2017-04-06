@@ -49,7 +49,6 @@
                 $scope.loading = true;
                 tokenService.get("events?offset=" + $scope.offset)
                     .then(function(tableData) {
-
                         $scope.loading = false;
                         if (tableData.data.length < 3) {
                             $scope.moreItems = false;

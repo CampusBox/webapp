@@ -88,13 +88,11 @@
             vm.liked = !vm.liked;
         }
 
-        $scope.bookmark = function(content, $index) {
-            $scope.finalContents[$index].Actions.Bookmarked.status = !$scope.finalContents[$index].Actions.Bookmarked.status;
-            if ($scope.finalContents[$index].Actions.Bookmarked.status) {
-                $scope.finalContents[$index].Actions.Bookmarked.total += 1;
-                tokenService.post('bookmarkedContent/' + content.id).then(function(result) {
-
-                    console.log('post request');
+        $scope.bookmark = function(content, index) {
+            $scope.finalContents[index].Actions.Bookmarked.status = !$scope.finalContents[index].Actions.Bookmarked.status;
+            if ($scope.finalContents[index].Actions.Bookmarked.status) {
+                $scope.finalContents[index].Actions.Bookmarked.total += 1;
+                tokenService.post('bookmarkContent/' + content.id).then(function(result) {
                     if (result.status != 'error') {
                         console.log(result.status);
                     } else {
@@ -102,10 +100,8 @@
                     }
                 });
             } else {
-                $scope.finalContents[$index].Actions.Bookmarked.total -= 1;
-
-                tokenService.delete('bookmarkedContent/' + content.id, '').then(function(result) {
-                    console.log('post request');
+                $scope.finalContents[index].Actions.Bookmarked.total -= 1;
+                tokenService.delete('bookmarkContent/' + content.id, '').then(function(result) {
                     if (result.status != 'error') {
                         console.log(result.status);
                     } else {
@@ -127,7 +123,7 @@
             $scope.finalContents[$index].Actions.Appriciate.status = !$scope.finalContents[$index].Actions.Appriciate.status;
             if ($scope.finalContents[$index].Actions.Appriciate.status) {
                 $scope.finalContents[$index].Actions.Appriciate.total += 1;
-                tokenService.post('appriciateContent/' + content.id).then(function(result) {
+                tokenService.post('appreciateContent/' + content.id).then(function(result) {
 
                     console.log('post request');
                     if (result.status != 'error') {
@@ -139,7 +135,7 @@
             } else {
                 $scope.finalContents[$index].Actions.Appriciate.total -= 1;
 
-                tokenService.delete('appriciateContent/' + content.id, '').then(function(result) {
+                tokenService.delete('appreciateContent/' + content.id, '').then(function(result) {
                     console.log('post request');
                     if (result.status != 'error') {
                         console.log(result.status);

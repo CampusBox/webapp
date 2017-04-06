@@ -11,6 +11,10 @@
     font-style: normal;
     font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
 }
+.grey {
+    fill: #9E9E9E !important;
+}
+
 </style>
 <div layout="row" layout-align="center" ng-controller="DashboardController">
     <div layout="column" flex-gt-sm="60" flex-offset-gt-sm="10" flex="100">
@@ -168,7 +172,7 @@
                         <span flex></span>
                         <md-card-icon-actions>
                             <md-button class="md-icon-button" ng-click="bookmark(content, $index)" aria-label="Favorite">
-                                <md-icon ng-class="content.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
+                                <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
                             </md-button>
                             <!-- <md-button class="" aria-label="toggle">
                                 <md-icon md-svg-icon="share"></md-icon>Share

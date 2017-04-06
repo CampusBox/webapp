@@ -18,6 +18,8 @@
         var vm = this;
         $scope.liked = false;
         $scope.loading = false;
+        $scope.offset = 0;
+        $scope.moreItems = true;
         $scope.finalContents = [];
 
         $scope.contents = [];
@@ -27,60 +29,97 @@
 
         };
         var cardObject = {};
-        tokenService.get("contents")
-            .then(function(tableData) {
-                $scope.contents = $scope.contents.concat(tableData.data);
-                $scope.contents.forEach(function(content) {
-                    cardObject = {};
-                    cardObject.Actions = content.Actions;
-                    cardObject.Tags = content.Tags;
-                    cardObject.created = content.created;
-                    cardObject.created.at = Date.parse(cardObject.created.at.replace('-', '/', 'g')); //replace mysql date to js date format
-                    cardObject.id = content.id;
-                    cardObject.title = $sce.trustAsHtml(content.title);
-                    cardObject.links = content.links;
-                    cardObject.total = content.links;
-                    content.Items.data.forEach(function(item) {
-                        if (item.type == 'text') {
-                            cardObject.description = $filter('limitTo')(item.description, 110, 0)
-                            cardObject.description = $sce.trustAsHtml(cardObject.description);
-                        } else if ((item.type == 'cover' && !cardObject.type)) {
-                            cardObject.type = item.type;
-                            cardObject.url = item.image;
-                        } else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
-                            cardObject.type = item.type;
-                            cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
-                        } else if (((item.type == 'cover') || (item.type == 'image')) && !cardObject.type) {
-                            cardObject.type = item.type;
-                            cardObject.url = item.image;
-                        }
-                    });
-                    $scope.finalContents.push(cardObject);
-                    content = {};
-                    $scope.loading = true;
-                });
-                $scope.contents = [];
-            });
+        // tokenService.get("contents")
+        //     .then(function(tableData) {
+        //         $scope.contents = $scope.contents.concat(tableData.data);
+        //         $scope.contents.forEach(function(content) {
+        //             cardObject = {};
+        //             cardObject.Actions = content.Actions;
+        //             cardObject.Tags = content.Tags;
+        //             cardObject.created = content.created;
+        //             cardObject.created.at = Date.parse(cardObject.created.at.replace('-', '/', 'g')); //replace mysql date to js date format
+        //             cardObject.id = content.id;
+        //             cardObject.title = $sce.trustAsHtml(content.title);
+        //             cardObject.links = content.links;
+        //             cardObject.total = content.links;
+        //             content.Items.data.forEach(function(item) {
+        //                 if (item.type == 'text') {
+        //                     cardObject.description = $filter('limitTo')(item.description, 110, 0)
+        //                     cardObject.description = $sce.trustAsHtml(cardObject.description);
+        //                 } else if ((item.type == 'cover' && !cardObject.type)) {
+        //                     cardObject.type = item.type;
+        //                     cardObject.url = item.image;
+        //                 } else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
+        //                     cardObject.type = item.type;
+        //                     cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
+        //                 } else if (((item.type == 'cover') || (item.type == 'image')) && !cardObject.type) {
+        //                     cardObject.type = item.type;
+        //                     cardObject.url = item.image;
+        //                 }
+        //             });
+        //             $scope.finalContents.push(cardObject);
+        //             content = {};
+        //             $scope.loading = true;
+        //         });
+        //         $scope.contents = [];
+        //     });
         $scope.myPagingFunction = function() {
-            console.log("abc");
-            if ($scope.loading == false) {
+            console.log('paging called');
+            if ($scope.loading == false && $scope.moreItems == true) {
                 $scope.loading = true;
-
+                tokenService.get("contents?offset=" + $scope.offset)
+                    .then(function(tableData) {
+                        console.log(tableData);
+                        $scope.loading = false;
+                        if (tableData.data.length < 3) {
+                            $scope.moreItems = false;
+                        }
+                        $scope.contents = $scope.contents.concat(tableData.data);
+                        $scope.contents.forEach(function(content) {
+                            cardObject = {};
+                            cardObject.Actions = content.Actions;
+                            cardObject.Tags = content.Tags;
+                            cardObject.created = content.created;
+                            cardObject.created.at = Date.parse(cardObject.created.at.replace('-', '/', 'g')); //replace mysql date to js date format
+                            cardObject.id = content.id;
+                            cardObject.title = $sce.trustAsHtml(content.title);
+                            cardObject.links = content.links;
+                            cardObject.total = content.links;
+                            content.Items.data.forEach(function(item) {
+                                if (item.type == 'text') {
+                                    cardObject.description = $filter('limitTo')(item.description, 110, 0)
+                                    cardObject.description = $sce.trustAsHtml(cardObject.description);
+                                } else if ((item.type == 'cover' && !cardObject.type)) {
+                                    cardObject.type = item.type;
+                                    cardObject.url = item.image;
+                                } else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
+                                    cardObject.type = item.type;
+                                    cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
+                                } else if (((item.type == 'cover') || (item.type == 'image')) && !cardObject.type) {
+                                    cardObject.type = item.type;
+                                    cardObject.url = item.image;
+                                }
+                            });
+                            $scope.finalContents.push(cardObject);
+                            content = {};
+                            $scope.loading = true;
+                        });
+                        $scope.offset = tableData.meta.offset;
+                        console.log($scope.offset);
+                    });
             }
-        }
+        };
 
         $scope.toggleLike = function(contentId) {
             console.log(contentId);
             vm.liked = !vm.liked;
         }
 
-        $scope.bookmark = function(content, $index) {
-            $scope.finalContents[$index].Actions.Bookmarked.status = !$scope.finalContents[$index].Actions.Bookmarked.status;
-            if ($scope.finalContents[$index].Actions.Bookmarked.status) {
-                $scope.finalContents[$index].Actions.Bookmarked.total += 1;
-                tokenService.post('bookmarkedContent/' + content.id).then(function(result) {
-
-                    console.log('post request');
+        $scope.bookmark = function(content, index) {
+            $scope.finalContents[index].Actions.Bookmarked.status = !$scope.finalContents[index].Actions.Bookmarked.status;
+            if ($scope.finalContents[index].Actions.Bookmarked.status) {
+                $scope.finalContents[index].Actions.Bookmarked.total += 1;
+                tokenService.post('bookmarkContent/' + content.id).then(function(result) {
                     if (result.status != 'error') {
                         console.log(result.status);
                     } else {
@@ -88,10 +127,8 @@
                     }
                 });
             } else {
-                $scope.finalContents[$index].Actions.Bookmarked.total -= 1;
-
-                tokenService.delete('bookmarkedContent/' + content.id, '').then(function(result) {
-                    console.log('post request');
+                $scope.finalContents[index].Actions.Bookmarked.total -= 1;
+                tokenService.delete('bookmarkContent/' + content.id, '').then(function(result) {
                     if (result.status != 'error') {
                         console.log(result.status);
                     } else {

@@ -3,13 +3,6 @@
         <md-icon md-svg-icon="filter-outline"></md-icon>
         Filters</md-button>
     <div flex></div>
-    <!-- <md-slider hide-xs hide-sm aria-label="size" ng-show="grid" ng-model="width" value="25" step="5" name="points" min="18" max="48"></md-slider>
-    <md-button class="md-icon-button " ng-click="grid=true" aria-label="Favorite ">
-        <md-icon md-svg-icon="view-grid "></md-icon>
-    </md-button>
-    <md-button class="md-icon-button " ng-click="grid=false" aria-label="Favorite ">
-        <md-icon md-svg-icon="view-list "></md-icon>
-    </md-button> -->
 </div>
 <div layout-gt-sm="row" layout="column" layout-align-gt-xs="start start" layout-align-xs="center strech">
     <md-card hide-gt-sm flex-xs="100" ng-show="filters">
@@ -178,9 +171,9 @@
                                 <md-button class="appriciate-button" ng-click="heart(event, $index)" aria-label="Favorite ">
                                     <md-icon class="pink" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>{{event.Actions.Bookmarked.status? 'Appreciate' : 'Appreciated' }}
                                 </md-button>
-                                 <md-button class="rsvp-button" ng-class="(event.Actions.Participants.status)? 'md-raised md-primary' : ''" ng-click="rsvpEvent(event, $index, 'events')" aria-label="Favorite">
-                                        <md-icon ng-class="(event.Actions.Participants.status)? '':'blue'" md-svg-icon="{{!event.Actions.Participants.status? 'account-check' : 'plus-one' }}"></md-icon> {{!event.Actions.Participants.status? 'attending' : 'RSVP' }}
-                                    </md-button>
+                                <md-button class="rsvp-button" ng-class="(event.Actions.Participants.status)? 'md-raised md-primary' : ''" ng-click="rsvpEvent(event, $index, 'events')" aria-label="Favorite">
+                                    <md-icon ng-class="(event.Actions.Participants.status)? '':'blue'" md-svg-icon="{{!event.Actions.Participants.status? 'account-check' : 'plus-one' }}"></md-icon> {{!event.Actions.Participants.status? 'attending' : 'RSVP' }}
+                                </md-button>
                             </md-card-actions>
                         </div>
                     </md-card-title>
@@ -211,13 +204,3 @@
        
     </div>
 </div>
-<!-- all the code before editing -->
-<!-- all the code before editing -->
-<!-- <md-button style="position: fixed;left:-9%;top:47%; " id="left ">
-    <md-button>
-        </md-dialog>
-        <md-button aria-label="left " style="position: fixed;right:0;top:47%; " id="right ">
-        </md-button>
-    </md-button>
-</md-button>
- -->

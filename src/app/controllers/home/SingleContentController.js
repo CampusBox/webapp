@@ -110,6 +110,7 @@
                         $scope.content.Items.data[item].description = $sce.trustAsHtml($scope.content.Items.data[item].description);
                     }
                 }
+                console.log($scope.content);
             });
     }
 

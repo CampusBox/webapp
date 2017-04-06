@@ -50,10 +50,10 @@
                                 if (item.type == 'text') {
                                     cardObject.description = $filter('limitTo')(item.description, 110, 0)
                                     cardObject.description = $sce.trustAsHtml(cardObject.description);
-                                }else if((item.type == 'cover' && !cardObject.type)){
+                                } else if ((item.type == 'cover' && !cardObject.type)) {
                                     cardObject.type = item.type;
                                     cardObject.url = item.image;
-                                }else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
+                                } else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
                                     cardObject.type = item.type;
                                     cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
                                 } else if (((item.type == 'cover') || (item.type == 'image')) && !cardObject.type) {
@@ -65,6 +65,7 @@
                             content = {};
                             $scope.loading = false;
                         });
+                        console.log($scope.finalContents);
                     });
             });
 
@@ -73,19 +74,8 @@
                 $scope.updates = updates.data;
                 $scope.updatesLoading = false;
             });
-        // tokenService.get("/contentsTop")
-        //     .then(function(contentsTop) {
-        //         $scope.contentsTop = contentsTop.data;
-        //         $scope.contentTopLoading = false;
-        //     });
 
-
-
-
-        $scope.openEvent = function(event) {
-            $location.path('/singleEvent/' + event.id);
-        }
- $scope.heart = function(content, $index) {
+        $scope.heart = function(content, $index) {
             $scope.finalContents[$index].Actions.Appriciate.status = !$scope.finalContents[$index].Actions.Appriciate.status;
             if ($scope.finalContents[$index].Actions.Appriciate.status) {
                 $scope.finalContents[$index].Actions.Appriciate.total += 1;
@@ -103,6 +93,28 @@
 
                 tokenService.delete('appreciateContent/' + content.id, '').then(function(result) {
                     console.log('post request');
+                    if (result.status != 'error') {
+                        console.log(result.status);
+                    } else {
+                        console.log(result);
+                    }
+                });
+            }
+        }
+        $scope.bookmark = function(content, index) {
+            $scope.finalContents[index].Actions.Bookmarked.status = !$scope.finalContents[index].Actions.Bookmarked.status;
+            if ($scope.finalContents[index].Actions.Bookmarked.status) {
+                $scope.finalContents[index].Actions.Bookmarked.total += 1;
+                tokenService.post('bookmarkContent/' + content.id).then(function(result) {
+                    if (result.status != 'error') {
+                        console.log(result.status);
+                    } else {
+                        console.log(result);
+                    }
+                });
+            } else {
+                $scope.finalContents[index].Actions.Bookmarked.total -= 1;
+                tokenService.delete('bookmarkContent/' + content.id, '').then(function(result) {
                     if (result.status != 'error') {
                         console.log(result.status);
                     } else {

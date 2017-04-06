@@ -7,7 +7,9 @@ md-list-item .md-button:not([disabled]):hover {
 md-list-item .md-button:not([disabled]):click {
     background-color: transparent;
 }
-
+.grey {
+    fill: #9E9E9E !important;
+}
 </style>
 <div layout="row " class="white-bg ">
     <div flex-gt-xs="10" hide-xs>
@@ -77,7 +79,7 @@ md-list-item .md-button:not([disabled]):click {
                 </md-button>
                 <span>{{content.Actions.Appriciate.total}}</span>
                 <md-button class="md-icon-button" ng-click="bookmark(content)" aria-label="Favorite ">
-                    <md-icon ng-class="content.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
+                    <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
                 </md-button>
             </p>
         </div>
