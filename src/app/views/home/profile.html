@@ -55,7 +55,7 @@
         <md-card-content>
             <md-tabs md-dynamic-height md-border-bottom md-selected="tab">
                 <md-tab label="Overview">
-                    <div layout="column" class="md-padding" layout-fill ng-show="profile.Events.data.length && profile.AttendingEvents.data.length && profile.BookmarkedContents.length && profile.CreativeContents.data.length">
+                    <div layout="column" class="md-padding" layout-fill ng-show="(profile.Events.data.length || profile.AttendingEvents.data.length || profile.BookmarkedContents.data.length || profile.CreativeContents.data.length) == 0">
                         <div style="margin-top: 5%;" layout="column" layout-align="center center">
                             <img style="width: 20%;height: 20%;" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDU4LjA2NCA1OC4wNjQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDU4LjA2NCA1OC4wNjQ7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cG9seWdvbiBzdHlsZT0iZmlsbDojRTdFQ0VEOyIgcG9pbnRzPSIyMiwzMC41MzIgMCwyMy4zMjQgNTguMDY0LDcuNTMyIDM2LDUwLjUzMiAiLz4KPHBvbHlnb24gc3R5bGU9ImZpbGw6I0FGQjZCQjsiIHBvaW50cz0iMjIsMzAuNTMyIDIwLDQ2LjUzMiAyOC41OTQsMzkuOTUyICIvPgo8cGF0aCBzdHlsZT0iZmlsbDojQUZCNkJCOyIgZD0iTTIxLjQ2MiwyOS42ODljLTAuMjAzLDAuMTI5LTAuMzI5LDAuMzI0LTAuMzk4LDAuNTM2TDIyLDMwLjUzMmwwLjU3NCwwLjgyTDU3LjE4OSw5LjIzN2wwLjg3NS0xLjcwNSAgbC0zLjM0NSwwLjkxTDIxLjQ2MiwyOS42ODl6Ii8+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
                             <p class="md-subhead" style="color:rgba(0,0,0,.44)">Looks like {{profile.name}} isn't active much</p>
@@ -63,7 +63,7 @@
                     </div>
                     <div>
                         <div ng-show="profile.Events.data.length>0">
-                            <h3 class="md-subhead" style="margin-bottom: 0px;">Events Created</h3>
+                            <h3 class="md-title" style="margin-bottom: 0px;">Events Created</h3>
                             <md-list>
                                 <md-list-item style="margin-bottom: 10px;" ng-repeat="event in profile.Events.data | limitTo : 2" ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding eventListItem">
                                     <div flex>
@@ -122,7 +122,7 @@
                        </md-list>
                    </div>
                    <div ng-show="profile.AttendingEvents.data.length>0">
-                                                <h3 class="md-subhead" style="margin-bottom: 0px;">Attending Events</h3>
+                                                <h3 class="md-title" style="margin-bottom: 0px;">Attending Events</h3>
                                                 <md-list>
                                                     <md-list-item style="margin-bottom: 10px;" ng-repeat="event in profile.AttendingEvents.data | limitTo: 2" ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding eventListItem">
                                                         <md-card flex>
@@ -184,7 +184,7 @@
                                             </div>
                                             <br>
                                             <div>
-                                                <h3 class="md-subhead" style="margin-bottom: 0px;">Content Created</h3>
+                                                <h3 class="md-title" style="margin-bottom: 0px;">Content Created</h3>
                                                 <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in CreativeContentsFinal track by $index">
                                                     <md-list flex>
                                                         <md-list-item class="md-3-line" ui-sref="home.singleContent({contentId: content.id})">
@@ -204,7 +204,7 @@
                                                 </div>
                                             </div>
                                             <div ng-show="profile.BookmarkedContents.length>0">
-                                                <h3 class="md-subhead" style="margin-bottom: 0px;">Liked Items</h3>
+                                                <h3 class="md-title" style="margin-bottom: 0px;">Liked Items</h3>
                                                 <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in BookmarkedContents track by $index">
                                                     <md-list flex>
                                                         <md-list-item class="md-3-line" ui-sref="home.singleContent({contentId: content.id})">

@@ -38,16 +38,11 @@ md-list-item .md-button:not([disabled]):click {
         <md-list-item flex-offset-gt-xs="10" class="md-3-line" ng-click="false" md-ink-ripple="0">
             <img style="z-index:10000" ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
             <div class="md-list-item-text" style="z-index:10000;user-select:text;" layout="column">
-                <!-- <span class="md-subhead">
-                <span  ui-sref="home.profile({studentId: content.created.by.username})" style="color: #0570c0;cursor: pointer;">
-                {{content.created.by.name}} </span> from <span style="color: #0570c0">{{content.created.by.college.name}} </span>
-                </span>
-                <span class="md-caption">{{content.created.at | date: 'd MMM'}}</span> -->
                 <h3><span class="md-subhead">
                 <span  ui-sref="home.profile({studentId: content.created.by.username})" style="color: #0570c0;cursor: pointer;">
-                {{content.created.by.name}} </span> in <span style="color: #0570c0">{{content.created.by.college.name}} </span>
-                </span></h3>
-                <!-- <h4><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.subtitle}}</span></h4> -->
+                {{content.created.by.name}} </span> from <span style="color: #0570c0">{{content.created.by.college.name}} </span>
+                </span> <span><md-button ng-class="profile.following? 'md-primary' : 'md-raised md-primary'" ng-click="follow($event)">{{profile.following? 'Following':'Follow' }}</md-button></span> </h3>
+                <h4><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.subtitle}}</span></h4>
                 <!-- <h4><span style="color: rgba(0,0,0,.44);" class="md-caption">I write. I ride. I read. I rest. Contributor to Thought Catalog, Good Men’s Project, Momentum Magazine</span></h4> -->
                 <p><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.at | date: 'd MMM'}}</span></p>
             </div>

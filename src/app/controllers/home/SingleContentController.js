@@ -74,22 +74,23 @@
                 });
             }
         }
-        $scope.follow = function() {
-            $scope.demoFollow.status = !$scope.demoFollow.status;
-            if ($scope.demoFollow.status) {
-                // SEND FOLLOWER ID AND FOLLOWING ID IN POST
-                tokenService.post('studentFollow/').then(function(result) {
+        $scope.follow = function($event) {
+            $event.stopPropagation();   
+            if ($scope.content.created.by.following) {
+                tokenService.delete('studentFollow/' + $scope.content.created.by.username).then(function(result) {
                     if (result.status != 'error') {
                         console.log(result.status);
+                        $scope.content.created.by.following = !$scope.content.created.by.following;
                     } else {
                         console.log(result);
                     }
                 });
             } else {
-                // SEND FOLLOWER ID IN DELETE
-                tokenService.delete('studentFollow/').then(function(result) {
+
+                tokenService.post('studentFollow/' + $scope.content.created.by.username).then(function(result) {
                     console.log('post request');
                     if (result.status != 'error') {
+                        $scope.content.created.by.following = !$scope.students[index].following;
                         console.log(result.status);
                     } else {
                         console.log(result);
@@ -99,7 +100,7 @@
         };
         tokenService.get("content/" + $scope.contentId)
             .then(function(tableData) {
-        $scope.loading = false;
+                $scope.loading = false;
                 $scope.content = tableData.data;
                 $scope.content.created.at = new Date(Date.parse($scope.content.created.at.replace('-', '/', 'g'))); //replace mysql date to js date format
                 $scope.content.title = $sce.trustAsHtml($scope.content.title);

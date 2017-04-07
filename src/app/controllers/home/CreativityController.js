@@ -38,7 +38,7 @@
                         console.log(tableData);
                         $scope.creativityLoading = false;
                         if (tableData.data.length < 3) {
-                            $scope.moreItems = false;
+                            // $scope.moreItems = false;
                         }
                         $scope.nonFinalContents =[];
                         $scope.contents = tableData.data;

@@ -12,6 +12,49 @@
     padding: 2px 4px;
     border-radius: 2px;
 }
+md-chips.md-default-theme md-chip.mdfocused,
+md-chips md-chip.md-focused {
+    /*background-color: #fafafa !important;
+    color: rgba(0, 0, 0, .44);
+    border: 1px solid rgb(97, 97, 97) !important;
+*/
+ cursor: default;
+ border-radius: 5px;
+ font-size: 12px;
+ line-height: 32px;
+ margin: 8px 8px 0px 0px;
+ padding: 0px 7px;
+ float: left;
+ box-sizing: border-box;
+ max-width: 100%;
+ position: relative;
+ background-color: rgb(224, 224, 224);
+ color: rgb(66, 66, 66);   
+}
+
+md-chips.md-default-theme md-chip,
+md-chips md-chip {
+    /*border-color: rgba(2, 184, 117, 0.8);*/
+    /*border: 1px solid rgb(97, 97, 97) !important;*/
+    cursor: default;
+    border-radius: 5px !important;
+    font-size: 12px;
+    line-height: 32px;
+    margin: 8px 8px 0px 0px;
+    padding: 0px 7px;
+    float: left;
+    box-sizing: border-box;
+    max-width: 100%;
+    position: relative;
+    background-color: rgb(224, 224, 224);
+    color: rgb(66, 66, 66);
+}
+
+md-chips.md-default-theme md-chip.md-focused md-icon,
+md-chips md-chip.md-focused,
+md-chips md-chip.md-focused md-icon {
+    color: rgba(0, 0, 0, .44) !important;
+}
 </style>
 <div layout="row" layout-xs="column">
     <md-card flex="30" flex-xs="100">
@@ -54,7 +97,7 @@
                     </md-button>
                 </div>
                 <form name="skillsForm">
-                    <md-chips name="skills" md-separator-keys="customKeys" ng-model="student.Skills.data" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
+                    <md-chips class="your-custom-chip" name="skills" md-separator-keys="customKeys" ng-model="student.Skills.data" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
                         <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Use comma to separate skills.">
                             <span md-highlight-text="searchText">{{item.name}}</span>
                         </md-autocomplete>
@@ -186,7 +229,7 @@
                             </md-list>
                         </div>
                 </md-tab>
-                <md-tab label="RSVPs" ng-if="student.AttendingEvents.data">
+                <md-tab label="RSVPs" ng-if="student.AttendingEvents.data.length">
                     <div class="md-padding">
                         <div layout="row" ng-hide="!vm.activated" layout-sm="column" layout-align="space-around">
                             <md-progress-circular md-mode="indeterminate"></md-progress-circular>
