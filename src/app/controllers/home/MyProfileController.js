@@ -65,14 +65,15 @@
                 fullscreen: true // Only for -xs, -sm breakpoints.
             });
         };
-        $scope.showParticipants = function(ev) {
+        $scope.showParticipants = function(ev, eventId) {
             $mdDialog.show({
                 controller: 'ParticipantsController',
                 templateUrl: 'app/views/partials/showParticipants.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 locals: {
-                    participants: $scope.events
+                    eventId: eventId 
+
                 },
                 clickOutsideToClose: true,
                 fullscreen: true // Only for -xs, -sm breakpoints.

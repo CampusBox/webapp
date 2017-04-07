@@ -217,9 +217,8 @@ md-toolbar {
                             <md-icon ng-if="notification.type=='content_appreciate'" md-svg-icon="all-inclusive"></md-icon>
                             <div class="md-list-item-text">
                                 <p ng-if="notification.type=='follower'" ui-sref="home.profile({studentId: notification.follower_username})">{{notification.follower_username}} started following you.</p>
-                                <p ng-if="notification.type=='event_rsvps'" ui-sref="home.singleEvent({eventId: notification.event_id})">{{notification.total}} {{(notification.total>1)?'people have':'person has'}} RSVP'd your event "{{notification.title}}" </p>
-                                <p ng-if="notification.type=='content_appreciate'" ui-sref="home.singleContent({contentId: notification.content_id})">{{notification.total}} {{(notification.total>1)?'people have':'person has'}} appreciated your creativity.</p>
->>>>>>> 94fbef9c798b3e97637137aa87138aa539197565
+                                <p ng-if="notification.type=='event_rsvps'" ui-sref="home.singleEvent({eventId: notification.event_id})">{{notification.total}} {(notification.total>1)?'people have':'person has'}} RSVP'd your event "{{notification.title}}" </p>
+                                <p ng-if="notification.type=='content_appreciate'" ui-sref="home.singleContent({contentId: notification.content_id})">{{notification.total}} {(notification.total>1)?'people have':'person has'}} appreciated your creativity.</p>
                             </div>
                             <md-button class="md-secondary md-icon-button " ng-click="doSecondaryAction($event) " ng-if="phone.options.actionIcon " aria-label="call ">
                                 <md-icon md-svg-icon="{{phone.options.actionIcon}} "></md-icon>

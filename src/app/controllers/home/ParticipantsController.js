@@ -6,10 +6,19 @@
         .controller('ParticipantsController', [
             '$mdDialog',
             '$scope',
+            'tokenService',
+            'eventId',
             ParticipantsController
         ]);
 
-    function ParticipantsController($mdDialog, $scope) {
+    function ParticipantsController($mdDialog, $scope, tokenService, eventId) {
+        console.log(eventId);
+        tokenService.get("participants/" + eventId)
+            .then(function(participants) {
+                console.log(participants)
+                $scope.participants = participants;
+            });
+
         $scope.save = function() {
             $scope.title = $scope.editableTitle;
             $scope.disableEditor();

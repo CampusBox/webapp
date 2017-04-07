@@ -151,7 +151,7 @@ md-chips md-chip.md-focused md-icon {
                             <md-list-item ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding" ng-repeat="event in student.Events.data ">
                                 <img ng-src="{{event.image}}" class="md-avatar" alt="{{item.who}}">
                                 <p>{{event.title}}</p>
-                                <md-button class="md-primary" aria-label="participants" ng-click="showParticipants(event)" md-ripple-size="auto">Participants</md-button>
+                                <md-button class="md-primary" aria-label="participants" ng-click="showParticipants(event, event.id)" md-ripple-size="auto">Participants</md-button>
                                 <md-divider md-inset ng-if="!$last"></md-divider>
                             </md-list-item>
                         </md-list>
