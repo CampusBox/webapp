@@ -33,9 +33,7 @@
 
         function querySearch(query) {
 
-            $scope.searchData = $filter('filter')($scope.filteredPeople, {
-                name: query
-            });
+            $scope.searchData =$filter('limitTo')($filter('filter')($scope.filteredPeople, {name: query}), 5) ;
         }
 
         // Search Autocomplete End
@@ -120,6 +118,7 @@
 
         $scope.signUp = {};
         $scope.selectedItemChange = function(id) {
+            console.log(id);
             $scope.signUp.college = id;
         };
         $scope.authenticate = function(provider) {

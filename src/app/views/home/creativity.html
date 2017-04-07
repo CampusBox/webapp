@@ -6,19 +6,6 @@
 .grey {
     fill: #9E9E9E !important;
 }
-
-.creativity-description {
-    margin: 0px;
-    font-size: 23px;
-    line-height: 1.22;
-    letter-spacing: -.022em;
-    word-spacing: 0.1em;
-    font-weight: 300;
-    color: rgba(0, 0, 0, .44);
-    margin-top: 5px;
-    font-style: normal;
-    font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
-}
 </style>
 <div layout="column" layout-fill ng-controller="CreativityController">
     <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in [1,2,3,4]">
@@ -48,9 +35,10 @@
                 </md-card-header-text>
             </md-card-header>
             <img ng-if="(content.type == 'cover' || content.type == 'image')" ng-src="{{content.url}}" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer;height: 200px; object-fit: none; width: 100%" alt="">
+            <img ng-if="(content.type == 'youtube')" ng-src="https://img.youtube.com/vi/{{content.url}}/maxresdefault.jpg" style="object-fit: cover;" ui-sref="home.singleContent({contentId: content.id})" class="creativity-cover" alt="">
             <md-card-content>
-                <div ng-if="(content.type == 'youtube') || (content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
-                    <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" ng-src="{{content.url}}" frameborder="0" allowfullscreen></iframe>
+                <div ng-if="(content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
+                    <!-- <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" ng-src="{{content.url}}" frameborder="0" allowfullscreen></iframe> -->
                     <iframe ng-show="(content.type == 'soundcloud')" width="100%" height="166" scrolling="no" frameborder="0" ng-src="{{content.url}}" allowfullscreen></iframe>
                     <iframe ng-show="(content.type == 'vimeo')" width="640" height="360" ng-src="{{content.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                 </div>
@@ -82,6 +70,6 @@
         <div flex="20">
         </div>
     </div>
-        <div infinite-scroll="myPagingFunction() " infinite-scroll-disabled='loading' infinite-scroll-distance="4 ">
-        </div>
+    <div infinite-scroll="myPagingFunction() " infinite-scroll-disabled='loading' infinite-scroll-distance="4 ">
+    </div>
 </div>

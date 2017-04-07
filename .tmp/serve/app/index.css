@@ -2,32 +2,6 @@ body {
   color: #282c35;
 }
 
-.creativity-description-single {
-  margin-top: 29px;
-}
-
-.creativity-description {
-  margin: 0px;
-  font-size: 23px;
-  line-height: 1.22;
-  letter-spacing: -.022em;
-  word-spacing: 0.1em;
-  font-weight: 300;
-  color: rgba(0, 0, 0, 0.87);
-  font-style: normal;
-  font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
-}
-
-.creativity-description p {
-  margin: 0px;
-  font-size: 21px;
-  line-height: 1.58;
-  letter-spacing: 0.01em;
-  word-spacing: 0.1em;
-  font-weight: 300;
-  font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
-}
-
 .toolbar-button {
   min-width: 20px;
 }
@@ -562,7 +536,83 @@ md-icon.cross > svg {
   background-color: #fff;
 }
 
+.creativity-description-single {
+  margin-top: 29px;
+}
+
+.creativity-description {
+  margin: 0px;
+  font-size: 23px;
+  line-height: 1.22;
+  letter-spacing: -.022em;
+  word-spacing: 0.1em;
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.87);
+  font-style: normal;
+  font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+}
+
+.creativity-description p {
+  margin: 0px;
+  font-size: 21px;
+  line-height: 1.58;
+  letter-spacing: 0.01em;
+  word-spacing: 0.1em;
+  font-weight: 300;
+  font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+}
+
+.creativity-title {
+  margin-top: 31px;
+  font-size: 29px;
+  margin-left: -1.81px;
+  line-height: 1.04;
+  letter-spacing: -.028em;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.creativity-cover {
+  cursor: pointer;
+  height: 200px;
+  object-fit: none;
+  width: 100%;
+}
+
 @media only screen and (max-width: 500px) {
+  .creativity-description-single {
+    margin-top: 29px;
+  }
+
+  .creativity-cover {
+    cursor: pointer;
+    height: 150px;
+    object-fit: none;
+    width: 100%;
+  }
+
+  .creativity-description {
+    margin: 0px;
+    font-size: 23px;
+    line-height: 1.22;
+    letter-spacing: -.022em;
+    word-spacing: 0.1em;
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.87);
+    font-style: normal;
+    font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+  }
+
+  .creativity-description p {
+    margin: 0px;
+    font-size: 18px;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    word-spacing: 0.1em;
+    font-weight: 300;
+    font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+  }
+
   .interest {
     padding: 0px 7px;
     min-width: 0px;

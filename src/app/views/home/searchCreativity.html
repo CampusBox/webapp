@@ -80,7 +80,7 @@
                     <iframe ng-show="(content.type == 'vimeo')" width="640" height="360" ng-src="{{content.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                 </div>
                 <!-- <div flex="80" flex-offset="10"> -->
-                <span style="margin-top: 31px;font-size: 29px;margin-left: -1.81px;line-height: 1.04;letter-spacing: -.028em;font-weight: 700;color: rgba(0,0,0,.8);">{{content.title}} </span>
+                <span class="creativity-title">{{content.title}} </span>
                 <p class="creativity-description" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="content.description  | limitTo: 200">
                 </p>
                 <p ui-sref="home.singleContent({contentId: content.id})" class="md-subhead" style="color: rgba(0,0,0,.44);font-size: 13px;cursor: pointer;    transition: .1s background-color,.1s border-color,.1s color,.1s fill;">
