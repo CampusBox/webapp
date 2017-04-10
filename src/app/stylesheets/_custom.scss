@@ -605,11 +605,11 @@ md-icon.cross>svg {
 .creativity-description {
     margin: 0px;
     font-size: 23px;
-    line-height: 1.22;
+    line-height: 1.58;
     letter-spacing: -.022em;
     word-spacing: 0.1em;
     font-weight: 300;
-    color: rgba(0, 0, 0, .87);
+    color: rgba(0, 0, 0, .8);
     font-style: normal;
     font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
 }
@@ -654,6 +654,8 @@ md-icon.cross>svg {
     .creativity-description {
         margin: 0px;
         font-size: 23px;
+        padding-left: 20px;
+        padding-right: 20px;
         line-height: 1.22;
         letter-spacing: -.022em;
         word-spacing: 0.1em;
@@ -665,9 +667,9 @@ md-icon.cross>svg {
     .creativity-description p {
         margin: 0px;
         font-size: 18px;
-        line-height: 1.2;
-        letter-spacing: 0.01em;
-        word-spacing: 0.1em;
+        line-height: 1.58;
+        letter-spacing: .01em;
+        color: rgba(0, 0, 0, .8);
         font-weight: 300;
         font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
     }

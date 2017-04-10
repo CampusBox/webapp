@@ -33,15 +33,16 @@
             console.log('paging called');
             if ($scope.creativityLoading == false && $scope.moreItems == true) {
                 $scope.creativityLoading = true;
-                tokenService.get("contents?offset=" + $scope.offset)
+                tokenService.get("contents?limit=2&offset=" + $scope.offset)
                     .then(function(tableData) {
                         console.log(tableData);
                         $scope.creativityLoading = false;
-                        if (tableData.data.length < 3) {
-                            // $scope.moreItems = false;
+                        if (tableData.data.length < 2) {
+                            $scope.moreItems = false;
                         }
                         $scope.nonFinalContents =[];
                         $scope.contents = tableData.data;
+
                         $scope.contents.forEach(function(content) {
                             cardObject = {};
                             cardObject.Actions = content.Actions;
@@ -72,8 +73,10 @@
                             $scope.creativityLoading = false;
 
                         });
+                        $scope.creativityLoading = false;
+                        console.log($scope.creativityLoading);
                             $scope.finalContents = $scope.finalContents.concat($scope.nonFinalContents);
-                        $scope.offset = tableData.meta.offset;
+                        $scope.offset += 2;
                         console.log($scope.offset);
                     });
             }
