@@ -23,7 +23,7 @@
                 <img style="cursor: pointer;height: 200px; object-fit: none; width: 100%" alt="" ng-src="{{content.url}}">
             </a>
             <a ng-if="(content.type == 'youtube')" ui-sref="home.singleContent({contentId: content.id})">
-                <img ng-src="https://img.youtube.com/vi/{{content.url}}/maxresdefault.jpg" style="object-fit: cover;" class="creativity-cover" alt="">
+                <img style="background:url('https://img.youtube.com/vi/{{content.url}}/maxresdefault.jpg');object-fit: cover;background-size: cover;background-position: center;"  class="creativity-cover" alt="">
             </a>
             <md-card-content>
                 <div ng-if="(content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">

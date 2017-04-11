@@ -35,7 +35,7 @@ md-toolbar {
             </md-button>
         </section>
         <section layout-align="start center" flex>
-            <form hide-sm hide-xs ng-submit="$event.preventDefault();openSearch(searchText)">
+            <form hide-sm hide-xs ng-submit="searchedFast(searchText)">
                 <md-autocomplete ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-items="item in searchTypes" md-item-text="searchText" md-min-length="0" placeholder="Search for anything here" md-menu-class="autocomplete-custom-template">
                     <md-item-template>
                         <md-list-item class="noright" ng-click="searched(item,searchText)">

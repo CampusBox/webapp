@@ -5,20 +5,20 @@
     angular
         .module('app')
         .controller('MainController', [
-            'navService', '$mdSidenav', 'tokenService', '$mdDialog', '$log', '$q', '$timeout', '$state', '$mdToast', '$scope', '$localStorage', '$location','$mdConstant',
+            'navService', '$mdSidenav', 'tokenService', '$mdDialog', '$log', '$q', '$timeout', '$state', '$mdToast', '$scope', '$localStorage', '$location', '$mdConstant',
             MainController
         ]);
 
-    function MainController(navService, $mdSidenav, tokenService, $mdDialog, $log, $q, $timeout, $state, $mdToast, $scope, $localStorage, $location,$mdConstant) {
+    function MainController(navService, $mdSidenav, tokenService, $mdDialog, $log, $q, $timeout, $state, $mdToast, $scope, $localStorage, $location, $mdConstant) {
         var vm = this;
         tokenService.get("notifications")
             .then(function(response) {
 
                 $scope.notifications = response;
             });
-                var semicolon = 186;
+        var semicolon = 186;
 
-    $scope.customKeys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, semicolon];
+        $scope.customKeys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, semicolon];
 
         $scope.searchTypes = [{
             'title': 'events',
@@ -52,7 +52,7 @@
             localStorage.clear();
             $state.go('static.login');
         };
-        $scope.submitSearch = function(item, searchText){
+        $scope.submitSearch = function(item, searchText) {
             console.log(item);
             console.log('searchText: ' + searchText)
         }
@@ -139,6 +139,10 @@
             } else if (item.title == 'students') {
                 $state.go('home.searchStudents', { query: text });
             }
+        };
+        $scope.searchedFast = function(text) {
+
+            $state.go('home.searchStudents', { query: text });
         };
 
         function showSimpleToast(title) {

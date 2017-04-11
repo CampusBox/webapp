@@ -1,5 +1,5 @@
 <md-content class="md-padding" ng-controller="SearchStudentsController">
-    <form hide-gt-sm ng-submit="$event.preventDefault();openSearch(searchText)">
+    <form hide-gt-sm >
         <md-autocomplete ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text="searchText" md-items="item in searchTypes" md-item-text="searchText" md-min-length="0" placeholder="Search for anything here" md-menu-class="autocomplete-custom-template">
             <md-item-template>
                 <md-list-item class="noright" ng-click="searched(item.title,searchText)">

@@ -48,8 +48,8 @@
                                     {{event.timings.from.date | date: ' d MMM'}} · {{event.timings.from.time}}{{event.timings.from.period}} - {{event.timings.to.date==event.timings.from.date?null:event.timings.to.date | date: ' d MMM'}} · {{ event.timings.to.time}}{{event.timings.to.period}}
                                 </h3>
                     </md-list-item>
-                    <md-list-item>
-                        <md-icon md-svg-icon="web" ng-if="event.link" class="grey-text" aria-label="Website"></md-icon>
+                    <md-list-item ng-if="event.link">
+                        <md-icon md-svg-icon="web"  class="grey-text" aria-label="Website"></md-icon>
                         <h3 class="md-body-1 grey-text">
                                     <a href="{{event.link}}" target="_blank"> {{event.link}} </a>
                                 </h3>
@@ -92,7 +92,7 @@
     <md-divider></md-divider>
     <!-- <md-tabs md-dynamic-height md-border-bottom md-selected="tab"> -->
     <!-- <md-tab label="Description"> -->
-    <div layout="column" flex-gt-xs="60" flex-offset-gt-xs="20" flex-offset-xs="5" flex-order-xs="1">
+    <div layout="row" flex-gt-xs="80" flex="80" flex-offset-gt-xs="10" flex-offset-xs="5" flex-order-xs="1">
         <h2 class="md-headline" style="margin-bottom:10px;">Description</h2>
         <p class="md-body-2">{{event.details.description}}</p>
     </div>

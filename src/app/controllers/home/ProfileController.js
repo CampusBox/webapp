@@ -21,7 +21,7 @@
         $scope.BookmarkedContents = [];
         $scope.CreativeContentsFinal = [];
         $scope.username = $stateParams.username;
-        $scope.loading = true;
+        $scope.listLoading = true;
 
 
         $scope.follow = function(type, index) {
@@ -131,7 +131,7 @@
                 console.log($scope.profile);
                 $scope.profile.BookmarkedContents.data.forEach(function(content) {
                     cardObject = {};
-                    $scope.loading = false;
+                    $scope.listLoading = false;
                     cardObject.Actions = content.Actions;
                     cardObject.Tags = content.Tags;
                     cardObject.created = content.created;
