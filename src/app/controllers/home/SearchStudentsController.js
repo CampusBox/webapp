@@ -10,6 +10,7 @@
     function SearchController($scope, $timeout, $q, tokenService, $stateParams, $state) {
         var vm = this;
         $scope.tests = 'test';
+        $scope.listLoading = true;
         $scope.events = {};
         $scope.query = $stateParams.query;
         $scope.searchText = $stateParams.query;
@@ -73,7 +74,7 @@
         };
         tokenService.get("search/students/" + $scope.query)
             .then(function(tableData) {
-                $scope.loading = false;
+        $scope.listLoading = false;
                 $scope.students = tableData.data;
                 console.log($scope.students);
             });
