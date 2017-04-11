@@ -49,6 +49,12 @@
                                 </h3>
                     </md-list-item>
                     <md-list-item>
+                        <md-icon md-svg-icon="web" ng-if="event.link" class="grey-text" aria-label="Website"></md-icon>
+                        <h3 class="md-body-1 grey-text">
+                                    <a href="{{event.link}}" target="_blank"> {{event.link}} </a>
+                                </h3>
+                    </md-list-item>
+                    <md-list-item>
                         <md-icon md-svg-icon="map-marker" class="grey-text" aria-label="Alarm Icon"></md-icon>
                         <h3 class="md-body-1 grey-text">
                                     {{event.details.venue}}

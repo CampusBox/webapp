@@ -13,32 +13,6 @@ body {
     color: $text-color;
 }
 
-.creativity-description-single {
-    margin-top: 29px;
-}
-
-.creativity-description {
-    margin: 0px;
-    font-size: 23px;
-    line-height: 1.22;
-    letter-spacing: -.022em;
-    word-spacing: 0.1em;
-    font-weight: 300;
-    color: rgba(0, 0, 0, .87);
-    font-style: normal;
-    font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
-}
-
-.creativity-description p {
-    margin: 0px;
-    font-size: 21px;
-    line-height: 1.58;
-    letter-spacing: 0.01em;
-    word-spacing: 0.1em;
-    font-weight: 300;
-    font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
-}
-
 .toolbar-button {
     min-width: 20px;
 }
@@ -349,34 +323,6 @@ md-backdrop.md-sidenav-backdrop {
 /*college filter end*/
 
 
-/*search autocomplete start*/
-
-.autocomplete-custom-template li {
-    border-bottom: 1px solid #ccc;
-    height: auto;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    white-space: normal;
-}
-
-.autocomplete-custom-template li:last-child {
-    border-bottom-width: 0;
-}
-
-.autocomplete-custom-template .item-title,
-.autocomplete-custom-template .item-metadata {
-    display: block;
-    line-height: 2;
-}
-
-.autocomplete-custom-template .item-title md-icon {
-    height: 18px;
-    width: 18px;
-}
-
-
-/*search autocomplete start*/
-
 .cssload-tetrominos {
     position: absolute;
     left: 50%;
@@ -598,7 +544,7 @@ md-icon.cross>svg {
     animation-timing-function: linear;
     background: #f6f7f8;
     color: transparent!important;
-    background: linear-gradient(to right, #f6f7f8 8%, #eee 18%, #f6f7f8 33%);
+    background: linear-gradient(to right, #f6f7f8 8%, #dfdfdf 18%, #f6f7f8 33%);
     background-size: 800px 104px;
     position: relative;
 }
@@ -624,7 +570,81 @@ md-icon.cross>svg {
     background-color: #fff;
 }
 
+.creativity-description-single {
+    margin-top: 29px;
+}
+
+.creativity-description {
+    margin: 0px;
+    font-size: 23px;
+    line-height: 1.58;
+    letter-spacing: -.022em;
+    word-spacing: 0.1em;
+    font-weight: 300;
+    color: rgba(0, 0, 0, .8);
+    font-style: normal;
+    font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+}
+
+.creativity-description p {
+    margin: 0px;
+    font-size: 21px;
+    line-height: 1.58;
+    letter-spacing: 0.01em;
+    word-spacing: 0.1em;
+    font-weight: 300;
+    font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+}
+
+.creativity-title {
+    margin-top: 31px;
+    font-size: 29px;
+    margin-left: -1.81px;
+    line-height: 1.04;
+    letter-spacing: -.028em;
+    font-weight: 700;
+    color: rgba(0, 0, 0, .8);
+}
+
+.creativity-cover {
+    cursor: pointer;
+    height: 200px;
+    object-fit: none;
+    width: 100%;
+}
+
 @media only screen and (max-width: 500px) {
+    .creativity-description-single {
+        margin-top: 29px;
+    }
+    .creativity-cover {
+        cursor: pointer;
+        height: 150px;
+        object-fit: none;
+        width: 100%;
+    }
+    .creativity-description {
+        margin: 0px;
+        font-size: 23px;
+        padding-left: 20px;
+        padding-right: 20px;
+        line-height: 1.22;
+        letter-spacing: -.022em;
+        word-spacing: 0.1em;
+        font-weight: 300;
+        color: rgba(0, 0, 0, .87);
+        font-style: normal;
+        font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+    }
+    .creativity-description p {
+        margin: 0px;
+        font-size: 18px;
+        line-height: 1.58;
+        letter-spacing: .01em;
+        color: rgba(0, 0, 0, .8);
+        font-weight: 300;
+        font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+    }
     .interest {
         padding: 0px 7px;
         min-width: 0px;

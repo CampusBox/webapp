@@ -23,8 +23,7 @@
                                 <md-icon md-svg-icon="comment-text"></md-icon>
                                 <p>Text</p>
                             </md-list-item> -->
-                                                        <md-subheader class="md-no-sticky">Adding cover helps your post, get one from <a href="http://unsplash.com" target="_blank">here.</a></md-subheader>
-
+                            <md-subheader class="md-no-sticky">Adding cover helps your post, get one from <a href="http://unsplash.com" target="_blank">here.</a></md-subheader>
                             <md-list-item ng-hide="coverStatus">
                                 <md-button class="" flex ngf-select="uploadCover($file)" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="100MB" ngf-min-height="300" ngf-min-width="400" ngf-resize="{width: 1000, height: 800}" ngf-resize-if="$width > 1000 || $height > 800">
                                     <md-icon md-svg-icon="image-area"></md-icon>
@@ -35,13 +34,13 @@
                             <md-divider>
                             </md-divider>
                             <md-list-item>
-                                <md-icon  md-svg-icon="image" ngf-select="uploadFiles($files, $invalidFiles)" multiple name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 500, height: 500}" ngf-resize-if="$width > 500 || $height > 500"></md-icon>
+                                <md-icon md-svg-icon="image" ngf-select="uploadFiles($files, $invalidFiles)" multiple name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 500, height: 500}" ngf-resize-if="$width > 500 || $height > 500"></md-icon>
                                 <md-button flex ngf-select="uploadFiles($files, $invalidFiles)" multiple name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 500, height: 500}" ngf-resize-if="$width > 500 || $height > 500">
                                     <p class="md-subhead" style="margin: 0;text-align: start;text-transform: capitalize;">Image</p>
                                 </md-button>
                             </md-list-item>
                             <md-list-item ng-click="addItem(content.title)" ng-repeat="content in contents">
-                                <md-icon  md-svg-icon="{{content.icon}}"></md-icon>
+                                <md-icon md-svg-icon="{{content.icon}}"></md-icon>
                                 <p>{{content.title}}</p>
                             </md-list-item>
                         </md-list>

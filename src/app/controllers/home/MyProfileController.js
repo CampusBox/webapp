@@ -116,10 +116,7 @@
                 }
             };
             // SKILLS CHIP SHIT STARTED
-        tokenService.get("skills")
-            .then(function(tableData) {
-                $scope.skills = tableData.data;
-            });
+        
         $scope.readonly = true;
         $scope.removable = false;
         $scope.selectedItem = null;

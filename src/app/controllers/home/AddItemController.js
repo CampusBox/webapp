@@ -43,8 +43,9 @@
                     var videoid = $scope.url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
                     if (videoid != null) {
                         $scope.item.mediaType = "youtube";
-                        $scope.item.embedUrl = "//www.youtube.com/embed/" + videoid[1];
-                        $scope.item.embedUrlIframe = $sce.trustAsResourceUrl($scope.item.embedUrl);
+                        $scope.item.embedUrl1 = "//www.youtube.com/embed/" + videoid[1];
+                        $scope.item.embedUrl =videoid[1];
+                        $scope.item.embedUrlIframe = $sce.trustAsResourceUrl($scope.item.embedUrl1);
                         $mdDialog.hide($scope.item);
                     } else {
                         $scope.error = 'Invalid youtube url';
@@ -56,8 +57,9 @@
                     $scope.item = {};
                     if ($scope.validateSoundcloud($scope.url)) {
                         $scope.item.mediaType = "soundcloud";
-                        $scope.item.embedUrl = "//w.soundcloud.com/player/?url=" + $scope.url;
-                        $scope.item.embedUrlIframe = $sce.trustAsResourceUrl($scope.item.embedUrl);
+                        $scope.item.embedUrl =  $scope.url;
+                        $scope.item.embedUrl1 = "//w.soundcloud.com/player/?url=" + $scope.url;
+                        $scope.item.embedUrlIframe = $sce.trustAsResourceUrl($scope.item.embedUrl1);
 
                         $mdDialog.hide($scope.item);
                     } else {
