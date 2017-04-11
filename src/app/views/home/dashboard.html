@@ -75,18 +75,18 @@
                                 </p>
                                 <div flex></div>
                                 <p hide-gt-xs style="margin:0;color:#555555" class="md-caption">
-                                    <md-button hide-xs class="md-icon-button" class="md-icon-button" aria-label="Favorite">
+                                   <!--  <md-button hide-xs class="md-icon-button" class="md-icon-button" aria-label="Favorite">
                                         <a target="_blank" ng-href="{{event.link}}">
                                             <md-icon ng-class="!event.Actions.Participants.status? 'blue':''" md-svg-icon="link-variant"></md-icon>
                                         </a>
-                                    </md-button>
+                                    </md-button> -->
                                     {{event.venue?event.venue:"Main Auditorium, Thapar University"}}</p>
                                 <md-card-actions layout="row" layout-align="start center">
-                                    <md-button hide-xs class="md-icon-button" aria-label="Favorite">
+                                    <!-- <md-button hide-xs class="md-icon-button" aria-label="Favorite">
                                         <a target="_blank" ng-href="{{event.link}}">
                                             <md-icon ng-class="!event.Actions.Participants.status? 'blue':''" md-svg-icon="link-variant"></md-icon>
                                         </a>
-                                    </md-button>
+                                    </md-button> -->
                                     <p hide-xs style="margin:0;color:#555555" class="md-caption">{{event.venue?event.venue:"Main Auditorium, Thapar University"}}</p>
                                     <!-- <span class="md-body-2" ng-repeat="tag in tags">#{{ tag.name }}                  </span> -->
                                     <span flex></span>
@@ -165,9 +165,9 @@
                                 <md-button class="md-icon-button" ng-click="bookmark(content, $index)" aria-label="Favorite">
                                     <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
                                 </md-button>
-                                <md-button class="" aria-label="toggle">
+                               <!--  <md-button class="" aria-label="toggle">
                                     <md-icon md-svg-icon="share"></md-icon>Share
-                                </md-button>
+                                </md-button> -->
                             </md-card-icon-actions>
                         </div>
                     </md-card>

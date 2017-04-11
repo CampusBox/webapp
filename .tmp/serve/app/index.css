@@ -267,31 +267,6 @@ md-backdrop.md-sidenav-backdrop {
 }
 
 /*college filter end*/
-/*search autocomplete start*/
-.autocomplete-custom-template li {
-  border-bottom: 1px solid #ccc;
-  height: auto;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  white-space: normal;
-}
-
-.autocomplete-custom-template li:last-child {
-  border-bottom-width: 0;
-}
-
-.autocomplete-custom-template .item-title,
-.autocomplete-custom-template .item-metadata {
-  display: block;
-  line-height: 2;
-}
-
-.autocomplete-custom-template .item-title md-icon {
-  height: 18px;
-  width: 18px;
-}
-
-/*search autocomplete start*/
 .cssload-tetrominos {
   position: absolute;
   left: 50%;
@@ -511,7 +486,7 @@ md-icon.cross > svg {
           animation-timing-function: linear;
   background: #f6f7f8;
   color: transparent !important;
-  background: linear-gradient(to right, #f6f7f8 8%, #eee 18%, #f6f7f8 33%);
+  background: linear-gradient(to right, #f6f7f8 8%, #dfdfdf 18%, #f6f7f8 33%);
   background-size: 800px 104px;
   position: relative;
 }
