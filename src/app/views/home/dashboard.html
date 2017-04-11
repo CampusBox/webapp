@@ -75,7 +75,7 @@
                                 </p>
                                 <div flex></div>
                                 <p hide-gt-xs style="margin:0;color:#555555" class="md-caption">
-                                   <!--  <md-button hide-xs class="md-icon-button" class="md-icon-button" aria-label="Favorite">
+                                    <!--  <md-button hide-xs class="md-icon-button" class="md-icon-button" aria-label="Favorite">
                                         <a target="_blank" ng-href="{{event.link}}">
                                             <md-icon ng-class="!event.Actions.Participants.status? 'blue':''" md-svg-icon="link-variant"></md-icon>
                                         </a>
@@ -147,7 +147,9 @@
                                 <iframe ng-show="(content.type == 'vimeo')" width="640" height="360" ng-src="{{content.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                             </div>
                             <!-- <div flex="80" flex-offset="10"> -->
-                            <span style="margin-top: 31px;font-size: 29px;margin-left: -1.81px;line-height: 1.04;letter-spacing: -.028em;font-weight: 700;color: rgba(0,0,0,.8);">{{content.title}} </span>
+                            <a ui-sref="home.singleContent({contentId: content.id})"  style="text-decoration: none;">
+                                <span  style="margin-top: 31px;font-size: 29px;margin-left: -1.81px;line-height: 1.04;letter-spacing: -.028em;font-weight: 700;color: rgba(0,0,0,.8);">{{content.title}} </span>
+                            </a>
                             <p class="creativity-description" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="content.description  | limitTo: 200">
                             </p>
                             <p ui-sref="home.singleContent({contentId: content.id})" class="md-subhead" style="color: rgba(0,0,0,.44);font-size: 13px;cursor: pointer;    transition: .1s background-color,.1s border-color,.1s color,.1s fill;">
@@ -165,7 +167,7 @@
                                 <md-button class="md-icon-button" ng-click="bookmark(content, $index)" aria-label="Favorite">
                                     <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
                                 </md-button>
-                               <!--  <md-button class="" aria-label="toggle">
+                                <!--  <md-button class="" aria-label="toggle">
                                     <md-icon md-svg-icon="share"></md-icon>Share
                                 </md-button> -->
                             </md-card-icon-actions>
