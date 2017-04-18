@@ -46,6 +46,15 @@ body.pg-loading {
     overflow: hidden;
 }
 
+     .show-xs {
+        display: none;
+    }
+@media only screen and (max-width: 500px) {
+    .show-xs {
+        display: block !important;
+    }
+}
+
 .pg-loading-screen {
     position: fixed;
     bottom: 0;
@@ -268,7 +277,7 @@ body.pg-loading {
                 <img class='pg-loading-logo' src="/assets/images/loading-logo.png"></img>
               </h1>
                     <div class='pg-loading-html'>
-                        <p class="loading-message">Glorious things are waiting for you. We're just getting them ready.</p>
+                        <p class="loading-message">Glorious things are waiting for you.<br class="show-xs"> We're just getting them ready.</p>
                         <div class="spinner"></div>
                     </div>
                 </div>
@@ -301,9 +310,6 @@ body.pg-loading {
     <script src="../bower_components/angular-jwt/dist/angular-jwt.js"></script>
     <script src="../bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
     <script src="../bower_components/satellizer/dist/satellizer.js"></script>
-    <script src="../bower_components/upup/dist/upup.min.js"></script>
-    <script src="../bower_components/upup/dist/upup.sw.min.js"></script>
-    <script src="../bower_components/angular-tawk-to/dist/tawkTo.js"></script>
     <script src="../bower_components/ng-file-upload/ng-file-upload.js"></script>
     <script src="../bower_components/ng-file-upload-shim/ng-file-upload-shim.js"></script>
     <!-- endbower -->
@@ -311,8 +317,6 @@ body.pg-loading {
     <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
     <!-- inject:js -->
     <script src="app/app.js"></script>
-    <script src="app/controllers/static/SignUpController.js"></script>
-    <script src="app/controllers/static/LoginController.js"></script>
     <script src="app/controllers/home/addUrl.js"></script>
     <script src="app/controllers/home/TodoController.js"></script>
     <script src="app/controllers/home/TableController.js"></script>
@@ -334,6 +338,8 @@ body.pg-loading {
     <script src="app/controllers/home/AddItemController.js"></script>
     <script src="app/controllers/home/AddEventController.js"></script>
     <script src="app/controllers/home/AddCreativityController.js"></script>
+    <script src="app/controllers/static/SignUpController.js"></script>
+    <script src="app/controllers/static/LoginController.js"></script>
     <script src="app/components/services/token.js"></script>
     <script src="app/components/services/TodoListService.js"></script>
     <script src="app/components/services/NotificationsService.js"></script>

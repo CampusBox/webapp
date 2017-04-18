@@ -1,4 +1,4 @@
-<md-content class="md-padding" ng-controller="SearchStudentsController">
+<md-content class="md-padding" ng-controller="SearchStudentsController as vm">
     <form hide-gt-sm >
         <md-autocomplete ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text="searchText" md-items="item in searchTypes" md-item-text="searchText" md-min-length="0" placeholder="Search for anything here" md-menu-class="autocomplete-custom-template">
             <md-item-template>
@@ -9,10 +9,10 @@
             </md-item-template>
         </md-autocomplete>
     </form>
-    <md-nav-bar nav-bar-aria-label="navigation links">
-        <md-nav-item md-nav-click="searched('students', query)">Students</md-nav-item>
-        <md-nav-item md-nav-click="searched('events', query)">Events</md-nav-item>
-        <md-nav-item md-nav-click="searched('creativity', query)">Creativity</md-nav-item>
+    <md-nav-bar nav-bar-aria-label="navigation links" >
+        <md-nav-item name="students" value="students" md-nav-click="searched('students', query)">Students</md-nav-item>
+        <md-nav-item name="events" value="events" md-nav-click="searched('events', query)">Events</md-nav-item>
+        <md-nav-item name="creativity" value="creativity" md-nav-click="searched('creativity', query)">Creativity</md-nav-item>
     </md-nav-bar>
     <h2 class="md-headline" style="color: rgba(0,0,0,.8);" ng-hide="query == '' || students.length == 0">Results for "{{query}}" in students</h2>
     <div class="md-padding" style="margin-top: 8%;" ng-show="students.length == 0 " layout="column" layout-align="center center">
@@ -61,30 +61,31 @@
                 <img style="border-radius: 50%; width: 40%; margin-top:20px;" ng-src="{{student.photo}}" class="md-card-image" alt="{{student.title}}">
                 <div layout="column" layout-align="center center">
                     <span class="md-headline" ui-sref="home.profile({username: student.username})">{{student.title}} </span>
-                    <span class="md-subhead" style="padding:0px;color: rgba(0, 0, 0, 0.6);">{{student.college.name}}</span>
+                    <span class="md-caption" style="padding:0px;color: rgba(0, 0, 0, 0.6);font-weight: 500;">{{student.college.name}}</span>
+                     <p class="md-subhead" style="padding: 0px 10px;    font-weight: 500;">
+                        {{student.about}}
+                    </p>
                     <md-button ng-class="student.following? 'md-primary' : 'md-raised md-primary'" ng-click="follow($event, $index);">{{student.following? 'Following':'Follow' }}</md-button>
                 </div>
             </center>
-            <md-card-content style="padding-top: 0px;">
+            <div style="padding-top: 0px;">
                 <center>
                     <div style=" text-align:center;">
                         <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
                             <li ng-repeat="skill in student.Skills.data" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">{{skill.name}}</li>
                         </ul>
                     </div>
-                    <p class="md-body-1" style="margin-top:0px;">
-                        {{student.about}}
-                    </p>
+                   
                 </center>
-                <section layout="row" layout-align="center center" layout-wrap>
+                <!-- <section layout="row" layout-align="center center" layout-wrap>
                     <md-list>
                         <md-button ng-href="{{social.link}}" ng-repeat="social in student.SocialAccounts.data">
                             <md-icon md-svg-icon="{{social.type}}" md-colors="social.type=='facebook' ? {color: 'indigo'} : {color: 'red'}"></md-icon>
                             {{social.type}}
                         </md-button>
                     </md-list>
-                </section>
-            </md-card-content>
+                </section> -->
+            </div>
             <md-card-actions layout="row" layout-align="end center">
             </md-card-actions>
         </md-card>

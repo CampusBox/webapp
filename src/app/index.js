@@ -274,7 +274,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
             .accentPalette('blue', {
                 'default': '500'
             })
-            .warnPalette('blue');
+            .warnPalette('red');
 
         $mdThemingProvider.theme('dark', 'default')
             .primaryPalette('blue')

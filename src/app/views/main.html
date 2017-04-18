@@ -1,32 +1,12 @@
-<style type="text/css">
-.whiteText {
-    color: #fff;
-}
-
-.color-blue {
-    color: #0570c0;
-}
-
-md-toolbar {
-    background-color: #06558f !important;
-}
-
-.bottom-menu-item {
-    margin: 0;
-    padding: 0;
-    overflow: visible;
-    line-height: 28px;
-}
-
-.md-virtual-repeat-container.md-autocomplete-suggestions-container {
-    height: 400px;
-    /*min-height: 12vh;*/
-    max-height: 400px !important;
-}
-</style>
 <!-- <md-button class="md-fab md-fab-bottom-right" aria-label="upload photo">
     +
 </md-button> -->
+<style type="text/css">
+    
+md-toolbar {
+    background-color: #06558f !important;
+}
+</style>
 <div layout="column" flex>
     <md-toolbar hide-xs hide-sm layout="row" layout-align="center center">
         <section layout-align="start center">
@@ -47,7 +27,7 @@ md-toolbar {
             </form>
         </section>
         <section layout-align="end start">
-            <md-button hide-sm hide-xs style="height: 53px;margin-top: 3px;margin-bottom: 0px;" ng-repeat="item in vm.menuItems" layout-align="center center" flex class="capitalize" ng-click="vm.selectItem(item)" ui-sref-active="whiteText" ui-sref="{{item.sref}}">
+            <md-button hide-sm hide-xs style="height: 53px;margin-top: 3px;margin-bottom: 0px;" ng-repeat="item in vm.menuItems" layout-align="center center" flex class="capitalize" ng-click="vm.selectItem(item)" ui-sref-active="white-text" ui-sref="{{item.sref}}">
                 <div class="md-tile-content" layout="column">
                     <md-icon md-svg-icon="{{item.icon}}"></md-icon>
                 </div>
@@ -179,7 +159,7 @@ md-toolbar {
             <div class="messages " layout-fill>
                 <md-content class="messages-content ">
                     <center>
-                        <h3 class="color-blue ">Profile</h3>
+                        <h3 class="blue_text ">Profile</h3>
                         <md-divider></md-divider>
                     </center>
                     <md-menu-item>
@@ -207,7 +187,7 @@ md-toolbar {
                         </md-button>
                     </md-menu-item>
                     <center>
-                        <h3 class="color-blue ">Notifications</h3>
+                        <h3 class="blue_text ">Notifications</h3>
                         <md-divider></md-divider>
                     </center>
                     <md-list>
@@ -216,15 +196,20 @@ md-toolbar {
                             <md-icon ng-if="notification.type=='event_rsvps'" md-svg-icon="calendar"></md-icon>
                             <md-icon ng-if="notification.type=='content_appreciate'" md-svg-icon="all-inclusive"></md-icon>
                             <div class="md-list-item-text">
-                                <p ng-if="notification.type=='follower'" ui-sref="home.profile({studentId: notification.follower_username})">{{notification.follower_username}} started following you.</p>
+                                <p ng-if="notification.type=='follower'" ui-sref="home.profile({username: notification.follower_username})">{{notification.follower_username}} started following you.</p>
                                 <p ng-if="notification.type=='event_rsvps'" ui-sref="home.singleEvent({eventId: notification.event_id})">{{notification.total}} {{(notification.total>1)?'people have':'person has'}} RSVP'd your event "{{notification.title}}" </p>
                                 <p ng-if="notification.type=='content_appreciate'" ui-sref="home.singleContent({contentId: notification.content_id})">{{notification.total}} {{(notification.total>1)?'people have':'person has'}} appreciated your creativity.</p>
->>>>>>> 94fbef9c798b3e97637137aa87138aa539197565
                             </div>
                             <md-button class="md-secondary md-icon-button " ng-click="doSecondaryAction($event) " ng-if="phone.options.actionIcon " aria-label="call ">
                                 <md-icon md-svg-icon="{{phone.options.actionIcon}} "></md-icon>
                             </md-button>
                         </md-list-item>
+                            <div style="padding: 30px;" ng-if="notifications.length==0">
+                                <center>
+                                    <md-icon style="width:48px;height:48px;" md-svg-icon="bell-ring"></md-icon>
+                                    <p style="color: rgba(0,0,0,0.54)">No new notification.</p>
+                                </center>
+                            </div>
                         <md-divider></md-divider>
                     </md-list>
                     <div flex></div>

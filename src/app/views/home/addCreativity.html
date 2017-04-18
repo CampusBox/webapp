@@ -1,7 +1,10 @@
 <style type="text/css">
-.medium-editor-placeholder::after {
+    .medium-editor-placeholder::after {
     color: #b3b3b1;
 }
+
+.md-button.md-primary.md-raised[disabled] {
+    background-color: rgb(30, 136, 229);
 </style>
 <div>
     <div ng-init="uploaded = false; addImage = false">
@@ -11,7 +14,7 @@
                     <md-card-content>
                         <md-list>
                             <md-list-item class="md-2-line">
-                                <img ng-src="{{user.image}}" class="md-avatar" alt="{{todos[0].who}}" />
+                                <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
                                 <div class="md-list-item-text">
                                     <h3>{{user.name}}</h3>
                                     <p>Draft</p>
@@ -22,7 +25,7 @@
                                 <p>Text</p>
                             </md-list-item> -->
                             <md-subheader class="md-no-sticky">Adding cover helps your post, get one from <a href="http://unsplash.com" target="_blank">here.</a></md-subheader>
-                            <md-list-item >
+                            <md-list-item>
                                 <md-button class="" flex ngf-select="uploadCover($file)" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="100MB" ngf-min-height="300" ngf-min-width="400" ngf-resize="{width: 1000, height: 800}" ngf-resize-if="$width > 1000 || $height > 800">
                                     <md-icon md-svg-icon="image-area"></md-icon>
                                     {{coverStatus?"Edit":"Add"}} cover picture
@@ -58,7 +61,12 @@
                                 <br> This can take upto a minute.</p>
                             <md-progress-circular md-mode="indeterminate"></md-progress-circular>
                         </div>
-                        <md-button ng-disabled=" (!(title && creativity.items[0].text && !tags.length<1) || loading)" class="md-raised md-primary" ng-click="publish()">Publish</md-button>
+                        <p class="grey" ng-show="(!(title && creativity.items[0].text && creativity.items[0].text.length>30 && !tags.length<1) || loading)">Add the
+                            <span ng-show="!title">title</span>
+                            <span ng-show="title && !(creativity.items[0].text && creativity.items[0].text.length>30)">story</span>
+                            <span ng-show=" title && creativity.items[0].text && creativity.items[0].text.length>30 && tags.length<1">tags</span>
+                             to publish</p>
+                        <md-button ng-disabled=" (!(title && creativity.items[0].text && creativity.items[0].text.length>30 && !tags.length<1) || loading)" class="md-raised md-primary" ng-click="publish()">Publish</md-button>
                     </md-card-actions>
                 </md-card>
             </div>

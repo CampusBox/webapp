@@ -1,12 +1,4 @@
-<style>
-.pink {
-    fill: rgb(233, 30, 99) !important;
-}
 
-.grey {
-    fill: #9E9E9E !important;
-}
-</style>
 <div layout="column" layout-fill>
     <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in finalContents track by $index">
         <md-card flex-gt-sm="60" flex="100">
@@ -15,15 +7,15 @@
                     <img class="md-user-avatar" ng-src="{{content.created.by.image}}" />
                 </md-card-avatar>
                 <md-card-header-text ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer">
-                    <span class="md-subhead"><span  ui-sref="home.profile" style="color: #0570c0">{{content.created.by.name}} </span> in <span ui-sref="home.profile" style="color: #0570c0">{{content.type?content.type:"Article"}} </span></span>
+                    <span class="md-subhead "><span class="capitalize blue_text"  ui-sref="home.profile" >{{content.created.by.name}} </span> in <span class="blue_text" ui-sref="home.profile" >{{content.type?content.type:"Article"}} </span></span>
                     <span class="md-title">{{content.created.at  | date: 'd MMM'}}</span>
                 </md-card-header-text>
             </md-card-header>
             <a ng-if="(content.type == 'cover' || content.type == 'image')" ui-sref="home.singleContent({contentId: content.id})">
-                <img style="cursor: pointer;height: 200px; object-fit: none; width: 100%" alt="" ng-src="{{content.url}}">
+                <img class="creativity-cover" alt="" ng-src="{{content.url}}">
             </a>
             <a ng-if="(content.type == 'youtube')" ui-sref="home.singleContent({contentId: content.id})">
-                <img style="background:url('https://img.youtube.com/vi/{{content.url}}/maxresdefault.jpg');object-fit: cover;background-size: cover;background-position: center;"  class="creativity-cover" alt="">
+                <img style="background:url('https://img.youtube.com/vi/{{content.url}}/maxresdefault.jpg');object-fit: cover;background-size: cover;background-position: center;"  class="creativity-cover"  alt="">
             </a>
             <md-card-content>
                 <div ng-if="(content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
@@ -34,20 +26,20 @@
                 <!-- <div flex="80" flex-offset="10"> -->
                 <a ui-sref="home.singleContent({contentId: content.id})" style="text-decoration: none;">
                     
-                <span  style="margin-top: 31px;font-size: 29px;margin-left: -1.81px;line-height: 1.04;letter-spacing: -.028em;font-weight: 700;color: rgba(0,0,0,.8);">{{content.title}} </span>
+                <span  class="creativity-title">{{content.title}} </span>
                 </a>
                 <p class="creativity-description" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="content.description  | limitTo: 200">
                 </p>
-                <p ui-sref="home.singleContent({contentId: content.id})" class="md-subhead" style="color: rgba(0,0,0,.44);font-size: 13px;cursor: pointer;    transition: .1s background-color,.1s border-color,.1s color,.1s fill;">
+                <p ui-sref="home.singleContent({contentId: content.id})" class="md-subhead read-more">
                     Read more...
                 </p>
                 <!-- </div> -->
             </md-card-content>
             <div layout="row" layout-align="start center">
                 <md-button class="appriciate-button" style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
-                    <md-icon class="pink" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon> {{content.Actions.Appriciate.status? 'Appreciated' : 'Appreciate' }}
+                    <md-icon class="pink" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon> {{content.Actions.Appriciate.status? 'Appreciated' : 'Appreciate' }} | 
+                <span> {{content.Actions.Appriciate.total}}</span>
                 </md-button>
-                <span>{{content.Actions.Appriciate.total}}</span>
                 <span flex></span>
                 <md-card-icon-actions>
                     <md-button class="md-icon-button" ng-click="bookmark(content, $index)" aria-label="Favorite">

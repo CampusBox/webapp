@@ -21,7 +21,7 @@
         $scope.BookmarkedContents = [];
         $scope.CreativeContentsFinal = [];
         $scope.username = $stateParams.username;
-        $scope.listLoading = true;
+        $scope.studentLoading = true;
 
 
         $scope.follow = function(type, index) {
@@ -128,10 +128,10 @@
         tokenService.get("student/" + $scope.username)
             .then(function(response) {
                 $scope.profile = response.data;
+                    $scope.studentLoading = false;
                 console.log($scope.profile);
                 $scope.profile.BookmarkedContents.data.forEach(function(content) {
                     cardObject = {};
-                    $scope.listLoading = false;
                     cardObject.Actions = content.Actions;
                     cardObject.Tags = content.Tags;
                     cardObject.created = content.created;

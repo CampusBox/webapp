@@ -12,6 +12,64 @@ $font-size-large: 22px;
 body {
     color: $text-color;
 }
+.weight-500{
+font-weight: 500 !important;
+}
+.pink {
+    fill: rgb(233, 30, 99) !important;
+}
+
+.badge {
+    margin: 0 0 0 8px;
+    background-color: #aaa;
+    color: white;
+    padding: 2px 4px;
+    border-radius: 2px;
+}
+.your-custom-chip {
+    font-weight: 400 !important;
+    font-style: normal !important;
+    color: rgba(0, 0, 0, .44) !important;
+    font-size: 13px !important;
+    letter-spacing: 0px !important;
+    text-decoration: none !important;
+    background: #fafafa;
+    border-radius: 3px !important;
+    border: 1px solid #f0f0f0 !important;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.bottom-menu-item {
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    line-height: 28px;
+}
+
+.md-virtual-repeat-container.md-autocomplete-suggestions-container {
+    height: 400px;
+    /*min-height: 12vh;*/
+    max-height: 400px !important;
+}
+
+.grey {
+    fill: #9E9E9E !important;
+}
+
+.blue_text {
+    color: #0570c0 !important;
+}
+
+.blue-bg {
+    color: #0570c0 !important;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
 
 .toolbar-button {
     min-width: 20px;
@@ -322,7 +380,6 @@ md-backdrop.md-sidenav-backdrop {
 
 /*college filter end*/
 
-
 .cssload-tetrominos {
     position: absolute;
     left: 50%;
@@ -544,7 +601,7 @@ md-icon.cross>svg {
     animation-timing-function: linear;
     background: #f6f7f8;
     color: transparent!important;
-    background: linear-gradient(to right, #f6f7f8 8%, #dfdfdf 18%, #f6f7f8 33%);
+    background: linear-gradient(to right, #f6f7f8 8%, #eee 18%, #f6f7f8 33%);
     background-size: 800px 104px;
     position: relative;
 }
@@ -570,20 +627,26 @@ md-icon.cross>svg {
     background-color: #fff;
 }
 
-.creativity-description-single {
-    margin-top: 29px;
+.white-text {
+    color: #fff;
 }
 
 .creativity-description {
     margin: 0px;
     font-size: 23px;
     line-height: 1.58;
+    margin-right: 30px;
     letter-spacing: -.022em;
     word-spacing: 0.1em;
     font-weight: 300;
     color: rgba(0, 0, 0, .8);
     font-style: normal;
     font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+}
+
+.creativity-description-single {
+    margin-top: 29px;
+    margin-bottom: 10px;
 }
 
 .creativity-description p {
@@ -599,8 +662,8 @@ md-icon.cross>svg {
 .creativity-title {
     margin-top: 31px;
     font-size: 29px;
-    margin-left: -1.81px;
     line-height: 1.04;
+    text-decoration: none;
     letter-spacing: -.028em;
     font-weight: 700;
     color: rgba(0, 0, 0, .8);
@@ -613,9 +676,23 @@ md-icon.cross>svg {
     width: 100%;
 }
 
+    .read-more {
+        color: rgba(0, 0, 0, .44);
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 0px;
+        transition: .1s background-color, .1s border-color, .1s color, .1s fill;
+    }
 @media only screen and (max-width: 500px) {
-    .creativity-description-single {
-        margin-top: 29px;
+    .read-more {
+        color: rgba(0, 0, 0, .44);
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 0px;
+        transition: .1s background-color, .1s border-color, .1s color, .1s fill;
+    }
+    .creativity-card {
+        margin: 0px;
     }
     .creativity-cover {
         cursor: pointer;
@@ -623,11 +700,22 @@ md-icon.cross>svg {
         object-fit: none;
         width: 100%;
     }
+    .creativity-title {
+        margin-top: 31px;
+        font-size: 23px;
+        line-height: 1.04;
+        margin-right: 20px;
+        text-decoration: none;
+        letter-spacing: -.028em;
+        font-weight: 700;
+        color: rgba(0, 0, 0, .8);
+    }
     .creativity-description {
         margin: 0px;
+        margin-top: 10px;
         font-size: 23px;
-        padding-left: 20px;
-        padding-right: 20px;
+        // margin-left: 20px;
+        // margin-right: 20px;
         line-height: 1.22;
         letter-spacing: -.022em;
         word-spacing: 0.1em;
@@ -636,9 +724,19 @@ md-icon.cross>svg {
         font-style: normal;
         font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
     }
+    .creativity-title-single {
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+    .creativity-description-single {
+        margin-top: 29px;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 10px;
+    }
     .creativity-description p {
         margin: 0px;
-        font-size: 18px;
+        font-size: 16px;
         line-height: 1.58;
         letter-spacing: .01em;
         color: rgba(0, 0, 0, .8);
@@ -650,5 +748,8 @@ md-icon.cross>svg {
         min-width: 0px;
         font-size: 12px;
         margin: 7px 2px;
+    }
+    .page-content {
+        padding: 8px 0px !important;
     }
 }
