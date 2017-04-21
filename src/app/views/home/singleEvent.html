@@ -32,8 +32,10 @@
     <md-divider></md-divider>
 </div>
 <div layout="column" ng-show="!loading" class="md-whiteframe-1dp white-bg" flex-gt-xs="80" flex-offset-gt-xs="10">
-    <div layout-gt-xs="row" layout-xs="column" layout-align="start start">
-        <img flex-sm="40" flex-md="40" flex-lg="30" flex-xs="100" ng-src="{{event.image}}" class="md-card-image" alt="Event title">
+    <div layout-gt-xs="row" layout-xs="column" layout-align="start center">
+        <div flex-sm="40" flex-md="30" flex-lg="20" flex-xs="100">
+            <img style="max-width: 100%" ng-src="{{event.image}}" class="md-card-image" alt="Event title">
+        </div>
         <div layout-gt-xs="column" layout-xs="row" flex flex-xs="100">
             <div layout="column" layout-align-xs="center">
                 <h1 class="md-headline section-heading" style="padding: 0px 16px">
@@ -49,7 +51,7 @@
                                 </h3>
                     </md-list-item>
                     <md-list-item ng-if="event.link">
-                        <md-icon md-svg-icon="web"  class="grey-text" aria-label="Website"></md-icon>
+                        <md-icon md-svg-icon="web" class="grey-text" aria-label="Website"></md-icon>
                         <h3 class="md-body-1 grey-text">
                                     <a href="{{event.link}}" target="_blank"> {{event.link}} </a>
                                 </h3>

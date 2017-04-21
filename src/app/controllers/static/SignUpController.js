@@ -17,10 +17,10 @@
         if (localStorage.getItem('id_token') != null) {
             $state.go("home.dashboard");
         }
-        $scope.signUp.collegeId = 0;
-        tokenService.get("colleges").then(function(colleges) {
-            $scope.colleges = colleges.data;
-        });
+        $scope.signUp.college_id = 0;
+        // tokenService.get("colleges").then(function(colleges) {
+        //     $scope.colleges = colleges.data;
+        // });
         $scope.items = [];
         $scope.itemsMobile = [];
 
@@ -226,7 +226,6 @@
             .loadAllItems()
             .then(function(menuItems) {
                 $scope.filteredPeople = [].concat(menuItems);
-                console.log(menuItems);
             });
 
 

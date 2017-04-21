@@ -12,9 +12,11 @@ $font-size-large: 22px;
 body {
     color: $text-color;
 }
-.weight-500{
-font-weight: 500 !important;
+
+.weight-500 {
+    font-weight: 500 !important;
 }
+
 .pink {
     fill: rgb(233, 30, 99) !important;
 }
@@ -26,6 +28,7 @@ font-weight: 500 !important;
     padding: 2px 4px;
     border-radius: 2px;
 }
+
 .your-custom-chip {
     font-weight: 400 !important;
     font-style: normal !important;
@@ -263,9 +266,11 @@ md-backdrop.md-sidenav-backdrop {
 }
 
 .eventListItem md-card {
-    margin: 1px;
+    margin: 3px;
 }
-
+md-list-item:last-child md-divider {
+    display: none;
+}
 .shimmer {
     /* the shimmer magic */
     background: -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(.5, #fff));
@@ -632,7 +637,9 @@ md-icon.cross>svg {
 }
 
 .creativity-description {
-    margin: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 740px;
     font-size: 23px;
     line-height: 1.58;
     margin-right: 30px;
@@ -645,11 +652,15 @@ md-icon.cross>svg {
 }
 
 .creativity-description-single {
+     margin-left: auto;
+    margin-right: auto;
+    max-width: 740px;
     margin-top: 29px;
     margin-bottom: 10px;
 }
 
 .creativity-description p {
+
     margin: 0px;
     font-size: 21px;
     line-height: 1.58;
@@ -660,6 +671,9 @@ md-icon.cross>svg {
 }
 
 .creativity-title {
+     margin-left: auto;
+    margin-right: auto;
+    max-width: 740px;
     margin-top: 31px;
     font-size: 29px;
     line-height: 1.04;
@@ -676,14 +690,20 @@ md-icon.cross>svg {
     width: 100%;
 }
 
-    .read-more {
-        color: rgba(0, 0, 0, .44);
-        font-size: 16px;
-        cursor: pointer;
-        margin-top: 0px;
-        transition: .1s background-color, .1s border-color, .1s color, .1s fill;
+.read-more {
+    color: rgba(0, 0, 0, .44);
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 0px;
+    transition: .1s background-color, .1s border-color, .1s color, .1s fill;
+}
+    .static-background{
+        background:linear-gradient(#0570c0, #0570c0 70%, #f1f0f0 70.001%);
     }
 @media only screen and (max-width: 500px) {
+        .static-background{
+        background:#0570c0;
+    }
     .read-more {
         color: rgba(0, 0, 0, .44);
         font-size: 16px;
@@ -697,6 +717,7 @@ md-icon.cross>svg {
     .creativity-cover {
         cursor: pointer;
         height: 150px;
+        max-width: 100%;
         object-fit: none;
         width: 100%;
     }
@@ -714,6 +735,10 @@ md-icon.cross>svg {
         margin: 0px;
         margin-top: 10px;
         font-size: 23px;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 740px;
+
         // margin-left: 20px;
         // margin-right: 20px;
         line-height: 1.22;

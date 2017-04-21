@@ -199,17 +199,17 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
             })
 
         .state('home.creativity', {
-                url: '/creativity',
-                templateUrl: 'app/views/home/creativity.html',
-                controller: 'CreativityController',
-                controllerAs: 'vm',
-                data: {
-                    requiresLogin: true,
-                    title: 'Profile'
-                }
-            })
-           
-            .state('home.addCreativity', {
+            url: '/creativity',
+            templateUrl: 'app/views/home/creativity.html',
+            controller: 'CreativityController',
+            controllerAs: 'vm',
+            data: {
+                requiresLogin: true,
+                title: 'Profile'
+            }
+        })
+
+        .state('home.addCreativity', {
                 url: '/addCreativity',
                 templateUrl: 'app/views/home/addCreativity.html',
                 controller: 'AddCreativityController',
