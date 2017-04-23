@@ -53,9 +53,9 @@ md-list-item .md-button:not([disabled]):click {
                 <iframe style="background-color: grey" ng-if="item.type == 'vimeo'" width="640" height="360" src="{{item.embed.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
             </div>
             <div flex-offset-gt-xs="10" flex-gt-xs="80" flex-xs="100" ng-repeat="item in content.Items.data">
-                <div layout-align="center center">
+                <center layout-align="center center">
                     <img ng-if="(item.type == 'image')" ng-src="{{item.image}}" alt="">
-                </div>
+                </center>
                 <p class="md-body-1 creativity-description creativity-description-single"  ng-bind-html="item.description">
                 </p>
             </div>

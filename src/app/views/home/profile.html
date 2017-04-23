@@ -25,7 +25,7 @@
             </center>
             <section layout="row" layout-align="center center" layout-wrap>
                 <md-list>
-                    <md-button ng-href="social.link" ng-repeat="social in profile.SocialAccounts.data">
+                    <md-button ng-href="{{social.link}}" ng-repeat="social in profile.SocialAccounts.data">
                         <md-icon md-svg-icon="social.type" md-colors="social.type=='facebook' ? {color: 'indigo'} : {color: 'red'}"></md-icon>
                         social.type
                     </md-button>
@@ -74,7 +74,7 @@
                 </md-button>
             </div> -->
             <md-list>
-                <md-list-item class="md-2-line" ng-repeat="social in profile.SocialAccounts.data" ng-href="social.link" target="_blank">
+                <md-list-item class="md-2-line" ng-repeat="social in profile.SocialAccounts.data" ng-href="{{social.link}}" target="_blank">
                     <md-icon md-svg-icon="{{social.type}}" md-colors="social.type=='facebook' ? {color: 'indigo'} : {color: 'red'}"></md-icon>
                     <div class="md-list-item-text" layout="column">
                         <h3 style="text-transform: capitalize;">
@@ -346,7 +346,7 @@
                     </md-list>
                 </md-tab>
                 <md-tab ng-if="profile.Following.data.length>0">
-                                        <md-tab-label>Following <span class="badge">{{profile.Following.data.length}}</span></md-tab-label>
+                                        <md-tab-label>Following  ({{profile.Following.data.length}})</md-tab-label>
                                         <md-tab-body>
                                             <md-list flex>
                                                 <md-list-item class="md-3-line" ui-sref="home.profile({username: item.username})" ng-repeat="item in profile.Following.data track by $index" ng-click="null">
@@ -365,7 +365,7 @@
                                         </md-tab-body>
                 </md-tab>
                 <md-tab ng-if="profile.Follower.data.length>0">
-                    <md-tab-label>Followers <span class="badge">{{profile.Follower.data.length}}</span></md-tab-label>
+                    <md-tab-label>Followers ({{profile.Follower.data.length}})</md-tab-label>
                     <md-tab-body>
                         <md-list flex>
                             <md-list-item class="md-3-line" ui-sref="home.profile({username: item.username})" ng-repeat="item in profile.Follower.data track by $index" ng-click="null">

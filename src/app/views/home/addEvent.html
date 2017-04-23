@@ -6,11 +6,11 @@
                     <div class="md-padding" layout="column" layout-padding>
                         <md-input-container md-no-float>
                             <label>Title</label>
-                            <input placeholder="My demo event" placeholder="My demo event" md-autofocus="" ng-required="true" type="text" ng-model="event.title" md-maxlength="30">
+                            <input placeholder="My demo event" placeholder="My demo event" md-autofocus="" ng-required="true" type="text" ng-model="event.title" md-maxlength="40">
                         </md-input-container>
                         <md-input-container md-no-float>
                             <label>Sub title</label>
-                            <textarea placeholder="Use this space to explain what exactly is your event." ng-required="true" ng-model="event.subtitle" md-maxlength="100" rows="2" md-select-on-focus></textarea>
+                            <textarea placeholder="Use this space to explain what exactly is your event." ng-required="true" ng-model="event.subtitle" md-maxlength="160" rows="2" md-select-on-focus></textarea>
                         </md-input-container>
                         <div layout-gt-sm="row" flex>
                             <md-input-container md-no-float flex>
@@ -90,7 +90,7 @@
                     <div class="md-padding" layout="column">
                         <md-input-container md-no-float flex>
                             <label>Event Venue</label>
-                            <input placeholder="Mention college name if event is open for all participants" type="text" required="" ng-model="event.venue" md-maxlength="50">
+                            <input placeholder="Mention college name if event is open for all participants" type="text" required="" ng-model="event.venue" md-maxlength="100">
                         </md-input-container>
                         <md-input-container md-no-float>
                             <label>Link to the event (website or facebook page)</label>
@@ -98,7 +98,7 @@
                         </md-input-container>
                         <md-input-container md-no-float>
                             <label>Description</label>
-                            <textarea placeholder="Mention complete details here with rules(if a competition)" required="" ng-model="event.description" md-maxlength="800" rows="4" md-select-on-focus></textarea>
+                            <textarea placeholder="Mention complete details here with rules(if a competition)" required="" ng-model="event.description" md-maxlength="1800" rows="4" md-select-on-focus></textarea>
                         </md-input-container>
                         <md-input-container md-no-float>
                             <label>Enter tags for your event</label>
@@ -115,7 +115,7 @@
                         <div layout-gt-sm="row">
                             <md-input-container md-no-float flex>
                                 <label>Organizer Name</label>
-                                <input placeholder="Society or entitity behind the event." required="" type="text" ng-model="event.organiserName" md-maxlength="30">
+                                <input placeholder="Society or entitity behind the event." required="" type="text" ng-model="event.organiserName" md-maxlength="80">
                             </md-input-container>
                             <md-input-container md-no-float flex>
                                 <label>Organizer Phone</label>

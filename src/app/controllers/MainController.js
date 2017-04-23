@@ -50,11 +50,11 @@
         $scope.logout = function() {
             console.log("logout");
             localStorage.clear();
-            $state.go('static.login');
+            $state.go('static.signUp');
         };
         $scope.submitSearch = function(item, searchText) {
             console.log(item);
-            console.log('searchText: ' + searchText)
+            console.log('searchText: ' + searchText);
         }
         $scope.addUpdate = function() {
             $mdDialog.show({
