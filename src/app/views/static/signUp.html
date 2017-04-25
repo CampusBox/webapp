@@ -510,13 +510,13 @@ ul.teeth li:last-child {
             </div>
             <div flex layout="column" layout-align="center">
                 <center>
-                    <p class="md-headline"> Your college_id </p>
-                    <p class="md-title">Add college_id details to
+                    <p class="md-headline"> Your college </p>
+                    <p class="md-title">Add college details to
                         <br>your profile to get important updates.</p>
                 </center>
                 <form name="register">
-                    <label>Name of your college_id</label>
-                    <md-autocomplete md-no-cache="false" ng-model="signUp.college_id"  required md-require-match md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item.college_id)" md-items="item in searchData" md-item-text="item.name" md-min-length="0" placeholder="Full name of your college_id" md-menu-class="autocomplete-custom-template">
+                    <label>Name of your college</label>
+                    <md-autocomplete md-no-cache="false" ng-model="signUp.college_id"  required md-require-match md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item.college_id)" md-items="item in searchData" md-item-text="item.name" md-min-length="0" placeholder="Full name of your college" md-menu-class="autocomplete-custom-template">
                         <md-item-template>
                             <md-list-item md-highlight-text="searchText">
                                 {{ item.name }}
