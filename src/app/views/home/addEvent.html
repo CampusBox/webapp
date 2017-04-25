@@ -136,7 +136,7 @@
                         <center>
                             <span> or drop in the box below</span>
                             <div ngf-drop class="cropArea">
-                                <img-crop image="picFile  | ngfDataUrl" result-image="event.croppedDataUrl" ng-init="event.croppedDataUrl=''" area-type="square" area-min-size="250" result-image-size="420">
+                                <img-crop image="picFile  | ngfDataUrl" result-image="event.croppedDataUrl" ng-init="event.croppedDataUrl=''" area-type="square" area-min-size="250" result-image-size="420" result-image-quality="0.9">
                                 </img-crop>
                             </div>
                         </center>
@@ -153,10 +153,15 @@
                 </md-tab>
             </md-tabs>
             <md-dialog-actions layout="row">
+            <div layout="row" ng-hide="!loading" layout-sm="column" layout-align="space-around">
+                            <p>Please wait, we are uploading images and all content.
+                                <br> This can take upto a minute.</p>
+                            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                        </div>
                 <span flex></span>
                 <!-- <md-button ng-click="nextTab()">Previous</md-button> -->
-                <md-button class=" md-primary" ng-click="nextTab()">Next</md-button>
-                <md-button class="md-raised md-primary" ng-disabled="(event.croppedDataUrl=='') || !eventForm.$valid" type="submit">Create</md-button>
+                <md-button ng-hide="loading" class=" md-primary" ng-click="nextTab()">Next</md-button>
+                <md-button ng-hide="loading" class="md-raised md-primary" ng-disabled="(event.croppedDataUrl=='') || !eventForm.$valid" type="submit">Create</md-button>
             </md-dialog-actions>
         </form>
     </md-card>

@@ -19,6 +19,7 @@
         $scope.event = {};
         $scope.event.fromDate = new Date();
         $scope.place = null;
+        $scope.loading = false;
         $scope.types = [
             { 'id': 1, 'title': 'Competition', },
             { 'id': 2, 'title': 'Conference', },
@@ -78,7 +79,7 @@
         $scope.submitEvent = function(event, tags) {
             $scope.body.event = event;
             $scope.body.tags = tags;
-
+            $scope.loading = true;
             tokenService.post("addEvent", $scope.body)
                 .then(function(abc) {
                     $state.go('home.dashboard');
