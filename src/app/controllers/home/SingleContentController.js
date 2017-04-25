@@ -114,6 +114,48 @@
                     }
                 }
                 console.log($scope.content);
+                tokenService.get("contentsRandom" )
+                    .then(function(tableData) {
+                        console.log(tableData);
+                        $scope.creativityLoading = false;
+                        if (tableData.data.length < 2) {
+                            $scope.moreItems = false;
+                        }
+                        $scope.nonFinalContents = [];
+                        $scope.contents = tableData.data;
+
+                        $scope.contents.forEach(function(content) {
+                            cardObject = {};
+                            cardObject.Actions = content.Actions;
+                            cardObject.Tags = content.Tags;
+                            cardObject.created = content.created;
+                            cardObject.created.at = Date.parse(cardObject.created.at.replace('-', '/', 'g')); //replace mysql date to js date format
+                            cardObject.id = content.id;
+                            cardObject.title = $sce.trustAsHtml(content.title);
+                            cardObject.links = content.links;
+                            cardObject.total = content.links;
+                            content.Items.data.forEach(function(item) {
+                                if ((item.type == 'cover' && !cardObject.type)) {
+                                    cardObject.type = item.type;
+                                    cardObject.url = item.image;
+                                } else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
+                                    cardObject.type = item.type;
+                                    cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
+                                } else if (((item.type == 'cover') || (item.type == 'image')) && !cardObject.type) {
+                                    cardObject.type = item.type;
+                                    cardObject.url = item.image;
+                                }
+                            });
+                            $scope.nonFinalContents.push(cardObject);
+                            content = {};
+                            $scope.creativityLoading = false;
+
+                        });
+                        $scope.creativityLoading = false;
+                        $scope.finalContents = $scope.nonFinalContents;
+                        $scope.offset += 2;
+                        console.log($scope.offset);
+                    });
             });
     }
 
