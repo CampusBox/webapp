@@ -43,7 +43,7 @@
                             {{event.title | limitTo : 30}}
                         </p>
                         <md-card-title style="padding: 0px;">
-                            <div class="md-media-sm" layout="column" layout-align="center" flex-gt-xs="25" flex-xs="30" >
+                            <div class="md-media-sm" layout="column" layout-align="center" flex-gt-xs="25" flex-xs="30">
                                 <img style="width: 100% ;" ng-src="{{event.image}}" alt="">
                             </div>
                             <div style="padding:  5px 0px 0px 12px;" flex layout="column">
@@ -109,6 +109,9 @@
                     </md-card>
                 </md-list-item>
             </md-list>
+            <md-card class="pointer" ui-sref="home.events">
+                <center style="padding: 20px;font-weight: 300">See all events</center>
+            </md-card>
             <div>
                 <h1 class="md-headline section-heading">
                 Creative works by other students
@@ -182,6 +185,9 @@
                     <div flex="20">
                     </div>
                 </div>
+                <md-card class="pointer" ui-sref="home.creativity">
+                    <center style="padding: 20px;font-weight: 300">See all creativity</center>
+                </md-card>
             </div>
             <!--  <div>
                 <h1 class="md-headline">
@@ -198,7 +204,7 @@
             </h5>
             <md-list>
                 <md-list-item class="md-2-line" ng-repeat="content in contentsTop | limitTo :3 track by $index">
-                    <img ui-sref="home.profile({username: content.created.by.username})" class="pointer" ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.content.created.by.username}}" title="content.content.created.by.username" />
+                    <img ui-sref="home.profile({username: content.created.by.username})"  ng-src="{{content.created.by.image}}" class="md-avatar pointer" alt="{{content.content.created.by.username}}" title="content.content.created.by.username" />
                     <div class="md-list-item-text">
                         <h3 ui-sref="home.singleContent({contentId: content.id})" title="content.title" ng-bind-html="content.title"></h3>
                         <p ui-sref="home.profile({username: content.created.by.username})" title="{{content.created.by.name}}">{{content.created.by.name}}</p>
