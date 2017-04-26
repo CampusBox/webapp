@@ -516,7 +516,7 @@ ul.teeth li:last-child {
                 </center>
                 <form name="register">
                     <label>Name of your college</label>
-                    <md-autocomplete md-no-cache="false" ng-model="signUp.college"  required md-require-match md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item.college_id)" md-items="item in searchData" md-item-text="item.name" md-min-length="0" placeholder="Full name of your college" md-menu-class="autocomplete-custom-template">
+                    <md-autocomplete md-no-cache="false" ng-model="signUp.college_id"  required md-require-match md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item.college_id)" md-items="item in searchData" md-item-text="item.name" md-min-length="0" placeholder="Full name of your college" md-menu-class="autocomplete-custom-template">
                         <md-item-template>
                             <md-list-item md-highlight-text="searchText">
                                 {{ item.name }}
@@ -530,15 +530,15 @@ ul.teeth li:last-child {
                     <!-- <div class="hint ">This will be visible on your profile.</div> -->
                     <md-input-container class="md-block ">
                         <label>Your Roll Number</label>
-                        <input required=" " ng-disabled="college<0 " ng-model="signUp.roll " type="text " autocomplete=" " />
-                        <!-- <div class="hint ">Must match your college id.</div> -->
+                        <input required=" " ng-disabled="college_id<0 " ng-model="signUp.roll " type="text " autocomplete=" " />
+                        <!-- <div class="hint ">Must match your college_id id.</div> -->
                         <!-- <div ng-messages="userForm.name.$error " ng-if="!showHints ">
                             <div ng-message="required ">Name is required.</div>
                             <div ng-message="md-maxlength ">The name has to be less than 30 characters long.</div>
                         </div> -->
                     </md-input-container>
                     <div>
-                        <center ng-show="signUp.roll && !loading && (signUp.college>0 || signUp.college_Name)">
+                        <center ng-show="signUp.roll && !loading && (signUp.college_id>0 || signUp.college_id_Name)">
                             <p>Complete setup with</p>
                             <md-button ng-click="authenticate('facebook');" md-colors="{background: 'indigo'}" class="md-raised md-primary">
                                 <md-icon md-svg-icon="facebook"></md-icon>

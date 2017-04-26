@@ -21,6 +21,7 @@
                     response.type = "facebook";
 
                     console.log(response);
+                    console.log(response.access_token);
 
                     tokenService.post("login", response)
                         .then(function(abc) {

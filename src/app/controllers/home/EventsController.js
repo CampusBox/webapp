@@ -45,9 +45,10 @@
             { 'id': 2, 'title': 'Other colleges' }
         ];
         $scope.myPagingFunction = function() {
+            console.log('paging');
             if ($scope.loading == false && $scope.moreItems == true) {
                 $scope.loading = true;
-                tokenService.get("events?offset=" + $scope.offset)
+                tokenService.get("events?limit=2&offset=" + $scope.offset)
                     .then(function(tableData) {
                         $scope.loading = false;
                         if (tableData.data.length < 3) {

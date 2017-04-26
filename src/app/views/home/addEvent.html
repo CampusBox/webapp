@@ -1,16 +1,3 @@
-<style type="text/css" media="screen">
-.your-custom-chip {
-    font-weight: 400 !important;
-    font-style: normal !important;
-    color: rgba(0, 0, 0, .44) !important;
-    font-size: 13px !important;
-    letter-spacing: 0px !important;
-    text-decoration: none !important;
-    background: #fafafa;
-    border-radius: 3px !important;
-    border: 1px solid #f0f0f0 !important;
-}
-</style>
 <div flex layout-gt-xs="row" layout-xs="column">
     <md-card flex-gt-xs="50">
         <form name="eventForm" novalidate ng-submit="eventForm.$valid  && submitEvent(event,tags)">
@@ -19,11 +6,11 @@
                     <div class="md-padding" layout="column" layout-padding>
                         <md-input-container md-no-float>
                             <label>Title</label>
-                            <input placeholder="My demo event" placeholder="My demo event" md-autofocus="" ng-required="true" type="text" ng-model="event.title" md-maxlength="30">
+                            <input placeholder="My demo event" placeholder="My demo event" md-autofocus="" ng-required="true" type="text" ng-model="event.title" md-maxlength="40">
                         </md-input-container>
                         <md-input-container md-no-float>
                             <label>Sub title</label>
-                            <textarea placeholder="Use this space to explain what exactly is your event." ng-required="true" ng-model="event.subtitle" md-maxlength="100" rows="2" md-select-on-focus></textarea>
+                            <textarea placeholder="Use this space to explain what exactly is your event." ng-required="true" ng-model="event.subtitle" md-maxlength="160" rows="2" md-select-on-focus></textarea>
                         </md-input-container>
                         <div layout-gt-sm="row" flex>
                             <md-input-container md-no-float flex>
@@ -103,7 +90,7 @@
                     <div class="md-padding" layout="column">
                         <md-input-container md-no-float flex>
                             <label>Event Venue</label>
-                            <input placeholder="Mention college name if event is open for all participants" type="text" required="" ng-model="event.venue" md-maxlength="50">
+                            <input placeholder="Mention college name if event is open for all participants" type="text" required="" ng-model="event.venue" md-maxlength="100">
                         </md-input-container>
                         <md-input-container md-no-float>
                             <label>Link to the event (website or facebook page)</label>
@@ -111,7 +98,7 @@
                         </md-input-container>
                         <md-input-container md-no-float>
                             <label>Description</label>
-                            <textarea placeholder="Mention complete details here with rules(if a competition)" required="" ng-model="event.description" md-maxlength="800" rows="4" md-select-on-focus></textarea>
+                            <textarea placeholder="Mention complete details here with rules(if a competition)" required="" ng-model="event.description" md-maxlength="1800" rows="4" md-select-on-focus></textarea>
                         </md-input-container>
                         <md-input-container md-no-float>
                             <label>Enter tags for your event</label>
@@ -128,7 +115,7 @@
                         <div layout-gt-sm="row">
                             <md-input-container md-no-float flex>
                                 <label>Organizer Name</label>
-                                <input placeholder="Society or entitity behind the event." required="" type="text" ng-model="event.organiserName" md-maxlength="30">
+                                <input placeholder="Society or entitity behind the event." required="" type="text" ng-model="event.organiserName" md-maxlength="80">
                             </md-input-container>
                             <md-input-container md-no-float flex>
                                 <label>Organizer Phone</label>
@@ -149,7 +136,7 @@
                         <center>
                             <span> or drop in the box below</span>
                             <div ngf-drop class="cropArea">
-                                <img-crop image="picFile  | ngfDataUrl" result-image="event.croppedDataUrl" ng-init="event.croppedDataUrl=''" area-type="square" area-min-size="250" result-image-size="420">
+                                <img-crop image="picFile  | ngfDataUrl" result-image="event.croppedDataUrl" ng-init="event.croppedDataUrl=''" area-type="square" area-min-size="250" result-image-size="420" result-image-quality="0.9">
                                 </img-crop>
                             </div>
                         </center>
@@ -166,10 +153,15 @@
                 </md-tab>
             </md-tabs>
             <md-dialog-actions layout="row">
+            <div layout="row" ng-hide="!loading" layout-sm="column" layout-align="space-around">
+                            <p>Please wait, we are uploading images and all content.
+                                <br> This can take upto a minute.</p>
+                            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                        </div>
                 <span flex></span>
                 <!-- <md-button ng-click="nextTab()">Previous</md-button> -->
-                <md-button class=" md-primary" ng-click="nextTab()">Next</md-button>
-                <md-button class="md-raised md-primary" ng-disabled="(event.croppedDataUrl=='') || !eventForm.$valid" type="submit">Create</md-button>
+                <md-button ng-hide="loading" class=" md-primary" ng-click="nextTab()">Next</md-button>
+                <md-button ng-hide="loading" class="md-raised md-primary" ng-disabled="(event.croppedDataUrl=='') || !eventForm.$valid" type="submit">Create</md-button>
             </md-dialog-actions>
         </form>
     </md-card>

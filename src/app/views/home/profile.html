@@ -1,36 +1,61 @@
 <style>
-.pink {
-    fill: rgb(233, 30, 99) !important;
-}
-
 .yellow {
     fill: rgb(255, 235, 59) !important;
 }
-
-.badge {
-    margin: 0 0 0 8px;
-    background-color: #8BC34A;
-    color: white;
-    padding: 2px 4px;
-    border-radius: 2px;
-}
 </style>
-<div layout="row" layout-xs="column" layout-align="start">
-    <md-card flex="30" flex-xs="100">
+<div layout="row" layout-xs="column" layout-align-gt-xs="start start" flex>
+    <md-card ng-if="studentLoading" flex="30" flex-xs="100">
+        <center>
+            <img style="border-radius: 50%; width: 40%; margin-top:20px; background-color: #dfdfdf; padding-bottom: 33%" class="md-card-image">
+            <div layout="column" layout-align="center center">
+                <br>
+                <span class="md-headline animated-background">student.title </span>
+                <br>
+                <span class="md-subhead animated-background" style="padding:0px;color: rgba(0, 0, 0, 0.6);">student.college.name name name</span>
+                <br>
+            </div>
+        </center>
+        <md-card-content style="padding-top: 0px;">
+            <center>
+                <div style=" text-align:center;">
+                    <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
+                        <li ng-repeat="skill in [1,2,3]" class="" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(224,224,224);">skill.name</li>
+                    </ul>
+                </div>
+            </center>
+            <section layout="row" layout-align="center center" layout-wrap>
+                <md-list>
+                    <md-button ng-href="{{social.link}}" ng-repeat="social in profile.SocialAccounts.data">
+                        <md-icon md-svg-icon="social.type" md-colors="social.type=='facebook' ? {color: 'indigo'} : {color: 'red'}"></md-icon>
+                        social.type
+                    </md-button>
+                </md-list>
+            </section>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+        </md-card-actions>
+    </md-card>
+    <md-card ng-if="!studentLoading" flex="30" flex-xs="100">
         <center>
             <img style="border-radius: 50%; width: 40%; margin-top:20px; background-color: #ccc;" ng-src="{{profile.photo}}" class="md-card-image" alt="{{profile.name}}">
             <md-card-title>
                 <md-card-title-text>
                     <span class="md-headline">{{profile.name}}</span>
-                    <span class="md-subhead">{{profile.college.name}}</span>
+                    <span class="md-subhead weight-500">                {{profile.subtitle}} </span>
                     <md-button ng-class="profile.following? 'md-primary' : 'md-raised md-primary'" ng-click="follow()">{{profile.following? 'Following':'Follow' }}</md-button>
                 </md-card-title-text>
             </md-card-title>
         </center>
         <md-card-content>
-            <p class="md-body-2">
-                {{profile.subtitle}}
+            <md-divider></md-divider>
+            <p class="md-title">
+                Info
             </p>
+            <div layout-align="start start">
+                <md-icon md-svg-icon="school"></md-icon>
+                <span class="md-caption">{{profile.college.name}}</span>
+            </div>
+            <br>
             <md-divider></md-divider>
             <p class="md-title" ng-if="profile.Skills.data.length>0">
                 Skills
@@ -42,19 +67,31 @@
             <p class="md-title">
                 Social Accounts
             </p>
-            <md-list>
+            <!--  <div layout="column">
                 <md-button ng-href="{{social.link}}" ng-repeat="social in profile.SocialAccounts.data">
                     <md-icon md-svg-icon="{{social.type}}" md-colors="social.type=='facebook' ? {color: 'indigo'} : {color: 'red'}"></md-icon>
                     {{social.type}}
                 </md-button>
+            </div> -->
+            <md-list>
+                <md-list-item class="md-2-line" ng-repeat="social in profile.SocialAccounts.data" ng-href="{{social.link}}" target="_blank">
+                    <md-icon md-svg-icon="{{social.type}}" md-colors="social.type=='facebook' ? {color: 'indigo'} : {color: 'red'}"></md-icon>
+                    <div class="md-list-item-text" layout="column">
+                        <h3 style="text-transform: capitalize;">
+                            {{social.type}}
+                        </h3>
+                    </div>
+                </md-list-item>
             </md-list>
-            </a>
         </md-card-content>
     </md-card>
     <md-card flex="70" flex-xs="100">
         <md-card-content>
             <md-tabs md-dynamic-height md-border-bottom md-selected="tab">
                 <md-tab label="Overview">
+                    <center ng-if="studentLoading" style="padding: 50px">
+                        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                    </center>
                     <div layout="column" class="md-padding" layout-fill ng-show="(profile.Events.data.length || profile.AttendingEvents.data.length || profile.BookmarkedContents.data.length || profile.CreativeContents.data.length) == 0">
                         <div style="margin-top: 5%;" layout="column" layout-align="center center">
                             <img style="width: 20%;height: 20%;" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDU4LjA2NCA1OC4wNjQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDU4LjA2NCA1OC4wNjQ7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cG9seWdvbiBzdHlsZT0iZmlsbDojRTdFQ0VEOyIgcG9pbnRzPSIyMiwzMC41MzIgMCwyMy4zMjQgNTguMDY0LDcuNTMyIDM2LDUwLjUzMiAiLz4KPHBvbHlnb24gc3R5bGU9ImZpbGw6I0FGQjZCQjsiIHBvaW50cz0iMjIsMzAuNTMyIDIwLDQ2LjUzMiAyOC41OTQsMzkuOTUyICIvPgo8cGF0aCBzdHlsZT0iZmlsbDojQUZCNkJCOyIgZD0iTTIxLjQ2MiwyOS42ODljLTAuMjAzLDAuMTI5LTAuMzI5LDAuMzI0LTAuMzk4LDAuNTM2TDIyLDMwLjUzMmwwLjU3NCwwLjgyTDU3LjE4OSw5LjIzN2wwLjg3NS0xLjcwNSAgbC0zLjM0NSwwLjkxTDIxLjQ2MiwyOS42ODl6Ii8+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
@@ -116,12 +153,13 @@
                                                 <span class="md-title animated-background" style="font-weight: 600;margin: 0px; " ">CampusBox launch</span>
                                            <p style="margin:0; " class="md-caption animated-background ">Main Auditorium, Thapar University</p>
                                        </div>
+
                                    </md-card-title>
                                </md-card>
                            </md-list-item>
                        </md-list>
                    </div>
-                   <div ng-show="profile.AttendingEvents.data.length>0">
+                                            <div ng-show="profile.AttendingEvents.data.length>0">
                                                 <h3 class="md-title" style="margin-bottom: 0px;">Attending Events</h3>
                                                 <md-list>
                                                     <md-list-item style="margin-bottom: 10px;" ng-repeat="event in profile.AttendingEvents.data | limitTo: 2" ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding eventListItem">
@@ -184,34 +222,14 @@
                                             </div>
                                             <br>
                                             <div>
-                                                <h3 class="md-title" style="margin-bottom: 0px;">Content Created</h3>
-                                                <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in CreativeContentsFinal track by $index">
-                                                    <md-list flex>
-                                                        <md-list-item class="md-3-line" ui-sref="home.singleContent({contentId: content.id})">
-                                                            <img ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
-                                                            <div class="md-list-item-text" layout="column">
-                                                                <h3>{{ content.title }}</h3>
-                                                                <h4>{{ content.created.at | date: ' d MMM'}}</h4>
-                                                                <p>
-                                                                    <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
-                                                                        <li ng-repeat="tag in content.Tags" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">{{tag.name}}</li>
-                                                                    </ul>
-                                                                </p>
-                                                            </div>
-                                                        </md-list-item>
-                                                        <md-divider></md-divider>
-                                                    </md-list>
-                                                </div>
-                                            </div>
-                                            <div ng-show="profile.BookmarkedContents.length>0">
-                                                <h3 class="md-title" style="margin-bottom: 0px;">Liked Items</h3>
+                                                <h3 class="md-title" ng-if="BookmarkedContents.length>0" style="margin-bottom: 0px;">Recommended Creativity</h3>
                                                 <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in BookmarkedContents track by $index">
                                                     <md-list flex>
-                                                        <md-list-item class="md-3-line" ui-sref="home.singleContent({contentId: content.id})">
+                                                        <md-list-item class="md-2-line" ui-sref="home.singleContent({contentId: content.id})">
                                                             <img ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
                                                             <div class="md-list-item-text" layout="column">
-                                                                <h3>{{ content.title }}</h3>
-                                                                <h4>{{ content.created.at | date: ' d MMM'}}</h4>
+                                                                <h3 class="weight-500">{{ content.title }}</h3>
+                                                                <p>{{ content.created.at | date: ' d MMM'}}</p>
                                                                 <p>
                                                                     <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
                                                                         <li ng-repeat="tag in content.Tags" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">{{tag.name}}</li>
@@ -223,7 +241,27 @@
                                                     </md-list>
                                                 </div>
                                             </div>
-                        </div>
+                                            <br>
+                                            <div>
+                                                <h3 ng-if="CreativeContentsFinal.length>0" class="md-title" style="margin-bottom: 0px;">Content Created</h3>
+                                                <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in CreativeContentsFinal track by $index">
+                                                    <md-list flex>
+                                                        <md-list-item class="md-2-line" ui-sref="home.singleContent({contentId: content.id})">
+                                                            <img ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
+                                                            <div class="md-list-item-text" layout="column">
+                                                                <h3 class="weight-500">{{ content.title }}</h3>
+                                                                <p>{{ content.created.at | date: ' d MMM'}}</p>
+                                                                <p>
+                                                                    <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
+                                                                        <li ng-repeat="tag in content.Tags" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">{{tag.name}}</li>
+                                                                    </ul>
+                                                                </p>
+                                                            </div>
+                                                        </md-list-item>
+                                                        <md-divider></md-divider>
+                                                    </md-list>
+                                                </div>
+                                            </div>
                 </md-tab>
                 <md-tab label="Creative Content " ng-if="profile.CreativeContents.data.length>0">
                     <div layout="column" layout-fill>
@@ -232,8 +270,8 @@
                                 <md-list-item class="md-3-line" ui-sref="home.singleContent({contentId: content.id})">
                                     <img ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
                                     <div class="md-list-item-text" layout="column">
-                                        <h3>{{ content.title }}</h3>
-                                        <h4>{{ content.created.at | date: ' d MMM'}}</h4>
+                                        <h3 class="weight-500">{{ content.title }}</h3>
+                                        <p>{{ content.created.at | date: ' d MMM'}}</p>
                                         <p>
                                             <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
                                                 <li ng-repeat="tag in content.Tags" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">{{tag.name}}</li>
@@ -308,7 +346,7 @@
                     </md-list>
                 </md-tab>
                 <md-tab ng-if="profile.Following.data.length>0">
-                                        <md-tab-label>Following <span class="badge">{{profile.Following.data.length}}</span></md-tab-label>
+                                        <md-tab-label>Following  ({{profile.Following.data.length}})</md-tab-label>
                                         <md-tab-body>
                                             <md-list flex>
                                                 <md-list-item class="md-3-line" ui-sref="home.profile({username: item.username})" ng-repeat="item in profile.Following.data track by $index" ng-click="null">
@@ -327,7 +365,7 @@
                                         </md-tab-body>
                 </md-tab>
                 <md-tab ng-if="profile.Follower.data.length>0">
-                    <md-tab-label>Followers <span class="badge">{{profile.Follower.data.length}}</span></md-tab-label>
+                    <md-tab-label>Followers ({{profile.Follower.data.length}})</md-tab-label>
                     <md-tab-body>
                         <md-list flex>
                             <md-list-item class="md-3-line" ui-sref="home.profile({username: item.username})" ng-repeat="item in profile.Follower.data track by $index" ng-click="null">
@@ -351,8 +389,8 @@
                             <md-list-item class="md-3-line" ui-sref="home.singleContent({contentId: content.id})">
                                 <img ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{item.who}}" />
                                 <div class="md-list-item-text" layout="column">
-                                    <h3>{{ content.title }}</h3>
-                                    <h4>{{ content.created.at | date: ' d MMM'}}</h4>
+                                    <h3 class="weight-500">{{ content.title }}</h3>
+                                    <p>{{ content.created.at | date: ' d MMM'}}</p>
                                     <p>
                                         <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
                                             <li ng-repeat="tag in content.Tags" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">{{tag.name}}</li>
@@ -362,7 +400,6 @@
                             </md-list-item>
                             <md-divider></md-divider>
                         </md-list>
-                    </div>
                     </div>
                 </md-tab>
             </md-tabs>

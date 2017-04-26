@@ -37,7 +37,6 @@
         <md-nav-item md-nav-click="searched('creativity', query)">Creativity</md-nav-item>
     </md-nav-bar>
     <h2 class="md-headline" style="color: rgba(0,0,0,.8);" ng-hide="query == '' || finalContents.length == 0">Results for "{{query}}" in creativity</h2>
-
     <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in [1,2,3,4]">
         <md-card ng-show="!loading" flex="100" flex-gt-sm="60">
             <md-card-header>
@@ -68,7 +67,7 @@
                     <img class="md-user-avatar" ng-src="{{content.created.by.image}}" />
                 </md-card-avatar>
                 <md-card-header-text ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer">
-                    <span class="md-subhead"><span  ui-sref="home.profile" style="color: #0570c0">{{content.created.by.name}} </span> in <span ui-sref="home.profile" style="color: #0570c0">{{content.type?content.type:"Article"}} </span></span>
+                    <span class="md-subhead"><span  ui-sref="home.profile"  class="capitalize blue_text">{{content.created.by.name}} </span> in <span ui-sref="home.profile" style="color: #0570c0">{{content.type?content.type:"Article"}} </span></span>
                     <span class="md-title">{{content.created.at  | date: 'd MMM'}}</span>
                 </md-card-header-text>
             </md-card-header>
@@ -83,16 +82,16 @@
                 <span class="creativity-title">{{content.title}} </span>
                 <p class="creativity-description" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="content.description  | limitTo: 200">
                 </p>
-                <p ui-sref="home.singleContent({contentId: content.id})" class="md-subhead" style="color: rgba(0,0,0,.44);font-size: 13px;cursor: pointer;    transition: .1s background-color,.1s border-color,.1s color,.1s fill;">
+                <p ui-sref="home.singleContent({contentId: content.id})" class="md-subhead read-more">
                     Read more...
                 </p>
                 <!-- </div> -->
             </md-card-content>
             <div layout="row" layout-align="start center">
                 <md-button class="appriciate-button" style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
-                    <md-icon class="pink" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon> {{content.Actions.Appriciate.status? 'Appreciated' : 'Appreciate' }}
+                    <md-icon class="pink" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon> {{content.Actions.Appriciate.status? 'Appreciated' : 'Appreciate' }} |
+                    <span> {{content.Actions.Appriciate.total}}</span>
                 </md-button>
-                <span>{{content.Actions.Appriciate.total}}</span>
                 <span flex></span>
                 <md-card-icon-actions>
                     <md-button class="md-icon-button" ng-click="bookmark(content, $index)" aria-label="Favorite">

@@ -1,28 +1,10 @@
 <style type="text/css">
-.medium-editor-placeholder::after {
+    .medium-editor-placeholder::after {
     color: #b3b3b1;
 }
 
-.fabSpeedDialdemoBasicUsage .text-capitalize {
-    text-transform: capitalize;
-}
-
-.fabSpeedDialdemoBasicUsage .md-fab:hover,
-.fabSpeedDialdemoBasicUsage .md-fab.md-focused {
-    background-color: #000 !important;
-}
-
-.fabSpeedDialdemoBasicUsage p.note {
-    font-size: 1.2rem;
-}
-
-.fabSpeedDialdemoBasicUsage .lock-size {
-    min-width: 300px;
-    min-height: 300px;
-    width: 300px;
-    height: 300px;
-    margin-left: auto;
-    margin-right: auto;
+.md-button.md-primary.md-raised[disabled] {
+    background-color: rgb(30, 136, 229);
 }
 </style>
 <div style="position: absolute;width: 100%;height: 100%;">
@@ -33,23 +15,21 @@
                     <md-card-content>
                         <md-list>
                             <md-list-item class="md-2-line">
-                                <img ng-src="{{user.image}}" class="md-avatar" alt="{{todos[0].who}}" />
+                                <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
                                 <div class="md-list-item-text">
                                     <h3>{{user.name}}</h3>
                                     <p>Draft</p>
                                 </div>
                             </md-list-item>
-                            <md-divider ng-hide="coverStatus">
-                            </md-divider>
                             <!-- <md-list-item ng-click="progress=2">
                                 <md-icon md-svg-icon="comment-text"></md-icon>
                                 <p>Text</p>
                             </md-list-item> -->
                             <md-subheader class="md-no-sticky">Adding cover helps your post, get one from <a href="http://unsplash.com" target="_blank">here.</a></md-subheader>
-                            <md-list-item ng-hide="coverStatus">
+                            <md-list-item>
                                 <md-button class="" flex ngf-select="uploadCover($file)" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="100MB" ngf-min-height="300" ngf-min-width="400" ngf-resize="{width: 1000, height: 800}" ngf-resize-if="$width > 1000 || $height > 800">
                                     <md-icon md-svg-icon="image-area"></md-icon>
-                                    Add cover picture
+                                    {{coverStatus?"Edit":"Add"}} cover picture
                                 </md-button>
                             </md-list-item>
                             <md-subheader class="md-no-sticky">Add media to support your post</md-subheader>
@@ -82,7 +62,12 @@
                                 <br> This can take upto a minute.</p>
                             <md-progress-circular md-mode="indeterminate"></md-progress-circular>
                         </div>
-                        <md-button ng-disabled=" (!(title && creativity.items[0].text && !tags.length<1) || loading)" class="md-raised md-primary" ng-click="publish()">Publish</md-button>
+                        <p class="grey" ng-show="(!(title && creativity.items[0].text && creativity.items[0].text.length>30 && !tags.length<1) || loading)">Add the
+                            <span ng-show="!title">title</span>
+                            <span ng-show="title && !(creativity.items[0].text && creativity.items[0].text.length>30)">story</span>
+                            <span ng-show=" title && creativity.items[0].text && creativity.items[0].text.length>30 && tags.length<1">tags</span>
+                             to publish</p>
+                        <md-button ng-disabled=" (!(title && creativity.items[0].text && creativity.items[0].text.length>30 && !tags.length<1) || loading)" class="md-raised md-primary" ng-click="publish()">Publish</md-button>
                     </md-card-actions>
                 </md-card>
             </div>
@@ -116,9 +101,9 @@
                 <!-- <img   style="max-width: 100%" ng-src="{{item.image}}" /> -->
                 <img style="padding: 0;width: 100%" ngf-thumbnail="item.image" ng-repeat="item in creativity.items" ng-if="(item.mediaType=='cover')" />
                 <div ng-show="(item.embedUrl.description.length>50)">
-                    <md-button class="md-primary" ng-hide="coverStatus" layout="row" flex ngf-select="uploadCover($file)" ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="100MB" ngf-min-height="100" ngf-resize="{width: 1024, height: 800}">
+                    <md-button class="md-primary" layout="row" flex ngf-select="uploadCover($file)" ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="100MB" ngf-min-height="100" ngf-resize="{width: 1024, height: 800}">
                         <md-icon md-svg-icon="image-area"></md-icon>
-                        Add cover picture to your Article
+                        {{coverStatus?"Edit":"Add"}} cover picture to your Article
                     </md-button>
                     <span>Adding a cover helps people help discover content better. <a target="_blank" href="http://unsplash.com"></a></span>
                 </div>

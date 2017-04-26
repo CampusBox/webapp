@@ -17,10 +17,10 @@
         if (localStorage.getItem('id_token') != null) {
             $state.go("home.dashboard");
         }
-        $scope.signUp.collegeId = 0;
-        tokenService.get("colleges").then(function(colleges) {
-            $scope.colleges = colleges.data;
-        });
+        $scope.signUp.college_id = 0;
+        // tokenService.get("colleges").then(function(colleges) {
+        //     $scope.colleges = colleges.data;
+        // });
         $scope.items = [];
         $scope.itemsMobile = [];
 
@@ -66,7 +66,7 @@
             { 'title': 'Animation', 'id': 14 },
             { 'title': 'Graphics', 'id': 15 },
             { 'title': 'UI and UX', 'id': 16 },
-            { 'title': 'Webites', 'id': 17 }
+            { 'title': 'Websites', 'id': 17 }
         ];
         $scope.items[4] = [
             { 'title': 'Programming', 'id': 18 },
@@ -103,7 +103,7 @@
         ];
         $scope.itemsMobile[5] = [
             { 'title': 'Dancing', 'id': 22 },
-            { 'title': 'Webites', 'id': 17 },
+            { 'title': 'Websites', 'id': 17 },
             { 'title': 'Programming', 'id': 18 },
             { 'title': 'Apps', 'id': 19 }
 
@@ -120,6 +120,7 @@
         $scope.selectedItemChange = function(id) {
             console.log(id);
             $scope.signUp.college = id;
+            $scope.signUp.college_id = id;
         };
         $scope.authenticate = function(provider) {
             $scope.loading = true;
@@ -196,13 +197,12 @@
             $scope.signUp.skills = $scope.selectedSkills;
             $scope.signUp.intrests = $scope.interests;
             $scope.signUp.college_id = $scope.college;
-            $scope.signUp.college_id = 1;
 
             tokenService.post("signup", $scope.signUp)
                 .then(function(abc) {
                     localStorage.setItem('id_token', abc.token);
                     $rootScope.token = abc.token;
-                    //      $state.go("home.dashboard");
+                         $state.go("home.dashboard");
 
                 })
                 .catch(function() {
@@ -226,7 +226,6 @@
             .loadAllItems()
             .then(function(menuItems) {
                 $scope.filteredPeople = [].concat(menuItems);
-                console.log(menuItems);
             });
 
 

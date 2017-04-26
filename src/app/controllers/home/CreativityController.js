@@ -40,7 +40,7 @@
                         if (tableData.data.length < 2) {
                             $scope.moreItems = false;
                         }
-                        $scope.nonFinalContents =[];
+                        $scope.nonFinalContents = [];
                         $scope.contents = tableData.data;
 
                         $scope.contents.forEach(function(content) {
@@ -75,7 +75,7 @@
                         });
                         $scope.creativityLoading = false;
                         console.log($scope.creativityLoading);
-                            $scope.finalContents = $scope.finalContents.concat($scope.nonFinalContents);
+                        $scope.finalContents = $scope.finalContents.concat($scope.nonFinalContents);
                         $scope.offset += 2;
                         console.log($scope.offset);
                     });
