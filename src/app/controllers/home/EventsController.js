@@ -51,7 +51,8 @@
                 tokenService.get("events?limit=2&offset=" + $scope.offset)
                     .then(function(tableData) {
                         $scope.loading = false;
-                        if (tableData.data.length < 3) {
+                        if (tableData.data.length < 2) {
+                            console.log("more items: " + $scope.moreItems);
                             $scope.moreItems = false;
                         }
                         $scope.events = $scope.events.concat(tableData.data);

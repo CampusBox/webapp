@@ -35,7 +35,6 @@
                 $scope.creativityLoading = true;
                 tokenService.get("contents?limit=2&offset=" + $scope.offset)
                     .then(function(tableData) {
-                        console.log(tableData);
                         $scope.creativityLoading = false;
                         if (tableData.data.length < 2) {
                             $scope.moreItems = false;

@@ -72,7 +72,7 @@
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 locals: {
-                    eventId: eventId 
+                    eventId: eventId
 
                 },
                 clickOutsideToClose: true,
@@ -205,12 +205,13 @@
             } else {
                 console.log($scope.student.Skills);
                 tokenService.post("addStudentSkills", $scope.student.Skills)
-                    .then(function(abc) {
+                    .then(function(status) {
                         $scope.readonly = !$scope.readonly;
                         $scope.removable = !$scope.removable;
-                    }).catch(function(error) {
-                        console.log(error);
+                    }).catch(function(status) {
+                        console.log(status);
                     });
+
             }
         };
 
