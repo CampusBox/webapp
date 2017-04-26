@@ -86,6 +86,19 @@
                         </div>
                     </div>
                 </md-tab>
+                <md-tab label="Description">
+                    <div class="md-padding" > 
+                        <center ng-if="!tutorial">
+                        <br>
+                            <img ng-src="assets/images/addEvent.gif" style="border-color: #ccc;border-radius: 6px; border-style: solid;max-width: 90%" src="assets/images/editing.gif">
+                            <br>
+                            <md-button  ng-click="gotIt();" class="md-primary" aria-label="description">Got it!</md-button>
+                        <br>
+                        <br>
+                        </center>
+                        <p class="md-title" ng-hide="progress<1" style="outline: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;" ng-model="event.description" medium-editor data-placeholder="Mention complete details about the event here (including rules and prizes)."></p>
+                    </div>
+                </md-tab>
                 <md-tab label="Additional Details">
                     <div class="md-padding" layout="column">
                         <md-input-container md-no-float flex>
@@ -102,7 +115,7 @@
                         </md-input-container>
                         <md-input-container md-no-float>
                             <label>Enter tags for your event</label>
-                            <md-chips name="skills" ng-model="tags"  md-separator-keys="customKeys" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
+                            <md-chips name="skills" ng-model="tags" md-separator-keys="customKeys" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
                                 <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Press enter or semicolor after tag">
                                     <span md-highlight-text="searchText">{{item.name}}</span>
                                 </md-autocomplete>
@@ -153,11 +166,11 @@
                 </md-tab>
             </md-tabs>
             <md-dialog-actions layout="row">
-            <div layout="row" ng-hide="!loading" layout-sm="column" layout-align="space-around">
-                            <p>Please wait, we are uploading images and all content.
-                                <br> This can take upto a minute.</p>
-                            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-                        </div>
+                <div layout="row" ng-hide="!loading" layout-sm="column" layout-align="space-around">
+                    <p>Please wait, we are uploading images and all content.
+                        <br> This can take upto a minute.</p>
+                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                </div>
                 <span flex></span>
                 <!-- <md-button ng-click="nextTab()">Previous</md-button> -->
                 <md-button ng-hide="loading" class=" md-primary" ng-click="nextTab()">Next</md-button>

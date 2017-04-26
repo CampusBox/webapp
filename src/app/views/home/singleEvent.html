@@ -65,7 +65,7 @@
                     <md-list-item>
                         <md-icon md-svg-icon="account-circle" class="grey-text" aria-label="Alarm Icon"></md-icon>
                         <h3 class="md-body-1 grey-text">
-                                    By : <a href="{{event.organiser.link}}" target="_blank"> {{event.organiser.name}} </a>
+                                    By : <a href="{{event.organiser.link}}" target="_blank"> {{event.organiser.name}} </a>({{event.organiser.phone}})
                                 </h3>
                     </md-list-item>
                     <md-list-item>
@@ -84,7 +84,7 @@
         <span flex hide-xs></span>
         <div layout="row" class="md-padding" layout-align="space-around">
             <md-button class="appriciate-button" ng-click="heart(event, $index)" aria-label="Favorite ">
-                <md-icon class="pink" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>{{event.Actions.Bookmarked.status? 'Appreciate' : 'Appreciated' }}
+                <md-icon class="pink" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>{{event.Actions.Bookmarked.status? 'Appreciated' : 'Appreciate' }}
             </md-button>
             <md-button class="rsvp-button" ng-class="(event.Actions.Participants.status)? 'md-raised md-primary' : ''" ng-click="rsvpEvent(event, $index, 'events')" aria-label="Favorite">
                 <md-icon ng-class="(event.Actions.Participants.status)? '':'blue'" md-svg-icon="{{!event.Actions.Participants.status? 'account-check' : 'plus-one' }}"></md-icon> {{!event.Actions.Participants.status? 'attending' : 'RSVP' }}
@@ -96,7 +96,7 @@
     <!-- <md-tab label="Description"> -->
     <div layout="column" flex-gt-xs="80" flex="80" flex-offset-gt-xs="10" flex-offset-xs="5" flex-order-xs="1">
         <h2 class="md-headline" style="margin-bottom:10px;">Description</h2>
-        <p class="md-body-2">{{event.details.description}}</p>
+        <p class="md-body-2" ng-bind-html="event.details.description"></p>
     </div>
     <!--  </md-tab>
         <md-tab label="Rules">
