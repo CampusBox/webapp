@@ -24,10 +24,10 @@
             .then(function(student) {
                 $scope.student = student.data;
                 $scope.student.BookmarkedContents.data.forEach(function(content, index) {
-                $scope.student.BookmarkedContents.data[index].created.at = new Date(Date.parse($scope.student.BookmarkedContents.data[index].created.at.replace('-', '/', 'g'))); //replace mysql date to js date format
+                    $scope.student.BookmarkedContents.data[index].created.at = new Date(Date.parse($scope.student.BookmarkedContents.data[index].created.at.replace('-', '/', 'g'))); //replace mysql date to js date format
                 });
                 $scope.student.CreativeContents.data.forEach(function(content, index) {
-                $scope.student.CreativeContents.data[index].created.at = new Date(Date.parse($scope.student.CreativeContents.data[index].created.at.replace('-', '/', 'g'))); //replace mysql date to js date format
+                    $scope.student.CreativeContents.data[index].created.at = new Date(Date.parse($scope.student.CreativeContents.data[index].created.at.replace('-', '/', 'g'))); //replace mysql date to js date format
                 });
                 $scope.loading == false;
                 console.log($scope.student);
@@ -81,9 +81,10 @@
         $scope.about = function() {
             if ($scope.editAbout) {
                 tokenService.post("about", $scope.student.subtitle)
-                    .then(function(abc) {
+                    .then(function() {
                         $scope.editAbout = false;
-                    }).catch(function(error) {
+                    })
+                    .catch(function(error) {
                         console.log(error);
                     });
             } else {
@@ -91,31 +92,31 @@
             }
         };
         $scope.follow = function(type, index) {
-                // SEND FOLLOWER ID AND FOLLOWING ID IN POST
-                if ($scope.student[type].data[index].following) {
-                    tokenService.post('studentFollow/' + $scope.student[type].data[index].username).then(function(result) {
-                        if (result.status != 'error') {
-                            console.log(result.status);
-                            $scope.student[type].data[index].following = !$scope.student[type].data[index].following;
-                        } else {
-                            console.log(result);
-                        }
-                    });
-                } else {
-                    // SEND FOLLOWER ID IN DELETE
-                    tokenService.delete('studentFollow/' + $scope.student[type].data[index].username).then(function(result) {
-                        console.log('post request');
-                        if (result.status != 'error') {
-                            $scope.student[type].data[index].following = !$scope.student[type].data[index].following;
-                            console.log(result.status);
-                        } else {
-                            console.log(result);
-                        }
-                    });
-                }
-            };
-            // SKILLS CHIP SHIT STARTED
-        
+            // SEND FOLLOWER ID AND FOLLOWING ID IN POST
+            if ($scope.student[type].data[index].following) {
+                tokenService.post('studentFollow/' + $scope.student[type].data[index].username).then(function(result) {
+                    if (result.status != 'error') {
+                        console.log(result.status);
+                        $scope.student[type].data[index].following = !$scope.student[type].data[index].following;
+                    } else {
+                        console.log(result);
+                    }
+                });
+            } else {
+                // SEND FOLLOWER ID IN DELETE
+                tokenService.delete('studentFollow/' + $scope.student[type].data[index].username).then(function(result) {
+                    console.log('post request');
+                    if (result.status != 'error') {
+                        $scope.student[type].data[index].following = !$scope.student[type].data[index].following;
+                        console.log(result.status);
+                    } else {
+                        console.log(result);
+                    }
+                });
+            }
+        };
+        // SKILLS CHIP SHIT STARTED
+
         $scope.readonly = true;
         $scope.removable = false;
         $scope.selectedItem = null;
