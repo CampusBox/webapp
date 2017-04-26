@@ -17,7 +17,7 @@
             <a ng-if="(content.type == 'youtube')" ui-sref="home.singleContent({contentId: content.id})">
                 <img style="background:url('https://img.youtube.com/vi/{{content.url}}/maxresdefault.jpg');object-fit: cover;background-size: cover;background-position: center;"  class="creativity-cover"  alt="">
             </a>
-            <md-card-content>
+            <md-card-content style="padding-bottom: 0px">
                 <div ng-if="(content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
                     <!-- <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" ng-src="{{content.url}}" frameborder="0" allowfullscreen></iframe> -->
                     <iframe ng-show="(content.type == 'soundcloud')" width="100%" height="166" scrolling="no" frameborder="0" ng-src="{{content.url}}" allowfullscreen></iframe>
