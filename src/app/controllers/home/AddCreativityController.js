@@ -19,6 +19,9 @@
     function AddCreativityController($scope, Upload, $sce, $timeout, $mdDialog, allDataService, tokenService, $state) {
         var body = {};
         $scope.progress = 0;
+        $scope.isOpen = false;
+        $scope.selectedMode = 'md-scale';
+
 
         $scope.creativity = {};
         $scope.coverStatus = 0;

@@ -8,8 +8,8 @@
             '$q',
             function($rootScope, $http, $q, $location) {
                 // console.log($rootScope.token);
-                // var serviceBase = 'https://app.campusbox.org/api/public/';
-                var serviceBase = 'http://localhost/api/public/';
+                var serviceBase = 'https://app.campusbox.org/api/public/';
+                // var serviceBase = 'http://localhost/api/public/';
                 $rootScope.config = function() {
                     return {
                         headers: {
@@ -31,6 +31,11 @@
                 };
                 obj.put = function(q, object) {
                     return $http.put(serviceBase + q, object, $rootScope.config()).then(function(results) {
+                        return results.data;
+                    });
+                };
+                obj.patch = function(q, object) {
+                    return $http.patch(serviceBase + q, object, $rootScope.config()).then(function(results) {
                         return results.data;
                     });
                 };
