@@ -648,7 +648,13 @@ md-icon.cross>svg {
     font-style: normal;
     font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
 }
-
+.creativity-description-list{
+margin-top: 0px;
+margin-bottom: 0px;
+}
+.creativity-description-list br{
+display: none;
+}
 .creativity-description-single {
      margin-left: auto;
     margin-right: auto;
