@@ -20,6 +20,7 @@
         $scope.event.fromDate = new Date();
         $scope.place = null;
         $scope.loading = false;
+        $scope.tutorial = false;
         $scope.types = [
             { 'id': 1, 'title': 'Competition', },
             { 'id': 2, 'title': 'Conference', },
@@ -36,6 +37,9 @@
 
         $scope.consoleTag = function(tags) {
             console.log(tags);
+        };
+        $scope.gotIt = function() {
+            $scope.tutorial = true;
         };
         //IMAGE UPLOAD CODE START
         $scope.upload = function(dataUrl, name) {

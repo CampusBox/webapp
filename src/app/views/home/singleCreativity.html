@@ -86,8 +86,10 @@ md-list-item .md-button:not([disabled]):click {
     </div>
 </div>
 <div layout="row" style="margin-top: 50px" layout-xs="column" flex flex-offset-gt-xs="10" flex-gt-xs="80" flex-xs="100">
-    <md-card flex  ng-repeat="content in finalContents track by $index">
-        <img ng-src="{{content.url}}" class="md-card-image" style="object-fit: cover;height: 150px;" >
+    <md-card flex  ng-repeat="content in finalContents track by $index" class="pointer" ui-sref="home.singleContent({contentId: content.id})">
+        <img ng-if="(content.type == 'cover' || content.type == 'image')" ng-src="{{content.url}}" class="md-card-image" style="object-fit: cover;height: 200px;" >
+        <img ng-if="(content.type == 'youtube')" style="background:url('https://img.youtube.com/vi/{{content.url}}/maxresdefault.jpg');object-fit: cover;background-size: cover;background-position: center;"  class="creativity-cover"  alt="">
+
         <md-card-title>
             <md-card-title-text>
                 <span class="md-headline">{{content.title}}</span>
