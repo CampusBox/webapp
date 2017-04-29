@@ -177,6 +177,16 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
                     title: 'Profile'
                 }
             })
+            .state('home.me', {
+                url: '/me',
+                templateUrl: 'app/views/home/me.html',
+                controller: 'MeController',
+                controllerAs: 'vm',
+                data: {
+                    requiresLogin: true,
+                    title: 'Me'
+                }
+            })
             .state('home.eventFullPage', {
                 url: '/eventFullPage',
                 templateUrl: 'app/views/home/eventFullPage.html',
@@ -290,13 +300,13 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
         //   authManager.redirectWhenUnauthenticated();
         $rootScope.token = localStorage.getItem('id_token');
         if ('serviceWorker' in navigator) {
-            // navigator.serviceWorker.register('/service-worker.js', { scope: './'}).then(function(registration) {
-            //     console.log('Service Worker registered');
-            // }).catch(function(err) {
-            //     console.log('Service Worker registration failed: ', err);
-            // });
-        } else {
-            console.log("this browser does NOT support service worker");
+            navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+                //Registration was successful
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }).catch(function(err) {
+                //registration failed :(
+                console.log('ServiceWorker registration failed: ', err);
+            });
         }
         //  if (!authManager.isAuthenticated()) {
         //        console.log("sending to login")

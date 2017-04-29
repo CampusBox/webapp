@@ -6,7 +6,7 @@
         <div class="md-whiteframe-1dp white-bg">
             <div layout="column" layout-wrap layout-align="center">
                 <md-list flex ng-if="updates.length>0">
-                    <md-list-item ng-href="{{update.link}}" target="_blank" ng-hide="updatesLoading" class="md-2-line" ng-repeat="update in updates">
+                    <md-list-item ng-href="{{update.link}}" target="noopener" ng-hide="updatesLoading" class="md-2-line" ng-repeat="update in updates">
                         <md-icon md-svg-icon="bell-outline"></md-icon>
                         <div class="md-list-item-text">
                             <h3>{{update.title}}</h3>

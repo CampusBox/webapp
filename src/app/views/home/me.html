@@ -1,0 +1,78 @@
+<div layout="column" layout-fill class="white-bg">
+    <section>
+        <div class="messages" layout-fill>
+            <div class="messages-content">
+                <center>
+                    <h3 class="blue_text">Profile</h3>
+                    <md-divider></md-divider>
+                </center>
+                <md-menu-item>
+                    <md-button ui-sref="home.myProfile({tab: 1})">
+                        <div layout="row" flex="" class="ng-scope layout-row flex">
+                            <p flex="" class="flex">My Events</p>
+                            <md-icon md-svg-icon="calendar"></md-icon>
+                        </div>
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ui-sref="home.myProfile({tab: 0})">
+                        <div layout="row" flex="" class="ng-scope layout-row flex">
+                            <p flex="" class="flex">My Creativity</p>
+                            <md-icon md-svg-icon="all-inclusive"></md-icon>
+                        </div>
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ui-sref="home.myProfile">
+                        <div layout="row" flex="" class="ng-scope layout-row flex">
+                            <p flex="" class="flex">My Profile</p>
+                            <md-icon md-svg-icon="account"></md-icon>
+                        </div>
+                    </md-button>
+                </md-menu-item>
+                <center>
+                    <h3 class="blue_text">Notifications</h3>
+                    <md-divider></md-divider>
+                </center>
+                <md-list>
+                    <md-list-item class="md-2-line" ng-repeat="notification in notifications">
+                        <md-icon ng-if="notification.type=='follower'" md-svg-icon="account"></md-icon>
+                        <md-icon ng-if="notification.type=='event_rsvps'" md-svg-icon="calendar"></md-icon>
+                        <md-icon ng-if="notification.type=='content_appreciate'" md-svg-icon="all-inclusive"></md-icon>
+                        <div class="md-list-item-text">
+                            <p ng-if="notification.type=='follower'" ui-sref="home.profile({username: notification.follower_username})">{{notification.follower_username}} started following you.</p>
+                            <p ng-if="notification.type=='event_rsvps'" ui-sref="home.singleEvent({eventId: notification.event_id})">{{notification.total}} {{(notification.total>1)?'people have':'person has'}} RSVP'd your event"{{notification.title}}" </p>
+                            <p ng-if="notification.type=='content_appreciate'" ui-sref="home.singleContent({contentId: notification.content_id})">{{notification.total}} {{(notification.total>1)?'people have':'person has'}} appreciated your creativity.</p>
+                        </div>
+                        <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon" aria-label="call">
+                            <md-icon md-svg-icon="{{phone.options.actionIcon}}"></md-icon>
+                        </md-button>
+                    </md-list-item>
+                    <div style="padding: 30px;" ng-if="notifications.length==0">
+                        <center>
+                            <md-icon style="width:48px;height:48px;" md-svg-icon="bell-ring"></md-icon>
+                            <p style="color: rgba(0,0,0,0.54)">No new notification.</p>
+                        </center>
+                    </div>
+                    <md-divider></md-divider>
+                </md-list>
+                <div flex></div>
+                <md-menu-item>
+                    <md-button ng-click="logout();$mdCloseMenu();">
+                        <div layout="row" flex="" class="ng-scope layout-row flex">
+                            <p flex="">Sign Out</p>
+                            <md-icon md-svg-icon="logout-variant"></md-icon>
+                        </div>
+                    </md-button>
+                </md-menu-item>
+            </div>
+        </div>
+        <!-- </md-tab>
+            <md-tab label="Search" data-ng-if="windowWidth<587">
+                <md-content class="md-padding">
+                    <div ng-include src=" 'app/views/partials/searchSidebar.html'"></div>
+                </md-content>
+            </md-tab>
+            </md-tabs> -->
+    </section>
+</div>
