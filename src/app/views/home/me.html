@@ -1,11 +1,12 @@
 <div layout="column" layout-fill class="white-bg">
     <section>
-        <div class="messages" layout-fill>
+        <md-sidenav class="messages" layout-fill>
             <div class="messages-content">
                 <center>
                     <h3 class="blue_text">Profile</h3>
                     <md-divider></md-divider>
                 </center>
+                
                 <md-menu-item>
                     <md-button ui-sref="home.myProfile({tab: 1})">
                         <div layout="row" flex="" class="ng-scope layout-row flex">
@@ -66,7 +67,7 @@
                     </md-button>
                 </md-menu-item>
             </div>
-        </div>
+        </md-sidenav>
         <!-- </md-tab>
             <md-tab label="Search" data-ng-if="windowWidth<587">
                 <md-content class="md-padding">

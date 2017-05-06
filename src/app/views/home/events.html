@@ -81,11 +81,11 @@
             <!-- <md-button class="md-primary" ng-click="showAdvanced()">Add event</md-button> -->
         </md-card-content>
     </md-card>
-    <div layout="column" flex-offset="{{grid?0:5}}" flex-gt-sm="{{grid?80:60}}">
+    <div layout="column" flex-offset-gt-sm="{{grid?0:5}}" flex-gt-sm="{{grid?80:60}}">
         <md-list ng-show="!grid">
             <md-list-item style="margin-bottom: 10px;" ng-repeat="event in events" ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding eventListItem">
                 <md-card flex>
-                    <p hide-gt-xs class="md-title" style="font-weight: 600;margin: 0px;padding-left: 12px">
+                    <p hide-gt-sm class="md-title" style="font-weight: 600;margin: 0px;padding-left: 12px">
                         {{event.title | limitTo : 30}}
                     </p>
                     <md-card-title style="padding: 0px;">
@@ -94,8 +94,8 @@
                         </div>
                         <div style="padding:  5px 0px 0px 12px;" flex layout="column">
                             <!-- <span class="md-body-2">{{event.timings.date.start? event.timings.date.start:"Fri, Mar 24 2:00 PM" }}</span> -->
-                            <span hide-xs style="margin-top: 0px; color: #555555;text-align: right;margin-right: 28px;" class="md-body-2">{{event.timings.from.date | date: ' d MMM'}} <!-- · {{event.timings.from.time}}{{event.timings.from.period}} --> - {{event.timings.to.date==event.timings.from.date?null:event.timings.to.date | date: ' d MMM'}} <!-- · {{ event.timings.to.time}}{{event.timings.to.period}} --></span>
-                            <p hide-xs class="md-title" style="font-weight: 600;margin: 0px; margin-top: -15px;">
+                            <span hide-xs hide-sm style="margin-top: 0px; color: #555555;text-align: right;margin-right: 28px;" class="md-body-2">{{event.timings.from.date | date: ' d MMM'}} <!-- · {{event.timings.from.time}}{{event.timings.from.period}} --> - {{event.timings.to.date==event.timings.from.date?null:event.timings.to.date | date: ' d MMM'}} <!-- · {{ event.timings.to.time}}{{event.timings.to.period}} --></span>
+                            <p hide-xs hide-sm class="md-title" style="font-weight: 600;margin: 0px; margin-top: -15px;">
                                 {{event.title | limitTo : 30}}
                             </p>
                             <p style="margin-top: 0px; color: #555555;width: 85%" class="md-body-2">
@@ -103,7 +103,7 @@
                             </p>
                             <div flex></div>
                             <md-card-actions layout="row" layout-align="start center">
-                                <span hide-gt-xs style="margin-top: 0px; color: #555555;text-align: right;margin-right: 28px;" class="md-body-2">{{event.timings.from.date | date: ' d MMM'}} <!-- · {{event.timings.from.time}}{{event.timings.from.period}} --> - {{event.timings.to.date==event.timings.from.date?null:event.timings.to.date | date: ' d MMM'}} <!-- · {{ event.timings.to.time}}{{event.timings.to.period}} --></span>
+                                <span hide-gt-sm style="margin-top: 0px; color: #555555;text-align: right;margin-right: 28px;" class="md-body-2">{{event.timings.from.date | date: ' d MMM'}} <!-- · {{event.timings.from.time}}{{event.timings.from.period}} --> - {{event.timings.to.date==event.timings.from.date?null:event.timings.to.date | date: ' d MMM'}} <!-- · {{ event.timings.to.time}}{{event.timings.to.period}} --></span>
                                 <!-- <md-button hide-xs class="md-icon-button" aria-label="Favorite">
                                         <a target="_blank" ng-href="{{event.link}}">
                                             <md-icon ng-class="!event.Actions.Participants.status? 'blue':''" md-svg-icon="link-variant"></md-icon>
@@ -138,31 +138,28 @@
                     </div>
                 </md-card>
             </md-list-item>
+        </md-list>
+        <div infinite-scroll="myPagingFunction();" infinite-scroll-disabled='loading' infinite-scroll-distance="4">
+        </div>
+        <md-list ng-show="!grid">
+            <md-list-item ng-show="loading" flex style="margin-bottom: 15px;" ng-repeat="event in [1,2]" class="secondary-button-padding eventListItem">
+                <md-card flex>
+                    <md-card-title style="padding: 0px;">
+                        <div class="md-media-sm" style="width: 150px;height:150px; background-color: #eee">
+                            <img class="" style="width: 150px;height:150px;background-color: #f1f1f1" alt="">
+                        </div>
+                        <div style="padding:  14px 23px 0px 33px;" flex layout="column">
+                            <!-- <span class="md-body-2">{{event.timings.date.start? event.timings.date.start:"Fri, Mar 24 2:00 PM" }}</span> -->
+                            <p class="animated-background" style="margin-top: 0px;">Date · Time </p>
+                            <br>
+                            <p class="md-title animated-background" style="font-weight: 600;margin: 0px; background-color: #eee;color: transparent;">
+                                CampusBox launch
+                            </p>
+                            <p style="margin:0;background-color: #eee;color: transparent;" class="md-caption animated-background">Main Auditorium, Thapar University</p>
+                        </div>
+                    </md-card-title>
+                </md-card>
+            </md-list-item>
+        </md-list>
     </div>
-    </md-list>
-</div>
-<div infinite-scroll="myPagingFunction();" infinite-scroll-disabled='loading' infinite-scroll-distance="4">
-</div>
-<div layout="row" flex-offset="{{grid?0:5}}" flex-gt-sm="{{grid?80:60}}">
-    <md-list ng-show="!grid">
-        <md-list-item ng-show="loading" flex style="margin-bottom: 15px;" ng-repeat="event in [1,2]" class="secondary-button-padding eventListItem">
-            <md-card flex>
-                <md-card-title style="padding: 0px;">
-                    <div class="md-media-sm" style="width: 150px;height:150px; background-color: #eee">
-                        <img class="" style="width: 150px;height:150px;background-color: #f1f1f1" alt="">
-                    </div>
-                    <div style="padding:  14px 23px 0px 33px;" flex layout="column">
-                        <!-- <span class="md-body-2">{{event.timings.date.start? event.timings.date.start:"Fri, Mar 24 2:00 PM" }}</span> -->
-                        <p class="animated-background" style="margin-top: 0px;">Date · Time </p>
-                        <br>
-                        <p class="md-title animated-background" style="font-weight: 600;margin: 0px; background-color: #eee;color: transparent;">
-                            CampusBox launch
-                        </p>
-                        <p style="margin:0;background-color: #eee;color: transparent;" class="md-caption animated-background">Main Auditorium, Thapar University</p>
-                    </div>
-                </md-card-title>
-            </md-card>
-        </md-list-item>
-    </md-list>
-</div>
 </div>

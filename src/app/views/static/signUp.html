@@ -454,7 +454,7 @@ ul.teeth li:last-child {
 }
 </style>
 <div layout="row" layout-align="start start">
-    <div class="login-box md-whiteframe-z1" flex-offset-gt-xs="10" style="min-width: 50%" flex-xs layout="column">
+    <div class="login-box md-whiteframe-z1" flex-offset-gt-sm="10" style="min-width: 50%" flex-sm layout="column">
         <md-progress-linear md-mode="determinate" value="{{currentState*33}}"></md-progress-linear>
         <!--  <md-toolbar ng-show="currentState==2">
             <h2 class="md-toolbar-tools">
@@ -469,7 +469,7 @@ ul.teeth li:last-child {
             </center>
             <form>
                 <center>
-                    <div flex hide-xs layout="row" layout-align="center center" ng-repeat="itemgroup in items">
+                    <div flex hide-sm layout="row" layout-align="center center" ng-repeat="itemgroup in items">
                         <span ng-repeat="item in itemgroup track by $index">                        
                             <md-button  ng-class="item.intrested?'interest_selected':'interest'" ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">                        
                                 {{ item.title }}
@@ -477,7 +477,7 @@ ul.teeth li:last-child {
                             <!-- <br ng-show="{{$index==3 || $index==8|| $index==12 ||$index==17 || $index==21  }}"> -->
                     </span>
                     </div>
-                    <div hide-gt-xs flex layout="row" layout-align="center center" ng-repeat="itemgroup in itemsMobile">
+                    <div hide-gt-sm flex layout="row" layout-align="center center" ng-repeat="itemgroup in itemsMobile">
                         <span ng-repeat="item in itemgroup track by $index">                        
                             <md-button  ng-class="item.intrested?'interest_selected':'interest'" ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">                        
                                 {{ item.title }}
@@ -561,7 +561,7 @@ ul.teeth li:last-child {
         </div>
     </div>
     <div layout="column" layout-align="space-between ">
-        <p class="md-display-1" hide-xs style="font-weight: 300; color: white; margin-left: 50px">Welcome to CampusBox</p>
+        <p class="md-display-1" hide-xs hide-sm style="font-weight: 300; color: white; margin-left: 50px">Welcome to CampusBox</p>
         <!-- <p class="md-headline" style=" color: white">You are setting up a new student account.</p> -->
         <div class="minion" hide-xs hide-sm>
             <div class="hands">
