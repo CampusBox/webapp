@@ -20,6 +20,7 @@
         var body = {};
         $scope.progress = 0;
         $scope.isOpen = false;
+        $scope.addMenu = false;
         $scope.selectedMode = 'md-scale';
 
 
@@ -161,6 +162,7 @@
                         $scope.creativity.items.push(media);
                     });
                 });
+                $scope.addMenu = false;
             }
         };
 
@@ -182,6 +184,8 @@
                     cover.image = url;
                     $scope.creativity.items.push(cover);
                 });
+                $scope.addMenu = false;
+
             }
         };
         $scope.addItem = function(title) {
@@ -204,6 +208,8 @@
                 }).then(function(media) {
                     $scope.progress = 2;
                     $scope.creativity.items.push(media);
+                    $scope.addMenu = false;
+
                     if (media.mediaType == 'Soundcloud') {
                         var widgetIframe = document.getElementById('sc-widget'),
                             widget = SC.Widget(widgetIframe),
