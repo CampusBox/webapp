@@ -469,7 +469,7 @@ ul.teeth li:last-child {
             </center>
             <form>
                 <center>
-                    <div flex hide-sm layout="row" layout-align="center center" ng-repeat="itemgroup in items">
+                    <div flex hide-sm hide-xs layout="row" layout-align="center center" ng-repeat="itemgroup in items">
                         <span ng-repeat="item in itemgroup track by $index">                        
                             <md-button  ng-class="item.intrested?'interest_selected':'interest'" ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">                        
                                 {{ item.title }}
@@ -486,20 +486,21 @@ ul.teeth li:last-child {
                     </span>
                     </div>
                 </center>
-                <!--  <div class="errors" ng-messages="register.fruitName.$error">
+            </form>
+            <!--  <div class="errors" ng-messages="register.fruitName.$error">
                     <div ng-message="md-max-chips">Maximum number of chips reached.</div>
                 </div> -->
-                <br>
-                <center>
-                    <p>Already have an account ? <a ui-sref='static.login'>Login here</a></p>
-                </center>
-                <div layout="row" flex>
-                    <md-button flex="60" flex-offset="20" ng-disabled="interests.length<3" style="float:right" ng-click="currentState=3;" class="md-raised md-primary">
-                        Continue
-                    </md-button>
-                </div>
-                <br>
-                <br>
+            <br>
+            <center>
+                <p>Already have an account ? <a ui-sref='static.login'>Login here</a></p>
+            </center>
+            <div layout="row" flex>
+                <md-button flex="60" flex-offset="20" ng-disabled="interests.length<3" style="float:right" ng-click="currentState=3;" class="md-raised md-primary">
+                    Continue
+                </md-button>
+            </div>
+            <br>
+            <br>
         </div>
         <div class="md-padding" layout="column" ng-show="currentState==3">
             <div>
@@ -516,11 +517,10 @@ ul.teeth li:last-child {
                 </center>
                 <form name="register">
                     <label>Name of your college</label>
-                    <md-autocomplete md-no-cache="false" ng-model="signUp.college_id"  required md-require-match md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item.college_id)" md-items="item in searchData" md-item-text="item.name" md-min-length="0" placeholder="Full name of your college" md-menu-class="autocomplete-custom-template">
+                    <md-autocomplete md-no-cache="false" ng-model="signUp.college_id" required md-require-match md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item.college_id)" md-items="item in searchData" md-item-text="item.name" md-min-length="0" placeholder="Full name of your college" md-menu-class="autocomplete-custom-template">
                         <md-item-template>
                             <md-list-item md-highlight-text="searchText">
                                 {{ item.name }}
-                              
                             </md-list-item>
                             <md-not-found>
                                 No matches found.
@@ -554,8 +554,8 @@ ul.teeth li:last-child {
                         <div layout="row" ng-show="loading" layout-sm="column" layout-align="space-around">
                             <md-progress-circular md-mode="indeterminate"></md-progress-circular>
                         </div>
+                    </div>
                 </form>
-                </div>
                 <!-- <md-divider></md-divider> -->
             </div>
         </div>
