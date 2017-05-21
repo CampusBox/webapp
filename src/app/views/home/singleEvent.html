@@ -3,6 +3,12 @@
     color: #666A73;
     font-weight: 500;
 }
+.event-description{
+    text-align: justify;
+}
+.event-description p{
+    text-align: justify;
+}
 </style>
 <div ng-show="loading" layout="column" class="md-whiteframe-1dp white-bg" flex-gt-xs="80" flex-offset-gt-xs="10">
     <div layout-gt-xs="row" layout-xs="column" layout-align="start" layout-align-xs="strech start">
@@ -31,7 +37,7 @@
     </div>
     <md-divider></md-divider>
 </div>
-<div layout="column" ng-show="!loading" class="md-whiteframe-1dp white-bg" flex-gt-xs="80" flex-offset-gt-xs="10">
+<div layout="column" ng-show="!loading" class=" white-bg" flex-gt-xs="80" flex-offset-gt-xs="10">
     <div layout-gt-xs="row" layout-xs="column" layout-align="start center">
         <div flex-sm="40" flex-md="30" flex-lg="30" flex-xs="100">
             <img style="max-width: 100%" ng-src="{{event.image}}" class="md-card-image" alt="Event title">
@@ -94,9 +100,9 @@
     <md-divider></md-divider>
     <!-- <md-tabs md-dynamic-height md-border-bottom md-selected="tab"> -->
     <!-- <md-tab label="Description"> -->
-    <div layout="column" flex-gt-xs="80" flex="80" flex-offset-gt-xs="10" flex-offset-xs="5" flex-order-xs="1">
+    <div layout="column" style="    max-width: 80%;" flex-gt-xs="80" flex="80" flex-offset-gt-xs="10" flex-offset-xs="5" flex-order-xs="1">
         <h2 class="md-headline" style="margin-bottom:10px;">Description</h2>
-        <p class="md-body-2" ng-bind-html="event.details.description"></p>
+        <p class="md-body-2 event-description"  ng-bind-html="event.details.description"></p>
     </div>
     <!--  </md-tab>
         <md-tab label="Rules">
