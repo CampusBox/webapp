@@ -3,20 +3,38 @@
 </md-button> -->
 <style type="text/css">
 md-toolbar {
-    background-color: #06558f !important;
+    background-color: #fff !important;
+}
+
+md-toolbar.md-default-theme:not(.md-menu-toolbar) md-icon,
+md-toolbar:not(.md-menu-toolbar) md-icon,
+.blue_fill {
+    fill: #6A6E71;
+}
+
+md-autocomplete.autocomplete-custom-template md-autocomplete-wrap {
+    box-shadow: 0px 0px #fff !important;
+    /*width: 40%;*/
+}
+
+md-autocomplete.autocomplete-custom-template input:not(.md-input) {
+    border: solid 1px #dbdbdb;
+    background: #f1f1f1;
+    border-radius: 4px;
 }
 </style>
 <div layout="column" flex>
-    <md-toolbar hide-xs hide-sm layout="row" layout-align="center center" style="    min-height: 57px;">
+    <md-toolbar hide-xs hide-sm layout="row" layout-align="center center" style="    min-height: 57px;" class="md-whiteframe-1dp">
         <section layout-align="start center">
             <md-button hide-sm hide-xs layout="row" ui-sref="home.dashboard" layout-align="center center" class="md-toolbar-tools" style="    height: 57px;" aria-label="Home">
-                <!-- <md-icon md-svg-icon="school"></md-icon> -->
-                <img src="https://campusbox.org/images/CB2.png" style="max-height: 60%">
+                <!-- <md-icon md-svg-icon="school" class="blue_fill"></md-icon>  -->
+                <span style="text-transform: none" class="blue_text"> CampusBox</span>
+                <!-- <img src="https://campusbox.org/images/CB2.png" style="max-height: 60%"> -->
             </md-button>
         </section>
         <section layout-align="start center" flex>
             <form hide-sm hide-xs ng-submit="searchedFast(searchText)">
-                <md-autocomplete ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-items="item in searchTypes" md-item-text="searchText" md-min-length="0" placeholder="Search for anything here" md-menu-class="autocomplete-custom-template">
+                <md-autocomplete ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-items="item in searchTypes" md-item-text="searchText" md-min-length="0" placeholder="Search CampusBox" class="autocomplete-custom-template">
                     <md-item-template>
                         <md-list-item class="noright" ng-click="searched(item,searchText)">
                             <md-icon md-svg-icon="{{item.icon}}" class=" md-hue-3"></md-icon>
@@ -27,8 +45,8 @@ md-toolbar {
             </form>
         </section>
         <section layout-align="end start">
-            <md-button hide-sm hide-xs style="height: auto;font-weight: 300;
-    line-height: 16px;margin-top: 3px;margin-bottom: 0px;" ng-repeat="item in vm.menuItems" layout-align="center center" flex class="capitalize" ng-click="vm.selectItem(item)" ui-sref-active="white-text" ui-sref="{{item.sref}}">
+            <md-button hide-sm hide-xs style="height: auto;font-weight: 500;
+    line-height: 16px;margin-top: 3px;margin-bottom: 0px;" ng-repeat="item in vm.menuItems" layout-align="center center" flex class="capitalize grey_text" ng-click="vm.selectItem(item)" ui-sref="{{item.sref}}">
                 <div class="md-tile-content" layout="column">
                     <md-icon md-svg-icon="{{item.icon}}"></md-icon>
                 </div>
@@ -36,9 +54,9 @@ md-toolbar {
                     {{item.name}}
                 </div>
             </md-button>
-            <md-menu style="margin: 0px">
-                <md-button style="height: auto;font-weight: 300;
-    line-height: 16px;margin-top: 3px;margin-bottom: 0px;min-width: 0px" layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="$mdMenu.open()">
+            <md-menu md-offset="-88 56">
+                <md-button md-menu-origin="" md-menu-align-target style="height: auto;font-weight: 500;
+    line-height: 16px;margin-top: 3px;margin-bottom: 0px;min-width: 0px" layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications" ng-click="$mdMenu.open()">
                     <div hide-sm hide-xs class="md-tile-content" layout="column">
                         <md-icon md-svg-icon="plus-circle"></md-icon>
                     </div>
@@ -75,8 +93,8 @@ md-toolbar {
             </md-menu>
         </section>
         <section layout-align="end start">
-            <md-button style="height: auto;font-weight: 300;
-    line-height: 16px;margin-top: 3px;margin-bottom: 0px;" hide-sm hide-xs layout-align="center center" flex class="capitalize" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
+            <md-button style="height: auto;font-weight: 500;
+    line-height: 16px;margin-top: 3px;margin-bottom: 0px;" hide-sm hide-xs layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
                 <div hide-sm hide-xs class="md-tile-content" layout="column">
                     <md-icon md-svg-icon="account"></md-icon>
                     <!-- <span style="color:#fff" class="notifications-label"> </span> -->
@@ -93,29 +111,29 @@ md-toolbar {
     </md-content>
     <md-toolbar hide-gt-sm style="height: 50px;">
     </md-toolbar>
-    <md-toolbar hide-gt-sm layout="row" style="position: fixed;bottom: 0px;" layout-align="center center">
-        <md-button ng-repeat="item in vm.menuItems" layout-align="center center" flex class="capitalize bottom-menu-item" ng-click="vm.selectItem(item)" ui-sref-active="" ui-sref="{{item.sref}}">
+    <md-toolbar hide-gt-sm layout="row" style="position: fixed;bottom: 0px;" class="md-whiteframe-3dp" layout-align="center center">
+        <md-button ng-repeat="item in vm.menuItems" layout-align="center center" flex class="capitalize grey_text bottom-menu-item" ng-click="vm.selectItem(item)" ui-sref-active="" ui-sref="{{item.sref}}">
             <div hide-md class="md-tile-content">
                 <md-icon md-svg-icon="{{item.icon}}"></md-icon>
             </div>
-            <div class="md-tile-content" style="line-height: 16px;font-weight: 300">
+            <div class="md-tile-content" style="line-height: 16px;font-weight: 500">
                 {{item.name}}
             </div>
         </md-button>
-        <md-button layout-align="center center" flex class="capitalize bottom-menu-item" ui-sref="home.searchStudents" aria-label="Notifications" ng-click="">
+        <md-button layout-align="center center" flex class="capitalize grey_text bottom-menu-item" ui-sref="home.searchStudents" aria-label="Notifications" ng-click="">
             <div hide-md class="md-tile-content">
                 <md-icon md-svg-icon="magnify"></md-icon>
             </div>
-            <div class="md-tile-content" style="line-height: 16px;font-weight: 300">
+            <div class="md-tile-content" style="line-height: 16px;font-weight: 500">
                 Search
             </div>
         </md-button>
-        <md-menu>
-            <md-button style="min-width: 45px;" layout-align="center center" flex class="capitalize bottom-menu-item" aria-label="Notifications" ng-click="$mdMenu.open()">
+        <md-menu md-offset="0 48">
+            <md-button  md-menu-origin md-menu-align-target style="min-width: 45px;" layout-align="center center" flex class="capitalize grey_text bottom-menu-item" aria-label="Notifications" ng-click="$mdMenu.open()">
                 <div class="md-tile-content">
                     <md-icon md-svg-icon="plus"></md-icon>
                 </div>
-                <div class="md-tile-content"  style="line-height: 16px;font-weight: 300">
+                <div class="md-tile-content" style="line-height: 16px;font-weight: 500">
                     Add
                 </div>
             </md-button>
@@ -146,11 +164,11 @@ md-toolbar {
                 </md-menu-item>
             </md-menu-content>
         </md-menu>
-        <md-button layout-align="center center" flex class="capitalize bottom-menu-item" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
+        <md-button layout-align="center center" flex class="capitalize grey_text bottom-menu-item" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
             <div class="md-tile-content">
                 <md-icon md-svg-icon="account"></md-icon>
             </div>
-            <div class="md-tile-content" style="line-height: 16px;font-weight: 300">
+            <div class="md-tile-content" style="line-height: 16px;font-weight: 500">
                 Me
             </div>
         </md-button>
@@ -162,7 +180,7 @@ md-toolbar {
             <div class="messages" layout-fill>
                 <md-content class="messages-content">
                     <center>
-                        <h3 class="blue_text">Profile</h3>
+                        <h3 class="grey_text">Profile</h3>
                         <md-divider></md-divider>
                     </center>
                     <md-menu-item>
@@ -190,7 +208,7 @@ md-toolbar {
                         </md-button>
                     </md-menu-item>
                     <center>
-                        <h3 class="blue_text">Notifications</h3>
+                        <h3 class="grey_text">Notifications</h3>
                         <md-divider></md-divider>
                     </center>
                     <md-list>
