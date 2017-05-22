@@ -25,7 +25,7 @@
 
 
         $scope.creativity = {};
-        $scope.coverStatus = 0;
+        $scope.coverStatus = false;
         $scope.creativity.items = [];
         body.text = "";
         body.mediaType = "text";
@@ -175,9 +175,19 @@
                 $mdDialog.cancel();
             };
         }
+
+        $scope.removeCover = function() {
+            for (var i = $scope.creativity.items.length - 1; i >= 0; i--) {
+                if ($scope.creativity.items[i].mediaType == 'cover')
+                    console.log(i);
+                $scope.creativity.items.splice(i,1)
+                $scope.coverStatus = false;
+            }
+
+        }
         $scope.uploadCover = function(file) {
             if (file) {
-                $scope.coverStatus = 1;
+                $scope.coverStatus = true;
                 Upload.dataUrl(file, true).then(function(url) {
                     var cover = {};
                     cover.mediaType = 'cover';
@@ -188,16 +198,16 @@
 
             }
         };
-        $scope.addItem = function(title) {
-            if (title == "Text") {
+        $scope.addItem = function(heading) {
+            if (heading == "Text") {
                 $scope.progress = 2;
             } else {
                 $mdDialog.show({
                     controller: 'AddItemController',
                     templateUrl: 'app/views/partials/addItem.html',
                     parent: angular.element(document.body),
-                    targetEvent: title,
-                    title: title,
+                    targetEvent: heading,
+                    heading: heading,
                     scope: $scope,
                     preserveScope: true,
                     escapeToClose: true,
@@ -229,10 +239,6 @@
             }
         };
 
-        tokenService.get("userImage")
-            .then(function(response) {
-                $scope.user = response;
-            });
         $scope.addImage = function(file) {};
         $scope.publish = function() {
             $scope.loading = true;

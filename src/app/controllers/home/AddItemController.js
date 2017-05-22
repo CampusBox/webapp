@@ -8,16 +8,16 @@
                 '$scope',
                 'Upload',
                 '$timeout',
-                'title',
+                'heading',
                 '$sce',
                 AddItemController
             ]);
 
-        function AddItemController($mdDialog, $scope, Upload, $timeout, title, $sce) {
+        function AddItemController($mdDialog, $scope, Upload, $timeout, heading, $sce) {
             $scope.error = '';
             $scope.url = '';
             $scope.mediaType = "";
-            $scope.title = title;
+            $scope.heading = heading;
 
             $scope.cancel = function() {
                 $mdDialog.cancel();
@@ -36,7 +36,7 @@
         $scope.submitUrl = function(url) {
             $scope.url = url;
             console.log($scope.url)
-            switch (title) {
+            switch (heading) {
                 case 'Youtube':
                     $scope.error = '';
                     $scope.item = {};
