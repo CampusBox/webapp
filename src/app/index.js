@@ -14,10 +14,10 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
 
         jwtOptionsProvider.config({
             whiteListedDomains: ['http://localhost', 'http://192.171.2.213', 'http://campusbox.org'],
-            unauthenticatedRedirectPath: '/signUp',
-            unauthenticatedRedirector: ['$state', function($state) {
-                $state.go('static.signUp');
-            }],
+            // unauthenticatedRedirectPath: '/signUp',
+            // unauthenticatedRedirector: ['$state', function($state) {
+            //     $state.go('static.signUp');
+            // }],
             tokenGetter: ['options', 'jwtHelper', function(options, jwtHelper) {
                 if (options && options.url.substr(options.url.length - 5) == '.html') {
                     return null;

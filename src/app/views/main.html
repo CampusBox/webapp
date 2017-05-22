@@ -50,7 +50,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                 <div class="md-tile-content" layout="column">
                     <md-icon md-svg-icon="{{item.icon}}"></md-icon>
                 </div>
-                <div class="md-tile-content">
+                <div class="md-tile-content" style="color: #6A6E71">
                     {{item.name}}
                 </div>
             </md-button>
@@ -60,7 +60,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                     <div hide-sm hide-xs class="md-tile-content" layout="column">
                         <md-icon md-svg-icon="plus-circle"></md-icon>
                     </div>
-                    <div class="md-tile-content">
+                    <div class="md-tile-content" style="color: #6A6E71">
                         Add
                     </div>
                 </md-button>
@@ -94,13 +94,13 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
         </section>
         <section layout-align="end start">
             <md-button style="height: auto;font-weight: 500;
-    line-height: 16px;margin-top: 3px;margin-bottom: 0px;" hide-sm hide-xs layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
+    line-height: 16px;margin-top: 3px;margin-bottom: 0px;" hide-sm hides-xs layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
                 <div hide-sm hide-xs class="md-tile-content" layout="column">
                     <!-- <md-icon md-svg-icon="account"></md-icon> -->
                     <img ng-src="{{user.image}}" style="width: 24px; height: 24px;align-self: center;border-radius: 50%">
                     <!-- <span style="color:#fff" class="notifications-label"> </span> -->
                 </div>
-                <div class="md-tile-content">
+                <div class="md-tile-content" style="color: #6A6E71">
                     Me
                 </div>
             </md-button>
@@ -117,7 +117,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
             <div hide-md class="md-tile-content">
                 <md-icon md-svg-icon="{{item.icon}}"></md-icon>
             </div>
-            <div class="md-tile-content" style="line-height: 16px;font-weight: 500">
+            <div class="md-tile-content" style="line-height: 16px;font-weight: 500; color: #6A6E71;">
                 {{item.name}}
             </div>
         </md-button>
@@ -125,7 +125,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
             <div hide-md class="md-tile-content">
                 <md-icon md-svg-icon="magnify"></md-icon>
             </div>
-            <div class="md-tile-content" style="line-height: 16px;font-weight: 500">
+            <div class="md-tile-content" style="line-height: 16px;font-weight: 500; color: #6A6E71;">
                 Search
             </div>
         </md-button>
@@ -134,7 +134,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                 <div class="md-tile-content">
                     <md-icon md-svg-icon="plus"></md-icon>
                 </div>
-                <div class="md-tile-content" style="line-height: 16px;font-weight: 500">
+                <div class="md-tile-content" style="line-height: 16px;font-weight: 500; color: #6A6E71;">
                     Add
                 </div>
             </md-button>
@@ -171,7 +171,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
 
                 <!-- <md-icon md-svg-icon="account"></md-icon> -->
             </div>
-            <div class="md-tile-content" style="line-height: 16px;font-weight: 500">
+            <div class="md-tile-content" style="line-height: 16px;font-weight: 500; color: #6A6E71;">
                 Me
             </div>
         </md-button>
