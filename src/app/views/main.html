@@ -81,7 +81,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                             </div>
                         </md-button>
                     </md-menu-item>
-                    <md-menu-item>
+<!--                     <md-menu-item>
                         <md-button ng-click="addUpdate();$mdCloseMenu()">
                             <div layout="row" flex="" class="ng-scope layout-row flex">
                                 <p flex="" class="flex">Add Update</p>
@@ -89,14 +89,15 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                             </div>
                         </md-button>
                     </md-menu-item>
-                </md-menu-content>
+ -->                </md-menu-content>
             </md-menu>
         </section>
         <section layout-align="end start">
             <md-button style="height: auto;font-weight: 500;
     line-height: 16px;margin-top: 3px;margin-bottom: 0px;" hide-sm hide-xs layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
                 <div hide-sm hide-xs class="md-tile-content" layout="column">
-                    <md-icon md-svg-icon="account"></md-icon>
+                    <!-- <md-icon md-svg-icon="account"></md-icon> -->
+                    <img ng-src="{{user.image}}" style="width: 24px; height: 24px;align-self: center;border-radius: 50%">
                     <!-- <span style="color:#fff" class="notifications-label"> </span> -->
                 </div>
                 <div class="md-tile-content">
@@ -105,7 +106,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
             </md-button>
         </section>
     </md-toolbar>
-    <md-content flex class="md-padding page-content">
+    <md-content flex class="md-padding page-content" style="padding: 0px">
         <div ui-view style="max-width: 1500px;margin:auto;">
         </div>
     </md-content>
@@ -154,19 +155,21 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                         </div>
                     </md-button>
                 </md-menu-item>
-                <md-menu-item>
+                <!-- <md-menu-item>
                     <md-button ng-click="$mdCloseMenu()" ui-sref="home.myProfile">
                         <div layout="row" flex="" class="ng-scope layout-row flex">
                             <p flex="" class="flex">Add Update</p>
                             <md-icon md-svg-icon="account"></md-icon>
                         </div>
                     </md-button>
-                </md-menu-item>
+                </md-menu-item> -->
             </md-menu-content>
         </md-menu>
         <md-button layout-align="center center" flex class="capitalize grey_text bottom-menu-item" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
             <div class="md-tile-content">
-                <md-icon md-svg-icon="account"></md-icon>
+                                <img ng-src="{{user.image}}" style="width: 24px; height: 24px;align-self: center;border-radius: 50%">
+
+                <!-- <md-icon md-svg-icon="account"></md-icon> -->
             </div>
             <div class="md-tile-content" style="line-height: 16px;font-weight: 500">
                 Me
