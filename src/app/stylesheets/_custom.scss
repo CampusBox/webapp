@@ -12,7 +12,9 @@ $font-size-large: 22px;
 body {
     color: $text-color;
 }
-
+.main-bg{
+    background-color: $main-bg-color;
+}
 .weight-500 {
     font-weight: 500 !important;
 }
@@ -20,7 +22,9 @@ body {
 .pink {
     fill: rgb(233, 30, 99) !important;
 }
-
+.page-content{
+    background-color: #fff;
+}
 .badge {
     margin: 0 0 0 8px;
     background-color: #aaa;
@@ -85,10 +89,6 @@ body {
 .share-label {
     vertical-align: middle;
     margin-left: 10px;
-}
-
-.page-content {
-    background-color: $main-bg-color;
 }
 
 .widget-progress {
