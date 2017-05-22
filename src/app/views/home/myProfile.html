@@ -57,7 +57,7 @@ md-chips md-chip.md-focused md-icon {
     color: rgba(0, 0, 0, .44) !important;
 }
 </style>
-<div layout="row" layout-xs="column">
+<div layout="row" layout-xs="column" class="main-bg">
     <md-card hide-xs flex="30" flex-xs="100">
         <center>
             <img style="border-radius: 50%; width: 40%; margin-top:20px;" ng-src="{{student.photo}}" class="md-card-image" alt="">
@@ -146,7 +146,9 @@ md-chips md-chip.md-focused md-icon {
                                 <md-card-title-text>
                                     <span class="md-title">{{student.name}}</span>
                                     <br>
-                                    <span class="md-caption"><md-icon md-svg-icon="school"></md-icon> {{student.college.name}}</span>
+                                    <span class="md-caption">
+                                    <!-- <md-icon md-svg-icon="school"></md-icon> -->
+                                     {{student.college.name}}</span>
                                 </md-card-title-text>
                             </md-card-title>
                         </div>
