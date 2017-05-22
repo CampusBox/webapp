@@ -17,6 +17,10 @@
                 $scope.notifications = response;
             });
         var semicolon = 186;
+        tokenService.get("userImage")
+            .then(function(response) {
+                $scope.user = response;
+            });
 
         $scope.customKeys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, semicolon];
 
