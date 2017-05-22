@@ -12,6 +12,7 @@
     padding: 2px 4px;
     border-radius: 2px;
 }
+
 md-chips.md-default-theme md-chip.mdfocused,
 md-chips md-chip.md-focused {
     /*background-color: #fafafa !important;
@@ -57,7 +58,7 @@ md-chips md-chip.md-focused md-icon {
 }
 </style>
 <div layout="row" layout-xs="column">
-    <md-card flex="30" flex-xs="100">
+    <md-card hide-xs flex="30" flex-xs="100">
         <center>
             <img style="border-radius: 50%; width: 40%; margin-top:20px;" ng-src="{{student.photo}}" class="md-card-image" alt="">
             <md-card-title>
@@ -77,7 +78,7 @@ md-chips md-chip.md-focused md-icon {
                 </md-button>
             </div>
             <div class="md-body-2" layout="row" ng-show="editAbout">
-                <div class="md-body-2" md-colors="{color: 'grey'}" contenteditable ng-model="student.subtitle">
+                <div class="md-body-2" md-colors="{color: 'grey'}" contenteditable ng-model="studentAbout.about">
                 </div>
                 <md-button class="md-icon-button md-primary" ng-click="about()">
                     <md-icon class="md-icon-button" md-svg-icon="checkbox-marked-outline"></md-icon>
@@ -136,6 +137,80 @@ md-chips md-chip.md-focused md-icon {
     <md-card flex="70" flex-xs="100">
         <md-card-content>
             <md-tabs md-dynamic-height md-border-bottom md-selected="tab">
+            <div  show-xs hide-gt-xs>
+                <md-tab label="profile">
+                    <div show-xs ng-if="!studentLoading">
+                        <div layout="row" layout-align="center center">
+                            <img flex="30" style="width: 20%; height: 20%; margin-top:20px; background-color: #ccc;" ng-src="{{student.photo}}" class="md-card-image" alt="{{student.name}}">
+                            <md-card-title flex="70">
+                                <md-card-title-text>
+                                    <span class="md-title">{{student.name}}</span>
+                                    <br>
+                                    <span class="md-caption"><md-icon md-svg-icon="school"></md-icon> {{student.college.name}}</span>
+                                </md-card-title-text>
+                            </md-card-title>
+                        </div>
+                        <md-card-content>
+                            <div layout-align="start start">
+                                <div ng-hide="editAbout" layout="row">
+                                    <p style="color: rgba(0, 0, 0, 0.44)" class="md-subhead weight-500" ng-bind-html="student.subtitle">
+                                    </p>
+                                    <span flex></span>
+                                    <md-button class="md-icon-button" ng-click="about()">
+                                        <md-icon md-svg-icon="pencil"></md-icon>
+                                    </md-button>
+                                </div>
+                                <div class="md-body-2" layout="row" ng-show="editAbout">
+                                    <div class="md-body-2" md-colors="{color: 'grey'}" contenteditable ng-model="studentAbout.about">
+                                    </div>
+                                    <md-button class="md-icon-button md-primary" ng-click="about()">
+                                        <md-icon class="md-icon-button" md-svg-icon="checkbox-marked-outline"></md-icon>
+                                    </md-button>
+                                </div>
+                            </div>
+                            <div layout-align="start start" ng-show="student.Skills.data[0] || addSkill" ng-init="student.Skills.data[0]? addSkill = true : addSkill = false">
+                                <div layout="row">
+                                    <form name="skillsForm">
+                                        <md-chips class="your-custom-chip" name="skills" md-separator-keys="customKeys" ng-model="student.Skills.data" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
+                                            <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Use comma to separate skills.">
+                                                <span md-highlight-text="searchText">{{item.name}}</span>
+                                            </md-autocomplete>
+                                            <md-chip-template>
+                                                <span>
+                                  <strong>{{$chip.name}}</strong>
+                                </span>
+                                            </md-chip-template>
+                                        </md-chips>
+                                    </form>
+                                    <span flex></span>
+                                    <md-button ng-click="skillsEdit()" class="md-icon-button">
+                                        <md-icon md-svg-icon="pencil" ng-show="readonly"></md-icon>
+                                        <md-icon md-svg-icon="checkbox-marked-outline" ng-hide="readonly"></md-icon>
+                                    </md-button>
+                                </div>
+                            </div>
+                            <div ng-hide="student.Skills.data[0] || addSkill">
+                                <p class="md-title">
+                                    Skills
+                                </p>
+                                <!-- <span class="md-body-2" md-colors="{color: 'grey'}"> -->
+                                <md-button class="md-body-2" md-colors="{color: 'grey'}" title="Add skills" ng-click="addSkill = true;skillsEdit()" class="">
+                                    <md-icon class="md-primary" md-svg-icon="plus"></md-icon>
+                                    Add skills you can brag about
+                                </md-button>
+                                <!-- </span> -->
+                            </div>
+                            <br>
+                            <a style="margin-bottom: 10px;" ng-repeat="social in student.SocialAccounts.data" ng-href="{{social.link}}" target="_blank">
+                                <md-icon md-svg-icon="{{social.type}}" md-colors="social.type=='facebook' ? {color: 'indigo'} : {color: 'red'}"></md-icon>
+                            </a>
+                            <br>
+                            <br>
+                        </md-card-content>
+                    </div>
+                </md-tab>
+            </div>
+
                 <md-tab label="Content">
                     <div class="md-padding" layout-fill>
                         <div style="margin-top: 5%;" layout="column" layout-align="center center" ng-show="student.CreativeContents.data.length == 0">

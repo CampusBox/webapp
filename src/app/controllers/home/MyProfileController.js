@@ -19,10 +19,12 @@
         $scope.loading == true;
         $scope.BookmarkedContents = [];
         $scope.CreativeContents = [];
+        $scope.studentAbout = {};
 
         tokenService.get("myProfile")
             .then(function(student) {
                 $scope.student = student.data;
+                $scope.studentAbout.about = student.data.subtitle;
                 $scope.student.BookmarkedContents.data.forEach(function(content, index) {
                     $scope.student.BookmarkedContents.data[index].created.at = new Date(Date.parse($scope.student.BookmarkedContents.data[index].created.at.replace('-', '/', 'g'))); //replace mysql date to js date format
                 });
@@ -81,13 +83,16 @@
         };
         $scope.about = function() {
             if ($scope.editAbout) {
-                tokenService.post("about", $scope.student.subtitle)
+                // console.log($scope.studentAbout);
+                tokenService.patch("/students/" + $scope.student.username, $scope.studentAbout)
                     .then(function() {
                         $scope.editAbout = false;
+                        $scope.student.subtitle = $scope.studentAbout.about;
                     })
                     .catch(function(error) {
                         console.log(error);
                     });
+
             } else {
                 $scope.editAbout = true;
             }

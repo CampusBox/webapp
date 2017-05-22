@@ -8,8 +8,8 @@
             '$q',
             function($rootScope, $http, $q, $location) {
                 
-                var serviceBase = 'api/public/';
-                // var serviceBase = 'https://app.campusbox.org/api/public/';
+                // var serviceBase = 'api/public/';
+                var serviceBase = 'https://app.campusbox.org/api/public/';
                 // var serviceBase = 'http://localhost/api/public/';
                 $rootScope.config = function() {
                     return {
