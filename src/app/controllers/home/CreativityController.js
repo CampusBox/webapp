@@ -52,6 +52,11 @@
             $state.go('home.singleContent', { contentId: item });
 
         };
+        $scope.openProfile = function($event, username) {
+            $event.stopPropagation();
+            $state.go('home.profile', { username: username });
+        };
+
         var cardObject = {};
         $scope.myPagingFunction = function() {
             console.log('paging called');

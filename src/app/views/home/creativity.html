@@ -23,7 +23,7 @@
                     <img class="md-user-avatar" ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" />
                 </md-card-avatar>
                 <md-card-header-text ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer">
-                    <span class="md-subhead "><span class="capitalize blue_text"  ui-sref="home.profile({username: content.created.by.username})" >{{content.created.by.name}} </span> in <span class="blue_text">{{content.type?content.type:"Article"}} </span></span>
+                    <span class="md-subhead "><span class="capitalize blue_text"  ng-click="openProfile($event, content.created.by.username);" >{{content.created.by.name}} </span> in <span class="blue_text">{{content.type?content.type:"Article"}} </span></span>
                     <span class="md-title">{{content.created.at  | date: 'd MMM'}}</span>
                 </md-card-header-text>
             </md-card-header>
