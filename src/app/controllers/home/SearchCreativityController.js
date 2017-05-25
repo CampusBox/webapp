@@ -82,7 +82,11 @@
 
             }
         }
-
+        $scope.openProfile = function($event, username) {
+            $event.stopPropagation();
+            console.log(username);
+            $state.go('home.profile', {username: username});
+        };
         $scope.toggleLike = function(contentId) {
             console.log(contentId);
             vm.liked = !vm.liked;

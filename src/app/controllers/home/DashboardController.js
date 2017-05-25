@@ -10,10 +10,11 @@
             '$location',
             '$sce',
             '$filter',
+            '$state',
             DashboardController
         ]);
 
-    function DashboardController($mdDialog, $scope, tokenService, Upload, $location, $sce, $filter) {
+    function DashboardController($mdDialog, $scope, tokenService, Upload, $location, $sce, $filter, $state) {
         $scope.events = {};
         $scope.updatesLoading = true;
         $scope.eventLoading = true;
@@ -78,7 +79,6 @@
                 $scope.updates = updates.data;
                 $scope.updatesLoading = false;
             });
-
         $scope.myPagingFunction = function() {
             console.log('paging called');
             if ($scope.creativityLoading == false && $scope.offset < 5) {
@@ -183,6 +183,11 @@
                 });
             }
         }
+        $scope.openProfile = function($event, username) {
+            $event.stopPropagation();
+            console.log(username);
+            $state.go('home.profile', {username: username});
+        };
         $scope.heartEvent = function(event, $index, type) {
             $scope[type][$index].Actions.Bookmarked.status = !$scope[type][$index].Actions.Bookmarked.status;
             if ($scope[type][$index].Actions.Bookmarked.status) {
