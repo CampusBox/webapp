@@ -13,7 +13,6 @@
 
     function MyProfileController($mdDialog, $scope, tokenService, $stateParams, $state) {
         var vm = this;
-        $scope.tab = $stateParams.tab;
         $scope.username = $stateParams.username;
         $scope.editAbout = false;
         $scope.loading == true;
@@ -31,6 +30,7 @@
                 $scope.student.CreativeContents.data.forEach(function(content, index) {
                     $scope.student.CreativeContents.data[index].created.at = new Date(Date.parse($scope.student.CreativeContents.data[index].created.at.replace('-', '/', 'g'))); //replace mysql date to js date format
                 });
+                $scope.tab = $stateParams.tab;
                 $scope.loading == false;
                 console.log($scope.student);
             });

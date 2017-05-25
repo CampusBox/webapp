@@ -46,7 +46,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
         </section>
         <section layout-align="end start">
             <md-button hide-sm hide-xs style="height: auto;font-weight: 500;
-    line-height: 16px;margin-top: 3px;margin-bottom: 0px;" ng-repeat="item in vm.menuItems" layout-align="center center" flex class="capitalize grey_text" ng-click="vm.selectItem(item)" ui-sref="{{item.sref}}">
+    line-height: 16px;margin-top: 3px;margin-bottom: 0px;    font-size: 13px;" ng-repeat="item in vm.menuItems" layout-align="center center" flex class="capitalize grey_text" ng-click="vm.selectItem(item)" ui-sref="{{item.sref}}">
                 <div class="md-tile-content" layout="column">
                     <md-icon md-svg-icon="{{item.icon}}"></md-icon>
                 </div>
@@ -56,7 +56,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
             </md-button>
             <md-menu md-offset="-88 56">
                 <md-button md-menu-origin="" md-menu-align-target style="height: auto;font-weight: 500;
-    line-height: 16px;margin-top: 3px;margin-bottom: 0px;min-width: 0px" layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications" ng-click="$mdMenu.open()">
+    line-height: 16px;margin-top: 3px;margin-bottom: 0px;min-width: 0px;    font-size: 13px;" layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications" ng-click="$mdMenu.open()">
                     <div hide-sm hide-xs class="md-tile-content" layout="column">
                         <md-icon md-svg-icon="plus-circle"></md-icon>
                     </div>
@@ -93,8 +93,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
             </md-menu>
         </section>
         <section layout-align="end start">
-            <md-button style="height: auto;font-weight: 500;
-    line-height: 16px;margin-top: 3px;margin-bottom: 0px;" hide-sm hides-xs layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
+            <md-button style="height: auto;font-weight: 500;line-height: 16px;margin-top: 3px;margin-bottom: 0px;font-size: 13px;" hide-sm hide-xs layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
                 <div hide-sm hide-xs class="md-tile-content" layout="column">
                     <!-- <md-icon md-svg-icon="account"></md-icon> -->
                     <img ng-src="{{user.image}}" style="width: 24px; height: 24px;align-self: center;border-radius: 50%">
@@ -207,6 +206,14 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                             <div layout="row" flex="" class="ng-scope layout-row flex">
                                 <p flex="" class="flex">My Profile</p>
                                 <md-icon md-svg-icon="account"></md-icon>
+                            </div>
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="vm.toggleRightSidebar()" ui-sref="home.myProfile({tab: 3})">
+                            <div layout="row" flex="" class="ng-scope layout-row flex">
+                                <p flex="" class="flex">My Bookmark</p>
+                                <md-icon md-svg-icon="bookmark"></md-icon>
                             </div>
                         </md-button>
                     </md-menu-item>
