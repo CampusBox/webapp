@@ -33,20 +33,18 @@ md-list-item .md-button:not([disabled]):click {
     </md-card>
     <div flex-gt-sm="80" flex-sm="100" ng-if="!loading">
         <md-list>
-            <md-list-item flex-offset-gt-sm="10" class="md-3-line" ng-click="false" md-ink-ripple="0">
-                <img  ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
-                <div class="md-list-item-text"  layout="column">
+            <md-list-item ui-sref="home.profile({username: content.created.by.username})" flex-offset-gt-sm="10" class="md-3-line" ng-click="false" md-ink-ripple="0">
+                <img ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
+                <div class="md-list-item-text" layout="column">
                     <h3><span class="md-subhead">
                 <span  ui-sref="home.profile({username: content.created.by.username})"  class="capitalize blue_text pointer" >
                 {{content.created.by.name}} </span> in <span style="color: #0570c0">{{content.type?content.type:"Article"}} </span>
                 <!-- </span> <span><md-button ng-class="profile.following? 'md-primary' : 'md-raised md-primary'" ng-click="follow($event)">{{profile.following? 'Following':'Follow' }}</md-button></span> </h3> -->
-                    <h4><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.subtitle}}</span></h4>
-                    <!-- <h4><span style="color: rgba(0,0,0,.44);" class="md-caption">I write. I ride. I read. I rest. Contributor to Thought Catalog, Good Men’s Project, Momentum Magazine</span></h4> -->
+                    <h4><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.by.about}}</span></h4>
                     <p><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.at | date: 'd MMM'}}</span></p>
                 </div>
             </md-list-item>
         </md-list>
-       
         <div>
             <h1 flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100" class="md-title creativity-title creativity-title-single" ng-bind-html="content.title"></h1>
             <center flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100" ng-repeat="item in content.Items.data">
@@ -76,45 +74,57 @@ md-list-item .md-button:not([disabled]):click {
                     <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
                 </md-button>
                 <md-divider></md-divider>
-                <md-list-item flex-offset-gt-sm="10" class="md-3-line" ng-click="false" md-ink-ripple="0">
-                    <img  ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
-                    <div class="md-list-item-text"  layout="column">
-                        <h3><span class="md-subhead">
+                <!--                 <md-list>
+                    <md-list-item flex-offset-gt-sm="10" class="md-3-line" ng-click="false" md-ink-ripple="0">
+                        <img ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
+                        <div class="md-list-item-text" layout="column">
+                            <h3><span class="md-subhead">
                 <span  ui-sref="home.profile({username: content.created.by.username})"  class="capitalize pointer" >
                 {{content.created.by.name}} </span>
                    </div>
                 </md-list-item>
+                </md-list> -->
+                <md-list >
+                    <md-list-item ui-sref="home.profile({username: content.created.by.username})" class="md-2-line" ng-click="false" md-ink-ripple="0">
+                        <img ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
+                        <div class="md-list-item-text" layout="column">
+                            <h3><span class="md-subhead">
+                        <span  ui-sref="home.profile({username: content.created.by.username})"  class="capitalize blue_text pointer" >
+                        {{content.created.by.name}}
+                        <!-- </span> <span><md-button ng-class="profile.following? 'md-primary' : 'md-raised md-primary'" ng-click="follow($event)">{{profile.following? 'Following':'Follow' }}</md-button></span> </h3> -->
+                            <h4><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.by.about}}</span></h4>
+                        </div>
+                    </md-list-item>
+                </md-list>
             </div>
         </div>
     </div>
 </div>
 <div layout="row" style="margin-top: 50px" layout-xs="column" layout-sm="column" flex flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100">
-    <md-card flex  ng-repeat="content in finalContents track by $index" class="pointer" ui-sref="home.singleContent({contentId: content.id})">
-        <img ng-if="(content.type == 'cover' || content.type == 'image')" ng-src="{{content.url}}" class="md-card-image" style="object-fit: cover;height: 200px;" >
-        <img ng-if="(content.type == 'youtube')" style="background:url('https://img.youtube.com/vi/{{content.url}}/maxresdefault.jpg');object-fit: cover;background-size: cover;background-position: center;"  class="creativity-cover"  alt="">
-
+    <md-card style="height: 280px;" flex ng-repeat="content in finalContents track by $index" class="pointer" ui-sref="home.singleContent({contentId: content.id})">
+        <img ng-if="(content.type == 'cover' || content.type == 'image')" ng-src="{{content.url}}" class="md-card-image" style="object-fit: cover;height: 100px;">
+        <img ng-if="(content.type == 'youtube')" style="background:url('https://img.youtube.com/vi/{{content.url}}/maxresdefault.jpg');object-fit: cover;background-size: cover;background-position: center;height: 100px;" class="creativity-cover" alt="">
         <md-card-title>
             <md-card-title-text>
-                <span class="md-headline">{{content.title}}</span>
+                <span style="font-size: 24px;font-weight: 700!important;" class="md-title">{{content.title}}</span>
             </md-card-title-text>
         </md-card-title>
         <md-card-header>
-          <md-card-avatar>
-            <img class="md-user-avatar" src="{{content.created.by.image}}"/>
-          </md-card-avatar>
-          <md-card-header-text flex>
-            <span class="md-title">{{content.created.by.name}}</span>
-            <span class="md-subhead">{{content.created.at | date: 'd MMM'}}</span>
-          </md-card-header-text>
-          <md-card-icon-actions style="float: right;">
+            <md-card-avatar>
+                <img class="md-user-avatar" src="{{content.created.by.image}}" />
+            </md-card-avatar>
+            <md-card-header-text flex>
+                <span class="md-title">{{content.created.by.name}}</span>
+                <span class="md-subhead">{{content.created.at | date: 'd MMM'}}</span>
+            </md-card-header-text>
+            <md-card-icon-actions style="float: right;">
                 <md-button class="appriciate-button" style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
-                    <md-icon class="pink" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon> 
-                <span> {{content.Actions.Appriciate.total}}</span>
+                    <md-icon class="pink" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon>
+                    <span> {{content.Actions.Appriciate.total}}</span>
                 </md-button>
             </md-card-icon-actions>
         </md-card-header>
-  
         <!-- <md-card-content>
         </md-card-content>
- -->    </md-card>
+ --></md-card>
 </div>
