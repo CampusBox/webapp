@@ -62,10 +62,10 @@
             console.log('paging called');
             if ($scope.creativityLoading == false && $scope.moreItems == true) {
                 $scope.creativityLoading = true;
-                tokenService.get("contents?limit=2&offset=" + $scope.offset)
+                tokenService.get("contents?limit=3&offset=" + $scope.offset)
                     .then(function(tableData) {
                         $scope.creativityLoading = false;
-                        if (tableData.data.length < 2) {
+                        if (tableData.data.length < 3) {
                             $scope.moreItems = false;
                         }
                         $scope.nonFinalContents = [];
@@ -83,7 +83,7 @@
                             cardObject.total = content.links;
                             content.Items.data.forEach(function(item) {
                                 if (item.type == 'text') {
-                                    cardObject.description = $filter('limitTo')(item.description, 110, 0)
+                                    cardObject.description = $filter('limitTo')(item.description, 90, 0)
                                     cardObject.description = $sce.trustAsHtml(cardObject.description);
                                 } else if ((item.type == 'cover' && !cardObject.type)) {
                                     cardObject.type = item.type;
@@ -104,7 +104,7 @@
                         $scope.creativityLoading = false;
                         console.log($scope.creativityLoading);
                         $scope.finalContents = $scope.finalContents.concat($scope.nonFinalContents);
-                        $scope.offset += 2;
+                        $scope.offset += 3;
                         console.log($scope.offset);
                     });
             }
