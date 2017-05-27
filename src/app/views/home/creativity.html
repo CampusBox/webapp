@@ -20,6 +20,9 @@
     color: rgba(0, 0, 0, .8);
 }
 
+.creativity-cover-full {
+    height: 275px !important;
+}
 .creativity-cover {
     cursor: pointer;
     height: 144px;
@@ -78,22 +81,22 @@
                     <iframe ng-show="(content.type == 'vimeo')" width="640" height="360" ng-src="{{content.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                 </div>
                 <a ng-if="(content.type == 'cover' || content.type == 'image')" ui-sref="home.singleContent({contentId: content.id})">
-                    <img class="creativity-cover" alt="" ng-src="{{content.url}}">
+                    <img class="creativity-cover" ng-class="(mediaTypes.indexOf(content.content.type) !== -1)?'creativity-cover-full':''" alt="" ng-src="{{content.url}}">
                 </a>
                 <a ng-if="(content.type == 'youtube')" ui-sref="home.singleContent({contentId: content.id})">
                     <img style="background:url('https://img.youtube.com/vi/{{content.url}}/maxresdefault.jpg');object-fit: cover;background-size: cover;background-position: center;" class="creativity-cover" alt="">
                 </a>
             </md-card-content>
-            <md-card-header layout="column">
+            <md-card-header layout="column" ng-hide="(mediaTypes.indexOf(content.content.type) !== -1)">
                 <a ui-sref="home.singleContent({contentId: content.id})" style="text-decoration: none;">
-                    <span class="creativity-title" ng-bind-html="content.title"></span>
+                    <span class="creativity-title"  ng-bind-html="content.title"></span>
                 </a>
                 <a ui-sref="home.singleContent({contentId: content.id})" style="text-decoration: none;">
                     <p class="creativity-description md-body-2 creativity-description-list" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="content.description  | limitTo: 10">
                     </p>
                 </a>
             </md-card-header>
-            <md-card-header>
+            <md-card-header ng-hide="(mediaTypes.indexOf(content.content.type) !== -1)">
                 <br>
             </md-card-header>
             <md-card-header style="margin-bottom: 4px" layout="row" layout-align="start center">

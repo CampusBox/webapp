@@ -45,7 +45,7 @@
             { 'title': 'Electronics', 'id': 20 },
             { 'title': 'DIY', 'id': 21 }
         ];
-
+        $scope.mediaTypes=[4,5,6,7,8,12,15,16];
         $scope.contents = [];
         $scope.clicked = function(item) {
             console.log(item);
@@ -79,6 +79,7 @@
                             cardObject.created.at = Date.parse(cardObject.created.at.replace('-', '/', 'g')); //replace mysql date to js date format
                             cardObject.id = content.id;
                             cardObject.title = $sce.trustAsHtml(content.title);
+                            cardObject.content = content.content;
                             cardObject.links = content.links;
                             cardObject.total = content.links;
                             content.Items.data.forEach(function(item) {
