@@ -14,10 +14,10 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
 
         jwtOptionsProvider.config({
             whiteListedDomains: ['http://localhost', 'http://192.171.2.213', 'http://campusbox.org'],
-            // unauthenticatedRedirectPath: '/signUp',
-            // unauthenticatedRedirector: ['$state', function($state) {
-            //     $state.go('static.signUp');
-            // }],
+            unauthenticatedRedirectPath: '/signUp',
+            unauthenticatedRedirector: ['$state', function($state) {
+                $state.go('static.signUp');
+            }],
             tokenGetter: ['options', 'jwtHelper', function(options, jwtHelper) {
                 if (options && options.url.substr(options.url.length - 5) == '.html') {
                     return null;
@@ -45,7 +45,6 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
                 controllerAs: 'vm',
                 abstract: true,
                 data: {
-                    requiresLogin: true
                 }
             })
             .state('static', {
@@ -61,6 +60,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
                 controller: 'MyProfileController',
                 controllerAs: 'vm',
                 data: {
+                    requiresLogin: true,
                     title: 'My Profile'
                 }
             })
@@ -70,6 +70,8 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
                 controller: 'AddEventController',
                 controllerAs: 'vm',
                 data: {
+                    requiresLogin: true,
+
                     title: 'My Profile'
                 }
             })
@@ -104,7 +106,6 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
                 controler: 'DashboardController',
                 templateUrl: 'app/views/home/dashboard.html',
                 data: {
-                    requiresLogin: true,
                     title: 'Dashboard'
                 }
             })
@@ -114,7 +115,6 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
                 controllerAs: 'vm',
                 templateUrl: 'app/views/home/searchEvents.html',
                 data: {
-                    requiresLogin: true,
                     title: 'Dashboard'
                 }
             })
@@ -124,7 +124,6 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
                 controllerAs: 'vm',
                 templateUrl: 'app/views/home/searchCreativity.html',
                 data: {
-                    requiresLogin: true,
                     title: 'Dashboard'
                 }
             })
@@ -134,7 +133,6 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
                 controllerAs: 'vm',
                 templateUrl: 'app/views/home/searchStudents.html',
                 data: {
-                    requiresLogin: true,
                     title: 'Dashboard'
                 }
             })
@@ -153,7 +151,6 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
                 controller: 'ProfileController',
                 controllerAs: 'vm',
                 data: {
-                    requiresLogin: true,
                     title: 'Profile'
                 }
             })
@@ -163,7 +160,6 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
                 controller: 'SingleContentController',
                 controllerAs: 'vm',
                 data: {
-                    requiresLogin: true,
                     title: 'Content'
                 }
             })
@@ -173,7 +169,6 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
                 controller: 'EventsController',
                 controllerAs: 'vm',
                 data: {
-                    requiresLogin: true,
                     title: 'Profile'
                 }
             })
@@ -193,7 +188,6 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
                 controller: 'EventFullPageController',
                 controllerAs: 'vm',
                 data: {
-                    requiresLogin: true,
                     title: 'Event'
                 }
             })
@@ -214,7 +208,6 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
             controller: 'CreativityController',
             controllerAs: 'vm',
             data: {
-                requiresLogin: true,
                 title: 'Profile'
             }
         })
@@ -225,6 +218,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
                 controller: 'AddCreativityController',
                 controllerAs: 'vm',
                 data: {
+                    requiresLogin: true,
                     title: 'Add a Post'
                 }
             })
@@ -234,6 +228,8 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
                 controller: 'AddCreativityController',
                 controllerAs: 'vm',
                 data: {
+                    requiresLogin: true,
+
                     title: 'Add Pictures'
                 }
             })
