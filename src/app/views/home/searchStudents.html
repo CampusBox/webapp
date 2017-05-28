@@ -1,6 +1,6 @@
 <md-content class="md-padding" ng-controller="SearchStudentsController as vm">
-    <form hide-gt-sm >
-        <md-autocomplete md-autofocus ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text="searchText" md-items="item in searchTypes" md-item-text="searchText" md-min-length="0" placeholder="Search for anything here" md-menu-class="autocomplete-custom-template">
+    <form hide-gt-sm ng-submit="searchedFast(searchText)">
+        <md-autocomplete md-autofocus ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text="searchText" md-items="item in searchTypes" md-item-text="searchText" md-min-length="0" placeholder="Search Campusbox" md-menu-class="autocomplete-custom-template">
             <md-item-template>
                 <md-list-item class="noright" ng-click="searched(item.title,searchText)">
                     <md-icon md-svg-icon="{{item.icon}}" class=" md-hue-3"></md-icon>
@@ -9,7 +9,7 @@
             </md-item-template>
         </md-autocomplete>
     </form>
-    <md-nav-bar nav-bar-aria-label="navigation links" >
+    <md-nav-bar nav-bar-aria-label="navigation links">
         <md-nav-item name="students" value="students" md-nav-click="searched('students', query)">Students</md-nav-item>
         <md-nav-item name="events" value="events" md-nav-click="searched('events', query)">Events</md-nav-item>
         <md-nav-item name="creativity" value="creativity" md-nav-click="searched('creativity', query)">Creativity</md-nav-item>
@@ -21,13 +21,12 @@
     </div>
     <div class="md-padding" style="margin-top: 8%;" ng-show="query == '' " layout="column" layout-align="center center">
         <p class="md-subhead" style="color:rgba(0,0,0,.44)">Let us know what are you searching for...</p>
-                      <md-icon md-svg-icon="magnify"></md-icon>
-
+        <md-icon md-svg-icon="magnify"></md-icon>
     </div>
     <div layout="row" layout-wrap>
         <md-card ng-if="listLoading" ui-sref="home.profile" ng-repeat="student in [1,2,3]" style="cursor: pointer;" flex="30" flex-xs="100">
             <center>
-                <img style="border-radius: 50%; width: 40%; margin-top:20px; background-color: #dfdfdf; padding-bottom: 33%"  class="md-card-image" >
+                <img style="border-radius: 50%; width: 40%; margin-top:20px; background-color: #dfdfdf; padding-bottom: 33%" class="md-card-image">
                 <div layout="column" layout-align="center center">
                     <br>
                     <span class="md-headline animated-background">student.title </span>
@@ -43,7 +42,6 @@
                             <li ng-repeat="skill in [1,2,3]" class="" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(224,224,224);">skill.name</li>
                         </ul>
                     </div>
-                   
                 </center>
                 <section layout="row" layout-align="center center" layout-wrap>
                     <md-list>
@@ -63,7 +61,7 @@
                 <div layout="column" layout-align="center center">
                     <span class="md-headline" ui-sref="home.profile({username: student.username})">{{student.title}} </span>
                     <span class="md-caption" style="padding:0px;color: rgba(0, 0, 0, 0.6);font-weight: 500;">{{student.college.name}}</span>
-                     <p class="md-subhead" style="padding: 0px 10px;    font-weight: 500;">
+                    <p class="md-subhead" style="padding: 0px 10px;    font-weight: 500;">
                         {{student.about}}
                     </p>
                     <md-button ng-class="student.following? 'md-primary' : 'md-raised md-primary'" ng-click="follow($event, $index);">{{student.following? 'Following':'Follow' }}</md-button>
@@ -76,7 +74,6 @@
                             <li ng-repeat="skill in student.Skills.data" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">{{skill.name}}</li>
                         </ul>
                     </div>
-                   
                 </center>
                 <!-- <section layout="row" layout-align="center center" layout-wrap>
                     <md-list>

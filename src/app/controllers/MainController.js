@@ -26,16 +26,17 @@
 
         $scope.customKeys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, semicolon];
 
-        $scope.searchTypes = [{
-            'title': 'events',
-            'icon': 'calendar'
-        }, {
-            'title': 'creativity',
-            'icon': 'all-inclusive'
-        }, {
-            'title': 'students',
-            'icon': 'school'
-        }];
+        $scope.searchTypes = [];
+        // {
+        //     'title': 'events',
+        //     'icon': 'calendar'
+        // }, {
+        //     'title': 'creativity',
+        //     'icon': 'all-inclusive'
+        // }, {
+        //     'title': 'students',
+        //     'icon': 'school'
+        // }];
         $scope.searchData = {};
         $scope.searchData.data = [];
         // tokenService.get("search/" + "M")
