@@ -28,16 +28,17 @@
             $state.go('home.singleContent', { contentId: item });
 
         };
-        $scope.searchTypes = [{
-            'title': 'events',
-            'icon': 'calendar'
-        }, {
-            'title': 'creativity',
-            'icon': 'all-inclusive'
-        }, {
-            'title': 'students',
-            'icon': 'school'
-        }];
+        $scope.searchTypes = [];
+        // {
+        //     'title': 'events',
+        //     'icon': 'calendar'
+        // }, {
+        //     'title': 'creativity',
+        //     'icon': 'all-inclusive'
+        // }, {
+        //     'title': 'students',
+        //     'icon': 'school'
+        // }];
         var cardObject = {};
         tokenService.get("search/creativity/" + $scope.query)
             .then(function(tableData) {

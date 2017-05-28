@@ -264,7 +264,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
         $authProvider.linkedin({
             clientId: '81l3qatlqe4l4p',
         });
-        $urlRouterProvider.otherwise('/dashboard');
+        $urlRouterProvider.otherwise('/creativity');
         socialProvider.setGoogleKey("702228530885-vi264d7g6v5ivbcmebjfpomr0hmliomd.apps.googleusercontent.com");
         socialProvider.setLinkedInKey("81l3qatlqe4l4p");
         socialProvider.setFbKey({ appId: "1250377088376164", apiVersion: "v2.8", responseType: 'token' });
