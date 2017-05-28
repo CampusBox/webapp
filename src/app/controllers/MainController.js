@@ -11,6 +11,8 @@
 
     function MainController(navService, $mdSidenav, tokenService, $mdDialog, $log, $q, $timeout, $state, $mdToast, $scope, $localStorage, $location, $mdConstant) {
         var vm = this;
+           $scope.$state = $state;
+
         tokenService.get("notifications")
             .then(function(response) {
 
