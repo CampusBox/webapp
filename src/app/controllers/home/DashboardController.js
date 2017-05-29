@@ -74,11 +74,11 @@
                     });
             });
 
-        tokenService.get("/college_updates")
-            .then(function(updates) {
-                $scope.updates = updates.data;
-                $scope.updatesLoading = false;
-            });
+        // tokenService.get("/college_updates")
+        //     .then(function(updates) {
+        //         $scope.updates = updates.data;
+        //         $scope.updatesLoading = false;
+        //     });
         $scope.myPagingFunction = function() {
             console.log('paging called');
             if ($scope.creativityLoading == false && $scope.offset < 5) {
