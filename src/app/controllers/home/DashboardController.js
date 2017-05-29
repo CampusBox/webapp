@@ -29,7 +29,7 @@
         var cardObject = {};
         $scope.finalContents = [];
 
-        tokenService.get("/eventsDashboard")
+        tokenService.get("eventsDashboard")
             .then(function(events) {
                 $scope.events = events.data;
                 $scope.eventLoading = false;

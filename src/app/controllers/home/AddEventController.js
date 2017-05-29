@@ -17,6 +17,7 @@
 
     function AddEventController($mdDialog, $scope, tokenService, Upload, $timeout, $state) {
         $scope.event = {};
+        $scope.event.venue = null;
         $scope.event.fromDate = new Date();
         $scope.place = null;
         $scope.loading = false;

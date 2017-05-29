@@ -1,3 +1,4 @@
+
 <div flex layout-gt-xs="row" layout-xs="column" class="main-bg">
     <md-card flex-gt-xs="50">
         <form name="eventForm" novalidate ng-submit="eventForm.$valid  && submitEvent(event,tags)">
@@ -87,14 +88,14 @@
                     </div>
                 </md-tab>
                 <md-tab label="Description">
-                    <div class="md-padding" > 
+                    <div class="md-padding">
                         <center ng-if="!tutorial">
-                        <br>
+                            <br>
                             <img ng-src="assets/images/addEvent.gif" style="border-color: #ccc;border-radius: 6px; border-style: solid;max-width: 90%" src="assets/images/editing.gif">
                             <br>
-                            <md-button  ng-click="gotIt();" class="md-primary" aria-label="description">Got it!</md-button>
-                        <br>
-                        <br>
+                            <md-button ng-click="gotIt();" class="md-primary" aria-label="description">Got it!</md-button>
+                            <br>
+                            <br>
                         </center>
                         <p class="md-title" ng-hide="progress<1" style="outline: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;" ng-model="event.description" medium-editor data-placeholder="Mention complete details about the event here (including rules and prizes)."></p>
                     </div>
@@ -102,13 +103,15 @@
                 <md-tab label="Additional Details">
                     <div class="md-padding" layout="column">
                         <md-input-container md-no-float flex>
-                            <label>Event Venue</label>
-                            <input placeholder="Mention college name if event is open for all participants" type="text" required="" ng-model="event.venue" md-maxlength="100">
+                            <!-- <label>Event Venue</label> -->
+                            <place-autocomplete placeholder="Mention college name if event is open for all participants" type="text" required="" ng-model="event.venue"  md-maxlength="100"></place-autocomplete>
                         </md-input-container>
+
                         <md-input-container md-no-float>
                             <label>Link to the event (website or facebook page)</label>
                             <input placeholder="http://" type="text" ng-model="event.link">
-                        </md-input-container><!-- 
+                        </md-input-container>
+                        <!-- 
                         <md-input-container md-no-float>
                             <label>Description</label>
                             <textarea placeholder="Mention complete details here with rules(if a competition)" required="" ng-model="event.description" md-maxlength="1800" rows="4" md-select-on-focus></textarea>

@@ -87,7 +87,7 @@
                     <img style="background:url('https://img.youtube.com/vi/{{content.url}}/maxresdefault.jpg');object-fit: cover;background-size: cover;background-position: center;" class="creativity-cover" alt="">
                 </a>
             </md-card-content>
-            <md-card-header layout="column" ng-hide="(mediaTypes.indexOf(content.content.type) !== -1)">
+            <md-card-header layout="column" flex ng-hide="(mediaTypes.indexOf(content.content.type) !== -1)">
                 <a ui-sref="home.singleContent({contentId: content.id})" style="text-decoration: none;">
                     <span class="creativity-title"  ng-bind-html="content.title"></span>
                 </a>
