@@ -12,10 +12,11 @@
             '$state',
             '$stateParams',
             '$filter',
+            '$rootScope',
             SearchCreativityController
         ]);
 
-    function SearchCreativityController($scope, tokenService, $mdDialog, $sce, $state, $stateParams, $filter) {
+    function SearchCreativityController($scope, tokenService, $mdDialog, $sce, $state, $stateParams, $filter, $rootScope) {
         var vm = this;
         $scope.liked = false;
         $scope.loading = false;
@@ -86,7 +87,7 @@
         $scope.openProfile = function($event, username) {
             $event.stopPropagation();
             console.log(username);
-            $state.go('home.profile', {username: username});
+            $state.go('home.profile', { username: username });
         };
         $scope.toggleLike = function(contentId) {
             console.log(contentId);
@@ -94,24 +95,30 @@
         }
 
         $scope.bookmark = function(content, index) {
-            $scope.finalContents[index].Actions.Bookmarked.status = !$scope.finalContents[index].Actions.Bookmarked.status;
-            if ($scope.finalContents[index].Actions.Bookmarked.status) {
-                $scope.finalContents[index].Actions.Bookmarked.total += 1;
-                tokenService.post('bookmarkContent/' + content.id).then(function(result) {
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
-                });
+            if ($rootScope.authenticated) {
+                $scope.finalContents[index].Actions.Bookmarked.status = !$scope.finalContents[index].Actions.Bookmarked.status;
+                if ($scope.finalContents[index].Actions.Bookmarked.status) {
+                    $scope.finalContents[index].Actions.Bookmarked.total += 1;
+                    tokenService.post('bookmarkContent/' + content.id).then(function(result) {
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                } else {
+                    $scope.finalContents[index].Actions.Bookmarked.total -= 1;
+                    tokenService.delete('bookmarkContent/' + content.id, '').then(function(result) {
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                }
             } else {
-                $scope.finalContents[index].Actions.Bookmarked.total -= 1;
-                tokenService.delete('bookmarkContent/' + content.id, '').then(function(result) {
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
+                $rootScope.openLoginDialog(function() {
+                    $scope.bookmark(content, index);
                 });
             }
         }
@@ -125,28 +132,35 @@
             }
         };
         $scope.heart = function(content, $index) {
-            $scope.finalContents[$index].Actions.Appriciate.status = !$scope.finalContents[$index].Actions.Appriciate.status;
-            if ($scope.finalContents[$index].Actions.Appriciate.status) {
-                $scope.finalContents[$index].Actions.Appriciate.total += 1;
-                tokenService.post('appreciateContent/' + content.id).then(function(result) {
+            if ($rootScope.authenticated) {
 
-                    console.log('post request');
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
-                });
+                $scope.finalContents[$index].Actions.Appriciate.status = !$scope.finalContents[$index].Actions.Appriciate.status;
+                if ($scope.finalContents[$index].Actions.Appriciate.status) {
+                    $scope.finalContents[$index].Actions.Appriciate.total += 1;
+                    tokenService.post('appreciateContent/' + content.id).then(function(result) {
+
+                        console.log('post request');
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                } else {
+                    $scope.finalContents[$index].Actions.Appriciate.total -= 1;
+
+                    tokenService.delete('appreciateContent/' + content.id, '').then(function(result) {
+                        console.log('post request');
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                }
             } else {
-                $scope.finalContents[$index].Actions.Appriciate.total -= 1;
-
-                tokenService.delete('appreciateContent/' + content.id, '').then(function(result) {
-                    console.log('post request');
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
+                $rootScope.openLoginDialog(function() {
+                    $scope.heart(content, $index);
                 });
             }
         }

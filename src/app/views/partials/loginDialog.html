@@ -1,0 +1,29 @@
+<md-dialog aria-label="Dog name" class="_md md-default-theme md-transition-in" role="dialog">
+    <md-dialog-content class="md-dialog-content" r>
+            <center>
+                <img ng-src="{{user.imageUrl}}" alt="" style="border-radius: 50%; height: auto;width: 20%">
+                <p class="md-title">Log into your account.</p>
+            </center>
+            <div class="md-padding" layout="column">
+                <div>{{problem}}</div>
+                <div layout="row" ng-hide="!loading" layout-sm="column" layout-align="space-around">
+                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                </div>
+                <div flex layout="column" ng-show="!loading">
+                    <md-button style="background: rgb(63, 81, 181);" ng-click="authenticate('facebook')" class="md-raised md-primary indigo">
+                        <md-icon md-svg-icon="facebook"></md-icon>Continue with facebook
+                    </md-button>
+                    <md-button style="background: rgb(244, 67, 54);" g-login class="md-raised md-primary red">
+                        <md-icon md-svg-icon="google"></md-icon>+ Continue with google
+                    </md-button>
+                </div>
+                <center>
+                    <p>Don't have an account yet ?
+                </center>
+                <md-button ui-sref='static.signUp' class="md-raised md-primary">Get Started Now</md-button>
+            </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <button class="md-primary md-button " ng-click="cancel()">Cancel</button>
+    </md-dialog-actions>
+</md-dialog>

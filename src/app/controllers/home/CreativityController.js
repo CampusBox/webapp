@@ -11,10 +11,11 @@
             '$sce',
             '$state',
             '$filter',
+            '$rootScope',
             CreativityController
         ]);
 
-    function CreativityController($scope, tokenService, $mdDialog, $sce, $state, $filter) {
+    function CreativityController($scope, tokenService, $mdDialog, $sce, $state, $filter, $rootScope) {
         $scope.liked = false;
         $scope.creativityLoading = false;
         $scope.offset = 0;
@@ -45,7 +46,7 @@
             { 'title': 'Electronics', 'id': 20 },
             { 'title': 'DIY', 'id': 21 }
         ];
-        $scope.mediaTypes=[4,5,6,7,8,12,15,16];
+        $scope.mediaTypes = [4, 5, 6, 7, 8, 12, 15, 16];
         $scope.contents = [];
         $scope.clicked = function(item) {
             console.log(item);
@@ -59,7 +60,6 @@
 
         var cardObject = {};
         $scope.myPagingFunction = function() {
-            console.log('paging called');
             if ($scope.creativityLoading == false && $scope.moreItems == true) {
                 $scope.creativityLoading = true;
                 tokenService.get("contents?limit=3&offset=" + $scope.offset)
@@ -103,16 +103,11 @@
 
                         });
                         $scope.creativityLoading = false;
-                        console.log($scope.creativityLoading);
                         $scope.finalContents = $scope.finalContents.concat($scope.nonFinalContents);
                         $scope.offset += 3;
-                        console.log($scope.offset);
                     });
             }
         };
-
-
-
 
         $scope.toggleLike = function(contentId) {
             console.log(contentId);
@@ -120,50 +115,62 @@
         }
 
         $scope.bookmark = function(content, index) {
-            $scope.finalContents[index].Actions.Bookmarked.status = !$scope.finalContents[index].Actions.Bookmarked.status;
-            if ($scope.finalContents[index].Actions.Bookmarked.status) {
-                $scope.finalContents[index].Actions.Bookmarked.total += 1;
-                tokenService.post('bookmarkContent/' + content.id).then(function(result) {
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
-                });
+            if ($rootScope.authenticated) {
+                $scope.finalContents[index].Actions.Bookmarked.status = !$scope.finalContents[index].Actions.Bookmarked.status;
+                if ($scope.finalContents[index].Actions.Bookmarked.status) {
+                    $scope.finalContents[index].Actions.Bookmarked.total += 1;
+                    tokenService.post('bookmarkContent/' + content.id).then(function(result) {
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                } else {
+                    $scope.finalContents[index].Actions.Bookmarked.total -= 1;
+                    tokenService.delete('bookmarkContent/' + content.id, '').then(function(result) {
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                }
             } else {
-                $scope.finalContents[index].Actions.Bookmarked.total -= 1;
-                tokenService.delete('bookmarkContent/' + content.id, '').then(function(result) {
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
+                $rootScope.openLoginDialog(function() {
+                    $scope.bookmark(content, index);
                 });
             }
         }
         $scope.heart = function(content, $index) {
-            $scope.finalContents[$index].Actions.Appriciate.status = !$scope.finalContents[$index].Actions.Appriciate.status;
-            if ($scope.finalContents[$index].Actions.Appriciate.status) {
-                $scope.finalContents[$index].Actions.Appriciate.total += 1;
-                tokenService.post('appreciateContent/' + content.id).then(function(result) {
+            if ($rootScope.authenticated) {
+                $scope.finalContents[$index].Actions.Appriciate.status = !$scope.finalContents[$index].Actions.Appriciate.status;
+                if ($scope.finalContents[$index].Actions.Appriciate.status) {
+                    $scope.finalContents[$index].Actions.Appriciate.total += 1;
+                    tokenService.post('appreciateContent/' + content.id).then(function(result) {
 
-                    console.log('post request');
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
-                });
+                        console.log('post request');
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                } else {
+                    $scope.finalContents[$index].Actions.Appriciate.total -= 1;
+
+                    tokenService.delete('appreciateContent/' + content.id, '').then(function(result) {
+                        console.log('post request');
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                }
             } else {
-                $scope.finalContents[$index].Actions.Appriciate.total -= 1;
-
-                tokenService.delete('appreciateContent/' + content.id, '').then(function(result) {
-                    console.log('post request');
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
+                $rootScope.openLoginDialog(function() {
+                    $scope.heart(content, $index);
                 });
             }
         }

@@ -11,10 +11,11 @@
             '$timeout',
             '$location',
             '$state',
+            '$rootScope',
             EventsController
         ]);
 
-    function EventsController($mdDialog, $scope, $element, tokenService, Upload, $timeout, $location, $state) {
+    function EventsController($mdDialog, $scope, $element, tokenService, Upload, $timeout, $location, $state, $rootScope) {
         var vm = this;
         $scope.grid = false;
         $scope.width = 28;
@@ -87,51 +88,63 @@
             console.log('testing report function');
         };
 
-        $scope.heart = function(event, $index) {
-            $scope.events[$index].Actions.Bookmarked.status = !$scope.events[$index].Actions.Bookmarked.status;
-            if ($scope.events[$index].Actions.Bookmarked.status) {
-                $scope.events[$index].Actions.Bookmarked.total += 1;
-                tokenService.post('bookmarkEvent/' + event.id).then(function(result) {
+        $scope.heartEvent = function(event, $index) {
+            if ($rootScope.authenticated) {
+                $scope.events[$index].Actions.Bookmarked.status = !$scope.events[$index].Actions.Bookmarked.status;
+                if ($scope.events[$index].Actions.Bookmarked.status) {
+                    $scope.events[$index].Actions.Bookmarked.total += 1;
+                    tokenService.post('bookmarkEvent/' + event.id).then(function(result) {
 
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
-                });
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                } else {
+                    $scope.events[$index].Actions.Bookmarked.total -= 1;
+
+                    tokenService.delete('bookmarkEvent/' + event.id, '').then(function(result) {
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                }
             } else {
-                $scope.events[$index].Actions.Bookmarked.total -= 1;
-
-                tokenService.delete('bookmarkEvent/' + event.id, '').then(function(result) {
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
+                $rootScope.openLoginDialog(function() {
+                    $scope.heartEvent(event, $index);
                 });
             }
         }
         $scope.rsvpEvent = function(event, $index) {
-            $scope.events[$index].Actions.Participants.status = !$scope.events[$index].Actions.Participants.status;
-            if ($scope.events[$index].Actions.Participants.status) {
-                $scope.events[$index].Actions.Participants.total += 1;
-                tokenService.post('rsvpEvent/' + event.id).then(function(result) {
+            if ($rootScope.authenticated) {
+                $scope.events[$index].Actions.Participants.status = !$scope.events[$index].Actions.Participants.status;
+                if ($scope.events[$index].Actions.Participants.status) {
+                    $scope.events[$index].Actions.Participants.total += 1;
+                    tokenService.post('rsvpEvent/' + event.id).then(function(result) {
 
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
-                });
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                } else {
+                    $scope.events[$index].Actions.Participants.total -= 1;
+
+                    tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                }
             } else {
-                $scope.events[$index].Actions.Participants.total -= 1;
-
-                tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
+                $rootScope.openLoginDialog(function() {
+                    $scope.rsvpEvent(event, $index);
                 });
             }
         }

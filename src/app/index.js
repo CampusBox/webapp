@@ -291,9 +291,23 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
 
 
     })
-    .run(function(authManager, $state, $location, $rootScope) {
+    .run(function(authManager, $state, $location, $rootScope, $mdDialog) {
         // authManager.checkAuthOnRefresh();
         //   authManager.redirectWhenUnauthenticated();
+        $rootScope.openLoginDialog = function(callback) {
+            $mdDialog.show({
+                controller: 'loginDialogController',
+                templateUrl: 'app/views/partials/loginDialog.html',
+                parent: angular.element(document.body),
+                escapeToClose: true,
+                clickOutsideToClose: true,
+                controllerAs: 'dc'
+            }).then(function() {
+                callback();
+            }, function() {
+                console.log('else of dialog');
+            });
+        }
         $rootScope.token = localStorage.getItem('id_token');
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('service-worker.js').then(function(registration) {
@@ -303,6 +317,11 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
                 //registration failed :(
                 console.log('ServiceWorker registration failed: ', err);
             });
+        }
+        if (localStorage.getItem('id_token') != null) {
+            $rootScope.authenticated = true;
+        }else{
+            $rootScope.authenticated = false;
         }
         //  if (!authManager.isAuthenticated()) {
         //        console.log("sending to login")

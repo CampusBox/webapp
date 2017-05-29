@@ -11,11 +11,12 @@
             'tokenService',
             '$stateParams',
             '$sce',
+            '$rootScope',
             SingleEventController
         ]);
 
 
-    function SingleEventController($mdDialog, $scope, Upload, $timeout, tokenService, $stateParams,$sce) {
+    function SingleEventController($mdDialog, $scope, Upload, $timeout, tokenService, $stateParams, $sce, $rootScope) {
         $scope.event = {};
         $scope.loading = true;
         $scope.eventId = $stateParams.eventId;
@@ -27,73 +28,6 @@
                 $scope.loading = false;
                 console.log($scope.event);
             });
-        // $scope.event = {
-        //     "id": 1002,
-        //     "title": "Hackathon",
-        //     "subtitle": "subtitle",
-        //     "details": {
-        //         "venue": "Audi thapar university",
-        //         "type": 'Technical',
-        //         "team": 418,
-        //         "price": null,
-        //         "description": "description",
-        //         "rules": "afdnfkadnwflnsd"
-        //     },
-        //     "timings": {
-        //         "date": {
-        //             "start": null,
-        //             "end": null
-        //         },
-        //         "time": {
-        //             "start": null,
-        //             "end": null
-        //         }
-        //     },
-        //     "Actions": {
-        //         "Bookmarked": {
-        //             "status": false,
-        //             "total": 101,
-        //             "bookmarks": 0
-        //         },
-        //         "Participants": {
-        //             "status": true,
-        //             "total": 10209034338564272
-        //         }
-        //     },
-        //     "contact": [{
-        //         "name": 'Rohan Goel',
-        //         "username": 'goelrohan6',
-        //         "link": '0',
-        //         "image": null
-        //     }, {
-        //         "name": null,
-        //         "link": 0,
-        //         "image": null
-        //     }],
-        //     "created": {
-        //         "by": {
-        //             "name": null,
-        //             "username": 0,
-        //             "link": 0,
-        //             "image": null
-        //         },
-        //         "at": {
-        //             "date": "2017-03-10 05:38:07.000000",
-        //             "timezone_type": 3,
-        //             "timezone": "UTC"
-        //         }
-        //     },
-        //     "tags": {
-        //         "0": {
-        //             "name": 'Computer science',
-        //             "link": 0
-        //         },
-        //         "total": 10209034338564272
-        //     },
-        //     "links": {
-        //         "self": "/events/"
-        //     }
-        // }
         console.log($scope.event);
 
         $scope.upload = function(dataUrl, name) {
@@ -153,52 +87,66 @@
                 });
         };
         $scope.heart = function(event) {
-            $scope.event.Actions.Bookmarked.status = !$scope.event.Actions.Bookmarked.status;
-            if ($scope.event.Actions.Bookmarked.status) {
-                $scope.event.Actions.Bookmarked.total += 1;
-                tokenService.post('bookmarkEvent/' + event.id).then(function(result) {
+            if ($rootScope.authenticated) {
+                $scope.event.Actions.Bookmarked.status = !$scope.event.Actions.Bookmarked.status;
+                if ($scope.event.Actions.Bookmarked.status) {
+                    $scope.event.Actions.Bookmarked.total += 1;
+                    tokenService.post('bookmarkEvent/' + event.id).then(function(result) {
 
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
-                });
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                } else {
+                    $scope.event.Actions.Bookmarked.total -= 1;
+
+                    tokenService.delete('bookmarkEvent/' + event.id, '').then(function(result) {
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                }
             } else {
-                $scope.event.Actions.Bookmarked.total -= 1;
-
-                tokenService.delete('bookmarkEvent/' + event.id, '').then(function(result) {
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
+                $rootScope.openLoginDialog(function() {
+                    $scope.heart(event);
                 });
             }
+
         }
         $scope.update = function(event) {
-            $scope.event.Actions.Participants.status = !$scope.event.Actions.Participants.status;
-            if ($scope.event.Actions.Participants.status) {
-                $scope.event.Actions.Participants.total += 1;
-                tokenService.post('ParticipantsEvent/' + event.id).then(function(result) {
+            if ($rootScope.authenticated) {
+                $scope.event.Actions.Participants.status = !$scope.event.Actions.Participants.status;
+                if ($scope.event.Actions.Participants.status) {
+                    $scope.event.Actions.Participants.total += 1;
+                    tokenService.post('ParticipantsEvent/' + event.id).then(function(result) {
 
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
-                });
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                } else {
+                    $scope.event.Actions.Participants.total -= 1;
+
+                    tokenService.delete('ParticipantsEvent/' + event.id, '').then(function(result) {
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                }
             } else {
-                $scope.event.Actions.Participants.total -= 1;
-
-                tokenService.delete('ParticipantsEvent/' + event.id, '').then(function(result) {
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
+                $rootScope.openLoginDialog(function() {
+                    $scope.update(event, $index);
                 });
             }
+
         }
         $scope.con = function(a) {
             var selectDay = "day";
