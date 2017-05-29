@@ -88,8 +88,8 @@
             }
         }
         $scope.follow = function($event) {
+            $event.stopPropagation();
             if ($rootScope.authenticated) {
-                $event.stopPropagation();
                 if ($scope.content.created.by.following) {
                     tokenService.delete('studentFollow/' + $scope.content.created.by.username).then(function(result) {
                         if (result.status != 'error') {
