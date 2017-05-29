@@ -104,10 +104,10 @@
                                     <span hide-gt-sm style="margin-top: 0px; color: #555555;text-align: right;margin-right: 28px;" class="md-body-2">{{event.timings.from.date | date: ' d MMM'}} {{event.timings.to.date==event.timings.from.date?null:event.timings.to.date | date: ' d MMM'}} </span>
                                     <p hide-xs style="margin:0;color:#555555" class="md-caption">{{event.details.venue}}</p>
                                     <span flex></span>
-                                    <md-button hide-xs class="appriciate-button" ng-click="heartEvent(event, $index, 'events')" aria-label="Favorite">
+                                    <md-button hide-xs class="appriciate-button" ng-click="heartEvent(event, $index)" aria-label="Favorite">
                                         <md-icon class="pink" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon> {{event.Actions.Bookmarked.status? 'Appreciated' : 'Appreciate' }}
                                     </md-button>
-                                    <md-button hide-xs class="rsvp-button" ng-class="(event.Actions.Participants.status)? 'md-raised md-primary' : ''" ng-click="rsvpEvent(event, $index, 'events')" aria-label="Favorite">
+                                    <md-button hide-xs class="rsvp-button" ng-class="(event.Actions.Participants.status)? 'md-raised md-primary' : ''" ng-click="rsvpEvent(event, $index)" aria-label="Favorite">
                                         <md-icon ng-class="(event.Actions.Participants.status)? '':'blue'" md-svg-icon="{{!event.Actions.Participants.status? 'account-check' : 'plus-one' }}"></md-icon> {{!event.Actions.Participants.status? 'attending' : 'RSVP' }}
                                     </md-button>
                                 </md-card-actions>
@@ -116,10 +116,10 @@
                         <center hide-gt-xs style="margin:0;color:#555555" class="md-caption">
                             {{event.details.venue}}</center>
                         <div layout="row">
-                            <md-button flex hide-gt-xs class="appriciate-button" ng-click="heartEvent(event, $index, 'events')" aria-label="Favorite">
+                            <md-button flex hide-gt-xs class="appriciate-button" ng-click="heartEvent(event, $index)" aria-label="Favorite">
                                 <md-icon class="pink" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon> {{event.Actions.Bookmarked.status? 'Appreciated' : 'Appreciate' }}
                             </md-button>
-                            <md-button flex hide-gt-xs class="rsvp-button" ng-class="(event.Actions.Participants.status)? 'md-raised md-primary' : ''" ng-click="rsvpEvent(event, $index, 'events')" aria-label="Favorite">
+                            <md-button flex hide-gt-xs class="rsvp-button" ng-class="(event.Actions.Participants.status)? 'md-raised md-primary' : ''" ng-click="rsvpEvent(event, $index)" aria-label="Favorite">
                                 <md-icon ng-class="(event.Actions.Participants.status)? '':'blue'" md-svg-icon="{{!event.Actions.Participants.status? 'account-check' : 'plus-one' }}"></md-icon> {{!event.Actions.Participants.status? 'attending' : 'RSVP' }}
                             </md-button>
                         </div>
