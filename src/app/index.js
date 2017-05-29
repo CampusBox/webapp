@@ -304,6 +304,11 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
                 console.log('ServiceWorker registration failed: ', err);
             });
         }
+        if (localStorage.getItem('id_token') != null) {
+            $rootScope.authenticated = true;
+        }else{
+            $rootScope.authenticated = false;
+        }
         //  if (!authManager.isAuthenticated()) {
         //        console.log("sending to login")
         //      $state.go('static.login');

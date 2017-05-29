@@ -11,10 +11,11 @@
             '$sce',
             '$state',
             '$filter',
+            '$rootScope',
             CreativityController
         ]);
 
-    function CreativityController($scope, tokenService, $mdDialog, $sce, $state, $filter) {
+    function CreativityController($scope, tokenService, $mdDialog, $sce, $state, $filter, $rootScope) {
         $scope.liked = false;
         $scope.creativityLoading = false;
         $scope.offset = 0;
@@ -45,7 +46,7 @@
             { 'title': 'Electronics', 'id': 20 },
             { 'title': 'DIY', 'id': 21 }
         ];
-        $scope.mediaTypes=[4,5,6,7,8,12,15,16];
+        $scope.mediaTypes = [4, 5, 6, 7, 8, 12, 15, 16];
         $scope.contents = [];
         $scope.clicked = function(item) {
             console.log(item);
