@@ -12,10 +12,11 @@
             '$location',
             '$state',
             '$stateParams',
+            '$rootScope',
             SearchEventsController
         ]);
 
-    function SearchEventsController($mdDialog, $scope, $element, tokenService, Upload, $timeout, $location, $state, $stateParams) {
+    function SearchEventsController($mdDialog, $scope, $element, tokenService, Upload, $timeout, $location, $state, $stateParams, $rootScope) {
         var vm = this;
         $scope.grid = false;
         $scope.width = 28;
@@ -34,18 +35,18 @@
         $scope.filters = [];
         $scope.showEvent = function(ev, index) {
             $mdDialog.show({
-                    controller: 'SingleEventController',
-                    templateUrl: 'app/views/partials/singleEvent.html',
-                    parent: angular.element(document.body),
-                    locals: {
-                        events: $scope.events,
-                        index: index
-                    },
-                    closeTo: '#left',
-                    targetEvent: ev,
-                    clickOutsideToClose: true,
-                    fullscreen: true 
-                });
+                controller: 'SingleEventController',
+                templateUrl: 'app/views/partials/singleEvent.html',
+                parent: angular.element(document.body),
+                locals: {
+                    events: $scope.events,
+                    index: index
+                },
+                closeTo: '#left',
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                fullscreen: true
+            });
         };
         $scope.searchTypes = [{
             'title': 'events',
@@ -62,50 +63,64 @@
         }
 
         $scope.heart = function(event, $index) {
-            $scope.events[$index].Actions.Bookmarked.status = !$scope.events[$index].Actions.Bookmarked.status;
-            if ($scope.events[$index].Actions.Bookmarked.status) {
-                $scope.events[$index].Actions.Bookmarked.total += 1;
-                tokenService.post('bookmarkEvent/' + event.id).then(function(result) {
+            if ($rootScope.authenticated) {
+                $scope.events[$index].Actions.Bookmarked.status = !$scope.events[$index].Actions.Bookmarked.status;
+                if ($scope.events[$index].Actions.Bookmarked.status) {
+                    $scope.events[$index].Actions.Bookmarked.total += 1;
+                    tokenService.post('bookmarkEvent/' + event.id).then(function(result) {
 
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
-                });
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                } else {
+                    $scope.events[$index].Actions.Bookmarked.total -= 1;
+
+                    tokenService.delete('bookmarkEvent/' + event.id, '').then(function(result) {
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                }
+
             } else {
-                $scope.events[$index].Actions.Bookmarked.total -= 1;
-
-                tokenService.delete('bookmarkEvent/' + event.id, '').then(function(result) {
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
+                $rootScope.openLoginDialog(function() {
+                    $scope.heart(event, $index);
                 });
             }
         }
         $scope.rsvpEvent = function(event, $index) {
-            $scope.events[$index].Actions.Participants.status = !$scope.events[$index].Actions.Participants.status;
-            if ($scope.events[$index].Actions.Participants.status) {
-                $scope.events[$index].Actions.Participants.total += 1;
-                tokenService.post('rsvpEvent/' + event.id).then(function(result) {
+            if ($rootScope.authenticated) {
 
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
-                });
+                $scope.events[$index].Actions.Participants.status = !$scope.events[$index].Actions.Participants.status;
+                if ($scope.events[$index].Actions.Participants.status) {
+                    $scope.events[$index].Actions.Participants.total += 1;
+                    tokenService.post('rsvpEvent/' + event.id).then(function(result) {
+
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                } else {
+                    $scope.events[$index].Actions.Participants.total -= 1;
+
+                    tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                }
             } else {
-                $scope.events[$index].Actions.Participants.total -= 1;
-
-                tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
+                $rootScope.openLoginDialog(function() {
+                    $scope.rsvpEvent(event, $index);
                 });
             }
         }
