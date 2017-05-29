@@ -15,7 +15,9 @@
             // $state.go("home.dashboard");
             $mdDialog.hide();
         }
-
+        $scope.cancel = function(){
+            $mdDialog.cancel();
+        }
         $scope.authenticate = function(provider) {
             $scope.loading = true;
             $auth.authenticate(provider).then(function(response) {

@@ -8,10 +8,11 @@
             '$mdDialog',
             '$stateParams',
             '$sce',
+            '$rootScope',
             SingleContentController
         ]);
 
-    function SingleContentController($scope, tokenService, $mdDialog, $stateParams, $sce) {
+    function SingleContentController($scope, tokenService, $mdDialog, $stateParams, $sce, $rootScope) {
         var vm = this;
         $scope.contentId = $stateParams.contentId;
         $scope.liked = false;
@@ -23,78 +24,96 @@
         };
 
         $scope.bookmark = function(content) {
-            $scope.content.Actions.Bookmarked.status = !$scope.content.Actions.Bookmarked.status;
-            if ($scope.content.Actions.Bookmarked.status) {
-                $scope.content.Actions.Bookmarked.total += 1;
-                tokenService.post('bookmarkContent/' + content.id).then(function(result) {
+            if ($rootScope.authenticated) {
+                $scope.content.Actions.Bookmarked.status = !$scope.content.Actions.Bookmarked.status;
+                if ($scope.content.Actions.Bookmarked.status) {
+                    $scope.content.Actions.Bookmarked.total += 1;
+                    tokenService.post('bookmarkContent/' + content.id).then(function(result) {
 
-                    console.log('post request');
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
-                });
+                        console.log('post request');
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                } else {
+                    $scope.content.Actions.Bookmarked.total -= 1;
+
+                    tokenService.delete('bookmarkContent/' + content.id, '').then(function(result) {
+                        console.log('post request');
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                }
             } else {
-                $scope.content.Actions.Bookmarked.total -= 1;
-
-                tokenService.delete('bookmarkContent/' + content.id, '').then(function(result) {
-                    console.log('post request');
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
+                $rootScope.openLoginDialog(function() {
+                    $scope.bookmark(content);
                 });
             }
         }
         $scope.heart = function(content) {
-            $scope.content.Actions.Appriciate.status = !$scope.content.Actions.Appriciate.status;
-            if ($scope.content.Actions.Appriciate.status) {
-                $scope.content.Actions.Appriciate.total += 1;
-                tokenService.post('appreciateContent/' + content.id).then(function(result) {
+            if ($rootScope.authenticated) {
+                $scope.content.Actions.Appriciate.status = !$scope.content.Actions.Appriciate.status;
+                if ($scope.content.Actions.Appriciate.status) {
+                    $scope.content.Actions.Appriciate.total += 1;
+                    tokenService.post('appreciateContent/' + content.id).then(function(result) {
 
-                    console.log('post request');
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
-                });
+                        console.log('post request');
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                } else {
+                    $scope.content.Actions.Appriciate.total -= 1;
+
+                    tokenService.delete('appreciateContent/' + content.id, '').then(function(result) {
+                        console.log('post request');
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                }
             } else {
-                $scope.content.Actions.Appriciate.total -= 1;
-
-                tokenService.delete('appreciateContent/' + content.id, '').then(function(result) {
-                    console.log('post request');
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
+                $rootScope.openLoginDialog(function() {
+                    $scope.heart(content);
                 });
             }
         }
         $scope.follow = function($event) {
-            $event.stopPropagation();   
-            if ($scope.content.created.by.following) {
-                tokenService.delete('studentFollow/' + $scope.content.created.by.username).then(function(result) {
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                        $scope.content.created.by.following = !$scope.content.created.by.following;
-                    } else {
-                        console.log(result);
-                    }
-                });
-            } else {
+            if ($rootScope.authenticated) {
+                $event.stopPropagation();
+                if ($scope.content.created.by.following) {
+                    tokenService.delete('studentFollow/' + $scope.content.created.by.username).then(function(result) {
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                            $scope.content.created.by.following = !$scope.content.created.by.following;
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                } else {
 
-                tokenService.post('studentFollow/' + $scope.content.created.by.username).then(function(result) {
-                    console.log('post request');
-                    if (result.status != 'error') {
-                        $scope.content.created.by.following = !$scope.students[index].following;
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
+                    tokenService.post('studentFollow/' + $scope.content.created.by.username).then(function(result) {
+                        console.log('post request');
+                        if (result.status != 'error') {
+                            $scope.content.created.by.following = !$scope.students[index].following;
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                }
+            } else {
+                $rootScope.openLoginDialog(function() {
+                    $scope.follow($event);
                 });
             }
         };
@@ -106,15 +125,15 @@
                 $scope.content.title = $sce.trustAsHtml($scope.content.title);
                 for (item in $scope.content.Items.data) {
                     if ($scope.content.Items.data[item].type == 'youtube') {
-                        $scope.content.Items.data[item].embed.url = $sce.trustAsResourceUrl('//www.youtube.com/embed/'+$scope.content.Items.data[item].embed.url);
-                    } else  if ( $scope.content.Items.data[item].type == 'soundcloud' || $scope.content.Items.data[item].type == 'vimeo') {
+                        $scope.content.Items.data[item].embed.url = $sce.trustAsResourceUrl('//www.youtube.com/embed/' + $scope.content.Items.data[item].embed.url);
+                    } else if ($scope.content.Items.data[item].type == 'soundcloud' || $scope.content.Items.data[item].type == 'vimeo') {
                         $scope.content.Items.data[item].embed.url = $sce.trustAsResourceUrl($scope.content.Items.data[item].embed.url);
                     } else if ($scope.content.Items.data[item].type == 'text') {
                         $scope.content.Items.data[item].description = $sce.trustAsHtml($scope.content.Items.data[item].description);
                     }
                 }
                 console.log($scope.content);
-                tokenService.get("contentsRandom" )
+                tokenService.get("contentsRandom")
                     .then(function(tableData) {
                         console.log(tableData);
                         $scope.creativityLoading = false;
