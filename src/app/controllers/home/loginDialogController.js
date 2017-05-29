@@ -32,6 +32,7 @@
                             }
                             localStorage.setItem('id_token', abc.token);
                             $rootScope.token = abc.token;
+                            $rootScope.authenticated = true;
 
                             // $state.go("home.dashboard");
                             $mdDialog.hide();
@@ -73,6 +74,7 @@
                         console.log(abc);
                         localStorage.setItem('id_token', abc.token);
                         $rootScope.token = abc.token;
+                        $rootScope.authenticated = true;
                         // $state.go("home.dashboard");
                         $mdDialog.hide();
                     }
