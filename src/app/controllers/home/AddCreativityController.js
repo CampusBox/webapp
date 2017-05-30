@@ -178,10 +178,12 @@
 
         $scope.removeCover = function() {
             for (var i = $scope.creativity.items.length - 1; i >= 0; i--) {
-                if ($scope.creativity.items[i].mediaType == 'cover')
+                if ($scope.creativity.items[i].mediaType == 'cover') {
+
                     console.log(i);
-                $scope.creativity.items.splice(i,1)
-                $scope.coverStatus = false;
+                    $scope.creativity.items.splice(i, 1)
+                    $scope.coverStatus = false;
+                }
             }
 
         }
