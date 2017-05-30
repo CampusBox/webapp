@@ -108,6 +108,25 @@
                     });
             }
         };
+        $scope.showLikes = function(id, title) {
+            tokenService.get("contentAppreciates/" + id)
+                .then(function(response) {
+                    $scope.likes = response;
+                });
+            $mdDialog.show({
+                controller: 'ShowLikesController',
+                templateUrl: 'app/views/partials/showLikes.html',
+                parent: angular.element(document.body),
+                scope: $scope,
+                locals: {
+                    title: title
+                },
+                preserveScope: true,
+                escapeToClose: true,
+                clickOutsideToClose: true,
+                controllerAs: 'dc'
+            })
+        }
 
         $scope.toggleLike = function(contentId) {
             console.log(contentId);
