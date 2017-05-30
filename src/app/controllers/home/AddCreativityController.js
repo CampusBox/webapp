@@ -186,7 +186,8 @@
                 }
             }
 
-        }
+        };
+
         $scope.uploadCover = function(file) {
             if (file) {
                 $scope.coverStatus = true;
@@ -240,8 +241,6 @@
                 });
             }
         };
-
-        $scope.addImage = function(file) {};
         $scope.publish = function() {
             $scope.loading = true;
             $scope.image = {};

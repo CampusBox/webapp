@@ -64,7 +64,8 @@
                             <h3>{{user.name}}</h3>
                             <p>Draft</p>
                         </div>
-                        <md-button class="md-secondary md-primary md-raised" ng-disabled="(!(title && creativity.items[0].text && creativity.items[0].text.length>30 ) || loading)" class="md-raised md-primary" ng-click="publish()">Publish</md-button>
+                        <md-button class="md-secondary md-primary md-raised" ng-disabled="(!(title && creativity.items[0].text && creativity.items[0].text.length>30 ) || loading)" class="md-raised md-primary" ng-click="publish()" ng-hide="loading">Publish</md-button>
+                        <div class="spinner" ng-hide="!loading" style="width: 40px;height: 40px;background-color: #0570c0;"></div>
                             <md-tooltip md-direction="left">Will be available after you type.</md-tooltip>
                         </md-button>
                     </md-list-item>
