@@ -4,13 +4,14 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
         'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop', 'angular-jwt', 'infinite-scroll'
     ])
     //remove setellizer
-    .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, $authProvider,
+    .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, $authProvider,$locationProvider,
         $mdIconProvider, socialProvider, jwtInterceptorProvider, jwtOptionsProvider, $httpProvider, $mdDateLocaleProvider, $mdAriaProvider) {
 
         $mdDateLocaleProvider.formatDate = function(date) {
             return moment(date).format('DD-MMM-YY');
         };
         $mdAriaProvider.disableWarnings();
+        $locationProvider.html5Mode(true);
 
         jwtOptionsProvider.config({
             whiteListedDomains: ['http://localhost', 'http://192.171.2.213', 'http://campusbox.org'],
