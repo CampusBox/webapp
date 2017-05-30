@@ -15,8 +15,6 @@
         $scope.cancel = function(){
             $mdDialog.cancel();
         }
-        $scope.about="about about about about about about about about about about about about about about about about about about about about about about about about "
-        console.log($scope.likes);
     }
 
 })();

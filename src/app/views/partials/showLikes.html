@@ -4,10 +4,10 @@
         <div class="md-dialog-content-body">
             <md-list>
                 <md-list-item ng-repeat="item in likes" class="md-2-line">
-                    <img style="cursor: pointer;" ui-sref="home.profile({username: item.username})" ng-src="item.image" class="md-avatar" alt="{{item.title}}" />
+                    <img style="cursor: pointer;" ui-sref="home.profile({username: item.username})" ng-src="item.photo" class="md-avatar" alt="{{item.title}}" />
                     <div class="md-list-item-text" layout="column">
                         <h3 style="cursor: pointer;" ui-sref="home.profile({username: item.username})">{{item.title}}</h3>
-                        <p ng-model="about | limitTo: 65">{{item.college}}</p>
+                        <p ng-model="about | limitTo: 65">{{item.college.name}}</p>
                     </div>
                 </md-list-item>
             </md-list>

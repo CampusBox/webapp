@@ -2,7 +2,7 @@
 .content-card {
     width: 280px;
     height: 343px;
-    box-shadow: 0 4px 16px -2px rgba(0,0,0,.1), 0 0 0 1px rgba(0,0,0,.02);    
+    box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
     margin-bottom: 24px;
     margin-left: 16px;
 }
@@ -23,6 +23,7 @@
 .creativity-cover-full {
     height: 275px !important;
 }
+
 .creativity-cover {
     cursor: pointer;
     height: 144px;
@@ -43,7 +44,8 @@
     font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
 }
 
-.creativity-description p,.creativity-description span {
+.creativity-description p,
+.creativity-description span {
     margin: 0px;
     color: rgba(99, 108, 116, 0.87);
     font-size: 18px;
@@ -52,6 +54,17 @@
     word-spacing: 0.1em;
     font-weight: 300;
     font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+}
+
+
+/*new classes not in custom scss*/
+
+.likesNumber {
+    cursor: pointer;
+    color: rgba(0, 0, 0, .44);
+}
+.likesNumber:hover{
+    color: rgba(0,0,0,.6);
 }
 </style>
 <div layout="column" layout-fill class="main-bg">
@@ -89,7 +102,7 @@
             </md-card-content>
             <md-card-header layout="column" flex ng-hide="(mediaTypes.indexOf(content.content.type) !== -1)">
                 <a ui-sref="home.singleContent({contentId: content.id})" style="text-decoration: none;">
-                    <span class="creativity-title"  ng-bind-html="content.title"></span>
+                    <span class="creativity-title" ng-bind-html="content.title"></span>
                 </a>
                 <a ui-sref="home.singleContent({contentId: content.id})" style="text-decoration: none;">
                     <p class="creativity-description md-body-2 creativity-description-list" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="content.description  | limitTo: 10">
@@ -103,7 +116,7 @@
                 <md-card-avatar style="margin-left: 0px;margin-right:5px;">
                     <img class="md-user-avatar" ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" />
                 </md-card-avatar>
-                <md-card-header-text ui-sref="home.singleContent({contentId: content.id})" class=""  style="cursor: pointer">
+                <md-card-header-text ui-sref="home.singleContent({contentId: content.id})" class="" style="cursor: pointer">
                     <span class="md-caption "><span class="capitalize blue_text"  ng-click="openProfile($event, content.created.by.username);" >{{content.created.by.name}} </span><span class="blue_text"> <span style="color: rgba(99,108,116,0.87);"><br> in</span> {{content.type?content.type:"Article"}} </span>
                     </span>
                     <!-- <span style="color: rgba(99,108,116,0.87);" class="md-caption">{{content.created.at  | date: 'd MMM'}}</span> -->
@@ -111,8 +124,8 @@
                 <div layout="row" layout-align="start center" flex="40">
                     <md-button class="appriciate-button" flex style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
                         <md-icon class="pink" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon>
-                        <span> {{content.Actions.Appriciate.total}}</span>
                     </md-button>
+                    <span ng-click="showLikes(content.id, content.title)" class="likesNumber"> {{content.Actions.Appriciate.total}}</span>
                     <md-button class="md-icon-button" flex ng-click="bookmark(content, $index)" aria-label="Favorite">
                         <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
                     </md-button>
