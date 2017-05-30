@@ -11,7 +11,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
             return moment(date).format('DD-MMM-YY');
         };
         $mdAriaProvider.disableWarnings();
-        $locationProvider.html5Mode(true);
+        // $locationProvider.html5Mode(true);
 
         jwtOptionsProvider.config({
             whiteListedDomains: ['http://localhost', 'http://192.171.2.213', 'http://campusbox.org'],

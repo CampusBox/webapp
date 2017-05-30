@@ -111,7 +111,7 @@
         $scope.showLikes = function(id, title) {
             tokenService.get("contentAppreciates/" + id)
                 .then(function(response) {
-                    $scope.likes = response;
+                    $scope.likes = response.data;
                 });
             $mdDialog.show({
                 controller: 'ShowLikesController',
@@ -119,7 +119,8 @@
                 parent: angular.element(document.body),
                 scope: $scope,
                 locals: {
-                    title: title
+                    title: title,
+                    id: id
                 },
                 preserveScope: true,
                 escapeToClose: true,

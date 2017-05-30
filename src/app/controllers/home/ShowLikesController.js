@@ -12,6 +12,7 @@
 
     function ShowLikesController($mdDialog, $scope, title) {
         $scope.title = title;
+        console.log($scope.likes);
         $scope.cancel = function(){
             $mdDialog.cancel();
         }
