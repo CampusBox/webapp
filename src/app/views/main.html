@@ -105,12 +105,10 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
             </md-button>
         </section>
     </md-toolbar>
-    <md-content flex class="md-padding page-content" style="padding: 0px">
+    <md-content flex class="md-padding page-content" style="padding: 0px;padding-bottom: 55px">
         <div ui-view style="max-width: 1500px;margin:auto;">
         </div>
     </md-content>
-    <md-toolbar hide-gt-sm style="height: 50px;">
-    </md-toolbar>
     <md-toolbar hide-gt-sm layout="row" style="position: fixed;bottom: 0px;" class="md-whiteframe-3dp" layout-align="center center">
         <md-button ng-repeat="item in vm.menuItems" layout-align="center center" flex class="capitalize grey_text bottom-menu-item" ng-click="vm.selectItem(item)" ui-sref-active="" ui-sref="{{item.sref}}">
             <div hide-md class="md-tile-content">
