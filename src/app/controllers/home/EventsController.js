@@ -45,45 +45,32 @@
             { 'id': 1, 'title': 'My College', },
             { 'id': 2, 'title': 'Other colleges' }
         ];
-        $scope.myPagingFunction = function() {
-            console.log('paging');
-            if ($scope.loading == false && $scope.moreItems == true) {
-                $scope.loading = true;
-                tokenService.get("events?limit=2&offset=" + $scope.offset)
-                    .then(function(tableData) {
-                        $scope.loading = false;
-                        if (tableData.data.length < 2) {
-                            console.log("more items: " + $scope.moreItems);
-                            $scope.moreItems = false;
-                        }
-                        $scope.events = $scope.events.concat(tableData.data);
-                        $scope.offset = tableData.meta.offset;
-                        console.log($scope.offset);
-                    });
-            }
-        };
-        $scope.filters = [];
-        $scope.showEvent = function(ev, index) {
-            $mdDialog.show({
-                    controller: 'SingleEventController',
-                    templateUrl: 'app/views/partials/singleEvent.html',
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    locals: {
-                        events: $scope.events,
-                        index: index
-                    },
-                    closeTo: '#left',
-                    clickOutsideToClose: true,
-                    fullscreen: true // Only for -xs, -sm breakpoints.
-                })
-                .then(function(answer) {
-                    $scope.status = 'You said the information was "' + answer + '".';
-                }, function() {
-                    $scope.status = 'You cancelled the dialog.';
-                });
-        };
 
+        // ####################################################################################
+        // EVENTS OLD PAGING FUNCTION DONT REMOVE
+        // $scope.myPagingFunction = function() {
+        //     console.log('paging');
+        //     if ($scope.loading == false && $scope.moreItems == true) {
+        //         $scope.loading = true;
+        //         tokenService.get("events?limit=2&offset=" + $scope.offset)
+        //             .then(function(tableData) {
+        //                 $scope.loading = false;
+        //                 if (tableData.data.length < 2) {
+        //                     console.log("more items: " + $scope.moreItems);
+        //                     $scope.moreItems = false;
+        //                 }
+        //                 $scope.events = $scope.events.concat(tableData.data);
+        //                 $scope.offset = tableData.meta.offset;
+        //                 console.log($scope.offset);
+        //             });
+        //     }
+        // };
+        // ####################################################################################
+        tokenService.get("minievents")
+            .then(function(tableData) {
+                $scope.events = tableData.data;
+                console.log(tableData.data);
+            });
         $scope.report = function() {
             console.log('testing report function');
         };
@@ -118,29 +105,80 @@
                 });
             }
         }
-        $scope.rsvpEvent = function(event, $index) {
+        $scope.rsvpEvent = function(event, $index, state) {
             if ($rootScope.authenticated) {
-                $scope.events[$index].Actions.Participants.status = !$scope.events[$index].Actions.Participants.status;
-                if ($scope.events[$index].Actions.Participants.status) {
-                    $scope.events[$index].Actions.Participants.total += 1;
-                    tokenService.post('rsvpEvent/' + event.id).then(function(result) {
-
-                        if (result.status != 'error') {
-                            console.log(result.status);
+                // $scope.events[$index].participants.status = state;
+                switch (state) {
+                    case 2:
+                    console.log('intrested button pressed');
+                        // intrested button pressed
+                        if ($scope.events[$index].participants.status == 2) {
+                            //person was intrested before and is'nt now
+                            $scope.events[$index].participants.status = 0;
+                            tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
+                                if (result.status != 'error') {
+                                    console.log(result.status);
+                                } else {
+                                    console.log(result);
+                                }
+                            });
+                        } else if ($scope.events[$index].participants.status == 1) {
+                            //person was going but isnt intrested now
+                            $scope.events[$index].participants.status = 0;
+                            tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
+                                if (result.status != 'error') {
+                                    console.log(result.status);
+                                } else {
+                                    console.log(result);
+                                }
+                            });
                         } else {
-                            console.log(result);
+                            // person wasnt intrested before but is now
+                            $scope.events[$index].participants.status = 2;
+                            tokenService.post('rsvpEvent/' + event.id + 2).then(function(result) {
+                                if (result.status != 'error') {
+                                    console.log(result.status);
+                                } else {
+                                    console.log(result);
+                                }
+                            });
                         }
-                    });
-                } else {
-                    $scope.events[$index].Actions.Participants.total -= 1;
-
-                    tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
-                        if (result.status != 'error') {
-                            console.log(result.status);
+                        break;
+                    case 1:
+                    console.log('going button pressed');
+                        if ($scope.events[$index].participants.status == 2) {
+                            // person intrested before and now he's going too
+                            $scope.events[$index].participants.status = 1;
+                            tokenService.post('rsvpEvent/' + event.id + 1).then(function(result) {
+                                if (result.status != 'error') {
+                                    console.log(result.status);
+                                } else {
+                                    console.log(result);
+                                }
+                            });
+                        } else if ($scope.events[$index].participants.status == 1) {
+                            // person is not going anymore
+                            $scope.events[$index].participants.status = 0;
+                            tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
+                                if (result.status != 'error') {
+                                    console.log(result.status);
+                                } else {
+                                    console.log(result);
+                                }
+                            });
                         } else {
-                            console.log(result);
+                            // person was not going before but is going now
+                            tokenService.post('rsvpEvent/' + event.id + 1).then(function(result) {
+                                if (result.status != 'error') {
+                                    console.log(result.status);
+                                } else {
+                                    console.log(result);
+                                }
+                            });
                         }
-                    });
+
+
+                        break;
                 }
             } else {
                 $rootScope.openLoginDialog(function() {
