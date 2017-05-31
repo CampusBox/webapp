@@ -78,11 +78,11 @@
             { 'title': 'Paint and Colour', 'id': 4 },
             { 'title': 'Drawing ', 'id': 5 },
             { 'title': 'Sewing and Fabric', 'id': 6 },
-            { 'title': 'Craft', 'id': 7 },
-            { 'title': 'Clay', 'id': 8 }
+            { 'title': 'Craft', 'id': 7 }
+            // { 'title': 'Clay', 'id': 8 }
         ];
         $scope.items[2] = [
-            { 'title': 'Dancing', 'id': 22 },
+            { 'title': 'Dancing', 'id': 8 },
             { 'title': 'Singing', 'id': 9 },
             { 'title': 'Instrumental', 'id': 10 },
             { 'title': 'Digital Music', 'id': 11 },
@@ -114,7 +114,8 @@
         ];
         $scope.itemsMobile[2] = [
             { 'title': 'Craft', 'id': 7 },
-            { 'title': 'Clay', 'id': 8 },
+            // { 'title': 'Clay', 'id': 8 },
+            { 'title': 'Dancing', 'id': 8 },
             { 'title': 'Singing', 'id': 9 },
             { 'title': 'Instrumental', 'id': 10 }
 
@@ -130,7 +131,6 @@
             { 'title': 'UI and UX', 'id': 16 }
         ];
         $scope.itemsMobile[5] = [
-            { 'title': 'Dancing', 'id': 22 },
             { 'title': 'Websites', 'id': 17 },
             { 'title': 'Programming', 'id': 18 },
             { 'title': 'Apps', 'id': 19 }
