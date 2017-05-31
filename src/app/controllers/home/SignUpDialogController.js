@@ -17,11 +17,25 @@
             'todoListService',
             '$mdDialog',
             '$rootScope',
+            'singupService',
             SignUpDialogController
         ]);
 
-    function SignUpDialogController($scope, $timeout, loginData, $rootScope, $localStorage, $state, collegesListService, tokenService, $auth, $filter, todoListService, $mdDialog, $rootScope) {
+    function SignUpDialogController($scope, $timeout, loginData, $rootScope, $localStorage, $state, collegesListService, tokenService, $auth, $filter, todoListService, $mdDialog, $rootScope, singupService) {
         var vm = this;
+
+        $scope.signup = 1;
+        $rootScope.$on("callShowSignUpFunc", function() {
+            $scope.showSignUp();
+        });
+        $scope.showLogin = function() {
+            $rootScope.$emit("callShowLoginFunc", {});
+            $scope.signup = 0;
+        }
+        $scope.showSignUp = function(){
+            $scope.signup = 1;
+
+        }
         $scope.loading = false;
         $scope.querySearch = querySearch;
         $scope.signUp = {};

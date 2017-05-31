@@ -4,18 +4,42 @@
     angular
         .module('app')
         .controller('loginDialogController', [
-            '$scope', 'loginData', '$rootScope', '$localStorage', '$state', '$auth', 'tokenService','$mdDialog',
+            '$scope',
+            'loginData',
+            '$rootScope',
+            '$localStorage',
+            '$state',
+            '$auth',
+            'tokenService',
+            '$mdDialog',
+            'singupService',
             loginDialogController
         ]);
 
-    function loginDialogController($scope, loginData, $rootScope, $localStorage, $state, $auth, tokenService, $mdDialog) {
+    function loginDialogController($scope, loginData, $rootScope, $localStorage, $state, $auth, tokenService, $mdDialog, singupService) {
         var vm = this;
+
+        $scope.loginVar = 0;
+
+        $rootScope.$on("callShowLoginFunc", function() {
+            $scope.showLogin();
+        });
+
+        $scope.showLogin = function() {
+            $scope.loginVar = 1;
+        }
+        $scope.showSignUp = function() {
+            $rootScope.$emit("callShowSignUpFunc", {});
+            $scope.loginVar = 0;
+        }
+
+
         $scope.loading = false;
         if (localStorage.getItem('id_token') != null) {
             // $state.go("home.dashboard");
             $mdDialog.hide();
         }
-        $scope.cancel = function(){
+        $scope.cancel = function() {
             $mdDialog.cancel();
         }
         $scope.authenticate = function(provider) {

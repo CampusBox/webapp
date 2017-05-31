@@ -1,8 +1,8 @@
-<md-dialog ng-init="signup = 0;" aria-label="Dog name" class="_md md-default-theme md-transition-in" role="dialog">
-    <md-dialog-content ng-hide="signup" class="md-dialog-content" r>
+<md-dialog aria-label="Dog name" class="_md md-default-theme md-transition-in" role="dialog">
+    <md-dialog-content ng-controller="loginDialogController" ng-show="loginVar" class="md-dialog-content">
         <center>
             <img ng-src="{{user.imageUrl}}" alt="" style="border-radius: 50%; height: auto;width: 20%">
-            <p class="md-title">Log into your account.</p>
+            <p class="md-title">Log into your account.{{loginVar}}</p>
         </center>
         <div class="md-padding" layout="column">
             <div>{{problem}}</div>
@@ -20,7 +20,7 @@
             <center>
                 <p>Don't have an account yet ?
             </center>
-            <md-button ng-click="signup=1" class="md-raised md-primary">Get Started Now</md-button>
+            <md-button ng-click="showSignUp()" class="md-raised md-primary">Get Started Now</md-button>
         </div>
     </md-dialog-content>
     <md-dialog-content ng-show="signup" ng-controller="SignUpDialogController">
@@ -52,6 +52,9 @@
                         </div>
                     </center>
                 </form>
+                <center>
+                    <p class="md-subtitle">Already have an account {{login}}? <span ng-click="showLogin()" style="cursor: pointer;color:#03A9F4;"> Login here </span> </p>
+                </center>
                 <div layout="row" flex>
                     <md-button flex="60" flex-offset="20" ng-disabled="interests.length<3" style="float:right" ng-click="currentState=3;" class="md-raised md-primary">
                         Continue
