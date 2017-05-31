@@ -107,14 +107,14 @@
         }
         $scope.rsvpEvent = function(event, $index, state) {
             if ($rootScope.authenticated) {
-                // $scope.events[$index].participants.status = state;
+                // $scope.events[$index].participation_state = state;
                 switch (state) {
                     case 2:
                     console.log('intrested button pressed');
                         // intrested button pressed
-                        if ($scope.events[$index].participants.status == 2) {
+                        if ($scope.events[$index].participation_state == 2) {
                             //person was intrested before and is'nt now
-                            $scope.events[$index].participants.status = 0;
+                            $scope.events[$index].participation_state = 0;
                             tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
                                 if (result.status != 'error') {
                                     console.log(result.status);
@@ -122,9 +122,9 @@
                                     console.log(result);
                                 }
                             });
-                        } else if ($scope.events[$index].participants.status == 1) {
+                        } else if ($scope.events[$index].participation_state == 1) {
                             //person was going but isnt intrested now
-                            $scope.events[$index].participants.status = 0;
+                            $scope.events[$index].participation_state = 0;
                             tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
                                 if (result.status != 'error') {
                                     console.log(result.status);
@@ -134,8 +134,8 @@
                             });
                         } else {
                             // person wasnt intrested before but is now
-                            $scope.events[$index].participants.status = 2;
-                            tokenService.post('rsvpEvent/' + event.id + 2).then(function(result) {
+                            $scope.events[$index].participation_state = 2;
+                            tokenService.post('rsvpEvent/' + event.id + '/' +  2).then(function(result) {
                                 if (result.status != 'error') {
                                     console.log(result.status);
                                 } else {
@@ -146,19 +146,19 @@
                         break;
                     case 1:
                     console.log('going button pressed');
-                        if ($scope.events[$index].participants.status == 2) {
+                        if ($scope.events[$index].participation_state == 2) {
                             // person intrested before and now he's going too
-                            $scope.events[$index].participants.status = 1;
-                            tokenService.post('rsvpEvent/' + event.id + 1).then(function(result) {
+                            $scope.events[$index].participation_state = 1;
+                            tokenService.post('rsvpEvent/' + event.id + '/' +  1).then(function(result) {
                                 if (result.status != 'error') {
                                     console.log(result.status);
                                 } else {
                                     console.log(result);
                                 }
                             });
-                        } else if ($scope.events[$index].participants.status == 1) {
+                        } else if ($scope.events[$index].participation_state == 1) {
                             // person is not going anymore
-                            $scope.events[$index].participants.status = 0;
+                            $scope.events[$index].participation_state = 0;
                             tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
                                 if (result.status != 'error') {
                                     console.log(result.status);
@@ -168,7 +168,7 @@
                             });
                         } else {
                             // person was not going before but is going now
-                            tokenService.post('rsvpEvent/' + event.id + 1).then(function(result) {
+                            tokenService.post('rsvpEvent/' + event.id + '/' +  1).then(function(result) {
                                 if (result.status != 'error') {
                                     console.log(result.status);
                                 } else {
