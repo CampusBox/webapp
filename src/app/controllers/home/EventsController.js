@@ -66,7 +66,7 @@
         //     }
         // };
         // ####################################################################################
-        tokenService.get("minievents")
+        tokenService.get("minievents?limit=4")
             .then(function(tableData) {
                 $scope.events = tableData.data;
                 console.log(tableData.data);
