@@ -5,13 +5,18 @@
 </style>
 <div class="main-bg">
     <div layout="row" ng-init="width=23">
-        <md-button ng-init="filters=false" ng-click="filters=!filters" hide-gt-xs class="md-mini" aria-label="filters">
+        <md-button ng-init="filters=false" ng-click="filters=!filters" hide-gt-sm class="md-mini" aria-label="filters">
             <md-icon md-svg-icon="filter-outline"></md-icon>
             Filters</md-button>
         <div flex></div>
     </div>
     <div layout-gt-sm="row" layout="column" layout-align-gt-xs="start start" layout-align-xs="center strech">
-        <md-card hide-gt-sm flex-xs="100" ng-show="filters">
+        <md-card hide-gt-sm flex-xs="100" ng-show="filters" >
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Filters</span>
+                </md-card-title-text>
+            </md-card-title>
             <md-card-content flex layout="column" layout-align="space-between">
                 <md-input-container>
                     <md-icon md-svg-icon="filter-outline"></md-icon>
@@ -41,14 +46,19 @@
                     <md-icon md-svg-icon="domain"></md-icon>
                     <md-select ng-model="filter.college" aria-label="search" md-on-close="clearSearchTerm()" placeholder="College" class="md-no-underline" data-md-container-class="selectdemoSelectHeader">
                         <md-optgroup label="College">
-                            <md-option ng-value="college.id" ng-repeat="college in colleges | orderBy ">{{ college.title }}</md-option>
+                            <md-option ng-value="college.id" ng-repeat="college in colleges | orderBy">{{ college.title }}</md-option>
                         </md-optgroup>
                     </md-select>
                 </md-input-container>
                 <md-button class="md-primary md-raised" ng-click="filters=!filters;showAdvanced()">Apply filters</md-button>
             </md-card-content>
         </md-card>
-        <md-card flex-gt-sm="20" hide-xs hide-sm flex="100">
+        <md-card flex-gt-sm="20" hide-xs hide-sm flex="100" style="box-shadow: 0px 0px;">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Filters</span>
+                </md-card-title-text>
+            </md-card-title>
             <md-card-content flex layout="column" layout-align="space-between">
                 <md-input-container>
                     <md-icon md-svg-icon="filter-outline"></md-icon>
@@ -78,59 +88,52 @@
                     <md-icon md-svg-icon="domain"></md-icon>
                     <md-select ng-model="filter.college" aria-label="search" md-on-close="clearSearchTerm()" placeholder="College" class="md-no-underline" data-md-container-class="selectdemoSelectHeader">
                         <md-optgroup label="College">
-                            <md-option ng-value="college.id" ng-repeat="college in colleges | orderBy ">{{ college.title }}</md-option>
+                            <md-option ng-value="college.id" ng-repeat="college in colleges | orderBy">{{ college.title }}</md-option>
                         </md-optgroup>
                     </md-select>
                 </md-input-container>
                 <md-button class="md-primary md-raised" ng-click="filters=!filters;applyFilters(filter);">Apply filters</md-button>
             </md-card-content>
         </md-card>
-        <div hide-xs flex layout-align="center center" layout="row" layout-wrap flex-offset-gt-sm="{{grid?0:5}}" flex-gt-sm="{{grid?80:60}}">
+        <div hide-xs flex layout-align="start" layout="row" layout-wrap flex-offset-gt-sm="{{grid?0:0}}" flex-gt-sm="{{grid?80:80}}">
             <!-- <md-list ng-show="!grid"> -->
             <!-- <md-list-item style="margin-bottom: 10px;" ng-repeat="event in events" ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding eventListItem"> -->
-            <md-card flex-lg="45" flex-md="45" flex-sm="45" flex="100" ng-repeat="event in events" ui-sref="home.singleEvent({eventId: event.id})">
+            <md-card flex-lg="30" flex-md="45" flex-sm="45" flex="100" ng-repeat="event in events" ui-sref="home.singleEvent({eventId: event.id})">
                 <div style="position: relative;">
                     <img style="width: 100% ;opacity: 0.9" class="creativity-cover-full creativity-cover" ng-src="{{event.image}}" alt="{{event.title}}">
-                    <span class="md-caption" style="position: absolute;top: 20px;right: 35px;color: #fff;background: rgba(12,12,12,0.5);border-style: solid;border-width:2px;border-color: #fff;padding: 3px;border-radius: 4px;">
+                    <span class="md-caption" style="position: absolute;top: 20px;right: 20px;color: #fff;background: rgba(12,12,12,0.5);border-style: solid;border-width:0px;border-color: #fff;padding: 3px;border-radius: 4px;">
                         <md-icon  style="fill: #fff;" ng-show="event.location.type" md-svg-icon="currency-inr"></md-icon>
                         {{event.price?event.price:" No Fees"}}
                     </span>
-                    <span class="md-caption" style="position: absolute;top: 20px;right: 35px;color: #fff;background: rgba(12,12,12,0.5);border-style: solid;border-width:2px;border-color: #fff;padding: 3px;border-radius: 4px;">
-                        <md-icon  style="fill: #fff;" ng-show="event.location.type" md-svg-icon="currency-inr"></md-icon>
-                        {{event.price?event.price:" No Fees"}}
-                    </span>
-                    <span class="md-subhead" style="position: absolute;bottom: 20px;left: 20px;color: #fff;background: rgba(12,12,12,0.5);border-style: solid;border-width:2px;border-color: #fff;padding: 3px;border-radius: 4px;"">
+                    <span class="md-subhead" style="position: absolute;bottom: 20px;left: 20px;color: #fff;background: rgba(12,12,12,0.5);border-style: solid;border-width:0px;border-color: #fff;padding: 3px;border-radius: 4px;">
                         <md-icon style="fill: #fff;" ng-show="event.location.type" md-svg-icon="map-marker"></md-icon>
                         <md-icon style="fill: #fff;" ng-hide="event.location.type" md-svg-icon="earth"></md-icon>
                         {{event.location.data}}
                     </span>
                 </div>
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline"> {{event.title}}</span>
-                    </md-card-title-text>
+                <md-card-title style="padding:8px 0px 0px 20px;">
+                    <span class="md-headline"> {{event.title}}</span>
                 </md-card-title>
                 <md-card-content>
                     <div layout="row" layout-wrap>
-                        <span style="padding-top:10px;" flex="20" class="md-headline" md-colors="{color: 'red'}">
-                                    {{event.timings.month}}
-                                    <br>
-                                    <span style="color:#555555;text-align: center;">
-                                        {{event.timings.day}}
-                                    </span>
+                        <span style="padding-top:10px;text-align: center;" flex="20" class="md-headline" md-colors="{color: 'red'}"><span>
+                            
+                        {{event.timings.month}}</span>
+                        <br>
+                        <span style="color:#555555;text-align: center;">{{event.timings.day}}</span>
                         </span>
                         <p flex="80" style="color: #555555;" class="md-body-2">
                             {{event.subtitle| limitTo : 100}}
                         </p>
                     </div>
                 </md-card-content>
-                <md-card-actions style="margin-top:-10px; " layout="row" layout-align="end center">
-                    <md-button flex ng-class="(event.participation_state==1)? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 1)" aria-label="Favorite">
-                        <md-icon ng-class="(event.participation_state==1)? 'blue':''" md-svg-icon="{{(event.participation_state==1)? 'account-check' : 'check' }}"></md-icon> Going
+                <md-card-actions style="margin-top:-10px;" layout="row" layout-align="end center">
+                    <md-button ng-class="(event.participation_state==1)? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 1)" aria-label="Favorite">
+                        <md-icon ng-class="(event.participation_state==1)? 'blue': ''" md-svg-icon="{{(event.participation_state==1)? 'account-check' : 'check' }}"></md-icon> Going
                     </md-button>
                     <span flex></span>
-                    <md-button flex ng-class="(event.participation_state>0) ? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 2)" aria-label="Favorite">
-                        <md-icon ng-class="(event.participation_state>0) ? 'blue' : ''" md-svg-icon="{{(event.participation_state>0)? 'star' : 'star-outline' }}"></md-icon> Intrested
+                    <md-button ng-class="(event.participation_state>0) ? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 2)" aria-label="Favorite">
+                        <md-icon ng-class="(event.participation_state>0) ? 'blue' : ''" md-svg-icon="{{(event.participation_state>0)? 'star' : 'star-outline' }}"></md-icon> Interested
                     </md-button>
                 </md-card-actions>
             </md-card>
@@ -159,16 +162,18 @@
                     </md-list-item>
                 </md-list>
         </div>
-        <div show-xs layout="column" flex-offset-gt-sm="{{grid?0:5}}" flex-gt-sm="{{grid?80:60}}">
+        <div show-xs layout="column" flex-offset-gt-sm="{{grid?0:5}}" flex-gt-sm="{{grid?80:80}}">
             <md-list ng-show="!grid">
                 <md-list-item style="margin-bottom: 10px;" ng-repeat="event in events" ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding eventListItem">
                     <md-card flex>
-                        <md-card-title>
+                        <md-card-title style="padding-bottom: 0px">
                             <md-card-title-media style="margin-top: -19px; margin-left: -12px;">
-                                <div style="position: relative;" class="md-media-lg card-media">
-                                    <img style="width: 100% ;opacity: 0.9;font-weight: 900" ng-src="{{event.image}}" alt="">
-                                    <span class="md-display-1" style="position: absolute;top: 35px;left: 49px;color: #fff;">
+                                <div style="position: relative;background-color: black" class="md-media-lg card-media">
+                                    <img style="width: 100% ;opacity: 0.7;font-weight: 900" ng-src="{{event.image}}" alt="">
+                                    <span class="md-display-1" style="position: absolute;top: 35px;left: 49px;color: #fff;     text-shadow: 0px 1px 3px black;"><span>
+                                        
                                     {{event.timings.month}}
+                                    </span>
                                     <br>
                                     <span style="padding-left:10px">
                                         {{event.timings.day}}
@@ -199,13 +204,13 @@
                             </md-card-title-text>
                         </md-card-title>
                         <md-divider></md-divider>
-                        <md-card-actions style="margin-top:-10px; " layout="row" layout-align="end center">
-                            <md-button flex ng-class="(event.participation_state==1)? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 1)" aria-label="Favorite">
+                        <md-card-actions style="margin: 2px 17px 4px 4px;" layout="row" layout-align="end center">
+                            <md-button ng-class="(event.participation_state==1)? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 1)" aria-label="Favorite">
                                 <md-icon ng-class="(event.participation_state==1)? 'blue':''" md-svg-icon="{{(event.participation_state==1)? 'account-check' : 'check' }}"></md-icon> Going
                             </md-button>
                             <span flex></span>
-                            <md-button flex ng-class="(event.participation_state>0) ? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 2)" aria-label="Favorite">
-                                <md-icon ng-class="(event.participation_state>0) ? 'blue' : ''" md-svg-icon="{{(event.participation_state>0)? 'star' : 'star-outline' }}"></md-icon> Intrested
+                            <md-button ng-class="(event.participation_state>0) ? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 2)" aria-label="Favorite">
+                                <md-icon ng-class="(event.participation_state>0) ? 'blue' : ''" md-svg-icon="{{(event.participation_state>0)? 'star' : 'star-outline' }}"></md-icon> Interested
                             </md-button>
                         </md-card-actions>
                     </md-card>

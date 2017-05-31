@@ -12,9 +12,11 @@ $font-size-large: 22px;
 body {
     color: $text-color;
 }
-.main-bg{
+
+.main-bg {
     background-color: $main-bg-color;
 }
+
 .weight-500 {
     font-weight: 500 !important;
 }
@@ -22,9 +24,11 @@ body {
 .pink {
     fill: rgb(233, 30, 99) !important;
 }
-.page-content{
+
+.page-content {
     background-color: #fff;
 }
+
 .badge {
     margin: 0 0 0 8px;
     background-color: #aaa;
@@ -272,9 +276,11 @@ md-backdrop.md-sidenav-backdrop {
 .eventListItem md-card {
     margin: 3px;
 }
+
 md-list-item:last-child md-divider {
     display: none;
 }
+
 .shimmer {
     /* the shimmer magic */
     background: -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(.5, #fff));
@@ -652,15 +658,18 @@ md-icon.cross>svg {
     font-style: normal;
     font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
 }
-.creativity-description-list{
-margin-top: 0px;
-margin-bottom: 0px;
+
+.creativity-description-list {
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
-.creativity-description-list br{
-display: none;
+
+.creativity-description-list br {
+    display: none;
 }
+
 .creativity-description-single {
-     margin-left: auto;
+    margin-left: auto;
     margin-right: auto;
     max-width: 688px;
     margin-top: 29px;
@@ -668,7 +677,6 @@ display: none;
 }
 
 .creativity-description p {
-
     margin: 0px;
     font-size: 22px;
     line-height: 1.4;
@@ -679,7 +687,7 @@ display: none;
 }
 
 .creativity-title {
-     margin-left: auto;
+    margin-left: auto;
     margin-right: auto;
     max-width: 688px;
     margin-top: 31px;
@@ -705,12 +713,22 @@ display: none;
     margin-top: 0px;
     transition: .1s background-color, .1s border-color, .1s color, .1s fill;
 }
-    .static-background{
-        background:linear-gradient(#0570c0, #0570c0 70%, #f1f0f0 70.001%);
-    }
+
+.static-background {
+    background: linear-gradient(#0570c0, #0570c0 70%, #f1f0f0 70.001%);
+}
+
+.creativity-page {
+    margin-top: 40px;
+}
+
 @media only screen and (max-width: 500px) {
-        .static-background{
-        background:#0570c0;
+
+.creativity-page {
+    margin-top: 0px;
+}
+    .static-background {
+        background: #0570c0;
     }
     .read-more {
         color: rgba(0, 0, 0, .44);
@@ -746,7 +764,6 @@ display: none;
         margin-left: auto;
         margin-right: auto;
         max-width: 740px;
-
         // margin-left: 20px;
         // margin-right: 20px;
         line-height: 1.22;
