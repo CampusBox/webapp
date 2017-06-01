@@ -68,7 +68,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                     <md-menu-item>
                         <md-button ng-click="$mdCloseMenu()" ui-sref="home.addEvent">
                             <div layout="row" flex="" class="ng-scope layout-row flex">
-                                <p flex="" class="flex">Add Events</p>
+                                <p flex="" class="flex">Add Opportunity</p>
                                 <md-icon md-svg-icon="calendar"></md-icon>
                             </div>
                         </md-button>
@@ -139,7 +139,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                 <md-menu-item>
                     <md-button ng-click="$mdCloseMenu()" ui-sref="home.addEvent">
                         <div layout="row" flex="" class="ng-scope layout-row flex">
-                            <p flex="" class="flex">Add Events</p>
+                            <p flex="" class="flex">Add Opportunity</p>
                             <md-icon md-svg-icon="calendar"></md-icon>
                         </div>
                     </md-button>
@@ -186,7 +186,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                     <md-menu-item>
                         <md-button ng-click="vm.toggleRightSidebar()" ui-sref="home.myProfile({tab: 1})">
                             <div layout="row" flex="" class="ng-scope layout-row flex">
-                                <p flex="" class="flex">My Events</p>
+                                <p flex="" class="flex">My Opportunities</p>
                                 <md-icon md-svg-icon="calendar"></md-icon>
                             </div>
                         </md-button>
@@ -226,7 +226,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                             <md-icon ng-if="notification.type=='content_appreciate'" md-svg-icon="all-inclusive"></md-icon>
                             <div class="md-list-item-text">
                                 <p ng-if="notification.type=='follower'" ui-sref="home.profile({username: notification.follower_username})">{{notification.follower_username}} started following you.</p>
-                                <p ng-if="notification.type=='event_rsvps'" ui-sref="home.singleEvent({eventId: notification.event_id})">{{notification.total}} {{(notification.total>1)?'people have':'person has'}} RSVP'd your event"{{notification.title}}" </p>
+                                <p ng-if="notification.type=='event_rsvps'" ui-sref="home.singleEvent({eventId: notification.event_id})">{{notification.total}} {{(notification.total>1)?'people are':'person is'}} interested your opportunity"{{notification.title}}" </p>
                                 <p ng-if="notification.type=='content_appreciate'" ui-sref="home.singleContent({contentId: notification.content_id})">{{notification.total}} {{(notification.total>1)?'people have':'person has'}} appreciated your creativity.</p>
                             </div>
                             <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon" aria-label="call">
