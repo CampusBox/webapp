@@ -1,7 +1,7 @@
 
 <div flex layout-gt-xs="row" layout-xs="column" class="main-bg">
     <md-card flex-gt-xs="50">
-        <form name="eventForm" novalidate ng-submit="eventForm.$valid  && submitEvent(event,tags)">
+        <form name="eventForm" novalidate ng-submit="eventForm.$valid  && submitOpportunity(event,tags)">
             <md-tabs md-dynamic-height md-border-bottom="" md-selected="selectedIndex">
                 <md-tab label="Basic Details">
                     <div class="md-padding" layout="column" layout-padding>
@@ -15,13 +15,13 @@
                         </md-input-container>
                         <div layout-gt-sm="row" flex>
                             <md-input-container md-no-float flex>
-                                <label>Event Type</label>
-                                <md-select required="" flex-xs ng-model="event.type" placeholder="Event Type">
+                                <label>Opportunity Type</label>
+                                <md-select required="" flex-xs ng-model="event.type" placeholder="Opportunity Type">
                                     <md-option ng-value="type.id" ng-repeat="type in types">{{type.title}}</md-option>
                                 </md-select>
                             </md-input-container>
                             <!--  <md-input-container md-no-float flex>
-                                <label>Event Category</label>clock
+                                <label>Opportunity Category</label>clock
                                 <md-select ng-required="true" ng-model="event.category">
                                     <md-option ng-value="category.id" ng-repeat="category in categories">{{category.title}}</md-option>
                                 </md-select>
@@ -29,7 +29,7 @@
                         </div>
                         <div layout-gt-sm="row" flex>
                             <md-input-container md-no-float flex>
-                                <label>Event Target Audience</label>
+                                <label>Opportunity Target Audience</label>
                                 <md-select ng-required="true" flex-xs ng-model="event.audience">
                                     <md-option ng-value="audience.id" ng-repeat="audience in audiences">{{audience.title}}</md-option>
                                 </md-select>
@@ -91,7 +91,7 @@
                     <div class="md-padding">
                         <center ng-if="!tutorial">
                             <br>
-                            <img ng-src="assets/images/addEvent.gif" style="border-color: #ccc;border-radius: 6px; border-style: solid;max-width: 90%" src="assets/images/editing.gif">
+                            <img ng-src="assets/images/addOpportunity.gif" style="border-color: #ccc;border-radius: 6px; border-style: solid;max-width: 90%" src="assets/images/editing.gif">
                             <br>
                             <md-button ng-click="gotIt();" class="md-primary" aria-label="description">Got it!</md-button>
                             <br>
@@ -103,7 +103,7 @@
                 <md-tab label="Additional Details">
                     <div class="md-padding" layout="column">
                         <md-input-container md-no-float flex>
-                            <!-- <label>Event Venue</label> -->
+                            <!-- <label>Opportunity Venue</label> -->
                             <place-autocomplete placeholder="Mention college name if event is open for all participants" type="text" required="" ng-model="event.venue"  md-maxlength="100"></place-autocomplete>
                         </md-input-container>
 
@@ -163,7 +163,7 @@
                     </div>
                     <span ng-show="result">Upload Successful</span>
                     <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
-                    <!-- <md-button style="float: right" class="md-raised md-primary" ng-click="submitEvent(event,tags)">
+                    <!-- <md-button style="float: right" class="md-raised md-primary" ng-click="submitOpportunity(event,tags)">
                         Create
                     </md-button> -->
                 </md-tab>
@@ -184,7 +184,7 @@
     <div flex-gt-xs="50">
         <h1 class="md-title">Preview - <small>Updated as you input.</small></h1>
         <md-list>
-            <md-list-item style="margin-bottom: 10px;" ng-click="showEvent(event, $index)" class="secondary-button-padding eventListItem">
+            <md-list-item style="margin-bottom: 10px;" ng-click="showOpportunity(event, $index)" class="secondary-button-padding eventListItem">
                 <md-card flex>
                     <md-card-title style="padding: 0px;">
                         <div class="md-media-sm" style="width: 200px;height:200px;background-color: #ccc">

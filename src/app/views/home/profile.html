@@ -160,7 +160,7 @@
                     </div>
                     <div>
                         <div ng-show="profile.Events.data.length>0">
-                            <h3 class="md-title" style="margin-bottom: 0px;">Events Created</h3>
+                            <h3 class="md-title" style="margin-bottom: 0px;">Opportunities Created</h3>
                             <md-list>
                                 <md-list-item style="margin-bottom: 10px;" ng-repeat="event in profile.Events.data | limitTo : 2" ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding eventListItem">
                                     <div flex>
@@ -220,7 +220,7 @@
                        </md-list>
                    </div>
                     <div ng-show="profile.AttendingEvents.data.length>0">
-                        <h3 class="md-title" style="margin-bottom: 0px;">Attending Events</h3>
+                        <h3 class="md-title" style="margin-bottom: 0px;">Attending Opportunity</h3>
                         <md-list>
                             <md-list-item style="margin-bottom: 10px;" ng-repeat="event in profile.AttendingEvents.data | limitTo: 2" ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding eventListItem">
                                 <md-card flex>
@@ -344,7 +344,7 @@
                         </div>
                     </div>
                 </md-tab>
-                <md-tab label="Events Created" ng-if="profile.Events.data.length>0">
+                <md-tab label="Opportunities Created" ng-if="profile.Events.data.length>0">
                     <md-list>
                         <md-list-item style="margin-bottom: 10px;" ng-repeat="event in profile.Events.data" ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding eventListItem">
                             <md-card flex>
