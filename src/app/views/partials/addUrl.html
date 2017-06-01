@@ -1,0 +1,32 @@
+<style>
+/*md-input-container:not(.md-input-invalid).md-input-focused .md-input {
+    border-color: none;
+}*/
+</style>
+<md-dialog class="md-dialog-fullscreen">
+    <md-content class="md-padding">
+        <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Title</label>
+                <input type="text">
+            </md-input-container>
+        </div>
+        <div layout="row">
+        <md-input-container class="md-block" flex-gt-sm>
+            <input type="text" placeholder="enter the url here">
+        </md-input-container>
+        <form>
+            <md-chips name="skills" ng-model="selectedSkills" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
+                <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Enter upto 5 skills">
+                    <span md-highlight-text="searchText">{{item.name}}</span>
+                </md-autocomplete>
+                <md-chip-template>
+                    <span>
+          <strong>{{$chip.name}}</strong>
+        </span>
+                </md-chip-template>
+            </md-chips>
+        </form> 
+        </div>
+    </md-content>
+</md-dialog>

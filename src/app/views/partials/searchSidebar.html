@@ -1,0 +1,58 @@
+<div ng-controller="SearchController as vm">
+    <md-autocomplete ng-disabled="ctrl.isDisabled" md-no-cache="ctrl.noCache" md-selected-item="ctrl.selectedItem" md-search-text-change="ctrl.searchTextChange(ctrl.searchText)" md-search-text="ctrl.searchText" md-selected-item-change="ctrl.selectedItemChange(item)" md-items="item in ctrl.querySearch(ctrl.searchText)" md-item-text="item.display" md-min-length="0" placeholder="What is your favorite US state?">
+    </md-autocomplete>
+    <div layout="row">
+        <h3>People</h3>
+        <span flex></span>
+        <p>more</p>
+    </div>
+    <div layout="row" layout-wrap>
+        <md-list flex>
+            <md-list-item class="md-3-line" ng-repeat="item in followers" ng-click="null">
+                <img ng-src="{{item.image}}" class="md-avatar" alt="{{item.who}}" />
+                <div class="md-list-item-text" layout="row">
+                    <div layout="column">
+                        <h3>{{ item.name }}  <small style="background:rgba(43, 36, 36, 0.51);color: white;border-radius:5px;padding: 4px;margin-left: 10px;">{{ item.college }}</small> </h3>
+                        <p>{{ item.about }}</p>
+                    </div>
+                    <span flex></span>
+                    <md-button md-no-ink class="md-flat md-primary">Follow</md-button>
+                </div>
+                <md-divider></md-divider>
+            </md-list-item>
+        </md-list>
+    </div>
+    <div layout="row">
+        <h3>Events</h3>
+        <span flex></span>
+        <p>more</p>
+    </div>
+    <md-list>
+        <md-list-item class="md-2-line" ng-repeat="event in events | limitTo:6">
+            <img ng-src="{{event.image}}" class="md-avatar" alt="{{item.who}}">
+            <div class="md-list-item-text">
+                <h3>{{event.name}}</h3>
+                <p>Created: date</p>
+            </div>
+            <span><md-icon md-svg-icon="heart"></md-icon> 100</span>
+            <md-divider md-inset ng-if="!$last"></md-divider>
+        </md-list-item>
+    </md-list>
+    <div layout="row">
+        <h3>Content</h3>
+        <span flex></span>
+        <p>more</p>
+    </div>
+    <md-list>
+        <md-list-item class="md-2-line" ng-repeat="event in events | limitTo:6">
+            <img ng-src="{{event.image}}" class="md-avatar" alt="{{item.who}}">
+            <div class="md-list-item-text">
+                <h3>{{event.name}}</h3>
+                <h4>Description</h4>
+                <p>Created: date - Rohan Goel</p>
+            </div>
+            <span><md-icon md-svg-icon="heart"></md-icon> 100</span>
+            <md-divider md-inset ng-if="!$last"></md-divider>
+        </md-list-item>
+    </md-list>
+</div>

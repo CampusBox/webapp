@@ -1,6 +1,3 @@
-# CampusBox Web
+Web app for campusbox.org
 
-visit campusbox.org
 
-hey there delilah
-# webapp

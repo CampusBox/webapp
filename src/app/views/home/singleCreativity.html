@@ -1,0 +1,131 @@
+<style>
+md-list-item .md-button:not([disabled]):hover {
+    background-color: transparent;
+    cursor: auto;
+}
+
+md-list-item .md-button:not([disabled]):click {
+    background-color: transparent;
+}
+</style>
+<div layout="row " class="white-bg ">
+    <div flex-gt-sm="10" hide-sm hide-xs>
+        <div layout="column" layout-align="center center" style="position: fixed;top: 45%;left: 25px;">
+            <md-button class="md-icon-button" ng-click="heart($event, content)" aria-label="Favorite" sticky>
+                <md-icon ng-class="content.Actions.Appriciate.status? 'pink':''" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon>
+            </md-button>
+            <span style="cursor: pointer;" ng-click="showLikes($event, content.id, content.title)" class="likesNumber"> {{content.Actions.Appriciate.total}}</span>
+            <md-button class="md-icon-button" ng-click="bookmark(content)" aria-label="Favorite ">
+                <md-icon ng-class="content.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
+            </md-button>
+        </div>
+    </div>
+    <md-card ng-if="loading" flex-gt-sm="80" flex="100" style="box-shadow: 0px  0px white">
+        <md-card-header>
+            <md-card-avatar style="background: #f6f7f8">
+                <img class="md-user-avatar" />
+            </md-card-avatar>
+            <md-card-header-text>
+                <span style="width: 30%" class=" animated-background">Anything here </span>
+            </md-card-header-text>
+        </md-card-header>
+        <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 80px; margin-bottom: 50px; margin-top: 15px;">and again</span>
+    </md-card>
+    <div flex-gt-sm="80" flex-sm="100" flex ng-if="!loading">
+        <md-list>
+            <md-list-item ui-sref="home.profile({username: content.created.by.username})" flex-offset-gt-sm="10" class="md-3-line" ng-click="false" md-ink-ripple="0">
+                <img ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
+                <div class="md-list-item-text" layout="column">
+                    <h3><span class="md-subhead">
+                <span  ui-sref="home.profile({username: content.created.by.username})"  class="capitalize blue_text pointer" >
+                {{content.created.by.name}} </span> in <span style="color: #0570c0">{{content.type?content.type:"Article"}} </span>
+                <!-- </span> <span><md-button ng-class="profile.following? 'md-primary' : 'md-raised md-primary'" ng-click="follow($event)">{{profile.following? 'Following':'Follow' }}</md-button></span> </h3> -->
+                    <h4><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.by.about}}</span></h4>
+                    <p><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.at | date: 'd MMM'}}</span></p>
+                </div>
+            </md-list-item>
+        </md-list>
+        <div>
+            <h1 flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100" class="md-title creativity-title creativity-title-single" ng-bind-html="content.title"></h1>
+            <center flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100" ng-repeat="item in content.Items.data">
+                <img style="max-width:100%" ng-if="(item.type == 'cover')" ng-src="{{item.image}}" alt="">
+                <iframe style="background-color: grey" ng-if="(item.type == 'youtube')" width="100%" height="315" ng-src="{{item.embed.url}}" frameborder="0" allowfullscreen></iframe>
+                <iframe style="background-color: grey" id="sc-widget" ng-if="item.type == 'soundcloud'" width="100%" height="166" scrolling="no" frameborder="0" src="{{item.embed.url}}" allowfullscreen></iframe>
+                <iframe style="background-color: grey" ng-if="item.type == 'vimeo'" width="640" height="360" src="{{item.embed.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            </center>
+            <div flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100" ng-repeat="item in content.Items.data">
+                <center layout-align="center center">
+                    <img ng-if="(item.type == 'image')" ng-src="{{item.image}}" alt="">
+                </center>
+                <p class="md-body-1 creativity-description creativity-description-single" ng-bind-html="item.description">
+                </p>
+            </div>
+            <div flex-offset-gt-sm="10" flex-gt-sm="60" flex="100" class="creativity-description creativity-description-single">
+                <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
+                    <li ng-repeat="tag in content.Tags.data" style="cursor: auto;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">
+                        {{tag.name}}
+                    </li>
+                </ul>
+                <md-button ng-click="heart($event, content)" aria-label="Favorite" sticky class="appriciate-button">
+                    <md-icon class="pink" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon> {{content.Actions.Appriciate.status? 'Appreciated' : 'Appreciate' }} |
+                </md-button>
+                <span style="cursor: pointer;" ng-click="showLikes($event, content.id, content.title)" class="likesNumber"> {{content.Actions.Appriciate.total}}</span>
+                <md-button class="md-icon-button" style="float:right;" ng-click="bookmark(content)" aria-label="Favorite ">
+                    <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
+                </md-button>
+                <md-divider></md-divider>
+                <!--                 <md-list>
+                    <md-list-item flex-offset-gt-sm="10" class="md-3-line" ng-click="false" md-ink-ripple="0">
+                        <img ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
+                        <div class="md-list-item-text" layout="column">
+                            <h3><span class="md-subhead">
+                <span  ui-sref="home.profile({username: content.created.by.username})"  class="capitalize pointer" >
+                {{content.created.by.name}} </span>
+                   </div>
+                </md-list-item>
+                </md-list> -->
+                <md-list>
+                    <md-list-item ui-sref="home.profile({username: content.created.by.username})" class="md-2-line" ng-click="false" md-ink-ripple="0">
+                        <img ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
+                        <div class="md-list-item-text" layout="column">
+                            <h3><span class="md-subhead">
+                        <span  ui-sref="home.profile({username: content.created.by.username})"  class="capitalize blue_text pointer" >
+                        {{content.created.by.name}}
+                        <!-- </span> <span><md-button ng-class="profile.following? 'md-primary' : 'md-raised md-primary'" ng-click="follow($event)">{{profile.following? 'Following':'Follow' }}</md-button></span> </h3> -->
+                            <h4><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.by.about}}</span></h4>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </div>
+        </div>
+    </div>
+</div>
+<div layout="row" style="margin-top: 50px" layout-xs="column" layout-sm="column" flex flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100">
+    <md-card style="height: 280px;" flex ng-repeat="content in finalContents track by $index" class="pointer" ui-sref="home.singleContent({contentId: content.id})">
+        <img ng-if="(content.type == 'cover' || content.type == 'image')" ng-src="{{content.url}}" class="md-card-image" style="object-fit: cover;height: 100px;">
+        <img ng-if="(content.type == 'youtube')" style="background:url('https://img.youtube.com/vi/{{content.url}}/hqdefault.jpg');object-fit: cover;background-size: cover;background-position: center;height: 100px;" class="creativity-cover" alt="">
+        <md-card-title>
+            <md-card-title-text>
+                <span style="font-size: 24px;font-weight: 700!important;" class="md-title">{{content.title}}</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-header>
+            <md-card-avatar>
+                <img class="md-user-avatar" src="{{content.created.by.image}}" />
+            </md-card-avatar>
+            <md-card-header-text flex>
+                <span class="md-title">{{content.created.by.name}}</span>
+                <span class="md-subhead">{{content.created.at | date: 'd MMM'}}</span>
+            </md-card-header-text>
+            <md-card-icon-actions style="float: right;">
+                <md-button class="appriciate-button" style="text-transform: capitalize;min-width: 0px;" ng-click="heart($event, content)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
+                    <md-icon class="pink" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon>
+                </md-button>
+                <span style="cursor: pointer;" ng-click="showLikes($event, content.id, content.title)" class="likesNumber"> {{content.Actions.Appriciate.total}}</span>
+            </md-card-icon-actions>
+        </md-card-header>
+        <!-- <md-card-content>
+        </md-card-content>
+ --></md-card>
+</div>
+<script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>

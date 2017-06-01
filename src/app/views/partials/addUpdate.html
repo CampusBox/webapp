@@ -1,0 +1,27 @@
+<md-dialog aria-label="Adding Update name" ng-class="dialog.css" class="_md md-default-theme md-transition-in" flex-gt-sm="40" role="dialog">
+    <md-dialog-content class="md-dialog-content" r>
+        <h2 class="md-title ">Adding new CollegeUpdate</h2>
+        <div class="md-dialog-content-body">
+            <p class="">Note : The updates need to be approved and will not be directly visible on the website.</p>
+        </div>
+        <div layout="column">
+                <md-input-container flex>
+                    <label>Title</label>
+                    <input type="text" md-autofocus="" ng-required="true" ng-model="update.title">
+                </md-input-container>
+                <md-input-container>
+                    <label>Description</label>
+                    <textarea ng-required="true" ng-model="Update.description" md-maxlength="100" rows="2" md-select-on-focus></textarea>
+                </md-input-container>
+            <md-input-container flex>
+                <input ng-required="true" ng-model="update.url" placeholder="URL to the source or furter details" class=" ng-valid md-autofocus md-input ng-empty ng-touched" aria-label="url" id="input_8" aria-invalid="false">
+                <div class="md-errors-spacer"></div>
+                <span class="md-caption" style="color:rgb(244, 67, 54);" ng-hide="error == ''">{{error}}</span>
+            </md-input-container>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <button class="md-primary md-button " ng-click="$mdDialog.cancel()">Cancel</button>
+        <button class="md-primary md-button" ng-click="submitUrl(url)">Add Link</button>
+    </md-dialog-actions>
+</md-dialog>

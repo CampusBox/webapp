@@ -1,0 +1,369 @@
+<style>
+[contenteditable] {
+    border: 1px dashed #2288d3;
+    /*background-color: #eee;*/
+    padding: 8px;
+}
+
+.badge {
+    margin: 0 0 0 8px;
+    background-color: #8BC34A;
+    color: white;
+    padding: 2px 4px;
+    border-radius: 2px;
+}
+
+md-chips.md-default-theme md-chip.mdfocused,
+md-chips md-chip.md-focused {
+    /*background-color: #fafafa !important;
+    color: rgba(0, 0, 0, .44);
+    border: 1px solid rgb(97, 97, 97) !important;
+*/
+    cursor: default;
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 32px;
+    margin: 8px 8px 0px 0px;
+    padding: 0px 7px;
+    float: left;
+    box-sizing: border-box;
+    max-width: 100%;
+    position: relative;
+    background-color: rgb(224, 224, 224);
+    color: rgb(66, 66, 66);
+}
+
+md-chips.md-default-theme md-chip,
+md-chips md-chip {
+    /*border-color: rgba(2, 184, 117, 0.8);*/
+    /*border: 1px solid rgb(97, 97, 97) !important;*/
+    cursor: default;
+    border-radius: 5px !important;
+    font-size: 12px;
+    line-height: 32px;
+    margin: 8px 8px 0px 0px;
+    padding: 0px 7px;
+    float: left;
+    box-sizing: border-box;
+    max-width: 100%;
+    position: relative;
+    background-color: rgb(224, 224, 224);
+    color: rgb(66, 66, 66);
+}
+
+md-chips.md-default-theme md-chip.md-focused md-icon,
+md-chips md-chip.md-focused,
+md-chips md-chip.md-focused md-icon {
+    color: rgba(0, 0, 0, .44) !important;
+}
+</style>
+<div layout="row" layout-xs="column" class="main-bg">
+    <md-card hide-xs flex="30" flex-xs="100">
+        <center>
+            <img style="border-radius: 50%; width: 40%; margin-top:20px;" ng-src="{{student.photo}}" class="md-card-image" alt="">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{student.name}}</span>
+                    <span class="md-subhead">{{student.college.name}}</span>
+                </md-card-title-text>
+            </md-card-title>
+        </center>
+        <md-card-content>
+            <div ng-hide="editAbout" layout="row">
+                <p class="md-body-2" ng-bind-html="student.subtitle">
+                    <!-- {{student.subtitle}} -->
+                </p>
+                <md-button class="md-icon-button" ng-click="about()">
+                    <md-icon md-svg-icon="pencil"></md-icon>
+                </md-button>
+            </div>
+            <div class="md-body-2" layout="row" ng-show="editAbout">
+                <div class="md-body-2" md-colors="{color: 'grey'}" contenteditable ng-model="studentAbout.about">
+                </div>
+                <md-button class="md-icon-button md-primary" ng-click="about()">
+                    <md-icon class="md-icon-button" md-svg-icon="checkbox-marked-outline"></md-icon>
+                </md-button>
+            </div>
+            <br>
+            <md-divider></md-divider>
+            <div ng-show="student.Skills.data[0] || addSkill" ng-init="student.Skills.data[0]? addSkill = true : addSkill = false">
+                <div layout="row">
+                    <p class="md-title">
+                        Skills
+                    </p>
+                    <span flex></span>
+                    <md-button ng-click="skillsEdit()" class="md-icon-button">
+                        <md-icon md-svg-icon="pencil" ng-show="readonly"></md-icon>
+                        <md-icon md-svg-icon="checkbox-marked-outline" ng-hide="readonly"></md-icon>
+                    </md-button>
+                </div>
+                <form name="skillsForm">
+                    <md-chips class="your-custom-chip" name="skills" md-separator-keys="customKeys" ng-model="student.Skills.data" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
+                        <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Use comma to separate skills.">
+                            <span md-highlight-text="searchText">{{item.name}}</span>
+                        </md-autocomplete>
+                        <md-chip-template>
+                            <span>
+                      <strong>{{$chip.name}}</strong>
+                    </span>
+                        </md-chip-template>
+                    </md-chips>
+                </form>
+            </div>
+            <div ng-hide="student.Skills.data[0] || addSkill">
+                <p class="md-title">
+                    Skills
+                </p>
+                <!-- <span class="md-body-2" md-colors="{color: 'grey'}"> -->
+                <md-button class="md-body-2" md-colors="{color: 'grey'}" title="Add skills" ng-click="addSkill = true;skillsEdit()" class="">
+                    <md-icon class="md-primary" md-svg-icon="plus"></md-icon>
+                    Add skills you can brag about
+                </md-button>
+                <!-- </span> -->
+            </div>
+            <div>
+                <p class="md-title">
+                    Social Accounts
+                </p>
+                <md-list>
+                    <md-button ng-href="{{social.link}}" ng-repeat="social in student.SocialAccounts.data">
+                        <md-icon md-svg-icon="{{social.type}}" md-colors="social.type=='facebook' ? {color: 'indigo'} : {color: 'red'}"></md-icon>
+                        {{social.type}}
+                    </md-button>
+                </md-list>
+            </div>
+        </md-card-content>
+    </md-card>
+    <md-card flex="70" flex-xs="100">
+        <md-card-content>
+            <md-tabs md-dynamic-height md-border-bottom md-selected="tab">
+            <div  show-xs hide-gt-xs>
+                <md-tab label="profile">
+                    <div show-xs ng-if="!studentLoading">
+                        <div layout="row" layout-align="center center">
+                            <img flex="30" style="width: 20%; height: 20%; margin-top:20px; background-color: #ccc;" ng-src="{{student.photo}}" class="md-card-image" alt="{{student.name}}">
+                            <md-card-title flex="70">
+                                <md-card-title-text>
+                                    <span class="md-title">{{student.name}}</span>
+                                    <br>
+                                    <span class="md-caption">
+                                    <!-- <md-icon md-svg-icon="school"></md-icon> -->
+                                     {{student.college.name}}</span>
+                                </md-card-title-text>
+                            </md-card-title>
+                        </div>
+                        <md-card-content>
+                            <div layout-align="start start">
+                                <div ng-hide="editAbout" layout="row">
+                                    <p style="color: rgba(0, 0, 0, 0.44)" class="md-subhead weight-500" ng-bind-html="student.subtitle">
+                                    </p>
+                                    <span flex></span>
+                                    <md-button class="md-icon-button" ng-click="about()">
+                                        <md-icon md-svg-icon="pencil"></md-icon>
+                                    </md-button>
+                                </div>
+                                <div class="md-body-2" layout="row" ng-show="editAbout">
+                                    <div class="md-body-2" md-colors="{color: 'grey'}" contenteditable ng-model="studentAbout.about">
+                                    </div>
+                                    <md-button class="md-icon-button md-primary" ng-click="about()">
+                                        <md-icon class="md-icon-button" md-svg-icon="checkbox-marked-outline"></md-icon>
+                                    </md-button>
+                                </div>
+                            </div>
+                            <div layout-align="start start" ng-show="student.Skills.data[0] || addSkill" ng-init="student.Skills.data[0]? addSkill = true : addSkill = false">
+                                <div layout="row">
+                                    <form name="skillsForm">
+                                        <md-chips class="your-custom-chip" name="skills" md-separator-keys="customKeys" ng-model="student.Skills.data" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
+                                            <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Use comma to separate skills.">
+                                                <span md-highlight-text="searchText">{{item.name}}</span>
+                                            </md-autocomplete>
+                                            <md-chip-template>
+                                                <span>
+                                  <strong>{{$chip.name}}</strong>
+                                </span>
+                                            </md-chip-template>
+                                        </md-chips>
+                                    </form>
+                                    <span flex></span>
+                                    <md-button ng-click="skillsEdit()" class="md-icon-button">
+                                        <md-icon md-svg-icon="pencil" ng-show="readonly"></md-icon>
+                                        <md-icon md-svg-icon="checkbox-marked-outline" ng-hide="readonly"></md-icon>
+                                    </md-button>
+                                </div>
+                            </div>
+                            <div ng-hide="student.Skills.data[0] || addSkill">
+                                <p class="md-title">
+                                    Skills
+                                </p>
+                                <!-- <span class="md-body-2" md-colors="{color: 'grey'}"> -->
+                                <md-button class="md-body-2" md-colors="{color: 'grey'}" title="Add skills" ng-click="addSkill = true;skillsEdit()" class="">
+                                    <md-icon class="md-primary" md-svg-icon="plus"></md-icon>
+                                    Add skills you can brag about
+                                </md-button>
+                                <!-- </span> -->
+                            </div>
+                            <br>
+                            <a style="margin-bottom: 10px;" ng-repeat="social in student.SocialAccounts.data" ng-href="{{social.link}}" target="_blank">
+                                <md-icon md-svg-icon="{{social.type}}" md-colors="social.type=='facebook' ? {color: 'indigo'} : {color: 'red'}"></md-icon>
+                            </a>
+                            <br>
+                            <br>
+                        </md-card-content>
+                    </div>
+                </md-tab>
+            </div>
+
+                <md-tab label="Content">
+                    <div class="md-padding" layout-fill>
+                        <div style="margin-top: 5%;" layout="column" layout-align="center center" ng-show="student.CreativeContents.data.length == 0">
+                            <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCIgdmlld0JveD0iMCAwIDE1MC4yMjMgMTUwLjIyMyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTUwLjIyMyAxNTAuMjIzOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTExNS44ODUsMzguNjMxYy0yMS4zMTIsMC0zNS40MTYsMTcuNDI1LTQ3Ljg1OSwzMi44MDJjLTEwLjYzMSwxMy4xMzYtMjAuNjcsMjUuNTQtMzIuODk3LDI1LjU0ICAgIGMtMTIuNzA5LDAtMjAuNTEyLTEzLjA2Mi0yMC41MTItMjIuNDI2YzAtOC42ODIsOC41Ni0yMS4yOTksMjEuOTc2LTIxLjI5OWMxMy4wMTgsMCwxOS44LDEwLjQxOSwyMC4xNDIsMTAuOTUzICAgIGMyLjEwOSwzLjQxMyw2LjU4Nyw0LjQ4NywxMC4wMTcsMi4zOTVjMy40NDctMi4xLDQuNTM5LTYuNTk3LDIuNDM4LTEwLjA0NGMtMC40NDYtMC43My0xMS4xNjctMTcuOTItMzIuNTk3LTE3LjkyICAgIEMxNS4wMjksMzguNjMyLDAsNTcuNTYyLDAsNzQuNTQ4YzAsMTcuNTIxLDE0LjQyNywzNy4wNDMsMzUuMTI4LDM3LjA0M2MxOS4xOTksMCwzMS45NC0xNS43NCw0NC4yNTktMzAuOTYzICAgIGMxMS4zOTYtMTQuMDc4LDIyLjE2MS0yNy4zNzksMzYuNDk4LTI3LjM3OWM4LjUzLDAsMTQuMTM1LDIuODk0LDE3LjEzMSw4Ljg0YzIuNTk2LDUuMTYsMi41OTQsMTAuOTk5LDIuNTkyLDEzLjAyMiAgICBjMCwxLjE2LTAuNjEzLDYuOTc4LTMuNDUxLDEyLjIxN2MtMy4yMzYsNS45NjgtNy44Myw4Ljc0Ni0xNC40NjksOC43NDZjLTEzLjM2OSwwLTIwLjU5Mi04LjY5LTIzLjMxMi0xMS45NjMgICAgYy0wLjcwNy0wLjg1Mi0xLjIxNi0xLjQ2NS0xLjg5Ni0yLjA0N2MtMy4wNjItMi42MjMtNy42NzgtMi4yNzEtMTAuMzA2LDAuNzk1Yy0yLjUzNCwyLjk1Ny0yLjI5LDcuMzUzLDAuNDc4LDEwLjAxNCAgICBjMC4xMzIsMC4xNSwwLjI5MSwwLjM0NywwLjQ4LDAuNTc2YzMuNTQ1LDQuMjY2LDE0LjMyNCwxNy4yNCwzNC41NTMsMTcuMjRjMjQuNTg2LDAsMzIuNTM3LTIzLjk3MywzMi41MzctMzUuNjc4ICAgIGMwLjAwMi03LjQ1NS0xLjM5NC0xNC4wMTMtNC4xNTQtMTkuNDk2QzE0Mi4xOTMsNDcuODE1LDEzMy44MDksMzguNjMxLDExNS44ODUsMzguNjMxeiIgZmlsbD0iIzg5OGQ5MSIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
+                            <p class="md-subhead" style="color:rgba(0,0,0,.44)">Looks like you haven't added anything yet</p>
+                            <md-button class="md-primary" ui-sref="home.addCreativity">
+                                <md-icon class="md-primary" md-svg-icon="plus-circle-outline"></md-icon> Add Creative Content</md-button>
+                        </div>
+                        <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in [1,2,3,4]">
+                            <md-card ng-show="loading" flex="100" flex-gt-sm="60">
+                                <md-card-header>
+                                    <md-card-avatar style="background: #f6f7f8">
+                                        <img class="md-user-avatar" />
+                                    </md-card-avatar>
+                                    <md-card-header-text>
+                                        <span style="width: 30%" class=" animated-background">Anything here </span>
+                                    </md-card-header-text>
+                                </md-card-header>
+                                <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
+                            </md-card>
+                        </div>
+                        <div flex layout="row" layout-wrap layout-align="center center">
+                            <md-list flex>
+                                <md-list-item class="md-3-line" ui-sref="home.singleContent({contentId: content.id})" ng-repeat="content in student.CreativeContents.data track by $index">
+                                    <img ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
+                                    <div class="md-list-item-text" layout="column">
+                                        <h3>{{ content.title }}</h3>
+                                        <h4>{{ content.created.at | date: ' d MMM'}}</h4>
+                                        <p>
+                                            <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
+                                                <li ng-repeat="tag in content.Tags" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">{{tag.name}}</li>
+                                            </ul>
+                                        </p>
+                                    </div>
+                                </md-list-item>
+                                <md-divider></md-divider>
+                            </md-list>
+                        </div>
+                    </div>
+                </md-tab>
+                <md-tab label="Opportunity">
+                    <div class="md-padding">
+                        <div style="margin-top: 5%;" layout="column" ng-show="student.Events.data.length == 0" layout-align="center center">
+                            <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDYwIDYwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA2MCA2MDsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI2NHB4IiBoZWlnaHQ9IjY0cHgiPgo8Zz4KCTxwYXRoIGQ9Ik01Nyw0aC03VjFjMC0wLjU1My0wLjQ0Ny0xLTEtMWgtN2MtMC41NTMsMC0xLDAuNDQ3LTEsMXYzSDE5VjFjMC0wLjU1My0wLjQ0Ny0xLTEtMWgtN2MtMC41NTMsMC0xLDAuNDQ3LTEsMXYzSDMgICBDMi40NDcsNCwyLDQuNDQ3LDIsNXYxMXY0M2MwLDAuNTUzLDAuNDQ3LDEsMSwxaDU0YzAuNTUzLDAsMS0wLjQ0NywxLTFWMTZWNUM1OCw0LjQ0Nyw1Ny41NTMsNCw1Nyw0eiBNNDMsMmg1djN2M2gtNVY1VjJ6IE0xMiwyaDUgICB2M3YzaC01VjVWMnogTTQsNmg2djNjMCwwLjU1MywwLjQ0NywxLDEsMWg3YzAuNTUzLDAsMS0wLjQ0NywxLTFWNmgyMnYzYzAsMC41NTMsMC40NDcsMSwxLDFoN2MwLjU1MywwLDEtMC40NDcsMS0xVjZoNnY5SDRWNnogICAgTTQsNThWMTdoNTJ2NDFINHoiIGZpbGw9IiM4OThkOTEiLz4KCTxwYXRoIGQ9Ik0zOCwyM2gtN2gtMmgtN2gtMmgtOXY5djJ2N3YydjloOWgyaDdoMmg3aDJoOXYtOXYtMnYtN3YtMnYtOWgtOUgzOHogTTMxLDI1aDd2N2gtN1YyNXogTTM4LDQxaC03di03aDdWNDF6IE0yMiwzNGg3djdoLTcgICBWMzR6IE0yMiwyNWg3djdoLTdWMjV6IE0xMywyNWg3djdoLTdWMjV6IE0xMywzNGg3djdoLTdWMzR6IE0yMCw1MGgtN3YtN2g3VjUweiBNMjksNTBoLTd2LTdoN1Y1MHogTTM4LDUwaC03di03aDdWNTB6IE00Nyw1MGgtNyAgIHYtN2g3VjUweiBNNDcsNDFoLTd2LTdoN1Y0MXogTTQ3LDI1djdoLTd2LTdINDd6IiBmaWxsPSIjODk4ZDkxIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" />
+                            <p class="md-subhead" style="color:rgba(0,0,0,.44)">Looks like you haven't added anything yet</p>
+                            <md-button class="md-primary" ui-sref="home.addEvent">
+                                <md-icon class="md-primary" md-svg-icon="plus-circle-outline"></md-icon> Add event</md-button>
+                        </div>
+                        <div layout="row" ng-hide="!vm.activated" layout-sm="column" layout-align="space-around">
+                            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                        </div>
+                        <md-list>
+                            <md-list-item ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding" ng-repeat="event in student.Events.data ">
+                                <img ng-src="{{event.image}}" class="md-avatar" alt="{{item.who}}">
+                                <p>{{event.title}}</p>
+                                <md-button class="md-primary" aria-label="participants" ng-click="showParticipants(event)" md-ripple-size="auto">Participants</md-button>
+                                <md-divider md-inset ng-if="!$last"></md-divider>
+                            </md-list-item>
+                        </md-list>
+                    </div>
+                </md-tab>
+                <md-tab label="Bookmarks" ng-if="student.BookmarkedContents.data.length>0">
+                    <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in [1,2,3,4]">
+                        <md-card ng-show="loading" flex="100" flex-gt-sm="60">
+                            <md-card-header>
+                                <md-card-avatar style="background: #f6f7f8">
+                                    <img class="md-user-avatar" />
+                                </md-card-avatar>
+                                <md-card-header-text>
+                                    <span style="width: 30%" class=" animated-background">Anything here </span>
+                                </md-card-header-text>
+                            </md-card-header>
+                            <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
+                        </md-card>
+                    </div>
+                    <div flex layout="row" layout-wrap layout-align="center center">
+                        <md-list flex>
+                            <md-list-item class="md-3-line" ng-repeat="content in student.BookmarkedContents.data track by $index" ui-sref="home.singleContent({contentId: content.id})">
+                                <img ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
+                                <div class="md-list-item-text" layout="column">
+                                    <h3>{{ content.title }}</h3>
+                                    <h4>{{ content.created.at | date: ' d MMM'}}</h4>
+                                    <p>
+                                        <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
+                                            <li ng-repeat="tag in content.Tags" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">{{tag.name}}</li>
+                                        </ul>
+                                    </p>
+                                </div>
+                            </md-list-item>
+                            <md-divider></md-divider>
+                        </md-list>
+                    </div>
+                </md-tab>
+                <md-tab label="RSVPs" ng-if="student.AttendingEvents.data.length">
+                    <div class="md-padding">
+                        <div layout="row" ng-hide="!vm.activated" layout-sm="column" layout-align="space-around">
+                            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                        </div>
+                        <md-list>
+                            <md-list-item ui-sref="home.singleEvent({eventId: event.id})" class="md-2-line" ng-repeat="event in student.AttendingEvents.data track by $index">
+                                <img ng-src="{{event.image}}" class="md-avatar" alt="{{item.who}}">
+                                <div class="md-list-item-text">
+                                    <h3>{{event.title}}</h3>
+                                    <p>{{event.timings.from.date | date: ' d MMM'}} {{event.timings.to.date==event.timings.from.date?null:event.timings.to.date | date: '- d MMM'}}</p>
+                                </div>
+                                <md-button class="md-warn" aria-label="participants" ng-click="cancelRsvp(event, $index)" md-ripple-size="auto">Cancel</md-button>
+                                <md-divider md-inset ng-if="!$last"></md-divider>
+                            </md-list-item>
+                        </md-list>
+                    </div>
+                </md-tab>
+                <md-tab ng-if="student.Following.data.length>0">
+                    <md-tab-label>Following <span class="badge">{{student.Following.data.length}}</span> </md-tab-label>
+                    <md-tab-body>
+                        <md-list flex>
+                            <md-list-item class="md-3-line" ui-sref="home.profile({username: item.username})" ng-repeat="item in student.Following.data track by $index" ng-click="null">
+                                <img ng-src="{{item.photo}}" class="md-avatar" alt="" />
+                                <div class="md-list-item-text" layout="row">
+                                    <div layout="column">
+                                        <h3>{{ item.title }} </h3>
+                                        <h4>{{ item.college.name }}</h4>
+                                        <p>{{ item.about }}</p>
+                                    </div>
+                                    <span flex></span>
+                                    <!-- <md-button style="max-height: 36px;" ng-class="item.following.status? 'md-primary' : 'md-raised md-primary'" ng-click="follow('Following', $index)">{{item.following.status? 'Following':'Follow' }}</md-button> -->
+                                </div>
+                            </md-list-item>
+                            <md-divider></md-divider>
+                        </md-list>
+                    </md-tab-body>
+                </md-tab>
+                <md-tab ng-if="student.Follower.data.length>0">
+                    <md-tab-label>Followers <span class="badge">{{student.Follower.data.length}}</span> </md-tab-label>
+                    <md-tab-body>
+                        <md-list flex>
+                            <md-list-item class="md-3-line" ui-sref="home.profile({username: item.username})" ng-repeat="item in student.Follower.data track by $index" ng-click="null">
+                                <img ng-src="{{item.photo}}" class="md-avatar" alt="" />
+                                <div class="md-list-item-text" layout="row">
+                                    <div layout="column">
+                                        <h3>{{ item.title }} </h3>
+                                        <h4>{{ item.college.name }}</h4>
+                                        <p>{{ item.about }}</p>
+                                    </div>
+                                    <span flex></span>
+                                    <!-- <md-button style="max-height: 36px;" ng-class="item.following.status? 'md-primary' : 'md-raised md-primary'" ng-click="follow('Follower', $index)">{{item.following.status? 'Following':'Follow' }}</md-button> -->
+                                </div>
+                            </md-list-item>
+                            <md-divider></md-divider>
+                        </md-list>
+                    </md-tab-body>
+                </md-tab>
+            </md-tabs>
+    </md-card>
+</div>

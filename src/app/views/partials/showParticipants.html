@@ -1,0 +1,31 @@
+<md-dialog class="md-dialog-fullscreen">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Participnts</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-svg-icon="window-close"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <div class="md-padding">
+        <md-list flex>
+            <md-list-item class="md-3-line" ui-sref="home.profile({username: item.username})" ng-repeat="item in participants track by $index" ng-click="null">
+                <img ng-src="{{item.photo}}" class="md-avatar" alt="" />
+                <div class="md-list-item-text" layout="row">
+                    <div layout="column">
+                        <h3>{{ item.title }} </h3>
+                        <h4>{{ item.college.name }}</h4>
+                        <p>{{ item.about }}</p>
+                    </div>
+                </div>
+            </md-list-item>
+        </md-list>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-primary" ng-click="cancel()">
+                Okay
+            </md-button>
+        </md-dialog-actions>
+    </div>
+</md-dialog>

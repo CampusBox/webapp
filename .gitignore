@@ -1,0 +1,10 @@
+.env
+vendor/
+composer.lock
+.tmp/
+.sass-cache/
+.vagrant/
+node_modules/
+npm-debug.log
+bower_components/
+dist/

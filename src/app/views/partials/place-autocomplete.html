@@ -1,0 +1,10 @@
+<div id="place-autocomplete">
+  <md-autocomplete md-no-cache="false" md-selected-item="location" md-selected-item-change="getLatLng(item)" ng-model-options="{debounce: 600}" md-search-text-change="search(searchText)" md-search-text="searchText" md-items="item in search(searchText)" md-item-text="item.description" md-min-length="2" md-max-length="50" md-floating-label="Opportunity Venue">
+    <md-item-template>
+      <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.description}}</span>
+    </md-item-template>
+    <md-not-found>
+      No matches found for "{{searchText.description}}".
+    </md-not-found>
+  </md-autocomplete>
+</div>
