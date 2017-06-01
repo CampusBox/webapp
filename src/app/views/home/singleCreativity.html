@@ -50,7 +50,7 @@ md-list-item .md-button:not([disabled]):click {
             <center flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100" ng-repeat="item in content.Items.data">
                 <img style="max-width:100%" ng-if="(item.type == 'cover')" ng-src="{{item.image}}" alt="">
                 <iframe style="background-color: grey" ng-if="(item.type == 'youtube')" width="100%" height="315" ng-src="{{item.embed.url}}" frameborder="0" allowfullscreen></iframe>
-                <iframe style="background-color: grey" ng-if="item.type == 'soundcloud'" width="100%" height="166" scrolling="no" frameborder="0" src="{{item.embed.url}}" allowfullscreen></iframe>
+                <iframe style="background-color: grey" id="sc-widget" ng-if="item.type == 'soundcloud'" width="100%" height="166" scrolling="no" frameborder="0" src="{{item.embed.url}}" allowfullscreen></iframe>
                 <iframe style="background-color: grey" ng-if="item.type == 'vimeo'" width="640" height="360" src="{{item.embed.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
             </center>
             <div flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100" ng-repeat="item in content.Items.data">
@@ -84,7 +84,7 @@ md-list-item .md-button:not([disabled]):click {
                    </div>
                 </md-list-item>
                 </md-list> -->
-                <md-list >
+                <md-list>
                     <md-list-item ui-sref="home.profile({username: content.created.by.username})" class="md-2-line" ng-click="false" md-ink-ripple="0">
                         <img ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
                         <div class="md-list-item-text" layout="column">
@@ -128,3 +128,4 @@ md-list-item .md-button:not([disabled]):click {
         </md-card-content>
  --></md-card>
 </div>
+<script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
