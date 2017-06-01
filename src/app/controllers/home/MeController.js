@@ -20,7 +20,8 @@
         $scope.loading = true;
         $scope.logout = function() {
             localStorage.clear();
-            $state.go('static.signUp');
+            // $state.go('static.signUp');
+            $rootScope.openLoginDialog();
         };
         tokenService.get("notifications")
             .then(function(response) {

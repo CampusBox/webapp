@@ -22,6 +22,21 @@
 
     function SignUpDialogController($scope, $timeout, loginData, $rootScope, $localStorage, $state, collegesListService, tokenService, $auth, $filter, todoListService, $mdDialog, $rootScope) {
         var vm = this;
+
+        $scope.signup = 1;
+        $scope.message = '';
+        $rootScope.$on("callShowSignUpFunc", function(event, message) {
+            $scope.showSignUp();
+            $scope.message = message;
+        });
+        $scope.showLogin = function() {
+            $rootScope.$emit("callShowLoginFunc", {});
+            $scope.signup = 0;
+        }
+        $scope.showSignUp = function(){
+            $scope.signup = 1;
+
+        }
         $scope.loading = false;
         $scope.querySearch = querySearch;
         $scope.signUp = {};

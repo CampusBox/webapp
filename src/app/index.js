@@ -17,7 +17,8 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
             whiteListedDomains: ['http://localhost', 'http://192.171.2.213', 'http://campusbox.org'],
             unauthenticatedRedirectPath: '/signUp',
             unauthenticatedRedirector: ['$state', function($state) {
-                $state.go('static.signUp');
+                // $state.go('static.signUp');
+                $rootScope.openLoginDialog();
             }],
             tokenGetter: ['options', 'jwtHelper', function(options, jwtHelper) {
                 if (options && options.url.substr(options.url.length - 5) == '.html') {
@@ -313,7 +314,6 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('service-worker.js').then(function(registration) {
                 //Registration was successful
-                console.log('ServiceWorker registration successful with scope: ', registration.scope);
             }).catch(function(err) {
                 //registration failed :(
                 console.log('ServiceWorker registration failed: ', err);

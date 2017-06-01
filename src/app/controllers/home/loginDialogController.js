@@ -4,18 +4,41 @@
     angular
         .module('app')
         .controller('loginDialogController', [
-            '$scope', 'loginData', '$rootScope', '$localStorage', '$state', '$auth', 'tokenService','$mdDialog',
+            '$scope',
+            'loginData',
+            '$rootScope',
+            '$localStorage',
+            '$state',
+            '$auth',
+            'tokenService',
+            '$mdDialog',
             loginDialogController
         ]);
 
-    function loginDialogController($scope, loginData, $rootScope, $localStorage, $state, $auth, tokenService, $mdDialog) {
+    function loginDialogController($scope, loginData, $rootScope, $localStorage, $$state, $auth, tokenService, $mdDialog) {
         var vm = this;
+
+        $scope.loginVar = 0;
+
+        $rootScope.$on("callShowLoginFunc", function() {
+            $scope.showLogin();
+        });
+
+        $scope.showLogin = function() {
+            $scope.loginVar = 1;
+        }
+        $scope.showSignUp = function(message) {
+            $rootScope.$emit("callShowSignUpFunc", message);
+            $scope.loginVar = 0;
+        }
+
+
         $scope.loading = false;
         if (localStorage.getItem('id_token') != null) {
             // $state.go("home.dashboard");
             $mdDialog.hide();
         }
-        $scope.cancel = function(){
+        $scope.cancel = function() {
             $mdDialog.cancel();
         }
         $scope.authenticate = function(provider) {
@@ -29,7 +52,8 @@
                     tokenService.post("login", response)
                         .then(function(abc) {
                             if (abc.registered == false) {
-                                $state.go("static.signUp");
+                                $scope.showSignUp('You are not registered with us, please sign up to continue');
+                                // $state.go("static.signUp");
 
                             }
                             localStorage.setItem('id_token', abc.token);
@@ -43,7 +67,8 @@
                         }).catch(function(abc) {
                             console.log(abc);
                             if (abc.registered == false) {
-                                $state.go("static.signUp");
+                                $scope.showSignUp('You are not registered with us, please sign up to continue');
+                                // $state.go("static.signUp");
 
                             }
                             $scope.problem = abc.status;
@@ -69,7 +94,8 @@
                 .then(function(abc) {
                     if (abc.registered == false) {
                         console.log(abc);
-                        $state.go("static.signUp");
+                        $scope.showSignUp('You are not registered with us, please sign up to continue');
+                        // $state.go("static.signUp");
 
                     } else {
 
@@ -84,13 +110,15 @@
 
                 }).catch(function(abc) {
                     if (abc.registered == false) {
-                        $state.go("static.signUp");
+                        $scope.showSignUp('You are not registered with us, please sign up to continue');
+                        // $state.go("static.signUp");
 
                     } else {
 
                         console.log(response);
                         $scope.loading = false;
-                        $state.go("static.signUp");
+                        $scope.showSignUp('You are not registered with us, please sign up to continue');
+                        // $state.go("static.signUp");
                     }
 
                 });

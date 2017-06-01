@@ -57,7 +57,7 @@
         $scope.logout = function() {
             console.log("logout");
             localStorage.clear();
-            $state.go('static.signUp');
+            // $state.go('static.signUp');
         };
         $scope.submitSearch = function(item, searchText) {
             console.log(item);
