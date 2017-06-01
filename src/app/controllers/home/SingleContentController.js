@@ -22,7 +22,27 @@
             console.log(blogId);
             vm.liked = !vm.liked;
         };
-
+        $scope.showLikes = function($event, id, title) {
+            $event.stopPropagation();
+            tokenService.get("contentAppreciates/" + id)
+                .then(function(response) {
+                    $scope.likes = response.data;
+                });
+            $mdDialog.show({
+                controller: 'ShowLikesController',
+                templateUrl: 'app/views/partials/showLikes.html',
+                parent: angular.element(document.body),
+                scope: $scope,
+                locals: {
+                    title: title,
+                    id: id
+                },
+                preserveScope: true,
+                escapeToClose: true,
+                clickOutsideToClose: true,
+                controllerAs: 'dc'
+            })
+        }
         $scope.bookmark = function(content) {
             if ($rootScope.authenticated) {
                 $scope.content.Actions.Bookmarked.status = !$scope.content.Actions.Bookmarked.status;
@@ -55,7 +75,8 @@
                 });
             }
         }
-        $scope.heart = function(content) {
+        $scope.heart = function($event, content) {
+            $event.stopPropagation();
             if ($rootScope.authenticated) {
                 $scope.content.Actions.Appriciate.status = !$scope.content.Actions.Appriciate.status;
                 if ($scope.content.Actions.Appriciate.status) {

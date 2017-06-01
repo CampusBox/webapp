@@ -11,10 +11,10 @@ md-list-item .md-button:not([disabled]):click {
 <div layout="row " class="white-bg ">
     <div flex-gt-sm="10" hide-sm hide-xs>
         <div layout="column" layout-align="center center" style="position: fixed;top: 45%;left: 25px;">
-            <md-button class="md-icon-button" ng-click="heart(content)" aria-label="Favorite" sticky>
+            <md-button class="md-icon-button" ng-click="heart($event, content)" aria-label="Favorite" sticky>
                 <md-icon ng-class="content.Actions.Appriciate.status? 'pink':''" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon>
             </md-button>
-            <span>{{content.Actions.Appriciate.total}}</span>
+            <span style="cursor: pointer;" ng-click="showLikes($event, content.id, content.title)" class="likesNumber"> {{content.Actions.Appriciate.total}}</span>
             <md-button class="md-icon-button" ng-click="bookmark(content)" aria-label="Favorite ">
                 <md-icon ng-class="content.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
             </md-button>
@@ -66,10 +66,10 @@ md-list-item .md-button:not([disabled]):click {
                         {{tag.name}}
                     </li>
                 </ul>
-                <md-button ng-click="heart(content)" aria-label="Favorite" sticky class="appriciate-button">
+                <md-button ng-click="heart($event, content)" aria-label="Favorite" sticky class="appriciate-button">
                     <md-icon class="pink" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon> {{content.Actions.Appriciate.status? 'Appreciated' : 'Appreciate' }} |
-                    <span> {{content.Actions.Appriciate.total}}</span>
                 </md-button>
+                <span style="cursor: pointer;" ng-click="showLikes($event, content.id, content.title)" class="likesNumber"> {{content.Actions.Appriciate.total}}</span>
                 <md-button class="md-icon-button" style="float:right;" ng-click="bookmark(content)" aria-label="Favorite ">
                     <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
                 </md-button>
@@ -118,10 +118,10 @@ md-list-item .md-button:not([disabled]):click {
                 <span class="md-subhead">{{content.created.at | date: 'd MMM'}}</span>
             </md-card-header-text>
             <md-card-icon-actions style="float: right;">
-                <md-button class="appriciate-button" style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
+                <md-button class="appriciate-button" style="text-transform: capitalize;min-width: 0px;" ng-click="heart($event, content)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
                     <md-icon class="pink" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon>
-                    <span> {{content.Actions.Appriciate.total}}</span>
                 </md-button>
+                <span style="cursor: pointer;" ng-click="showLikes($event, content.id, content.title)" class="likesNumber"> {{content.Actions.Appriciate.total}}</span>
             </md-card-icon-actions>
         </md-card-header>
         <!-- <md-card-content>
