@@ -28,6 +28,7 @@
             <md-progress-linear md-mode="determinate" value="{{currentState*33}}"></md-progress-linear>
             <div ng-show="currentState==1" class="md-p adding autocomplete" layout="column">
                 <center>
+                <span class="md-subtitle" ng-show="message" style="color: #F44336;">{{message}}</span>
                     <p class="md-headline"> Signing up for new account.</p>
                     <p class="md-title">Select atleast 3 topics to
                         <br>personalise your content stream.</p>
@@ -53,7 +54,7 @@
                     </center>
                 </form>
                 <center>
-                    <p class="md-subtitle">Already have an account {{login}}? <span ng-click="showLogin()" style="cursor: pointer;color:#03A9F4;"> Login here </span> </p>
+                    <p class="md-subtitle">Already have an account ? <span ng-click="showLogin('hi')" style="cursor: pointer;color:#03A9F4;"> Login here </span> </p>
                 </center>
                 <div layout="row" flex>
                     <md-button flex="60" flex-offset="20" ng-disabled="interests.length<3" style="float:right" ng-click="currentState=3;" class="md-raised md-primary">
