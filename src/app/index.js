@@ -11,14 +11,14 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
             return moment(date).format('DD-MMM-YY');
         };
         $mdAriaProvider.disableWarnings();
-        // $locationProvider.html5Mode(true);
+        $locationProvider.html5Mode(true);
 
         jwtOptionsProvider.config({
             whiteListedDomains: ['http://localhost', 'http://192.171.2.213', 'http://campusbox.org'],
             unauthenticatedRedirectPath: '/signUp',
             unauthenticatedRedirector: ['$state', function($state) {
-                // $state.go('static.signUp');
-                $rootScope.openLoginDialog();
+                $state.go('static.signUp');
+                // $rootScope.openLoginDialog();
             }],
             tokenGetter: ['options', 'jwtHelper', function(options, jwtHelper) {
                 if (options && options.url.substr(options.url.length - 5) == '.html') {
@@ -200,7 +200,8 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
                 controllerAs: 'vm',
                 data: {
                     requiresLogin: true,
-                    title: 'My Opportunities'                }
+                    title: 'My Opportunities'
+                }
             })
 
         .state('home.creativity', {
