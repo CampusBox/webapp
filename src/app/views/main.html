@@ -68,7 +68,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                     <md-menu-item>
                         <md-button ng-click="$mdCloseMenu()" ui-sref="home.addEvent">
                             <div layout="row" flex="" class="ng-scope layout-row flex">
-                                <p flex="" class="flex">Add Events</p>
+                                <p flex="" class="flex">Add Opportunity</p>
                                 <md-icon md-svg-icon="calendar"></md-icon>
                             </div>
                         </md-button>
@@ -93,7 +93,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
             </md-menu>
         </section>
         <section layout-align="end start">
-            <md-button style="height: auto;font-weight: 500;line-height: 16px;margin-top: 3px;margin-bottom: 0px;font-size: 13px;" hide-sm hide-xs layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
+            <md-button ng-show="authenticated" style="height: auto;font-weight: 500;line-height: 16px;margin-top: 3px;margin-bottom: 0px;font-size: 13px;" hide-sm hide-xs layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
                 <div hide-sm hide-xs class="md-tile-content" layout="column">
                     <!-- <md-icon md-svg-icon="account"></md-icon> -->
                     <img ng-src="{{user.image}}" style="width: 24px; height: 24px;align-self: center;border-radius: 50%">
@@ -103,9 +103,18 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                     Me
                 </div>
             </md-button>
+            <md-button hide-sm hide-xs  ng-show="!authenticated" style="height: auto;font-weight: 500;
+    line-height: 16px;margin-top: 3px;margin-bottom: 0px;    font-size: 13px;" ng-repeat="item in vm.menuItems" layout-align="center center" ng-class="{active: $state.includes('home')}" flex class="capitalize grey_text" ng-click="vm.selectItem(item);openLoginDialog()" >
+                <div class="md-tile-content" layout="column">
+                    <md-icon md-svg-icon="account"></md-icon>
+                </div>
+                <div class="md-tile-content" style="color: #6A6E71">
+                    Login
+                </div>
+            </md-button>
         </section>
     </md-toolbar>
-    <md-content flex class="md-padding page-content" style="padding: 0px;padding-bottom: 55px">
+    <md-content flex class="md-padding page-content" style="padding: 0px;margin-bottom: 55px">
         <div ui-view style="max-width: 1500px;margin:auto;">
         </div>
     </md-content>
@@ -139,7 +148,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                 <md-menu-item>
                     <md-button ng-click="$mdCloseMenu()" ui-sref="home.addEvent">
                         <div layout="row" flex="" class="ng-scope layout-row flex">
-                            <p flex="" class="flex">Add Events</p>
+                            <p flex="" class="flex">Add Opportunity</p>
                             <md-icon md-svg-icon="calendar"></md-icon>
                         </div>
                     </md-button>
@@ -186,7 +195,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                     <md-menu-item>
                         <md-button ng-click="vm.toggleRightSidebar()" ui-sref="home.myProfile({tab: 1})">
                             <div layout="row" flex="" class="ng-scope layout-row flex">
-                                <p flex="" class="flex">My Events</p>
+                                <p flex="" class="flex">My Opportunities</p>
                                 <md-icon md-svg-icon="calendar"></md-icon>
                             </div>
                         </md-button>
@@ -220,13 +229,13 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                         <md-divider></md-divider>
                     </center>
                     <md-list>
-                        <md-list-item class="md-2-line" ng-repeat="notification in notifications">
+                        <md-list-item class="md-2-line" ng-repeat="notification in notifications" ng-click="vm.toggleRightSidebar()" >
                             <md-icon ng-if="notification.type=='follower'" md-svg-icon="account"></md-icon>
                             <md-icon ng-if="notification.type=='event_rsvps'" md-svg-icon="calendar"></md-icon>
                             <md-icon ng-if="notification.type=='content_appreciate'" md-svg-icon="all-inclusive"></md-icon>
                             <div class="md-list-item-text">
                                 <p ng-if="notification.type=='follower'" ui-sref="home.profile({username: notification.follower_username})">{{notification.follower_username}} started following you.</p>
-                                <p ng-if="notification.type=='event_rsvps'" ui-sref="home.singleEvent({eventId: notification.event_id})">{{notification.total}} {{(notification.total>1)?'people have':'person has'}} RSVP'd your event"{{notification.title}}" </p>
+                                <p ng-if="notification.type=='event_rsvps'" ui-sref="home.singleEvent({eventId: notification.event_id})">{{notification.total}} {{(notification.total>1)?'people are':'person is'}} interested your opportunity"{{notification.title}}" </p>
                                 <p ng-if="notification.type=='content_appreciate'" ui-sref="home.singleContent({contentId: notification.content_id})">{{notification.total}} {{(notification.total>1)?'people have':'person has'}} appreciated your creativity.</p>
                             </div>
                             <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon" aria-label="call">
@@ -243,7 +252,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                     </md-list>
                     <div flex></div>
                     <md-menu-item>
-                        <md-button ng-click="logout();$mdCloseMenu();">
+                        <md-button ng-click="logout();vm.toggleRightSidebar()">
                             <div layout="row" flex="" class="ng-scope layout-row flex">
                                 <p flex="">Sign Out</p>
                                 <md-icon md-svg-icon="logout-variant"></md-icon>

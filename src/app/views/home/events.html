@@ -28,7 +28,7 @@
                 </md-input-container>
                 <md-input-container>
                     <md-icon md-svg-icon="currency-inr"></md-icon>
-                    <md-select ng-model="filter.fees" placeholder="Event Fees" class="md-no-underline">
+                    <md-select ng-model="filter.fees" placeholder="Opportunity Fees" class="md-no-underline">
                         <md-optgroup label="Entry Fees">
                             <md-option ng-value="type" ng-repeat="type in ['All','Free','Paid'] | orderBy">{{ type }}</md-option>
                         </md-optgroup>
@@ -70,7 +70,7 @@
                 </md-input-container>
                 <md-input-container>
                     <md-icon md-svg-icon="currency-inr"></md-icon>
-                    <md-select ng-model="filter.fees" placeholder="Event Fees" class="md-no-underline">
+                    <md-select ng-model="filter.fees" placeholder="Opportunity Fees" class="md-no-underline">
                         <md-optgroup label="Entry Fees">
                             <md-option ng-value="type" ng-repeat="type in ['All','Free','Paid'] | orderBy">{{ type }}</md-option>
                         </md-optgroup>
@@ -112,17 +112,17 @@
                     </span>
                 </div>
                 <md-card-title style="padding:8px 0px 0px 20px;">
-                    <span class="md-headline"> {{event.title}}</span>
+                    <span class="md-title" style="font-weight: 400"> {{event.title}}</span>
                 </md-card-title>
                 <md-card-content>
                     <div layout="row" layout-wrap>
-                        <span style="padding-top:10px;text-align: center;" flex="20" class="md-headline" md-colors="{color: 'red'}"><span>
+                        <span style="padding-top:10px;text-align: center;font-weight: 500" flex="20" class="md-headline" md-colors="{color: 'red'}"><span>
                             
                         {{event.timings.month}}</span>
                         <br>
                         <span style="color:#555555;text-align: center;">{{event.timings.day}}</span>
                         </span>
-                        <p flex="80" style="color: #555555;" class="md-body-2">
+                        <p flex="80" style="color: #777;" class="md-body-2">
                             {{event.subtitle| limitTo : 100}}
                         </p>
                     </div>
@@ -170,7 +170,7 @@
                             <md-card-title-media style="margin-top: -19px; margin-left: -12px;">
                                 <div style="position: relative;background-color: black" class="md-media-lg card-media">
                                     <img style="width: 100% ;opacity: 0.7;font-weight: 900" ng-src="{{event.image}}" alt="">
-                                    <span class="md-display-1" style="position: absolute;top: 35px;left: 49px;color: #fff;     text-shadow: 0px 1px 3px black;"><span>
+                                    <span class="md-display-1" style="position: absolute;top: 28px;left: 37px;color: #fff;     text-shadow: 0px 1px 3px black;"><span>
                                         
                                     {{event.timings.month}}
                                     </span>
@@ -182,10 +182,10 @@
                                 </div>
                             </md-card-title-media>
                             <md-card-title-text style="margin-top: -15px; padding-left: 5px;height: 152px">
-                                <p hide-gt-sm class="md-title" style="font-weight: 600;margin: 0px;padding-left: 12px; height: 36px; min-height:36px;overflow:hidden;">
+                                <p hide-gt-sm class="md-title" style="font-weight: 600;margin: 0px; height: 36px; min-height:36px;overflow:hidden;">
                                     {{event.title | limitTo : 30}}
                                 </p>
-                                <p style="margin-top: 0px; color: #555555;overflow: hidden;" class="md-body-2">
+                                <p style="margin-top: 0px; color: #777;overflow: hidden;" class="md-body-2">
                                     {{event.subtitle| limitTo : 100}}
                                 </p>
                                 <!-- <div class="row"> -->

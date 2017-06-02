@@ -16,7 +16,7 @@
       },
       
       {
-        name: 'Events',
+        name: 'Opportunities',
         icon: 'calendar',
         sref: '.events'
       },

@@ -64,9 +64,9 @@
                             <h3>{{user.name}}</h3>
                             <p>Draft</p>
                         </div>
-                        <md-button class="md-secondary md-primary md-raised" ng-disabled="(!(title && creativity.items[0].text && creativity.items[0].text.length>30 ) || loading)" class="md-raised md-primary" ng-click="publish()" ng-hide="loading">Publish</md-button>
+                        <md-button class="md-secondary md-primary md-raised" ng-disabled="(!(title && creativity.items[0].text && creativity.items[0].text.length>20 ) || loading)" class="md-raised md-primary" ng-click="publish()" ng-hide="loading">Publish</md-button>
                         <div class="spinner" ng-hide="!loading" style="width: 40px;height: 40px;background-color: #0570c0;"></div>
-                            <md-tooltip md-direction="left">Will be available after you type.</md-tooltip>
+                        <md-tooltip md-direction="bottom">Type min 30 characters.</md-tooltip>
                         </md-button>
                     </md-list-item>
                     <!-- 
@@ -88,16 +88,16 @@
                     </md-list-item> -->
                 </md-list>
                 <div layout-gt-xs="row" ng-hide="progress<1">
-                    <md-button ng-show="!coverStatus" class="md-icon-button" flex-gt-xs="5"  ngf-select="uploadCover($file)" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="100MB" ngf-min-height="300" ngf-min-width="400" ngf-resize="{width: 1000, height: 800}" ngf-resize-if="$width > 1000 || $height > 800">
+                    <md-button ng-show="!coverStatus" class="md-icon-button" flex-gt-xs="5" ngf-select="uploadCover($file)" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="100MB" ngf-min-height="300" ngf-min-width="400" ngf-resize="{width: 1000, height: 800}" ngf-resize-if="$width > 1000 || $height > 800">
                         <md-icon md-svg-icon="image-area"></md-icon>
                         <md-tooltip md-direction="left">Add Cover</md-tooltip>
                     </md-button>
-                    <md-button ng-show="coverStatus" ng-click="removeCover()" class="md-icon-button" flex="5" >
+                    <md-button ng-show="coverStatus" ng-click="removeCover()" class="md-icon-button" flex="5">
                         <md-icon md-svg-icon="close-circle"></md-icon>
                         <md-tooltip md-direction="left">Remove Cover</md-tooltip>
                     </md-button>
                     <div flex-gt-sm="80" layout="column">
-                        <p class="md-display-1"  style="outline: none; margin: 0px" bind-options="{disableReturn: true, disableExtraSpaces: true, 'toolbar': {'buttons': [ 'italic', 'underline']}}" ng-model="title" style="display: inline; margin: 0px" medium-editor data-placeholder="Title"></p>
+                        <p class="md-display-1" style="outline: none; margin: 0px" bind-options="{disableReturn: true, disableExtraSpaces: true, 'toolbar': {'buttons': [ 'italic', 'underline']}}" ng-model="title" style="display: inline; margin: 0px" medium-editor data-placeholder="Title"></p>
                     </div>
                 </div>
                 <!-- <img   style="max-width: 100%" ng-src="{{item.image}}" /> -->

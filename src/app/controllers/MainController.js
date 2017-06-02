@@ -5,19 +5,21 @@
     angular
         .module('app')
         .controller('MainController', [
-            'navService', '$mdSidenav', 'tokenService', '$mdDialog', '$log', '$q', '$timeout', '$state', '$mdToast', '$scope', '$localStorage', '$location', '$mdConstant',
+            'navService', '$mdSidenav', 'tokenService', '$mdDialog', '$log', '$q', '$timeout', '$state', '$mdToast', '$scope', '$localStorage', '$location', '$mdConstant', '$rootScope',
             MainController
         ]);
 
-    function MainController(navService, $mdSidenav, tokenService, $mdDialog, $log, $q, $timeout, $state, $mdToast, $scope, $localStorage, $location, $mdConstant) {
+    function MainController(navService, $mdSidenav, tokenService, $mdDialog, $log, $q, $timeout, $state, $mdToast, $scope, $localStorage, $location, $mdConstant, $rootScope) {
         var vm = this;
-           $scope.$state = $state;
+        $scope.$state = $state;
+        if ($rootScope.authenticated) {
 
-        tokenService.get("notifications")
-            .then(function(response) {
+            tokenService.get("notifications")
+                .then(function(response) {
 
-                $scope.notifications = response;
-            });
+                    $scope.notifications = response;
+                });
+        }
         var semicolon = 186;
         tokenService.get("userImage")
             .then(function(response) {

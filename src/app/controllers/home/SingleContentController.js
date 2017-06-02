@@ -147,16 +147,30 @@
                 for (item in $scope.content.Items.data) {
                     if ($scope.content.Items.data[item].type == 'youtube') {
                         $scope.content.Items.data[item].embed.url = $sce.trustAsResourceUrl('//www.youtube.com/embed/' + $scope.content.Items.data[item].embed.url);
-                    } else if ($scope.content.Items.data[item].type == 'soundcloud' || $scope.content.Items.data[item].type == 'vimeo') {
+                    } else if ($scope.content.Items.data[item].type == 'soundcloud') {
+                        $scope.content.Items.data[item].embed.url = "//w.soundcloud.com/player/?url=" + $scope.content.Items.data[item].embed.url;
+                        console.log($scope.content.Items.data[item].embed.url);
+                        $scope.content.Items.data[item].embed.url = $sce.trustAsResourceUrl($scope.content.Items.data[item].embed.url);
+                        var widgetIframe = document.getElementById('sc-widget'),
+                            widget = SC.Widget(widgetIframe),
+                            newSoundUrl = $scope.content.Items.data[item].embed.url;
+                        widget.bind(SC.Widget.Events.READY, function() {
+                            // load new widget
+                            widget.bind(SC.Widget.Events.FINISH, function() {
+                                widget.load(newSoundUrl, {
+                                    show_artwork: false
+                                });
+                            });
+                        });
+                    } else if ($scope.content.Items.data[item].type == 'vimeo') {
                         $scope.content.Items.data[item].embed.url = $sce.trustAsResourceUrl($scope.content.Items.data[item].embed.url);
                     } else if ($scope.content.Items.data[item].type == 'text') {
                         $scope.content.Items.data[item].description = $sce.trustAsHtml($scope.content.Items.data[item].description);
                     }
                 }
-                console.log($scope.content);
+
                 tokenService.get("contentsRandom")
                     .then(function(tableData) {
-                        console.log(tableData);
                         $scope.creativityLoading = false;
                         if (tableData.data.length < 2) {
                             $scope.moreItems = false;
@@ -194,7 +208,6 @@
                         $scope.creativityLoading = false;
                         $scope.finalContents = $scope.nonFinalContents;
                         $scope.offset += 2;
-                        console.log($scope.offset);
                     });
             });
     }
