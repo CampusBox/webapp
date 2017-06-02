@@ -1,5 +1,2 @@
-# CampusBox Web
-
-visit campusbox.org
-
-hey there delilah
+#Campusbox a social and utility platform for college students
+Web app for campusbox.org
