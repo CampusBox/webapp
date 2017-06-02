@@ -1,4 +1,5 @@
 .env
+dist.zip
 vendor/
 composer.lock
 .tmp/
