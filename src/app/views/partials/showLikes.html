@@ -12,6 +12,11 @@
                 </md-list-item>
             </md-list>
         </div>
+        <center>
+            <div style="position: fixed;top: 50%;left: 50%;" layout="row" ng-show="loading" layout-sm="column" layout-align="space-around">
+                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+            </div>
+        </center>
     </md-dialog-content>
     <md-dialog-actions>
         <button class="md-primary md-button " ng-click="cancel()">okay</button>

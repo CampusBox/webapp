@@ -24,10 +24,6 @@
         };
         $scope.showLikes = function($event, id, title) {
             $event.stopPropagation();
-            tokenService.get("contentAppreciates/" + id)
-                .then(function(response) {
-                    $scope.likes = response.data;
-                });
             $mdDialog.show({
                 controller: 'ShowLikesController',
                 templateUrl: 'app/views/partials/showLikes.html',
@@ -39,6 +35,7 @@
                 },
                 preserveScope: true,
                 escapeToClose: true,
+                fullscreen: true,
                 clickOutsideToClose: true,
                 controllerAs: 'dc'
             })
