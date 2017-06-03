@@ -9,12 +9,14 @@ $widget-height: 310px;
 $font-weight-bold: 600;
 $font-size-large: 22px;
 // LAYOUT
-md-card{
-    overflow:hidden;
+md-card {
+    overflow: hidden;
 }
-md-card-header.layout-align-start-center.layout-row{
-    background:#fff;
+
+md-card-header.layout-align-start-center.layout-row {
+    background: #fff;
 }
+
 body {
     color: $text-color;
 }
@@ -667,13 +669,13 @@ md-icon.cross>svg {
 
 .creativity-description {
     max-width: 688px;
-    font-size: 22px;
+    font-size: 16px;
     line-height: 1.58;
     margin-right: 30px;
     letter-spacing: -.022em;
     word-spacing: 0.1em;
     font-weight: 300;
-    color: rgba(0, 0, 0, .8);
+    color: rgba(99, 108, 116, 0.87);
     font-style: normal;
     font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
 }
@@ -697,8 +699,9 @@ md-icon.cross>svg {
 
 .creativity-description p {
     margin: 0px;
-    font-size: 22px;
-    line-height: 1.4;
+    color: rgba(99, 108, 116, 0.87);
+    font-size: 18px;
+    line-height: 1.4em;
     letter-spacing: 0.01em;
     word-spacing: 0.1em;
     font-weight: 300;
@@ -817,6 +820,7 @@ md-icon.cross>svg {
         color: rgba(0, 0, 0, .44);
     }
     .likesNumber:hover {
+        cursor: pointer;
         color: rgba(0, 0, 0, .6);
     }
     .interest {
