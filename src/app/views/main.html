@@ -55,7 +55,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                 </div>
             </md-button>
             <md-menu md-offset="-88 56">
-                <md-button md-menu-origin="" md-menu-align-target style="height: auto;font-weight: 500;
+                <md-button ng-show="authenticated" md-menu-origin="" md-menu-align-target style="height: auto;font-weight: 500;
     line-height: 16px;margin-top: 3px;margin-bottom: 0px;min-width: 0px;    font-size: 13px;" layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications" ng-click="$mdMenu.open()">
                     <div hide-sm hide-xs class="md-tile-content" layout="column">
                         <md-icon md-svg-icon="plus-circle"></md-icon>
@@ -81,7 +81,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                             </div>
                         </md-button>
                     </md-menu-item>
-<!--                     <md-menu-item>
+                    <!--                     <md-menu-item>
                         <md-button ng-click="addUpdate();$mdCloseMenu()">
                             <div layout="row" flex="" class="ng-scope layout-row flex">
                                 <p flex="" class="flex">Add Update</p>
@@ -89,7 +89,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                             </div>
                         </md-button>
                     </md-menu-item>
- -->                </md-menu-content>
+ --></md-menu-content>
             </md-menu>
         </section>
         <section layout-align="end start">
@@ -103,8 +103,8 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                     Me
                 </div>
             </md-button>
-            <md-button hide-sm hide-xs  ng-show="!authenticated" style="height: auto;font-weight: 500;
-    line-height: 16px;margin-top: 3px;margin-bottom: 0px;    font-size: 13px;" layout-align="center center" ng-class="{active: $state.includes('home')}" flex class="capitalize grey_text" ng-click="openLoginDialog()" >
+            <md-button hide-sm hide-xs ng-show="!authenticated" style="height: auto;font-weight: 500;
+    line-height: 16px;margin-top: 3px;margin-bottom: 0px;    font-size: 13px;" layout-align="center center" ng-class="{active: $state.includes('home')}" flex class="capitalize grey_text" ng-click="openLoginDialog()">
                 <div class="md-tile-content" layout="column">
                     <md-icon md-svg-icon="account"></md-icon>
                 </div>
@@ -136,7 +136,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
             </div>
         </md-button>
         <md-menu md-offset="0 48">
-            <md-button  md-menu-origin md-menu-align-target style="min-width: 45px;" layout-align="center center" flex class="capitalize grey_text bottom-menu-item" aria-label="Notifications" ng-click="$mdMenu.open()">
+            <md-button ng-show="authenticated"  md-menu-origin md-menu-align-target style="min-width: 45px;" layout-align="center center" flex class="capitalize grey_text bottom-menu-item" aria-label="Notifications" ng-click="$mdMenu.open()">
                 <div class="md-tile-content">
                     <md-icon md-svg-icon="plus"></md-icon>
                 </div>
@@ -171,14 +171,22 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                 </md-menu-item> -->
             </md-menu-content>
         </md-menu>
-        <md-button layout-align="center center" flex class="capitalize grey_text bottom-menu-item" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
+        <md-button ng-show="authenticated" layout-align="center center" flex class="capitalize grey_text bottom-menu-item" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
             <div class="md-tile-content">
-                                <img ng-src="{{user.image}}" style="width: 24px; height: 24px;align-self: center;border-radius: 50%">
-
+                <img ng-src="{{user.image}}" style="width: 24px; height: 24px;align-self: center;border-radius: 50%">
                 <!-- <md-icon md-svg-icon="account"></md-icon> -->
             </div>
             <div class="md-tile-content" style="line-height: 16px;font-weight: 500; color: #6A6E71;">
                 Me
+            </div>
+        </md-button>
+        <md-button hide-gt-sm ng-show="!authenticated" style="height: auto;font-weight: 500;
+        line-height: 16px;margin-top: 3px;margin-bottom: 0px;    font-size: 13px;" layout-align="center center" ng-class="{active: $state.includes('home')}" flex class="capitalize grey_text" ng-click="openLoginDialog()">
+            <div class="md-tile-content" layout="column">
+                <md-icon md-svg-icon="account"></md-icon>
+            </div>
+            <div class="md-tile-content" style="color: #6A6E71">
+                Login
             </div>
         </md-button>
         </md-menu>
@@ -229,7 +237,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                         <md-divider></md-divider>
                     </center>
                     <md-list>
-                        <md-list-item class="md-2-line" ng-repeat="notification in notifications" ng-click="vm.toggleRightSidebar()" >
+                        <md-list-item class="md-2-line" ng-repeat="notification in notifications" ng-click="vm.toggleRightSidebar()">
                             <md-icon ng-if="notification.type=='follower'" md-svg-icon="account"></md-icon>
                             <md-icon ng-if="notification.type=='event_rsvps'" md-svg-icon="calendar"></md-icon>
                             <md-icon ng-if="notification.type=='content_appreciate'" md-svg-icon="all-inclusive"></md-icon>
