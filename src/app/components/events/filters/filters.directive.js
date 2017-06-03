@@ -1,24 +1,15 @@
 (function() {
     'use strict';
 
-    angular
-        .module('app')
-        .directive('filters', filtersDirective);
-
-    function filtersDirective() {
+    angular.module('app').
+    directive('filters', function() {
         return {
-            restrict: 'E',
-            scope: {
-                events: '=',
-                search: '=',
-                update: '=',
-                show: '&',
-                updateIcon: '&',
-                report: '&'
-            },
+            restrict: "E",
+            replace: true,
             templateUrl: 'app/components/events/filters/filters.html',
-            link: function($mdDialog, $scope, $element, tokenService, Upload, $timeout, $location, $state, $rootScope) {
-                console.log("this is directive");
+
+            controller: function($mdDialog, $scope, $element, tokenService, Upload, $timeout, $location, $state, $rootScope) {
+
                 $scope.grid = false;
                 $scope.width = 28;
                 $scope.offset = 0;
@@ -47,8 +38,6 @@
                     { 'id': 1, 'title': 'My College', },
                     { 'id': 2, 'title': 'Other colleges' }
                 ];
-
-
                 $scope.clearSearchTerm = function() {
                     $scope.searchTerm = '';
                 };
@@ -65,5 +54,6 @@
 
             }
         };
-    }
+    });
+
 })();
