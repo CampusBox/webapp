@@ -739,6 +739,18 @@ md-icon.cross>svg {
     width: 100%;
 }
 
+.event-cover-small {
+    height: 170px !important;
+}
+
+.event-cover {
+    height: 275px ;
+    cursor: pointer;
+    height: 144px;
+    object-fit: cover;
+    width: 100%;
+}
+
 .read-more {
     color: rgba(0, 0, 0, .44);
     font-size: 16px;
