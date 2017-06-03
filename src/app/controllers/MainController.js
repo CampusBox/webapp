@@ -56,6 +56,22 @@
             console.log(item);
             console.log('searchText: ' + searchText);
         }
+        $scope.logout = function(ev) {
+            console.log("main controller logout");
+            localStorage.clear();
+            $rootScope.token = null;
+            $rootScope.authenticated = false;
+            $mdDialog.show(
+                $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('You have successful logged out!')
+                // .textContent('You can specify some description text in here.')
+                .ariaLabel('Logout alert')
+                .ok('Okay')
+                .targetEvent(ev)
+            );
+        };
         $scope.addUpdate = function() {
             $mdDialog.show({
                 controller: AddUpdateController,

@@ -11,10 +11,11 @@
             '$sce',
             '$filter',
             '$state',
+            '$rootScope',
             DashboardController
         ]);
 
-    function DashboardController($mdDialog, $scope, tokenService, Upload, $location, $sce, $filter, $state) {
+    function DashboardController($mdDialog, $scope, tokenService, Upload, $location, $sce, $filter, $state, $rootScope) {
         $scope.events = {};
 
         $scope.updatesLoading = true;
