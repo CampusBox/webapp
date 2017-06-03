@@ -29,6 +29,7 @@
         $scope.tags = ['AngularJs', 'Web Developement', 'Elon Musk', 'Poetry', 'Artificial Intelligence', 'Product Design', 'Feminism', 'Technology', 'Self Driving Cars'];
         var cardObject = {};
         $scope.finalContents = [];
+        $scope.mediaTypes = [4, 5, 6, 7, 12, 15, 16];
 
         // tokenService.get("eventsDashboard")
         // changing temporarily till api is fixed
