@@ -19,6 +19,7 @@
 
         $scope.loading = true;
         $scope.logout = function() {
+            console.log('me controller logout function');
             localStorage.clear();
             // $state.go('static.signUp');
             $rootScope.openLoginDialog();

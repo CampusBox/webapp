@@ -301,6 +301,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
                 templateUrl: 'app/views/partials/loginDialog.html',
                 parent: angular.element(document.body),
                 escapeToClose: true,
+                fullscreen: true,
                 clickOutsideToClose: true,
                 controllerAs: 'dc'
             }).then(function() {
@@ -309,14 +310,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
                 console.log('else of dialog');
             });
         }
-        $rootScope.logout = function() {
-            console.log("logout");
-            localStorage.clear();
-            $rootScope.token = null;
-            $rootScope.authenticated = false;
 
-            // $state.go('static.signUp');
-        };
         $rootScope.token = localStorage.getItem('id_token');
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('service-worker.js').then(function(registration) {
