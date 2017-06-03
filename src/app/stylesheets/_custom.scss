@@ -13,7 +13,9 @@ md-card {
     overflow: hidden;
     box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
 }
-
+img{
+    background-color: #eee;
+}
 md-card-header.layout-align-start-center.layout-row {
     background: #fff;
 }
@@ -754,6 +756,7 @@ md-icon.cross>svg {
     height: 144px;
     object-fit: cover;
     width: 100%;
+    background-color:#eee;
 }
 
 .read-more {
