@@ -38,7 +38,7 @@ md-list-item .md-button:not([disabled]):click {
                 <div class="md-list-item-text" layout="column">
                     <h3><span class="md-subhead">
                 <span  ui-sref="home.profile({username: content.created.by.username})"  class="capitalize blue_text pointer" >
-                {{content.created.by.name}} </span> in <span style="color: #0570c0">{{content.type?content.type:"Article"}} </span>
+                {{content.created.by.name}} </span> in <span style="color: #0570c0">{{content.content.category?content.content.category:"Unknown"}} </span>
                 <!-- </span> <span><md-button ng-class="profile.following? 'md-primary' : 'md-raised md-primary'" ng-click="follow($event)">{{profile.following? 'Following':'Follow' }}</md-button></span> </h3> -->
                     <h4><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.by.about}}</span></h4>
                     <p><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.at | date: 'd MMM'}}</span></p>

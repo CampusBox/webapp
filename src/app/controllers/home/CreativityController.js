@@ -57,8 +57,8 @@
             $event.stopPropagation();
             $state.go('home.profile', { username: username });
         };
-
         var cardObject = {};
+
         $scope.myPagingFunction = function() {
             if ($scope.creativityLoading == false && $scope.moreItems == true) {
                 $scope.creativityLoading = true;
@@ -81,6 +81,13 @@
                             cardObject.id = content.id;
                             cardObject.title = $sce.trustAsHtml(content.title);
                             cardObject.content = content.content;
+                            $scope.types.some(function(obj) {
+                                if (obj.id == cardObject.content.type) {
+                                    cardObject.content.category = obj.title;
+                                } else {
+                                    return;
+                                }
+                            });
                             cardObject.links = content.links;
                             cardObject.total = content.links;
                             content.Items.data.forEach(function(item) {
@@ -93,7 +100,6 @@
                                 } else if (item.type == 'soundcloud') {
                                     cardObject.type = item.type;
                                     item.embed.url = "//w.soundcloud.com/player/?url=" + item.embed.url;
-                                    console.log(item.embed.url);
                                     cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
                                 } else if ((item.type == 'youtube' || item.type == 'vimeo') && !cardObject.type) {
                                     cardObject.type = item.type;

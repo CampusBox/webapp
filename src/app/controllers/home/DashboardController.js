@@ -26,6 +26,30 @@
         $scope.offset = 0;
         $scope.nonFinalContents = [];
         $scope.finalContents = [];
+        $scope.types = [
+            { 'title': 'Articles', 'id': 1 },
+            { 'title': 'Poetry', 'id': 2 },
+            { 'title': 'Drama', 'id': 3 },
+            { 'title': 'Paint and Colour', 'id': 4 },
+            { 'title': 'Drawing ', 'id': 5 },
+            { 'title': 'Sewing and Fabric', 'id': 6 },
+            { 'title': 'Craft', 'id': 7 },
+            { 'title': 'Clay', 'id': 8 },
+            { 'title': 'Dancing', 'id': 22 },
+            { 'title': 'Singing', 'id': 9 },
+            { 'title': 'Instrumental', 'id': 10 },
+            { 'title': 'Digital Music', 'id': 11 },
+            { 'title': 'Photography', 'id': 12 },
+            { 'title': 'Film and Video', 'id': 13 },
+            { 'title': 'Animation', 'id': 14 },
+            { 'title': 'Graphics', 'id': 15 },
+            { 'title': 'UI and UX', 'id': 16 },
+            { 'title': 'Websites', 'id': 17 },
+            { 'title': 'Programming', 'id': 18 },
+            { 'title': 'Apps', 'id': 19 },
+            { 'title': 'Electronics', 'id': 20 },
+            { 'title': 'DIY', 'id': 21 }
+        ];
 
         $scope.tags = ['AngularJs', 'Web Developement', 'Elon Musk', 'Poetry', 'Artificial Intelligence', 'Product Design', 'Feminism', 'Technology', 'Self Driving Cars'];
         var cardObject = {};
@@ -121,6 +145,13 @@
                             cardObject.id = content.id;
                             cardObject.title = $sce.trustAsHtml(content.title);
                             cardObject.content = content.content;
+                            $scope.types.some(function(obj) {
+                                if (obj.id == cardObject.content.type) {
+                                    cardObject.content.category = obj.title;
+                                } else {
+                                    return;
+                                }
+                            });
                             cardObject.links = content.links;
                             cardObject.total = content.links;
                             content.Items.data.forEach(function(item) {
