@@ -11,20 +11,13 @@
 
     function MainController(navService, $mdSidenav, tokenService, $mdDialog, $log, $q, $timeout, $state, $mdToast, $scope, $localStorage, $location, $mdConstant, $rootScope) {
         var vm = this;
-        if (typeof document.getElementById('basicveryimportantloading') !== 'undefined') {
+        if (typeof document.getElementById('basicveryimportantloading') !== 'undefined' && document.getElementById('basicveryimportantloading') != null) {
             document.getElementById('basicveryimportantloading').remove();
         }
         // document.getElementById('basicveryimportantloading').remove();
 
         $scope.$state = $state;
-        if ($rootScope.authenticated) {
 
-            tokenService.get("notifications")
-                .then(function(response) {
-
-                    $scope.notifications = response;
-                });
-        }
         var semicolon = 186;
 
 
@@ -145,6 +138,10 @@
         tokenService.get("userImage")
             .then(function(response) {
                 $rootScope.user = response;
+                tokenService.get("notifications")
+                    .then(function(abc) {
+                        $rootScope.notifications = abc;
+                    });
             });
         navService
             .loadAllItems()

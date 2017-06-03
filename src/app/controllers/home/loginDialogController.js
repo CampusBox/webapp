@@ -63,6 +63,11 @@
                             tokenService.get("userImage")
                                 .then(function(response) {
                                     $rootScope.user = response;
+                                    tokenService.get("notifications")
+                                        .then(function(abc) {
+
+                                            $rootScope.notifications = abc;
+                                        });
                                 });
                             // $state.go("home.dashboard");
                             $mdDialog.hide();
@@ -109,9 +114,13 @@
                         $rootScope.authenticated = true;
                         // $state.go("home.dashboard");
                         tokenService.get("userImage")
-                                .then(function(response) {
-                                    $rootScope.user = response;
-                                });
+                            .then(function(response) {
+                                $rootScope.user = response;
+                                tokenService.get("notifications")
+                                    .then(function(abc) {
+                                        $rootScope.notifications = abc;
+                                    });
+                            });
                         $mdDialog.hide();
                     }
 

@@ -11,7 +11,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
             return moment(date).format('DD-MMM-YY');
         };
         $mdAriaProvider.disableWarnings();
-        // $locationProvider.html5Mode(true);
+        $locationProvider.html5Mode(true);
 
         jwtOptionsProvider.config({
             whiteListedDomains: ['http://localhost', 'http://192.171.2.213', 'http://campusbox.org'],
@@ -265,7 +265,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
         // $authProvider.linkedin({
         //     clientId: '81l3qatlqe4l4p',
         // });
-        $urlRouterProvider.otherwise('/creativity');
+        $urlRouterProvider.otherwise('/dashboard');
         socialProvider.setGoogleKey("702228530885-vi264d7g6v5ivbcmebjfpomr0hmliomd.apps.googleusercontent.com");
         // socialProvider.setLinkedInKey("81l3qatlqe4l4p");
         socialProvider.setFbKey({ appId: "1250377088376164", apiVersion: "v2.8", responseType: 'token' });
@@ -292,7 +292,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
 
 
     })
-    .run(function(authManager, $state, $location, $rootScope, $mdDialog,tokenService) {
+    .run(function(authManager, $state, $location, $rootScope, $mdDialog, tokenService) {
         // authManager.checkAuthOnRefresh();
         //   authManager.redirectWhenUnauthenticated();
         $rootScope.openLoginDialog = function(callback) {
@@ -327,6 +327,10 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
             tokenService.get("userImage")
                 .then(function(response) {
                     $rootScope.user = response;
+                    tokenService.get("notifications")
+                        .then(function(abc) {
+                            $rootScope.notifications = abc;
+                        });
                 });
         } else {
             $rootScope.authenticated = false;
