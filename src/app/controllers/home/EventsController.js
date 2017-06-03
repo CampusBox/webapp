@@ -105,7 +105,8 @@
                 });
             }
         }
-        $scope.rsvpEvent = function(event, $index, state) {
+        $scope.rsvpEvent = function($event, event, $index, state) {
+            $event.stopPropagation();
             if ($rootScope.authenticated) {
                 // $scope.events[$index].participation_state = state;
                 switch (state) {

@@ -128,11 +128,11 @@
                     </div>
                 </md-card-content>
                 <md-card-actions style="margin-top:-10px;" layout="row" layout-align="end center">
-                    <md-button ng-class="(event.participation_state==1)? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 1)" aria-label="Favorite">
+                    <md-button ng-class="(event.participation_state==1)? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent($event, event, $index, 1)" aria-label="Favorite">
                         <md-icon ng-class="(event.participation_state==1)? 'blue': ''" md-svg-icon="{{(event.participation_state==1)? 'account-check' : 'check' }}"></md-icon> Going
                     </md-button>
                     <span flex></span>
-                    <md-button ng-class="(event.participation_state>0) ? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 2)" aria-label="Favorite">
+                    <md-button ng-class="(event.participation_state>0) ? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent($event, event, $index, 2)" aria-label="Favorite">
                         <md-icon ng-class="(event.participation_state>0) ? 'blue' : ''" md-svg-icon="{{(event.participation_state>0)? 'star' : 'star-outline' }}"></md-icon> Interested
                     </md-button>
                 </md-card-actions>

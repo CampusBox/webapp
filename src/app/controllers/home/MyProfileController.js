@@ -47,14 +47,26 @@
                 fullscreen: true // Only for -xs, -sm breakpoints.
             })
         };
-        $scope.cancelRsvp = function(event, index) {
-            tokenService.delete('bookmarkEvent/' + event.id).then(function(result) {
-                if (result.status != 'error') {
-                    $scope.student.AttendingEvents.data.splice(index, 1);
-                    console.log(result.status);
-                } else {
-                    console.log(result);
-                }
+        $scope.cancelRsvp = function(ev, event, index) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.confirm()
+                .title('Not attending ' + event.title + "?")
+                .textContent('')
+                .targetEvent(ev)
+                .clickOutsideToClose(true)
+                .ok('Not attending')
+                .cancel('Cancel');
+            $mdDialog.show(confirm).then(function() {
+                tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
+                    if (result.status != 'error') {
+                        console.log(result.status);
+                        $scope.student.AttendingEvents.data.splice(index, 1);
+                    } else {
+                        console.log(result);
+                    }
+                });
+            }, function() {
+                console.log('cancel');
             });
         };
         $scope.openSocialAccounts = function(ev) {
@@ -209,8 +221,8 @@
                 $scope.removable = !$scope.removable;
             } else {
                 console.log($scope.student.Skills);
-                $scope.newSkills= {};
-                $scope.newSkills.skills= $scope.student.Skills;
+                $scope.newSkills = {};
+                $scope.newSkills.skills = $scope.student.Skills;
                 tokenService.post("addStudentSkills", $scope.newSkills)
                     .then(function(status) {
                         $scope.readonly = !$scope.readonly;
