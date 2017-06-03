@@ -1,0 +1,84 @@
+<md-card hide-gt-sm flex-xs="100" ng-show="filters">
+    <md-card-title>
+        <md-card-title-text>
+            <span class="md-headline">Filters</span>
+        </md-card-title-text>
+    </md-card-title>
+    <md-card-content flex layout="column" layout-align="space-between">
+        <md-input-container>
+            <md-icon md-svg-icon="filter-outline"></md-icon>
+            <md-select ng-model="filter.type" placeholder="Choose a type" class="md-no-underline">
+                <md-optgroup label="Type">
+                    <md-option ng-value="type.id" ng-model="filter.type" ng-repeat="type in types | orderBy">{{type.title}}</md-option>
+                </md-optgroup>
+            </md-select>
+        </md-input-container>
+        <md-input-container>
+            <md-icon md-svg-icon="currency-inr"></md-icon>
+            <md-select ng-model="filter.fees" placeholder="Opportunity Fees" class="md-no-underline">
+                <md-optgroup label="Entry Fees">
+                    <md-option ng-value="type" ng-repeat="type in ['All','Free','Paid'] | orderBy">{{ type }}</md-option>
+                </md-optgroup>
+            </md-select>
+        </md-input-container>
+        <md-input-container>
+            <md-icon md-svg-icon="calendar"></md-icon>
+            <md-select ng-model="filter.time" placeholder="Choose Timings" class="md-no-underline">
+                <md-optgroup label="Time">
+                    <md-option ng-value="time.id" ng-repeat="time in timings| orderBy">{{ time.title }}</md-option>
+                </md-optgroup>
+            </md-select>
+        </md-input-container>
+        <md-input-container>
+            <md-icon md-svg-icon="domain"></md-icon>
+            <md-select ng-model="filter.college" aria-label="search" md-on-close="clearSearchTerm()" placeholder="College" class="md-no-underline" data-md-container-class="selectdemoSelectHeader">
+                <md-optgroup label="College">
+                    <md-option ng-value="college.id" ng-repeat="college in colleges | orderBy">{{ college.title }}</md-option>
+                </md-optgroup>
+            </md-select>
+        </md-input-container>
+        <md-button class="md-primary md-raised" ng-click="filters=!filters;showAdvanced()">Apply filters</md-button>
+    </md-card-content>
+</md-card>
+<md-card flex-gt-sm="20" hide-xs hide-sm flex="100" style="box-shadow: 0px 0px;">
+    <md-card-title>
+        <md-card-title-text>
+            <span class="md-headline">Filters</span>
+        </md-card-title-text>
+    </md-card-title>
+    <md-card-content flex layout="column" layout-align="space-between">
+        <md-input-container>
+            <md-icon md-svg-icon="filter-outline"></md-icon>
+            <md-select ng-model="filter.type" placeholder="Choose a type" class="md-no-underline">
+                <md-optgroup label="Type">
+                    <md-option ng-value="type.id" ng-model="filter.type" ng-repeat="type in types | orderBy">{{type.title}}</md-option>
+                </md-optgroup>
+            </md-select>
+        </md-input-container>
+        <md-input-container>
+            <md-icon md-svg-icon="currency-inr"></md-icon>
+            <md-select ng-model="filter.fees" placeholder="Opportunity Fees" class="md-no-underline">
+                <md-optgroup label="Entry Fees">
+                    <md-option ng-value="type" ng-repeat="type in ['All','Free','Paid'] | orderBy">{{ type }}</md-option>
+                </md-optgroup>
+            </md-select>
+        </md-input-container>
+        <md-input-container>
+            <md-icon md-svg-icon="calendar"></md-icon>
+            <md-select ng-model="filter.time" placeholder="Choose Timings" class="md-no-underline">
+                <md-optgroup label="Time">
+                    <md-option ng-value="time.id" ng-repeat="time in timings| orderBy">{{ time.title }}</md-option>
+                </md-optgroup>
+            </md-select>
+        </md-input-container>
+        <md-input-container>
+            <md-icon md-svg-icon="domain"></md-icon>
+            <md-select ng-model="filter.college" aria-label="search" md-on-close="clearSearchTerm()" placeholder="College" class="md-no-underline" data-md-container-class="selectdemoSelectHeader">
+                <md-optgroup label="College">
+                    <md-option ng-value="college.id" ng-repeat="college in colleges | orderBy">{{ college.title }}</md-option>
+                </md-optgroup>
+            </md-select>
+        </md-input-container>
+        <md-button class="md-primary md-raised" ng-click="filters=!filters;applyFilters(filter);">Apply filters</md-button>
+    </md-card-content>
+</md-card>
