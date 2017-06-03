@@ -81,12 +81,23 @@
                     });
                 $scope.myPagingFunction();
             });
-
-        // tokenService.get("/college_updates")
-        //     .then(function(updates) {
-        //         $scope.updates = updates.data;
-        //         $scope.updatesLoading = false;
-        //     });
+        $scope.showLikes = function(id, title) {
+            $mdDialog.show({
+                controller: 'ShowLikesController',
+                templateUrl: 'app/views/partials/showLikes.html',
+                parent: angular.element(document.body),
+                scope: $scope,
+                locals: {
+                    title: title,
+                    id: id
+                },
+                preserveScope: true,
+                escapeToClose: true,
+                fullscreen: true,
+                clickOutsideToClose: true,
+                controllerAs: 'dc'
+            })
+        }
         $scope.myPagingFunction = function() {
             console.log('paging called');
             if ($scope.creativityLoading == false && $scope.offset < 5) {
