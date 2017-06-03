@@ -56,7 +56,7 @@
                     <md-button class="appriciate-button" flex style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
                         <md-icon class="pink" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon>
                     </md-button>
-                    <span ng-click="showLikes(content.id, content.title)" class="likesNumber"> {{content.Actions.Appriciate.total}}</span>
+                    <span ng-click="showLikes(content.id, content.title)" style="cursor: pointer;" class="likesNumber"> {{content.Actions.Appriciate.total}}</span>
                     <md-button class="md-icon-button" flex ng-click="bookmark(content, $index)" aria-label="Favorite">
                         <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
                     </md-button>

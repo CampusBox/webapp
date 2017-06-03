@@ -69,7 +69,7 @@ md-list-item .md-button:not([disabled]):click {
                 <md-button ng-click="heart($event, content)" aria-label="Favorite" sticky class="appriciate-button">
                     <md-icon class="pink" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon> {{content.Actions.Appriciate.status? 'Appreciated' : 'Appreciate' }}
                 </md-button>
-                <span ng-click="showLikes($event, content.id, content.title)" class="likesNumber"> {{content.Actions.Appriciate.total}}</span>
+                <span ng-click="showLikes($event, content.id, content.title)" style="cursor: pointer;" class="likesNumber"> {{content.Actions.Appriciate.total}}</span>
                 <md-button class="md-icon-button" style="float:right;" ng-click="bookmark(content)" aria-label="Favorite ">
                     <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
                 </md-button>
