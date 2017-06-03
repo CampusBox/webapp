@@ -96,32 +96,61 @@
                 });
             }
         }
-        $scope.heart = function($event, content) {
+        $scope.heart = function($event, content, index) {
             $event.stopPropagation();
             if ($rootScope.authenticated) {
-                $scope.content.Actions.Appriciate.status = !$scope.content.Actions.Appriciate.status;
-                if ($scope.content.Actions.Appriciate.status) {
-                    $scope.content.Actions.Appriciate.total += 1;
-                    tokenService.post('appreciateContent/' + content.id).then(function(result) {
+                if (index) {
+                    $event.stopPropagation();
+                    $scope.finalContents[index].Actions.Appriciate.status = !$scope.finalContents[index].Actions.Appriciate.status;
+                    if ($scope.finalContents[index].Actions.Appriciate.status) {
+                        $scope.finalContents[index].Actions.Appriciate.total += 1;
+                        tokenService.post('appreciateContent/' + $scope.finalContents[index].id).then(function(result) {
 
-                        console.log('post request');
-                        if (result.status != 'error') {
-                            console.log(result.status);
-                        } else {
-                            console.log(result);
-                        }
-                    });
+                            console.log('post request');
+                            if (result.status != 'error') {
+                                console.log(result.status);
+                            } else {
+                                console.log(result);
+                            }
+                        });
+                    } else {
+                        $scope.finalContents[index].Actions.Appriciate.total -= 1;
+
+                        tokenService.delete('appreciateContent/' + $scope.finalContents[index].id, '').then(function(result) {
+                            console.log('post request');
+                            if (result.status != 'error') {
+                                console.log(result.status);
+                            } else {
+                                console.log(result);
+                            }
+                        });
+                    }
                 } else {
-                    $scope.content.Actions.Appriciate.total -= 1;
+                    $scope.content.Actions.Appriciate.status = !$scope.content.Actions.Appriciate.status;
+                    if ($scope.content.Actions.Appriciate.status) {
+                        $scope.content.Actions.Appriciate.total += 1;
+                        tokenService.post('appreciateContent/' + content.id).then(function(result) {
 
-                    tokenService.delete('appreciateContent/' + content.id, '').then(function(result) {
-                        console.log('post request');
-                        if (result.status != 'error') {
-                            console.log(result.status);
-                        } else {
-                            console.log(result);
-                        }
-                    });
+                            console.log('post request');
+                            if (result.status != 'error') {
+                                console.log(result.status);
+                            } else {
+                                console.log(result);
+                            }
+                        });
+                    } else {
+                        $scope.content.Actions.Appriciate.total -= 1;
+
+                        tokenService.delete('appreciateContent/' + content.id, '').then(function(result) {
+                            console.log('post request');
+                            if (result.status != 'error') {
+                                console.log(result.status);
+                            } else {
+                                console.log(result);
+                            }
+                        });
+                    }
+
                 }
             } else {
                 $rootScope.openLoginDialog(function() {
