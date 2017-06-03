@@ -68,6 +68,7 @@
                         if (tableData.data.length < 3) {
                             $scope.moreItems = false;
                         }
+
                         $scope.nonFinalContents = [];
                         $scope.contents = tableData.data;
 
@@ -110,6 +111,7 @@
                         $scope.creativityLoading = false;
                         $scope.finalContents = $scope.finalContents.concat($scope.nonFinalContents);
                         $scope.offset += 3;
+                        $scope.myPagingFunction();
                     });
             }
         };

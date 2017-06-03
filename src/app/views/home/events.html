@@ -95,7 +95,7 @@
                 <md-button class="md-primary md-raised" ng-click="filters=!filters;applyFilters(filter);">Apply filters</md-button>
             </md-card-content>
         </md-card>
-        <div hide-xs flex layout-align="start" layout="row" layout-wrap flex-offset-gt-sm="{{grid?0:0}}" flex-gt-sm="{{grid?80:80}}">
+        <div hide-xs flex layout-align="start" layout="row" layout-wrap flex-gt-sm="80">
             <!-- <md-list ng-show="!grid"> -->
             <!-- <md-list-item style="margin-bottom: 10px;" ng-repeat="event in events" ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding eventListItem"> -->
             <md-card flex-lg="30" flex-md="45" flex-sm="45" flex="100" ng-repeat="event in events" ui-sref="home.singleEvent({eventId: event.id})">
@@ -142,7 +142,7 @@
                 <!-- </md-list> -->
                 <!-- <div infinite-scroll="myPagingFunction();" infinite-scroll-disabled='loading' infinite-scroll-distance="4">
             </div> -->
-                <md-list ng-show="!grid">
+                <md-list >
                     <md-list-item ng-show="loading" flex style="margin-bottom: 15px;" ng-repeat="event in [1,2]" class="secondary-button-padding eventListItem">
                         <md-card flex>
                             <md-card-title style="padding: 0px;">
@@ -162,8 +162,8 @@
                     </md-list-item>
                 </md-list>
         </div>
-        <div show-xs layout="column" flex-offset-gt-sm="{{grid?0:5}}" flex-gt-sm="{{grid?80:80}}">
-            <md-list ng-show="!grid">
+        <div show-xs layout="column" flex-gt-sm="80">
+            <md-list >
                 <md-list-item style="margin-bottom: 10px;" ng-repeat="event in events" ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding eventListItem">
                     <md-card flex>
                         <md-card-title style="padding-bottom: 0px">
@@ -218,7 +218,7 @@
             </md-list>
             <!--             <div infinite-scroll="myPagingFunction();" infinite-scroll-disabled='loading' infinite-scroll-distance="4">
             </div> -->
-            <md-list ng-show="!grid">
+            <md-list >
                 <md-list-item ng-show="loading" flex style="margin-bottom: 15px;" ng-repeat="event in [1,2]" class="secondary-button-padding eventListItem">
                     <md-card flex>
                         <md-card-title style="padding: 0px;">

@@ -11,6 +11,11 @@
 
     function MainController(navService, $mdSidenav, tokenService, $mdDialog, $log, $q, $timeout, $state, $mdToast, $scope, $localStorage, $location, $mdConstant, $rootScope) {
         var vm = this;
+        if (typeof document.getElementById('basicveryimportantloading') !== 'undefined') {
+            document.getElementById('basicveryimportantloading').remove();
+        }
+        // document.getElementById('basicveryimportantloading').remove();
+
         $scope.$state = $state;
         if ($rootScope.authenticated) {
 
