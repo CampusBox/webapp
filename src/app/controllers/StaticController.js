@@ -11,7 +11,9 @@
 
         var vm = this;
 
-        document.getElementById('basicveryimportantloading').remove();
+        if (typeof document.getElementById('basicveryimportantloading') !== 'undefined') {
+            document.getElementById('basicveryimportantloading').remove();
+        }
         vm.visitor = {};
         vm.loaded = false;
 
