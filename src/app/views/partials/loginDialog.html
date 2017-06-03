@@ -25,7 +25,7 @@
     </md-dialog-content>
     <md-dialog-content ng-show="signup" ng-controller="SignUpDialogController">
         <div class="login-box md-whiteframe-z1 md-padding" flex style="min-width: 50%" flex-sm layout="column">
-            <md-progress-linear md-mode="determinate" value="{{currentState*33}}"></md-progress-linear>
+            <!-- <md-progress-linear md-mode="determinate" value="{{currentState*33}}"></md-progress-linear> -->
             <div ng-show="currentState==1" class="md-p adding autocomplete" layout="column">
                 <center>
                 <span class="md-subtitle" ng-show="message" style="color: #F44336;">{{message}}</span>
@@ -61,8 +61,7 @@
                         Continue
                     </md-button>
                 </div>
-                <br>
-                <br>
+              
             </div>
             <div layout="column" ng-show="currentState==3">
                 <div flex layout="column" class="md-padding" layout-align="center">
