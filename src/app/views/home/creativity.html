@@ -21,8 +21,8 @@
             <md-card-content style="padding: 0px">
                 <div ng-if="(content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
                     <!-- <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" ng-src="{{content.url}}" frameborder="0" allowfullscreen></iframe> -->
-                    <iframe id="sc-widget" ng-show="(content.type == 'soundcloud')" width="100%" height="166" scrolling="no" frameborder="0" ng-src="{{content.url}}" allowfullscreen></iframe>
-                    <iframe ng-show="(content.type == 'vimeo')" width="100%" height="220" ng-src="{{content.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    <iframe id="sc-widget" ng-show="(content.type == 'soundcloud')" width="100%" height="170" scrolling="no" frameborder="0" ng-src="{{content.url}}" allowfullscreen></iframe>
+                    <iframe ng-show="(content.type == 'vimeo')" width="100%" height="228" ng-src="{{content.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                 </div>
                 <a ng-if="(content.type == 'cover' || content.type == 'image')" ui-sref="home.singleContent({contentId: content.id})">
                     <img class="creativity-cover" ng-class="(mediaTypes.indexOf(content.content.type) !== -1)?'creativity-cover-full':''" alt="" ng-src="{{content.url}}">

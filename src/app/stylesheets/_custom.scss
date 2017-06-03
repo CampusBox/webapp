@@ -11,6 +11,7 @@ $font-size-large: 22px;
 // LAYOUT
 md-card {
     overflow: hidden;
+    box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
 }
 
 md-card-header.layout-align-start-center.layout-row {
@@ -706,7 +707,8 @@ md-icon.cross>svg {
     margin: 0px;
     color: rgba(99, 108, 116, 0.87);
     font-size: 18px;
-    line-height: 1.4em;
+    line-height: 1.5;
+    // line-height: 1.4;
     letter-spacing: 0.01em;
     word-spacing: 0.1em;
     font-weight: 300;
@@ -719,7 +721,7 @@ md-icon.cross>svg {
     max-width: 688px;
     margin-top: 31px;
     font-size: 20px;
-    line-height: 1.04;
+    line-height: 1.3;
     text-decoration: none;
     letter-spacing: 0.028em;
     font-weight: 700;
@@ -757,6 +759,10 @@ md-icon.cross>svg {
     .creativity-page {
         margin-top: 0px;
     }
+    .page-content {
+        padding: 0px;
+        margin-bottom: 55px;
+    }
     .static-background {
         background: #0570c0;
     }
@@ -780,7 +786,7 @@ md-icon.cross>svg {
     .creativity-title {
         margin-top: 31px;
         font-size: 23px;
-        line-height: 1.04;
+        line-height: 1.3;
         margin-right: 20px;
         text-decoration: none;
         letter-spacing: 0.028em;
@@ -804,7 +810,8 @@ md-icon.cross>svg {
         margin: 0px;
         color: rgba(99, 108, 116, 0.87);
         font-size: 18px;
-        line-height: 1.4em;
+        // line-height: 1.4em;
+        line-height: 1.5em;
         letter-spacing: 0.01em;
         word-spacing: 0.1em;
         font-weight: 300;

@@ -4,7 +4,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
         'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop', 'angular-jwt', 'infinite-scroll'
     ])
     //remove setellizer
-    .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, $authProvider,$locationProvider,
+    .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, $authProvider, $locationProvider,
         $mdIconProvider, socialProvider, jwtInterceptorProvider, jwtOptionsProvider, $httpProvider, $mdDateLocaleProvider, $mdAriaProvider) {
 
         $mdDateLocaleProvider.formatDate = function(date) {
@@ -46,8 +46,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
                 controller: 'MainController',
                 controllerAs: 'vm',
                 abstract: true,
-                data: {
-                }
+                data: {}
             })
             .state('static', {
                 url: '',
@@ -293,7 +292,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
 
 
     })
-    .run(function(authManager, $state, $location, $rootScope, $mdDialog) {
+    .run(function(authManager, $state, $location, $rootScope, $mdDialog,tokenService) {
         // authManager.checkAuthOnRefresh();
         //   authManager.redirectWhenUnauthenticated();
         $rootScope.openLoginDialog = function(callback) {
@@ -310,6 +309,14 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
                 console.log('else of dialog');
             });
         }
+        $rootScope.logout = function() {
+            console.log("logout");
+            localStorage.clear();
+            $rootScope.token = null;
+            $rootScope.authenticated = false;
+
+            // $state.go('static.signUp');
+        };
         $rootScope.token = localStorage.getItem('id_token');
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('service-worker.js').then(function(registration) {
@@ -321,7 +328,13 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
         }
         if (localStorage.getItem('id_token') != null) {
             $rootScope.authenticated = true;
-        }else{
+            $rootScope.token = localStorage.getItem('id_token');
+
+            tokenService.get("userImage")
+                .then(function(response) {
+                    $rootScope.user = response;
+                });
+        } else {
             $rootScope.authenticated = false;
         }
         //  if (!authManager.isAuthenticated()) {

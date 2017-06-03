@@ -60,6 +60,10 @@
                             $rootScope.token = abc.token;
                             $rootScope.authenticated = true;
 
+                            tokenService.get("userImage")
+                                .then(function(response) {
+                                    $rootScope.user = response;
+                                });
                             // $state.go("home.dashboard");
                             $mdDialog.hide();
 
@@ -104,6 +108,10 @@
                         $rootScope.token = abc.token;
                         $rootScope.authenticated = true;
                         // $state.go("home.dashboard");
+                        tokenService.get("userImage")
+                                .then(function(response) {
+                                    $rootScope.user = response;
+                                });
                         $mdDialog.hide();
                     }
 

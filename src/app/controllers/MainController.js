@@ -26,10 +26,7 @@
                 });
         }
         var semicolon = 186;
-        tokenService.get("userImage")
-            .then(function(response) {
-                $scope.user = response;
-            });
+
 
         $scope.customKeys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, semicolon];
 
@@ -61,11 +58,7 @@
             //         return $scope.searchData;
             //     }), 10000);
         }
-        $scope.logout = function() {
-            console.log("logout");
-            localStorage.clear();
-            // $state.go('static.signUp');
-        };
+
         $scope.submitSearch = function(item, searchText) {
             console.log(item);
             console.log('searchText: ' + searchText);
@@ -129,11 +122,14 @@
         }
 
         var expToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3NhbXBsZXMuYXV0aDAuY29tLyIsInN1YiI6ImZhY2Vib29rfDEwMTU0Mjg3MDI3NTEwMzAyIiwiYXVkIjoiQlVJSlNXOXg2MHNJSEJ3OEtkOUVtQ2JqOGVESUZ4REMiLCJleHAiOjE0MTIyMzQ3MzAsImlhdCI6MTQxMjE5ODczMH0.7M5sAV50fF1-_h9qVbdSgqAnXVF7mz3I6RjS6JiH0H8';
-        $scope.user = $localStorage.user;
+        // $scope.user = $localStorage.user;
         vm.menuItems = [];
         vm.title = $state.current.data.title;
         vm.toggleRightSidebar = toggleRightSidebar;
-
+        tokenService.get("userImage")
+            .then(function(response) {
+                $rootScope.user = response;
+            });
         navService
             .loadAllItems()
             .then(function(menuItems) {

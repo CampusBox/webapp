@@ -106,11 +106,11 @@
                 </div>
             </div>
         </div>
-        <md-button style="position: absolute;" ng-click="currentState=1;" class="md-primary">
-            Back
-        </md-button>
     </md-dialog-content>
     <md-dialog-actions>
+        <md-button style="absolute;" ng-show="currentState==3" ng-click="currentState=1;" class="md-primary">
+            Back
+        </md-button>
         <span flex></span>
         <button class="md-primary md-button " ng-click="cancel()">Cancel</button>
     </md-dialog-actions>
