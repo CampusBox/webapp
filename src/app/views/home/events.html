@@ -100,7 +100,7 @@
             <!-- <md-list-item style="margin-bottom: 10px;" ng-repeat="event in events" ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding eventListItem"> -->
             <md-card flex-lg="30" flex-md="45" flex-sm="45" flex="100" ng-repeat="event in events" ui-sref="home.singleEvent({eventId: event.id})">
                 <div style="position: relative;">
-                    <img style="width: 100% ;opacity: 0.9" class="creativity-cover-full creativity-cover" ng-src="{{event.image}}" alt="{{event.title}}">
+                    <img style="width: 100% ;opacity: 0.9" class="event-cover" ng-src="{{event.image}}" alt="{{event.title}}">
                     <span class="md-caption" style="position: absolute;top: 20px;right: 20px;color: #fff;background: rgba(12,12,12,0.5);border-style: solid;border-width:0px;border-color: #fff;padding: 3px;border-radius: 4px;">
                         <md-icon  style="fill: #fff;" ng-show="event.location.type" md-svg-icon="currency-inr"></md-icon>
                         {{event.price?event.price:" No Fees"}}
