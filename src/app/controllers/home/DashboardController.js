@@ -29,11 +29,14 @@
         var cardObject = {};
         $scope.finalContents = [];
 
-        tokenService.get("eventsDashboard")
+        // tokenService.get("eventsDashboard")
+        // changing temporarily till api is fixed
+        tokenService.get("minievents?limit=3")
             .then(function(events) {
                 $scope.events = events.data;
                 $scope.eventLoading = false;
 
+                // tokenService.get("contentsRandom")
                 tokenService.get("contentsRandom")
                     .then(function(contentsDashboard) {
                         $scope.contents = contentsDashboard.data;
@@ -186,7 +189,7 @@
         $scope.openProfile = function($event, username) {
             $event.stopPropagation();
             console.log(username);
-            $state.go('home.profile', {username: username});
+            $state.go('home.profile', { username: username });
         };
         $scope.heartEvent = function(event, $index, type) {
             $scope[type][$index].Actions.Bookmarked.status = !$scope[type][$index].Actions.Bookmarked.status;

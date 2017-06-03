@@ -29,10 +29,11 @@ body {
     background-color: #fff;
 }
 
-md-card md-card-title md-card-title-media .md-media-lg{
+md-card md-card-title md-card-title-media .md-media-lg {
     height: 140px;
     width: 140px;
 }
+
 .badge {
     margin: 0 0 0 8px;
     background-color: #aaa;
@@ -434,7 +435,7 @@ Optional adjustments for md-autocomplete in mobile screens
 /*Media query for tablets and above */
 
 @media screen and (min-width: 480px) {
-    #place-autocomplete > md-autocomplete md-input-container {
+#place-autocomplete > md-autocomplete md-input-container {
         padding-bottom: 0;
     }
 }
@@ -727,10 +728,9 @@ md-icon.cross>svg {
 }
 
 @media only screen and (max-width: 500px) {
-
-.creativity-page {
-    margin-top: 0px;
-}
+    .creativity-page {
+        margin-top: 0px;
+    }
     .static-background {
         background: #0570c0;
     }
