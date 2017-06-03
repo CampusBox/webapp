@@ -16,6 +16,7 @@
 
     function DashboardController($mdDialog, $scope, tokenService, Upload, $location, $sce, $filter, $state) {
         $scope.events = {};
+
         $scope.updatesLoading = true;
         $scope.eventLoading = true;
         $scope.eventTopLoading = true;
@@ -35,7 +36,7 @@
             .then(function(events) {
                 $scope.events = events.data;
                 $scope.eventLoading = false;
-
+                // $scope.myPagingFunction();
                 // tokenService.get("contentsRandom")
                 tokenService.get("contentsRandom")
                     .then(function(contentsDashboard) {
@@ -57,6 +58,7 @@
                             content.Items.data.forEach(function(item) {
                                 if (item.type == 'text') {
                                     cardObject.description = $filter('limitTo')(item.description, 110, 0)
+                                    cardObject.description = $filter('limitTo')(item.description, 110, 0)
                                     cardObject.description = $sce.trustAsHtml(cardObject.description);
                                 } else if ((item.type == 'cover' && !cardObject.type)) {
                                     cardObject.type = item.type;
@@ -75,6 +77,7 @@
                         });
                         console.log($scope.finalContents);
                     });
+                $scope.myPagingFunction();
             });
 
         // tokenService.get("/college_updates")
@@ -104,16 +107,22 @@
                             cardObject.created.at = Date.parse(cardObject.created.at.replace('-', '/', 'g')); //replace mysql date to js date format
                             cardObject.id = content.id;
                             cardObject.title = $sce.trustAsHtml(content.title);
+                            cardObject.content = content.content;
                             cardObject.links = content.links;
                             cardObject.total = content.links;
                             content.Items.data.forEach(function(item) {
                                 if (item.type == 'text') {
-                                    cardObject.description = $filter('limitTo')(item.description, 110, 0)
+                                    cardObject.description = $filter('limitTo')(item.description, 90, 0)
                                     cardObject.description = $sce.trustAsHtml(cardObject.description);
                                 } else if ((item.type == 'cover' && !cardObject.type)) {
                                     cardObject.type = item.type;
                                     cardObject.url = item.image;
-                                } else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
+                                } else if (item.type == 'soundcloud') {
+                                    cardObject.type = item.type;
+                                    item.embed.url = "//w.soundcloud.com/player/?url=" + item.embed.url;
+                                    console.log(item.embed.url);
+                                    cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
+                                } else if ((item.type == 'youtube' || item.type == 'vimeo') && !cardObject.type) {
                                     cardObject.type = item.type;
                                     cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
                                 } else if (((item.type == 'cover') || (item.type == 'image')) && !cardObject.type) {
@@ -130,37 +139,43 @@
                         console.log($scope.creativityLoading);
                         $scope.finalContents = $scope.finalContents.concat($scope.nonFinalContents);
                         $scope.offset += 2;
-                        console.log($scope.offset);
+                        $scope.myPagingFunction();
                     });
             }
         };
 
-
+        // $scope.myPagingFunction();
 
 
         $scope.heart = function(content, $index) {
-            $scope.finalContents[$index].Actions.Appriciate.status = !$scope.finalContents[$index].Actions.Appriciate.status;
-            if ($scope.finalContents[$index].Actions.Appriciate.status) {
-                $scope.finalContents[$index].Actions.Appriciate.total += 1;
-                tokenService.post('appreciateContent/' + content.id).then(function(result) {
+            if ($rootScope.authenticated) {
+                $scope.finalContents[$index].Actions.Appriciate.status = !$scope.finalContents[$index].Actions.Appriciate.status;
+                if ($scope.finalContents[$index].Actions.Appriciate.status) {
+                    $scope.finalContents[$index].Actions.Appriciate.total += 1;
+                    tokenService.post('appreciateContent/' + content.id).then(function(result) {
 
-                    console.log('post request');
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
-                });
+                        console.log('post request');
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                } else {
+                    $scope.finalContents[$index].Actions.Appriciate.total -= 1;
+
+                    tokenService.delete('appreciateContent/' + content.id, '').then(function(result) {
+                        console.log('post request');
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                }
             } else {
-                $scope.finalContents[$index].Actions.Appriciate.total -= 1;
-
-                tokenService.delete('appreciateContent/' + content.id, '').then(function(result) {
-                    console.log('post request');
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
+                $rootScope.openLoginDialog(function() {
+                    $scope.heart(content, $index);
                 });
             }
         }
@@ -191,57 +206,117 @@
             console.log(username);
             $state.go('home.profile', { username: username });
         };
-        $scope.heartEvent = function(event, $index, type) {
-            $scope[type][$index].Actions.Bookmarked.status = !$scope[type][$index].Actions.Bookmarked.status;
-            if ($scope[type][$index].Actions.Bookmarked.status) {
-                $scope[type][$index].Actions.Bookmarked.total += 1;
-                tokenService.post('bookmarkEvent/' + event.id).then(function(result) {
+        $scope.heartEvent = function(event, $index) {
+            if ($rootScope.authenticated) {
+                $scope.events[$index].Actions.Bookmarked.status = !$scope.events[$index].Actions.Bookmarked.status;
+                if ($scope.events[$index].Actions.Bookmarked.status) {
+                    $scope.events[$index].Actions.Bookmarked.total += 1;
+                    tokenService.post('bookmarkEvent/' + event.id).then(function(result) {
 
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
-                });
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                } else {
+                    $scope.events[$index].Actions.Bookmarked.total -= 1;
+
+                    tokenService.delete('bookmarkEvent/' + event.id, '').then(function(result) {
+                        if (result.status != 'error') {
+                            console.log(result.status);
+                        } else {
+                            console.log(result);
+                        }
+                    });
+                }
             } else {
-                $scope[type][$index].Actions.Bookmarked.total -= 1;
-
-                tokenService.delete('bookmarkEvent/' + event.id, '').then(function(result) {
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
+                $rootScope.openLoginDialog(function() {
+                    $scope.heartEvent(event, $index);
                 });
             }
         }
-        $scope.rsvpEvent = function(event, $index, type) {
-            console.log(type);
-            $scope[type][$index].Actions.Participants.status = !$scope[type][$index].Actions.Participants.status;
-            if ($scope[type][$index].Actions.Participants.status) {
-                $scope[type][$index].Actions.Participants.total += 1;
-                tokenService.post('rsvpEvent/' + event.id).then(function(result) {
+        $scope.rsvpEvent = function(event, $index, state) {
+            if ($rootScope.authenticated) {
+                // $scope.events[$index].participation_state = state;
+                switch (state) {
+                    case 2:
+                        console.log('intrested button pressed');
+                        // intrested button pressed
+                        if ($scope.events[$index].participation_state == 2) {
+                            //person was intrested before and is'nt now
+                            $scope.events[$index].participation_state = 0;
+                            tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
+                                if (result.status != 'error') {
+                                    console.log(result.status);
+                                } else {
+                                    console.log(result);
+                                }
+                            });
+                        } else if ($scope.events[$index].participation_state == 1) {
+                            //person was going but isnt intrested now
+                            $scope.events[$index].participation_state = 0;
+                            tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
+                                if (result.status != 'error') {
+                                    console.log(result.status);
+                                } else {
+                                    console.log(result);
+                                }
+                            });
+                        } else {
+                            // person wasnt intrested before but is now
+                            $scope.events[$index].participation_state = 2;
+                            tokenService.post('rsvpEvent/' + event.id + '/' + 2).then(function(result) {
+                                if (result.status != 'error') {
+                                    console.log(result.status);
+                                } else {
+                                    console.log(result);
+                                }
+                            });
+                        }
+                        break;
+                    case 1:
+                        console.log('going button pressed');
+                        if ($scope.events[$index].participation_state == 2) {
+                            // person intrested before and now he's going too
+                            $scope.events[$index].participation_state = 1;
+                            tokenService.post('rsvpEvent/' + event.id + '/' + 1).then(function(result) {
+                                if (result.status != 'error') {
+                                    console.log(result.status);
+                                } else {
+                                    console.log(result);
+                                }
+                            });
+                        } else if ($scope.events[$index].participation_state == 1) {
+                            // person is not going anymore
+                            $scope.events[$index].participation_state = 0;
+                            tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
+                                if (result.status != 'error') {
+                                    console.log(result.status);
+                                } else {
+                                    console.log(result);
+                                }
+                            });
+                        } else {
+                            // person was not going before but is going now
+                            tokenService.post('rsvpEvent/' + event.id + '/' + 1).then(function(result) {
+                                if (result.status != 'error') {
+                                    console.log(result.status);
+                                } else {
+                                    console.log(result);
+                                }
+                            });
+                        }
 
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
-                });
+
+                        break;
+                }
             } else {
-                $scope[type][$index].Actions.Participants.total -= 1;
-
-                tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
+                $rootScope.openLoginDialog(function() {
+                    $scope.rsvpEvent(event, $index);
                 });
             }
         }
-
-
     }
 
 

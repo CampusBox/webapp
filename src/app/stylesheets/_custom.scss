@@ -9,6 +9,12 @@ $widget-height: 310px;
 $font-weight-bold: 600;
 $font-size-large: 22px;
 // LAYOUT
+md-card{
+    overflow:hidden;
+}
+md-card-header.layout-align-start-center.layout-row{
+    background:#fff;
+}
 body {
     color: $text-color;
 }
