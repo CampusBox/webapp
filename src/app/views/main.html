@@ -96,7 +96,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
             <md-button ng-show="authenticated" style="height: auto;font-weight: 500;line-height: 16px;margin-top: 3px;margin-bottom: 0px;font-size: 13px;" hide-sm hide-xs layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
                 <div hide-sm hide-xs class="md-tile-content" layout="column">
                     <!-- <md-icon md-svg-icon="account"></md-icon> -->
-                    <img ng-src="{{user.image}}" style="width: 24px; height: 24px;align-self: center;border-radius: 50%">
+                    <img ng-src="{{user.image}}" style="width: 24px; height: 24px;align-self: center;vertical-align: middle;border-radius: 50%">
                     <!-- <span style="color:#fff" class="notifications-label"> </span> -->
                 </div>
                 <div class="md-tile-content" style="color: #6A6E71">
@@ -119,12 +119,12 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
         </div>
     </md-content>
     <md-toolbar hide-gt-sm layout="row" style="position: fixed;bottom: 0px;" class="md-whiteframe-3dp" layout-align="center center">
-        <md-button ng-repeat="item in vm.menuItems" layout-align="center center" flex class="capitalize grey_text bottom-menu-item" ng-click="vm.selectItem(item)" ui-sref-active="" ui-sref="{{item.sref}}">
+        <md-button layout-align="center center" flex class="capitalize grey_text bottom-menu-item" ng-click="vm.selectItem(item)" ui-sref-active="" ui-sref=".dashboard">
             <div hide-md class="md-tile-content">
-                <md-icon md-svg-icon="{{item.icon}}"></md-icon>
+                <md-icon md-svg-icon="home"></md-icon>
             </div>
             <div class="md-tile-content" style="line-height: 16px;font-weight: 500; color: #6A6E71;">
-                {{item.name}}
+                Home
             </div>
         </md-button>
         <md-button layout-align="center center" flex class="capitalize grey_text bottom-menu-item" ui-sref="home.searchStudents" aria-label="Notifications" ng-click="">
@@ -135,8 +135,24 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                 Search
             </div>
         </md-button>
+            <md-button layout-align="center center"  class="capitalize grey_text bottom-menu-item" ng-click="vm.selectItem(item)" ui-sref-active="" ui-sref=".events">
+                <div hide-md class="md-tile-content">
+                    <md-icon md-svg-icon="calendar"></md-icon>
+                </div>
+                <div class="md-tile-content" style="line-height: 16px;font-weight: 500; color: #6A6E71;">
+                    Opportunities
+                </div>
+            </md-button>
+            <md-button layout-align="center center" flex class="capitalize grey_text bottom-menu-item" ng-click="vm.selectItem(item)" ui-sref-active="" ui-sref=".creativity">
+                <div hide-md class="md-tile-content">
+                    <md-icon md-svg-icon="all-inclusive"></md-icon>
+                </div>
+                <div class="md-tile-content" style="line-height: 16px;font-weight: 500; color: #6A6E71;">
+                    Creativity
+                </div>
+            </md-button>
         <md-menu md-offset="0 48">
-            <md-button ng-show="authenticated"  md-menu-origin md-menu-align-target style="min-width: 45px;" layout-align="center center" flex class="capitalize grey_text bottom-menu-item" aria-label="Notifications" ng-click="$mdMenu.open()">
+            <md-button ng-show="authenticated" md-menu-origin md-menu-align-target style="min-width: 45px;" layout-align="center center" flex class="capitalize grey_text bottom-menu-item" aria-label="Notifications" ng-click="$mdMenu.open()">
                 <div class="md-tile-content">
                     <md-icon md-svg-icon="plus"></md-icon>
                 </div>
@@ -173,15 +189,14 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
         </md-menu>
         <md-button ng-show="authenticated" layout-align="center center" flex class="capitalize grey_text bottom-menu-item" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
             <div class="md-tile-content">
-                <img ng-src="{{user.image}}" style="width: 24px; height: 24px;align-self: center;border-radius: 50%">
+                <img ng-src="{{user.image}}" style="width: 24px; height: 24px;align-self: center;vertical-align: middle;border-radius: 50%">
                 <!-- <md-icon md-svg-icon="account"></md-icon> -->
             </div>
             <div class="md-tile-content" style="line-height: 16px;font-weight: 500; color: #6A6E71;">
                 Me
             </div>
         </md-button>
-        <md-button hide-gt-sm ng-show="!authenticated" style="height: auto;font-weight: 500;
-        line-height: 16px;margin-top: 3px;margin-bottom: 0px;    font-size: 13px;" layout-align="center center" ng-class="{active: $state.includes('home')}" flex class="capitalize grey_text" ng-click="openLoginDialog()">
+        <md-button hide-gt-sm ng-show="!authenticated" style="line-height: 16px;margin-top: 3px;" layout-align="center center" ng-class="{active: $state.includes('home')}" flex class="capitalize grey_text bottom-menu-item" ng-click="openLoginDialog()">
             <div class="md-tile-content" layout="column">
                 <md-icon md-svg-icon="account"></md-icon>
             </div>

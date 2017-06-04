@@ -34,8 +34,8 @@
             { 'title': 'Drawing ', 'id': 5 },
             { 'title': 'Sewing and Fabric', 'id': 6 },
             { 'title': 'Craft', 'id': 7 },
-            { 'title': 'Clay', 'id': 8 },
-            { 'title': 'Dancing', 'id': 22 },
+            // { 'title': 'Clay', 'id': 8 },
+            { 'title': 'Dancing', 'id': 8 },
             { 'title': 'Singing', 'id': 9 },
             { 'title': 'Instrumental', 'id': 10 },
             { 'title': 'Digital Music', 'id': 11 },
@@ -83,10 +83,10 @@
                             cardObject.total = content.links;
                             content.Items.data.forEach(function(item) {
                                 if (item.type == 'text') {
-                                    cardObject.description = $filter('limitTo')(item.description, 110, 0)
-                                    cardObject.description = $filter('limitTo')(item.description, 110, 0)
+                                    cardObject.description = $filter('limitTo')(item.description, 110, 0);
+                                    cardObject.description = $filter('limitTo')(item.description, 110, 0);
                                     cardObject.description = $sce.trustAsHtml(cardObject.description);
-                                } else if ((item.type == 'cover' && !cardObject.type)) {
+                                } else if (item.type == 'cover' && !cardObject.type) {
                                     cardObject.type = item.type;
                                     cardObject.url = item.image;
                                 } else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
@@ -126,6 +126,7 @@
             console.log('paging called');
             if ($scope.creativityLoading == false && $scope.offset < 5) {
                 $scope.creativityLoading = true;
+                $scope.meraTitle="abcd";
                 tokenService.get("contents?limit=2&offset=" + $scope.offset)
                     .then(function(tableData) {
                         console.log(tableData);
@@ -156,7 +157,7 @@
                             cardObject.total = content.links;
                             content.Items.data.forEach(function(item) {
                                 if (item.type == 'text') {
-                                    cardObject.description = $filter('limitTo')(item.description, 90, 0)
+                                    cardObject.description = $filter('limitTo')(item.description, 90, 0);
                                     cardObject.description = $sce.trustAsHtml(cardObject.description);
                                 } else if ((item.type == 'cover' && !cardObject.type)) {
                                     cardObject.type = item.type;
@@ -164,7 +165,6 @@
                                 } else if (item.type == 'soundcloud') {
                                     cardObject.type = item.type;
                                     item.embed.url = "//w.soundcloud.com/player/?url=" + item.embed.url;
-                                    console.log(item.embed.url);
                                     cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
                                 } else if ((item.type == 'youtube' || item.type == 'vimeo') && !cardObject.type) {
                                     cardObject.type = item.type;
@@ -180,7 +180,6 @@
 
                         });
                         $scope.creativityLoading = false;
-                        console.log($scope.creativityLoading);
                         $scope.finalContents = $scope.finalContents.concat($scope.nonFinalContents);
                         $scope.offset += 2;
                         $scope.myPagingFunction();
@@ -198,23 +197,13 @@
                     $scope.finalContents[$index].Actions.Appriciate.total += 1;
                     tokenService.post('appreciateContent/' + content.id).then(function(result) {
 
-                        console.log('post request');
-                        if (result.status != 'error') {
-                            console.log(result.status);
-                        } else {
-                            console.log(result);
-                        }
+                      
                     });
                 } else {
                     $scope.finalContents[$index].Actions.Appriciate.total -= 1;
 
                     tokenService.delete('appreciateContent/' + content.id, '').then(function(result) {
-                        console.log('post request');
-                        if (result.status != 'error') {
-                            console.log(result.status);
-                        } else {
-                            console.log(result);
-                        }
+                       
                     });
                 }
             } else {
@@ -228,20 +217,12 @@
             if ($scope.finalContents[index].Actions.Bookmarked.status) {
                 $scope.finalContents[index].Actions.Bookmarked.total += 1;
                 tokenService.post('bookmarkContent/' + content.id).then(function(result) {
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
+                  
                 });
             } else {
                 $scope.finalContents[index].Actions.Bookmarked.total -= 1;
                 tokenService.delete('bookmarkContent/' + content.id, '').then(function(result) {
-                    if (result.status != 'error') {
-                        console.log(result.status);
-                    } else {
-                        console.log(result);
-                    }
+                   
                 });
             }
         }
@@ -257,21 +238,13 @@
                     $scope.events[$index].Actions.Bookmarked.total += 1;
                     tokenService.post('bookmarkEvent/' + event.id).then(function(result) {
 
-                        if (result.status != 'error') {
-                            console.log(result.status);
-                        } else {
-                            console.log(result);
-                        }
+                       
                     });
                 } else {
                     $scope.events[$index].Actions.Bookmarked.total -= 1;
 
                     tokenService.delete('bookmarkEvent/' + event.id, '').then(function(result) {
-                        if (result.status != 'error') {
-                            console.log(result.status);
-                        } else {
-                            console.log(result);
-                        }
+                      
                     });
                 }
             } else {
@@ -291,31 +264,19 @@
                             //person was intrested before and is'nt now
                             $scope.events[$index].participation_state = 0;
                             tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
-                                if (result.status != 'error') {
-                                    console.log(result.status);
-                                } else {
-                                    console.log(result);
-                                }
+                               
                             });
                         } else if ($scope.events[$index].participation_state == 1) {
                             //person was going but isnt intrested now
                             $scope.events[$index].participation_state = 0;
                             tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
-                                if (result.status != 'error') {
-                                    console.log(result.status);
-                                } else {
-                                    console.log(result);
-                                }
+                               
                             });
                         } else {
                             // person wasnt intrested before but is now
                             $scope.events[$index].participation_state = 2;
                             tokenService.post('rsvpEvent/' + event.id + '/' + 2).then(function(result) {
-                                if (result.status != 'error') {
-                                    console.log(result.status);
-                                } else {
-                                    console.log(result);
-                                }
+                               
                             });
                         }
                         break;
@@ -325,30 +286,18 @@
                             // person intrested before and now he's going too
                             $scope.events[$index].participation_state = 1;
                             tokenService.post('rsvpEvent/' + event.id + '/' + 1).then(function(result) {
-                                if (result.status != 'error') {
-                                    console.log(result.status);
-                                } else {
-                                    console.log(result);
-                                }
+                               
                             });
                         } else if ($scope.events[$index].participation_state == 1) {
                             // person is not going anymore
                             $scope.events[$index].participation_state = 0;
                             tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
-                                if (result.status != 'error') {
-                                    console.log(result.status);
-                                } else {
-                                    console.log(result);
-                                }
+                               
                             });
                         } else {
                             // person was not going before but is going now
                             tokenService.post('rsvpEvent/' + event.id + '/' + 1).then(function(result) {
-                                if (result.status != 'error') {
-                                    console.log(result.status);
-                                } else {
-                                    console.log(result);
-                                }
+                               
                             });
                         }
 
