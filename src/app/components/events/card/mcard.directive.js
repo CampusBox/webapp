@@ -9,7 +9,6 @@
             templateUrl: 'app/components/events/card/mcard.html',
 
             controller: function($mdDialog, $scope, $element, tokenService, Upload, $timeout, $location, $state, $rootScope) {
-                console.log("testing");
                 $scope.grid = false;
                 $scope.width = 28;
                 $scope.offset = 0;

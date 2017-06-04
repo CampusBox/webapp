@@ -40,7 +40,7 @@
                     </md-card-title-text>
                 </md-card-title>
                 <md-divider></md-divider>
-                <md-card-actions style="margin: 2px 17px 4px 4px;" layout="row" layout-align="end center">
+<!--                 <md-card-actions >
                     <md-button ng-class="(event.participation_state==1)? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 1)" aria-label="Favorite">
                         <md-icon ng-class="(event.participation_state==1)? 'blue':''" md-svg-icon="{{(event.participation_state==1)? 'account-check' : 'check' }}"></md-icon> Going
                     </md-button>
@@ -48,7 +48,8 @@
                     <md-button ng-class="(event.participation_state>0) ? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 2)" aria-label="Favorite">
                         <md-icon ng-class="(event.participation_state>0) ? 'blue' : ''" md-svg-icon="{{(event.participation_state>0)? 'star' : 'star-outline' }}"></md-icon> Interested
                     </md-button>
-                </md-card-actions>
+                </md-card-actions> -->
+                <action style="margin: 2px 17px 4px 4px;" layout="row" layout-align="end center"></action>
             </md-card>
         </md-list-item>
     </md-list>
