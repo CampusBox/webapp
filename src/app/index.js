@@ -334,6 +334,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
                 });
         } else {
             $rootScope.authenticated = false;
+            $state.go('home.dashboard');
         }
         //  if (!authManager.isAuthenticated()) {
         //        console.log("sending to login")
