@@ -44,7 +44,6 @@
                 $scope.applyFilters = function(filters) {
                     console.log(filters);
                     tokenService.post('eventsFilter', filters).then(function(result) {
-                            console.log('CHECKING');
                         if (result.status != 'error') {
                             console.log(result.status);
                         } else {
