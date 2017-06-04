@@ -39,10 +39,10 @@
                 </md-optgroup>
             </md-select>
         </md-input-container>
-        <md-button class="md-primary md-raised" ng-click="filters=!filters;showAdvanced()">Apply filters</md-button>
+        <md-button class="md-primary md-raised" ng-click="filters=!filters;showAdvanced();applyFilters(filter);">Apply filters</md-button>
     </md-card-content>
 </md-card>
-<md-card flex-gt-sm="20" hide-xs hide-sm flex="100" style="box-shadow: 0px 0px;">
+<md-card flex-gt-sm hide-xs hide-sm flex="100" style="box-shadow: 0px 0px;">
     <md-card-title>
         <md-card-title-text>
             <span class="md-headline">Filters</span>

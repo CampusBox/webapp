@@ -42,8 +42,8 @@
                     $scope.searchTerm = '';
                 };
                 $scope.applyFilters = function(filters) {
+                    console.log(filters);
                     tokenService.post('eventsFilter', filters).then(function(result) {
-
                         if (result.status != 'error') {
                             console.log(result.status);
                         } else {
