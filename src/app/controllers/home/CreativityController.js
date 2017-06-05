@@ -30,7 +30,7 @@
             { 'title': 'Drawing ', 'id': 5 },
             { 'title': 'Sewing and Fabric', 'id': 6 },
             { 'title': 'Craft', 'id': 7 },
-            // { 'title': 'Clay', 'id': 8 },
+            // { 'title': 'Dancing', 'id': 8 },
             { 'title': 'Dancing', 'id': 8 },
             { 'title': 'Singing', 'id': 9 },
             { 'title': 'Instrumental', 'id': 10 },
