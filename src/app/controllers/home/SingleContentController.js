@@ -101,9 +101,9 @@
             if ($rootScope.authenticated) {
                 if (index) {
                     $event.stopPropagation();
-                    $scope.finalContents[index].Actions.Appriciate.status = !$scope.finalContents[index].Actions.Appriciate.status;
-                    if ($scope.finalContents[index].Actions.Appriciate.status) {
-                        $scope.finalContents[index].Actions.Appriciate.total += 1;
+                    $scope.finalContents[index].Actions.Appreciate.status = !$scope.finalContents[index].Actions.Appreciate.status;
+                    if ($scope.finalContents[index].Actions.Appreciate.status) {
+                        $scope.finalContents[index].Actions.Appreciate.total += 1;
                         tokenService.post('appreciateContent/' + $scope.finalContents[index].id).then(function(result) {
 
                             console.log('post request');
@@ -114,7 +114,7 @@
                             }
                         });
                     } else {
-                        $scope.finalContents[index].Actions.Appriciate.total -= 1;
+                        $scope.finalContents[index].Actions.Appreciate.total -= 1;
 
                         tokenService.delete('appreciateContent/' + $scope.finalContents[index].id, '').then(function(result) {
                             console.log('post request');
@@ -126,9 +126,9 @@
                         });
                     }
                 } else {
-                    $scope.content.Actions.Appriciate.status = !$scope.content.Actions.Appriciate.status;
-                    if ($scope.content.Actions.Appriciate.status) {
-                        $scope.content.Actions.Appriciate.total += 1;
+                    $scope.content.Actions.Appreciate.status = !$scope.content.Actions.Appreciate.status;
+                    if ($scope.content.Actions.Appreciate.status) {
+                        $scope.content.Actions.Appreciate.total += 1;
                         tokenService.post('appreciateContent/' + content.id).then(function(result) {
 
                             console.log('post request');
@@ -139,7 +139,7 @@
                             }
                         });
                     } else {
-                        $scope.content.Actions.Appriciate.total -= 1;
+                        $scope.content.Actions.Appreciate.total -= 1;
 
                         tokenService.delete('appreciateContent/' + content.id, '').then(function(result) {
                             console.log('post request');

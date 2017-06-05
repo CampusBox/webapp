@@ -88,9 +88,9 @@
                 <!-- </div> -->
             </md-card-content>
             <div layout="row" layout-align="start center">
-                <md-button class="appriciate-button" style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
-                    <md-icon class="pink" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon> {{content.Actions.Appriciate.status? 'Appreciated' : 'Appreciate' }} |
-                    <span> {{content.Actions.Appriciate.total}}</span>
+                <md-button class="appreciate-button" style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
+                    <md-icon class="pink" md-svg-icon="{{content.Actions.Appreciate.status? 'heart' : 'heart-outline' }}"></md-icon> {{content.Actions.Appreciate.status? 'Appreciated' : 'Appreciate' }} |
+                    <span> {{content.Actions.Appreciate.total}}</span>
                 </md-button>
                 <span flex></span>
                 <md-card-icon-actions>

@@ -192,15 +192,15 @@
 
         $scope.heart = function(content, $index) {
             if ($rootScope.authenticated) {
-                $scope.finalContents[$index].Actions.Appriciate.status = !$scope.finalContents[$index].Actions.Appriciate.status;
-                if ($scope.finalContents[$index].Actions.Appriciate.status) {
-                    $scope.finalContents[$index].Actions.Appriciate.total += 1;
+                $scope.finalContents[$index].Actions.Appreciate.status = !$scope.finalContents[$index].Actions.Appreciate.status;
+                if ($scope.finalContents[$index].Actions.Appreciate.status) {
+                    $scope.finalContents[$index].Actions.Appreciate.total += 1;
                     tokenService.post('appreciateContent/' + content.id).then(function(result) {
 
                       
                     });
                 } else {
-                    $scope.finalContents[$index].Actions.Appriciate.total -= 1;
+                    $scope.finalContents[$index].Actions.Appreciate.total -= 1;
 
                     tokenService.delete('appreciateContent/' + content.id, '').then(function(result) {
                        

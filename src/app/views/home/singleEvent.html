@@ -89,7 +89,7 @@
         </div>
         <span flex hide-xs></span>
         <div layout="row" class="md-padding" layout-align="space-around">
-            <md-button class="appriciate-button" ng-click="heart(event, $index)" aria-label="Favorite ">
+            <md-button class="appreciate-button" ng-click="heart(event, $index)" aria-label="Favorite ">
                 <md-icon class="pink" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>{{event.Actions.Bookmarked.status? 'Appreciated' : 'Appreciate' }}
             </md-button>
             <md-button class="rsvp-button" ng-class="(event.Actions.Participants.status)? 'md-raised md-primary' : ''" ng-click="rsvpEvent(event, $index, 'events')" aria-label="Favorite">

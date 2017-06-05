@@ -263,10 +263,10 @@
                     <!-- <span style="color: rgba(99,108,116,0.87);" class="md-caption">{{content.created.at  | date: 'd MMM'}}</span> -->
                 </md-card-header-text>
                 <div layout="row" layout-align="start center" flex="40">
-                    <md-button class="appriciate-button" flex style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
-                        <md-icon class="pink" md-svg-icon="{{content.Actions.Appriciate.status? 'heart' : 'heart-outline' }}"></md-icon>
+                    <md-button class="appreciate-button" flex style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
+                        <md-icon class="pink" md-svg-icon="{{content.Actions.Appreciate.status? 'heart' : 'heart-outline' }}"></md-icon>
                     </md-button>
-                    <span style="cursor: pointer;" ng-click="showLikes(content.id, content.title)" class="likesNumber"> {{content.Actions.Appriciate.total}}</span>
+                    <span style="cursor: pointer;" ng-click="showLikes(content.id, content.title)" class="likesNumber"> {{content.Actions.Appreciate.total}}</span>
                     <md-button class="md-icon-button" flex ng-click="bookmark(content, $index)" aria-label="Favorite">
                         <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
                     </md-button>

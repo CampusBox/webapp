@@ -117,7 +117,7 @@
                                 <p hide-xs style="margin:0;color:#555555" class="md-caption">{{event.venue?event.venue:"Main Auditorium, Thapar University"}}</p>
                                 <!-- <span class="md-body-2" ng-repeat="tag in tags">#{{ tag.name }}                  </span> -->
                                 <span flex></span>
-                                <md-button class="appriciate-button" ng-click="heart(event, $index)" aria-label="Favorite ">
+                                <md-button class="appreciate-button" ng-click="heart(event, $index)" aria-label="Favorite ">
                                     <md-icon class="pink" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon> Appreciate
                                 </md-button>
                                  <md-button class="rsvp-button" ng-class="(event.Actions.Participants.status)? 'md-raised md-primary' : ''" ng-click="rsvpEvent(event, $index, 'events')" aria-label="Favorite">
