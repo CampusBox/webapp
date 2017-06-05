@@ -28,7 +28,7 @@
             <!-- <md-progress-linear md-mode="determinate" value="{{currentState*33}}"></md-progress-linear> -->
             <div ng-show="currentState==1" class="md-p adding autocomplete" layout="column">
                 <center>
-                <span class="md-subtitle" ng-show="message" style="color: #F44336;">{{message}}</span>
+                    <span class="md-subtitle" ng-show="message" style="color: #F44336;">{{message}}</span>
                     <p class="md-headline"> Signing up for new account.</p>
                     <p class="md-title">Select atleast 3 topics to
                         <br>personalise your content stream.</p>
@@ -53,57 +53,22 @@
                         </div>
                     </center>
                 </form>
-                <center>
-                    <p class="md-subtitle" style="color: rgba(255, 255, 255, 0.81);">Already have an account ? <span ng-click="showLogin('hi')" style="cursor: pointer;color:#fff;text-decoration: underline;"> Login here </span> </p>
-                </center>
-                <div layout="row" flex>
+                <!--                 <div layout="row" flex>
                     <md-button flex="60" flex-offset="20" ng-disabled="interests.length<3" style="float:right" ng-click="currentState=3;" class="md-raised continue-button">
                         Continue
                     </md-button>
+                </div> -->
+                <div layout="column">
+                    <md-button class ng-disabled="interests.length<3" style="background: rgb(63, 81, 181); width: 50%; margin: auto; margin-top: 4px;" ng-click="authenticate('facebook');" class="md-raised md-primary">
+                        <md-icon md-svg-icon="facebook"></md-icon>Continue with facebook
+                    </md-button>
+                    <md-button ng-disabled="interests.length<3" style="background: rgb(244, 67, 54); width: 50%; margin: auto; margin-top: 4px;" g-login class="md-raised md-primary">
+                        <md-icon md-svg-icon="google"></md-icon>+ Continue with Google+
+                    </md-button>
                 </div>
-              
-            </div>
-            <div layout="column" ng-show="currentState==3">
-                <div flex layout="column" class="md-padding" layout-align="center">
-                    <center>
-                        <p class="md-headline"> Your college details</p>
-                        <p class="md-subtitle">We use this to provide you more personalised content</p>
-                    </center>
-                    <form name="register">
-                        <!-- <label>Name of your college</label> -->
-                        <md-autocomplete md-no-cache="false" ng-model="signUp.college_id" required md-require-match md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item.college_id)" md-items="item in searchData" md-item-text="item.name" md-min-length="0" placeholder="Full name of your college" md-menu-class="autocomplete-custom-template">
-                            <md-item-template>
-                                <md-list-item md-highlight-text="searchText">
-                                    {{ item.name }}
-                                </md-list-item>
-                                <md-not-found>
-                                    No matches found.
-                                </md-not-found>
-                            </md-item-template>
-                        </md-autocomplete>
-                        <br>
-                        <md-input-container class="md-block ">
-                            <label class="white-text">Your Roll Number</label>
-                            <input required=" " style="    color: #fff;border-color: #fff;" ng-disabled="college_id<0 " ng-model="signUp.roll " type="text " autocomplete=" " />
-                        </md-input-container>
-                        <div>
-                            <center ng-show="signUp.roll && !loading && (signUp.college_id>0 || signUp.college_id_Name)">
-                                <p>Complete setup with</p>
-                                <md-button style="background: rgb(63, 81, 181);" ng-click="authenticate('facebook');" class="md-raised md-primary">
-                                    <md-icon md-svg-icon="facebook"></md-icon>
-                                </md-button>
-                                <md-button style="background: rgb(244, 67, 54);" g-login class="md-raised md-primary">
-                                    <md-icon md-svg-icon="google"></md-icon>+
-                                </md-button>
-                            </center>
-                            <div>{{problem}}</div>
-                            <div layout="row" ng-show="loading" layout-sm="column" layout-align="space-around">
-                                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-                            </div>
-                        </div>
-                    </form>
-                    <!-- <md-divider></md-divider> -->
-                </div>
+                <center>
+                    <p class="md-subtitle" style="color: rgba(255, 255, 255, 0.81);">Already have an account ? <span ng-click="showLogin('hi')" style="cursor: pointer;color:#fff;text-decoration: underline;"> Login here </span> </p>
+                </center>
             </div>
         </div>
     </md-dialog-content>
