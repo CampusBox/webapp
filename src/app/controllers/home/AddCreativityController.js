@@ -82,7 +82,7 @@
             { 'title': 'Singing', 'id': 9 },
             { 'title': 'Instrumental', 'id': 10 },
             { 'title': 'Digital Music', 'id': 11 },
-            { 'title': 'Photography', 'id': 12 }
+            { 'title': 'Decor', 'id': 12 }
 
         ];
         $scope.items[3] = [
@@ -118,7 +118,7 @@
         ];
         $scope.itemsMobile[3] = [
             { 'title': 'Digital Music', 'id': 11 },
-            { 'title': 'Photography', 'id': 12 },
+            { 'title': 'Decor', 'id': 12 },
             { 'title': 'Film and Video', 'id': 13 }
         ];
         $scope.itemsMobile[4] = [

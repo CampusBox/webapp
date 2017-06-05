@@ -35,7 +35,7 @@
             { 'title': 'Singing', 'id': 9 },
             { 'title': 'Instrumental', 'id': 10 },
             { 'title': 'Digital Music', 'id': 11 },
-            { 'title': 'Photography', 'id': 12 },
+            { 'title': 'Decor', 'id': 12 },
             { 'title': 'Film and Video', 'id': 13 },
             { 'title': 'Animation', 'id': 14 },
             { 'title': 'Graphics', 'id': 15 },
