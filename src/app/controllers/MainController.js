@@ -60,6 +60,9 @@
             console.log("main controller logout");
             localStorage.clear();
             $rootScope.token = null;
+            $rootScope.authenticated = false;
+            $rootScope.user = {};
+
             var confirm = $mdDialog.confirm()
                 .title('You have been logged out successfully.')
                 .ariaLabel('TutorialsPoint.com')
