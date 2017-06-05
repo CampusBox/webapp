@@ -16,7 +16,10 @@ md-card {
 md-card-header.layout-align-start-center.layout-row {
     background: #fff;
 }
-
+.dialog-login{
+    background-color:#0570c0 !important;
+    color:#fff !important;
+}
 body {
     color: $text-color;
 }
@@ -476,22 +479,25 @@ form .progress {
     background: orange;
     width: 0;
 }
-
+.continue-button[disabled]{
+    background-color:rgba(255,255,255,.6)!important;
+}
 
 /*image upload end*/
 
 // sign up page 
 .interest {
-    background-color: rgba(158, 158, 158, 0.2);
-    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 18px;
     text-transform: none !important;
-    padding: 0px 16px;
+    padding: 0px 14px;
     min-width: 0px;
 }
 
 .interest_selected {
     background-color: #f96262 !important;
-    border-radius: 15px;
+    border-radius: 18px;
+    padding: 0px 14px;
     text-transform: none !important;
     color: #fff;
     min-width: 60px;

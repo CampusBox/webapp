@@ -1,4 +1,4 @@
-<md-dialog aria-label="Dog name" class="_md md-default-theme md-transition-in" role="dialog">
+<md-dialog aria-label="Dog name" class="_md md-default-theme md-transition-in dialog-login" role="dialog">
     <md-dialog-content ng-controller="loginDialogController" ng-show="loginVar" class="md-dialog-content">
         <center>
             <img ng-src="{{user.imageUrl}}" alt="" style="border-radius: 50%; height: auto;width: 20%">
@@ -20,11 +20,11 @@
             <center>
                 <p>Don't have an account yet ?
             </center>
-            <md-button ng-click="showSignUp()" class="md-raised md-primary">Get Started Now</md-button>
+            <md-button ng-click="showSignUp()" class="md-raised">Get Started Now</md-button>
         </div>
     </md-dialog-content>
     <md-dialog-content ng-show="signup" ng-controller="SignUpDialogController">
-        <div class="login-box md-whiteframe-z1 md-padding" flex style="min-width: 50%" flex-sm layout="column">
+        <div class=" md-whiteframe-z1 md-padding" flex style="min-width: 50%" flex-sm layout="column">
             <!-- <md-progress-linear md-mode="determinate" value="{{currentState*33}}"></md-progress-linear> -->
             <div ng-show="currentState==1" class="md-p adding autocomplete" layout="column">
                 <center>
@@ -54,10 +54,10 @@
                     </center>
                 </form>
                 <center>
-                    <p class="md-subtitle">Already have an account ? <span ng-click="showLogin('hi')" style="cursor: pointer;color:#03A9F4;"> Login here </span> </p>
+                    <p class="md-subtitle" style="color: rgba(255, 255, 255, 0.81);">Already have an account ? <span ng-click="showLogin('hi')" style="cursor: pointer;color:#fff;text-decoration: underline;"> Login here </span> </p>
                 </center>
                 <div layout="row" flex>
-                    <md-button flex="60" flex-offset="20" ng-disabled="interests.length<3" style="float:right" ng-click="currentState=3;" class="md-raised md-primary">
+                    <md-button flex="60" flex-offset="20" ng-disabled="interests.length<3" style="float:right" ng-click="currentState=3;" class="md-raised continue-button">
                         Continue
                     </md-button>
                 </div>
@@ -66,10 +66,11 @@
             <div layout="column" ng-show="currentState==3">
                 <div flex layout="column" class="md-padding" layout-align="center">
                     <center>
-                        <p class="md-headline"> Your college </p>
+                        <p class="md-headline"> Your college details</p>
+                        <p class="md-subtitle">We use this to provide you more personalised content</p>
                     </center>
                     <form name="register">
-                        <label>Name of your college</label>
+                        <!-- <label>Name of your college</label> -->
                         <md-autocomplete md-no-cache="false" ng-model="signUp.college_id" required md-require-match md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item.college_id)" md-items="item in searchData" md-item-text="item.name" md-min-length="0" placeholder="Full name of your college" md-menu-class="autocomplete-custom-template">
                             <md-item-template>
                                 <md-list-item md-highlight-text="searchText">
@@ -82,8 +83,8 @@
                         </md-autocomplete>
                         <br>
                         <md-input-container class="md-block ">
-                            <label>Your Roll Number</label>
-                            <input required=" " ng-disabled="college_id<0 " ng-model="signUp.roll " type="text " autocomplete=" " />
+                            <label class="white-text">Your Roll Number</label>
+                            <input required=" " style="    color: #fff;border-color: #fff;" ng-disabled="college_id<0 " ng-model="signUp.roll " type="text " autocomplete=" " />
                         </md-input-container>
                         <div>
                             <center ng-show="signUp.roll && !loading && (signUp.college_id>0 || signUp.college_id_Name)">
@@ -111,6 +112,6 @@
             Back
         </md-button>
         <span flex></span>
-        <button class="md-primary md-button " ng-click="cancel()">Cancel</button>
+        <button class="md-button " ng-click="cancel()">Cancel</button>
     </md-dialog-actions>
 </md-dialog>
