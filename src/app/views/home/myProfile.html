@@ -137,9 +137,10 @@ md-chips md-chip.md-focused md-icon {
     <md-card flex="70" flex-xs="100">
         <md-card-content>
             <md-tabs md-dynamic-height md-border-bottom md-selected="tab">
+            <!-- need to change it to ng-if  -->
             <div  show-xs hide-gt-xs>
                 <md-tab label="profile">
-                    <div show-xs ng-if="!studentLoading">
+                    <div show-xs  hide-gt-xs ng-if="!studentLoading">
                         <div layout="row" layout-align="center center">
                             <img flex="30" style="width: 20%; height: 20%; margin-top:20px; background-color: #ccc;" ng-src="{{student.photo}}" class="md-card-image" alt="{{student.name}}">
                             <md-card-title flex="70">
