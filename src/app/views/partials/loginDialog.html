@@ -23,7 +23,7 @@
             <md-button ng-click="showSignUp()" class="md-raised">Get Started Now</md-button>
         </div>
     </md-dialog-content>
-    <md-dialog-content ng-show="signup" ng-controller="SignUpDialogController">
+    <md-dialog-content ng-show="signup" style="overflow-x: hidden;" ng-controller="SignUpDialogController">
         <div class=" md-whiteframe-z1 md-padding" flex style="min-width: 50%" flex-sm layout="column">
             <!-- <md-progress-linear md-mode="determinate" value="{{currentState*33}}"></md-progress-linear> -->
             <div ng-show="currentState==1" class="md-p adding autocomplete" layout="column">
