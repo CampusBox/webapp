@@ -82,7 +82,13 @@
         $scope.transformChip = transformChip;
         $scope.body = {};
         $scope.submitEvent = function(event, tags) {
+            event.id = event.venue.id;
+            event.loc_type = event.venue.type;
+            event.city = event.venue.city;
+            event.address = event.venue.address;
+            event.venue = event.venue.name;
             $scope.body.event = event;
+
             $scope.body.tags = tags;
             $scope.loading = true;
             tokenService.post("addEvent", $scope.body)
