@@ -4,8 +4,9 @@
 <head>
     <meta charset="utf-8">
     <title>CampusBox</title>
-<!--     <base href="/dist/">
- -->    <!-- <base href="/"> -->
+    <!--     <base href="/dist/">
+ -->
+    <!-- <base href="/"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="mask-icon" href="/assets/icons/safari-pinned-tab.svg" color="#0570c0">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
@@ -43,13 +44,41 @@ body.pg-loading {
     overflow: hidden;
 }
 
-.show-xs {
-    display: none;
+.cb-caption {
+    color: #FFF;
+    font-weight: 300;
+    font-size: 25px;
+    margin-bottom: 100px;
+}
+
+.loading-message {
+    color: #FFF;
+    font-weight: 900;
+    font-size: 60px;
+    letter-spacing: -.22;
+    line-height: 1.2em;
+    /*padding-bottom: 50px;*/
+    margin-bottom: 20px;
 }
 
 @media only screen and (max-width: 500px) {
-    .show-xs {
-        display: block !important;
+    .cb-caption {
+        color: #FFF;
+        font-weight: 300;
+        font-size: 25px;
+        margin-bottom: 100px;
+    }
+    .loading-message {
+        color: #FFF;
+        font-weight: 900;
+        font-size: 60px;
+        letter-spacing: -.22;
+        line-height: 1.2em;
+        /*padding-bottom: 50px;*/
+        margin-bottom: 20px;
+    }
+    .pg-loading-logo{
+        width: 30%;
     }
 }
 
@@ -61,7 +90,7 @@ body.pg-loading {
     top: 0;
     z-index: 1000000;
     opacity: 1;
-    background-color: #0570c0;
+    background-color: #007D8C;
     -webkit-transition: background-color 0.4s ease-in-out 0s;
     -moz-transition: background-color 0.4s ease-in-out 0s;
     -ms-transition: background-color 0.4s ease-in-out 0s;
@@ -155,13 +184,6 @@ body.pg-loading {
 
 .pg-loading-screen .pg-loading-html.pg-loaded.pg-loading {
     opacity: 1;
-}
-
-.loading-message {
-    color: #FFF;
-    font-weight: 300;
-    font-size: 20px;
-    margin-bottom: 100px;
 }
 
 @-webkit-keyframes pgAnimLoading {
@@ -261,7 +283,7 @@ body.pg-loading {
 }
 </style>
 
-<body >
+<body>
     <!--[if lt IE 10]>
       <p>You are using an <strong>outdated</strong> browser. Please
         <a href="http://browsehappy.com/">upgrade your browser</a>
@@ -275,8 +297,8 @@ body.pg-loading {
                 <img class='pg-loading-logo' src="/assets/images/loading-logo.png"></img>
               </h1>
                     <div class='pg-loading-html'>
-                        <p class="loading-message">Glorious things are waiting for you.
-                            <br class="show-xs"> We're just getting them ready.</p>
+                        <p class="loading-message">Making college life better.</p>
+                        <p class="cb-caption"> Let's move beyond classrooms.</p>
                         <div class="spinner"></div>
                     </div>
                 </div>
