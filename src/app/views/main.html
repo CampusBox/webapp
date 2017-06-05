@@ -209,10 +209,16 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
         <!-- <div ng-include src=" 'app/views/partials/messages.html'"></div> -->
         <div class="messages" layout-fill>
             <md-content class="messages-content">
-                <center>
-                    <h3 class="grey_text">Profile</h3>
-                    <md-divider></md-divider>
-                </center>
+                <md-list>
+                    <md-list-item class="md-2-line"  ng-click="vm.toggleRightSidebar()"  ui-sref="home.myProfile">
+                        <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
+                        <div class="md-list-item-text">
+                            <h3>{{user.name}}</h3>
+                            <p>View profile</p>
+                        </div>
+                      
+                    </md-list-item>
+                    </md-list>
                 <md-menu-item>
                     <md-button ng-click="vm.toggleRightSidebar()" ui-sref="home.myProfile({tab: 1})">
                         <div layout="row" flex="" class="ng-scope layout-row flex">
@@ -229,14 +235,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                         </div>
                     </md-button>
                 </md-menu-item>
-                <md-menu-item>
-                    <md-button ng-click="vm.toggleRightSidebar()" ui-sref="home.myProfile">
-                        <div layout="row" flex="" class="ng-scope layout-row flex">
-                            <p flex="" class="flex">My Profile</p>
-                            <md-icon md-svg-icon="account"></md-icon>
-                        </div>
-                    </md-button>
-                </md-menu-item>
+               
                 <md-menu-item>
                     <md-button ng-click="vm.toggleRightSidebar()" ui-sref="home.myProfile({tab: 3})">
                         <div layout="row" flex="" class="ng-scope layout-row flex">
