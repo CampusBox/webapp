@@ -11,7 +11,7 @@
                   $scope.type = 'event';
                   $scope.shareUrl = 'https://campusbox.org/dist/singleEvent/';
                }else{
-                  $scope.type = 'oppor';
+                  $scope.type = 'creativity';
                   $scope.shareUrl = 'https://campusbox.org/dist/singleContent/';
                }
                $mdDialog.show({

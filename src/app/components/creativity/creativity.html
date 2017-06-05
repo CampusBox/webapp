@@ -39,6 +39,11 @@
                         <md-icon class="pink" md-svg-icon="{{content.Actions.Appreciate.status? 'heart' : 'heart-outline' }}"></md-icon>
                     </md-button>
                     <span ng-click="showLikes(content.id, content.title)" style="cursor: pointer;" class="likesNumber"> {{content.Actions.Appreciate.total}}</span>
+
+                <md-button class="md-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'creativity');" aria-label="share ">
+                    <md-icon ng-class=""  md-svg-icon="share"></md-icon>
+                </md-button>
+
                     <md-button class="md-icon-button" flex ng-click="bookmark(content, $index)" aria-label="Favorite">
                         <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
                     </md-button>

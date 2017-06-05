@@ -112,6 +112,9 @@
                         <md-button ng-class="(event.participation_state==1)? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 1)" aria-label="Favorite">
                             <md-icon ng-class="(event.participation_state==1)? 'blue': ''" md-svg-icon="{{(event.participation_state==1)? 'account-check' : 'check' }}"></md-icon> Going
                         </md-button>
+                    <md-button class="md-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'event');" aria-label="share ">
+                        <md-icon ng-class=""  md-svg-icon="share"></md-icon>
+                    </md-button>
                         <span flex></span>
                         <md-button ng-class="(event.participation_state>0) ? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 2)" aria-label="Favorite">
                             <md-icon ng-class="(event.participation_state>0) ? 'blue' : ''" md-svg-icon="{{(event.participation_state>0)? 'star' : 'star-outline' }}"></md-icon> Interested
@@ -190,6 +193,9 @@
                                     <md-icon ng-class="(event.participation_state==1)? 'blue':''" md-svg-icon="{{(event.participation_state==1)? 'account-check' : 'check' }}"></md-icon> Going
                                 </md-button>
                                 <span flex></span>
+                                <md-button class="md-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'event');" aria-label="share ">
+                                    <md-icon ng-class=""  md-svg-icon="share"></md-icon>
+                                </md-button>
                                 <md-button ng-class="(event.participation_state>0) ? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 2)" aria-label="Favorite">
                                     <md-icon ng-class="(event.participation_state>0) ? 'blue' : ''" md-svg-icon="{{(event.participation_state>0)? 'star' : 'star-outline' }}"></md-icon> Interested
                                 </md-button>
@@ -267,6 +273,9 @@
                         <md-icon class="pink" md-svg-icon="{{content.Actions.Appreciate.status? 'heart' : 'heart-outline' }}"></md-icon>
                     </md-button>
                     <span style="cursor: pointer;" ng-click="showLikes(content.id, content.title)" class="likesNumber"> {{content.Actions.Appreciate.total}}</span>
+                    <md-button class="md-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'creativity');" aria-label="share ">
+                        <md-icon ng-class=""  md-svg-icon="share"></md-icon>
+                    </md-button>
                     <md-button class="md-icon-button" flex ng-click="bookmark(content, $index)" aria-label="Favorite">
                         <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
                     </md-button>
