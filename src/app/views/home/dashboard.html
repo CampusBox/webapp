@@ -55,7 +55,7 @@
             </md-card-header>
             <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
         </md-card>
-         <md-list show-xs>
+         <md-list show-xs hide-gt-xs>
                         <md-list-item ng-show="loading" flex style="margin-bottom: 15px;" ng-repeat="event in [1,2]" class="secondary-button-padding eventListItem">
                             <md-card flex>
                                 <md-card-title style="padding: 0px;">
@@ -143,7 +143,7 @@
                         </md-list-item>
                     </md-list>
             </div>
-            <div show-xs layout="column">
+            <div show-xs  hide-gt-xs layout="column">
                 <md-list>
                     <md-list-item style="margin-bottom: 10px;" ng-repeat="event in events" ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding eventListItem">
                         <md-card flex>
