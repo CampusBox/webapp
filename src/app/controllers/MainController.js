@@ -60,17 +60,18 @@
             console.log("main controller logout");
             localStorage.clear();
             $rootScope.token = null;
-            $rootScope.authenticated = false;
-            $mdDialog.show(
-                $mdDialog.alert()
-                .parent(angular.element(document.querySelector('#popupContainer')))
-                .clickOutsideToClose(true)
-                .title('You have successful logged out!')
-                // .textContent('You can specify some description text in here.')
-                .ariaLabel('Logout alert')
-                .ok('Okay')
-                .targetEvent(ev)
-            );
+            var confirm = $mdDialog.confirm()
+                .title('You have been logged out successfully.')
+                .ariaLabel('TutorialsPoint.com')
+                .targetEvent(event)
+                .ok('Okay');
+            $mdDialog.show(confirm).then(function() {
+                // $scope.status = 'Record deleted successfully!';
+
+                // $scope.status = 'You decided to keep your record.';
+                $state.go('home.dashboard');
+            });
+
         };
         $scope.addUpdate = function() {
             $mdDialog.show({
@@ -79,9 +80,9 @@
                 parent: angular.element(document.body),
                 scope: $scope,
                 preserveScope: true,
-                escapeToClose: true,
+                // escapeToClose: true,
 
-                clickOutsideToClose: true,
+                // clickOutsideToClose: true,
                 controllerAs: 'dc'
             }).then(function(media) {
                 $scope.progress = 2;
