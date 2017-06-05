@@ -6,7 +6,14 @@
          function ShareController ($scope, $mdDialog) {
 
 			
-            $scope.showCustom = function(event) {
+            $scope.showCustom = function(event,type) {
+               if(type === 'event'){
+                  $scope.type = 'event';
+                  $scope.shareUrl = 'https://campusbox.org/dist/singleEvent/';
+               }else{
+                  $scope.type = 'oppor';
+                  $scope.shareUrl = 'https://campusbox.org/dist/singleContent/';
+               }
                $mdDialog.show({
                   clickOutsideToClose: true,
                   scope: $scope,        

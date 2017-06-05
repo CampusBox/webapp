@@ -24,7 +24,7 @@ md-list-item .md-button:not([disabled]):click {
             <md-button class="md-icon-button" ng-click="" socialshare socialshare-provider="google" socialshare-url="https://campusbox.org/dist/singleContent/205" aria-label="facebook ">
                 <md-icon ng-class=""  md-svg-icon="google"></md-icon>
             </md-button> -->
-            <md-button class="md-icon-button" ng-controller="ShareController" ng-click="showCustom($event);" aria-label="facebook ">
+            <md-button class="md-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'oppor');" aria-label="facebook ">
                 <md-icon ng-class=""  md-svg-icon="share"></md-icon>
             </md-button>
 
@@ -91,7 +91,7 @@ Share me
                 <md-button class="md-icon-button" style="float:right;" ng-click="bookmark(content)" aria-label="Favorite ">
                     <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
                 </md-button>
-                <md-button class="md-icon-button" ng-controller="ShareController" ng-click="showCustom($event);" aria-label="facebook ">
+                <md-button class="md-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'oppor');" aria-label="facebook ">
                 <md-icon ng-class=""  md-svg-icon="share"></md-icon>
             </md-button>
                 <md-divider></md-divider>

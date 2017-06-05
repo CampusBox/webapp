@@ -3,7 +3,7 @@
         <md-icon ng-class="(event.participation_state==1)? 'blue': ''" md-svg-icon="{{(event.participation_state==1)? 'account-check' : 'check' }}"></md-icon> Going
     </md-button>
     <span flex></span>
-    <md-button class="md-icon-button" ng-controller="ShareController" ng-click="showCustom($event);" aria-label="facebook ">
+    <md-button class="md-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'event');" aria-label="facebook ">
          <md-icon ng-class=""  md-svg-icon="share"></md-icon>
     </md-button>
     <md-button ng-class="(event.participation_state>0) ? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent($event, event, $index, 2)" aria-label="Favorite">
