@@ -95,7 +95,7 @@
                 });
         };
 
-        $scope.max = 2;
+        $scope.max = 3;
         $scope.selectedIndex = 0;
         $scope.nextTab = function() {
             var index = ($scope.selectedIndex == $scope.max) ? 0 : $scope.selectedIndex + 1;
