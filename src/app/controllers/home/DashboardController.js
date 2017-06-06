@@ -17,7 +17,7 @@
 
     function DashboardController($mdDialog, $scope, tokenService, Upload, $location, $sce, $filter, $state, $rootScope) {
         $scope.events = {};
-
+        $rootScope.title = "Dashboard";
         $scope.updatesLoading = true;
         $scope.eventLoading = true;
         $scope.eventTopLoading = true;
@@ -177,7 +177,7 @@
                                     cardObject.url = item.image;
                                 }
                             });
-                             if (cardObject.type != 'cover' || cardObject.type != 'soundcloud' || cardObject.type != 'youtube') {
+                            if (cardObject.type != 'cover' || cardObject.type != 'soundcloud' || cardObject.type != 'youtube') {
                                 cardObject.description = $filter('limitTo')(cardObject.description, 90, 0)
                             } else {
                                 cardObject.description = $filter('limitTo')(cardObject.description, 150, 0)

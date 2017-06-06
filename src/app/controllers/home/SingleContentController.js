@@ -18,6 +18,7 @@
         var vm = this;
         $scope.contentId = $stateParams.contentId;
         $scope.liked = false;
+
         $scope.loading = true;
         $scope.content = {};
         $scope.types = [
@@ -216,6 +217,8 @@
                 });
                 $scope.content.created.at = new Date(Date.parse($scope.content.created.at.replace('-', '/', 'g'))); //replace mysql date to js date format
                 $scope.content.title = $sce.trustAsHtml($scope.content.title);
+                        $rootScope.title = $scope.content.title;
+
                 for (item in $scope.content.Items.data) {
                     if ($scope.content.Items.data[item].type == 'youtube') {
                         $scope.content.Items.data[item].embed.url = $sce.trustAsResourceUrl('//www.youtube.com/embed/' + $scope.content.Items.data[item].embed.url);
