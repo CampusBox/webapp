@@ -13,13 +13,16 @@ md-card {
     overflow: hidden;
     box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
 }
+
 md-card-header.layout-align-start-center.layout-row {
     background: #fff;
 }
-.dialog-login{
-    background-color:#0570c0 !important;
-    color:#fff !important;
+
+.dialog-login {
+    background-color: #0570c0 !important;
+    color: #fff !important;
 }
+
 body {
     color: $text-color;
 }
@@ -75,9 +78,10 @@ md-card md-card-title md-card-title-media .md-media-lg {
     overflow: visible;
     line-height: 28px;
 }
-.bottom-menu-item .md-tile-content{
+
+.bottom-menu-item .md-tile-content {
     font-size: 12px;
-}    
+}
 
 .md-virtual-repeat-container.md-autocomplete-suggestions-container {
     height: 400px;
@@ -474,25 +478,37 @@ form .progress {
     border: 3px groove #CCC;
 }
 
+md-progress-circular.md-default-theme path,
+md-progress-circular path {
+    stroke: #fff;
+}
+
 .progress div {
     font-size: smaller;
     background: orange;
     width: 0;
 }
-.continue-button[disabled]{
-    background-color:rgba(255,255,255,.6)!important;
+
+.continue-button[disabled] {
+    background-color: rgba(255, 255, 255, .6)!important;
 }
+
 
 /*image upload end*/
 
 // sign up page 
+.interest:hover {
+    background-color: rgba(0, 0, 0, 0.2)!important;
+}
+
 .interest {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.1);
     border-radius: 18px;
     text-transform: none !important;
     padding: 0px 14px;
     min-width: 0px;
 }
+
 .interest-login {
     background-color: rgba(255, 255, 255, 0.4);
     border-radius: 18px;
@@ -590,6 +606,7 @@ form .progress {
     max-width: 100%;
     position: relative;
 }
+
 
 /*pasted from multiple images*/
 
@@ -696,6 +713,24 @@ md-icon.cross>svg {
     margin-left: 16px;
 }
 
+.play-button {
+    /* For Opera 11.6-12.0 */
+    background: -o-radial-gradient(#fff 21%, #000 54%, rgba(255, 255, 255, 0) 67%);
+    /* For Firefox 3.6-15 */
+    background: -moz-radial-gradient(#fff 21%, #000 54%, rgba(255, 255, 255, 0) 67%);
+    /* Standard syntax */
+    background: radial-gradient(#fff 21%, #000 54%, rgba(255, 255, 255, 0) 67%);
+    /* For chrome syntax */
+    background: -webkit-radial-gradient(#fff 21%, #000 54%, rgba(255, 255, 255, 0) 67%);
+    color: #e62117;
+    text-shadow: 2px 2px 2px black;
+    position: absolute;
+    margin-left: 130px;
+    height: 80px;
+    margin-top: -109px;
+    width: 80px;
+}
+
 .creativity-description {
     max-width: 688px;
     font-size: 16px;
@@ -724,8 +759,8 @@ md-icon.cross>svg {
     max-width: 688px;
     margin-top: 29px;
     margin-bottom: 10px;
-    color: rgba(0, 0, 0, 0.8) ;
-    font-size: 22px ;
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 22px;
 }
 
 .creativity-description-single p {
@@ -757,10 +792,12 @@ md-icon.cross>svg {
     font-weight: 700;
     color: rgba(0, 0, 0, .8);
 }
-.creativity-title-single{
+
+.creativity-title-single {
     font-size: 29px !important;
     line-height: 1.04 !important;
 }
+
 .creativity-cover-full {
     height: 275px !important;
 }
@@ -777,12 +814,12 @@ md-icon.cross>svg {
 }
 
 .event-cover {
-    height: 275px ;
+    height: 275px;
     cursor: pointer;
     height: 144px;
     object-fit: cover;
     width: 100%;
-    background-color:#eee;
+    background-color: #eee;
 }
 
 .read-more {
@@ -798,7 +835,7 @@ md-icon.cross>svg {
 }
 
 .creativity-page {
-    margin-top: 40px;
+    // margin-top: 40px;
 }
 
 @media only screen and (max-width: 500px) {
@@ -826,7 +863,7 @@ md-icon.cross>svg {
         cursor: pointer;
         height: 150px;
         max-width: 100%;
-        object-fit: none;
+        object-fit: cover;
         width: 100%;
     }
     .creativity-title {
@@ -873,17 +910,15 @@ md-icon.cross>svg {
         margin-right: 20px;
         margin-bottom: 10px;
     }
-
-.creativity-description-single {
-    margin-left: 10px;
-    margin-right: 10px;
-    max-width: 688px;
-    margin-top: 29px;
-    margin-bottom: 10px;
-    color: rgba(0, 0, 0, 0.8) ;
-    // font-size: 22px !important;
-}
-
+    .creativity-description-single {
+        margin-left: 10px;
+        margin-right: 10px;
+        max-width: 688px;
+        margin-top: 29px;
+        margin-bottom: 10px;
+        color: rgba(0, 0, 0, 0.8);
+        // font-size: 22px !important;
+    }
     .likesNumber {
         cursor: pointer;
         color: rgba(0, 0, 0, .44);
