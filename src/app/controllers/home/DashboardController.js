@@ -131,10 +131,10 @@
             if ($scope.creativityLoading == false && $scope.offset < 5) {
                 $scope.creativityLoading = true;
                 $scope.meraTitle = "abcd";
-                tokenService.get("contents?limit=2&offset=" + $scope.offset)
+                tokenService.get("contents?limit=3&offset=" + $scope.offset)
                     .then(function(tableData) {
                         $scope.creativityLoading = false;
-                        if (tableData.data.length < 2) {
+                        if (tableData.data.length < 3) {
                             $scope.moreItems = false;
                         }
                         $scope.nonFinalContents = [];
@@ -190,7 +190,7 @@
                         });
                         $scope.creativityLoading = false;
                         $scope.finalContents = $scope.finalContents.concat($scope.nonFinalContents);
-                        $scope.offset += 2;
+                        $scope.offset += 3;
                         $scope.myPagingFunction();
                     });
             }
