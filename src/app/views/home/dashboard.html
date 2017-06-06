@@ -118,30 +118,29 @@
                         </md-button>
                     </md-card-actions>
                 </md-card>
-                <md-card>
-                    <!-- </md-list-item> -->
-                    <!-- </md-list> -->
-                    <!-- <div infinite-scroll="myPagingFunction();" infinite-scroll-disabled='loading' infinite-scroll-distance="4">
+                <!-- </md-list-item> -->
+                <!-- </md-list> -->
+                <!-- <div infinite-scroll="myPagingFunction();" infinite-scroll-disabled='loading' infinite-scroll-distance="4">
             </div> -->
-                    <md-list>
-                        <md-list-item ng-show="loading" flex style="margin-bottom: 15px;" ng-repeat="event in [1,2]" class="secondary-button-padding eventListItem">
-                            <md-card flex>
-                                <md-card-title style="padding: 0px;">
-                                    <div class="md-media-sm" style="width: 150px;height:150px; background-color: #eee">
-                                        <img class="" style="width: 150px;height:150px;background-color: #f1f1f1" alt="">
-                                    </div>
-                                    <div style="padding:  14px 23px 0px 33px;" flex layout="column">
-                                        <p class="animated-background" style="margin-top: 0px;">Date · Time </p>
-                                        <br>
-                                        <p class="md-title animated-background" style="font-weight: 600;margin: 0px; background-color: #eee;color: transparent;">
-                                            CampusBox launch
-                                        </p>
-                                        <p style="margin:0;background-color: #eee;color: transparent;" class="md-caption animated-background">Main Auditorium, Thapar University</p>
-                                    </div>
-                                </md-card-title>
-                            </md-card>
-                        </md-list-item>
-                    </md-list>
+                <md-list>
+                    <md-list-item ng-show="eventLoading" flex style="margin-bottom: 15px;" ng-repeat="event in [1,2]" class="secondary-button-padding eventListItem">
+                        <md-card flex>
+                            <md-card-title style="padding: 0px;">
+                                <div class="md-media-sm" style="width: 150px;height:150px; background-color: #eee">
+                                    <img class="" style="width: 150px;height:150px;background-color: #f1f1f1" alt="">
+                                </div>
+                                <div style="padding:  14px 23px 0px 33px;" flex layout="column">
+                                    <p class="animated-background" style="margin-top: 0px;">Date · Time </p>
+                                    <br>
+                                    <p class="md-title animated-background" style="font-weight: 600;margin: 0px; background-color: #eee;color: transparent;">
+                                        CampusBox launch
+                                    </p>
+                                    <p style="margin:0;background-color: #eee;color: transparent;" class="md-caption animated-background">Main Auditorium, Thapar University</p>
+                                </div>
+                            </md-card-title>
+                        </md-card>
+                    </md-list-item>
+                </md-list>
             </div>
             <div show-xs hide-gt-xs layout="column">
                 <md-list>
@@ -229,7 +228,7 @@
                 <h1 class="md-headline section-heading">
                 Creative works by other students
             </h1>
-                <div flex layout-align="space-around" layout="row" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() "  style="background:#fbfcfd" infinite-scroll-disabled='creativityLoading' infinite-scroll-distance="3 ">
+                <div flex layout-align="space-around" layout="row" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() " style="background:#fbfcfd" infinite-scroll-disabled='creativityLoading' infinite-scroll-distance="3 ">
                     <md-card class="content-card" flex-lg="30" flex-md="45" flex-sm="45" flex="100" ng-repeat="content in finalContents track by $index">
                         <md-card-content style="padding: 0px">
                             <div ng-if="(content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
@@ -242,7 +241,7 @@
                             </a>
                             <a ng-if="(content.type == 'youtube')" ui-sref="home.singleContent({contentId: content.id})">
                                 <img style="background:url('https://img.youtube.com/vi/{{content.url}}/hqdefault.jpg');object-fit: cover;background-size: cover;background-position: center;" class="creativity-cover" alt="">
-                                 <md-icon class="play-button" md-svg-icon="play-circle" ng-if="(content.type == 'youtube')" ui-sref="home.singleContent({contentId: content.id})" style="" aria-label="Alarm Icon"></md-icon>
+                                <md-icon class="play-button" md-svg-icon="play-circle" ng-if="(content.type == 'youtube')" ui-sref="home.singleContent({contentId: content.id})" style="" aria-label="Alarm Icon"></md-icon>
                             </a>
                         </md-card-content>
                         <md-card-header layout="column" flex ng-hide="(mediaTypes.indexOf(content.content.type) !== -1)">
