@@ -9,10 +9,12 @@
             '$stateParams',
             '$sce',
             '$rootScope',
+            '$location',
+            'Socialshare',
             SingleContentController
         ]);
 
-    function SingleContentController($scope, tokenService, $mdDialog, $stateParams, $sce, $rootScope) {
+    function SingleContentController($scope, tokenService, $mdDialog, $stateParams, $sce, $rootScope, $location, Socialshare) {
         var vm = this;
         $scope.contentId = $stateParams.contentId;
         $scope.liked = false;
@@ -46,6 +48,13 @@
             console.log(blogId);
             vm.liked = !vm.liked;
         };
+        // Socialshare.share({
+        //   'provider': 'facebook',
+        //   'attrs': {
+        //     'socialshareUrl': 'http://720kb.net'
+        //   }
+        // });
+
         $scope.showLikes = function($event, id, title) {
             $event.stopPropagation();
             $mdDialog.show({
@@ -192,6 +201,12 @@
             .then(function(tableData) {
                 $scope.loading = false;
                 $scope.content = tableData.data;
+                console.log(JSON.parse(angular.toJson($scope.content)));
+                console.log($scope.content.Items.data[1].image);
+                console.log($location.absUrl());
+
+                
+                
                 $scope.types.some(function(obj) {
                     if (obj.id == $scope.content.content.type) {
                         $scope.content.content.category = obj.title;
