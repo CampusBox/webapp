@@ -487,6 +487,13 @@ form .progress {
 
 // sign up page 
 .interest {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 18px;
+    text-transform: none !important;
+    padding: 0px 14px;
+    min-width: 0px;
+}
+.interest-login {
     background-color: rgba(255, 255, 255, 0.4);
     border-radius: 18px;
     text-transform: none !important;

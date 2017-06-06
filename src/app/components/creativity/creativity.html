@@ -15,18 +15,18 @@
 <div layout-gt-xs="row" layout-xs="column">
     <div style="background: #fafafa;" hide-xs hide-sm flex="15" layou="row" layout-wrap>
         <h3 class="md-title">Categories</h3>
-        <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected categoryChip':'interest categoryChip'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
+        <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected':'interest'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
             {{ type.title }}
         </md-button>
     </div>
-    <div layout-align="start center" layout="row" show-xs show-sm>
+    <div layout-align="start center" layout="row" show-xs show-sm hide-gt-xs>
         <md-button class="md-primary" ng-click="filterToggle()">
             <md-icon md-svg="filter"></md-icon>
             Filter
         </md-button>
     </div>
     <div layout="row" ng-if="filterShow" layout-wrap  show-xs show-sm>
-        <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected categoryChip':'interest categoryChip'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
+        <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected':'interest'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
             {{ type.title }}
         </md-button>
         <span flex></span>

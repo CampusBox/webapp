@@ -38,7 +38,7 @@
                     <center>
                         <div flex hide-sm hide-xs layout="row" layout-align="center center" ng-repeat="itemgroup in items">
                             <span ng-repeat="item in itemgroup track by $index">                        
-                            <md-button  ng-class="item.intrested?'interest_selected':'interest'" ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">                        
+                            <md-button  ng-class="item.intrested?'interest_selected':'interest-login'" ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">                        
                                 {{ item.title }}
                             </md-button>
                    
@@ -46,7 +46,7 @@
                         </div>
                         <div hide-gt-sm flex layout="row" layout-align="center center" ng-repeat="itemgroup in itemsMobile">
                             <span ng-repeat="item in itemgroup track by $index">                        
-                            <md-button  ng-class="item.intrested?'interest_selected':'interest'" ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">                        
+                            <md-button  ng-class="item.intrested?'interest_selected':'interest-login'" ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">                        
                                 {{ item.title }}
                             </md-button>
                    

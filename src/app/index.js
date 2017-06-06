@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer',
-        'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop', 'angular-jwt', 'infinite-scroll'
+        'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop', 'angular-jwt', 'infinite-scroll', 'angular-google-analytics'
     ])
     //remove setellizer
-    .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, $authProvider, $locationProvider,
+    .config(function(AnalyticsProvider, $stateProvider, $urlRouterProvider, $mdThemingProvider, $authProvider, $locationProvider,
         $mdIconProvider, socialProvider, jwtInterceptorProvider, jwtOptionsProvider, $httpProvider, $mdDateLocaleProvider, $mdAriaProvider) {
+        AnalyticsProvider.setAccount('UA-57016004-2'); //UU-XXXXXXX-X should be your tracking code
 
         $mdDateLocaleProvider.formatDate = function(date) {
             return moment(date).format('DD-MMM-YY');
@@ -15,9 +16,9 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
 
         jwtOptionsProvider.config({
             whiteListedDomains: ['http://localhost', 'http://192.171.2.213', 'http://campusbox.org'],
-            unauthenticatedRedirectPath: '/signUp',
+            unauthenticatedRedirectPath: '/dashboard',
             unauthenticatedRedirector: ['$state', function($state) {
-                $state.go('static.signUp');
+                $state.go('home.dashboard');
                 // $rootScope.openLoginDialog();
             }],
             tokenGetter: ['options', 'jwtHelper', function(options, jwtHelper) {
@@ -292,7 +293,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
 
 
     })
-    .run(function(authManager, $state, $location, $rootScope, $mdDialog, tokenService) {
+    .run(function(authManager, $state, $location, $rootScope, $mdDialog, tokenService, Analytics) {
         // authManager.checkAuthOnRefresh();
         //   authManager.redirectWhenUnauthenticated();
         $rootScope.currentState = $state.current.name;
