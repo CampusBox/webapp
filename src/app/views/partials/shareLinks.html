@@ -1,0 +1,10 @@
+<md-dialog style="" >
+    <md-content class="md-padding" ng-controller="ShareController">
+            <md-button class="md-icon-button" ng-click="" socialshare socialshare-provider="facebook" socialshare-hashtags="campusbox" socialshare-url="{{type==='event'?shareUrl+event.id:shareUrl+content.id}}" aria-label="facebook ">
+                <md-icon ng-class=""  md-svg-icon="facebook"></md-icon>
+            </md-button>
+            <md-button class="md-icon-button" ng-click="" socialshare socialshare-provider="twitter" socialshare-url="{{type==='event'?shareUrl+event.id:shareUrl+content.id}}" aria-label="twitter ">
+                <md-icon ng-class=""  md-svg-icon="twitter"></md-icon>
+            </md-button>
+    </md-content>
+</md-dialog>
