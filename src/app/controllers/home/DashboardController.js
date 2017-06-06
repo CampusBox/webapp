@@ -177,7 +177,7 @@
                                     cardObject.url = item.image;
                                 }
                             });
-                             if (cardObject.type != 'cover' || cardObject.type != 'soundcloud' || cardObject.type != 'youtube') {
+                            if (cardObject.type != 'cover' || cardObject.type != 'soundcloud' || cardObject.type != 'youtube') {
                                 cardObject.description = $filter('limitTo')(cardObject.description, 90, 0)
                             } else {
                                 cardObject.description = $filter('limitTo')(cardObject.description, 150, 0)
@@ -222,16 +222,23 @@
             }
         }
         $scope.bookmark = function(content, index) {
-            $scope.finalContents[index].Actions.Bookmarked.status = !$scope.finalContents[index].Actions.Bookmarked.status;
-            if ($scope.finalContents[index].Actions.Bookmarked.status) {
-                $scope.finalContents[index].Actions.Bookmarked.total += 1;
-                tokenService.post('bookmarkContent/' + content.id).then(function(result) {
+            if ($rootScope.authenticated) {
 
-                });
+                $scope.finalContents[index].Actions.Bookmarked.status = !$scope.finalContents[index].Actions.Bookmarked.status;
+                if ($scope.finalContents[index].Actions.Bookmarked.status) {
+                    $scope.finalContents[index].Actions.Bookmarked.total += 1;
+                    tokenService.post('bookmarkContent/' + content.id).then(function(result) {
+
+                    });
+                } else {
+                    $scope.finalContents[index].Actions.Bookmarked.total -= 1;
+                    tokenService.delete('bookmarkContent/' + content.id, '').then(function(result) {
+
+                    });
+                }
             } else {
-                $scope.finalContents[index].Actions.Bookmarked.total -= 1;
-                tokenService.delete('bookmarkContent/' + content.id, '').then(function(result) {
-
+                $rootScope.openLoginDialog(function() {
+                    $scope.bookmark(content, index);
                 });
             }
         }
