@@ -107,7 +107,6 @@
                             content = {};
                             $scope.loading = false;
                         });
-                        console.log($scope.finalContents);
                     });
                 $scope.myPagingFunction();
             });
@@ -129,13 +128,11 @@
             })
         }
         $scope.myPagingFunction = function() {
-            console.log('paging called');
             if ($scope.creativityLoading == false && $scope.offset < 5) {
                 $scope.creativityLoading = true;
                 $scope.meraTitle = "abcd";
                 tokenService.get("contents?limit=2&offset=" + $scope.offset)
                     .then(function(tableData) {
-                        console.log(tableData);
                         $scope.creativityLoading = false;
                         if (tableData.data.length < 2) {
                             $scope.moreItems = false;
@@ -240,7 +237,6 @@
         }
         $scope.openProfile = function($event, username) {
             $event.stopPropagation();
-            console.log(username);
             $state.go('home.profile', { username: username });
         };
         $scope.heartEvent = function(event, $index) {
@@ -270,7 +266,6 @@
                 // $scope.events[$index].participation_state = state;
                 switch (state) {
                     case 2:
-                        console.log('intrested button pressed');
                         // intrested button pressed
                         if ($scope.events[$index].participation_state == 2) {
                             //person was intrested before and is'nt now
@@ -293,7 +288,6 @@
                         }
                         break;
                     case 1:
-                        console.log('going button pressed');
                         if ($scope.events[$index].participation_state == 2) {
                             // person intrested before and now he's going too
                             $scope.events[$index].participation_state = 1;

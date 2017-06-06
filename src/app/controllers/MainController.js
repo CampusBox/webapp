@@ -15,6 +15,7 @@
             document.getElementById('basicveryimportantloading').remove();
         }
         // document.getElementById('basicveryimportantloading').remove();
+        console.log($state.current);
 
         $scope.$state = $state;
 
@@ -43,7 +44,6 @@
         // $scope.querySearch = querySearch;
 
         function querySearch(query) {
-            console.log(query);
             // $timeout(tokenService.get("search/" + query)
             //     .then(function(tableData) {
             //         $scope.searchData = tableData;
@@ -53,11 +53,11 @@
         }
 
         $scope.submitSearch = function(item, searchText) {
-            console.log(item);
-            console.log('searchText: ' + searchText);
+            // console.log(item);
+            // console.log('searchText: ' + searchText);
         }
         $scope.logout = function(ev) {
-            console.log("main controller logout");
+            // console.log("main controller logout");
             localStorage.clear();
             $rootScope.token = null;
             $rootScope.authenticated = false;
@@ -90,10 +90,10 @@
             }).then(function(media) {
                 $scope.progress = 2;
 
-                console.log('if');
+                // console.log('if');
 
             }, function() {
-                console.log('else');
+                // console.log('else');
             });
         };
 
@@ -107,7 +107,7 @@
             };
             $scope.submitUrl = function(url) {
                 $scope.url = url;
-                console.log($scope.url);
+                // console.log($scope.url);
                 $scope.error = '';
                 $scope.item = {};
                 var videoid = $scope.url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
