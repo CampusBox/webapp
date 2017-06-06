@@ -87,7 +87,7 @@
                             cardObject.total = content.links;
                             content.Items.data.forEach(function(item) {
                                 if (item.type == 'text') {
-                                    cardObject.description = $filter('limitTo')(item.description, 90, 0)
+                                    cardObject.description = item.description;
                                     cardObject.description = $sce.trustAsHtml(cardObject.description);
                                 } else if ((item.type == 'cover' && !cardObject.type)) {
                                     cardObject.type = item.type;
@@ -104,6 +104,12 @@
                                     cardObject.url = item.image;
                                 }
                             });
+                            if (cardObject.type != 'cover' || cardObject.type != 'soundcloud' || cardObject.type != 'youtube') {
+                                cardObject.description = $filter('limitTo')(cardObject.description, 90, 0)
+                            } else {
+                                cardObject.description = $filter('limitTo')(cardObject.description, 110, 0)
+
+                            }
                             $scope.nonFinalContents.push(cardObject);
                             content = {};
                             $scope.creativityLoading = false;
