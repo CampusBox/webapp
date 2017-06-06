@@ -500,7 +500,7 @@ form .progress {
     padding: 0px 14px;
     text-transform: none !important;
     color: #fff;
-    min-width: 60px;
+    min-width: 0px;
 }
 
 .hint {
@@ -570,6 +570,18 @@ form .progress {
     /*opacity: 0;*/
 }
 
+.categoryChip {
+    cursor: default;
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 32px;
+    margin: 8px 8px 0 0;
+    padding: 0 7px 0 7px;
+    float: left;
+    box-sizing: border-box;
+    max-width: 100%;
+    position: relative;
+}
 
 /*pasted from multiple images*/
 

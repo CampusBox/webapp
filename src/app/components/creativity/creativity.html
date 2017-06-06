@@ -1,4 +1,24 @@
-    <div flex layout-align="center center" layout="row" layout-wrap class="creativity-page"  infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading' infinite-scroll-distance="4 ">
+<!-- <style>
+.categoryChip {
+    cursor: default;
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 32px;
+    margin: 8px 8px 0 0;
+    padding: 0 7px 0 7px;
+    float: left;
+    box-sizing: border-box;
+    max-width: 100%;
+    position: relative;
+}
+</style> -->
+<div layout="row">
+    <div flex="10" layou="row" layout-wrap>
+        <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected categoryChip':'interest categoryChip'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
+            {{ type.title }}
+        </md-button>
+    </div>
+    <div flex="90" layout-align="center center" layout="row" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading' infinite-scroll-distance="4 ">
         <md-card class="content-card" flex-lg="25" flex-md="45" flex-sm="45" flex="100" ng-repeat="content in finalContents track by $index">
             <md-card-content style="padding: 0px">
                 <div ng-if="(content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
@@ -30,7 +50,7 @@
                     <img class="md-user-avatar" ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" />
                 </md-card-avatar>
                 <md-card-header-text ui-sref="home.singleContent({contentId: content.id})" class="" style="cursor: pointer">
-                    <span class="md-caption "><span class="capitalize blue_text"  ng-click="openProfile($event, content.created.by.username);" >{{content.created.by.name}} </span><span class="blue_text"> <span style="color: rgba(99,108,116,0.87);"><br> in</span> {{content.content.category?content.content.category:"Unknown"}} </span>
+                    <span class="md-caption "><span class="capitalize blue_text"  ng-click="openProfile($event, content.created.by.username);" >{{content.created.by.name}} </span><span class="blue_text"> <span style="color: rgba(99,108,116,0.87);"><br> in</span> {{content.category?content.category:"Unknown"}} </span>
                     </span>
                     <!-- <span style="color: rgba(99,108,116,0.87);" class="md-caption">{{content.created.at  | date: 'd MMM'}}</span> -->
                 </md-card-header-text>
@@ -51,3 +71,4 @@
             </md-card-header>
         </md-card>
     </div>
+</div>

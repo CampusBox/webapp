@@ -22,6 +22,10 @@
         $scope.moreItems = true;
         $scope.nonFinalContents = [];
         $scope.finalContents = [];
+        $scope.finalContentsCopy = [];
+        $scope.selected = [];
+        $scope.filterInBetween = 0;
+        $scope.selectedCategories = [];
         $scope.types = [
             { 'title': 'Articles', 'id': 1 },
             { 'title': 'Poetry', 'id': 2 },
@@ -30,12 +34,12 @@
             { 'title': 'Drawing ', 'id': 5 },
             { 'title': 'Sewing and Fabric', 'id': 6 },
             { 'title': 'Craft', 'id': 7 },
-            // { 'title': 'Clay', 'id': 8 },
+            // { 'title': 'Dancing', 'id': 8 },
             { 'title': 'Dancing', 'id': 8 },
             { 'title': 'Singing', 'id': 9 },
             { 'title': 'Instrumental', 'id': 10 },
             { 'title': 'Digital Music', 'id': 11 },
-            { 'title': 'Photography', 'id': 12 },
+            { 'title': 'Decor', 'id': 12 },
             { 'title': 'Film and Video', 'id': 13 },
             { 'title': 'Animation', 'id': 14 },
             { 'title': 'Graphics', 'id': 15 },
@@ -53,11 +57,20 @@
             $state.go('home.profile', { username: username });
         };
         var cardObject = {};
-
+        $scope.contentDetails = {
+            "limit": 3,
+            "offset": 0,
+            "filters": []
+        };
         $scope.myPagingFunction = function() {
             if ($scope.creativityLoading == false && $scope.moreItems == true) {
+                console.log('hellosssss');
                 $scope.creativityLoading = true;
-                tokenService.get("contents?limit=3&offset=" + $scope.offset)
+                if ($scope.contentDetails.filters.length) {
+                    $scope.filterInBetween = 1;
+                    console.log('filter called from between');
+                }
+                tokenService.post("contents", $scope.contentDetails)
                     .then(function(tableData) {
                         $scope.creativityLoading = false;
                         if (tableData.data.length < 3) {
@@ -78,7 +91,8 @@
                             cardObject.content = content.content;
                             $scope.types.some(function(obj) {
                                 if (obj.id == cardObject.content.type) {
-                                    cardObject.content.category = obj.title;
+                                    cardObject.category = obj.title;
+                                    cardObject.categoryId = obj.id;
                                 } else {
                                     return;
                                 }
@@ -87,7 +101,7 @@
                             cardObject.total = content.links;
                             content.Items.data.forEach(function(item) {
                                 if (item.type == 'text') {
-                                    cardObject.description = $filter('limitTo')(item.description, 90, 0)
+                                    cardObject.description = item.description;
                                     cardObject.description = $sce.trustAsHtml(cardObject.description);
                                 } else if ((item.type == 'cover' && !cardObject.type)) {
                                     cardObject.type = item.type;
@@ -104,6 +118,12 @@
                                     cardObject.url = item.image;
                                 }
                             });
+                            if (cardObject.type != 'cover' || cardObject.type != 'soundcloud' || cardObject.type != 'youtube') {
+                                cardObject.description = $filter('limitTo')(cardObject.description, 90, 0)
+                            } else {
+                                cardObject.description = $filter('limitTo')(cardObject.description, 110, 0)
+
+                            }
                             $scope.nonFinalContents.push(cardObject);
                             content = {};
                             $scope.creativityLoading = false;
@@ -111,10 +131,64 @@
                         });
                         $scope.creativityLoading = false;
                         $scope.finalContents = $scope.finalContents.concat($scope.nonFinalContents);
-                        $scope.offset += 3;
+                        $scope.finalContentsCopy = $scope.finalContentsCopy.concat($scope.nonFinalContents);
+                        $scope.contentDetails.offset += 3;
                         $scope.myPagingFunction();
                     });
+
             }
+        };
+        $scope.exists = function(item, list) {
+            return list.indexOf(item) > -1;
+        };
+        var deleteList = [];
+        $scope.toggle = function(item, list) {
+            console.log('$scope.filterInBetween' + $scope.filterInBetween);
+            var idx = list.indexOf(item);
+            if (idx > -1) {
+                list.splice(idx, 1);
+                deleteList.splice(idx, 1);
+                $scope.contentDetails.filters = deleteList;
+                if ($scope.filterInBetween) {
+                    $scope.creativityLoading = false;
+                    $scope.moreItems = true;
+                    $scope.contentDetails.offset = 0;
+                    $scope.filterInBetween = 0;
+                    $scope.finalContentsCopy = [];
+                    $scope.finalContents = [];
+                    $scope.myPagingFunction();
+                    console.log('if condition i.e paging');
+                } else {
+                    console.log('Normal static filter');
+                    $scope.finalContents = $scope.finalContentsCopy.filter(function(obj) {
+                        return deleteList.indexOf(obj.categoryId) != -1;
+                    });
+                }
+            } else {
+                list.push(item);
+                deleteList.push(item.id);
+                $scope.contentDetails.filters = deleteList;
+                if ($scope.filterInBetween) {
+                    $scope.creativityLoading = false;
+                    $scope.moreItems = true;
+                    $scope.contentDetails.offset = 0;
+                    $scope.filterInBetween = 0;
+                    $scope.finalContentsCopy = [];
+                    $scope.finalContents = [];
+                    $scope.myPagingFunction();
+                    console.log('if condition i.e paging');
+                } else {
+                    console.log('Noramal static filter');
+
+                    $scope.finalContents = $scope.finalContentsCopy.filter(function(obj) {
+                        return deleteList.indexOf(obj.categoryId) != -1;
+                    });
+                }
+
+                $scope.buttonClass = 'md-primary md-raised';
+            }
+            item.intrested = !item.intrested;
+            $scope.selectedCategories = list;
         };
         $scope.showLikes = function(id, title) {
             $mdDialog.show({

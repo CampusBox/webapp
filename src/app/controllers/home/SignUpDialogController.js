@@ -80,14 +80,14 @@
             { 'title': 'Drawing ', 'id': 5 },
             { 'title': 'Sewing and Fabric', 'id': 6 },
             { 'title': 'Craft', 'id': 7 }
-            // { 'title': 'Clay', 'id': 8 }
+            // { 'title': 'Dancing', 'id': 8 }
         ];
         $scope.items[2] = [
             { 'title': 'Dancing', 'id': 8 },
             { 'title': 'Singing', 'id': 9 },
             { 'title': 'Instrumental', 'id': 10 },
             { 'title': 'Digital Music', 'id': 11 },
-            { 'title': 'Photography', 'id': 12 }
+            { 'title': 'Decor', 'id': 12 }
 
         ];
         $scope.items[3] = [
@@ -115,7 +115,7 @@
         ];
         $scope.itemsMobile[2] = [
             { 'title': 'Craft', 'id': 7 },
-            // { 'title': 'Clay', 'id': 8 },
+            // { 'title': 'Dancing', 'id': 8 },
             { 'title': 'Dancing', 'id': 8 },
             { 'title': 'Singing', 'id': 9 },
             { 'title': 'Instrumental', 'id': 10 }
@@ -123,7 +123,7 @@
         ];
         $scope.itemsMobile[3] = [
             { 'title': 'Digital Music', 'id': 11 },
-            { 'title': 'Photography', 'id': 12 },
+            { 'title': 'Decor', 'id': 12 },
             { 'title': 'Film and Video', 'id': 13 }
         ];
         $scope.itemsMobile[4] = [
