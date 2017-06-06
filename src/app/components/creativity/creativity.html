@@ -12,14 +12,31 @@
     position: relative;
 }
 </style> -->
-<div layout="row">
-    <div flex="10" layou="row" layout-wrap>
+<div layout-gt-xs="row" layout-xs="column">
+    <div style="background: #fafafa;" hide-xs hide-sm flex="15" layou="row" layout-wrap>
+        <h3 class="md-title">Categories</h3>
         <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected categoryChip':'interest categoryChip'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
             {{ type.title }}
         </md-button>
     </div>
-    <div flex="90" layout-align="center center" layout="row" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading' infinite-scroll-distance="4 ">
-        <md-card class="content-card" flex-lg="25" flex-md="45" flex-sm="45" flex="100" ng-repeat="content in finalContents track by $index">
+    <div layout-align="start center" layout="row" show-xs show-sm>
+        <md-button class="md-primary" ng-click="filterToggle()">
+            <md-icon md-svg="filter"></md-icon>
+            Filter
+        </md-button>
+    </div>
+    <div layout="row" ng-if="filterShow" layout-wrap  show-xs show-sm>
+        <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected categoryChip':'interest categoryChip'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
+            {{ type.title }}
+        </md-button>
+        <span flex></span>
+        <md-button ng-click="filterToggle();" class="md-primary">
+            Done
+        </md-button>
+    </div>
+    <div flex-gt-xs="85" flex-xs="100" layout-align="start center" layout-align-xs="center center" layout="row" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading
+' infinite-scroll-distance="4 ">
+        <md-card class="content-card" flex-lg="30" flex-md="45" flex-sm="45" flex="100" ng-repeat="content in finalContents track by $index">
             <md-card-content style="padding: 0px">
                 <div ng-if="(content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
                     <!-- <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" ng-src="{{content.url}}" frameborder="0" allowfullscreen></iframe> -->
@@ -45,7 +62,7 @@
             <md-card-header ng-hide="(mediaTypes.indexOf(content.content.type) !== -1)">
                 <br>
             </md-card-header>
-            <md-card-header style="margin-bottom: 4px" layout="row" layout-align="start center">
+            <md-card-header layout="row" layout-align="start center">
                 <md-card-avatar style="margin-left: 0px;margin-right:5px;">
                     <img class="md-user-avatar" ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" />
                 </md-card-avatar>

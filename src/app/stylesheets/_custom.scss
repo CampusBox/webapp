@@ -1,5 +1,5 @@
 // COLORS
-$main-bg-color: #fafafa;
+$main-bg-color: #fff;
 $text-color: #282c35;
 $accent-color: rgb(0, 150, 136);
 $warning-color: #E75753;
@@ -572,6 +572,7 @@ form .progress {
 
 .categoryChip {
     cursor: default;
+    background: #fff;
     border-radius: 5px;
     font-size: 12px;
     line-height: 32px;

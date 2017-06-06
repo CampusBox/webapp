@@ -220,9 +220,8 @@
                 $scope.readonly = !$scope.readonly;
                 $scope.removable = !$scope.removable;
             } else {
-                console.log($scope.student.Skills);
                 $scope.newSkills = {};
-                $scope.newSkills.skills = $scope.student.Skills;
+                $scope.newSkills.skills = $scope.student.Skills.data;
                 tokenService.post("addStudentSkills", $scope.newSkills)
                     .then(function(status) {
                         $scope.readonly = !$scope.readonly;
