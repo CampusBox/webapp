@@ -138,15 +138,15 @@
             }
         };
         $scope.filterToggle = function() {
-                $scope.filterShow = !$scope.filterShow;
+            $scope.filterShow = !$scope.filterShow;
         };
 
-        $scope.exists = function(item, list) {
-            if($scope.selectedCategories.length==0){
+        $scope.exists = function(item) {
+            if ($scope.selectedCategories.length == 0) {
                 return true;
-            }else{
+            } else {
 
-            return $scope.selectedCategories.indexOf(item) > -1;
+                return $scope.selectedCategories.indexOf(item) > -1;
             }
         };
         var deleteList = [];
