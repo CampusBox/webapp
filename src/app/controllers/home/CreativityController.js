@@ -138,22 +138,23 @@
             }
         };
         $scope.filterToggle = function() {
-            if ($scope.filterShow) {
                 $scope.filterShow = !$scope.filterShow;
-            } else {
-                $scope.filterShow = !$scope.filterShow;
-            }
-        }
+        };
 
         $scope.exists = function(item, list) {
-            return list.indexOf(item) > -1;
+            if($scope.selectedCategories.length==0){
+                return true;
+            }else{
+
+            return $scope.selectedCategories.indexOf(item) > -1;
+            }
         };
         var deleteList = [];
         $scope.toggle = function(item, list) {
 
-            var idx = list.indexOf(item);
+            var idx = $scope.selectedCategories.indexOf(item);
             if (idx > -1) {
-                list.splice(idx, 1);
+                $scope.selectedCategories.splice(idx, 1);
                 deleteList.splice(idx, 1);
                 $scope.contentDetails.filters = deleteList;
                 if ($scope.filterInBetween) {
@@ -170,7 +171,7 @@
                     });
                 }
             } else {
-                list.push(item);
+                $scope.selectedCategories.push(item);
                 deleteList.push(item.id);
                 $scope.contentDetails.filters = deleteList;
                 if ($scope.filterInBetween) {
@@ -191,7 +192,7 @@
                 $scope.buttonClass = 'md-primary md-raised';
             }
             item.intrested = !item.intrested;
-            $scope.selectedCategories = list;
+            $scope.selectedCategories = $scope.selectedCategories;
         };
         $scope.showLikes = function(id, title) {
             $mdDialog.show({
