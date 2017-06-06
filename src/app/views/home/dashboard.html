@@ -190,7 +190,7 @@
                                     <md-icon ng-class="(event.participation_state==1)? 'blue':''" md-svg-icon="{{(event.participation_state==1)? 'account-check' : 'check' }}"></md-icon> Going
                                 </md-button>
                                 <span flex></span>
-                                <md-button class="share-button" ng-controller="ShareController" ng-click="showCustom($event,'event');" aria-label="share ">
+                                <md-button class="share-button md-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'event');" aria-label="share ">
                                     <md-icon ng-class="" md-svg-icon="share"></md-icon>
                                 </md-button>
                                 <md-button ng-class="(event.participation_state>0) ? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 2)" aria-label="Favorite">
@@ -229,7 +229,7 @@
                 <h1 class="md-headline section-heading">
                 Creative works by other students
             </h1>
-                <div flex layout-align="space-around" layout="row" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading' infinite-scroll-distance="3 ">
+                <div flex layout-align="space-around" layout="row" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() "  style="background:#fbfcfd" infinite-scroll-disabled='creativityLoading' infinite-scroll-distance="3 ">
                     <md-card class="content-card" flex-lg="30" flex-md="45" flex-sm="45" flex="100" ng-repeat="content in finalContents track by $index">
                         <md-card-content style="padding: 0px">
                             <div ng-if="(content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
@@ -267,7 +267,7 @@
                                 <!-- <span style="color: rgba(99,108,116,0.87);" class="md-caption">{{content.created.at  | date: 'd MMM'}}</span> -->
                             </md-card-header-text>
                             <div layout="row" layout-align="start center" flex="50">
-                                <md-button class="appreciate-button" style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
+                                <md-button class="md-icon-button appreciate-button" style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
                                     <md-icon class="pink" md-svg-icon="{{content.Actions.Appreciate.status? 'heart' : 'heart-outline' }}"></md-icon>
                                 </md-button>
                                 <span style="cursor: pointer;" ng-click="showLikes(content.id, content.title)" class="likesNumber"> {{content.Actions.Appreciate.total}}</span>
