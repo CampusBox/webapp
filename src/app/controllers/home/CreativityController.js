@@ -25,6 +25,7 @@
         $scope.finalContentsCopy = [];
         $scope.selected = [];
         $scope.filterInBetween = 0;
+        $scope.filterShow = 0;
         $scope.selectedCategories = [];
         $scope.types = [
             { 'title': 'Articles', 'id': 1 },
@@ -64,11 +65,9 @@
         };
         $scope.myPagingFunction = function() {
             if ($scope.creativityLoading == false && $scope.moreItems == true) {
-                console.log('hellosssss');
                 $scope.creativityLoading = true;
                 if ($scope.contentDetails.filters.length) {
                     $scope.filterInBetween = 1;
-                    console.log('filter called from between');
                 }
                 tokenService.post("contents", $scope.contentDetails)
                     .then(function(tableData) {
@@ -138,12 +137,20 @@
 
             }
         };
+        $scope.filterToggle = function() {
+            if ($scope.filterShow) {
+                $scope.filterShow = !$scope.filterShow;
+            } else {
+                $scope.filterShow = !$scope.filterShow;
+            }
+        }
+
         $scope.exists = function(item, list) {
             return list.indexOf(item) > -1;
         };
         var deleteList = [];
         $scope.toggle = function(item, list) {
-            console.log('$scope.filterInBetween' + $scope.filterInBetween);
+
             var idx = list.indexOf(item);
             if (idx > -1) {
                 list.splice(idx, 1);
@@ -157,9 +164,7 @@
                     $scope.finalContentsCopy = [];
                     $scope.finalContents = [];
                     $scope.myPagingFunction();
-                    console.log('if condition i.e paging');
                 } else {
-                    console.log('Normal static filter');
                     $scope.finalContents = $scope.finalContentsCopy.filter(function(obj) {
                         return deleteList.indexOf(obj.categoryId) != -1;
                     });
@@ -176,9 +181,7 @@
                     $scope.finalContentsCopy = [];
                     $scope.finalContents = [];
                     $scope.myPagingFunction();
-                    console.log('if condition i.e paging');
                 } else {
-                    console.log('Noramal static filter');
 
                     $scope.finalContents = $scope.finalContentsCopy.filter(function(obj) {
                         return deleteList.indexOf(obj.categoryId) != -1;

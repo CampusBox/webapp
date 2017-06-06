@@ -15,7 +15,6 @@
             document.getElementById('basicveryimportantloading').remove();
         }
         // document.getElementById('basicveryimportantloading').remove();
-        console.log($state.current);
 
         $scope.$state = $state;
 
