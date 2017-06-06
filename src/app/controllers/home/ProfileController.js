@@ -24,7 +24,14 @@
         $scope.username = $stateParams.username;
         $scope.studentLoading = true;
 
+    $scope.tab = 'overview';
 
+
+
+        if($scope.username == $rootScope.user.username){
+
+            $state.go('home.myProfile');
+        }
         $scope.follow = function(type, index) {
             if ($rootScope.authenticated) {
                 if (type) {

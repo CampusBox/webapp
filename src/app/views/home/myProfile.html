@@ -137,9 +137,41 @@ md-chips md-chip.md-focused md-icon {
     <md-card flex="70" flex-xs="100">
         <md-card-content>
             <md-tabs md-dynamic-height md-border-bottom md-selected="tab">
+            <!-- need to change it to ng-if  -->
             <div  show-xs hide-gt-xs>
                 <md-tab label="profile">
-                    <div show-xs ng-if="!studentLoading">
+                  <md-card show-xs  hide-gt-xs ng-if="studentLoading">
+                        <center>
+                            <img style="border-radius: 50%; width: 40%; margin-top:20px; background-color: #dfdfdf; padding-bottom: 33%" class="md-card-image">
+                            <div layout="column" layout-align="center center">
+                                <br>
+                                <span class="md-headline animated-background">student.title </span>
+                                <br>
+                                <span class="md-subhead animated-background" style="padding:0px;color: rgba(0, 0, 0, 0.6);">student.college.name name name</span>
+                                <br>
+                            </div>
+                        </center>
+                        <md-card-content style="padding-top: 0px;">
+                            <center>
+                                <div style=" text-align:center;">
+                                    <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
+                                        <li ng-repeat="skill in [1,2,3]" class="" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(224,224,224);">skill.name</li>
+                                    </ul>
+                                </div>
+                            </center>
+                            <section layout="row" layout-align="center center" layout-wrap>
+                                <md-list>
+                                    <md-button ng-href="{{social.link}}" ng-repeat="social in profile.SocialAccounts.data">
+                                        <md-icon md-svg-icon="social.type" md-colors="social.type=='facebook' ? {color: 'indigo'} : {color: 'red'}"></md-icon>
+                                        social.type
+                                    </md-button>
+                                </md-list>
+                            </section>
+                        </md-card-content>
+                        <md-card-actions layout="row" layout-align="end center">
+                        </md-card-actions>
+                    </md-card>
+                    <div show-xs  hide-gt-xs ng-if="!studentLoading">
                         <div layout="row" layout-align="center center">
                             <img flex="30" style="width: 20%; height: 20%; margin-top:20px; background-color: #ccc;" ng-src="{{student.photo}}" class="md-card-image" alt="{{student.name}}">
                             <md-card-title flex="70">
@@ -148,7 +180,7 @@ md-chips md-chip.md-focused md-icon {
                                     <br>
                                     <span class="md-caption">
                                     <!-- <md-icon md-svg-icon="school"></md-icon> -->
-                                     {{student.college.name}}</span>
+                                     {{student.college.about}}</span>
                                 </md-card-title-text>
                             </md-card-title>
                         </div>
@@ -325,7 +357,7 @@ md-chips md-chip.md-focused md-icon {
                     </div>
                 </md-tab>
                 <md-tab ng-if="student.Following.data.length>0">
-                    <md-tab-label>Following <span class="badge">{{student.Following.data.length}}</span> </md-tab-label>
+                    <md-tab-label>Following ({{student.Following.data.length}}) </md-tab-label>
                     <md-tab-body>
                         <md-list flex>
                             <md-list-item class="md-3-line" ui-sref="home.profile({username: item.username})" ng-repeat="item in student.Following.data track by $index" ng-click="null">
@@ -333,7 +365,7 @@ md-chips md-chip.md-focused md-icon {
                                 <div class="md-list-item-text" layout="row">
                                     <div layout="column">
                                         <h3>{{ item.title }} </h3>
-                                        <h4>{{ item.college.name }}</h4>
+                                        <!-- <h4>{{ item.college.name }}</h4> -->
                                         <p>{{ item.about }}</p>
                                     </div>
                                     <span flex></span>
@@ -345,7 +377,7 @@ md-chips md-chip.md-focused md-icon {
                     </md-tab-body>
                 </md-tab>
                 <md-tab ng-if="student.Follower.data.length>0">
-                    <md-tab-label>Followers <span class="badge">{{student.Follower.data.length}}</span> </md-tab-label>
+                    <md-tab-label>Followers ({{student.Follower.data.length}})</span> </md-tab-label>
                     <md-tab-body>
                         <md-list flex>
                             <md-list-item class="md-3-line" ui-sref="home.profile({username: item.username})" ng-repeat="item in student.Follower.data track by $index" ng-click="null">
@@ -353,7 +385,7 @@ md-chips md-chip.md-focused md-icon {
                                 <div class="md-list-item-text" layout="row">
                                     <div layout="column">
                                         <h3>{{ item.title }} </h3>
-                                        <h4>{{ item.college.name }}</h4>
+                                        <!-- <h4>{{ item.college.name }}</h4> -->
                                         <p>{{ item.about }}</p>
                                     </div>
                                     <span flex></span>

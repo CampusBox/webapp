@@ -1,7 +1,7 @@
 
 <div flex layout-gt-xs="row" layout-xs="column" class="main-bg">
     <md-card flex-gt-xs="50">
-        <form name="eventForm" novalidate ng-submit="eventForm.$valid  && submitEvent(event,tags)">
+        <form name="eventForm" novalidate ng-submit=" submitEvent(event,tags)">
             <md-tabs md-dynamic-height md-border-bottom="" md-selected="selectedIndex">
                 <md-tab label="Basic Details">
                     <div class="md-padding" layout="column" layout-padding>
@@ -104,7 +104,7 @@
                     <div class="md-padding" layout="column">
                         <md-input-container md-no-float flex>
                             <!-- <label>Opportunity Venue</label> -->
-                            <place-autocomplete placeholder="Mention college name if event is open for all participants" type="text" required="" ng-model="event.venue"  md-maxlength="100"></place-autocomplete>
+                            <place-autocomplete placeholder="Mention college name if event is open for all participants" type="text" ng-model="event.venue"  md-maxlength="100"></place-autocomplete>
                         </md-input-container>
 
                         <md-input-container md-no-float>
@@ -177,7 +177,8 @@
                 <span flex></span>
                 <!-- <md-button ng-click="nextTab()">Previous</md-button> -->
                 <md-button ng-hide="loading" class=" md-primary" ng-click="nextTab()">Next</md-button>
-                <md-button ng-hide="loading" class="md-raised md-primary" ng-disabled="(event.croppedDataUrl=='') || !eventForm.$valid" type="submit">Create</md-button>
+                <md-button ng-hide="loading" class="md-raised md-primary" ng-disabled="(event.croppedDataUrl=='') " type="submit">Create</md-button>
+                <!-- <md-button ng-hide="loading" class="md-raised md-primary" ng-disabled="(event.croppedDataUrl=='') || !eventForm.$valid" type="submit">Create</md-button> -->
             </md-dialog-actions>
         </form>
     </md-card>

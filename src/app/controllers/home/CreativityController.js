@@ -34,12 +34,12 @@
             { 'title': 'Drawing ', 'id': 5 },
             { 'title': 'Sewing and Fabric', 'id': 6 },
             { 'title': 'Craft', 'id': 7 },
-            // { 'title': 'Clay', 'id': 8 },
+            // { 'title': 'Dancing', 'id': 8 },
             { 'title': 'Dancing', 'id': 8 },
             { 'title': 'Singing', 'id': 9 },
             { 'title': 'Instrumental', 'id': 10 },
             { 'title': 'Digital Music', 'id': 11 },
-            { 'title': 'Photography', 'id': 12 },
+            { 'title': 'Decor', 'id': 12 },
             { 'title': 'Film and Video', 'id': 13 },
             { 'title': 'Animation', 'id': 14 },
             { 'title': 'Graphics', 'id': 15 },
@@ -101,7 +101,7 @@
                             cardObject.total = content.links;
                             content.Items.data.forEach(function(item) {
                                 if (item.type == 'text') {
-                                    cardObject.description = $filter('limitTo')(item.description, 90, 0)
+                                    cardObject.description = item.description;
                                     cardObject.description = $sce.trustAsHtml(cardObject.description);
                                 } else if ((item.type == 'cover' && !cardObject.type)) {
                                     cardObject.type = item.type;
@@ -118,6 +118,12 @@
                                     cardObject.url = item.image;
                                 }
                             });
+                            if (cardObject.type != 'cover' || cardObject.type != 'soundcloud' || cardObject.type != 'youtube') {
+                                cardObject.description = $filter('limitTo')(cardObject.description, 90, 0)
+                            } else {
+                                cardObject.description = $filter('limitTo')(cardObject.description, 110, 0)
+
+                            }
                             $scope.nonFinalContents.push(cardObject);
                             content = {};
                             $scope.creativityLoading = false;

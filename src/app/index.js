@@ -295,6 +295,16 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
     .run(function(authManager, $state, $location, $rootScope, $mdDialog, tokenService) {
         // authManager.checkAuthOnRefresh();
         //   authManager.redirectWhenUnauthenticated();
+        $rootScope.currentState = $state.current.name;
+        console.log($rootScope.currentState);
+        console.log($rootScope.currentState);
+        $rootScope.$on('$stateChangeSuccess', function() {
+            console.log($rootScope.currentState);
+            $rootScope.currentState = $state.current.name;
+            //If you don't wanna create the service, you can directly write
+            // your function here.
+            // someService.doSomething();
+        });
         $rootScope.openLoginDialog = function(callback) {
             $mdDialog.show({
                 controller: 'loginDialogController',

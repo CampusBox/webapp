@@ -111,7 +111,19 @@ angular.module('angularMaterialAdmin')
                         return;
                     }
                     getDetails(place).then(function(details) {
-                        $scope.ngModel = place.description ;
+                        console.log(details);
+                        console.log(details.types[0]);
+                        console.log(details.address_components[0]);
+                        console.log(details.adr_address);
+
+                        var googlePlace = {};
+
+                        googlePlace.id = details.id;
+                        googlePlace.type = details.types[0];
+                        googlePlace.city = details.address_components[4].short_name;
+                        googlePlace.address = details.adr_address;
+                        googlePlace.name = place.description;
+                        $scope.ngModel = googlePlace;
                     });
                 }
             }

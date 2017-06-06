@@ -3,7 +3,7 @@
     fill: rgb(255, 235, 59) !important;
 }
 </style>
-<div layout="row" layout-xs="column" layout-align-gt-xs="start start" flex class="main-bg">
+<div layout="row" layout-xs="column" layout-align-gt-xs="start start" flex >
     <!-- <div hide-cs> -->
     <md-card hide-xs ng-if="studentLoading" flex="30" flex-xs="100">
         <center>
@@ -122,7 +122,7 @@
                         <md-card-actions layout="row" layout-align="end center">
                         </md-card-actions>
                     </md-card>
-                    <div show-xs ng-if="!studentLoading">
+                    <div show-xs hide-gt-xs ng-if="!studentLoading">
                         <div layout="row" layout-align="center center">
                             <img flex="30" style="width: 20%; height: 20%; margin-top:20px; background-color: #ccc;" ng-src="{{profile.photo}}" class="md-card-image" alt="{{profile.name}}">
                             <md-card-title flex="70">
@@ -414,7 +414,7 @@
                                 <div class="md-list-item-text" layout="row">
                                     <div layout="column">
                                         <h3>{{ item.title }} </h3>
-                                        <h4>{{ item.college.name }}</h4>
+                                        <!-- <h4>{{ item.college.name }}</h4> -->
                                         <p>{{ item.about }}</p>
                                     </div>
                                     <span flex></span>
@@ -433,7 +433,7 @@
                                 <div class="md-list-item-text" layout="row">
                                     <div layout="column">
                                         <h3>{{ item.title }} </h3>
-                                        <h4>{{ item.college.name }}</h4>
+                                        <!-- <h4>{{ item.college.name }}</h4> -->
                                         <p>{{ item.about }}</p>
                                     </div>
                                     <span flex></span>

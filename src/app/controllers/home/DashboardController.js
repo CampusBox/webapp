@@ -34,12 +34,12 @@
             { 'title': 'Drawing ', 'id': 5 },
             { 'title': 'Sewing and Fabric', 'id': 6 },
             { 'title': 'Craft', 'id': 7 },
-            // { 'title': 'Clay', 'id': 8 },
+            // { 'title': 'Dancing', 'id': 8 },
             { 'title': 'Dancing', 'id': 8 },
             { 'title': 'Singing', 'id': 9 },
             { 'title': 'Instrumental', 'id': 10 },
             { 'title': 'Digital Music', 'id': 11 },
-            { 'title': 'Photography', 'id': 12 },
+            { 'title': 'Decor', 'id': 12 },
             { 'title': 'Film and Video', 'id': 13 },
             { 'title': 'Animation', 'id': 14 },
             { 'title': 'Graphics', 'id': 15 },
@@ -83,8 +83,8 @@
                             cardObject.total = content.links;
                             content.Items.data.forEach(function(item) {
                                 if (item.type == 'text') {
-                                    cardObject.description = $filter('limitTo')(item.description, 110, 0);
-                                    cardObject.description = $filter('limitTo')(item.description, 110, 0);
+                                    cardObject.description = item.description;
+                                    // cardObject.description = $filter('limitTo')(item.description, 110, 0);
                                     cardObject.description = $sce.trustAsHtml(cardObject.description);
                                 } else if (item.type == 'cover' && !cardObject.type) {
                                     cardObject.type = item.type;
@@ -97,11 +97,16 @@
                                     cardObject.url = item.image;
                                 }
                             });
+                            if (cardObject.type != 'cover' || cardObject.type != 'soundcloud' || cardObject.type != 'youtube') {
+                                cardObject.description = $filter('limitTo')(cardObject.description, 90, 0)
+                            } else {
+                                cardObject.description = $filter('limitTo')(cardObject.description, 150, 0)
+
+                            }
                             $scope.contentsTop.push(cardObject);
                             content = {};
                             $scope.loading = false;
                         });
-                        console.log($scope.finalContents);
                     });
                 $scope.myPagingFunction();
             });
@@ -123,13 +128,11 @@
             })
         }
         $scope.myPagingFunction = function() {
-            console.log('paging called');
             if ($scope.creativityLoading == false && $scope.offset < 5) {
                 $scope.creativityLoading = true;
-                $scope.meraTitle="abcd";
+                $scope.meraTitle = "abcd";
                 tokenService.get("contents?limit=2&offset=" + $scope.offset)
                     .then(function(tableData) {
-                        console.log(tableData);
                         $scope.creativityLoading = false;
                         if (tableData.data.length < 2) {
                             $scope.moreItems = false;
@@ -157,7 +160,7 @@
                             cardObject.total = content.links;
                             content.Items.data.forEach(function(item) {
                                 if (item.type == 'text') {
-                                    cardObject.description = $filter('limitTo')(item.description, 90, 0);
+                                    cardObject.description = item.description;
                                     cardObject.description = $sce.trustAsHtml(cardObject.description);
                                 } else if ((item.type == 'cover' && !cardObject.type)) {
                                     cardObject.type = item.type;
@@ -174,6 +177,12 @@
                                     cardObject.url = item.image;
                                 }
                             });
+                             if (cardObject.type != 'cover' || cardObject.type != 'soundcloud' || cardObject.type != 'youtube') {
+                                cardObject.description = $filter('limitTo')(cardObject.description, 90, 0)
+                            } else {
+                                cardObject.description = $filter('limitTo')(cardObject.description, 150, 0)
+
+                            }
                             $scope.nonFinalContents.push(cardObject);
                             content = {};
                             $scope.creativityLoading = false;
@@ -197,13 +206,13 @@
                     $scope.finalContents[$index].Actions.Appreciate.total += 1;
                     tokenService.post('appreciateContent/' + content.id).then(function(result) {
 
-                      
+
                     });
                 } else {
                     $scope.finalContents[$index].Actions.Appreciate.total -= 1;
 
                     tokenService.delete('appreciateContent/' + content.id, '').then(function(result) {
-                       
+
                     });
                 }
             } else {
@@ -217,18 +226,17 @@
             if ($scope.finalContents[index].Actions.Bookmarked.status) {
                 $scope.finalContents[index].Actions.Bookmarked.total += 1;
                 tokenService.post('bookmarkContent/' + content.id).then(function(result) {
-                  
+
                 });
             } else {
                 $scope.finalContents[index].Actions.Bookmarked.total -= 1;
                 tokenService.delete('bookmarkContent/' + content.id, '').then(function(result) {
-                   
+
                 });
             }
         }
         $scope.openProfile = function($event, username) {
             $event.stopPropagation();
-            console.log(username);
             $state.go('home.profile', { username: username });
         };
         $scope.heartEvent = function(event, $index) {
@@ -238,13 +246,13 @@
                     $scope.events[$index].Actions.Bookmarked.total += 1;
                     tokenService.post('bookmarkEvent/' + event.id).then(function(result) {
 
-                       
+
                     });
                 } else {
                     $scope.events[$index].Actions.Bookmarked.total -= 1;
 
                     tokenService.delete('bookmarkEvent/' + event.id, '').then(function(result) {
-                      
+
                     });
                 }
             } else {
@@ -258,46 +266,44 @@
                 // $scope.events[$index].participation_state = state;
                 switch (state) {
                     case 2:
-                        console.log('intrested button pressed');
                         // intrested button pressed
                         if ($scope.events[$index].participation_state == 2) {
                             //person was intrested before and is'nt now
                             $scope.events[$index].participation_state = 0;
                             tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
-                               
+
                             });
                         } else if ($scope.events[$index].participation_state == 1) {
                             //person was going but isnt intrested now
                             $scope.events[$index].participation_state = 0;
                             tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
-                               
+
                             });
                         } else {
                             // person wasnt intrested before but is now
                             $scope.events[$index].participation_state = 2;
                             tokenService.post('rsvpEvent/' + event.id + '/' + 2).then(function(result) {
-                               
+
                             });
                         }
                         break;
                     case 1:
-                        console.log('going button pressed');
                         if ($scope.events[$index].participation_state == 2) {
                             // person intrested before and now he's going too
                             $scope.events[$index].participation_state = 1;
                             tokenService.post('rsvpEvent/' + event.id + '/' + 1).then(function(result) {
-                               
+
                             });
                         } else if ($scope.events[$index].participation_state == 1) {
                             // person is not going anymore
                             $scope.events[$index].participation_state = 0;
                             tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
-                               
+
                             });
                         } else {
                             // person was not going before but is going now
                             tokenService.post('rsvpEvent/' + event.id + '/' + 1).then(function(result) {
-                               
+
                             });
                         }
 
