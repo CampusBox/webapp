@@ -714,21 +714,17 @@ md-icon.cross>svg {
 }
 
 .play-button {
-    height: 80px;
-    width: 80px;
-    position: absolute;
-    margin-left: 130px;
-    margin-top: -109px;
-    /* For Opera 11.6-12.0 */
-    background: -o-radial-gradient(#fff 21%, #000 54%, rgba(255, 255, 255, 0) 67%);
-    /* For Firefox 3.6-15 */
-    background: -moz-radial-gradient(#fff 21%, #000 54%, rgba(255, 255, 255, 0) 67%);
-    /* Standard syntax */
-    background: radial-gradient(#fff 21%, #000 54%, rgba(255, 255, 255, 0) 67%);
-    /* For chrome syntax */
-    background: -webkit-radial-gradient(#fff 21%, #000 54%, rgba(255, 255, 255, 0) 67%);
-    color: #e62117;
+    fill: white;
+    border-style: solid;
+    border-color: white;
+    border-radius: 100%;
+    background: rgba(72, 69, 69, 0.47);
     text-shadow: 2px 2px 2px black;
+    position: absolute;
+    top: 25%;
+    right: 42%;
+    height: 60px;
+    width: 60px;
 }
 
 .creativity-description {

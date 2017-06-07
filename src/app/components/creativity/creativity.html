@@ -25,7 +25,7 @@
             Filter
         </md-button>
     </div>
-    <div layout="row" ng-if="filterShow" layout-wrap hide-gt-sm>
+    <div layout="row" ng-if="filterShow" layout-wrap show-xs show-sm hide-gt-sm>
         <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected':'interest'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
             {{ type.title }}
         </md-button>
@@ -46,10 +46,12 @@
                 <a ng-if="(content.type == 'cover' || content.type == 'image')" ui-sref="home.singleContent({contentId: content.id})">
                     <img class="creativity-cover" ng-class="(mediaTypes.indexOf(content.content.type) !== -1)?'creativity-cover-full':''" alt="" ng-src="{{content.url}}">
                 </a>
-                <a ng-if="(content.type == 'youtube')" ui-sref="home.singleContent({contentId: content.id})">
-                    <img style="background:url('https://img.youtube.com/vi/{{content.url}}/hqdefault.jpg');object-fit: cover;background-size: cover;background-position: center;" class="creativity-cover" alt="">
-                    <md-icon class="play-button" md-svg-icon="play-circle" ng-if="(content.type == 'youtube')" ui-sref="home.singleContent({contentId: content.id})" style="" aria-label="Alarm Icon"></md-icon>
-                </a>
+                <div ng-if="(content.type == 'youtube')" style="position: relative;">
+                    <a ui-sref="home.singleContent({contentId: content.id})">
+                        <img style="background:url('https://img.youtube.com/vi/{{content.url}}/hqdefault.jpg');object-fit: cover;background-size: cover;background-position: center;" class="creativity-cover" alt="">
+                        <md-icon class="play-button" md-svg-icon="play" ng-if="(content.type == 'youtube')" ui-sref="home.singleContent({contentId: content.id})" style="" aria-label="Alarm Icon"></md-icon>
+                    </a>
+                </div>
             </md-card-content>
             <md-card-header layout="column" flex ng-hide="(mediaTypes.indexOf(content.content.type) !== -1)">
                 <a ui-sref="home.singleContent({contentId: content.id})" style="text-decoration: none;">

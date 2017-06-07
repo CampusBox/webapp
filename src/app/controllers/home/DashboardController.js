@@ -222,16 +222,23 @@
             }
         }
         $scope.bookmark = function(content, index) {
-            $scope.finalContents[index].Actions.Bookmarked.status = !$scope.finalContents[index].Actions.Bookmarked.status;
-            if ($scope.finalContents[index].Actions.Bookmarked.status) {
-                $scope.finalContents[index].Actions.Bookmarked.total += 1;
-                tokenService.post('bookmarkContent/' + content.id).then(function(result) {
+            if ($rootScope.authenticated) {
 
-                });
+                $scope.finalContents[index].Actions.Bookmarked.status = !$scope.finalContents[index].Actions.Bookmarked.status;
+                if ($scope.finalContents[index].Actions.Bookmarked.status) {
+                    $scope.finalContents[index].Actions.Bookmarked.total += 1;
+                    tokenService.post('bookmarkContent/' + content.id).then(function(result) {
+
+                    });
+                } else {
+                    $scope.finalContents[index].Actions.Bookmarked.total -= 1;
+                    tokenService.delete('bookmarkContent/' + content.id, '').then(function(result) {
+
+                    });
+                }
             } else {
-                $scope.finalContents[index].Actions.Bookmarked.total -= 1;
-                tokenService.delete('bookmarkContent/' + content.id, '').then(function(result) {
-
+                $rootScope.openLoginDialog(function() {
+                    $scope.bookmark(content, index);
                 });
             }
         }
