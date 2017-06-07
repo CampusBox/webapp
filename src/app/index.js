@@ -295,6 +295,8 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
     .run(function(authManager, $state, $location, $rootScope, $mdDialog, tokenService) {
         // authManager.checkAuthOnRefresh();
         //   authManager.redirectWhenUnauthenticated();
+            $rootScope.user = {};
+        
         $rootScope.currentState = $state.current.name;
         console.log($rootScope.currentState);
         console.log($rootScope.currentState);
