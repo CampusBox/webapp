@@ -64,7 +64,7 @@
                             <h3>{{user.name}}</h3>
                             <p>Draft</p>
                         </div>
-                        <md-button class="md-secondary md-primary md-raised" ng-disabled="(!(title && creativity.items[0].text && creativity.items[0].text.length>20 ) || loading)" class="md-raised md-primary" ng-controller="LicenseController" ng-click="showCustom()" ng-hide="loading">Publish</md-button>
+                        <md-button class="md-secondary md-primary md-raised" ng-disabled="(!(title && creativity.items[0].text && creativity.items[0].text.length>20 ) || loading)" class="md-raised md-primary" ng-click="publish()" ng-hide="loading">Publish</md-button>
                         <div class="spinner" ng-hide="!loading" style="width: 40px;height: 40px;background-color: #0570c0;"></div>
                             <md-tooltip md-direction="bottom">Type min 30 characters.</md-tooltip>
                         </md-button>
