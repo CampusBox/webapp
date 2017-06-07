@@ -19,13 +19,13 @@
             {{ type.title }}
         </md-button>
     </div>
-    <div layout-align="start center" layout="row" show-xs show-sm>
+    <div layout-align="start center" layout="row" show-xs show-sm hide-gt-sm>
         <md-button class="md-primary" ng-click="filterToggle()">
             <md-icon md-svg="filter"></md-icon>
             Filter
         </md-button>
     </div>
-    <div layout="row" ng-if="filterShow" layout-wrap  show-xs show-sm>
+    <div layout="row" ng-if="filterShow" layout-wrap  show-xs show-sm hide-gt-sm>
         <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected categoryChip':'interest categoryChip'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
             {{ type.title }}
         </md-button>
