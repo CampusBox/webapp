@@ -5,14 +5,27 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
     ])
     //remove setellizer
     .config(function(AnalyticsProvider, $stateProvider, $urlRouterProvider, $mdThemingProvider, $authProvider, $locationProvider,
-        $mdIconProvider, socialProvider, jwtInterceptorProvider, jwtOptionsProvider, $httpProvider, $mdDateLocaleProvider, $mdAriaProvider) {
+        $mdIconProvider, socialProvider, jwtInterceptorProvider, jwtOptionsProvider, $httpProvider, $mdDateLocaleProvider, $mdAriaProvider, $compileProvider) {
+
         AnalyticsProvider.setAccount('UA-57016004-2'); //UU-XXXXXXX-X should be your tracking code
+
 
         $mdDateLocaleProvider.formatDate = function(date) {
             return moment(date).format('DD-MMM-YY');
         };
         $mdAriaProvider.disableWarnings();
+
+
+
+        /*
+            comment these for running locally
+         */
+
+        // $compileProvider.debugInfoEnabled(false);
+        // $compileProvider.commentDirectivesEnabled(false);
+        // $compileProvider.cssClassDirectivesEnabled(false);
         // $locationProvider.html5Mode(true);
+        // over 
 
         jwtOptionsProvider.config({
             whiteListedDomains: ['http://localhost', 'http://192.171.2.213', 'http://campusbox.org'],
