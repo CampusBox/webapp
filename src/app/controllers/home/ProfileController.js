@@ -17,6 +17,11 @@
 
     function ProfileController($mdDialog, $scope, tokenService, $stateParams, $state, allDataService, $location, $sce, $rootScope) {
         var cardObject = {};
+        $currentNavItem = 'overview';
+        $scope.goto = function(page) {
+            $currentNavItem = page;
+
+        }
 
         $scope.followers = [];
         $scope.BookmarkedContents = [];
