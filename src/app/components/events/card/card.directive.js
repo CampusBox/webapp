@@ -13,7 +13,7 @@
                 $scope.width = 28;
                 $scope.offset = 0;
                 $scope.moreItems = true;
-                $scope.loading = false;
+                $scope.eventLoading = true;
                 $scope.events = [];
                 $scope.types = [
                     { 'id': 0, 'title': 'All', },
@@ -40,6 +40,8 @@
                 tokenService.get("minievents?limit=4")
                     .then(function(tableData) {
                         $scope.events = tableData.data;
+                        $scope.eventLoading = false;
+
                         // console.log(tableData.data);
                     });
                 $scope.report = function() {

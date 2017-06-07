@@ -25,6 +25,7 @@
             .then(function(tableData) {
                 tableData.data[0].details.description = $sce.trustAsHtml(tableData.data[0].details.description);
                 $scope.event = tableData.data[0];
+                console.log(JSON.parse(angular.toJson($scope.event)));
                 $scope.loading = false;
                 console.log($scope.event);
             });

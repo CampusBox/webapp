@@ -13,15 +13,15 @@
 }
 </style> -->
 <div layout-gt-xs="row" layout-xs="column">
-    <div style="background: #fafafa;" hide-xs hide-sm flex="15" layou="row" layout-wrap>
+    <center style="margin-top:8px; " hide-xs hide-sm flex="20" layou="row" layout-wrap>
         <h3 class="md-title">Categories</h3>
-        <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected categoryChip':'interest categoryChip'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
+        <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected':'interest'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
             {{ type.title }}
         </md-button>
-    </div>
-    <div layout-align="start center" layout="row" show-xs show-sm hide-gt-sm>
-        <md-button class="md-primary" ng-click="filterToggle()">
-            <md-icon md-svg="filter"></md-icon>
+    </center>
+    <div layout-align="start center" layout="row" hide-gt-xs>
+        <md-button class="" ng-click="filterToggle()">
+            <md-icon md-svg-icon="filter-outline"></md-icon>
             Filter
         </md-button>
     </div>
@@ -34,7 +34,7 @@
             Done
         </md-button>
     </div>
-    <div flex-gt-xs="85" flex-xs="100" layout-align="start center" layout-align-xs="center center" layout="row" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading
+    <div flex-gt-sm="80" flex-xs="100" style="background: #fbfcfd" layout-align="start center" layout-align-xs="center center" layout="row" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading
 ' infinite-scroll-distance="4 ">
         <md-card class="content-card" flex-lg="30" flex-md="45" flex-sm="45" flex="100" ng-repeat="content in finalContents track by $index">
             <md-card-content style="padding: 0px">
@@ -48,6 +48,7 @@
                 </a>
                 <a ng-if="(content.type == 'youtube')" ui-sref="home.singleContent({contentId: content.id})">
                     <img style="background:url('https://img.youtube.com/vi/{{content.url}}/hqdefault.jpg');object-fit: cover;background-size: cover;background-position: center;" class="creativity-cover" alt="">
+                    <md-icon class="play-button" md-svg-icon="play-circle" ng-if="(content.type == 'youtube')" ui-sref="home.singleContent({contentId: content.id})" style="" aria-label="Alarm Icon"></md-icon>
                 </a>
             </md-card-content>
             <md-card-header layout="column" flex ng-hide="(mediaTypes.indexOf(content.content.type) !== -1)">
@@ -71,12 +72,15 @@
                     </span>
                     <!-- <span style="color: rgba(99,108,116,0.87);" class="md-caption">{{content.created.at  | date: 'd MMM'}}</span> -->
                 </md-card-header-text>
-                <div layout="row" layout-align="start center" flex="40">
-                    <md-button class="appreciate-button" flex style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
+                <div layout="row" layout-align="start center" flex="50">
+                    <md-button class="appreciate-button md-icon-button" style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
                         <md-icon class="pink" md-svg-icon="{{content.Actions.Appreciate.status? 'heart' : 'heart-outline' }}"></md-icon>
                     </md-button>
                     <span ng-click="showLikes(content.id, content.title)" style="cursor: pointer;" class="likesNumber"> {{content.Actions.Appreciate.total}}</span>
-                    <md-button class="md-icon-button" flex ng-click="bookmark(content, $index)" aria-label="Favorite">
+                    <md-button class="md-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'creativity');" aria-label="share ">
+                        <md-icon ng-class="" md-svg-icon="share"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" ng-click="bookmark(content, $index)" aria-label="Favorite">
                         <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
                     </md-button>
                 </div>
