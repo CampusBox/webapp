@@ -110,8 +110,8 @@
                 </div>
                 <div flex-offset-gt-sm="10" flex-gt-sm="80" layout="column">
                     <p hide-xs show-gt-xs class="md-title" ng-hide="progress<1" style="outline: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;" ng-model="creativity.items[0].text" medium-editor data-placeholder="Tell your story..."></p>
-                    <div show-xs hide-gt-xs>
-                    <trix-editor angular-trix ng-model="creativity.items[0].text" placeholder="Tell your story..." class="trix-content md-title" style="outline: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;"></trix-editor>
+                    <div show-xs hide-gt-xs ng-hide="progress<1">
+                    <trix-editor angular-trix  ng-model="creativity.items[0].text" placeholder="Tell your story..." class="trix-content md-title" style="outline: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;"></trix-editor>
                     </div>
                     <center ng-repeat="item in creativity.items" ng-if="item.mediaType=='image'">
                         <img style="max-width: 100%" ngf-thumbnail="item.image" />
