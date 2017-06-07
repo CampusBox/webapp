@@ -8,7 +8,7 @@
     color: rgba(0, 0, 0, 0.87);
 }
 </style>
-<div style="position: absolute;width: 100%;height: 100%;">
+<div style="position: absolute;width: 100%;height: auto; margin-bottom: 60px;">
     <div ng-init="uploaded = false; addImage = false">
         <div layout-gt-sm="row" layout-xs="column" layout-sm="column" layout-align="start start">
             <!--   <div hide-xs hide-sm layout="column" flex-gt-sm="30" flex-order-xs="2" flex-order-sm="2">
@@ -64,10 +64,9 @@
                             <h3>{{user.name}}</h3>
                             <p>Draft</p>
                         </div>
-                        <md-button class="md-secondary md-primary md-raised" ng-disabled="(!(title && creativity.items[0].text && creativity.items[0].text.length>20 ) || loading)" class="md-raised md-primary" ng-click="publish()" ng-hide="loading">Publish</md-button>
+                        <md-button class="md-secondary md-primary md-raised" ng-disabled="(!(title && creativity.items[0].text && creativity.items[0].text.length>20 ) || loading)" class="md-raised md-primary"  ng-click="publish()" ng-hide="loading">Publish</md-button>
                         <div class="spinner" ng-hide="!loading" style="width: 40px;height: 40px;background-color: #0570c0;"></div>
                             <md-tooltip md-direction="bottom">Type min 30 characters.</md-tooltip>
-                        </md-button>
                     </md-list-item>
                     <!-- 
                     <md-card-actions layout="column" layout-align="end center">
@@ -110,7 +109,10 @@
                     <span>Adding a cover helps people help discover content better. <a target="_blank" href="http://unsplash.com"></a></span>
                 </div>
                 <div flex-offset-gt-sm="10" flex-gt-sm="80" layout="column">
-                    <p class="md-title" ng-hide="progress<1" style="outline: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;" ng-model="creativity.items[0].text" medium-editor data-placeholder="Tell your story..."></p>
+                    <p hide-xs show-gt-xs class="md-title" ng-hide="progress<1" style="outline: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;" ng-model="creativity.items[0].text" medium-editor data-placeholder="Tell your story..."></p>
+                    <div show-xs hide-gt-xs>
+                    <trix-editor angular-trix ng-model="creativity.items[0].text" placeholder="Tell your story..." class="trix-content md-title" style="outline: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;"></trix-editor>
+                    </div>
                     <center ng-repeat="item in creativity.items" ng-if="item.mediaType=='image'">
                         <img style="max-width: 100%" ngf-thumbnail="item.image" />
                     </center>
