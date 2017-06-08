@@ -835,6 +835,10 @@ md-icon.cross>svg {
 }
 
 @media only screen and (max-width: 500px) {
+    .play-button {
+        margin-left: 40%;
+        margin-top: -31%;
+    }
     .creativity-page {
         margin-top: 0px;
     }
