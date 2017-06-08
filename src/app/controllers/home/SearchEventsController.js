@@ -26,9 +26,7 @@
         $scope.loading = true;
         tokenService.get("search/events/" + $scope.query)
             .then(function(tableData) {
-
-                $scope.loading = false;
-                $scope.events = $scope.events.concat(tableData.data);
+                $scope.events = tableData.data;
                 console.log($scope.events);
             });
 
@@ -59,10 +57,10 @@
         //     'title': 'students',
         //     'icon': 'school'
         // }];
-        $scope.report = function() {
-            console.log('testing report function');
-        }
 
+        $scope.searchedFast = function(text) {
+             $state.go('home.searchEvents', { query: text });
+        };
         $scope.heart = function(event, $index) {
             if ($rootScope.authenticated) {
                 $scope.events[$index].Actions.Bookmarked.status = !$scope.events[$index].Actions.Bookmarked.status;
@@ -133,6 +131,9 @@
                 $state.go('home.searchCreativity', { query: text });
             } else if (item == 'students') {
                 $state.go('home.searchStudents', { query: text });
+            } else if(item == 'searchAll'){
+                $state.go('home.searchAll', { query: text });
+
             }
         };
         $scope.searchTerm;

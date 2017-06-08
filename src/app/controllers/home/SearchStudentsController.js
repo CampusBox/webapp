@@ -11,7 +11,7 @@
         var vm = this;
         vm.currentNavItem = "students";
         $scope.searchedFast = function(text) {
-            $state.go('home.searchStudents', { query: text });
+             $state.go('home.searchStudents', { query: text });
         };
 
         $scope.tests = 'test';
@@ -29,6 +29,9 @@
                 $state.go('home.searchCreativity', { query: text });
             } else if (item == 'students') {
                 $state.go('home.searchStudents', { query: text });
+            } else if(item == 'searchAll'){
+                $state.go('home.searchAll', { query: text });
+
             }
         };
         $scope.follow = function($event, index) {
