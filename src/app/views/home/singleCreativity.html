@@ -97,7 +97,7 @@ md-list-item .md-button:not([disabled]):click {
         </div>
     </div>
 </div>
-<div layout="row" style="margin-top: 50px" layout-xs="column" layout-sm="column" flex flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100">
+<div layout="row" style="margin-top: 50px;margin-bottom: 50px;" layout-xs="column" layout-sm="column" flex flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100">
     <md-card style="height: 280px;" flex ng-repeat="content in finalContents track by $index" class="pointer" ui-sref="home.singleContent({contentId: content.id})">
         <img ng-if="(content.type == 'cover' || content.type == 'image')" ng-src="{{content.url}}" class="md-card-image" style="object-fit: cover;height: 100px;">
         <img ng-if="(content.type == 'youtube')" style="background:url('https://img.youtube.com/vi/{{content.url}}/hqdefault.jpg');object-fit: cover;background-size: cover;background-position: center;height: 100px;" class="creativity-cover" alt="">
