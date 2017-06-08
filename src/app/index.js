@@ -25,19 +25,12 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
         // $compileProvider.commentDirectivesEnabled(false);
         // $compileProvider.cssClassDirectivesEnabled(false);
         // $locationProvider.html5Mode(true);
+
+
+
         // over 
 
 
-
-        /*
-            comment these for running locally
-         */
-
-        $compileProvider.debugInfoEnabled(false);
-        $compileProvider.commentDirectivesEnabled(false);
-        $compileProvider.cssClassDirectivesEnabled(false);
-        $locationProvider.html5Mode(true);
-        // over 
 
         jwtOptionsProvider.config({
             whiteListedDomains: ['http://localhost', 'http://192.171.2.213', 'http://campusbox.org'],
@@ -330,8 +323,10 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
     .run(function(authManager, $state, $location, $rootScope, $mdDialog, tokenService, Analytics) {
         // authManager.checkAuthOnRefresh();
         //   authManager.redirectWhenUnauthenticated();
-            $rootScope.user = {};
-        
+        localStorage.setItem('evervisited', true);
+        console.log(localStorage.getItem('evervisited'))
+        $rootScope.user = {};
+
         $rootScope.currentState = $state.current.name;
         $rootScope.$on('$stateChangeSuccess', function() {
             $rootScope.currentState = $state.current.name;

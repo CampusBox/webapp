@@ -64,7 +64,7 @@
 
             var confirm = $mdDialog.confirm()
                 .title('You have been logged out successfully.')
-                .ariaLabel('TutorialsPoint.com')
+                .ariaLabel('Logged out successfully.')
                 .targetEvent(event)
                 .ok('Okay');
             $mdDialog.show(confirm).then(function() {
@@ -167,7 +167,9 @@
             }
         };
         $scope.searchedFast = function(text) {
-            console.log($state.current.name);
+            console.log(text);
+                      $state.go('home.searchAll', { query: text }); 
+
             switch ($state.current.name) {
                 case 'home.searchAll':
                     $state.go('home.searchAll', { query: text });
