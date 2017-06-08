@@ -27,6 +27,18 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
         // $locationProvider.html5Mode(true);
         // over 
 
+
+
+        /*
+            comment these for running locally
+         */
+
+        $compileProvider.debugInfoEnabled(false);
+        $compileProvider.commentDirectivesEnabled(false);
+        $compileProvider.cssClassDirectivesEnabled(false);
+        $locationProvider.html5Mode(true);
+        // over 
+
         jwtOptionsProvider.config({
             whiteListedDomains: ['http://localhost', 'http://192.171.2.213', 'http://campusbox.org'],
             // unauthenticatedRedirectPath: '/dashboard',
