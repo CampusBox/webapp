@@ -75,10 +75,13 @@ md-list-item .md-button:not([disabled]):click {
                 <span ng-click="showLikes($event, content.id, content.title)" style="cursor: pointer;" class="likesNumber"> {{content.Actions.Appreciate.total}}</span>
                 <span flex></span>
                 <md-button style="float:right" ng-controller="ShareController" ng-click="showCustom($event,'creativity');" aria-label="facebook ">
-                    <md-icon ng-class="" md-svg-icon="share"></md-icon> Share
+                    <md-icon ng-class="" md-svg-icon="share"></md-icon> <span hide-xs>Share</span>
                 </md-button>
                 <md-button style="float:right" ng-click="bookmark(content)" aria-label="Favorite ">
-                    <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon> Bookmark
+                    <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon> <span hide-xs>
+                        
+                    Bookmark
+                    </span>
                 </md-button>
                 <md-divider></md-divider>
                 <md-list>
