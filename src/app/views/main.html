@@ -24,7 +24,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
 }
 </style>
 <div layout="column" layout-fill>
-<md-toolbar md-scroll-shrink md-shrink-speed-factor="0.5" hide-xs hide-sm layout="row" layout-align="center center" style="    min-height: 57px;" class="md-whiteframe-1dp">
+<md-toolbar md-scroll-shrink md-shrink-speed-factor="0.1" hide-xs hide-sm layout="row" layout-align="center center" style="    min-height: 57px;" class="md-whiteframe-1dp">
     <section layout-align="start center">
         <md-button hide-sm hide-xs layout="row" ui-sref="home.dashboard" layout-align="center center" class="md-toolbar-tools" style="    height: 57px;" aria-label="Home">
             <!-- <md-icon md-svg-icon="school" class="blue_fill"></md-icon>  -->
@@ -180,7 +180,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
     <div ui-view style="max-width: 1500px;margin:auto;">
     </div>
 </md-content>
-<md-toolbar hide-gt-sm layout="row" style="position: fixed;bottom: 0px;" class="md-whiteframe-3dp" layout-align="center center">
+<md-toolbar  hide-gt-sm layout="row" style="position: fixed;bottom: 0px;" class="md-whiteframe-3dp" layout-align="center center">
     <md-button layout-align="center center" flex class="capitalize grey_text bottom-menu-item" ng-click="vm.selectItem(item)" ui-sref-active="" ui-sref=".dashboard">
         <div hide-md class="md-tile-content">
             <md-icon md-svg-icon="home"></md-icon>
@@ -189,7 +189,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
             Home
         </div>
     </md-button>
-    <md-button layout-align="center center" flex class="capitalize grey_text bottom-menu-item" ui-sref="home.searchStudents" aria-label="Notifications" ng-click="">
+    <md-button layout-align="center center" flex class="capitalize grey_text bottom-menu-item" ui-sref="home.searchAll" aria-label="Notifications" ng-click="">
         <div hide-md class="md-tile-content">
             <md-icon md-svg-icon="magnify"></md-icon>
         </div>

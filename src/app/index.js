@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer',
-        'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop', 'angular-jwt', 'infinite-scroll'
+        'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop', 'angular-jwt', 'infinite-scroll', 'angular-google-analytics'
     ])
     //remove setellizer
-    .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, $authProvider, $locationProvider,
+    .config(function(AnalyticsProvider, $stateProvider, $urlRouterProvider, $mdThemingProvider, $authProvider, $locationProvider,
         $mdIconProvider, socialProvider, jwtInterceptorProvider, jwtOptionsProvider, $httpProvider, $mdDateLocaleProvider, $mdAriaProvider) {
+        AnalyticsProvider.setAccount('UA-57016004-2'); //UU-XXXXXXX-X should be your tracking code
 
         $mdDateLocaleProvider.formatDate = function(date) {
             return moment(date).format('DD-MMM-YY');
@@ -15,9 +16,9 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
 
         jwtOptionsProvider.config({
             whiteListedDomains: ['http://localhost', 'http://192.171.2.213', 'http://campusbox.org'],
-            unauthenticatedRedirectPath: '/signUp',
+            unauthenticatedRedirectPath: '/dashboard',
             unauthenticatedRedirector: ['$state', function($state) {
-                $state.go('static.signUp');
+                $state.go('home.dashboard');
                 // $rootScope.openLoginDialog();
             }],
             tokenGetter: ['options', 'jwtHelper', function(options, jwtHelper) {
@@ -133,6 +134,15 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
                 controler: 'SearchStudentsController',
                 controllerAs: 'vm',
                 templateUrl: 'app/views/home/searchStudents.html',
+                data: {
+                    title: 'Dashboard'
+                }
+            })
+            .state('home.searchAll', {
+                url: '/search/:query',
+                controler: 'SearchAllController',
+                controllerAs: 'vm',
+                templateUrl: 'app/views/home/searchAll.html',
                 data: {
                     title: 'Dashboard'
                 }
@@ -292,16 +302,13 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
 
 
     })
-    .run(function(authManager, $state, $location, $rootScope, $mdDialog, tokenService) {
+    .run(function(authManager, $state, $location, $rootScope, $mdDialog, tokenService, Analytics) {
         // authManager.checkAuthOnRefresh();
         //   authManager.redirectWhenUnauthenticated();
             $rootScope.user = {};
         
         $rootScope.currentState = $state.current.name;
-        console.log($rootScope.currentState);
-        console.log($rootScope.currentState);
         $rootScope.$on('$stateChangeSuccess', function() {
-            console.log($rootScope.currentState);
             $rootScope.currentState = $state.current.name;
             //If you don't wanna create the service, you can directly write
             // your function here.

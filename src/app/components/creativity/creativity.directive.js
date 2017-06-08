@@ -24,7 +24,6 @@
                     { 'title': 'Sewing and Fabric', 'id': 6 },
                     { 'title': 'Craft', 'id': 7 },
                     { 'title': 'Dancing', 'id': 8 },
-                    { 'title': 'Dancing', 'id': 22 },
                     { 'title': 'Singing', 'id': 9 },
                     { 'title': 'Instrumental', 'id': 10 },
                     { 'title': 'Digital Music', 'id': 11 },

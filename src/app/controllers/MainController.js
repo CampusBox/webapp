@@ -15,7 +15,6 @@
             document.getElementById('basicveryimportantloading').remove();
         }
         // document.getElementById('basicveryimportantloading').remove();
-        console.log($state.current);
 
         $scope.$state = $state;
 
@@ -168,8 +167,22 @@
             }
         };
         $scope.searchedFast = function(text) {
+            console.log($state.current.name);
+            switch ($state.current.name) {
+                case 'home.searchAll':
+                    $state.go('home.searchAll', { query: text });
+                    break;
+                case 'home.searchStudents':
+                    $state.go('home.searchStudents', { query: text });
+                    break;
+                case 'home.searchCreativity':
+                    $state.go('home.searchCreativity', { query: text });
+                    break;
+                case 'home.searchEvents':
+                    $state.go('home.searchEvents', { query: text });
+                    break;
 
-            $state.go('home.searchStudents', { query: text });
+            }
         };
 
         function showSimpleToast(title) {

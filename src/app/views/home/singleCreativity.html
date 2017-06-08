@@ -14,9 +14,12 @@ md-list-item .md-button:not([disabled]):click {
             <md-button class="md-icon-button" ng-click="heart($event, content)" aria-label="Favorite" sticky>
                 <md-icon ng-class="content.Actions.Appreciate.status? 'pink':''" md-svg-icon="{{content.Actions.Appreciate.status? 'heart' : 'heart-outline' }}"></md-icon>
             </md-button>
-            <span style="cursor: pointer;" ng-click="showLikes($event, content.id, content.title)" class="likesNumber"> {{content.Actions.Appreciate.total}}</span>
+            <span style="cursor: pointer;" ng-click="showLikes($event, content.id, content.title)" class="likesNumber"></span>
             <md-button class="md-icon-button" ng-click="bookmark(content)" aria-label="Favorite ">
                 <md-icon ng-class="content.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
+            </md-button>
+            <md-button class="md-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'creativity');" aria-label="Share ">
+                <md-icon ng-class="" md-svg-icon="share"></md-icon>
             </md-button>
         </div>
     </div>
@@ -60,7 +63,7 @@ md-list-item .md-button:not([disabled]):click {
                 <p class="md-body-1 creativity-description creativity-description-single" ng-bind-html="item.description">
                 </p>
             </div>
-            <div flex-offset-gt-sm="10" flex-gt-sm="60" flex="100" class="creativity-description creativity-description-single">
+            <div flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100">
                 <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
                     <li ng-repeat="tag in content.Tags.data" style="cursor: auto;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">
                         {{tag.name}}
@@ -70,20 +73,14 @@ md-list-item .md-button:not([disabled]):click {
                     <md-icon class="pink" md-svg-icon="{{content.Actions.Appreciate.status? 'heart' : 'heart-outline' }}"></md-icon> {{content.Actions.Appreciate.status? 'Appreciated' : 'Appreciate' }}
                 </md-button>
                 <span ng-click="showLikes($event, content.id, content.title)" style="cursor: pointer;" class="likesNumber"> {{content.Actions.Appreciate.total}}</span>
-                <md-button class="md-icon-button" style="float:right;" ng-click="bookmark(content)" aria-label="Favorite ">
-                    <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
+                <span flex></span>
+                <md-button style="float:right" ng-controller="ShareController" ng-click="showCustom($event,'creativity');" aria-label="facebook ">
+                    <md-icon ng-class="" md-svg-icon="share"></md-icon> Share
+                </md-button>
+                <md-button style="float:right" ng-click="bookmark(content)" aria-label="Favorite ">
+                    <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon> Bookmark
                 </md-button>
                 <md-divider></md-divider>
-                <!--                 <md-list>
-                    <md-list-item flex-offset-gt-sm="10" class="md-3-line" ng-click="false" md-ink-ripple="0">
-                        <img ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
-                        <div class="md-list-item-text" layout="column">
-                            <h3><span class="md-subhead">
-                <span  ui-sref="home.profile({username: content.created.by.username})"  class="capitalize pointer" >
-                {{content.created.by.name}} </span>
-                   </div>
-                </md-list-item>
-                </md-list> -->
                 <md-list>
                     <md-list-item ui-sref="home.profile({username: content.created.by.username})" class="md-2-line" ng-click="false" md-ink-ripple="0">
                         <img ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />

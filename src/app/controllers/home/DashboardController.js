@@ -17,7 +17,7 @@
 
     function DashboardController($mdDialog, $scope, tokenService, Upload, $location, $sce, $filter, $state, $rootScope) {
         $scope.events = {};
-
+        $rootScope.title = "Dashboard";
         $scope.updatesLoading = true;
         $scope.eventLoading = true;
         $scope.eventTopLoading = true;
@@ -131,10 +131,10 @@
             if ($scope.creativityLoading == false && $scope.offset < 5) {
                 $scope.creativityLoading = true;
                 $scope.meraTitle = "abcd";
-                tokenService.get("contents?limit=2&offset=" + $scope.offset)
+                tokenService.get("contents?limit=3&offset=" + $scope.offset)
                     .then(function(tableData) {
                         $scope.creativityLoading = false;
-                        if (tableData.data.length < 2) {
+                        if (tableData.data.length < 3) {
                             $scope.moreItems = false;
                         }
                         $scope.nonFinalContents = [];
@@ -177,7 +177,7 @@
                                     cardObject.url = item.image;
                                 }
                             });
-                             if (cardObject.type != 'cover' || cardObject.type != 'soundcloud' || cardObject.type != 'youtube') {
+                            if (cardObject.type != 'cover' || cardObject.type != 'soundcloud' || cardObject.type != 'youtube') {
                                 cardObject.description = $filter('limitTo')(cardObject.description, 90, 0)
                             } else {
                                 cardObject.description = $filter('limitTo')(cardObject.description, 150, 0)
@@ -190,7 +190,7 @@
                         });
                         $scope.creativityLoading = false;
                         $scope.finalContents = $scope.finalContents.concat($scope.nonFinalContents);
-                        $scope.offset += 2;
+                        $scope.offset += 3;
                         $scope.myPagingFunction();
                     });
             }
@@ -222,16 +222,23 @@
             }
         }
         $scope.bookmark = function(content, index) {
-            $scope.finalContents[index].Actions.Bookmarked.status = !$scope.finalContents[index].Actions.Bookmarked.status;
-            if ($scope.finalContents[index].Actions.Bookmarked.status) {
-                $scope.finalContents[index].Actions.Bookmarked.total += 1;
-                tokenService.post('bookmarkContent/' + content.id).then(function(result) {
+            if ($rootScope.authenticated) {
 
-                });
+                $scope.finalContents[index].Actions.Bookmarked.status = !$scope.finalContents[index].Actions.Bookmarked.status;
+                if ($scope.finalContents[index].Actions.Bookmarked.status) {
+                    $scope.finalContents[index].Actions.Bookmarked.total += 1;
+                    tokenService.post('bookmarkContent/' + content.id).then(function(result) {
+
+                    });
+                } else {
+                    $scope.finalContents[index].Actions.Bookmarked.total -= 1;
+                    tokenService.delete('bookmarkContent/' + content.id, '').then(function(result) {
+
+                    });
+                }
             } else {
-                $scope.finalContents[index].Actions.Bookmarked.total -= 1;
-                tokenService.delete('bookmarkContent/' + content.id, '').then(function(result) {
-
+                $rootScope.openLoginDialog(function() {
+                    $scope.bookmark(content, index);
                 });
             }
         }
