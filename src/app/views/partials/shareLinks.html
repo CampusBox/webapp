@@ -1,4 +1,4 @@
-<md-dialog style="" >
+<md-dialog>
     <md-toolbar>
       <div class="md-toolbar-tools" style="background-color: #0570c0;">
         <h2>Share</h2>
@@ -7,35 +7,36 @@
           <md-icon md-svg-src="close" style="fill:white;" aria-label="Close dialog"></md-icon>
         </md-button>
       </div>
-    <div class="md-toolbar-tools" style="background-color: #0570c0;">
-        <md-input-container md-no-float layout="row" layout-align="center center">
-           <md-button class="md-icon-button" style="margin-left: 0px;padding-left: 0px;" ngclipboard data-clipboard-text="{{type==='event'?shareUrl+event.id:shareUrl+content.id}}">
-             <md-icon md-svg-src="clipboard" style="fill:white;" aria-label="Copy to clipboard"></md-icon>
-          </md-button>
-          <input ng-model="type==='event'?shareUrl+event.id:shareUrl+content.id" style="color: white;" placeholder="URL to share">
-        </md-input-container>
-    </div>
     </md-toolbar>
-        <md-dialog-content hide-xs show-gt-xs layout="row" class="md-padding">
-            <md-button flex="50" class="md-icon-button" ng-click="closeDialog()" socialshare socialshare-provider="facebook" socialshare-hashtags="campusbox" socialshare-url="{{type==='event'?shareUrl+event.id:shareUrl+content.id}}" aria-label="facebook ">
+    <md-dialog-content hide-xs show-gt-xs style="min-width: 470px;padding-bottom: 0px;" layout="row" class="md-padding">
+            <md-button flex="15" class="md-icon-button" ng-click="closeDialog()" socialshare socialshare-provider="facebook" socialshare-hashtags="campusbox" socialshare-url="{{type==='event'?shareUrl+event.id:shareUrl+content.id}}" aria-label="facebook ">
                 <md-icon ng-class=""  md-svg-icon="facebook"></md-icon>
             </md-button>
-            <md-button flex="50" class="md-icon-button" ng-click="closeDialog()" socialshare socialshare-provider="twitter" socialshare-url="{{type==='event'?shareUrl+event.id:shareUrl+content.id}}" aria-label="twitter ">
+            <md-button flex="15" class="md-icon-button" ng-click="closeDialog()" socialshare socialshare-provider="twitter" socialshare-url="{{type==='event'?shareUrl+event.id:shareUrl+content.id}}" aria-label="twitter ">
                 <md-icon ng-class=""  md-svg-icon="twitter"></md-icon>
             </md-button>
     </md-dialog-content>
-    <md-dialog-content show-xs hide-gt-xs layout="row" class="md-padding">
-            <md-button flex="33" class="md-icon-button" ng-click="closeDialog()" socialshare socialshare-provider="facebook" socialshare-hashtags="campusbox" socialshare-url="{{type==='event'?shareUrl+event.id:shareUrl+content.id}}" aria-label="facebook ">
+    <md-dialog-content show-xs hide-gt-xs layout="row" class="md-padding" style="padding-bottom: 0px;">
+            <md-button flex="15" class="md-icon-button" ng-click="closeDialog()" socialshare socialshare-provider="facebook" socialshare-hashtags="campusbox" socialshare-url="{{type==='event'?shareUrl+event.id:shareUrl+content.id}}" aria-label="facebook ">
                 <md-icon ng-class=""  md-svg-icon="facebook"></md-icon>
             </md-button>
-            <md-button flex="33" class="md-icon-button" ng-click="closeDialog()" socialshare socialshare-provider="twitter" socialshare-url="{{type==='event'?shareUrl+event.id:shareUrl+content.id}}" aria-label="twitter ">
+            <md-button flex="15" class="md-icon-button" ng-click="closeDialog()" socialshare socialshare-provider="twitter" socialshare-url="{{type==='event'?shareUrl+event.id:shareUrl+content.id}}" aria-label="twitter ">
                 <md-icon ng-class=""  md-svg-icon="twitter"></md-icon>
             </md-button>
-            <a socialshare flex="33" layout="row" layout-align="center" ng-click="closeDialog()" socialshare-provider="whatsapp" socialshare-url="{{type==='event'?shareUrl+event.id:shareUrl+content.id}}" aria-label="whatsapp ">
+            <a socialshare flex="17" layout="row" layout-align="center" ng-click="closeDialog()" socialshare-provider="whatsapp" socialshare-url="{{type==='event'?shareUrl+event.id:shareUrl+content.id}}" aria-label="whatsapp ">
             <md-button class="md-icon-button" >
             <md-icon ng-class="" md-svg-icon="whatsapp"></md-icon>
             </md-button>
             </a>
+    </md-dialog-content>
+    <md-dialog-content layout="row" layout-align="center center" style="background-color: white;margin: 16px;">
+            <md-input-container flex="85" layout="coloum" layout-align="center" md-no-float style="margin:0px;">
+        <!--            <md-button class="md-icon-button" style="margin-left: 0px;padding-left: 0px;" ngclipboard data-clipboard-text="{{type==='event'?shareUrl+event.id:shareUrl+content.id}}">
+                     <md-icon md-svg-src="clipboard" style="fill:white;" aria-label="Copy to clipboard"></md-icon>
+                  </md-button> -->
+                  <input ng-model="type==='event'?shareUrl+event.id:shareUrl+content.id" placeholder="URL to share" style="border:1px solid #ccc;border-radius: 3px;">
+            </md-input-container>
+            <md-button flex="15" style="background-color: #ccc;" ngclipboard data-clipboard-text="{{type==='event'?shareUrl+event.id:shareUrl+content.id}}">Copy</md-button>
     </md-dialog-content>
 <!--     <md-dialog-actions>
         <md-button class="md-icon-button" ng-click="closeDialog()" >
