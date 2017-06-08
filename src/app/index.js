@@ -138,6 +138,15 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
                     title: 'Dashboard'
                 }
             })
+            .state('home.searchAll', {
+                url: '/search/:query',
+                controler: 'SearchAllController',
+                controllerAs: 'vm',
+                templateUrl: 'app/views/home/searchAll.html',
+                data: {
+                    title: 'Dashboard'
+                }
+            })
             .state('home.table', {
                 url: '/table',
                 controller: 'TableController',
@@ -297,10 +306,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
         // authManager.checkAuthOnRefresh();
         //   authManager.redirectWhenUnauthenticated();
         $rootScope.currentState = $state.current.name;
-        console.log($rootScope.currentState);
-        console.log($rootScope.currentState);
         $rootScope.$on('$stateChangeSuccess', function() {
-            console.log($rootScope.currentState);
             $rootScope.currentState = $state.current.name;
             //If you don't wanna create the service, you can directly write
             // your function here.
