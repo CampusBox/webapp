@@ -1,7 +1,7 @@
 <md-dialog style="" >
     <md-toolbar>
       <div class="md-toolbar-tools" style="background-color: #0570c0;">
-        <h2>Share</h2>
+        <h2>Confirm</h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="closeDialog()">
           <md-icon md-svg-src="close" style="fill:white;" aria-label="Close dialog"></md-icon>
@@ -9,21 +9,24 @@
       </div>
     </md-toolbar>
     <md-dialog-content layout="row" class="md-padding">
-            <md-button flex="50" class="md-icon-button" ng-click="closeDialog()" socialshare socialshare-provider="facebook" socialshare-hashtags="campusbox" socialshare-url="{{type==='event'?shareUrl+event.id:shareUrl+content.id}}" aria-label="facebook ">
-                <md-icon ng-class=""  md-svg-icon="facebook"></md-icon>
-            </md-button>
-            <md-button flex="50" class="md-icon-button" ng-click="closeDialog()" socialshare socialshare-provider="twitter" socialshare-url="{{type==='event'?shareUrl+event.id:shareUrl+content.id}}" aria-label="twitter ">
-                <md-icon ng-class=""  md-svg-icon="twitter"></md-icon>
-            </md-button>
-            <a show-xs hide-gt-xs socialshare ng-click="closeDialog()" socialshare-provider="whatsapp" socialshare-url="{{type==='event'?shareUrl+event.id:shareUrl+content.id}}" aria-label="whatsapp ">
-            <md-button class="md-icon-button">
-            <md-icon ng-class="" md-svg-icon="whatsapp"></md-icon>
-            </md-button>
-            </a>
+    <div ng-controller="SelectLicenseController" class="md-padding" ng-cloak>
+  <div>
+    <h1 class="md-title">License</h1>
+    <div layout="row">
+      <md-input-container>
+        <label>License</label>
+        <md-select ng-model="selectedLicenses" multiple>
+            <md-option ng-value="licenses.name" ng-repeat="License in licenses">{{licenses.name}}</md-option>
+          </md-optgroup>
+        </md-select>
+      </md-input-container>
+    </div>
+    <p ng-if="selectedLicenses">
+    {{printSelectedLicenses()}}.</p>
+  </div>
+</div>
+           
+
     </md-dialog-content>
-<!--     <md-dialog-actions>
-        <md-button class="md-icon-button" ng-click="closeDialog()" >
-                <md-icon ng-class=""  md-svg-icon="close"></md-icon>
-        </md-button>
-    </md-dialog-actions> -->
+
 </md-dialog>
