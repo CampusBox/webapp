@@ -1,5 +1,5 @@
-(function(){
-'use strict';
+// (function(){
+// 'use strict';
 	// angular.module('app')
  //          .controller('LicenseController',['$scope','$mdDialog',LicenseController]);
 
@@ -52,6 +52,6 @@
 
         return this.selectedLicenses.join('');
       };
-    }
+    });
 
-})();
+// })();
