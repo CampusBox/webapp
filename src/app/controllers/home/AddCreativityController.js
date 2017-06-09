@@ -29,16 +29,17 @@
         $scope.creativity.items = [];
         $scope.mediumEditor = "";
         $scope.trix = "";
-        body.text = "";
         body.mediaType = "text";
+        body.text = "";
         $scope.creativity.items[0] = body;
-        $scope.title = "";
         $scope.loading = false;
+        $scope.title = "";
 
-        console.log(parseInt(localStorage.getItem('tutorial')));
+        console.log(parseInt(localStorage.getItem('seenTutorial')));
 
-        if (!parseInt(localStorage.getItem('tutorial'))) {
+        if (!localStorage.getItem('seenTutorial') || !parseInt(localStorage.getItem('tutorial'))) {
             console.log('notset');
+            localStorage.setItem('seenTutorial', true);
             localStorage.setItem('tutorial', 1);
 
             $mdDialog.show({

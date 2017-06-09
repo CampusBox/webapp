@@ -19,7 +19,7 @@
         $scope.$state = $state;
 
         var semicolon = 186;
-
+        $rootScope.currentPageBackground = '#f1f1f1';
 
         $scope.customKeys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, semicolon];
 
@@ -168,7 +168,7 @@
         };
         $scope.searchedFast = function(text) {
             console.log(text);
-                      $state.go('home.searchAll', { query: text }); 
+            $state.go('home.searchAll', { query: text });
 
             switch ($state.current.name) {
                 case 'home.searchAll':
