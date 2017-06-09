@@ -127,6 +127,9 @@
                 controllerAs: 'dc'
             })
         }
+        $scope.abc = function($event){
+            $event.stopPropagation();
+        }
         $scope.myPagingFunction = function() {
             if ($scope.creativityLoading == false && $scope.offset < 5) {
                 $scope.creativityLoading = true;
