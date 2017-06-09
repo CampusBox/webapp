@@ -449,6 +449,10 @@ Optional adjustments for md-autocomplete in mobile screens
     margin-top: -10px;
 }
 
+#place-autocomplete > md-autocomplete  input {
+    color: black;
+}
+
 
 /*Media query for tablets and above */
 
