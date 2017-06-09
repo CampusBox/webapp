@@ -1,6 +1,6 @@
 <md-content class="md-padding" ng-controller="SearchStudentsController as vm">
     <form hide-gt-sm ng-submit="searchedFast(searchText)">
-        <md-autocomplete md-autofocus ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text="searchText" md-items="item in searchTypes" md-item-text="searchText" md-min-length="0" placeholder="Search Campusbox" md-menu-class="autocomplete-custom-template">
+        <md-autocomplete md-autofocus ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text="searchText" md-items="item in searchTypes" md-item-text="searchText" md-min-length="0" placeholder="Search for students here" md-menu-class="autocomplete-custom-template">
             <md-item-template>
                 <md-list-item class="noright" ng-click="searched(item.title,searchText)">
                     <md-icon md-svg-icon="{{item.icon}}" class=" md-hue-3"></md-icon>
@@ -10,6 +10,7 @@
         </md-autocomplete>
     </form>
     <md-nav-bar nav-bar-aria-label="navigation links">
+        <md-nav-item name="all" value="all" md-nav-click="searched('searchAll', query)">All</md-nav-item>
         <md-nav-item name="students" value="students" md-nav-click="searched('students', query)">Students</md-nav-item>
         <md-nav-item name="events" value="events" md-nav-click="searched('events', query)">Opportunities</md-nav-item>
         <md-nav-item name="creativity" value="creativity" md-nav-click="searched('creativity', query)">Creativity</md-nav-item>

@@ -21,8 +21,8 @@
 }
 </style>
 <div layout="column" layout-fill ng-controller="SearchCreativityController">
-    <form hide-gt-sm ng-submit="$event.preventDefault();openSearch(searchText)">
-        <md-autocomplete ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text="searchText" md-items="item in searchTypes" md-item-text="searchText" md-min-length="0" placeholder="Search for anything here" md-menu-class="autocomplete-custom-template">
+    <form hide-gt-sm ng-submit="searchedFast(searchText)">
+        <md-autocomplete ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text="searchText" md-items="item in searchTypes" md-item-text="searchText" md-min-length="0" placeholder="Search for creativity here" md-menu-class="autocomplete-custom-template">
             <md-item-template>
                 <md-list-item class="noright" ng-click="searched(item.title,searchText)">
                     <md-icon md-svg-icon="{{item.icon}}" class=" md-hue-3"></md-icon>
@@ -32,13 +32,14 @@
         </md-autocomplete>
     </form>
     <md-nav-bar nav-bar-aria-label="navigation links">
+        <md-nav-item md-nav-click="searched('searchAll', query)">All</md-nav-item>
         <md-nav-item md-nav-click="searched('students', query)">Students</md-nav-item>
         <md-nav-item md-nav-click="searched('events', query)">Opportunities</md-nav-item>
         <md-nav-item md-nav-click="searched('creativity', query)">Creativity</md-nav-item>
     </md-nav-bar>
     <h2 class="md-headline" style="color: rgba(0,0,0,.8);" ng-hide="query == '' || finalContents.length == 0">Results for "{{query}}" in creativity</h2>
     <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in [1,2,3,4]">
-        <md-card ng-show="!loading" flex="100" flex-gt-sm="60">
+        <md-card ng-show="loading" flex="100" flex-gt-sm="60">
             <md-card-header>
                 <md-card-avatar style="background: #f6f7f8">
                     <img class="md-user-avatar" />
@@ -60,52 +61,58 @@
         <p class="md-subhead" style="color:rgba(0,0,0,.44)">Let us know what are you searching for...</p>
         <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjEyOHB4IiBoZWlnaHQ9IjEyOHB4IiB2aWV3Qm94PSIwIDAgNDkzLjE5NiA0OTMuMTk2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0OTMuMTk2IDQ5My4xOTY7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8Zz4KCQk8cGF0aCBkPSJNMTQwLjMzOSw5OS4zODhjMi44MDksMCw1LjYxNS0xLjA5NCw3LjcyNy0zLjI3YzQuMTM5LTQuMjY3LDQuMDMzLTExLjA4MS0wLjIzMi0xNS4yMTlsLTM1LjE1OC0zNC4wOTYgICAgYy00LjI2Ni00LjEzOC0xMS4wODItNC4wMzQtMTUuMjIxLDAuMjMyYy00LjEzNyw0LjI2OC00LjAzMSwxMS4wODIsMC4yMzQsMTUuMjE5bDM1LjE1OCwzNC4wOTYgICAgQzEzNC45MzksOTguMzc4LDEzNy42MzgsOTkuMzg4LDE0MC4zMzksOTkuMzg4eiIgZmlsbD0iIzg5OGQ5MSIvPgoJCTxwYXRoIGQ9Ik0xODAuNzQ1LDcyLjkyNmMxLjM3NSw0LjY5Myw1LjY2OCw3LjczOSwxMC4zMjQsNy43MzljMS4wMDIsMCwyLjAyLTAuMTQxLDMuMDI5LTAuNDM4ICAgIGM1LjcwNS0xLjY3LDguOTc1LTcuNjUsNy4zMDUtMTMuMzU0bC0xNC42NS01MC4wMWMtMS42NzItNS43MDQtNy42NTQtOC45NzgtMTMuMzU0LTcuMzAzYy01LjcwNSwxLjY3MS04Ljk3Nyw3LjY0OS03LjMwNSwxMy4zNTQgICAgTDE4MC43NDUsNzIuOTI2eiIgZmlsbD0iIzg5OGQ5MSIvPgoJCTxwYXRoIGQ9Ik0yNDYuNTk3LDczLjc2YzUuNjM3LTAuMTY4LDEwLjI0NC00LjY4NiwxMC40MjYtMTAuMzk5YzAuMDIxLTAuNjEzLDAuNDgyLTE1LjQ0LDAuNDgyLTUyLjU5OCAgICBDMjU3LjUwNSw0LjgyLDI1Mi42ODcsMCwyNDYuNzQzLDBjLTAuMDUxLDAtMC4wOTgsMC4wMDctMC4xNDcsMC4wMDdTMjQ2LjQ5OCwwLDI0Ni40NSwwYy01Ljk0NSwwLTEwLjc2NCw0LjgxOS0xMC43NjQsMTAuNzYzICAgIGMwLDM3LjE1OCwwLjQ2Myw1MS45ODQsMC40ODIsNTIuNTk4QzIzNi4zNTMsNjkuMDc0LDI0MC45Niw3My41OTIsMjQ2LjU5Nyw3My43NnoiIGZpbGw9IiM4OThkOTEiLz4KCQk8cGF0aCBkPSJNMzk1Ljc0LDQ3LjAzNmMtNC4xMzktNC4yNjctMTAuOTUyLTQuMzctMTUuMjE5LTAuMjMybC0zNS4xNTksMzQuMDk1Yy00LjI2Nyw0LjEzOC00LjM3MiwxMC45NTItMC4yMzEsMTUuMjE5ICAgIGMyLjExMSwyLjE3Niw0LjkxNiwzLjI3LDcuNzI1LDMuMjdjMi42OTksMCw1LjQwMi0xLjAxLDcuNDkyLTMuMDM3bDM1LjE1OC0zNC4wOTZDMzk5Ljc3Myw1OC4xMTgsMzk5Ljg3Niw1MS4zMDQsMzk1Ljc0LDQ3LjAzNnoiIGZpbGw9IiM4OThkOTEiLz4KCQk8cGF0aCBkPSJNMjk5LjA5Myw4MC4yMjdjMS4wMSwwLjI5NywyLjAyOSwwLjQzOCwzLjAzMSwwLjQzOGM0LjY1NSwwLDguOTQ5LTMuMDQ2LDEwLjMyMS03LjczOWwxNC42NTItNTAuMDExICAgIGMxLjY3LTUuNzA0LTEuNTk4LTExLjY4My03LjMwMy0xMy4zNTRjLTUuNzAzLTEuNjc2LTExLjY4NSwxLjU5OS0xMy4zNTQsNy4zMDNsLTE0LjY0OSw1MC4wMSAgICBDMjkwLjEyLDcyLjU3NywyOTMuMzksNzguNTU3LDI5OS4wOTMsODAuMjI3eiIgZmlsbD0iIzg5OGQ5MSIvPgoJCTxwYXRoIGQ9Ik0zNDQuMjYxLDExOC40MjljLTIzLjIwMy03LjE4Ni01NS45ODItMTAuOTQ0LTk3LjQ3OS0xMS4xODRjLTAuMDMxLDAtMC4wNjEsMC4wMDEtMC4wOTQsMC4wMDEgICAgYy0wLjAyOSwwLTAuMDU5LTAuMDAxLTAuMDkyLTAuMDAxYy00MS40OTQsMC4yMzktNzQuMjczLDMuOTk4LTk3LjQ3NiwxMS4xODRjLTE0Ljc1Miw0LjU2Ny0yOC4xNzIsMTIuODk5LTI4LjE3MiwyMi4wNzIgICAgYzAsNTAuNTAzLDI2Ljg1NSw5NC4yMjMsNjQuNDM2LDExNy4wNTJ2MTkwLjcyYzAsMTQuMjQ3LDcuMzE0LDI2LjU2LDIwLjU5NCwzNC42NjljMTAuODMsNi42MTEsMjUuMjU0LDEwLjI1NSw0MC42MTksMTAuMjU1ICAgIGMwLjAzMywwLDAuMDYzLTAuMDAxLDAuMDkyLTAuMDAxYzAuMDMzLDAsMC4wNjMsMC4wMDEsMC4wOTQsMC4wMDFjMTUuMzY1LDAsMjkuNzkxLTMuNjQ0LDQwLjYyMS0xMC4yNTUgICAgYzEzLjI3OS04LjEwOSwyMC41OTUtMjAuNDIyLDIwLjU5NS0zNC42Njl2LTE5MC43MmMzNy41OC0yMi44MjksNjQuNDM2LTY2LjU0OSw2NC40MzYtMTE3LjA1MiAgICBDMzcyLjQzMywxMzEuMzI4LDM1OS4wMTMsMTIyLjk5NiwzNDQuMjYxLDExOC40Mjl6IE0yODguNDIxLDQ0NS4zNWMwLDE3Ljg0Mi0yMS41ODYsMjUuOTY3LTQxLjY0MywyNS45NjcgICAgYy0wLjAyOSwwLTAuMDU4LTAuMDAxLTAuMDktMC4wMDFjLTAuMDI4LDAtMC4wNTcsMC4wMDEtMC4wODgsMC4wMDFjLTIwLjA1NiwwLTQxLjY0LTguMTI1LTQxLjY0LTI1Ljk2N3YtMTc0Ljk0ICAgIGMxMi41MzksNC45NDksMjYuMDQyLDcuNjUxLDQwLjExNyw3LjY1MWMwLjI2NywwLDAuOTQ5LDAsMS42MSwwYzAuNjY1LDAsMS4zNDYsMCwxLjYxMiwwYzE0LjA3NCwwLDI3LjU4LTIuNzAyLDQwLjEyLTcuNjUxICAgIHYxNzQuOTRIMjg4LjQyMXogTTI0Ni43ODIsMTY2LjYxNmMtMC4wMzEsMC0wLjA2MS0wLjAwMS0wLjA5NC0wLjAwMWMtMC4wMjksMC0wLjA1OSwwLjAwMS0wLjA5MiwwLjAwMSAgICBjLTUzLjE0NC0wLjIwOS0xMTAuOTktMTcuNzg2LTExMC45OS0yMi4wNDdjMC00LjI2LDMxLjgzMi0xOC44NjMsMTEwLjk5LTE5LjM4NGMwLjAzMywwLDAuMDYzLDAuMDAxLDAuMDkyLDAuMDAxICAgIGMwLjAzMywwLDAuMDYzLTAuMDAxLDAuMDk0LTAuMDAxYzc5LjE2LDAuNTIxLDExMC45OTIsMTUuMTI0LDExMC45OTIsMTkuMzg0QzM1Ny43NzUsMTQ4LjgzLDI5OS45MjksMTY2LjQwNywyNDYuNzgyLDE2Ni42MTZ6IiBmaWxsPSIjODk4ZDkxIi8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" />
     </div>
-    <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in finalContents track by $index">
-        <md-card flex-gt-sm="60" flex="100" ng-show="loading">
-            <md-card-header>
-                <md-card-avatar>
-                    <img class="md-user-avatar" ui-sref="home.profile({username: content.created.by.username})"  ng-src="{{content.created.by.image}}" />
-                </md-card-avatar>
-                <md-card-header-text ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer">
-                    <span class="md-subhead"><span  ng-click="openProfile($event, content.created.by.username);" ui-sref="home.profile"  class="capitalize blue_text">{{content.created.by.name}} </span> in <span ui-sref="home.profile" style="color: #0570c0">{{content.type?content.type:"Article"}} </span></span>
-                    <span class="md-title">{{content.created.at  | date: 'd MMM'}}</span>
-                </md-card-header-text>
-            </md-card-header>
-            <img ng-if="(content.type == 'cover' || content.type == 'image')" ng-src="{{content.url}}" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer;height: 200px; object-fit: none; width: 100%" alt="">
-            <md-card-content>
-                <div ng-if="(content.type == 'youtube') || (content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
-                    <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" ng-src="{{content.url}}" frameborder="0" allowfullscreen></iframe>
-                    <iframe ng-show="(content.type == 'soundcloud')" width="100%" height="166" scrolling="no" frameborder="0" ng-src="{{content.url}}" allowfullscreen></iframe>
-                    <iframe ng-show="(content.type == 'vimeo')" width="640" height="360" ng-src="{{content.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                </div>
-                <!-- <div flex="80" flex-offset="10"> -->
-                <span class="creativity-title">{{content.title}} </span>
-                <p class="creativity-description" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="content.description  | limitTo: 200">
-                </p>
-                <p ui-sref="home.singleContent({contentId: content.id})" class="md-subhead read-more">
-                    Read more...
-                </p>
-                <!-- </div> -->
-            </md-card-content>
-            <div layout="row" layout-align="start center">
-                <md-button class="appreciate-button" style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
-                    <md-icon class="pink" md-svg-icon="{{content.Actions.Appreciate.status? 'heart' : 'heart-outline' }}"></md-icon> {{content.Actions.Appreciate.status? 'Appreciated' : 'Appreciate' }} |
-                    <span> {{content.Actions.Appreciate.total}}</span>
-                </md-button>
-                <span flex></span>
-                <md-card-icon-actions>
-                    <md-button class="md-icon-button" ng-click="bookmark(content, $index)" aria-label="Favorite">
-                        <md-icon ng-class="content.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
-                    </md-button>
-                    <!-- <md-button class="" aria-label="toggle">
-                        <md-icon md-svg-icon="share"></md-icon>Share
-                    </md-button> -->
-                </md-card-icon-actions>
-            </div>
-        </md-card>
-        <div flex="20">
+        <div flex-gt-sm="80" flex-xs="100" style="background: #fbfcfd" layout-align="start center" layout-align-xs="center center" layout="row" layout-wrap class="creativity-page">
+            <md-card class="content-card" flex-lg="30" flex-md="45" flex-sm="45" flex="100" ng-repeat="content in finalContents track by $index">
+                <md-card-content style="padding: 0px">
+                    <div ng-if="(content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
+                        <!-- <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" ng-src="{{content.url}}" frameborder="0" allowfullscreen></iframe> -->
+                        <iframe id="sc-widget" ng-show="(content.type == 'soundcloud')" width="100%" height="170" scrolling="no" frameborder="0" ng-src="{{content.url}}" allowfullscreen></iframe>
+                        <iframe ng-show="(content.type == 'vimeo')" width="100%" height="228" ng-src="{{content.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    </div>
+                    <a ng-if="(content.type == 'cover' || content.type == 'image')" ui-sref="home.singleContent({contentId: content.id})">
+                        <img class="creativity-cover" ng-class="(mediaTypes.indexOf(content.content_type) !== -1)?'creativity-cover-full':''" alt="" ng-src="{{content.url}}">
+                    </a>
+                    <div ng-if="(content.type == 'youtube')" style="position: relative;">
+                        <a ui-sref="home.singleContent({contentId: content.id})">
+                            <img style="background:url('https://img.youtube.com/vi/{{content.url}}/hqdefault.jpg');object-fit: cover;background-size: cover;background-position: center;" class="creativity-cover" alt="">
+                            <md-icon class="play-button" md-svg-icon="play" ng-if="(content.type == 'youtube')" ui-sref="home.singleContent({contentId: content.id})" style="" aria-label="Alarm Icon"></md-icon>
+                        </a>
+                    </div>
+                </md-card-content>
+                <md-card-header layout="column" flex ng-hide="(mediaTypes.indexOf(content.content_type) !== -1)">
+                    <a ui-sref="home.singleContent({contentId: content.id})" style="text-decoration: none;">
+                        <span class="creativity-title" ng-bind-html="content.title"></span>
+                    </a>
+                    <a ui-sref="home.singleContent({contentId: content.id})" style="text-decoration: none;">
+                        <p class="creativity-description md-body-2 creativity-description-list" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="content.description  | limitTo: 10">
+                        </p>
+                    </a>
+                </md-card-header>
+                <md-card-header ng-hide="(mediaTypes.indexOf(content.content_type) !== -1)">
+                    <br>
+                </md-card-header>
+                <md-card-header layout="row" layout-align="start center">
+                    <md-card-avatar style="margin-left: 0px;margin-right:5px;">
+                        <img class="md-user-avatar" ui-sref="home.profile({username: content.owner.username})" ng-src="{{content.owner.photo}}" />
+                    </md-card-avatar>
+                    <md-card-header-text ui-sref="home.singleContent({contentId: content.id})" class="" style="cursor: pointer">
+                        <span class="md-caption "><span class="capitalize blue_text"  ng-click="openProfile($event, content.owner.username);" >{{content.owner.name}} </span>
+                        <span class="blue_text"> <span style="color: rgba(99,108,116,0.87);"><br> in</span> {{content.category?content.category:"Unknown"}} </span>
+                        </span>
+                    </md-card-header-text>
+                   <!--  <div layout="row" layout-align="start center" flex="50">
+                        <md-button class="appreciate-button md-icon-button" style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
+                            <md-icon class="pink" md-svg-icon="{{content.Actions.Appreciate.status? 'heart' : 'heart-outline' }}"></md-icon>
+                        </md-button>
+                        <span ng-click="showLikes(content.id, content.title)" style="cursor: pointer;" class="likesNumber"> {{content.Actions.Appreciate.total}}</span>
+                        <md-button class="md-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'creativity');" aria-label="share ">
+                            <md-icon ng-class="" md-svg-icon="share"></md-icon>
+                        </md-button>
+                        <md-button class="md-icon-button" ng-click="bookmark(content, $index)" aria-label="Favorite">
+                            <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
+                        </md-button>
+                    </div> -->
+                </md-card-header>
+            </md-card>
         </div>
-        <!-- <div infinite-scroll="myPagingFunction()" infinite-scroll-disabled='loading' infinite-scroll-distance="4">
-        </div> -->
-    </div>
 </div>

@@ -1,4 +1,4 @@
-<div layout="row" layout-align="center" ng-controller="DashboardController" class="main-bg" class="md-padding">
+<div layout="row" layout-align="center" ng-controller="DashboardController" class="main-bg" class="md-padding" style="margin-bottom: 60px;">
     <div layout="column" flex-gt-sm="80" flex="100">
         <!--  <h1 class="md-headline section-heading" ng-if="updates.length>0">
             Your college Updates
@@ -38,10 +38,10 @@
             Opportunities you can avail
         </h1>
             <span flex></span>
-            <md-button class="md-primary" ui-sref="home.events" ng-disabled="true|false" aria-label="description">See All</md-button>
+            <md-button class="md-primary" ui-sref="home.events">See All</md-button>
         </div>
         <div layout="row">
-            <md-card class="content-card" hide-xs ng-if="eventLoading" ng-repeat="content in [1,2,3]" flex-lg="30" flex-md="45" flex-sm="45" flex="100">
+            <md-card class="content-card" hide-xs hide-sm ng-if="eventLoading" ng-repeat="content in [1,2,3]" flex-lg="30" flex-md="45" flex-sm="45" flex="100">
                 <md-card-header>
                     <md-card-avatar style="background: #f6f7f8">
                         <img class="md-user-avatar" />
@@ -52,7 +52,7 @@
                 </md-card-header>
                 <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
             </md-card>
-            <md-list show-xs hide-gt-xs>
+            <md-list hide-gt-xs>
                 <md-list-item ng-show="eventLoading" flex style="margin-bottom: 15px;" ng-repeat="event in [1,2]" class="secondary-button-padding eventListItem">
                     <md-card flex>
                         <md-card-title style="padding: 0px;">
@@ -122,25 +122,6 @@
                 <!-- </md-list> -->
                 <!-- <div infinite-scroll="myPagingFunction();" infinite-scroll-disabled='loading' infinite-scroll-distance="4">
             </div> -->
-                <md-list>
-                    <md-list-item ng-show="eventLoading" flex style="margin-bottom: 15px;" ng-repeat="event in [1,2]" class="secondary-button-padding eventListItem">
-                        <md-card flex>
-                            <md-card-title style="padding: 0px;">
-                                <div class="md-media-sm" style="width: 150px;height:150px; background-color: #eee">
-                                    <img class="" style="width: 150px;height:150px;background-color: #f1f1f1" alt="">
-                                </div>
-                                <div style="padding:  14px 23px 0px 33px;" flex layout="column">
-                                    <p class="animated-background" style="margin-top: 0px;">Date · Time </p>
-                                    <br>
-                                    <p class="md-title animated-background" style="font-weight: 600;margin: 0px; background-color: #eee;color: transparent;">
-                                        CampusBox launch
-                                    </p>
-                                    <p style="margin:0;background-color: #eee;color: transparent;" class="md-caption animated-background">Main Auditorium, Thapar University</p>
-                                </div>
-                            </md-card-title>
-                        </md-card>
-                    </md-list-item>
-                </md-list>
             </div>
             <div show-xs hide-gt-xs layout="column">
                 <md-list>
@@ -229,7 +210,7 @@
                 Creative works by other students
             </h1>
                 <div flex layout-align="space-around" layout="row" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() " style="background:#fbfcfd" infinite-scroll-disabled='creativityLoading' infinite-scroll-distance="3 ">
-                    <md-card class="content-card" flex-lg="30" flex-md="45" flex-sm="45" flex="100" ng-repeat="content in finalContents track by $index">
+                    <md-card class="content-card" flex-lg="30" flex-md="45" flex-sm="45" flex="100" ng-repeat="content in finalContents track by $index" style="margin-left: 4px;">
                         <md-card-content style="padding: 0px">
                             <div ng-if="(content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
                                 <!-- <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" ng-src="{{content.url}}" frameborder="0" allowfullscreen></iframe> -->

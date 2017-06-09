@@ -17,6 +17,11 @@
 
     function ProfileController($mdDialog, $scope, tokenService, $stateParams, $state, allDataService, $location, $sce, $rootScope) {
         var cardObject = {};
+        $currentNavItem = 'overview';
+        $scope.goto = function(page) {
+            $currentNavItem = page;
+
+        }
 
         $scope.followers = [];
         $scope.BookmarkedContents = [];
@@ -24,13 +29,13 @@
         $scope.username = $stateParams.username;
         $scope.studentLoading = true;
 
-    $scope.tab = 'overview';
+        $scope.tab = 0;
 
+        if ($rootScope.user != undefined) {
+            if ($scope.username == $rootScope.user.username) {
 
-
-        if($scope.username == $rootScope.user.username){
-
-            $state.go('home.myProfile');
+                $state.go('home.myProfile');
+            }
         }
         $scope.follow = function(type, index) {
             if ($rootScope.authenticated) {
