@@ -33,7 +33,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
 
 
         jwtOptionsProvider.config({
-            // whiteListedDomains: ['http://localhost', 'http://192.171.2.213', 'http://campusbox.org'],
+            whiteListedDomains: ['http://localhost', 'http://192.171.2.213','https://beta.campusbox.org', 'http://campusbox.org'],
             // unauthenticatedRedirectPath: '/dashboard',
             // unauthenticatedRedirector: ['$state', function($state) {
             //     $state.go('home.dashboard');
