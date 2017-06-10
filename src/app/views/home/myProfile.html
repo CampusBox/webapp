@@ -268,17 +268,16 @@ md-chips md-chip.md-focused md-icon {
                         </div>
                         <div flex layout="row" layout-wrap layout-align="center center">
                             <md-list flex>
-                                <md-list-item class="md-3-line" ui-sref="home.singleContent({contentId: content.id})" ng-repeat="content in student.CreativeContents.data track by $index">
+                                <md-list-item class="md-2-line" ui-sref="home.singleContent({contentId: content.id})" ng-repeat="content in student.CreativeContents.data track by $index">
                                     <img ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
                                     <div class="md-list-item-text" layout="column">
                                         <h3>{{ content.title }}</h3>
                                         <h4>{{ content.created.at | date: ' d MMM'}}</h4>
-                                        <p>
-                                            <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
-                                                <li ng-repeat="tag in content.Tags" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">{{tag.name}}</li>
-                                            </ul>
-                                        </p>
                                     </div>
+                                    <md-button class="md-warn" aria-label="participants" ng-click="deleteContent($event, content, $index)" md-ripple-size="auto">
+                                    <md-icon md-svg-icon="delete"></md-icon>
+                                    Delete
+                                    </md-button>
                                 </md-list-item>
                                 <md-divider></md-divider>
                             </md-list>

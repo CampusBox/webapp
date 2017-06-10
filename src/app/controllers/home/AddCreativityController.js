@@ -27,20 +27,24 @@
         $scope.creativity = {};
         $scope.coverStatus = false;
         $scope.creativity.items = [];
-        body.text = "";
+        $scope.mediumEditor = "";
+        $scope.trix = "";
         body.mediaType = "text";
+        body.text = "";
         $scope.creativity.items[0] = body;
-        $scope.title = "";
         $scope.loading = false;
-        if (!localStorage.getItem('tutorial')) {
-            localStorage.setItem('tutorial', 1);
+        $scope.title = "";
 
-        }
-        if (localStorage.getItem('tutorial') < 12) {
+        console.log(parseInt(localStorage.getItem('seenTutorial')));
+
+        if (!localStorage.getItem('seenTutorial') || !parseInt(localStorage.getItem('tutorial'))) {
+            console.log('notset');
+            localStorage.setItem('seenTutorial', true);
+            localStorage.setItem('tutorial', 1);
 
             $mdDialog.show({
                 controller: 'AddItemController',
-
+                heading: 'Tutorial',
                 templateUrl: 'app/views/partials/addBlogTutorial.html',
                 parent: angular.element(document.body),
                 locals: {
@@ -50,9 +54,31 @@
                 escapeToClose: true
 
             }).then(function() {
-                    localStorage.setItem('tutorial', localStorage.getItem('tutorial') + 1);
+                    localStorage.setItem('tutorial', parseInt(localStorage.getItem('tutorial')) + 1);
                 }, function() {
-                    localStorage.setItem('tutorial', localStorage.getItem('tutorial') + 1);
+                    localStorage.setItem('tutorial', parseInt(localStorage.getItem('tutorial')) + 1);
+                }
+
+            );
+
+        } else if (parseInt(localStorage.getItem('tutorial')) < 4) {
+            console.log('notlessthan3');
+
+            $mdDialog.show({
+                controller: 'AddItemController',
+                heading: 'Tutorial',
+                templateUrl: 'app/views/partials/addBlogTutorial.html',
+                parent: angular.element(document.body),
+                locals: {
+                    title: "tutorial"
+                },
+                clickOutsideToClose: true,
+                escapeToClose: true
+
+            }).then(function() {
+                    localStorage.setItem('tutorial', parseInt(localStorage.getItem('tutorial')) + 1);
+                }, function() {
+                    localStorage.setItem('tutorial', parseInt(localStorage.getItem('tutorial')) + 1);
                 }
 
             );
@@ -65,7 +91,7 @@
         $scope.items = [];
         $scope.itemsMobile = [];
 
-               $scope.items[0] = [
+        $scope.items[0] = [
             { 'title': 'Articles', 'id': 1 },
             { 'title': 'Poetry', 'id': 2 },
             { 'title': 'Drama', 'id': 3 }
@@ -243,13 +269,19 @@
                 });
             }
         };
-        $scope.publish = function() {
+        var checkEditor = function() {
+            if ($scope.mediumEditor) {
+                $scope.creativity.items[0].text = $scpoe.mediumEditor;
+            } else {
+                $scope.creativity.items[0].text = $scpoe.trix;
+            }
+        };
+        $scope.publish = function(checkEditor) {
             $scope.loading = true;
             $scope.image = {};
 
             $scope.creativity.tags = $scope.tags;
             $scope.creativity.title = $scope.title;
-            console.log($scope.creativity);
             tokenService.post("addContent", $scope.creativity)
                 .then(function(status) {
                     alert(status.message);
@@ -257,10 +289,10 @@
 
                         $state.go('home.dashboard');
                     }
-                        $state.go('home.dashboard');
+                    $state.go('home.dashboard');
                 }).catch(function(status) {
                     alert(status.message);
-                        $state.go('home.dashboard');
+                    $state.go('home.dashboard');
                     if (status.status) {
 
                         $state.go('home.dashboard');

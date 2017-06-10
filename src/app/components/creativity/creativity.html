@@ -36,7 +36,8 @@
     </div>
     <div flex-gt-sm="80" flex-xs="100" style="background: #fbfcfd" layout-align="start center" layout-align-xs="center center" layout="row" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading
 ' infinite-scroll-distance="4 ">
-        <md-card class="content-card" flex-lg="30" flex-md="45" flex-sm="45" flex="100" ng-repeat="content in finalContents track by $index">
+
+        <md-card class="content-card"  flex-lg="30" flex-md="45" flex-sm="45" flex="100" ng-repeat="content in finalContents track by $index">
             <md-card-content style="padding: 0px">
                 <div ng-if="(content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
                     <!-- <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" ng-src="{{content.url}}" frameborder="0" allowfullscreen></iframe> -->
@@ -87,6 +88,17 @@
                     </md-button>
                 </div>
             </md-card-header>
+        </md-card>
+          <md-card class="content-card" ng-if="creativityLoading" ng-repeat="content in [1,2,3]"  flex-lg="30" flex-md="45" flex-sm="45" flex="100" >
+            <md-card-header>
+                <md-card-avatar style="background: #f6f7f8">
+                    <img class="md-user-avatar" />
+                </md-card-avatar>
+                <md-card-header-text>
+                    <span style="width: 30%" class=" animated-background">Anything here  </span>
+                </md-card-header-text>
+            </md-card-header>
+            <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
         </md-card>
     </div>
 </div>

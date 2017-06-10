@@ -4,11 +4,23 @@
 }
 
 .md-button.md-primary.md-raised[disabled] {
-    background-color: rgb(30, 136, 229);
-    color: rgba(0, 0, 0, 0.87);
+    background-color: rgba(30, 136, 229, 0.56);
+    color: #fff;
 }
+#trix-toolbar-1{
+    background-color: white;
+    position: fixed;
+    bottom:52px;
+    width: 100%;
+    left: 0;
+    z-index: 2;
+}
+#trix-editor-1{
+    max-height: 30vh;
+}
+
 </style>
-<div style="position: absolute;width: 100%;height: 100%;">
+<div style="position: absolute;width: 100%; height: 98%;overflow: scroll;">
     <div ng-init="uploaded = false; addImage = false">
         <div layout-gt-sm="row" layout-xs="column" layout-sm="column" layout-align="start start">
             <!--   <div hide-xs hide-sm layout="column" flex-gt-sm="30" flex-order-xs="2" flex-order-sm="2">
@@ -64,10 +76,9 @@
                             <h3>{{user.name}}</h3>
                             <p>Draft</p>
                         </div>
-                        <md-button class="md-secondary md-primary md-raised" ng-disabled="(!(title && creativity.items[0].text && creativity.items[0].text.length>20 ) || loading)" class="md-raised md-primary" ng-click="publish()" ng-hide="loading">Publish</md-button>
+                        <md-button class="md-secondary md-primary md-raised" ng-disabled="(!(title && (mediumEditor || trix) && (mediumEditor.length>20 || trix.length>20) ) || loading)" class="md-raised md-primary"  ng-click="publish()" ng-hide="loading">Publish</md-button>
                         <div class="spinner" ng-hide="!loading" style="width: 40px;height: 40px;background-color: #0570c0;"></div>
-                            <md-tooltip md-direction="bottom">Type min 30 characters.</md-tooltip>
-                        </md-button>
+                            <md-tooltip md-direction="bottom">Type min 20 characters.</md-tooltip>
                     </md-list-item>
                     <!-- 
                     <md-card-actions layout="column" layout-align="end center">
@@ -110,8 +121,11 @@
                     <span>Adding a cover helps people help discover content better. <a target="_blank" href="http://unsplash.com"></a></span>
                 </div>
                 <div flex-offset-gt-sm="10" flex-gt-sm="80" layout="column">
-                    <p class="md-title" ng-hide="progress<1" style="outline: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;" ng-model="creativity.items[0].text" medium-editor data-placeholder="Tell your story..."></p>
-                    <center ng-repeat="item in creativity.items" ng-if="item.mediaType=='image'">
+                    <p hide-xs show-gt-xs class="md-title" ng-hide="progress<1" style="outline: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;" ng-model="mediumEditor" medium-editor data-placeholder="Tell your story..."></p>
+                    <div show-xs hide-gt-xs ng-hide="progress<1" ng-init="focus=false">
+                    <trix-editor angular-trix id="trix-editor-1" ng-model="trix" placeholder="Tell your story..." class="trix-content md-title" style="border: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;"></trix-editor>
+                    </div>
+                    <center ng-repeat="item in creativity.items" style="margin-top: 40px;" ng-if="item.mediaType=='image'">
                         <img style="max-width: 100%" ngf-thumbnail="item.image" />
                     </center>
                 </div>
@@ -183,11 +197,14 @@
                     </div>
                 </div> -->
                 <!-- <div style="min-height: 80px"></div> -->
-                <div layout="row" layout-align="strech center">
-                    <md-button ng-click="addMenu=!addMenu" ng-hide="progress<1" class="md-icon-button" aria-label="Settings">
-                        <md-icon md-svg-icon="shape-plus"></md-icon>
-                        <md-tooltip md-direction="left">Add media</md-tooltip>
-                    </md-button>
+                <div layout="row" layout-align="strech center" style="z-index: -1;margin-bottom: 120px;">
+                    <div layout="row" layout-align="strech center" ng-click="addMenu=!addMenu" ng-hide="progress<1">
+                        <md-button  class="md-icon-button" aria-label="Settings">
+                            <md-icon md-svg-icon="shape-plus"></md-icon>
+                            <md-tooltip md-direction="left">Add media</md-tooltip>
+                        </md-button>
+                        <span>Add media</span>
+                    </div>
                     <md-button ng-show="addMenu" flex="20" ngf-select="uploadFiles($files, $invalidFiles)" multiple name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 500, height: 500}" ngf-resize-if="$width > 500 || $height > 500">
                         <!-- <md-icon md-svg-icon="image" ngf-select="uploadFiles($files, $invalidFiles)" multiple name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 500, height: 500}" ngf-resize-if="$width > 500 || $height > 500"></md-icon> -->
                         <p>Image</p>

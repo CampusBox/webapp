@@ -8,7 +8,11 @@ md-list-item .md-button:not([disabled]):click {
     background-color: transparent;
 }
 </style>
-<div layout="row " class="white-bg ">
+<meta property="og:title" content="{{content.title}}"/>
+<meta property="og:image" content="{{content.Items.data[1].image}}"/>
+<meta property="og:site_name" content="CampusBox"/>
+<meta property="og:description" content="{{content.Items.data[0].description}}"/>
+<div layout="row" class="white-bg ">
     <div flex-gt-sm="10" hide-sm hide-xs>
         <div layout="column" layout-align="center center" style="position: fixed;top: 45%;left: 25px;">
             <md-button class="md-icon-button" ng-click="heart($event, content)" aria-label="Favorite" sticky>
@@ -75,10 +79,13 @@ md-list-item .md-button:not([disabled]):click {
                 <span ng-click="showLikes($event, content.id, content.title)" style="cursor: pointer;" class="likesNumber"> {{content.Actions.Appreciate.total}}</span>
                 <span flex></span>
                 <md-button style="float:right" ng-controller="ShareController" ng-click="showCustom($event,'creativity');" aria-label="facebook ">
-                    <md-icon ng-class="" md-svg-icon="share"></md-icon> Share
+                    <md-icon ng-class="" md-svg-icon="share"></md-icon> <span hide-xs>Share</span>
                 </md-button>
                 <md-button style="float:right" ng-click="bookmark(content)" aria-label="Favorite ">
-                    <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon> Bookmark
+                    <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon> <span hide-xs>
+                        
+                    Bookmark
+                    </span>
                 </md-button>
                 <md-divider></md-divider>
                 <md-list>
@@ -97,7 +104,7 @@ md-list-item .md-button:not([disabled]):click {
         </div>
     </div>
 </div>
-<div layout="row" style="margin-top: 50px" layout-xs="column" layout-sm="column" flex flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100">
+<div layout="row" style="margin-top: 50px;margin-bottom: 50px;" layout-xs="column" layout-sm="column" flex flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100">
     <md-card style="height: 280px;" flex ng-repeat="content in finalContents track by $index" class="pointer" ui-sref="home.singleContent({contentId: content.id})">
         <img ng-if="(content.type == 'cover' || content.type == 'image')" ng-src="{{content.url}}" class="md-card-image" style="object-fit: cover;height: 100px;">
         <img ng-if="(content.type == 'youtube')" style="background:url('https://img.youtube.com/vi/{{content.url}}/hqdefault.jpg');object-fit: cover;background-size: cover;background-position: center;height: 100px;" class="creativity-cover" alt="">

@@ -19,7 +19,7 @@
         $scope.$state = $state;
 
         var semicolon = 186;
-
+        $rootScope.currentPageBackground = '#f1f1f1';
 
         $scope.customKeys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, semicolon];
 
@@ -64,7 +64,7 @@
 
             var confirm = $mdDialog.confirm()
                 .title('You have been logged out successfully.')
-                .ariaLabel('TutorialsPoint.com')
+                .ariaLabel('Logged out successfully.')
                 .targetEvent(event)
                 .ok('Okay');
             $mdDialog.show(confirm).then(function() {
@@ -167,8 +167,24 @@
             }
         };
         $scope.searchedFast = function(text) {
+            console.log(text);
+            $state.go('home.searchAll', { query: text });
 
-            $state.go('home.searchStudents', { query: text });
+            switch ($state.current.name) {
+                case 'home.searchAll':
+                    $state.go('home.searchAll', { query: text });
+                    break;
+                case 'home.searchStudents':
+                    $state.go('home.searchStudents', { query: text });
+                    break;
+                case 'home.searchCreativity':
+                    $state.go('home.searchCreativity', { query: text });
+                    break;
+                case 'home.searchEvents':
+                    $state.go('home.searchEvents', { query: text });
+                    break;
+
+            }
         };
 
         function showSimpleToast(title) {
