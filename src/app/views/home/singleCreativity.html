@@ -8,7 +8,11 @@ md-list-item .md-button:not([disabled]):click {
     background-color: transparent;
 }
 </style>
-<div layout="row " class="white-bg ">
+<meta property="og:title" content="{{content.title}}"/>
+<meta property="og:image" content="{{content.Items.data[1].image}}"/>
+<meta property="og:site_name" content="CampusBox"/>
+<meta property="og:description" content="{{content.Items.data[0].description}}"/>
+<div layout="row" class="white-bg ">
     <div flex-gt-sm="10" hide-sm hide-xs>
         <div layout="column" layout-align="center center" style="position: fixed;top: 45%;left: 25px;">
             <md-button class="md-icon-button" ng-click="heart($event, content)" aria-label="Favorite" sticky>
