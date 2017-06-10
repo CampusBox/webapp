@@ -76,7 +76,7 @@
             <div hide-xs flex layout-align="space-around" layout="row">
                 <!-- <md-list ng-show="!grid"> -->
                 <!-- <md-list-item style="margin-bottom: 10px;" ng-repeat="event in events" ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding eventListItem"> -->
-                <md-card flex-lg="30" flex-md="45" flex-sm="45" flex="100" ng-repeat="event in events" ui-sref="home.singleEvent({eventId: event.id})">
+                <md-card flex-lg="30" flex-md="45" flex-sm="45" flex="100" ng-repeat="event in events track by $index" ui-sref="home.singleEvent({eventId: event.id})">
                     <div style="position: relative;">
                         <img style="width: 100% ;opacity: 0.9" class="event-cover-small event-cover" ng-src="{{event.image}}" alt="{{event.title}}">
                         <span class="md-caption" style="position: absolute;top: 20px;right: 20px;color: #fff;background: rgba(12,12,12,0.5);border-style: solid;border-width:0px;border-color: #fff;padding: 3px;border-radius: 4px;">
@@ -106,15 +106,20 @@
                         </div>
                     </md-card-content>
                     <md-card-actions style="margin-top:-10px;" layout="row" layout-align="end center">
-                        <md-button ng-class="(event.participation_state==1)? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 1)" aria-label="Favorite">
+                        <md-button ng-show="event.participation_state == 0" ng-class="(event.participation_state==1)? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 1, $event)" aria-label="Favorite">
                             <md-icon ng-class="(event.participation_state==1)? 'blue': ''" md-svg-icon="{{(event.participation_state==1)? 'account-check' : 'check' }}"></md-icon> Going
                         </md-button>
+                        <md-button ng-show="event.participation_state == 0" ng-class="(event.participation_state>0) ? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 2, $event)" aria-label="Favorite">
+                            <md-icon ng-class="(event.participation_state>0) ? 'blue' : ''" md-svg-icon="{{(event.participation_state>0)? 'star' : 'star-outline' }}"></md-icon> Interested
+                        </md-button>
+                        <md-select md-selected-text="getParticipationState(event, $index)" ng-show="event.participation_state != 0" ng-click="stop($event)" ng-model="weapon" placeholder="Weapon" class="md-no-underline">
+                            <md-option ng-click="change(event, $index, 2)" ng-show="event.participation_state != 2" value="interested">Intrested</md-option>
+                            <md-option ng-click="change(event, $index, 1)" ng-show="event.participation_state != 1" value="going">Going</md-option>
+                            <md-option ng-click="change(event, $index, 0)" ng-show="event.participation_state != 0" value="not going">Not going</md-option>
+                        </md-select>
+                        <span flex></span>
                         <md-button class="md-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'event');" aria-label="share ">
                             <md-icon ng-class="" md-svg-icon="share"></md-icon>
-                        </md-button>
-                        <span flex></span>
-                        <md-button ng-class="(event.participation_state>0) ? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 2)" aria-label="Favorite">
-                            <md-icon ng-class="(event.participation_state>0) ? 'blue' : ''" md-svg-icon="{{(event.participation_state>0)? 'star' : 'star-outline' }}"></md-icon> Interested
                         </md-button>
                     </md-card-actions>
                 </md-card>
@@ -166,15 +171,20 @@
                             </md-card-title>
                             <md-divider></md-divider>
                             <md-card-actions style="margin: 2px 17px 4px 4px;" layout="row" layout-align="end center">
-                                <md-button ng-class="(event.participation_state==1)? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 1)" aria-label="Favorite">
+                                <md-button ng-show="event.participation_state == 0" ng-class="(event.participation_state==1)? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 1, $event)" aria-label="Favorite">
                                     <md-icon ng-class="(event.participation_state==1)? 'blue':''" md-svg-icon="{{(event.participation_state==1)? 'account-check' : 'check' }}"></md-icon> Going
                                 </md-button>
+                                <md-button ng-show="event.participation_state == 0" ng-class="(event.participation_state>0) ? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 2, $event)" aria-label="Favorite">
+                                    <md-icon ng-class="(event.participation_state>0) ? 'blue' : ''" md-svg-icon="{{(event.participation_state>0)? 'star' : 'star-outline' }}"></md-icon> Interested
+                                </md-button>
+                                <md-select md-selected-text="getParticipationState(event, $index)" ng-show="event.participation_state != 0" ng-click="stop($event)" ng-model="weapon" placeholder="Weapon" class="md-no-underline">
+                                    <md-option ng-click="change(event, $index, 2)" ng-show="event.participation_state != 2" value="interested">Intrested</md-option>
+                                    <md-option ng-click="change(event, $index, 1)" ng-show="event.participation_state != 1" value="going">Going</md-option>
+                                    <md-option ng-click="change(event, $index, 0)" ng-show="event.participation_state != 0" value="not going">Not going</md-option>
+                                </md-select>
                                 <span flex></span>
                                 <md-button class="share-button md-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'event');" aria-label="share ">
                                     <md-icon ng-class="" md-svg-icon="share"></md-icon>
-                                </md-button>
-                                <md-button ng-class="(event.participation_state>0) ? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 2)" aria-label="Favorite">
-                                    <md-icon ng-class="(event.participation_state>0) ? 'blue' : ''" md-svg-icon="{{(event.participation_state>0)? 'star' : 'star-outline' }}"></md-icon> Interested
                                 </md-button>
                             </md-card-actions>
                         </md-card>
@@ -298,10 +308,10 @@
             <md-divider></md-divider>
             </h5>
             <md-list>
-                <md-list-item class="md-2-line" ng-repeat="content in contentsTop | limitTo :3 track by $index">
-                    <img ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" class="md-avatar pointer" alt="{{content.content.created.by.username}}" title="content.content.created.by.username" />
+                <md-list-item style="cursor: pointer;" class="md-2-line" ng-repeat="content in contentsTop | limitTo :3 track by $index">
+                    <img ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" class="md-avatar pointer" alt="{{content.content.created.by.username}}" title="{{content.created.by.name}}" />
                     <div class="md-list-item-text">
-                        <h3 ui-sref="home.singleContent({contentId: content.id})" title="content.title" ng-bind-html="content.title"></h3>
+                        <h3 ui-sref="home.singleContent({contentId: content.id})" title="{{content.title}}" ng-bind-html="content.title"></h3>
                         <p ui-sref="home.profile({username: content.created.by.username})" title="{{content.created.by.name}}">{{content.created.by.name}}</p>
                     </div>
                 </md-list-item>

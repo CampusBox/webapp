@@ -81,6 +81,7 @@
         $scope.autocompleteDemoRequireMatch = false;
         $scope.transformChip = transformChip;
         $scope.body = {};
+        
         $scope.submitEvent = function(event, tags) {
             event.id = event.venue.id;
             event.loc_type = event.venue.type;
