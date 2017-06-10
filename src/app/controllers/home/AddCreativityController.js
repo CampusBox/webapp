@@ -245,31 +245,32 @@
                             console.log('else');
                         });
                     }
-                }; $scope.publish = function() {
-                    $scope.loading = true;
-                    $scope.image = {};
-
-                    $scope.creativity.tags = $scope.tags;
-                    $scope.creativity.title = $scope.title;
-                    console.log($scope.creativity);
-                    tokenService.post("addContent", $scope.creativity)
-                        .then(function(status) {
-                            alert(status.message);
-                            if (status.status) {
-
-                                $state.go('home.dashboard');
-                            }
-                            $state.go('home.dashboard');
-                        }).catch(function(status) {
-                            alert(status.message);
-                            $state.go('home.dashboard');
-                            if (status.status) {
-
-                                $state.go('home.dashboard');
-                            }
-                        });
-
                 };
+                 // $scope.publish = function() {
+                //     $scope.loading = true;
+                //     $scope.image = {};
+
+                //     $scope.creativity.tags = $scope.tags;
+                //     $scope.creativity.title = $scope.title;
+                //     console.log($scope.creativity);
+                //     tokenService.post("addContent", $scope.creativity)
+                //         .then(function(status) {
+                //             alert(status.message);
+                //             if (status.status) {
+
+                //                 $state.go('home.dashboard');
+                //             }
+                //             $state.go('home.dashboard');
+                //         }).catch(function(status) {
+                //             alert(status.message);
+                //             $state.go('home.dashboard');
+                //             if (status.status) {
+
+                //                 $state.go('home.dashboard');
+                //             }
+                //         });
+
+                // };
 
 
                 // Add tags shit staeted

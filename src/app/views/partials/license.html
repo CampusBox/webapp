@@ -20,6 +20,9 @@
           </md-optgroup>
         </md-select>
       </md-input-container>
+       <md-button flex="15" class="md-icon-button" ng-click="publish()"  aria-label=" Post">
+                <md-icon ng-class=""  md-svg-icon="twitter"></md-icon>
+            </md-button>
     </div>
     <p ng-if="selectedLicenses">
     {{printSelectedLicenses()}}.</p>
