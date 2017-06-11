@@ -6,7 +6,6 @@
         .controller('SingleEventController', [
             '$mdDialog',
             '$scope',
-            'Upload',
             '$timeout',
             'tokenService',
             '$stateParams',
@@ -16,15 +15,19 @@
         ]);
 
 
-    function SingleEventController($mdDialog, $scope, Upload, $timeout, tokenService, $stateParams, $sce, $rootScope) {
+    function SingleEventController($mdDialog, $scope, $timeout, tokenService, $stateParams, $sce, $rootScope) {
         $scope.event = {};
         $scope.loading = true;
         $scope.eventId = $stateParams.eventId;
         console.log($scope.eventId);
+               $rootScope.currentPageBackground = '#fff';
+
         tokenService.get("event/" + $scope.eventId)
             .then(function(tableData) {
                 tableData.data[0].details.description = $sce.trustAsHtml(tableData.data[0].details.description);
                 $scope.event = tableData.data[0];
+                       $rootScope.title = $scope.event.title;
+
                 console.log(JSON.parse(angular.toJson($scope.event)));
                 $scope.loading = false;
                 console.log($scope.event);

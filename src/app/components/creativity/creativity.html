@@ -1,17 +1,4 @@
-<!-- <style>
-.categoryChip {
-    cursor: default;
-    border-radius: 5px;
-    font-size: 12px;
-    line-height: 32px;
-    margin: 8px 8px 0 0;
-    padding: 0 7px 0 7px;
-    float: left;
-    box-sizing: border-box;
-    max-width: 100%;
-    position: relative;
-}
-</style> -->
+
 <div layout-gt-xs="row" layout-xs="column">
     <center style="margin-top:8px; " hide-xs hide-sm flex="20" layou="row" layout-wrap>
         <h3 class="md-title">Categories</h3>
@@ -34,10 +21,9 @@
             Done
         </md-button>
     </div>
-    <div flex-gt-sm="80" flex-xs="100" style="background: #fbfcfd" layout-align="start center" layout-align-xs="center center" layout="row" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading
+    <div flex-gt-sm="80" flex-xs="100" layout-align="start center" layout-align-xs="center center" layout="row" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading
 ' infinite-scroll-distance="4 ">
-
-        <md-card class="content-card"  flex-lg="30" flex-md="45" flex-sm="45" flex="100" ng-repeat="content in finalContents track by $index">
+        <md-card class="content-card" flex-lg="30" flex-md="45" flex-sm="45" flex="100" ng-repeat="content in finalContents track by $index">
             <md-card-content style="padding: 0px">
                 <div ng-if="(content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
                     <!-- <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" ng-src="{{content.url}}" frameborder="0" allowfullscreen></iframe> -->
@@ -89,7 +75,7 @@
                 </div>
             </md-card-header>
         </md-card>
-          <md-card class="content-card" ng-if="creativityLoading" ng-repeat="content in [1,2,3]"  flex-lg="30" flex-md="45" flex-sm="45" flex="100" >
+        <md-card class="content-card" ng-if="creativityLoading" ng-repeat="content in [1,2,3]" flex-lg="30" flex-md="45" flex-sm="45" flex="100">
             <md-card-header>
                 <md-card-avatar style="background: #f6f7f8">
                     <img class="md-user-avatar" />

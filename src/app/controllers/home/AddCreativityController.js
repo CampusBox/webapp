@@ -6,22 +6,26 @@
         .module('app')
         .controller('AddCreativityController', [
             '$scope',
-            'Upload',
             '$sce',
             '$timeout',
             '$mdDialog',
             'allDataService',
             'tokenService',
             '$state',
+            '$rootScope',
             AddCreativityController
         ]);
 
-    function AddCreativityController($scope, Upload, $sce, $timeout, $mdDialog, allDataService, tokenService, $state) {
+    function AddCreativityController($scope,  $sce, $timeout, $mdDialog, allDataService, tokenService, $state,$rootScope) {
         var body = {};
         $scope.progress = 0;
         $scope.isOpen = false;
         $scope.addMenu = false;
         $scope.selectedMode = 'md-scale';
+
+        $rootScope.currentPageBackground = '#fff';
+        $rootScope.title = "New Creativity";
+
 
 
         $scope.creativity = {};
@@ -33,7 +37,6 @@
         body.text = "";
         $scope.creativity.items[0] = body;
         $scope.loading = false;
-        $scope.title = "";
 
         console.log(parseInt(localStorage.getItem('seenTutorial')));
 

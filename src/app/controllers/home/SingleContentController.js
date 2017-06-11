@@ -18,7 +18,7 @@
         var vm = this;
         $scope.contentId = $stateParams.contentId;
         $scope.liked = false;
-
+       $rootScope.currentPageBackground = '#fff';
         $scope.loading = true;
         $scope.content = {};
         $scope.types = [
@@ -206,7 +206,8 @@
                 console.log($scope.content.Items.data[1].image);
                 console.log($location.absUrl());
 
-                
+                        $rootScope.title = tableData.content.title;
+
                 
                 $scope.types.some(function(obj) {
                     if (obj.id == $scope.content.content.type) {
