@@ -9,8 +9,7 @@
             function($rootScope, $http, $q, $location) {
                 
                 // var serviceBase = 'api/public/';
-                // var serviceBase = 'http://beta.campusbox.org/api/public/';
-                var serviceBase = 'https://campusbox.org/dist/api/public/';
+                var serviceBase = 'http://beta.campusbox.org/api/public/';
 
                 
                 $rootScope.config = function() {

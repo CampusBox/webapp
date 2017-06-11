@@ -26,8 +26,6 @@
         $rootScope.currentPageBackground = '#fff';
         $rootScope.title = "New Creativity";
 
-
-
         $scope.creativity = {};
         $scope.coverStatus = false;
         $scope.creativity.items = [];
@@ -37,6 +35,7 @@
         body.text = "";
         $scope.creativity.items[0] = body;
         $scope.loading = false;
+        $scope.title = "";
 
         console.log(parseInt(localStorage.getItem('seenTutorial')));
 

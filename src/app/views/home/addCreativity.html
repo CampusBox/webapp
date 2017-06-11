@@ -23,10 +23,10 @@
 <div style="position: absolute;width: 100%; height: 98%;overflow: scroll;">
     <div ng-init="uploaded = false; addImage = false">
         <div layout-gt-sm="row" layout-xs="column" layout-sm="column" layout-align="start start">
-            <!--   <div hide-xs hide-sm layout="column" flex-gt-sm="30" flex-order-xs="2" flex-order-sm="2">
+              <!-- <div hide-xs hide-sm layout="column" flex-gt-sm="30" flex-order-xs="2" flex-order-sm="2">
                 <md-card flex="100" style="margin-top: 0;">
-                    <md-card-content>
-                        <md-list>
+                    <md-card-content> -->
+<!--                         <md-list>
                             <md-list-item class="md-2-line">
                                 <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
                                 <div class="md-list-item-text">
@@ -55,8 +55,8 @@
                                 <md-icon md-svg-icon="{{content.icon}}"></md-icon>
                                 <p>{{content.title}}</p>
                             </md-list-item>
-                        </md-list>
-                        <span style="font-size: 14px;color: rgba(0,0,0,.6);" class="md-body-1">Add or change tags (up to 5) so your story reaches more people:</span>
+                        </md-list> -->
+                        <!-- <span style="font-size: 14px;color: rgba(0,0,0,.6);" class="md-body-1">Add or change tags (up to 5) so your story reaches more people:</span>
                         <md-chips name="skills" md-separator-keys="customKeys" ng-model="tags" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
                             <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Add Tags..">
                                 <span md-highlight-text="searchText">{{item.name}}</span>
@@ -68,6 +68,7 @@
                     </md-card-content>
                 </md-card>
             </div> -->
+
             <div style=" padding:0px;width:100%;" layout-padding layout-wrap flex-gt-xs="60" flex-offset-gt-xs="20">
                 <md-list>
                     <md-list-item class="md-2-line">
@@ -76,10 +77,17 @@
                             <h3>{{user.name}}</h3>
                             <p>Draft</p>
                         </div>
-                        <md-button class="md-secondary md-primary md-raised" ng-disabled="(!(title && (mediumEditor || trix) && (mediumEditor.length>20 || trix.length>20) ) || loading)" class="md-raised md-primary"  ng-click="publish()" ng-hide="loading">Publish</md-button>
+
+                        <!-- Made Changes For Licence and Tags Dialog Box -->
+                        <md-button class="md-secondary md-primary md-raised" ng-disabled="(!(title && creativity.items[0].text && creativity.items[0].text.length>20 ) || loading)" ng-controller="LicenseController" class="md-raised md-primary"  ng-click="showCustom($event)" ng-hide="loading">Submit</md-button>
+                        <!-- Till here for dialog -->
                         <div class="spinner" ng-hide="!loading" style="width: 40px;height: 40px;background-color: #0570c0;"></div>
-                            <md-tooltip md-direction="bottom">Type min 20 characters.</md-tooltip>
+                            <md-tooltip ng-show="!(title && (mediumEditor || trix) && (mediumEditor.length>20 || trix.length>20) )" md-direction="bottom">Type min 20 characters.</md-tooltip>
                     </md-list-item>
+
+
+
+
                     <!-- 
                     <md-card-actions layout="column" layout-align="end center">
                         <div layout="row" ng-hide="!loading" layout-sm="column" layout-align="space-around">
@@ -97,6 +105,11 @@
                         <md-icon md-svg-icon="comment-text"></md-icon>
                         <p>Text</p>
                     </md-list-item> -->
+
+
+
+
+
                 </md-list>
                 <div layout-gt-xs="row" ng-hide="progress<1">
                     <md-button ng-show="!coverStatus" class="md-icon-button" flex-gt-xs="5" ngf-select="uploadCover($file)" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="100MB" ngf-min-height="300" ngf-min-width="400" ngf-resize="{width: 1000, height: 800}" ngf-resize-if="$width > 1000 || $height > 800">
