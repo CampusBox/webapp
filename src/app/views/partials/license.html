@@ -1,4 +1,4 @@
-<md-dialog style="" >
+<md-dialog aria-label="Mango (Fruit)" style="min-width:50%" >
     <md-toolbar>
       <div class="md-toolbar-tools" style="background-color: #0570c0;">
         <h2>Confirm</h2>
@@ -8,8 +8,24 @@
         </md-button>
       </div>
     </md-toolbar>
-    <md-dialog-content layout="row" class="md-padding">
-    <div ng-controller="SelectLicenseController" class="md-padding" ng-cloak>
+    <md-dialog-content hide-xs show-gt-xs style="min-width: 470px;padding-bottom: 0px;" layout="column" class="md-padding">
+    <div hide-xs hide-sm layout="column" flex-gt-sm="30" flex-order-xs="2" flex-order-sm="2">
+                <md-card flex="100" style="margin-top: 0;">
+                    <md-card-content>
+                    <span style="font-size: 14px;color: rgba(0,0,0,.6);" class="md-body-1">Add or change tags (up to 5) so your story reaches more people:</span>
+                        <md-chips name="skills" md-separator-keys="customKeys" ng-model="tags" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
+                            <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Add Tags..">
+                                <span md-highlight-text="searchText">{{item.name}}</span>
+                            </md-autocomplete>
+                            <md-chip-template custom-chip class="your-custom-chip">
+                                <span><strong>{{$chip.name}}</strong></span>
+                            </md-chip-template>
+                        </md-chips>
+                    </md-card-content>
+                </md-card>
+            </div>
+
+   <!--  <div ng-controller="SelectLicenseController" class="md-padding" >
   <div>
     <h1 class="md-title">License</h1>
     <div layout="row">
@@ -20,15 +36,44 @@
           </md-optgroup>
         </md-select>
       </md-input-container>
-       <md-button flex="15" class="md-icon-button" ng-click="publish()"  aria-label=" Post">
-                <md-icon ng-class=""  md-svg-icon="twitter"></md-icon>
-            </md-button>
+       
     </div>
     <p ng-if="selectedLicenses">
     {{printSelectedLicenses()}}.</p>
   </div>
+</div> -->
+
+<div ng-controller="SelectLicenseController" class="md -flex-100" ng-cloak>
+  <div >
+  <md-card flex="100" style="margin-top: 0;">
+   <md-card-content>
+    <h1 class="md-title">Select an appropriate license </h1>
+    <div layout="row">
+      <md-input-container>
+        <label>Licenses</label>
+        <md-select ng-model="selectedLicensces"
+                   md-on-close="clearSearchTerm()"
+                   data-md-container-class="selectdemoSelectHeader"
+                   multiple>
+          <md-select-header class="demo-select-header">
+            <input ng-model="searchTerm"
+                   type="search"
+                   placeholder="Select a License"
+                   class="demo-header-searchbox md-text">
+          </md-select-header>
+          <md-optgroup label="licenses">
+            <md-option ng-value="license" ng-repeat="license in licenses |
+              filter:searchTerm">{{license}}</md-option>
+          </md-optgroup>
+        </md-select>
+      </md-input-container>
+    </div>
+     </md-card-content>
+                </md-card>
+ </div>
 </div>
-           
+     <md-button class="md-secondary md-primary md-raised" ng-click="publish()" ng-hide="loading" type="button">Publish
+     </md-button>     
 
     </md-dialog-content>
 
