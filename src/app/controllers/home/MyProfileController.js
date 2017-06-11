@@ -8,10 +8,11 @@
             'tokenService',
             '$stateParams',
             '$state',
+            '$rootScope',
             MyProfileController
         ]);
 
-    function MyProfileController($mdDialog, $scope, tokenService, $stateParams, $state) {
+    function MyProfileController($mdDialog, $scope, tokenService, $stateParams, $state,$rootScope) {
         var vm = this;
         $scope.username = $stateParams.username;
         $scope.editAbout = false;
@@ -19,6 +20,9 @@
         $scope.BookmarkedContents = [];
         $scope.CreativeContents = [];
         $scope.studentAbout = {};
+        $rootScope.currentPageBackground = '#fff';
+        $rootScope.title = "My Profile";
+
 
         tokenService.get("myProfile")
             .then(function(student) {
