@@ -68,6 +68,7 @@
                     </md-card-content>
                 </md-card>
             </div> -->
+
             <div style=" padding:0px;width:100%;" layout-padding layout-wrap flex-gt-xs="60" flex-offset-gt-xs="20">
                 <md-list>
                     <md-list-item class="md-2-line">
@@ -76,7 +77,10 @@
                             <h3>{{user.name}}</h3>
                             <p>Draft</p>
                         </div>
+
+                        <!-- Made Changes For Licence and Tags Dialog Box -->
                         <md-button class="md-secondary md-primary md-raised" ng-disabled="(!(title && creativity.items[0].text && creativity.items[0].text.length>20 ) || loading)" ng-controller="LicenseController" class="md-raised md-primary"  ng-click="showCustom($event)" ng-hide="loading">Submit</md-button>
+                        <!-- Till here for dialog -->
                         <div class="spinner" ng-hide="!loading" style="width: 40px;height: 40px;background-color: #0570c0;"></div>
                             <md-tooltip md-direction="bottom">Type min 30 characters.</md-tooltip>
                     </md-list-item>

@@ -9,6 +9,8 @@
       </div>
     </md-toolbar>
     <md-dialog-content hide-xs show-gt-xs style="min-width: 470px;padding-bottom: 0px;" layout="column" class="md-padding">
+
+                           <!-- Starting of tags Div -->
     <div hide-xs hide-sm layout="column" flex-gt-sm="30" flex-order-xs="2" flex-order-sm="2">
                 <md-card flex="100" style="margin-top: 0;">
                     <md-card-content>
@@ -24,25 +26,9 @@
                     </md-card-content>
                 </md-card>
             </div>
+            <!-- Tags Ends Here -->
 
-   <!--  <div ng-controller="SelectLicenseController" class="md-padding" >
-  <div>
-    <h1 class="md-title">License</h1>
-    <div layout="row">
-      <md-input-container>
-        <label>License</label>
-        <md-select ng-model="selectedLicenses" multiple>
-            <md-option ng-value="licenses.name" ng-repeat="License in licenses">{{licenses.name}}</md-option>
-          </md-optgroup>
-        </md-select>
-      </md-input-container>
-       
-    </div>
-    <p ng-if="selectedLicenses">
-    {{printSelectedLicenses()}}.</p>
-  </div>
-</div> -->
-
+            <!-- Select list for License / Drop down list for license  -->
 <div ng-controller="SelectLicenseController" class="md -flex-100" ng-cloak>
   <div >
   <md-card flex="100" style="margin-top: 0;">
@@ -72,6 +58,10 @@
                 </md-card>
  </div>
 </div>
+
+                    <!-- Drop down ends here -->
+
+                    <!-- Publish Button -->
      <md-button class="md-secondary md-primary md-raised" ng-click="publish()" ng-hide="loading" type="button">Publish
      </md-button>     
 
