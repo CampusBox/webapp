@@ -39,7 +39,7 @@
 
     angular
     .module('app')
-    .controller('SelectLicenseController', function($scope, $element,$mdDialog) {
+    .controller('SelectLicenseController', function($scope, $element, $mdDialog) {
       $scope.licenses = ['license 1' ,'license 2' ,'license 3' ,'license 4' ,'license 5', 'license 6'];
       $scope.searchTerm;
       $scope.clearSearchTerm = function() {
