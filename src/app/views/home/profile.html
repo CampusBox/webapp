@@ -3,7 +3,7 @@
     fill: rgb(255, 235, 59) !important;
 }
 </style>
-<div layout="row" layout-xs="column" layout-align-gt-xs="center start" flex md-padding>
+<div layout="row" layout-xs="column" layout-align-gt-xs="start none" flex>
     <!-- <div hide-cs> -->
     <div layout="column" md-padding hide-xs ng-if="studentLoading" flex="15" flex-xs="100" flex-offset-gt-xs="5">
         <center>
@@ -36,7 +36,7 @@
         <div layout="row" layout-align="end center">
         </div>
     </div layout="column" md-padding>
-    <div layout="column" md-padding hide-xs ng-if="!studentLoading" flex="15" flex-xs="100">
+    <div layout="column" md-padding hide-xs ng-if="!studentLoading" flex="15" flex-xs="100" flex-offset-gt-xs="5">
         <img style="border-radius: 5px; width: 100%; margin-top:20px; background-color: #ccc;" ng-src="{{profile.photo}}" class="div layout=" column " md-padding-image" alt="{{profile.name}}">
         <div>
             <div>
@@ -84,7 +84,7 @@
         </div>
     </div layout="column" md-padding>
     <!-- </div> -->
-    <div layout="column" md-padding flex="55" flex-xs="100" flex-offset-gt-xs="5">
+    <div layout="column" md-padding flex="70" flex-xs="100" flex-offset-gt-xs="5">
         <div>
             <div style="padding-bottom: 20px;">
                 <md-nav-bar hide-xs md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
@@ -159,17 +159,21 @@
                     <div layout="row" layout-align="end center">
                     </div>
                 </div layout="column" md-padding>
-                <div show-xs hide-gt-xs ng-if="!studentLoading" ng-hide="(currentNavItem!='overview')">
+                <div show-xs hide-gt-xs ng-if="!studentLoading" ng-hide="(currentNavItem!='overview')" style="padding: 8px;">
                     <div layout="row" layout-align="start start" md-padding>
-                        <img flex="30" style="width: 20%; height: 20%;  background-color: #ccc;" ng-src="{{profile.photo}}" class="div layout=" column " md-padding-image" alt="{{profile.name}}">
-                        <div flex="70">
+                        <img flex="30" style="width: 20%; height: 20%;border-radius: 4px;  background-color: #ccc;" ng-src="{{profile.photo}}" class="div layout=" column " md-padding-image" alt="{{profile.name}}">
+                        <div  layout="column" flex="70" style="padding-left: 8px;">
+                          
                             <span class="md-title">{{profile.name}}</span>
-                            <br>
-                            <span class="md-caption"> {{profile.college.name}}</span>
-                            <br>
-                            <a style="margin-bottom: 10px;" ng-repeat="social in profile.SocialAccounts.data" ng-href="{{social.link}}" target="_blank">
+                            
+                            
+                            <span class="md-caption" style="margin-top: 8px; margin-bottom: 8px;"> {{profile.college.name}}</span>
+                            
+                            <div>
+                            <a style="margin-bottom: 10px;margin-top: 8px;" ng-repeat="social in profile.SocialAccounts.data" ng-href="{{social.link}}" target="_blank">
                                 <md-icon md-svg-icon="{{social.type}}" md-colors="social.type=='facebook' ? {color: 'indigo'} : {color: 'red'}"></md-icon>
                             </a>
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -181,7 +185,7 @@
                         </ul>
                        
                         <br>
-                        <md-button style="width: 100%;margin-top: 15px;" ng-class="profile.following? 'md-primary md-not-raised' : 'md-raised md-primary'" ng-click="follow()">{{profile.following? 'Following':'Follow' }}</md-button>
+                        <md-button style="margin: 0px;width:100%;margin-top: 15px;margin-bottom: 15px;" ng-class="profile.following? 'md-primary md-not-raised' : 'md-raised md-primary'" ng-click="follow()">{{profile.following? 'Following':'Follow' }}</md-button>
                         <md-divider></md-divider>
                     </div>
                 </div>
@@ -198,8 +202,8 @@
                     <div ng-show="profile.Events.data.length>0">
                         <!-- <h3 class="md-title" style="margin-bottom: 0px;">Opportunities Created</h3> -->
                         <md-list>
-                            <md-list-item style="margin-bottom: 10px;" ng-repeat="event in profile.Events.data | limitTo : 2" ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding eventListItem">
-                                <div flex>
+                            <md-list-item ng-repeat="event in profile.Events.data | limitTo : 2" ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding eventListItem">
+                                <div flex style="padding-top: 16px !important;">
                                     <div style="padding-bottom: 0px;">
                                         <div style="padding:  5px 0px 0px 12px;" flex layout="column">
                                             <span style="margin-top: 0px; color: #555555;text-align: right;margin-right: 28px;" class="md-body-2">{{event.timings.from.date | date: ' d MMM'}} {{event.timings.to.date==event.timings.from.date?null:event.timings.to.date | date: '- d MMM'}}</span>
@@ -495,5 +499,5 @@
                     </div>
                 </div>
             </div>
-        </div layout="column" md-padding>
+        </div>
     </div>
