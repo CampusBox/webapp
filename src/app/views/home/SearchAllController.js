@@ -18,9 +18,6 @@
     function SearchAllController($scope, $timeout, $q, tokenService, $stateParams, $state, $rootScope, $sce, $filter) {
         var vm = this;
 
-        $scope.events = [];
-        $scope.students = [];
-        $scope.creativity = [];
         $scope.searchTypes = [];
         $scope.nonFinalContents = [];
         $scope.finalContents = [];

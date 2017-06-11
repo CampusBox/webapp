@@ -23,6 +23,9 @@
         $scope.nonFinalContents = [];
         $scope.finalContents = [];
         $scope.finalContentsCopy = [];
+        $rootScope.currentPageBackground = $rootScope.gray;
+        $rootScope.title = "Creativity";
+
         $scope.selected = [];
         $scope.filterInBetween = 0;
         $scope.filterShow = 0;

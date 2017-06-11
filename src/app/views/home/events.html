@@ -26,8 +26,7 @@
                 <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
             </md-card>
         </center> -->
-        <center>
-            <div layout="row">
+            <div layout="row" layout-align="center">
                 <md-card class="content-card" hide-xs hide-sm ng-if="eventLoading" ng-repeat="content in [1,2,3]" flex-lg="30" flex-md="45" flex-sm="45" flex="100">
                     <md-card-header>
                         <md-card-avatar style="background: #f6f7f8">
@@ -59,8 +58,7 @@
                     </md-list-item>
                 </md-list>
             </div>
-        </center>
-        <card hide-xs></card>
-        <mcard hide-gt-xs></mcard>
+        <card ng-if="!eventLoading" hide-xs></card>
+        <mcard ng-if="!eventLoading" hide-gt-xs></mcard>
     </div>
 </div>

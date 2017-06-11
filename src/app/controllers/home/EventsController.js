@@ -7,7 +7,6 @@
             '$scope',
             '$element',
             'tokenService',
-            'Upload',
             '$timeout',
             '$location',
             '$state',
@@ -15,8 +14,10 @@
             EventsController
         ]);
 
-    function EventsController($mdDialog, $scope, $element, tokenService, Upload, $timeout, $location, $state, $rootScope) {
+    function EventsController($mdDialog, $scope, $element, tokenService,  $timeout, $location, $state, $rootScope) {
         var vm = this;
+        $rootScope.currentPageBackground = $rootScope.gray;
+        $rootScope.title = "Opportunities";
 
         // ####################################################################################
         // EVENTS OLD PAGING FUNCTION DONT REMOVE

@@ -6,7 +6,6 @@
             '$mdDialog',
             '$scope',
             'tokenService',
-            'Upload',
             '$location',
             '$sce',
             '$filter',
@@ -15,9 +14,8 @@
             DashboardController
         ]);
 
-    function DashboardController($mdDialog, $scope, tokenService, Upload, $location, $sce, $filter, $state, $rootScope) {
+    function DashboardController($mdDialog, $scope, tokenService, $location, $sce, $filter, $state, $rootScope) {
         $scope.events = {};
-        $rootScope.title = "Dashboard";
         $scope.updatesLoading = true;
         $scope.eventLoading = true;
         $scope.eventTopLoading = true;
@@ -25,6 +23,8 @@
         $scope.contentTopLoading = true;
         $scope.offset = 0;
         $scope.nonFinalContents = [];
+        $rootScope.currentPageBackground = $rootScope.gray;
+        $rootScope.title = "Dashboard";
         $scope.finalContents = [];
         $scope.types = [
             { 'title': 'Articles', 'id': 1 },

@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer',
-        'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop', 'angular-jwt', 'infinite-scroll', 'angular-google-analytics'
+angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
+        'ngSanitize', 'ui.router', 'ngMaterial', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop', 'angular-jwt', 'infinite-scroll', 'angular-google-analytics'
     ])
     //remove setellizer
     .config(function(AnalyticsProvider, $stateProvider, $urlRouterProvider, $mdThemingProvider, $authProvider, $locationProvider,
@@ -33,7 +33,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
 
 
         jwtOptionsProvider.config({
-            whiteListedDomains: ['http://localhost', 'http://192.171.2.213','https://beta.campusbox.org', 'http://campusbox.org'],
+            whiteListedDomains: ['http://localhost', 'http://192.171.2.213', 'https://beta.campusbox.org', 'http://campusbox.org'],
             // unauthenticatedRedirectPath: '/dashboard',
             // unauthenticatedRedirector: ['$state', function($state) {
             //     $state.go('home.dashboard');
@@ -320,9 +320,12 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngFileUpload', 'satellizer
 
 
     })
-    .run(function(authManager, $state, $location, $rootScope, $mdDialog, tokenService, Analytics) {
+    .run(function( $state, $location, $rootScope, $mdDialog, tokenService, Analytics) {
         // authManager.checkAuthOnRefresh();
         //   authManager.redirectWhenUnauthenticated();
+        console.log($state.current.name);
+                  $rootScope.currentState = $state.current.name;
+
         localStorage.setItem('evervisited', true);
         console.log(localStorage.getItem('evervisited'))
         $rootScope.user = {};

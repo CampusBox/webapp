@@ -18,7 +18,8 @@
         $scope.listLoading = true;
         $scope.events = {};
         $scope.query = $stateParams.query;
-
+                $rootScope.currentPageBackground = $rootScope.gray;
+        $rootScope.title = $stateParams.query+" in students.";
         $scope.searchText = $stateParams.query;
         $scope.searchTypes = [];
         $scope.searched = function(item, text) {

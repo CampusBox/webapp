@@ -8,7 +8,7 @@
             replace: true,
             templateUrl: 'app/components/events/card/actions/action.html',
 
-            controller: function($mdDialog, $scope, $element, tokenService, Upload, $timeout, $location, $state, $rootScope) {
+            controller: function($mdDialog, $scope, $element, tokenService,  $timeout, $location, $state, $rootScope) {
                 $scope.heartEvent = function(event, $index) {
                     if ($rootScope.authenticated) {
                         $scope.events[$index].Actions.Bookmarked.status = !$scope.events[$index].Actions.Bookmarked.status;
