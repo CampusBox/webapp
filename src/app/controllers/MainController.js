@@ -16,10 +16,9 @@
         }
         // document.getElementById('basicveryimportantloading').remove();
 
-        $scope.$state = $state;
-
+        console.log($scope.state);
         var semicolon = 186;
-
+        $rootScope.gray = 'rgba(125, 125, 140, 0.17)';
 
         $scope.customKeys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, semicolon];
 
@@ -96,7 +95,7 @@
             });
         };
 
-        function AddUpdateController($mdDialog, $scope, Upload, $timeout) {
+        function AddUpdateController($mdDialog, $scope, $timeout) {
             $scope.error = '';
             $scope.url = '';
             $scope.mediaType = "";
@@ -168,7 +167,7 @@
         };
         $scope.searchedFast = function(text) {
             console.log(text);
-                      $state.go('home.searchAll', { query: text }); 
+            $state.go('home.searchAll', { query: text });
 
             switch ($state.current.name) {
                 case 'home.searchAll':

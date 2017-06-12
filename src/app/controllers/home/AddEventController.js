@@ -9,18 +9,23 @@
             '$mdDialog',
             '$scope',
             'tokenService',
-            'Upload',
             '$timeout',
             '$state',
+            '$rootScope',
             AddEventController
         ]);
 
-    function AddEventController($mdDialog, $scope, tokenService, Upload, $timeout, $state) {
+    function AddEventController($mdDialog, $scope, tokenService,$timeout, $state,$rootScope) {
         $scope.event = {};
         $scope.event.venue = null;
         $scope.event.fromDate = new Date();
         $scope.place = null;
         $scope.loading = false;
+        $rootScope.currentPageBackground = $rootScope.gray;
+        $rootScope.title = "New Event";
+
+
+
         $scope.tutorial = false;
         $scope.types = [
             { 'id': 1, 'title': 'Competition', },
@@ -42,29 +47,7 @@
         $scope.gotIt = function() {
             $scope.tutorial = true;
         };
-        //IMAGE UPLOAD CODE START
-        $scope.upload = function(dataUrl, name) {
-            Upload.upload({
-                url: 'https://upload.campusbox.org/imageUpload.php',
-                method: 'POST',
-                file: Upload.dataUrltoBlob(dataUrl, name),
-                data: {
-                    'targetPath': './media/'
-                },
-            }).then(function(response) {
-                $timeout(function() {
-                    $scope.result = response.data;
-                });
-            }, function(response) {
-                if (response.status > 0) {
-                    $scope.errorMsg = response.status + ': ' + response.data;
-
-                }
-            }, function(evt) {
-                $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
-            });
-        };
-        //IMAGE UPLOAD CODE END
+     
 
         //Tags code start
         // Add tags shit staeted

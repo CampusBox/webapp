@@ -1,8 +1,8 @@
+'use strict';
 (function() {
-
     angular
         .module('app')
-        .controller('SingleContentController', [
+        .controller('PopUpCreativityController', [
             '$scope',
             'tokenService',
             '$mdDialog',
@@ -11,16 +11,55 @@
             '$rootScope',
             '$location',
             'Socialshare',
-            SingleContentController
+            'creativity',
+
+            PopUpCreativityController
         ]);
 
-    function SingleContentController($scope, tokenService, $mdDialog, $stateParams, $sce, $rootScope, $location, Socialshare) {
+    function PopUpCreativityController($scope, tokenService, $mdDialog, $stateParams, $sce, $rootScope, $location, Socialshare, creativity) {
         var vm = this;
+
+
+        creativity.Items.data.forEach(function(item) {
+            if (item.type == 'youtube') {
+                item.embed.url = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + item.embed.url);
+            } else if (item.type == 'vimeo') {
+                item.embed.url = $sce.trustAsResourceUrl(item.embed.url);
+            } else if (item.type == 'cover' || item.type == 'image') {
+                item.image = item.image;
+            }
+        });
+        console.log(creativity.Items.data);
+        $scope.content = creativity;
         $scope.contentId = $stateParams.contentId;
         $scope.liked = false;
-       $rootScope.currentPageBackground = '#fff';
+        $rootScope.currentPageBackground = '#fff';
         $scope.loading = true;
-        $scope.content = {};
+        // console.log(content);
+        // tokenService.get("participants/" + content)
+        //     .then(function(participants) {
+        //         console.log(participants)
+        //         $scope.participants = participants;
+        //     });
+
+        $scope.save = function() {
+            $scope.title = $scope.editableTitle;
+            $scope.disableEditor();
+        };
+        $scope.hide = function() {
+            $mdDialog.hide();
+        };
+
+        $scope.cancel = function() {
+            $mdDialog.cancel();
+        };
+
+        $scope.answer = function(answer) {
+            $mdDialog.hide(answer);
+        };
+
+
+
         $scope.types = [
             { 'title': 'Articles', 'id': 1 },
             { 'title': 'Poetry', 'id': 2 },
@@ -198,95 +237,8 @@
                 });
             }
         };
-        tokenService.get("content/" + $scope.contentId)
-            .then(function(tableData) {
-                $scope.loading = false;
-                $scope.content = tableData.data;
-                console.log(JSON.parse(angular.toJson($scope.content)));
-                console.log($scope.content.Items.data[1].image);
-                console.log($location.absUrl());
 
-                        $rootScope.title = tableData.title;
 
-                
-                $scope.types.some(function(obj) {
-                    if (obj.id == $scope.content.content.type) {
-                        $scope.content.content.category = obj.title;
-                    } else {
-                        return;
-                    }
-                });
-                $scope.content.created.at = new Date(Date.parse($scope.content.created.at.replace('-', '/', 'g'))); //replace mysql date to js date format
-                $scope.content.title = $sce.trustAsHtml($scope.content.title);
-                        $rootScope.title = $scope.content.title;
-
-                for (item in $scope.content.Items.data) {
-                    if ($scope.content.Items.data[item].type == 'youtube') {
-                        $scope.content.Items.data[item].embed.url = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + $scope.content.Items.data[item].embed.url);
-                        console.log($scope.content.Items.data[item].embed.url);
-                    } else if ($scope.content.Items.data[item].type == 'soundcloud') {
-                        $scope.content.Items.data[item].embed.url = "https://w.soundcloud.com/player/?url=" + $scope.content.Items.data[item].embed.url;
-                        console.log($scope.content.Items.data[item].embed.url);
-                        $scope.content.Items.data[item].embed.url = $sce.trustAsResourceUrl($scope.content.Items.data[item].embed.url);
-                        var widgetIframe = document.getElementById('sc-widget'),
-                            widget = SC.Widget(widgetIframe),
-                            newSoundUrl = $scope.content.Items.data[item].embed.url;
-                        widget.bind(SC.Widget.Events.READY, function() {
-                            // load new widget
-                            widget.bind(SC.Widget.Events.FINISH, function() {
-                                widget.load(newSoundUrl, {
-                                    show_artwork: false
-                                });
-                            });
-                        });
-                    } else if ($scope.content.Items.data[item].type == 'vimeo') {
-                        $scope.content.Items.data[item].embed.url = $sce.trustAsResourceUrl($scope.content.Items.data[item].embed.url);
-                    } else if ($scope.content.Items.data[item].type == 'text') {
-                        $scope.content.Items.data[item].description = $sce.trustAsHtml($scope.content.Items.data[item].description);
-                    }
-                }
-
-                tokenService.get("contentsRandom")
-                    .then(function(tableData) {
-                        $scope.creativityLoading = false;
-                        if (tableData.data.length < 2) {
-                            $scope.moreItems = false;
-                        }
-                        $scope.nonFinalContents = [];
-                        $scope.contents = tableData.data;
-
-                        $scope.contents.forEach(function(content) {
-                            cardObject = {};
-                            cardObject.Actions = content.Actions;
-                            cardObject.Tags = content.Tags;
-                            cardObject.created = content.created;
-                            cardObject.created.at = Date.parse(cardObject.created.at.replace('-', '/', 'g')); //replace mysql date to js date format
-                            cardObject.id = content.id;
-                            cardObject.title = $sce.trustAsHtml(content.title);
-                            cardObject.links = content.links;
-                            cardObject.total = content.links;
-                            content.Items.data.forEach(function(item) {
-                                if ((item.type == 'cover' && !cardObject.type)) {
-                                    cardObject.type = item.type;
-                                    cardObject.url = item.image;
-                                } else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
-                                    cardObject.type = item.type;
-                                    cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
-                                } else if (((item.type == 'cover') || (item.type == 'image')) && !cardObject.type) {
-                                    cardObject.type = item.type;
-                                    cardObject.url = item.image;
-                                }
-                            });
-                            $scope.nonFinalContents.push(cardObject);
-                            content = {};
-                            $scope.creativityLoading = false;
-
-                        });
-                        $scope.creativityLoading = false;
-                        $scope.finalContents = $scope.nonFinalContents;
-                        $scope.offset += 2;
-                    });
-            });
     }
 
 })();

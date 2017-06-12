@@ -1,39 +1,36 @@
-(function(){
-'use strict';
-	angular.module('app')
-          .controller('ShareController',['$scope','$mdDialog',ShareController]);
+    'use strict';
+    (function() {
+        angular.module('app')
+            .controller('ShareController', ['$scope', '$mdDialog', ShareController]);
 
-         function ShareController ($scope, $mdDialog) {
+        function ShareController($scope, $mdDialog) {
+            $scope.showCustom = function($event, type) {
+                if (type === 'event') {
+                    $scope.type = 'event';
+                    $scope.shareUrl = 'https://campusbox.org/dist/singleEvent/';
+                } else {
+                    $scope.type = 'creativity';
+                    $scope.shareUrl = 'https://campusbox.org/dist/singleContent/';
+                }
+                //actual dialog
+                $mdDialog.show({
+                    clickOutsideToClose: true,
+                    scope: $scope,
+                    preserveScope: true,
+                    targetEvent: $event,
+                    templateUrl: 'app/views/partials/shareLinks.html',
+                    controller: DialogController
+                });
 
-
-			
-            $scope.showCustom = function($event,type) {
-               if(type === 'event'){
-                  $scope.type = 'event';
-                  $scope.shareUrl = 'https://campusbox.org/dist/singleEvent/';
-               }else{
-                  $scope.type = 'creativity';
-                  $scope.shareUrl = 'https://campusbox.org/dist/singleContent/';
-               }
-               //actual dialog
-               $mdDialog.show({
-                  clickOutsideToClose: true,
-                  scope: $scope,        
-                  preserveScope: true,
-                  targetEvent: $event,           
-                  templateUrl: 'app/views/partials/shareLinks.html',
-                  controller: DialogController
-               });
-
-               function DialogController($scope, $mdDialog) {
-                     $scope.closeDialog = function() {
+                function DialogController($scope, $mdDialog) {
+                    $scope.closeDialog = function() {
                         console.log('CLOSING DIALOG');
                         $mdDialog.hide();
-                     };
-               } 
+                    };
+                }
             }
 
-          
-            }
 
-})();
+        }
+
+    })();

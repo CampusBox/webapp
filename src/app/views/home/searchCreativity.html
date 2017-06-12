@@ -38,7 +38,7 @@
         <md-nav-item md-nav-click="searched('creativity', query)">Creativity</md-nav-item>
     </md-nav-bar>
     <h2 class="md-headline" style="color: rgba(0,0,0,.8);" ng-hide="query == '' || finalContents.length == 0">Results for "{{query}}" in creativity</h2>
-    <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in [1,2,3,4]">
+    <div flex layout="row" layout-wrap ng-if="loading && query !=''" layout-align="center center" ng-repeat="content in [1,2,3,4]">
         <md-card ng-show="loading" flex="100" flex-gt-sm="60">
             <md-card-header>
                 <md-card-avatar style="background: #f6f7f8">
