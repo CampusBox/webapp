@@ -49,15 +49,15 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                 <div class="md-tile-content" layout="column">
                     <md-icon md-svg-icon="{{item.icon}}"></md-icon>
                 </div>
-                <div class="md-tile-content" >
+                <div class="md-tile-content">
                     {{item.name}}
                 </div>
             </md-button>
-            <md-button  ng-show="!authenticated" ng-click="openLoginDialog()" md-menu-origin="" md-menu-align-target style="height: auto;font-weight: 500;line-height: 16px;margin-top: 3px;margin-bottom: 0px;min-width: 0px;    font-size: 13px;" layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications">
+            <md-button ng-show="!authenticated" ng-click="openLoginDialog()" md-menu-origin="" md-menu-align-target style="height: auto;font-weight: 500;line-height: 16px;margin-top: 3px;margin-bottom: 0px;min-width: 0px;    font-size: 13px;" layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications">
                 <div hide-sm hide-xs class="md-tile-content" layout="column">
                     <md-icon md-svg-icon="plus-circle"></md-icon>
                 </div>
-                <div class="md-tile-content" >
+                <div class="md-tile-content">
                     Add
                 </div>
             </md-button>
@@ -66,7 +66,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                     <div hide-sm hide-xs class="md-tile-content" layout="column">
                         <md-icon md-svg-icon="plus-circle"></md-icon>
                     </div>
-                    <div class="md-tile-content" >
+                    <div class="md-tile-content">
                         Add
                     </div>
                 </md-button>
@@ -105,7 +105,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                     <img ng-src="{{user.image}}" style="width: 24px; height: 24px;align-self: center;vertical-align: middle;border-radius: 50%">
                     <!-- <span style="color:#fff" class="notifications-label"> </span> -->
                 </div>
-                <div class="md-tile-content" >
+                <div class="md-tile-content">
                     Me
                 </div>
             </md-button>
@@ -114,14 +114,14 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                 <div class="md-tile-content" layout="column">
                     <md-icon md-svg-icon="account"></md-icon>
                 </div>
-                <div class="md-tile-content" >
+                <div class="md-tile-content">
                     Login
                 </div>
             </md-button>
         </section>
     </md-toolbar>
-    <md-content flex class="md-padding page-content" style="background-color: {{currentPageBackground}};">
-        <div ui-view style="max-width: 1500px;margin:auto;">
+    <md-content flex class="md-padding page-content" height="100%" style="background-color: {{currentPageBackground}};">
+        <div ui-view class="manageXs" style="max-width: 1500px;margin:auto;">
         </div>
     </md-content>
     <md-toolbar hide-gt-sm layout="row" style="position: fixed;bottom: 0px; box-shadow: 0px 1px 8px 2px rgba(0, 0, 0, 0.2), 0px 3px 4px 2px rgba(0, 0, 0, 0.14), 0px 3px 3px 2px rgba(0, 0, 0, 0.12)" layout-align="center center">
@@ -135,7 +135,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
         </md-button>
         <md-button layout-align="center center" ng-class="{active: (currentState=='home.searchAll')}" flex class="capitalize grey_text bottom-menu-item" ui-sref="home.searchAll" aria-label="Notifications" ng-click="">
             <div hide-md class="md-tile-content">
-                <md-icon md-svg-icon="magnify" ></md-icon>
+                <md-icon md-svg-icon="magnify"></md-icon>
             </div>
             <div class="md-tile-content" style="line-height: 16px;font-weight: 500;">
                 Search
@@ -170,7 +170,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
             <div class="md-tile-content" layout="column">
                 <md-icon md-svg-icon="account"></md-icon>
             </div>
-            <div class="md-tile-content" >
+            <div class="md-tile-content">
                 Login
             </div>
         </md-button>

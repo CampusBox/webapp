@@ -26,6 +26,26 @@
         $rootScope.currentPageBackground = $rootScope.gray;
         $rootScope.title = "Creativity";
 
+        $scope.showPopUp = function(creativity) {
+            console.log(creativity);
+            if ([1, 2, 17, 21].indexOf(creativity.content.type) > -1) {
+                $state.go('home.singleContent', { contentId: creativity.id });
+
+            } else {
+
+                $mdDialog.show({
+                    controller: 'PopUpCreativityController',
+                    templateUrl: 'app/views/partials/popUpCreativity.html',
+                    parent: angular.element(document.body),
+                    locals: {
+                        creativity: creativity
+                    },
+                    clickOutsideToClose: true,
+                    fullscreen: true // Only for -xs, -sm breakpoints.
+                });
+            }
+        };
+
         $scope.selected = [];
         $scope.filterInBetween = 0;
         $scope.filterShow = 0;
@@ -84,6 +104,7 @@
 
                         $scope.contents.forEach(function(content) {
                             cardObject = {};
+
                             cardObject.Actions = content.Actions;
                             cardObject.Tags = content.Tags;
                             cardObject.created = content.created;
@@ -99,6 +120,7 @@
                                     return;
                                 }
                             });
+                            cardObject.Items = content.Items;
                             cardObject.links = content.links;
                             cardObject.total = content.links;
                             content.Items.data.forEach(function(item) {

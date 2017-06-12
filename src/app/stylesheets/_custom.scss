@@ -462,7 +462,7 @@ Optional adjustments for md-autocomplete in mobile screens
     margin-top: -10px;
 }
 
-#place-autocomplete > md-autocomplete  input {
+#place-autocomplete > md-autocomplete input {
     color: black;
 }
 
@@ -859,6 +859,9 @@ md-icon.cross>svg {
     .play-button {
         margin-left: 40%;
         margin-top: -31%;
+    }
+    .manageXs {
+        padding-bottom: 66px;
     }
     .creativity-page {
         margin-top: 0px;
