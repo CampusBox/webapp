@@ -1,41 +1,9 @@
 <div layout="row" layout-align="center" ng-controller="DashboardController" class="main-bg" class="md-padding" style="margin-bottom: 60px;">
     <div layout="column" flex-gt-sm="80" flex="100">
-        <!--  <h1 class="md-headline section-heading" ng-if="updates.length>0">
-            Your college Updates
-        </h1>
-        <div class="md-whiteframe-1dp white-bg">
-            <div layout="column" layout-wrap layout-align="center">
-                <md-list flex ng-if="updates.length>0">
-                    <md-list-item ng-href="{{update.link}}" target="noopener" ng-hide="updatesLoading" class="md-2-line" ng-repeat="update in updates">
-                        <md-icon md-svg-icon="bell-outline"></md-icon>
-                        <div class="md-list-item-text">
-                            <h3>{{update.title}}</h3>
-                            <p>{{update.message}}</p>
-                        </div>
-                        <md-divider ng-show="a!=4" md-inset></md-divider>
-                    </md-list-item>
-                </md-list>
-                <md-list class="md-dense" flex ng-if="updatesLoading">
-                    <md-list-item class="md-2-line" ng-repeat="a in [1,2]">
-                        <img style="background-color: #eee" class="md-avatar" alt="" />
-                        <div class="md-list-item-text">
-                            <br ng-show="a!=1">
-                            <p class="animated-background" style="width:30%">aa</p>
-                            <br>
-                            <p class="animated-background">We have done the hard work
-                                <br> for you to provide you with the most fo your college</p>
-                            <br>
-                        </div>
-                        <md-divider ng-show="a!=3"></md-divider>
-                    </md-list-item>
-                </md-list>
-            </div>
-        </div>
-
- -->
+ 
         <div layout="row" layout-align="center center">
             <h1 class="md-headline section-heading">
-            Opportunities you can avail
+            Opportunities <span hide-gt-xs> for</span> you <span hide-xs>can avail</span>
         </h1>
             <span flex></span>
             <md-button class="md-primary" ui-sref="home.events">See All</md-button>
@@ -76,7 +44,7 @@
             <div hide-xs flex layout-align="space-around" layout="row">
                 <!-- <md-list ng-show="!grid"> -->
                 <!-- <md-list-item style="margin-bottom: 10px;" ng-repeat="event in events" ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding eventListItem"> -->
-                <md-card flex-lg="30" flex-md="45" flex-sm="45" flex="100" ng-repeat="event in events" ui-sref="home.singleEvent({eventId: event.id})">
+                <md-card flex-lg="30" flex-md="45" flex-sm="45" flex="100" ng-repeat="event in events track by $index" ui-sref="home.singleEvent({eventId: event.id})">
                     <div style="position: relative;">
                         <img style="width: 100% ;opacity: 0.9" class="event-cover-small event-cover" ng-src="{{event.image}}" alt="{{event.title}}">
                         <span class="md-caption" style="position: absolute;top: 20px;right: 20px;color: #fff;background: rgba(12,12,12,0.5);border-style: solid;border-width:0px;border-color: #fff;padding: 3px;border-radius: 4px;">
@@ -106,15 +74,20 @@
                         </div>
                     </md-card-content>
                     <md-card-actions style="margin-top:-10px;" layout="row" layout-align="end center">
-                        <md-button ng-class="(event.participation_state==1)? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 1)" aria-label="Favorite">
+                        <md-button ng-show="event.participation_state == 0" ng-class="(event.participation_state==1)? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 1, $event)" aria-label="Favorite">
                             <md-icon ng-class="(event.participation_state==1)? 'blue': ''" md-svg-icon="{{(event.participation_state==1)? 'account-check' : 'check' }}"></md-icon> Going
                         </md-button>
+                        <md-button ng-show="event.participation_state == 0" ng-class="(event.participation_state>0) ? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 2, $event)" aria-label="Favorite">
+                            <md-icon ng-class="(event.participation_state>0) ? 'blue' : ''" md-svg-icon="{{(event.participation_state>0)? 'star' : 'star-outline' }}"></md-icon> Interested
+                        </md-button>
+                        <md-select md-selected-text="getParticipationState(event, $index)" ng-show="event.participation_state != 0" ng-click="stop($event)" ng-model="weapon" placeholder="Weapon" class="md-no-underline">
+                            <md-option ng-click="change(event, $index, 2)" ng-show="event.participation_state != 2" value="interested">Intrested</md-option>
+                            <md-option ng-click="change(event, $index, 1)" ng-show="event.participation_state != 1" value="going">Going</md-option>
+                            <md-option ng-click="change(event, $index, 0)" ng-show="event.participation_state != 0" value="not going">Not going</md-option>
+                        </md-select>
+                        <span flex></span>
                         <md-button class="md-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'event');" aria-label="share ">
                             <md-icon ng-class="" md-svg-icon="share"></md-icon>
-                        </md-button>
-                        <span flex></span>
-                        <md-button ng-class="(event.participation_state>0) ? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 2)" aria-label="Favorite">
-                            <md-icon ng-class="(event.participation_state>0) ? 'blue' : ''" md-svg-icon="{{(event.participation_state>0)? 'star' : 'star-outline' }}"></md-icon> Interested
                         </md-button>
                     </md-card-actions>
                 </md-card>
@@ -166,15 +139,20 @@
                             </md-card-title>
                             <md-divider></md-divider>
                             <md-card-actions style="margin: 2px 17px 4px 4px;" layout="row" layout-align="end center">
-                                <md-button ng-class="(event.participation_state==1)? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 1)" aria-label="Favorite">
+                                <md-button ng-show="event.participation_state == 0" ng-class="(event.participation_state==1)? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 1, $event)" aria-label="Favorite">
                                     <md-icon ng-class="(event.participation_state==1)? 'blue':''" md-svg-icon="{{(event.participation_state==1)? 'account-check' : 'check' }}"></md-icon> Going
                                 </md-button>
+                                <md-button ng-show="event.participation_state == 0" ng-class="(event.participation_state>0) ? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 2, $event)" aria-label="Favorite">
+                                    <md-icon ng-class="(event.participation_state>0) ? 'blue' : ''" md-svg-icon="{{(event.participation_state>0)? 'star' : 'star-outline' }}"></md-icon> Interested
+                                </md-button>
+                                <md-select md-selected-text="getParticipationState(event, $index)" ng-show="event.participation_state != 0" ng-click="stop($event)" ng-model="weapon" placeholder="Weapon" class="md-no-underline">
+                                    <md-option ng-click="change(event, $index, 2)" ng-show="event.participation_state != 2" value="interested">Intrested</md-option>
+                                    <md-option ng-click="change(event, $index, 1)" ng-show="event.participation_state != 1" value="going">Going</md-option>
+                                    <md-option ng-click="change(event, $index, 0)" ng-show="event.participation_state != 0" value="not going">Not going</md-option>
+                                </md-select>
                                 <span flex></span>
                                 <md-button class="share-button md-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'event');" aria-label="share ">
                                     <md-icon ng-class="" md-svg-icon="share"></md-icon>
-                                </md-button>
-                                <md-button ng-class="(event.participation_state>0) ? 'rsvp-button' : 'button-grey'" ng-click="rsvpEvent(event, $index, 2)" aria-label="Favorite">
-                                    <md-icon ng-class="(event.participation_state>0) ? 'blue' : ''" md-svg-icon="{{(event.participation_state>0)? 'star' : 'star-outline' }}"></md-icon> Interested
                                 </md-button>
                             </md-card-actions>
                         </md-card>
@@ -209,7 +187,7 @@
                 <h1 class="md-headline section-heading">
                 Creative works by other students
             </h1>
-                <div flex layout-align="space-around" layout="row" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() " style="background:#fbfcfd" infinite-scroll-disabled='creativityLoading' infinite-scroll-distance="3 ">
+                <div flex layout-align="space-around" layout="row" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() "  infinite-scroll-disabled='creativityLoading' infinite-scroll-distance="3 ">
                     <md-card class="content-card" flex-lg="30" flex-md="45" flex-sm="45" flex="100" ng-repeat="content in finalContents track by $index" style="margin-left: 4px;">
                         <md-card-content style="padding: 0px">
                             <div ng-if="(content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
@@ -295,17 +273,17 @@
         <div layout="column">
 
             <h5 class="md-subhead">Like campusbox?<br>
-            <small style="color: rgba(0,0,0,.44);" class="md-caption">Support the cause.</small>
-            <iframe frameborder='0' height='540px' src='https://www.thunderclap.it/projects/58303-open-source-creative-platform/embed' width='250px'></iframe>
+            <small style="color: rgba(0,0,0,.44);" class="md-caption">Support the cause.</small></h5>
+            <iframe frameborder='0' height='490px' src='https://www.thunderclap.it/projects/58303-open-source-creative-platform/embed' width='250px'></iframe>
             <h5 class="md-subhead">Top stories <br>
             <small style="color: rgba(0,0,0,.44);" class="md-caption">Most popular this week</small>
             <md-divider></md-divider>
             </h5>
             <md-list>
-                <md-list-item class="md-2-line" ng-repeat="content in contentsTop | limitTo :3 track by $index">
-                    <img ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" class="md-avatar pointer" alt="{{content.content.created.by.username}}" title="content.content.created.by.username" />
+                <md-list-item style="cursor: pointer;" class="md-2-line" ng-repeat="content in contentsTop | limitTo :3 track by $index">
+                    <img ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" class="md-avatar pointer" alt="{{content.content.created.by.username}}" title="{{content.created.by.name}}" />
                     <div class="md-list-item-text">
-                        <h3 ui-sref="home.singleContent({contentId: content.id})" title="content.title" ng-bind-html="content.title"></h3>
+                        <h3 ui-sref="home.singleContent({contentId: content.id})" title="{{content.title}}" ng-bind-html="content.title"></h3>
                         <p ui-sref="home.profile({username: content.created.by.username})" title="{{content.created.by.name}}">{{content.created.by.name}}</p>
                     </div>
                 </md-list-item>

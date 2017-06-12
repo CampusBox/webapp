@@ -8,7 +8,7 @@
             replace: true,
             templateUrl: 'app/components/events/card/mcard.html',
 
-            controller: function($mdDialog, $scope, $element, tokenService, Upload, $timeout, $location, $state, $rootScope) {
+            controller: function($mdDialog, $scope, $element, tokenService, $timeout, $location, $state, $rootScope) {
                 $scope.grid = false;
                 $scope.width = 28;
                 $scope.offset = 0;

@@ -120,7 +120,7 @@ angular.module('angularMaterialAdmin')
 
                         googlePlace.id = details.id;
                         googlePlace.type = details.types[0];
-                        googlePlace.city = details.address_components[4].short_name;
+                        googlePlace.city = details.address_components[0].long_name;
                         googlePlace.address = details.adr_address;
                         googlePlace.name = place.description;
                         $scope.ngModel = googlePlace;

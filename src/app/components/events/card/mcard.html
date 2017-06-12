@@ -1,8 +1,8 @@
 <div show-xs layout="column" flex-gt-sm="80">
     <md-list>
-        <md-list-item style="margin-bottom: 10px;" ng-repeat="event in events" ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding eventListItem">
+        <md-list-item style="margin-bottom: 10px;" ng-repeat="event in events" class="secondary-button-padding eventListItem">
             <md-card flex>
-                <md-card-title style="padding-bottom: 0px">
+                <md-card-title ui-sref="home.singleEvent({eventId: event.id})" style="padding-bottom: 0px">
                     <md-card-title-media style="margin-top: -19px; margin-left: -12px;">
                         <div style="position: relative;background-color: black" class="md-media-lg card-media">
                             <img style="width: 100% ;opacity: 0.7;font-weight: 900" ng-src="{{event.image}}" alt="">

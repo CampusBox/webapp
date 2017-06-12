@@ -1,6 +1,5 @@
-
-<div flex layout-gt-xs="row" layout-xs="column" class="main-bg">
-    <md-card flex-gt-xs="50">
+<div flex layout-gt-xs="row" layout="column">
+    <md-card flex-gt-xs="65" >
         <form name="eventForm" novalidate ng-submit=" submitEvent(event,tags)">
             <md-tabs md-dynamic-height md-border-bottom="" md-selected="selectedIndex">
                 <md-tab label="Basic Details">
@@ -51,7 +50,7 @@
                                 <md-input-container md-no-float flex>
                                     <label>Start Time</label>
                                     <md-select ng-model="event.fromTime" placeholder="Start Time" ng-required="true">
-                                        <md-option ng-value="b" ng-repeat="b in  ['12:00','12:30','1:00','1:30','2:00','2:30','3:00','3:30','4:00','4:30','5:00','5:30','6:00','6:30','7:00','7:30','8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30'] ">{{b}}</md-option>
+                                        <md-option ng-value="b" ng-repeat="b in  ['12:00','12:30','1:00','1:30','2:00','2:30','3:00','3:30','4:00','4:30','5:00','5:30','6:00','6:30','7:00','7:30','8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30']">{{b}}</md-option>
                                     </md-select>
                                 </md-input-container>
                                 <md-input-container md-no-float flex>
@@ -104,9 +103,8 @@
                     <div class="md-padding" layout="column">
                         <md-input-container md-no-float flex>
                             <!-- <label>Opportunity Venue</label> -->
-                            <place-autocomplete placeholder="Mention college name if event is open for all participants" type="text" ng-model="event.venue"  md-maxlength="100"></place-autocomplete>
+                            <place-autocomplete placeholder="Mention college name if event is open for all participants" type="text" ng-model="event.venue" md-maxlength="100"></place-autocomplete>
                         </md-input-container>
-
                         <md-input-container md-no-float>
                             <label>Link to the event (website or facebook page)</label>
                             <input placeholder="http://" type="text" ng-model="event.link">
@@ -177,53 +175,58 @@
                 <span flex></span>
                 <!-- <md-button ng-click="nextTab()">Previous</md-button> -->
                 <md-button ng-hide="loading" class=" md-primary" ng-click="nextTab()">Next</md-button>
-                <md-button ng-hide="loading" class="md-raised md-primary" ng-disabled="(event.croppedDataUrl=='') " type="submit">Create</md-button>
+                <md-button ng-hide="loading" class="md-raised md-primary" ng-disabled="(event.croppedDataUrl=='')" type="submit">Create</md-button>
                 <!-- <md-button ng-hide="loading" class="md-raised md-primary" ng-disabled="(event.croppedDataUrl=='') || !eventForm.$valid" type="submit">Create</md-button> -->
             </md-dialog-actions>
         </form>
     </md-card>
-    <div flex-gt-xs="50">
+    <div flex-gt-xs="30" >
         <h1 class="md-title">Preview - <small>Updated as you input.</small></h1>
-        <md-list>
-            <md-list-item style="margin-bottom: 10px;" ng-click="showOpportunity(event, $index)" class="secondary-button-padding eventListItem">
-                <md-card flex>
-                    <md-card-title style="padding: 0px;">
-                        <div class="md-media-sm" style="width: 200px;height:200px;background-color: #ccc">
-                            <img style="width: 200px; height:200px; " ng-src="{{event.croppedDataUrl}}" alt="">
-                        </div>
-                        <div style="padding: 10px 18px;" flex layout="column">
-                            <!-- <span class="md-body-2">{{event.timings.date.start? event.timings.date.start:"Fri, Mar 24 2:00 PM" }}</span> -->
-                            <div>
-                                <span style="margin-top: 0px; color: #555555;" class="md-body-2">{{event.fromDate | date: ' d MMM'}} · {{event.fromTime}}{{event.fromPeriod}} - {{event.toDate==event.fromDate?null:event.toDate | date: ' d MMM'}} · {{ event.toTime}}{{event.toPeriod}}</span>
-                                <p class="md-subhead" style="font-weight: 600;margin: 0px;  ">
-                                    {{(event.title?event.title:"CampusBox launch ") | limitTo : 30}}
-                                </p>
-                                <p style="margin-top: 0px; color: #555555;" class="md-body-2">{{event.subtitle?event.subtitle:"We will showcase all the features of CampusBox ver 0.1.3 and give away goodies to everyone" | limitTo : 100}}
-                                </p>
-                            </div>
-                            <p class="md-caption">{{event.venue?event.venue:"Main Auditorium, Thapar University"}}</p>
-                        </div>
-                    </md-card-title>
-                    <md-divider></md-divider>
-                    <div layout="row">
-                        <md-card-actions layout="row" layout-align="start center">
-                            <span class="md-body-2" ng-repeat="tag in tags"> #{{ tag.name }}     </span>
-                            <span flex></span>
-                            <md-button class="md-icon-button" ng-click="heart(event, $index)" aria-label="Favorite ">
-                                <md-icon ng-class="event.Actions.Bookmarked.status? 'pink':''" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>
-                            </md-button>
-                            <span>0</span>
-                            <md-button class="md-icon-button" ng-click="update(event, $index)" aria-label="Favorite ">
-                                <md-icon ng-class="!event.Actions.Participants.status? 'blue':''" md-svg-icon="{{!event.Actions.Participants.status? 'account-plus' : 'account-check' }}"></md-icon>
-                            </md-button>
-                            <md-button class="md-icon-button" ng-click="update(event, $index)" aria-label="Favorite ">
-                                <a target="_blank" ng-href="{{event.link}}">
-                                    <md-icon ng-class="!event.Actions.Participants.status? 'blue':''" md-svg-icon="link-variant"></md-icon>
-                                </a>
-                            </md-button>
-                        </md-card-actions>
-                    </div>
-                </md-card>
-            </md-list-item>
-        </md-list>
+        <md-card flex="100">
+            <div style="position: relative;">
+                <img style="width: 100% ;opacity: 0.9" class="event-cover" ng-src="{{event.croppedDataUrl}}" alt="{{event.title}}">
+                <span class="md-caption" style="position: absolute;top: 20px;right: 20px;color: #fff;background: rgba(12,12,12,0.5);border-style: solid;border-width:0px;border-color: #fff;padding: 3px;border-radius: 4px;">
+                        <md-icon  style="fill: #fff;" ng-show="event.location.type" md-svg-icon="currency-inr"></md-icon>
+                        {{event.price?event.price:" No Fees"}}
+                    </span>
+                <span class="md-subhead" style="position: absolute;bottom: 20px;left: 20px;color: #fff;background: rgba(12,12,12,0.5);border-style: solid;border-width:0px;border-color: #fff;padding: 3px;border-radius: 4px;">
+                        <md-icon style="fill: #fff;" ng-show="event.location.type" md-svg-icon="map-marker"></md-icon>
+                        <md-icon style="fill: #fff;" ng-hide="event.location.type" md-svg-icon="earth"></md-icon>
+                        {{event.city}}
+                    </span>
+            </div>
+            <md-card-title ui-sref="home.singleEvent({eventId: event.id})" style="padding:8px 0px 0px 20px;">
+                <span class="md-title" style="font-weight: 400"> {{event.title?event.title:'Give it a title'}}</span>
+            </md-card-title>
+            <md-card-content ui-sref="home.singleEvent({eventId: event.id})">
+                <div layout="row" layout-wrap>
+                    <span style="padding-top:10px;text-align: center;font-weight: 500" flex="20" class="md-headline" md-colors="{color: 'red'}"><span>
+                            {{event.fromDate?event.fromDate:null | date: 'MMM'}} </span>
+                    <br>
+                    <span style="color:#555555;text-align: center;">{{event.toDate==event.fromDate?event.fromDate:null | date: ' dd'}}</span>
+                    </span>
+                    <p flex="80" style="color: #777;" class="md-body-2">
+                        {{event.subtitle?event.subtitle:'Enter your message'| limitTo : 100}}
+                    </p>
+                </div>
+            </md-card-content>
+            <md-card-actions style="margin: 2px 17px 4px 4px;" layout="row" layout-align="end center">
+                <md-button ng-show="event.participation_state==0" class="button-grey" aria-label="Favorite">
+                    <md-icon  md-svg-icon="check"></md-icon> Going
+                </md-button>
+                <md-button class="button-grey" aria-label="Favorite">
+                <md-icon md-svg-icon="star-outline"></md-icon> Interested
+                </md-button>
+                <md-select md-selected-text="getParticipationState(event, $index)" ng-show="event.participation_state !=0" ng-model="weapon" placeholder="Weapon" class="md-no-underline">
+                    <md-option ng-click="change(event, $index, 2)" ng-show="event.participation_state !=2" value="interested">Intrested</md-option>
+                    <md-option ng-click="change(event, $index, 1)" ng-show="event.participation_state !=1" value="going">Going</md-option>
+                    <md-option ng-click="change(event, $index, 0)" ng-show="event.participation_state !=0" value="not going">Not going</md-option>
+                </md-select>
+                <span flex></span>
+                <md-button class="share-button md-icon-button" ng-controller="ShareController" ng-click="showCustom($event, 'event');" aria-label="share">
+                    <md-icon ng-class="" md-svg-icon="share"></md-icon>
+                </md-button>
+                </md-card-actions>
+        </md-card>
     </div>
+</div>

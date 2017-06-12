@@ -4,13 +4,12 @@
         .module('app')
         .controller('AddUrlController', [
             '$scope',
-            'Upload',
             '$sce',
             '$timeout',
             AddUrlController
         ]);
 
-    function AddUrlController($scope, Upload, $sce, $timeout) {
+    function AddUrlController($scope, $sce, $timeout) {
         // add tags start
         $scope.transformChip = transformChip;
         $scope.querySearch = querySearch;

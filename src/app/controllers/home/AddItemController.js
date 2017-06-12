@@ -6,7 +6,6 @@
             .controller('AddItemController', [
                 '$mdDialog',
                 '$scope',
-                'Upload',
                 '$timeout',
                 'heading',
                 '$sce',
@@ -14,7 +13,7 @@
                 AddItemController
             ]);
 
-        function AddItemController($mdDialog, $scope, Upload, $timeout, heading, $sce, $mdDialog) {
+        function AddItemController($mdDialog, $scope,$timeout, heading, $sce, $mdDialog) {
             $scope.error = '';
             $scope.url = '';
             $scope.mediaType = "";

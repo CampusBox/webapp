@@ -1,4 +1,4 @@
-<md-content class="md-padding" ng-controller="SearchStudentsController as vm">
+<div class="md-padding" ng-controller="SearchStudentsController as vm">
     <form hide-gt-sm ng-submit="searchedFast(searchText)">
         <md-autocomplete md-autofocus ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text="searchText" md-items="item in searchTypes" md-item-text="searchText" md-min-length="0" placeholder="Search for students here" md-menu-class="autocomplete-custom-template">
             <md-item-template>
@@ -89,4 +89,4 @@
             </md-card-actions>
         </md-card>
     </div>
-</md-content>
+</div>

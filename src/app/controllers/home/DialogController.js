@@ -6,35 +6,14 @@
         .controller('DialogController', [
             '$mdDialog',
             '$scope',
-            'Upload',
             '$timeout',
             DialogController
         ]);
 
-    function DialogController($mdDialog, $scope, Upload, $timeout) {
+    function DialogController($mdDialog, $scope,  $timeout) {
         $scope.event = {};
       
-        // poster upload
-        //IMAGE UPLOAD CODE START
-        $scope.upload = function(dataUrl, name) {
-                Upload.upload({
-                    url: 'https://upload.campusbox.org/imageUpload.php',
-                    method: 'POST',
-                    file: Upload.dataUrltoBlob(dataUrl, name),
-                    data: {
-                        'targetPath': './media/'
-                    },
-                }).then(function(response) {
-                    $timeout(function() {
-                        $scope.result = response.data;
-                    });
-                }, function(response) {
-                    if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
-                }, function(evt) {
-                    $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
-                });
-            }
-            //IMAGE UPLOAD CODE END
+       
             //
         $scope.hide = function() {
             $mdDialog.hide();
