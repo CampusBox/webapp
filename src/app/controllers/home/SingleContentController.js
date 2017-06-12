@@ -206,7 +206,7 @@
                 console.log($scope.content.Items.data[1].image);
                 console.log($location.absUrl());
 
-                        $rootScope.title = tableData.content.title;
+                        $rootScope.title = tableData.title;
 
                 
                 $scope.types.some(function(obj) {
@@ -222,9 +222,10 @@
 
                 for (item in $scope.content.Items.data) {
                     if ($scope.content.Items.data[item].type == 'youtube') {
-                        $scope.content.Items.data[item].embed.url = $sce.trustAsResourceUrl('//www.youtube.com/embed/' + $scope.content.Items.data[item].embed.url);
+                        $scope.content.Items.data[item].embed.url = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + $scope.content.Items.data[item].embed.url);
+                        console.log($scope.content.Items.data[item].embed.url);
                     } else if ($scope.content.Items.data[item].type == 'soundcloud') {
-                        $scope.content.Items.data[item].embed.url = "//w.soundcloud.com/player/?url=" + $scope.content.Items.data[item].embed.url;
+                        $scope.content.Items.data[item].embed.url = "https://w.soundcloud.com/player/?url=" + $scope.content.Items.data[item].embed.url;
                         console.log($scope.content.Items.data[item].embed.url);
                         $scope.content.Items.data[item].embed.url = $sce.trustAsResourceUrl($scope.content.Items.data[item].embed.url);
                         var widgetIframe = document.getElementById('sc-widget'),
