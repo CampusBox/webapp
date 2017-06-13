@@ -15,7 +15,7 @@
                 <md-card flex="100" style="margin-top: 0;">
                     <md-card-content>
                     <span style="font-size: 14px;color: rgba(0,0,0,.6);" class="md-body-1">Add or change tags (up to 5) so your story reaches more people:</span>
-                        <md-chips name="skills" md-separator-keys="customKeys" ng-model="tags" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
+                        <md-chips name="skills" md-separator-keys="customKeys" ng-model="tags" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5"  readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
                             <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Add Tags..">
                                 <span md-highlight-text="searchText">{{item.name}}</span>
                             </md-autocomplete>
@@ -40,7 +40,7 @@
         <md-select ng-model="selectedLicensces"
                    md-on-close="clearSearchTerm()"
                    data-md-container-class="selectdemoSelectHeader"
-                   multiple>
+                   >
           <md-select-header class="demo-select-header">
             <input ng-model="searchTerm"
                    type="search"
