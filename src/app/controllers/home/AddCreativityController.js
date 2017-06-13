@@ -274,13 +274,19 @@
             }
         };
         var checkEditor = function() {
-            if ($scope.mediumEditor) {
-                $scope.creativity.items[0].text = $scpoe.mediumEditor;
-            } else {
-                $scope.creativity.items[0].text = $scpoe.trix;
+            console.log('checkEditor called');
+            if ($scope.mediumEditor > $scope.trix) {
+                $scope.creativity.items[0].text = $scope.mediumEditor;
+                console.log($scope.creativity.items[0]);
+            } else if($scope.mediumEditor < $scope.trix){
+                $scope.creativity.items[0].text = $scope.trix;
+                console.log($scope.creativity.items[0]);
+            }else{
+                console.log('Error!');
             }
         };
-        $scope.publish = function(checkEditor) {
+        $scope.publish = function() {
+            checkEditor();
             $scope.loading = true;
             $scope.image = {};
 
