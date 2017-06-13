@@ -64,50 +64,7 @@
                 $scope.mediaType = "";
             }
         };
-        $scope.upload = function(dataUrl, name) {
-            Upload.upload({
-                url: '//upload.campusbox.org/imageUpload.php',
-                method: 'POST',
-                file: Upload.dataUrltoBlob(dataUrl, name),
-                data: {
-                    'targetPath': './media/'
-                },
-            }).then(function(response) {
-                $timeout(function() {
-                    $scope.result = response.data;
-                });
-            }, function(response) {
-                if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
-            }, function(evt) {
-                $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
-            });
-        };
-        $scope.uploadFiles = function(files, errFiles) {
-            $scope.files = files;
-            $scope.errFiles = errFiles;
-            angular.forEach(files, function(file) {
-                file.upload = Upload.upload({
-                    url: 'http://upload.campusbox.org/imageUpload.php',
-                    file: file,
-                    data: {
-                        'targetPath': './media/'
-                    }
-                });
-
-                file.upload.then(function(response) {
-                    $timeout(function() {
-                        file.result = response.data;
-                    });
-                }, function(response) {
-                    if (response.status > 0)
-                        $scope.errorMsg = response.status + ': ' + response.data;
-                }, function(evt) {
-                    file.progress = Math.min(100, parseInt(100.0 *
-                        evt.loaded / evt.total));
-                });
-            });
-        };
-
+      
         $scope.publish = function() {
             $scope.content.mediaType = $scope.mediaType;
             $scope.content.embedUrl = $scope.embedUrl;

@@ -24,6 +24,9 @@
         $scope.searchText = $stateParams.query;
         $scope.contents = [];
         $scope.nonFinalContents = [];
+                $rootScope.currentPageBackground = $rootScope.gray;
+        $rootScope.title = $stateParams.query+" in creativity.";
+
         $scope.finalContents = [];
         $scope.searchTypes = [];
         $scope.searchedFast = function(text) {

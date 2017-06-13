@@ -8,7 +8,7 @@
             replace: true,
             templateUrl: 'app/components/events/card/card.html',
 
-            controller: function($mdDialog, $scope, $element, tokenService, Upload, $timeout, $location, $state, $rootScope) {
+            controller: function($mdDialog, $scope, $element, tokenService, $timeout, $location, $state, $rootScope) {
                 $scope.grid = false;
                 $scope.width = 28;
                 $scope.offset = 0;
@@ -41,6 +41,10 @@
                     .then(function(tableData) {
                         $scope.events = tableData.data;
                         $scope.eventLoading = false;
+                        tokenService.get("minievents?limit=4&offset=4")
+                            .then(function(response) {
+                                $scope.events = $scope.events.concat(response.data);
+                            });
 
                         // console.log(tableData.data);
                     });

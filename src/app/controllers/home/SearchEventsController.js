@@ -7,7 +7,6 @@
             '$scope',
             '$element',
             'tokenService',
-            'Upload',
             '$timeout',
             '$location',
             '$state',
@@ -16,7 +15,7 @@
             SearchEventsController
         ]);
 
-    function SearchEventsController($mdDialog, $scope, $element, tokenService, Upload, $timeout, $location, $state, $stateParams, $rootScope) {
+    function SearchEventsController($mdDialog, $scope, $element, tokenService,$location, $state, $stateParams, $rootScope) {
         var vm = this;
         $scope.grid = false;
         $scope.width = 28;
@@ -24,6 +23,8 @@
         $scope.searchText = $stateParams.query;
         $scope.events = [];
         $scope.loading = true;
+               $rootScope.currentPageBackground = $rootScope.gray;
+        $rootScope.title = $stateParams.query+" in opportunities ";
         tokenService.get("search/events/" + $scope.query)
             .then(function(tableData) {
                 $scope.events = tableData.data;

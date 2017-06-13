@@ -17,19 +17,19 @@
 
     function ProfileController($mdDialog, $scope, tokenService, $stateParams, $state, allDataService, $location, $sce, $rootScope) {
         var cardObject = {};
-        $currentNavItem = 'overview';
+        $scope.currentNavItem = 'overview';
         $scope.goto = function(page) {
-            $currentNavItem = page;
-
-        }
+            $scope.currentNavItem = page;
+        };
+        $rootScope.currentPageBackground = '#fff';
 
         $scope.followers = [];
         $scope.BookmarkedContents = [];
         $scope.CreativeContentsFinal = [];
         $scope.username = $stateParams.username;
         $scope.studentLoading = true;
-
         $scope.tab = 0;
+        $rootScope.title = $stateParams.username;
 
         if ($rootScope.user != undefined) {
             if ($scope.username == $rootScope.user.username) {

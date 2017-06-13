@@ -8,10 +8,11 @@
             'tokenService',
             '$stateParams',
             '$state',
+            '$rootScope',
             MyProfileController
         ]);
 
-    function MyProfileController($mdDialog, $scope, tokenService, $stateParams, $state) {
+    function MyProfileController($mdDialog, $scope, tokenService, $stateParams, $state,$rootScope) {
         var vm = this;
         $scope.username = $stateParams.username;
         $scope.editAbout = false;
@@ -19,6 +20,9 @@
         $scope.BookmarkedContents = [];
         $scope.CreativeContents = [];
         $scope.studentAbout = {};
+        $rootScope.currentPageBackground = '#fff';
+        $rootScope.title = "My Profile";
+
 
         tokenService.get("myProfile")
             .then(function(student) {
@@ -69,6 +73,29 @@
                 console.log('cancel');
             });
         };
+        $scope.deleteContent = function(ev, content, index) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.confirm()
+                .title('Delete ' + content.title + "?")
+                .textContent('')
+                .targetEvent(ev)
+                .clickOutsideToClose(true)
+                .ok('Yes')
+                .cancel('Cancel');
+            $mdDialog.show(confirm).then(function() {
+                tokenService.delete('content/' + content.id, '').then(function(result) {
+                    if (result.status != 'error') {
+                        console.log(result.status);
+                        $scope.student.CreativeContents.data.splice(index, 1);
+                    } else {
+                        console.log(result);
+                    }
+                });
+            }, function() {
+                console.log('cancel');
+            });
+        };
+
         $scope.openSocialAccounts = function(ev) {
             $mdDialog.show({
                 controller: SocialController,

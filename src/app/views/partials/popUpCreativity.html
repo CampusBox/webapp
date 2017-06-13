@@ -1,0 +1,28 @@
+<md-dialog style="min-width:85%;min-height:95%;">
+    <div layout="row" flex layout-fill layout-xs="column">
+        <div flex="70" style="background: #000" flex layout="column" layout-align="center ">
+            <center flex="100" ng-if="(item.type == 'cover' || item.type == 'image' || item.type == 'youtube' || item.type == 'vimeo'|| item.type == 'soundcloud')" ng-repeat="item in content.Items.data" layout="column" layout-align="center " >
+                <img style="max-width:100%" ng-if="(item.type == 'cover' || item.type == 'image')" ng-src="{{item.image}}" alt="">
+                <iframe  ng-if="(item.type == 'youtube')" width="100%" height="500" ng-src="{{item.embed.url}}" frameborder="0" allowfullscreen></iframe>
+                <iframe  id="sc-widget" ng-if="item.type == 'soundcloud'" width="100%" height="166" scrolling="no" frameborder="0" src="{{item.embed.url}}" allowfullscreen></iframe>
+                <iframe  ng-if="item.type == 'vimeo'" width="640" height="500" src="{{item.embed.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            </center>
+        </div>
+        <div layout="column" flex="30">
+            <md-list>
+                <md-list-item ui-sref="home.profile({username: content.created.by.username})" class="md-3-line" ng-click="false" md-ink-ripple="0">
+                    <img ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
+                    <div class="md-list-item-text" layout="column">
+                        <h3><span  ui-sref="home.profile({username: content.created.by.username})"  class="capitalize blue_text pointer" >{{content.created.by.name}} </span> in <span style="color: #0570c0">{{content.content.category?content.content.category:"Unknown"}} </span></h3>
+                    <!-- </span> <span><md-button ng-class="profile.following? 'md-primary md-not-raised' : 'md-raised md-primary'" ng-click="follow($event)">{{profile.following? 'Following':'Follow' }}</md-button></span> </h3> -->
+                    <h4><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.by.about}}</span></h4>
+                    <p><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.at | date: 'd MMM'}}</span></p>
+                    </div>
+                </md-list-item>
+            </md-list>
+            <h1  class="md-title creativity-title creativity-title-single" ng-bind-html="content.title"></h1>
+            <p class="md-body-1 creativity-description creativity-description-single" ng-bind-html="item.description">
+            </p>
+        </div>
+    </div>
+</md-dialog>
