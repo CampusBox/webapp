@@ -18,7 +18,8 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
 
 
         /*
-            comment these for running locally
+            Uncomment before buidling for pushing to server 
+
          */
 
         // $compileProvider.debugInfoEnabled(false);
