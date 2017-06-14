@@ -17,22 +17,38 @@
 
     function SingleEventController($mdDialog, $scope, $timeout, tokenService, $stateParams, $sce, $rootScope) {
         $scope.event = {};
+        $scope.comments = [
+            { 'name': 'shashank', 'description': 'This is the comment 1' },
+            { 'name': 'Yadav', 'description': 'This is the comment 2' }
+        ];
+        $scope.responseLoading = true;
         $scope.loading = true;
         $scope.eventId = $stateParams.eventId;
         console.log($scope.eventId);
-               $rootScope.currentPageBackground = '#fff';
+        $rootScope.currentPageBackground = '#fff';
 
         tokenService.get("event/" + $scope.eventId)
             .then(function(tableData) {
                 tableData.data[0].details.description = $sce.trustAsHtml(tableData.data[0].details.description);
                 $scope.event = tableData.data[0];
-                       $rootScope.title = $scope.event.title;
+                $rootScope.title = $scope.event.title;
+                console.log("raw data\n");
+                console.log(tableData);
 
                 console.log(JSON.parse(angular.toJson($scope.event)));
                 $scope.loading = false;
                 console.log($scope.event);
             });
-        console.log($scope.event);
+        //console.log($scope.event);
+
+        //get all response from server
+        $scope.getComments = function() {
+            tokenService.get("responses/" + $scope.eventId)
+                .then(function(commentData) {
+                    console.log(commentData);
+                });
+        };
+
 
         $scope.upload = function(dataUrl, name) {
                 Upload.upload({
@@ -120,7 +136,7 @@
                 });
             }
 
-        }
+        };
         $scope.update = function(event) {
             if ($rootScope.authenticated) {
                 $scope.event.Actions.Participants.status = !$scope.event.Actions.Participants.status;
@@ -151,7 +167,7 @@
                 });
             }
 
-        }
+        };
         $scope.con = function(a) {
             var selectDay = "day";
             var selectTime = "time";
@@ -169,7 +185,10 @@
                     console.log(result);
                 }
             });
-        }
+        };
+
+
+
 
     }
 })();

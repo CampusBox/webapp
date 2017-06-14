@@ -103,10 +103,51 @@
     <md-divider></md-divider>
     <!-- <md-tabs md-dynamic-height md-border-bottom md-selected="tab"> -->
     <!-- <md-tab label="Description"> -->
-    <div layout="column" style="    max-width: 80%;" flex-gt-xs="80" flex="80" flex-offset-gt-xs="10" flex-offset-xs="5" flex-order-xs="1">
+    <div layout="column" style="    max-width: 80%;" flex-gt-xs="80" flex="80" flex-offset-gt-xs="10" flex-offset-xs="5">
         <h2 class="md-headline" style="margin-bottom:10px;">Description</h2>
         <p class="md-body-2 event-description"  ng-bind-html="event.details.description"></p>
     </div>
+    <md-divider style="margin-top: 20px;"></md-divider>
+    <h2 class="md-headline" style="margin-bottom:20px;">Comment Section</h2>
+    <div layout="row" layout-align="center">
+        <md-list flex-gt-xs="60" flex-xs="100">
+            <md-list-item style="padding:0px;padding-left:16px;padding-top:8px;padding-bottom: 8px; border: 1px solid grey;border-radius: 4px;margin-bottom: 4px;" class="md-2-line"  ng-repeat="comment in comments">
+            <div flex="100">
+            <div layout="row" layout-align="space-between" style="margin-bottom: 8px;">
+            <div layout="row">
+              <img ng-src="assets/images/feynman.jpg" class="md-avatar" alt="" />
+              <div class="md-list-item-text" layout="column">
+                <h3>{{comment.name}}</h3>
+                <p style="font-size: 12px;">Date</p>
+              </div>
+              </div>
+              <div ng-controller="CommentController as ctrl">
+                <md-menu>
+                  <md-button class="md-icon-button" ng-click="ctrl.openMenu($mdMenu, $event);">
+                    <md-icon md-menu-origin md-svg-icon="menu"></md-icon>
+                  </md-button>
+                  <md-menu-content width="3">
+                    <md-menu-item>
+                      <md-button ng-click="null">
+                        Edit
+                      </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                      <md-button ng-click="null">
+                      Delete
+                      </md-button>
+                    </md-menu-item>
+                  </md-menu-content>
+                </md-menu>
+                </div>
+                </div>
+              <div>
+              {{comment.description}}
+              </div>
+              </div>
+            </md-list-item>
+        </md-list> 
+    </div>  
     <!--  </md-tab>
         <md-tab label="Rules">
             <md-content class="md-padding">
