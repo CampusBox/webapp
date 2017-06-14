@@ -129,6 +129,14 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
                     title: 'Dashboard'
                 }
             })
+        .state('home.dashboardFromStatic', {
+                url: '/dashboard/:onboard',
+                controler: 'DashboardController',
+                templateUrl: 'app/views/home/dashboard.html',
+                data: {
+                    title: 'Dashboard'
+                }
+            })
             .state('home.searchEvents', {
                 url: '/search/events/:query',
                 controler: 'SearchEventsController',

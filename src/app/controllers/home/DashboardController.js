@@ -11,14 +11,19 @@
             '$filter',
             '$state',
             '$rootScope',
+            '$stateParams',
             DashboardController
         ]);
 
-    function DashboardController($mdDialog, $scope, tokenService, $location, $sce, $filter, $state, $rootScope) {
+    function DashboardController($mdDialog, $scope, tokenService, $location, $sce, $filter, $state, $rootScope, $stateParams) {
         $scope.events = {};
         $scope.updatesLoading = true;
         $scope.eventLoading = true;
         $scope.eventTopLoading = true;
+        $scope.onboard = $stateParams.onboard;
+        if ($scope.onboard == 'login') {
+            $rootScope.openLoginDialog();
+        }
         $scope.creativityLoading = false;
         $scope.contentTopLoading = true;
         $scope.offset = 0;
