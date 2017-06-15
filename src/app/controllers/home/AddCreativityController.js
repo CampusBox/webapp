@@ -276,6 +276,30 @@
                 $scope.creativity.items[0].text = $scpoe.trix;
             }
         };
+
+        $scope.submit = function($event) {
+
+            //actual dialog
+            $mdDialog.show({
+                scope: $scope,
+                preserveScope: true,
+                targetEvent: $event,
+                escapeToClose: true,
+                fullscreen: true,
+                clickOutsideToClose: true,
+                templateUrl: 'app/views/partials/license.html',
+                controller: SelectLicenseController
+            });
+
+            function SelectLicenseController($scope, $mdDialog) {
+                $scope.closeDialog = function() {
+                    console.log('CLOSING DIALOG');
+                    $mdDialog.hide();
+                };
+            }
+        };
+
+
         $scope.publish = function(checkEditor) {
             $scope.loading = true;
             $scope.image = {};

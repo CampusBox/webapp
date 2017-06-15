@@ -24,7 +24,7 @@
                 // USE THIS AT MOST TIMES
                 // 
                 // To test locally from BETA API 
-                var serviceBase = 'http://beta.campusbox.org/api/public/';
+                var serviceBase = 'http://beta.campusbox.org/dist/api/public/';
 
                 
                 $rootScope.config = function() {
