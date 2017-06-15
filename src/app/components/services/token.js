@@ -8,9 +8,24 @@
             '$q',
             function($rootScope, $http, $q, $location) {
                 
+              
+                // Uncomment as per usage
+                // 
+                // before building to pushing to Beta Server 
+                // var serviceBase = '/api/public/';
+                // 
+                // before building to pushing to Main Server 
                 // var serviceBase = 'api/public/';
-                // var serviceBase = 'http://beta.campusbox.org/api/public/';
-                var serviceBase = 'https://campusbox.org/dist/api/public/';
+                // 
+                // 
+                // To test locally from main API 
+                 var serviceBase = 'https://campusbox.org/dist/api/public/';
+                // 
+                // USE THIS AT MOST TIMES
+                // 
+                // To test locally from BETA API 
+                //var serviceBase = 'http://beta.campusbox.org/api/public/';
+
 
                 
                 $rootScope.config = function() {

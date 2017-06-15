@@ -9,13 +9,13 @@
             'tokenService',
             '$timeout',
             '$location',
-            '$state',
             '$stateParams',
+            '$state',
             '$rootScope',
             SearchEventsController
         ]);
 
-    function SearchEventsController($mdDialog, $scope, $element, tokenService,$location, $state, $stateParams, $rootScope) {
+    function SearchEventsController($mdDialog, $scope, $element, tokenService, $timeout, $location, $stateParams, $state, $rootScope) {
         var vm = this;
         $scope.grid = false;
         $scope.width = 28;
