@@ -40,8 +40,7 @@
                                         <input ng-model="searchTerm" type="search" placeholder="Select a License" class="demo-header-searchbox md-text">
                                     </md-select-header>
                                     <md-optgroup label="licenses">
-                                        <md-option ng-value="license" ng-repeat="license in licenses |
-              filter:searchTerm">{{license}}</md-option>
+                                        <md-option ng-value="license" ng-repeat="license in licenses |filter:searchTerm">{{license}}</md-option>
                                     </md-optgroup>
                                 </md-select>
                             </md-input-container>
