@@ -285,8 +285,32 @@
                 console.log('Error!');
             }
         };
-        $scope.publish = function() {
+
+        $scope.submit = function($event) {
+
+                scope: $scope,
+                preserveScope: true,
+                targetEvent: $event,
+                escapeToClose: true,
+                fullscreen: true,
+                clickOutsideToClose: true,
+                templateUrl: 'app/views/partials/license.html',
+                controller: SelectLicenseController
+            });
+
+            function SelectLicenseController($scope, $mdDialog) {
+                $scope.closeDialog = function() {
+                    console.log('CLOSING DIALOG');
+                    $mdDialog.hide();
+                };
+            }
+        };
+
+
             checkEditor();
+            //actual dialog
+            $mdDialog.show({
+        $scope.publish = function() {
             $scope.loading = true;
             $scope.image = {};
 

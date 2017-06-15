@@ -68,6 +68,26 @@
                     </md-card-content>
                 </md-card>
             </div> -->
+
+ <div style=" padding:0px;width:100%;" layout-padding layout-wrap flex-gt-xs="60" flex-offset-gt-xs="20">
+                <md-list>
+                    <md-list-item class="md-2-line">
+                        <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
+                        <div class="md-list-item-text">
+                            <h3>{{user.name}}</h3>
+                            <p>Draft</p>
+                        </div>
+
+                        <!-- Made Changes For Licence and Tags Dialog Box -->
+                        <md-button class="md-secondary md-primary md-raised" ng-disabled="(!(title && (mediumEditor || trix) && (mediumEditor.length>20 || trix.length>20) ) || loading)" class="md-raised md-primary" ng-click="submit($event)" ng-hide="loading">Submit</md-button>
+                       
+                        <!-- Till here for dialog -->
+                        <div class="spinner" ng-hide="!loading" style="width: 40px;height: 40px;background-color: #0570c0;"></div>
+                            <md-tooltip ng-show="!(title && (mediumEditor || trix) && (mediumEditor.length>20 || trix.length>20) )" md-direction="bottom">Type min 20 characters.</md-tooltip>
+                    </md-list-item>
+
+
+<!-- 
             <div style=" padding:0px;width:100%;" layout-padding layout-wrap flex-gt-xs="60" flex-offset-gt-xs="20">
                 <md-list>
                     <md-list-item class="md-2-line">
@@ -80,6 +100,9 @@
                         <div class="spinner" ng-hide="!loading" style="width: 40px;height: 40px;background-color: #0570c0;"></div>
                             <md-tooltip ng-show="!(title && (mediumEditor || trix) && (mediumEditor.length>20 || trix.length>20) )" md-direction="bottom">Type min 20 characters.</md-tooltip>
                     </md-list-item>
+ -->
+
+
                     <!-- 
                     <md-card-actions layout="column" layout-align="end center">
                         <div layout="row" ng-hide="!loading" layout-sm="column" layout-align="space-around">
