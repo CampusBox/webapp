@@ -309,7 +309,6 @@
         };
 
 
-            //actual dialog
         $scope.publish = function() {
             checkEditor();
             $scope.loading = true;
@@ -317,7 +316,7 @@
 
             $scope.creativity.tags = $scope.tags;
             $scope.creativity.title = $scope.title;
-            tokenService.post("addContent", $scope.creativity)
+            tokenService.post("addNew", $scope.creativity)
                 .then(function(status) {
                     alert(status.message);
                     if (status.status) {
