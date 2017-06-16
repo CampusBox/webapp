@@ -12,10 +12,11 @@
             '$state',
             '$filter',
             '$rootScope',
+            'creativityActionsService',
             CreativityController
         ]);
 
-    function CreativityController($scope, tokenService, $mdDialog, $sce, $state, $filter, $rootScope) {
+    function CreativityController($scope, tokenService, $mdDialog, $sce, $state, $filter, $rootScope, creativityActionsService) {
         $scope.liked = false;
         $scope.creativityLoading = false;
         $scope.offset = 0;
@@ -243,64 +244,10 @@
         }
 
         $scope.bookmark = function(content, index) {
-            if ($rootScope.authenticated) {
-                $scope.finalContents[index].Actions.Bookmarked.status = !$scope.finalContents[index].Actions.Bookmarked.status;
-                if ($scope.finalContents[index].Actions.Bookmarked.status) {
-                    $scope.finalContents[index].Actions.Bookmarked.total += 1;
-                    tokenService.post('bookmarkContent/' + content.id).then(function(result) {
-                        if (result.status != 'error') {
-                            console.log(result.status);
-                        } else {
-                            console.log(result);
-                        }
-                    });
-                } else {
-                    $scope.finalContents[index].Actions.Bookmarked.total -= 1;
-                    tokenService.delete('bookmarkContent/' + content.id, '').then(function(result) {
-                        if (result.status != 'error') {
-                            console.log(result.status);
-                        } else {
-                            console.log(result);
-                        }
-                    });
-                }
-            } else {
-                $rootScope.openLoginDialog(function() {
-                    $scope.bookmark(content, index);
-                });
-            }
+            creativityActionsService.bookmark(content);   
         }
         $scope.heart = function(content, $index) {
-            if ($rootScope.authenticated) {
-                $scope.finalContents[$index].Actions.Appreciate.status = !$scope.finalContents[$index].Actions.Appreciate.status;
-                if ($scope.finalContents[$index].Actions.Appreciate.status) {
-                    $scope.finalContents[$index].Actions.Appreciate.total += 1;
-                    tokenService.post('appreciateContent/' + content.id).then(function(result) {
-
-                        console.log('post request');
-                        if (result.status != 'error') {
-                            console.log(result.status);
-                        } else {
-                            console.log(result);
-                        }
-                    });
-                } else {
-                    $scope.finalContents[$index].Actions.Appreciate.total -= 1;
-
-                    tokenService.delete('appreciateContent/' + content.id, '').then(function(result) {
-                        console.log('post request');
-                        if (result.status != 'error') {
-                            console.log(result.status);
-                        } else {
-                            console.log(result);
-                        }
-                    });
-                }
-            } else {
-                $rootScope.openLoginDialog(function() {
-                    $scope.heart(content, $index);
-                });
-            }
+            creativityActionsService.like(content, $index);
         }
         $scope.openUrlAdd = function(ev) {
             $mdDialog.show({
