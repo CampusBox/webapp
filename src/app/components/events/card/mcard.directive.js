@@ -40,10 +40,8 @@
                 tokenService.get("minievents?limit=4")
                     .then(function(tableData) {
                         $scope.events = tableData.data;
-                        console.log(tableData.data);
                     });
                 $scope.report = function() {
-                    console.log('testing report function');
                 };
 
                 $scope.heartEvent = function(event, $index) {
@@ -54,9 +52,7 @@
                             tokenService.post('bookmarkEvent/' + event.id).then(function(result) {
 
                                 if (result.status != 'error') {
-                                    console.log(result.status);
                                 } else {
-                                    console.log(result);
                                 }
                             });
                         } else {
@@ -64,9 +60,7 @@
 
                             tokenService.delete('bookmarkEvent/' + event.id, '').then(function(result) {
                                 if (result.status != 'error') {
-                                    console.log(result.status);
                                 } else {
-                                    console.log(result);
                                 }
                             });
                         }
@@ -82,16 +76,13 @@
                         // $scope.events[$index].participation_state = state;
                         switch (state) {
                             case 2:
-                                console.log('intrested button pressed');
                                 // intrested button pressed
                                 if ($scope.events[$index].participation_state == 2) {
                                     //person was intrested before and is'nt now
                                     $scope.events[$index].participation_state = 0;
                                     tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
                                         if (result.status != 'error') {
-                                            console.log(result.status);
                                         } else {
-                                            console.log(result);
                                         }
                                     });
                                 } else if ($scope.events[$index].participation_state == 1) {
@@ -99,9 +90,7 @@
                                     $scope.events[$index].participation_state = 0;
                                     tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
                                         if (result.status != 'error') {
-                                            console.log(result.status);
                                         } else {
-                                            console.log(result);
                                         }
                                     });
                                 } else {
@@ -109,23 +98,18 @@
                                     $scope.events[$index].participation_state = 2;
                                     tokenService.post('rsvpEvent/' + event.id + '/' + 2).then(function(result) {
                                         if (result.status != 'error') {
-                                            console.log(result.status);
                                         } else {
-                                            console.log(result);
                                         }
                                     });
                                 }
                                 break;
                             case 1:
-                                console.log('going button pressed');
                                 if ($scope.events[$index].participation_state == 2) {
                                     // person intrested before and now he's going too
                                     $scope.events[$index].participation_state = 1;
                                     tokenService.post('rsvpEvent/' + event.id + '/' + 1).then(function(result) {
                                         if (result.status != 'error') {
-                                            console.log(result.status);
                                         } else {
-                                            console.log(result);
                                         }
                                     });
                                 } else if ($scope.events[$index].participation_state == 1) {
@@ -133,18 +117,14 @@
                                     $scope.events[$index].participation_state = 0;
                                     tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
                                         if (result.status != 'error') {
-                                            console.log(result.status);
                                         } else {
-                                            console.log(result);
                                         }
                                     });
                                 } else {
                                     // person was not going before but is going now
                                     tokenService.post('rsvpEvent/' + event.id + '/' + 1).then(function(result) {
                                         if (result.status != 'error') {
-                                            console.log(result.status);
                                         } else {
-                                            console.log(result);
                                         }
                                     });
                                 }

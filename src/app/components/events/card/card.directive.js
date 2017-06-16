@@ -7,6 +7,10 @@
             restrict: "E",
             replace: true,
             templateUrl: 'app/components/events/card/card.html',
+            scope: {
+                bar: '=bar',
+                event: '=data'
+            },
 
             controller: function($mdDialog, $scope, $element, tokenService, $timeout, $location, $state, $rootScope) {
                 $scope.grid = false;
@@ -37,6 +41,11 @@
                     { 'id': 1, 'title': 'My College', },
                     { 'id': 2, 'title': 'Other colleges' }
                 ];
+
+                $scope.report = function() {
+                    console.log('testing report function');
+                };
+
                 tokenService.get("minievents?limit=4")
                     .then(function(tableData) {
                         $scope.events = tableData.data;
@@ -48,9 +57,6 @@
 
                         // console.log(tableData.data);
                     });
-                $scope.report = function() {
-                    console.log('testing report function');
-                };
 
                 $scope.heartEvent = function(event, $index) {
                     if ($rootScope.authenticated) {
