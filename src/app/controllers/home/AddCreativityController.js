@@ -311,6 +311,7 @@
 
             //actual dialog
         $scope.publish = function() {
+            checkEditor();
             $scope.loading = true;
             $scope.image = {};
 
