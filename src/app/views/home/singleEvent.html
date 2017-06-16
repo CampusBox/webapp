@@ -3,14 +3,16 @@
     color: #666A73;
     font-weight: 500;
 }
-.event-description{
+
+.event-description {
     text-align: justify;
 }
-.event-description p{
+
+.event-description p {
     text-align: justify;
 }
 </style>
-<div ng-show="loading" layout="column"  flex-gt-xs="80" flex-offset-gt-xs="10">
+<div ng-show="loading" layout="column" flex-gt-xs="80" flex-offset-gt-xs="10">
     <div layout-gt-xs="row" layout-xs="column" layout-align="start" layout-align-xs="strech start">
         <img flex-sm="40" flex-md="40" flex-lg="30" flex-xs="100" style="background-color: #eee;    min-height: 250px;" class="md-card-image">
         <div layout-gt-xs="column" layout-xs="row" flex flex-xs="100">
@@ -90,7 +92,7 @@
         <span flex hide-xs></span>
         <div layout="row" class="md-padding" layout-align="space-around">
             <md-button class="share-button" ng-controller="ShareController" ng-click="showCustom($event,'event');" aria-label="Share ">
-                <md-icon ng-class=""  md-svg-icon="share"></md-icon>
+                <md-icon ng-class="" md-svg-icon="share"></md-icon>
             </md-button>
             <md-button class="appreciate-button" ng-click="heart(event, $index)" aria-label="Favorite ">
                 <md-icon class="pink" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>{{event.Actions.Bookmarked.status? 'Appreciated' : 'Appreciate' }}
@@ -103,14 +105,72 @@
     <md-divider></md-divider>
     <!-- <md-tabs md-dynamic-height md-border-bottom md-selected="tab"> -->
     <!-- <md-tab label="Description"> -->
-    <div layout="column" style="    max-width: 80%;" flex-gt-xs="80" flex="80" flex-offset-gt-xs="10" flex-offset-xs="5" flex-order-xs="1">
+    <div layout="column" style="    max-width: 80%;" flex-gt-xs="80" flex="80" flex-offset-gt-xs="10" flex-offset-xs="5">
         <h2 class="md-headline" style="margin-bottom:10px;">Description</h2>
-        <p class="md-body-2 event-description"  ng-bind-html="event.details.description"></p>
+        <p class="md-body-2 event-description" ng-bind-html="event.details.description"></p>
     </div>
-    <!--  </md-tab>
+    <md-divider style="margin-top: 20px;"></md-divider>
+    <h2 class="md-headline" style="margin-bottom:20px;">Comment Section</h2>
+    <div layout="row" layout-align="center">
+        <md-card flex-gt-xs="60" flex-xs="100" style="border-radius: 3px;padding: 16px;">
+            <md-input-container style="margin:0px;padding: 8px; border: 1px solid grey; border-radius: 3px">
+                <textarea rows="3" md-no-resize md-select-on-focus ng-model="newComment"></textarea>
+            </md-input-container>
+            <div flex="100" layout="row" layout-align="end" style="margin-top: 8px;">
+                <md-button ng-disabled="(newComment.length>0?false:true)" class="md-raised" style="margin:0px;background-color: #0570c0;color: white;" ng-click="postComment(newComment);">
+                    POST
+                </md-button>
+            </div>
+        </md-card>
+    </div>
+    <div layout="row" layout-align="center">
+        <md-list flex-gt-xs="60" flex-xs="100">
+            <md-list-item style="padding:0px;padding-left:16px;padding-top:8px;padding-bottom: 16px;padding-right: 16px; border: 1px solid grey;border-radius: 4px;margin-bottom: 4px;" class="md-2-line md-no-proxy" ng-repeat="comment in comments" ng-init="comment.isInEditMode=false;">
+                <div flex="100" layout="column">
+                    <div layout="row" layout-align="space-between" style="margin-bottom: 8px;">
+                        <div layout="row">
+                            <img ng-src="assets/images/feynman.jpg" class="md-avatar" alt="" />
+                            <div class="md-list-item-text" layout="column">
+                                <h3>{{comment.username}}</h3>
+                                <p style="font-size: 12px;">Date</p>
+                            </div>
+                        </div>
+                        <md-menu ng-show="isCommentEditable(comment) && !comment.isInEditMode">
+                            <md-button class="md-icon-button" md-menu-origin="" ng-click="openMenu($mdMenu,$event);">
+                                <md-icon md-menu-origin md-svg-icon="menu"></md-icon>
+                            </md-button>
+                            <md-menu-content width="3">
+                                <md-menu-item>
+                                    <md-button ng-click="editComment(comment)">
+                                        Edit
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button ng-click="deleteComment(comment)">
+                                        Delete
+                                    </md-button>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+                    </div>
+                    <div ng-hide="comment.isInEditMode">
+                        {{comment.response_text}}
+                    </div>
+                    <md-input-container ng-show="comment.isInEditMode" style="margin:0px;">
+                        <textarea rows="1" ng-model="comment.response_text"></textarea>
+                    </md-input-container>
+                    <div flex="100" layout="row" layout-align="end" ng-show="comment.isInEditMode">
+                        <md-button style="margin:0px;" ng-click="updateComment(comment)">
+                            Update
+                        </md-button>
+                    </div>
+            </md-list-item>
+        </md-list>
+        </div>
+        <!--  </md-tab>
         <md-tab label="Rules">
             <md-content class="md-padding">
             </md-content>
         </md-tab>
     </md-tabs> -->
-</div>
+    </div>
