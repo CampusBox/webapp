@@ -18,7 +18,7 @@
     <div layout="column" title="search all">
         <div flex-order="{{fos}}" title="students">
             <h2 class="md-headline" style="color: rgba(0,0,0,.8);" ng-hide="query == '' || students.length == 0">Results for "{{query}}" in students</h2>
-            <div layout="row" layout-wrap layout-align="start start">
+            <div layout="row" layout-wrap layout-align="center">
                 <md-card ng-if="listLoading" ui-sref="home.profile" ng-repeat="student in [1,2,3]" style="cursor: pointer;" flex-lg="25" flex-xs="100">
                     <center>
                         <img style="border-radius: 50%; width: 40%; margin-top:20px; background-color: #dfdfdf; padding-bottom: 33%" class="md-card-image">
