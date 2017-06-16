@@ -287,6 +287,8 @@
         };
 
         $scope.submit = function($event) {
+            checkEditor();
+            $mdDialog.show({
 
                 scope: $scope,
                 preserveScope: true,
@@ -307,9 +309,7 @@
         };
 
 
-            checkEditor();
             //actual dialog
-            $mdDialog.show({
         $scope.publish = function() {
             $scope.loading = true;
             $scope.image = {};
