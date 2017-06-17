@@ -3,11 +3,11 @@
     angular
         .module('app')
         .controller('StaticController', [
-            'navService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state', '$scope', '$mdToast',
+            'navService', '$mdSidenav', '$log', '$q', '$state', '$scope', '$mdToast',
             StaticController
         ]);
 
-    function StaticController(navService, $mdSidenav, $mdBottomSheet, $log, $q, $state, $scope, $mdToast) {
+    function StaticController(navService, $mdSidenav, $log, $q, $state, $scope, $mdToast) {
 
         var vm = this;
 
@@ -45,7 +45,6 @@
         }
 
         function toggleItemsList() {
-            var pending = $mdBottomSheet.hide() || $q.when(true);
 
             pending.then(function() {
                 $mdSidenav('left').toggle();

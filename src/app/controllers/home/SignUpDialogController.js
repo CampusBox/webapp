@@ -6,7 +6,6 @@
 
             '$scope',
             '$timeout',
-            'loginData',
             '$rootScope',
             '$localStorage',
             '$state',
@@ -20,7 +19,7 @@
             SignUpDialogController
         ]);
 
-    function SignUpDialogController($scope, $timeout, loginData, $rootScope, $localStorage, $state, collegesListService, tokenService, $auth, $filter, todoListService, $mdDialog, $rootScope) {
+    function SignUpDialogController($scope, $timeout, $rootScope, $localStorage, $state, collegesListService, tokenService, $auth, $filter, todoListService, $mdDialog, $rootScope) {
         var vm = this;
 
         $scope.signup = 1;

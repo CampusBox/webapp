@@ -4,11 +4,11 @@
     angular
         .module('app')
         .controller('LoginController', [
-            '$scope', 'loginData', '$rootScope', '$localStorage', '$state', '$auth', 'tokenService',
+            '$scope', '$rootScope', '$localStorage', '$state', '$auth', 'tokenService',
             LoginController
         ]);
 
-    function LoginController($scope, loginData, $rootScope, $localStorage, $state, $auth, tokenService) {
+    function LoginController($scope, $rootScope, $localStorage, $state, $auth, tokenService) {
         var vm = this;
         $scope.loading = false;
         if (localStorage.getItem('id_token') != null) {

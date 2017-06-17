@@ -95,17 +95,6 @@
                 console.log('cancel');
             });
         };
-
-        $scope.openSocialAccounts = function(ev) {
-            $mdDialog.show({
-                controller: SocialController,
-                templateUrl: 'app/views/partials/socialLinks.html',
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                clickOutsideToClose: true,
-                fullscreen: true // Only for -xs, -sm breakpoints.
-            });
-        };
         $scope.showParticipants = function(ev, eventId) {
             $mdDialog.show({
                 controller: 'ParticipantsController',

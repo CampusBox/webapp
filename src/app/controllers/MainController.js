@@ -5,11 +5,11 @@
     angular
         .module('app')
         .controller('MainController', [
-            'navService', '$mdSidenav', 'tokenService', '$mdDialog', '$log', '$q', '$timeout', '$state', '$mdToast', '$scope', '$localStorage', '$location', '$mdConstant', '$rootScope',
+            '$mdSidenav', 'tokenService', '$mdDialog', '$log', '$q', '$timeout', '$state', '$mdToast', '$scope', '$localStorage', '$location', '$mdConstant', '$rootScope',
             MainController
         ]);
 
-    function MainController(navService, $mdSidenav, tokenService, $mdDialog, $log, $q, $timeout, $state, $mdToast, $scope, $localStorage, $location, $mdConstant, $rootScope) {
+    function MainController($mdSidenav, tokenService, $mdDialog, $log, $q, $timeout, $state, $mdToast, $scope, $localStorage, $location, $mdConstant, $rootScope) {
         var vm = this;
         if (typeof document.getElementById('basicveryimportantloading') !== 'undefined' && document.getElementById('basicveryimportantloading') != null) {
             document.getElementById('basicveryimportantloading').remove();
@@ -144,12 +144,6 @@
                         $rootScope.notifications = abc;
                     });
             });
-        navService
-            .loadAllItems()
-            .then(function(menuItems) {
-                vm.menuItems = [].concat(menuItems);
-            });
-
         function toggleRightSidebar() {
             $mdSidenav('right').toggle();
         }
