@@ -220,7 +220,7 @@
             creativityActionsService.bookmark(content);   
         }
         $scope.heart = function(content, $index) {
-            creativityActionsService.like(content, $index);
+            creativityActionsService.heart(content, $index);
         }
 
 

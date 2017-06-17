@@ -13,10 +13,11 @@
             '$rootScope',
             '$stateParams',
             'creativityCategories',
+            'creativityActionsService',
             DashboardController
         ]);
 
-    function DashboardController($mdDialog, $scope, tokenService, $location, $sce, $filter, $state, $rootScope, $stateParams, creativityCategories) {
+    function DashboardController($mdDialog, $scope, tokenService, $location, $sce, $filter, $state, $rootScope, $stateParams, creativityCategories, creativityActionsService) {
         $scope.events = {};
         $scope.updatesLoading = true;
         $scope.eventLoading = true;
@@ -39,8 +40,8 @@
         $scope.mediaTypes = [4, 5, 6, 7, 12, 15, 16];
 
 
-            // tokenService.get("eventsDashboard")
-            // changing temporarily till api is fixed
+        // tokenService.get("eventsDashboard")
+        // changing temporarily till api is fixed
         tokenService.get("minievents?limit=3")
             .then(function(events) {
                 $scope.events = events.data;
@@ -187,47 +188,10 @@
 
 
         $scope.heart = function(content, $index) {
-            if ($rootScope.authenticated) {
-                $scope.finalContents[$index].Actions.Appreciate.status = !$scope.finalContents[$index].Actions.Appreciate.status;
-                if ($scope.finalContents[$index].Actions.Appreciate.status) {
-                    $scope.finalContents[$index].Actions.Appreciate.total += 1;
-                    tokenService.post('appreciateContent/' + content.id).then(function(result) {
-
-
-                    });
-                } else {
-                    $scope.finalContents[$index].Actions.Appreciate.total -= 1;
-
-                    tokenService.delete('appreciateContent/' + content.id, '').then(function(result) {
-
-                    });
-                }
-            } else {
-                $rootScope.openLoginDialog(function() {
-                    $scope.heart(content, $index);
-                });
-            }
+            creativityActionsService.heart(content);
         }
         $scope.bookmark = function(content, index) {
-            if ($rootScope.authenticated) {
-
-                $scope.finalContents[index].Actions.Bookmarked.status = !$scope.finalContents[index].Actions.Bookmarked.status;
-                if ($scope.finalContents[index].Actions.Bookmarked.status) {
-                    $scope.finalContents[index].Actions.Bookmarked.total += 1;
-                    tokenService.post('bookmarkContent/' + content.id).then(function(result) {
-
-                    });
-                } else {
-                    $scope.finalContents[index].Actions.Bookmarked.total -= 1;
-                    tokenService.delete('bookmarkContent/' + content.id, '').then(function(result) {
-
-                    });
-                }
-            } else {
-                $rootScope.openLoginDialog(function() {
-                    $scope.bookmark(content, index);
-                });
-            }
+            creativityActionsService.bookmark(content);
         }
         $scope.openProfile = function($event, username) {
             $event.stopPropagation();
