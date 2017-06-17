@@ -12,10 +12,11 @@
             '$state',
             '$rootScope',
             '$stateParams',
+            'creativityCategories',
             DashboardController
         ]);
 
-    function DashboardController($mdDialog, $scope, tokenService, $location, $sce, $filter, $state, $rootScope, $stateParams) {
+    function DashboardController($mdDialog, $scope, tokenService, $location, $sce, $filter, $state, $rootScope, $stateParams, creativityCategories) {
         $scope.events = {};
         $scope.updatesLoading = true;
         $scope.eventLoading = true;
@@ -31,70 +32,13 @@
         $rootScope.currentPageBackground = $rootScope.gray;
         $rootScope.title = "Dashboard";
         $scope.finalContents = [];
-        $scope.types = [
-            { 'title': 'Articles', 'id': 1 },
-            { 'title': 'Poetry', 'id': 2 },
-            { 'title': 'Drama', 'id': 3 },
-            { 'title': 'Paint and Colour', 'id': 4 },
-            { 'title': 'Drawing ', 'id': 5 },
-            { 'title': 'Sewing and Fabric', 'id': 6 },
-            { 'title': 'Craft', 'id': 7 },
-            // { 'title': 'Dancing', 'id': 8 },
-            { 'title': 'Dancing', 'id': 8 },
-            { 'title': 'Singing', 'id': 9 },
-            { 'title': 'Instrumental', 'id': 10 },
-            { 'title': 'Digital Music', 'id': 11 },
-            { 'title': 'Decor', 'id': 12 },
-            { 'title': 'Film and Video', 'id': 13 },
-            { 'title': 'Animation', 'id': 14 },
-            { 'title': 'Graphics', 'id': 15 },
-            { 'title': 'UI and UX', 'id': 16 },
-            { 'title': 'Websites', 'id': 17 },
-            { 'title': 'Programming', 'id': 18 },
-            { 'title': 'Apps', 'id': 19 },
-            { 'title': 'Electronics', 'id': 20 },
-            { 'title': 'DIY', 'id': 21 }
-        ];
+        $scope.types = creativityCategories.types;
 
-        $scope.tags = ['AngularJs', 'Web Developement', 'Elon Musk', 'Poetry', 'Artificial Intelligence', 'Product Design', 'Feminism', 'Technology', 'Self Driving Cars'];
         var cardObject = {};
         $scope.finalContents = [];
         $scope.mediaTypes = [4, 5, 6, 7, 12, 15, 16];
-        // $scope.selectedState = "going"
-        $scope.change = function(event, index, state) {
-            switch (state) {
-                case 0:
-                    console.log('post 0');
-                    $scope.events[index].participation_state = 0;
-                    tokenService.delete('rsvpEvent/' + event.id, '').then(function(result) {
-                        getParticipationState(event, index);
-                    });
-                    break;
-                case 1:
-                    console.log('post 1');
-                    $scope.events[index].participation_state = 1;
-                    tokenService.post('rsvpEvent/' + event.id + '/' + 1).then(function(result) {
-                        getParticipationState(event, index);
-                    });
-                    break;
-                case 2:
-                    console.log('post 2');
-                    $scope.events[index].participation_state = 2;
-                    tokenService.post('rsvpEvent/' + event.id + '/' + 2).then(function(result) {
-                        getParticipationState(event, index);
-                    });
-                    break;
-            }
-        }
-        $scope.getParticipationState = function(event, index) {
-                if ($scope.events[index].participation_state == 1) {
-                    return "Going";
-                } else if ($scope.events[index].participation_state == 2) {
-                    return "Intrested";
-                } else {
-                    return "Not going";
-                }
-            }
+
+
             // tokenService.get("eventsDashboard")
             // changing temporarily till api is fixed
         tokenService.get("minievents?limit=3")
@@ -289,52 +233,6 @@
             $event.stopPropagation();
             $state.go('home.profile', { username: username });
         };
-        $scope.heartEvent = function(event, $index) {
-            if ($rootScope.authenticated) {
-                $scope.events[$index].Actions.Bookmarked.status = !$scope.events[$index].Actions.Bookmarked.status;
-                if ($scope.events[$index].Actions.Bookmarked.status) {
-                    $scope.events[$index].Actions.Bookmarked.total += 1;
-                    tokenService.post('bookmarkEvent/' + event.id).then(function(result) {
-
-
-                    });
-                } else {
-                    $scope.events[$index].Actions.Bookmarked.total -= 1;
-
-                    tokenService.delete('bookmarkEvent/' + event.id, '').then(function(result) {
-
-                    });
-                }
-            } else {
-                $rootScope.openLoginDialog(function() {
-                    $scope.heartEvent(event, $index);
-                });
-            }
-        }
-        $scope.rsvpEvent = function(event, index, state, $event) {
-            $event.stopPropagation();
-            if ($rootScope.authenticated) {
-                // $scope.events[$index].participation_state = state;
-                switch (state) {
-                    case 2:
-                        $scope.events[index].participation_state = 2;
-                        tokenService.post('rsvpEvent/' + event.id + '/' + 2).then(function(result) {
-                            getParticipationState(event, index);
-                        });
-                        break;
-                    case 1:
-                        $scope.events[index].participation_state = 1;
-                        tokenService.post('rsvpEvent/' + event.id + '/' + 1).then(function(result) {
-                            getParticipationState(event, index);
-                        });
-                        break;
-                }
-            } else {
-                $rootScope.openLoginDialog(function() {
-                    $scope.rsvpEvent(event, $index);
-                });
-            }
-        }
     }
 
 

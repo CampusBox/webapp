@@ -1,0 +1,41 @@
+<div show-xs layout="column" flex-gt-sm="80">
+    <md-card-title ui-sref="home.singleEvent({eventId: event.id})" style="padding-bottom: 0px">
+        <md-card-title-media style="margin-top: -19px; margin-left: -12px;">
+            <div style="position: relative;background-color: black" class="md-media-lg card-media">
+                <img style="width: 100% ;opacity: 0.7;font-weight: 900" ng-src="{{event.image}}" alt="">
+                <span class="md-display-1" style="position: absolute;top: 28px;left: 37px;color: #fff;     text-shadow: 0px 1px 3px black;"><span>
+                                        
+                                    {{event.timings.month}}
+                                    </span>
+                <br>
+                <span style="padding-left:10px">
+                                        {{event.timings.day}}
+                                    </span>
+                </span>
+            </div>
+        </md-card-title-media>
+        <md-card-title-text style="margin-top: -15px; padding-left: 5px;height: 152px">
+            <p hide-gt-sm class="md-title" style="font-weight: 600;margin: 0px; height: 36px; min-height:36px;overflow:hidden;">
+                {{event.title | limitTo : 30}}
+            </p>
+            <p style="margin-top: 0px; color: #777;overflow: hidden;" class="md-body-2">
+                {{event.subtitle| limitTo : 100}}
+            </p>
+            <p style="margin:0;color:#555555; height: 36px; min-height: 36px; overflow: hidden;" class="md-body-2">
+                <span>
+                                        <md-icon ng-show="event.location.type" md-svg-icon="map-marker"></md-icon>
+                                        <md-icon ng-hide="event.location.type" md-svg-icon="earth"></md-icon>
+                                        {{event.location.data}}
+                                    </span>
+                <span style="float: right;">
+                                        <md-icon ng-show="event.location.type" md-svg-icon="currency-inr"></md-icon>
+                                        {{event.price?event.price:" No Fees"}}
+                                    </span>
+            </p>
+        </md-card-title-text>
+    </md-card-title>
+    <md-divider></md-divider>
+    <event-actions ng-if="bar" style="margin: 2px 17px 4px 4px;max-height: 40px;" layout="row" layout-align="end center"></event-actions>
+    <!--             <div infinite-scroll="myPagingFunction();" infinite-scroll-disabled='loading' infinite-scroll-distance="4">
+            </div> -->
+</div>

@@ -12,11 +12,11 @@
             '$location',
             'Socialshare',
             'creativity',
-
+            'creativityCategories',
             PopUpCreativityController
         ]);
 
-    function PopUpCreativityController($scope, tokenService, $mdDialog, $stateParams, $sce, $rootScope, $location, Socialshare, creativity) {
+    function PopUpCreativityController($scope, tokenService, $mdDialog, $stateParams, $sce, $rootScope, $location, Socialshare, creativity, creativityCategories) {
         var vm = this;
 
 
@@ -60,30 +60,7 @@
 
 
 
-        $scope.types = [
-            { 'title': 'Articles', 'id': 1 },
-            { 'title': 'Poetry', 'id': 2 },
-            { 'title': 'Drama', 'id': 3 },
-            { 'title': 'Paint and Colour', 'id': 4 },
-            { 'title': 'Drawing ', 'id': 5 },
-            { 'title': 'Sewing and Fabric', 'id': 6 },
-            { 'title': 'Craft', 'id': 7 },
-            // { 'title': 'Dancing', 'id': 8 },
-            { 'title': 'Dancing', 'id': 8 },
-            { 'title': 'Singing', 'id': 9 },
-            { 'title': 'Instrumental', 'id': 10 },
-            { 'title': 'Digital Music', 'id': 11 },
-            { 'title': 'Decor', 'id': 12 },
-            { 'title': 'Film and Video', 'id': 13 },
-            { 'title': 'Animation', 'id': 14 },
-            { 'title': 'Graphics', 'id': 15 },
-            { 'title': 'UI and UX', 'id': 16 },
-            { 'title': 'Websites', 'id': 17 },
-            { 'title': 'Programming', 'id': 18 },
-            { 'title': 'Apps', 'id': 19 },
-            { 'title': 'Electronics', 'id': 20 },
-            { 'title': 'DIY', 'id': 21 }
-        ];
+        $scope.types = creativityCategories.types;
         $scope.toggleLike = function(blogId) {
             console.log(blogId);
             vm.liked = !vm.liked;

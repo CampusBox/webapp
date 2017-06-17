@@ -8,14 +8,13 @@
             'tokenService',
             '$stateParams',
             '$state',
-            'allDataService',
             '$location',
             '$sce',
             '$rootScope',
             ProfileController
         ]);
 
-    function ProfileController($mdDialog, $scope, tokenService, $stateParams, $state, allDataService, $location, $sce, $rootScope) {
+    function ProfileController($mdDialog, $scope, tokenService, $stateParams, $state, $location, $sce, $rootScope) {
         var cardObject = {};
         $scope.currentNavItem = 'overview';
         $scope.goto = function(page) {

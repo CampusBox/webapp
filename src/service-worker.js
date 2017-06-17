@@ -1,1 +1,1 @@
-self.addEventListener('fetch', function(evt) {
+self.addEventListener('fetch', function(evt) {})

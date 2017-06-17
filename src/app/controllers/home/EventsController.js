@@ -16,6 +16,19 @@
 
     function EventsController($mdDialog, $scope, $element, tokenService,  $timeout, $location, $state, $rootScope) {
         var vm = this;
+        $scope.offset = 0;
+        $scope.moreItems = true;
+        $scope.eventLoading = true;
+        $scope.events = [];
+        tokenService.get("minievents?limit=4")
+            .then(function(tableData) {
+                $scope.events = tableData.data;
+                $scope.eventLoading = false;
+                tokenService.get("minievents?limit=4&offset=4")
+                    .then(function(response) {
+                        $scope.events = $scope.events.concat(response.data);
+                    });
+            });
         $rootScope.currentPageBackground = $rootScope.gray;
         $rootScope.title = "Opportunities";
 

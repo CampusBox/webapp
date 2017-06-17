@@ -130,7 +130,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
                     title: 'Dashboard'
                 }
             })
-        .state('home.dashboardFromStatic', {
+            .state('home.dashboardFromStatic', {
                 url: '/dashboard/:onboard',
                 controler: 'DashboardController',
                 templateUrl: 'app/views/home/dashboard.html',
@@ -174,15 +174,6 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
                     title: 'Dashboard'
                 }
             })
-            .state('home.table', {
-                url: '/table',
-                controller: 'TableController',
-                controllerAs: 'vm',
-                templateUrl: 'app/views/home/table.html',
-                data: {
-                    title: 'Table'
-                }
-            })
             .state('home.profile', {
                 url: '/profile/:username',
                 templateUrl: 'app/views/home/profile.html',
@@ -210,76 +201,27 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
                     title: 'Profile'
                 }
             })
-            .state('home.me', {
-                url: '/me',
-                templateUrl: 'app/views/home/me.html',
-                controller: 'MeController',
-                controllerAs: 'vm',
-                data: {
-                    requiresLogin: true,
-                    title: 'Me'
-                }
-            })
-            .state('home.eventFullPage', {
-                url: '/eventFullPage',
-                templateUrl: 'app/views/home/eventFullPage.html',
-                controller: 'EventFullPageController',
-                controllerAs: 'vm',
-                data: {
-                    title: 'Event'
-                }
-            })
-            .state('home.myEvents', {
-                url: '/myEvents',
-                templateUrl: 'app/views/home/myEvents.html',
-                controller: 'MyProfileController',
-                controllerAs: 'vm',
-                data: {
-                    requiresLogin: true,
-                    title: 'My Opportunities'
-                }
-            })
-
-        .state('home.creativity', {
-            url: '/creativity',
-            templateUrl: 'app/views/home/creativity.html',
-            controller: 'CreativityController',
-            controllerAs: 'vm',
-            data: {
-                title: 'Profile'
-            }
-        })
-
-        .state('home.addCreativity', {
-                url: '/addCreativity',
-                templateUrl: 'app/views/home/addCreativity.html',
-                controller: 'AddCreativityController',
-                controllerAs: 'vm',
-                data: {
-                    requiresLogin: true,
-                    title: 'Add a Post'
-                }
-            })
-            .state('home.addImages', {
-                url: '/addImages',
-                templateUrl: 'app/views/home/addImages.html',
-                controller: 'AddCreativityController',
-                controllerAs: 'vm',
-                data: {
-                    requiresLogin: true,
-
-                    title: 'Add Pictures'
-                }
-            })
-            .state('home.societies', {
-                url: '/societies',
-                templateUrl: 'app/views/home/societies.html',
-                controller: 'SocietiesController',
+            .state('home.creativity', {
+                url: '/creativity',
+                templateUrl: 'app/views/home/creativity.html',
+                controller: 'CreativityController',
                 controllerAs: 'vm',
                 data: {
                     title: 'Profile'
                 }
-            });
+            })
+
+        .state('home.addCreativity', {
+            url: '/addCreativity',
+            templateUrl: 'app/views/home/addCreativity.html',
+            controller: 'AddCreativityController',
+            controllerAs: 'vm',
+            data: {
+                requiresLogin: true,
+                title: 'Add a Post'
+            }
+        })
+
 
         // $authProvider.facebook({
         //     clientId: '1250377088376164'
@@ -329,14 +271,14 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
 
 
     })
-    .run(function( $state, $location, $rootScope, $mdDialog, tokenService, Analytics) {
+    .run(function($state, $location, $rootScope, $mdDialog, tokenService, Analytics) {
         // authManager.checkAuthOnRefresh();
         //   authManager.redirectWhenUnauthenticated();
-        console.log($state.current.name);
-                  $rootScope.currentState = $state.current.name;
+
+        $rootScope.currentState = $state.current.name;
 
         localStorage.setItem('evervisited', true);
-        console.log(localStorage.getItem('evervisited'))
+
         $rootScope.user = {};
 
         $rootScope.currentState = $state.current.name;
@@ -368,7 +310,6 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
                 //Registration was successful
             }).catch(function(err) {
                 //registration failed :(
-                console.log('ServiceWorker registration failed: ', err);
             });
         }
         if (localStorage.getItem('id_token') != null) {

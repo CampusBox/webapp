@@ -5,7 +5,6 @@
         .module('app')
         .controller('loginDialogController', [
             '$scope',
-            'loginData',
             '$rootScope',
             '$localStorage',
             '$state',
@@ -15,7 +14,7 @@
             loginDialogController
         ]);
 
-    function loginDialogController($scope, loginData, $rootScope, $localStorage, $$state, $auth, tokenService, $mdDialog) {
+    function loginDialogController($scope, $rootScope, $localStorage, $$state, $auth, tokenService, $mdDialog) {
         var vm = this;
 
         $scope.loginVar = 0;
