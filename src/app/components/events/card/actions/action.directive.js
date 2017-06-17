@@ -2,11 +2,11 @@
     'use strict';
 
     angular.module('app').
-    directive('action', function() {
+    directive('eventActions', function() {
         return {
             restrict: "E",
             replace: true,
-            templateUrl: 'app/components/events/card/actions/action.html',
+            templateUrl: 'app/components/events/card/actions/eventActions.html',
 
             controller: function($mdDialog, $scope, $element, tokenService,  $timeout, $location, $state, $rootScope, eventsActionsService) {
 

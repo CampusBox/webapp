@@ -16,6 +16,10 @@
 
     function EventsController($mdDialog, $scope, $element, tokenService,  $timeout, $location, $state, $rootScope) {
         var vm = this;
+        $scope.offset = 0;
+        $scope.moreItems = true;
+        $scope.eventLoading = true;
+        $scope.events = [];
         tokenService.get("minievents?limit=4")
             .then(function(tableData) {
                 $scope.events = tableData.data;
