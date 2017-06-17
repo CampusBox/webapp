@@ -238,27 +238,12 @@
             })
         }
 
-        $scope.toggleLike = function(contentId) {
-            console.log(contentId);
-            vm.liked = !vm.liked;
-        }
-
         $scope.bookmark = function(content, index) {
             creativityActionsService.bookmark(content);   
         }
         $scope.heart = function(content, $index) {
             creativityActionsService.like(content, $index);
         }
-        $scope.openUrlAdd = function(ev) {
-            $mdDialog.show({
-                controller: 'AddUrlController',
-                templateUrl: 'app/views/partials/addUrl.html',
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                clickOutsideToClose: true,
-                fullscreen: true // Only for -xs, -sm breakpoints.
-            })
-        };
 
 
     }

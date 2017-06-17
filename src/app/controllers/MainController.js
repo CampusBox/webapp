@@ -16,7 +16,6 @@
         }
         // document.getElementById('basicveryimportantloading').remove();
 
-        console.log($scope.state);
         var semicolon = 186;
         $rootScope.gray = 'rgba(125, 125, 140, 0.17)';
 

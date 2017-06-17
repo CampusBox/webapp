@@ -24,8 +24,6 @@
                     .then(function(response) {
                         $scope.events = $scope.events.concat(response.data);
                     });
-
-                // console.log(tableData.data);
             });
         $rootScope.currentPageBackground = $rootScope.gray;
         $rootScope.title = "Opportunities";

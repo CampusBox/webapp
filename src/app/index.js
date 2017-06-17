@@ -332,11 +332,11 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
     .run(function( $state, $location, $rootScope, $mdDialog, tokenService, Analytics) {
         // authManager.checkAuthOnRefresh();
         //   authManager.redirectWhenUnauthenticated();
-        console.log($state.current.name);
+
                   $rootScope.currentState = $state.current.name;
 
         localStorage.setItem('evervisited', true);
-        console.log(localStorage.getItem('evervisited'))
+
         $rootScope.user = {};
 
         $rootScope.currentState = $state.current.name;
@@ -368,7 +368,6 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
                 //Registration was successful
             }).catch(function(err) {
                 //registration failed :(
-                console.log('ServiceWorker registration failed: ', err);
             });
         }
         if (localStorage.getItem('id_token') != null) {
