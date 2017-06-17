@@ -88,6 +88,7 @@
             $event.stopPropagation();
             if ($rootScope.authenticated) {
                 if (index) {
+
                     $event.stopPropagation();
                     $scope.finalContents[index].Actions.Appreciate.status = !$scope.finalContents[index].Actions.Appreciate.status;
                     if ($scope.finalContents[index].Actions.Appreciate.status) {
@@ -114,9 +115,9 @@
                         });
                     }
                 } else {
-                    $scope.content.Actions.Appreciate.status = !$scope.content.Actions.Appreciate.status;
-                    if ($scope.content.Actions.Appreciate.status) {
-                        $scope.content.Actions.Appreciate.total += 1;
+                    content.Actions.Appreciate.status = !content.Actions.Appreciate.status;
+                    if (content.Actions.Appreciate.status) {
+                        content.Actions.Appreciate.total += 1;
                         tokenService.post('appreciateContent/' + content.id).then(function(result) {
 
                             console.log('post request');
@@ -127,8 +128,7 @@
                             }
                         });
                     } else {
-                        $scope.content.Actions.Appreciate.total -= 1;
-
+                        content.Actions.Appreciate.total -= 1;
                         tokenService.delete('appreciateContent/' + content.id, '').then(function(result) {
                             console.log('post request');
                             if (result.status != 'error') {
@@ -262,6 +262,7 @@
                         });
                         $scope.creativityLoading = false;
                         $scope.finalContents = $scope.nonFinalContents;
+                        console.log($scope.finalContents);
                         $scope.offset += 2;
                     });
             });
