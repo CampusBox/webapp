@@ -5,17 +5,18 @@
     angular
         .module('app')
         .controller('MainController', [
-            '$mdSidenav', 'tokenService', '$mdDialog', '$log', '$q', '$timeout', '$state', '$mdToast', '$scope', '$localStorage', '$location', '$mdConstant', '$rootScope',
+            'navService', '$mdSidenav', 'tokenService', '$mdDialog', '$log', '$q', '$timeout', '$state', '$mdToast', '$scope', '$localStorage', '$location', '$mdConstant', '$rootScope',
             MainController
         ]);
 
-    function MainController($mdSidenav, tokenService, $mdDialog, $log, $q, $timeout, $state, $mdToast, $scope, $localStorage, $location, $mdConstant, $rootScope) {
+    function MainController(navService, $mdSidenav, tokenService, $mdDialog, $log, $q, $timeout, $state, $mdToast, $scope, $localStorage, $location, $mdConstant, $rootScope) {
         var vm = this;
         if (typeof document.getElementById('basicveryimportantloading') !== 'undefined' && document.getElementById('basicveryimportantloading') != null) {
             document.getElementById('basicveryimportantloading').remove();
         }
         // document.getElementById('basicveryimportantloading').remove();
 
+        console.log($scope.state);
         var semicolon = 186;
         $rootScope.gray = 'rgba(125, 125, 140, 0.17)';
 
@@ -144,6 +145,12 @@
                         $rootScope.notifications = abc;
                     });
             });
+        navService
+            .loadAllItems()
+            .then(function(menuItems) {
+                vm.menuItems = [].concat(menuItems);
+            });
+
         function toggleRightSidebar() {
             $mdSidenav('right').toggle();
         }

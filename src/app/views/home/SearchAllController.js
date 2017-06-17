@@ -4,8 +4,6 @@
         .module('app')
         .controller('SearchAllController', [
             '$scope',
-             '$timeout',
-             '$q',
              'tokenService',
              '$stateParams',
              '$state',
@@ -15,7 +13,7 @@
             SearchAllController
         ]);
 
-    function SearchAllController($scope, $timeout, $q, tokenService, $stateParams, $state, $rootScope, $sce, $filter) {
+    function SearchAllController($scope, tokenService, $stateParams, $state, $rootScope, $sce, $filter) {
         var vm = this;
 
         $scope.searchTypes = [];
