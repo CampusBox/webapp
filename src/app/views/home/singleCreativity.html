@@ -8,10 +8,10 @@ md-list-item .md-button:not([disabled]):click {
     background-color: transparent;
 }
 </style>
-<meta property="og:title" content="{{content.title}}"/>
-<meta property="og:image" content="{{content.Items.data[1].image}}"/>
-<meta property="og:site_name" content="CampusBox"/>
-<meta property="og:description" content="{{content.Items.data[0].description}}"/>
+<meta property="og:title" content="{{content.title}}" />
+<meta property="og:image" content="{{content.Items.data[1].image}}" />
+<meta property="og:site_name" content="CampusBox" />
+<meta property="og:description" content="{{content.Items.data[0].description}}" />
 <div layout="row" class="white-bg ">
     <div flex-gt-sm="10" hide-sm hide-xs>
         <div layout="column" layout-align="center center" style="position: fixed;top: 45%;left: 25px;">
@@ -47,65 +47,64 @@ md-list-item .md-button:not([disabled]):click {
                 <span  ui-sref="home.profile({username: content.created.by.username})"  class="capitalize blue_text pointer" >
                 {{content.created.by.name}} </span> in <span style="color: #0570c0">{{content.content.category?content.content.category:"Unknown"}} </span>
                 <!-- </span> <span><md-button ng-class="profile.following? 'md-primary md-not-raised' : 'md-raised md-primary'" ng-click="follow($event)">{{profile.following? 'Following':'Follow' }}</md-button></span> </h3> -->
-                </h3>
+                    </h3>
                     <h4><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.by.about}}</span></h4>
                     <p><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.at | date: 'd MMM'}}</span></p>
-                    </div>
-                    
+                </div>
             </md-list-item>
         </md-list>
         <div>
         </div>
-            <h1 flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100" class="md-title creativity-title creativity-title-single" ng-bind-html="content.title"></h1>
-            <center flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100" ng-repeat="item in content.Items.data">
-                <img style="max-width:100%" ng-if="(item.type == 'cover')" ng-src="{{item.image}}" alt="">
-                <iframe style="background-color: grey" ng-if="(item.type == 'youtube')" width="100%" height="315" ng-src="{{item.embed.url}}" frameborder="0" allowfullscreen></iframe>
-                <iframe style="background-color: grey" id="sc-widget" ng-if="item.type == 'soundcloud'" width="100%" height="166" scrolling="no" frameborder="0" src="{{item.embed.url}}" allowfullscreen></iframe>
-                <iframe style="background-color: grey" ng-if="item.type == 'vimeo'" width="640" height="360" src="{{item.embed.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        <h1 flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100" class="md-title creativity-title creativity-title-single" ng-bind-html="content.title"></h1>
+        <center flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100" ng-repeat="item in content.Items.data">
+            <img style="max-width:100%" ng-if="(item.type == 'cover')" ng-src="{{item.image}}" alt="">
+            <iframe style="background-color: grey" ng-if="(item.type == 'youtube')" width="100%" height="315" ng-src="{{item.embed.url}}" frameborder="0" allowfullscreen></iframe>
+            <iframe style="background-color: grey" id="sc-widget" ng-if="item.type == 'soundcloud'" width="100%" height="166" scrolling="no" frameborder="0" src="{{item.embed.url}}" allowfullscreen></iframe>
+            <iframe style="background-color: grey" ng-if="item.type == 'vimeo'" width="640" height="360" src="{{item.embed.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </center>
+        <div flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100" ng-repeat="item in content.Items.data">
+            <center layout-align="center center">
+                <img ng-if="(item.type == 'image')" ng-src="{{item.image}}" alt="">
             </center>
-            <div flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100" ng-repeat="item in content.Items.data">
-                <center layout-align="center center">
-                    <img ng-if="(item.type == 'image')" ng-src="{{item.image}}" alt="">
-                </center>
-                <p class="md-body-1 creativity-description creativity-description-single" ng-bind-html="item.description">
-                </p>
-            </div>
-            <div flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100">
-                <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
-                    <li ng-repeat="tag in content.Tags.data" style="cursor: auto;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">
-                        {{tag.name}}
-                    </li>
-                </ul>
-                <md-button ng-click="heart($event, content)" aria-label="Favorite" sticky class="appreciate-button">
-                    <md-icon class="pink" md-svg-icon="{{content.Actions.Appreciate.status? 'heart' : 'heart-outline' }}"></md-icon> {{content.Actions.Appreciate.status? 'Appreciated' : 'Appreciate' }}
-                </md-button>
-                <span ng-click="showLikes($event, content.id, content.title)" style="cursor: pointer;" class="likesNumber"> {{content.Actions.Appreciate.total}}</span>
-                <span flex></span>
-                <md-button style="float:right" ng-controller="ShareController" ng-click="showCustom($event,'creativity');" aria-label="facebook ">
-                    <md-icon ng-class="" md-svg-icon="share"></md-icon> <span hide-xs>Share</span>
-                </md-button>
-                <md-button style="float:right" ng-click="bookmark(content)" aria-label="Favorite ">
-                    <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon> <span hide-xs>
+            <p class="md-body-1 creativity-description creativity-description-single" ng-bind-html="item.description">
+            </p>
+        </div>
+        <div flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100">
+            <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
+                <li ng-repeat="tag in content.Tags.data" style="cursor: auto;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">
+                    {{tag.name}}
+                </li>
+            </ul>
+            <md-button ng-click="heart($event, content)" aria-label="Favorite" sticky class="appreciate-button">
+                <md-icon class="pink" md-svg-icon="{{content.Actions.Appreciate.status? 'heart' : 'heart-outline' }}"></md-icon> {{content.Actions.Appreciate.status? 'Appreciated' : 'Appreciate' }}
+            </md-button>
+            <span ng-click="showLikes($event, content.id, content.title)" style="cursor: pointer;" class="likesNumber"> {{content.Actions.Appreciate.total}}</span>
+            <span flex></span>
+            <md-button style="float:right" ng-controller="ShareController" ng-click="showCustom($event,'creativity');" aria-label="facebook ">
+                <md-icon ng-class="" md-svg-icon="share"></md-icon> <span hide-xs>Share</span>
+            </md-button>
+            <md-button style="float:right" ng-click="bookmark(content)" aria-label="Favorite ">
+                <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon> <span hide-xs>
                         
                     Bookmark
                     </span>
-                </md-button>
-                <md-divider></md-divider>
-                <md-list>
-                    <md-list-item ui-sref="home.profile({username: content.created.by.username})" class="md-2-line" ng-click="false" md-ink-ripple="0">
-                        <img ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
-                        <div class="md-list-item-text" layout="column">
-                            <h3><span class="md-subhead">
+            </md-button>
+            <md-divider></md-divider>
+            <md-list>
+                <md-list-item ui-sref="home.profile({username: content.created.by.username})" class="md-2-line" ng-click="false" md-ink-ripple="0">
+                    <img ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
+                    <div class="md-list-item-text" layout="column">
+                        <h3><span class="md-subhead">
                         <span  ui-sref="home.profile({username: content.created.by.username})"  class="capitalize blue_text pointer" >
                         {{content.created.by.name}}
                         <!-- </span> <span><md-button ng-class="profile.following? 'md-primary md-not-raised' : 'md-raised md-primary'" ng-click="follow($event)">{{profile.following? 'Following':'Follow' }}</md-button></span> </h3> -->
-                            <h4><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.by.about}}</span></h4>
-                        </div>
-                    </md-list-item>
-                </md-list>
-            </div>
+                        <h4><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.by.about}}</span></h4>
+                    </div>
+                </md-list-item>
+            </md-list>
         </div>
     </div>
+</div>
 </div>
 <div layout="row" style="margin-top: 50px;margin-bottom: 50px;" layout-xs="column" layout-sm="column" flex flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100">
     <md-card style="height: 280px;" flex ng-repeat="content in finalContents track by $index" class="pointer" ui-sref="home.singleContent({contentId: content.id})">
@@ -134,5 +133,98 @@ md-list-item .md-button:not([disabled]):click {
         <!-- <md-card-content>
         </md-card-content>
  --></md-card>
+</div>
+<div ng-if="!loading" layout="row" layout-align="center">
+    <div flex-gt-xs="60" flex-xs="100">
+        <md-divider style="margin-top: 20px;"></md-divider>
+        <h2 class="md-headline" style="margin-bottom:20px;margin-left: 8px;">Responses to the Creativity</h2>
+    </div>
+</div>
+<div ng-if="!loading" layout="row" layout-align="center">
+    <md-card flex-gt-xs="60" flex-xs="100">
+        <md-card-header layout="row" layout-align="start center">
+            <md-card-avatar>
+                <img class="md-user-avatar" ng-src="{{user.image}}" />
+            </md-card-avatar>
+            <md-card-header-text ng-hide="addResponse" ng-click="addResponse=true;">
+                <span class="md-caption">Write a response...</span>
+            </md-card-header-text>
+            <md-card-header-text ng-show="addResponse">
+                <span class="md-title blue_text">{{user.name}}</span>
+            </md-card-header-text>
+        </md-card-header>
+        <md-card-content ng-show="addResponse" layout="column">
+            <md-input-container>
+                <textarea autofocus="" placeholder="" rows="3" md-no-resize md-select-on-focus ng-model="newComment"></textarea>
+            </md-input-container>
+            <md-button ng-disabled="(newComment.length>0?false:true)" class="md-raised md-primary" ng-click="postComment(newComment);">
+                Publish
+            </md-button>
+        </md-card-content>
+    </md-card>
+</div>
+<div layout="row" layout-align="center">
+    <md-card flex-gt-xs="60" flex-xs="100" style="margin:8px;">
+        <md-list-item style="padding:16px;" class="md-2-line md-no-proxy" ng-repeat="comment in comments" ng-init="comment.isInEditMode=false;">
+            <div flex="100" layout="column">
+                <div layout="row" layout-align="space-between" style="margin-bottom: 8px;">
+                    <div layout="row">
+                        <img ng-src="{{user.image}}" class="md-avatar" alt="" />
+                        <div class="md-list-item-text" layout="column">
+                            <h3 class="blue_text">{{comment.username}}</h3>
+                        </div>
+                    </div>
+                    <md-menu ng-show="isCommentEditable(comment) && !comment.isInEditMode">
+                        <md-button class="md-icon-button" md-menu-origin="" ng-click="openMenu($mdMenu,$event);">
+                            <md-icon md-menu-origin md-svg-src="assets/svg/ic_down.svg"></md-icon>
+                        </md-button>
+                        <md-menu-content width="3">
+                            <md-menu-item>
+                                <md-button ng-click="editComment(comment)">
+                                    Edit
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="deleteComment(comment)">
+                                    Delete
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                </div>
+                <div ng-hide="comment.isInEditMode">
+                    {{comment.response_text}}
+                </div>
+                <md-input-container ng-show="comment.isInEditMode" style="margin:0px;">
+                    <textarea rows="1" ng-model="comment.response_text"></textarea>
+                </md-input-container>
+                <div flex="100" layout="row" layout-align="end" ng-show="comment.isInEditMode">
+                    <md-button style="margin:0px;" class="md-raised md-primary" ng-click="updateComment(comment)">
+                        Update
+                    </md-button>
+                </div>
+<!--                 <div layout="row" layout-align="end">
+                    <md-menu ng-show="isCommentEditable(comment) && !comment.isInEditMode">
+                        <md-button class="md-icon-button" md-menu-origin="" ng-click="openMenu($mdMenu,$event);">
+                            <md-icon md-menu-origin md-svg-src="assets/svg/ic_down.svg"></md-icon>
+                        </md-button>
+                        <md-menu-content width="3">
+                            <md-menu-item>
+                                <md-button ng-click="editComment(comment)">
+                                    Edit
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ng-click="deleteComment(comment)">
+                                    Delete
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                </div> -->
+            </div>
+            <md-divider></md-divider>
+        </md-list-item>
+    </md-card>
 </div>
 <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>

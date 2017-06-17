@@ -9,17 +9,16 @@
             '$rootScope',
             '$localStorage',
             '$state',
-            'collegesListService',
             'tokenService',
             '$auth',
+            'creativityCategories',
             '$filter',
-            'todoListService',
             '$mdDialog',
             '$rootScope',
             SignUpDialogController
         ]);
 
-    function SignUpDialogController($scope, $timeout, $rootScope, $localStorage, $state, collegesListService, tokenService, $auth, $filter, todoListService, $mdDialog, $rootScope) {
+    function SignUpDialogController($scope, $timeout, $rootScope, $localStorage, $state,  tokenService, $auth,creativityCategories, $filter, $mdDialog, $rootScope) {
         var vm = this;
 
         $scope.signup = 1;
@@ -182,12 +181,6 @@
         });
 
 
-        todoListService
-            .loadAllItems()
-            .then(function(menuItems) {
-                $scope.filteredPeople = [].concat(menuItems);
-            });
-
-
+      
     }
 })();

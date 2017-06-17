@@ -19,7 +19,7 @@
         var vm = this;
         $scope.contentId = $stateParams.contentId;
         $scope.liked = false;
-       $rootScope.currentPageBackground = '#fff';
+        $rootScope.currentPageBackground = '#fff';
         $scope.loading = true;
         $scope.content = {};
         $scope.types = creativityCategories.types;
@@ -184,9 +184,9 @@
                 console.log($scope.content.Items.data[1].image);
                 console.log($location.absUrl());
 
-                        $rootScope.title = tableData.title;
+                $rootScope.title = tableData.title;
 
-                
+
                 $scope.types.some(function(obj) {
                     if (obj.id == $scope.content.content.type) {
                         $scope.content.content.category = obj.title;
@@ -196,7 +196,7 @@
                 });
                 $scope.content.created.at = new Date(Date.parse($scope.content.created.at.replace('-', '/', 'g'))); //replace mysql date to js date format
                 $scope.content.title = $sce.trustAsHtml($scope.content.title);
-                        $rootScope.title = $scope.content.title;
+                $rootScope.title = $scope.content.title;
 
                 for (item in $scope.content.Items.data) {
                     if ($scope.content.Items.data[item].type == 'youtube') {
@@ -265,6 +265,79 @@
                         $scope.offset += 2;
                     });
             });
+
+
+        //comment system
+
+        // $scope.comments = [
+        //     { 'content_response_id': '100', 'content_id': '23', 'timed': '234234234', 'username': $rootScope.user.username, 'response_text': 'This is the comment 1' },
+        //     { 'content_response_id': '101', 'content_id': '23', 'timed': '234234234', 'username': 'Ichigo Kurosaki', 'response_text': 'This is the comment 2' }
+        // ];
+        $scope.comments = {};
+        $scope.responseLoading = true;
+        $scope.commentInEditMode = false;
+        $scope.CommentBeingEdited = null;
+        $scope.newComment = '';
+
+
+
+        //get all comments at the beginigng
+        tokenService.get("responses/" + $scope.contentId)
+            .then(function(result) {
+                console.log(result);
+                $scope.comments = result.data;
+                $scope.responseLoading = false;
+            });
+
+        $scope.openMenu = function($mdMenu, ev) {
+            $scope.originatorEv = ev;
+            $mdMenu.open(ev);
+        };
+        //post the comment
+        $scope.postComment = function(data) {
+            tokenService.post('contentResponse/' + $scope.contentId, { 'response_text': data }).then(function(result) {
+                console.log(result);
+                if (result.status === "ok") {
+                    console.log("Comment Posted");
+                    $scope.addResponse = false;
+                    $scope.newComment = '';
+                }
+                //$scope.newComment = "";
+            }).catch(function(error) {
+
+            });
+        };
+        //check if its the commenet made by the current user
+        $scope.isCommentEditable = function(comment) {
+            return (comment.username == $rootScope.user.username);
+        };
+
+        $scope.editComment = function(comment) {
+            if ($scope.isCommentEditable(comment)) {
+                $scope.commentInEditMode = true;
+                $scope.CommentBeingEdited = comment;
+                comment.isInEditMode = true;
+            }
+        };
+
+        $scope.deleteComment = function(comment) {
+            tokenService.delete('contentResponse/' + comment.content_response_id).then(function(result) {
+                var index = $scope.comments.indexOf(comment);
+                $scope.comments.splice(index, 1);
+                console.log(result);
+            });
+
+        };
+
+
+        $scope.updateComment = function(comment) {
+            tokenService.patch('contentResponse/' + comment.content_response_id, { 'response_text': comment.response_text }).then(function(result) {
+                console.log(result);
+                comment.isInEditMode = false;
+                $scope.commentInEditMode = false;
+            });
+        };
+
     }
 
 })();

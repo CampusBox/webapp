@@ -63,12 +63,12 @@
                     <p class="md-subtitle" style="color: rgba(255, 255, 255, 0.81);">Already have an account ? <span ng-click="showLogin('hi')" style="cursor: pointer;color:#fff;text-decoration: underline;"> Login here </span> </p>
                 </center>
                 <div layout="column">
-                    <md-button ng-disabled="interests.length<3" style="background: #fff;text-transform: none;color: : rgb(244, 67, 54); width: 50%; margin: auto; margin-top: 4px;" ng-click="authenticate('facebook');" class="md-raised ">
+                    <md-button ng-hide="interests.length<3" style="background: #fff;text-transform: none;color: : rgb(244, 67, 54); width: 50%; margin: auto; margin-top: 4px;" ng-click="authenticate('facebook');" class="md-raised ">
                                 <md-tooltip  md-direction="left">Select intersts to continue</md-tooltip>
 
                         <md-icon md-svg-icon="facebook" style="background: #fff;"></md-icon>Complete with Facebook
                     </md-button>
-                    <md-button ng-disabled="interests.length<3" style="color: : rgb(244, 67, 54);text-transform: none; width: 50%; margin: auto; margin-top: 4px;background: #fff"  g-login class="md-raised ">
+                    <md-button ng-hide="interests.length<3" style="color: : rgb(244, 67, 54);text-transform: none; width: 50%; margin: auto; margin-top: 4px;background: #fff"  g-login class="md-raised ">
                                 <md-tooltip  md-direction="left">Select intersts to continue</md-tooltip>
                         <md-icon style="background: #fff;" md-svg-icon="google"></md-icon>+ Complete with Google+
                     </md-button>
