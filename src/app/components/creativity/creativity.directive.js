@@ -2,11 +2,11 @@
     'use strict';
 
     angular.module('app').
-    directive('creativity', function() {
+    directive('creativityCard', function() {
         return {
             restrict: "E",
             replace: true,
-            templateUrl: 'app/components/creativity/creativity.html',
+            templateUrl: 'app/components/creativity/creativityCard.html',
 
             controller: function($scope, tokenService, $mdDialog, $sce, $state, $filter, $rootScope) {
                 $scope.liked = false;
