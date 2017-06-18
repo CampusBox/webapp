@@ -7,87 +7,23 @@
     background-color: rgba(30, 136, 229, 0.56);
     color: #fff;
 }
-#trix-toolbar-1{
+
+#trix-toolbar-1 {
     background-color: white;
     position: fixed;
-    bottom:52px;
+    bottom: 52px;
     width: 100%;
     left: 0;
     z-index: 2;
 }
-#trix-editor-1{
+
+#trix-editor-1 {
     max-height: 30vh;
 }
-
 </style>
 <div style="position: absolute;width: 100%; height: 98%;overflow: scroll;">
     <div ng-init="uploaded = false; addImage = false">
         <div layout-gt-sm="row" layout-xs="column" layout-sm="column" layout-align="start start">
-            <!--   <div hide-xs hide-sm layout="column" flex-gt-sm="30" flex-order-xs="2" flex-order-sm="2">
-                <md-card flex="100" style="margin-top: 0;">
-                    <md-card-content>
-                        <md-list>
-                            <md-list-item class="md-2-line">
-                                <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
-                                <div class="md-list-item-text">
-                                    <h3>{{user.name}}</h3>
-                                    <p>Draft</p>
-                                </div>
-                            </md-list-item>
-                         
-                            <md-subheader class="md-no-sticky">Adding cover helps your post, get one from <a href="http://unsplash.com" target="_blank">here.</a></md-subheader>
-                            <md-list-item>
-                                <md-button class="" flex ngf-select="uploadCover($file)" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="100MB" ngf-min-height="300" ngf-min-width="400" ngf-resize="{width: 1000, height: 800}" ngf-resize-if="$width > 1000 || $height > 800">
-                                    <md-icon md-svg-icon="image-area"></md-icon>
-                                    {{coverStatus?"Edit":"Add"}} cover picture
-                                </md-button>
-                            </md-list-item>
-                            <md-subheader class="md-no-sticky">Add media to support your post</md-subheader>
-                            <md-divider>
-                            </md-divider>
-                            <md-list-item>
-                                <md-icon md-svg-icon="image" ngf-select="uploadFiles($files, $invalidFiles)" multiple name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 500, height: 500}" ngf-resize-if="$width > 500 || $height > 500"></md-icon>
-                                <md-button flex ngf-select="uploadFiles($files, $invalidFiles)" multiple name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 500, height: 500}" ngf-resize-if="$width > 500 || $height > 500">
-                                    <p class="md-subhead" style="margin: 0;text-align: start;text-transform: capitalize;">Image</p>
-                                </md-button>
-                            </md-list-item>
-                            <md-list-item ng-click="addItem(content.title)" ng-repeat="content in contents">
-                                <md-icon md-svg-icon="{{content.icon}}"></md-icon>
-                                <p>{{content.title}}</p>
-                            </md-list-item>
-                        </md-list>
-                        <span style="font-size: 14px;color: rgba(0,0,0,.6);" class="md-body-1">Add or change tags (up to 5) so your story reaches more people:</span>
-                        <md-chips name="skills" md-separator-keys="customKeys" ng-model="tags" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
-                            <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Add Tags..">
-                                <span md-highlight-text="searchText">{{item.name}}</span>
-                            </md-autocomplete>
-                            <md-chip-template custom-chip class="your-custom-chip">
-                                <span><strong>{{$chip.name}}</strong></span>
-                            </md-chip-template>
-                        </md-chips>
-                    </md-card-content>
-                </md-card>
-            </div> -->
-
- <div style=" padding:0px;width:100%;" layout-padding layout-wrap flex-gt-xs="60" flex-offset-gt-xs="20">
-                <md-list>
-                    <md-list-item class="md-2-line">
-                        <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
-                        <div class="md-list-item-text">
-                            <h3>{{user.name}}</h3>
-                            <p>Draft</p>
-                        </div>
-
-                        <!-- Made Changes For Licence and Tags Dialog Box -->
-                        <md-button class="md-secondary md-primary md-raised" ng-disabled="(!(title && (mediumEditor || trix) && (mediumEditor.length>20 || trix.length>20) ) || loading)" class="md-raised md-primary" ng-click="publish($event)" ng-hide="loading">Publish</md-button>
-                       
-                        <!-- Till here for dialog -->
-                        <div class="spinner" ng-hide="!loading" style="width: 40px;height: 40px;background-color: #0570c0;"></div>
-                            <md-tooltip ng-show="!(title && (mediumEditor || trix) && (mediumEditor.length>20 || trix.length>20) )" md-direction="bottom">Type min 20 characters.</md-tooltip>
-                    </md-list-item>
-
-
-<!-- 
             <div style=" padding:0px;width:100%;" layout-padding layout-wrap flex-gt-xs="60" flex-offset-gt-xs="20">
                 <md-list>
                     <md-list-item class="md-2-line">
@@ -96,30 +32,12 @@
                             <h3>{{user.name}}</h3>
                             <p>Draft</p>
                         </div>
-                        <md-button class="md-secondary md-primary md-raised" ng-disabled="(!(title && (mediumEditor || trix) && (mediumEditor.length>20 || trix.length>20) ) || loading)" class="md-raised md-primary"  ng-click="publish()" ng-hide="loading">Publish</md-button>
+                        <!-- Made Changes For Licence and Tags Dialog Box -->
+                        <md-button class="md-secondary md-primary md-raised" ng-disabled="(!(title && (mediumEditor || trix) && (mediumEditor.length>20 || trix.length>20) ) || loading)" class="md-raised md-primary" ng-click="publish($event)" ng-hide="loading">Publish</md-button>
+                        <!-- Till here for dialog -->
                         <div class="spinner" ng-hide="!loading" style="width: 40px;height: 40px;background-color: #0570c0;"></div>
-                            <md-tooltip ng-show="!(title && (mediumEditor || trix) && (mediumEditor.length>20 || trix.length>20) )" md-direction="bottom">Type min 20 characters.</md-tooltip>
+                        <md-tooltip ng-show="!(title && (mediumEditor || trix) && (mediumEditor.length>20 || trix.length>20) )" md-direction="bottom">Type min 20 characters.</md-tooltip>
                     </md-list-item>
- -->
-
-
-                    <!-- 
-                    <md-card-actions layout="column" layout-align="end center">
-                        <div layout="row" ng-hide="!loading" layout-sm="column" layout-align="space-around">
-                            <p>Please wait, we are uploading images and all content.
-                                <br> This can take upto a minute.</p>
-                            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-                        </div>
-                        <p class="grey" ng-show="(!(title && creativity.items[0].text && creativity.items[0].text.length>30 && !tags.length<1) || loading)">Add the
-                            <span ng-show="!title">title</span>
-                            <span ng-show="title && !(creativity.items[0].text && creativity.items[0].text.length>30)">story</span>
-                            <span ng-show=" title && creativity.items[0].text && creativity.items[0].text.length>30 && tags.length<1">tags</span> to publish</p>
-                        <md-button ng-disabled=" (!(title && creativity.items[0].text && creativity.items[0].text.length>30 && !tags.length<1) || loading)" class="md-raised md-primary" ng-click="publish()">Publish</md-button>
-                    </md-card-actions> -->
-                    <!-- <md-list-item ng-click="progress=2">
-                        <md-icon md-svg-icon="comment-text"></md-icon>
-                        <p>Text</p>
-                    </md-list-item> -->
                 </md-list>
                 <div layout-gt-xs="row" ng-hide="progress<1">
                     <md-button ng-show="!coverStatus" class="md-icon-button" flex-gt-xs="5" ngf-select="uploadCover($file)" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="100MB" ngf-min-height="300" ngf-min-width="400" ngf-resize="{width: 1000, height: 800}" ngf-resize-if="$width > 1000 || $height > 800">
@@ -134,7 +52,6 @@
                         <p class="md-display-1" style="outline: none; margin: 0px" bind-options="{disableReturn: true, disableExtraSpaces: true, 'toolbar': {'buttons': [ 'italic', 'underline']}}" ng-model="title" style="display: inline; margin: 0px" medium-editor data-placeholder="Title"></p>
                     </div>
                 </div>
-                <!-- <img   style="max-width: 100%" ng-src="{{item.image}}" /> -->
                 <img style="padding: 0;width: 100%" ngf-thumbnail="item.image" ng-repeat="item in creativity.items" ng-if="(item.mediaType=='cover')" />
                 <div ng-show="(item.embedUrl.description.length>50)">
                     <md-button class="md-primary" layout="row" flex ngf-select="uploadCover($file)" ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="100MB" ngf-min-height="100" ngf-resize="{width: 1024, height: 800}">
@@ -146,7 +63,7 @@
                 <div flex-offset-gt-sm="10" flex-gt-sm="80" layout="column">
                     <p hide-xs show-gt-xs class="md-title" ng-hide="progress<1" style="outline: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;" ng-model="mediumEditor" medium-editor data-placeholder="Tell your story..."></p>
                     <div show-xs hide-gt-xs ng-hide="progress<1" ng-init="focus=false">
-                    <trix-editor angular-trix id="trix-editor-1" ng-model="trix" placeholder="Tell your story..." class="trix-content md-title" style="border: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;"></trix-editor>
+                        <trix-editor angular-trix id="trix-editor-1" ng-model="trix" placeholder="Tell your story..." class="trix-content md-title" style="border: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;"></trix-editor>
                     </div>
                     <center ng-repeat="item in creativity.items" style="margin-top: 40px;" ng-if="item.mediaType=='image'">
                         <img style="max-width: 100%" ngf-thumbnail="item.image" />
@@ -194,46 +111,18 @@
                     </md-card>
                     <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
                 </center>
-                <!-- <div layout-padding layout-wrap>
-                    <div flex layout="column" flex layout-align="center" ng-show="creativity.type>3">
-                        <center>
-                            <p class="md-title"> Add media to support your project:</p>
-                        </center>
-                        <div layout="row" layout-wrap layout="space-around center" flex>
-                            <div layout="column" flex-xs="25" flex-sm="25" flex-gt-sm="" layout-align="center center">
-                                <md-button ngf-select="uploadFiles($files, $invalidFiles)" multiple ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 500, height: 500}" class="md-fab">
-                                    <md-icon md-svg-icon="image"></md-icon>
-                                </md-button>
-                                <p class="md-tile-content">
-                                    Image
-                                </p>
-                            </div>
-                            <div layout="column" ng-repeat="content in contents" flex-xs="25" flex-sm="25" flex-gt-sm="" layout-align="center center">
-                                <md-button class="md-fab" ng-click="addItem(content.title)">
-                                    <md-icon md-svg-icon="{{content.icon}}"></md-icon>
-                                </md-button>
-                                <p class="md-tile-content">
-                                    {{content.title}}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- <div style="min-height: 80px"></div> -->
                 <div layout="row" layout-align="strech center" style="z-index: -1;margin-bottom: 120px;">
                     <div layout="row" layout-align="strech center" ng-click="addMenu=!addMenu" ng-hide="progress<1">
-                        <md-button  class="md-icon-button" aria-label="Settings">
+                        <md-button class="md-icon-button" aria-label="Settings">
                             <md-icon md-svg-icon="shape-plus"></md-icon>
                             <md-tooltip md-direction="left">Add media</md-tooltip>
                         </md-button>
                         <span>Add media</span>
                     </div>
                     <md-button ng-show="addMenu" flex="20" ngf-select="uploadFiles($files, $invalidFiles)" multiple name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 500, height: 500}" ngf-resize-if="$width > 500 || $height > 500">
-                        <!-- <md-icon md-svg-icon="image" ngf-select="uploadFiles($files, $invalidFiles)" multiple name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 500, height: 500}" ngf-resize-if="$width > 500 || $height > 500"></md-icon> -->
                         <p>Image</p>
                     </md-button>
                     <md-button flex="20" ng-show="addMenu" ng-click="addItem(content.title)" ng-repeat="content in contents">
-                        <!-- <md-icon md-svg-icon="{{content.icon}}"></md-icon> -->
                         <p>{{content.title}}</p>
                     </md-button>
                 </div>
