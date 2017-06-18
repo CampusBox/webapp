@@ -39,10 +39,10 @@
                 </md-list-item>
             </md-list>
         </div>
-        <div layout="column" layout-wrap  >
+        <div layout="column" layout-wrap>
             <div hide-xs flex layout-align="space-around" layout="row">
                 <md-card flex-lg="30" flex-md="45" flex-sm="45" flex="100" layout="column" layout="space-around" ng-repeat="event in events track by $index">
-                    <event-card   data="event" bar="true" ng-if="!eventLoading" hide-xs></event-card>
+                    <event-card data="event" bar="true" ng-if="!eventLoading" hide-xs></event-card>
                 </md-card>
             </div>
             <div show-xs hide-gt-xs layout="column">
@@ -146,7 +146,7 @@
             </div>
         </div>
     </div>
-    <div layout="column" class="md-padding" flex-gt-sm="25" hide show-gt-sm>
+    <div layout="column" class="md-padding" flex-gt-sm="25" hide-xs show-gt-sm>
         <div layout="column">
             <h5 class="md-subhead">Top stories <br>
             <small style="color: rgba(0,0,0,.44);" class="md-caption">Most popular this week</small>
