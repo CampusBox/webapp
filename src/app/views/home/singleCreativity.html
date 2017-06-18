@@ -143,13 +143,13 @@ md-list-item .md-button:not([disabled]):click {
     <md-card flex-gt-xs="60" flex-xs="100">
         <md-card-header layout="row" layout-align="start center">
             <md-card-avatar>
-                <img class="md-user-avatar" ng-src="{{$rootScope.authenticated?user.image:''}}" />
+                <img class="md-user-avatar" ng-src="{{user.image}}" />
             </md-card-avatar>
-            <md-card-header-text ng-hide="addResponse" ng-click="$rootScope.authenticated?addResponse=true:$rootScope.openLoginDialog()">
+            <md-card-header-text ng-hide="addResponse" ng-click="canPostComment()">
                 <span class="md-caption">Write a response...</span>
             </md-card-header-text>
             <md-card-header-text ng-show="addResponse">
-                <span class="md-title blue_text">{{$rootScope.authenticated?user.name:'Anonymous'}}</span>
+                <span class="md-title blue_text">{{user.name;}}</span>
             </md-card-header-text>
         </md-card-header>
         <md-card-content ng-show="addResponse" layout="column">
@@ -169,7 +169,7 @@ md-list-item .md-button:not([disabled]):click {
             <div flex="100" layout="column">
                 <div layout="row" layout-align="space-between" style="margin-bottom: 8px;">
                     <div layout="row" ui-sref="home.profile({username: comment.username})">
-                        <img ng-src="{{user.image}}" class="md-avatar" alt="" />
+                        <img ng-src="{{comment.photo}}" class="md-avatar" alt="" />
                         <div class="md-list-item-text" layout="column">
                             <h3 class="blue_text">{{comment.name}}</h3>
                         </div>

@@ -295,6 +295,18 @@
             $scope.originatorEv = ev;
             $mdMenu.open(ev);
         };
+
+        $scope.canPostComment = function() {
+            if (!$rootScope.authenticated) {
+                $rootScope.openLoginDialog(function() {
+                    $scope.addResponse = true;
+                });
+            } else {
+                $scope.addResponse = true;
+            }
+
+        };
+
         //post the comment
         $scope.postComment = function(data) {
             $scope.newComment = '';
