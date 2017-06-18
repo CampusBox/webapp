@@ -165,7 +165,7 @@ md-list-item .md-button:not([disabled]):click {
 </div>
 <div layout="row" layout-align="center">
     <md-card flex-gt-xs="60" flex-xs="100" style="margin:8px;">
-        <md-list-item style="padding:16px;" class="md-2-line md-no-proxy" ng-repeat="comment in comments">
+        <md-list-item style="padding:16px;" class="md-2-line md-no-proxy" ng-repeat="comment in comments | orderBy :'-content_response_id'">
             <div flex="100" layout="column">
                 <div layout="row" layout-align="space-between" style="margin-bottom: 8px;">
                     <div layout="row" ui-sref="home.profile({username: item.username})">

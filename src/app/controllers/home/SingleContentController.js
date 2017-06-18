@@ -300,7 +300,7 @@
             $scope.newComment = '';
             tokenService.post('contentResponse/' + $scope.contentId, { 'response_text': data }).then(function(result) {
                 if (result.status === "ok") {
-                    $scope.comments = result.data;
+                    $scope.comments.push(result.response);
                 }
             });
         };
