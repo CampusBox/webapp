@@ -143,13 +143,13 @@ md-list-item .md-button:not([disabled]):click {
     <md-card flex-gt-xs="60" flex-xs="100">
         <md-card-header layout="row" layout-align="start center">
             <md-card-avatar>
-                <img class="md-user-avatar" ng-src="{{user.image}}" />
+                <img class="md-user-avatar" ng-src="{{$rootScope.authenticated?user.image:''}}" />
             </md-card-avatar>
-            <md-card-header-text ng-hide="addResponse" ng-click="addResponse=true;">
+            <md-card-header-text ng-hide="addResponse" ng-click="$rootScope.authenticated?addResponse=true:$rootScope.openLoginDialog()">
                 <span class="md-caption">Write a response...</span>
             </md-card-header-text>
             <md-card-header-text ng-show="addResponse">
-                <span class="md-title blue_text">{{user.name}}</span>
+                <span class="md-title blue_text">{{$rootScope.authenticated?user.name:'Anonymous'}}</span>
             </md-card-header-text>
         </md-card-header>
         <md-card-content ng-show="addResponse" layout="column">
@@ -165,16 +165,16 @@ md-list-item .md-button:not([disabled]):click {
 </div>
 <div layout="row" layout-align="center">
     <md-card flex-gt-xs="60" flex-xs="100" style="margin:8px;">
-        <md-list-item style="padding:16px;" class="md-2-line md-no-proxy" ng-repeat="comment in comments | orderBy :'-content_response_id'">
+        <md-list-item style="padding:16px;" class="md-2-line md-no-proxy" ng-repeat="comment in comments | orderBy :'-content_response_id'" ng-init="comment.commentInEditMode = false;">
             <div flex="100" layout="column">
                 <div layout="row" layout-align="space-between" style="margin-bottom: 8px;">
-                    <div layout="row" ui-sref="home.profile({username: item.username})">
+                    <div layout="row" ui-sref="home.profile({username: comment.username})">
                         <img ng-src="{{user.image}}" class="md-avatar" alt="" />
                         <div class="md-list-item-text" layout="column">
                             <h3 class="blue_text">{{comment.name}}</h3>
                         </div>
                     </div>
-                    <md-menu ng-show="isCommentEditable(comment) && !commentEditable">
+                    <md-menu ng-show="isCommentEditable(comment) && !comment.commentInEditMode">
                         <md-button class="md-icon-button" md-menu-origin="" ng-click="openMenu($mdMenu,$event);">
                             <md-icon md-menu-origin md-svg-src="assets/svg/ic_down.svg"></md-icon>
                         </md-button>
@@ -192,13 +192,13 @@ md-list-item .md-button:not([disabled]):click {
                         </md-menu-content>
                     </md-menu>
                 </div>
-                <div ng-hide="commentEditable">
+                <div ng-hide="comment.commentInEditMode">
                     {{comment.response_text}}
                 </div>
-                <md-input-container ng-show="commentEditable" style="margin:0px;">
+                <md-input-container ng-show="comment.commentInEditMode" style="margin:0px;">
                     <textarea rows="1" ng-model="comment.response_text"></textarea>
                 </md-input-container>
-                <div flex="100" layout="row" layout-align="end" ng-show="commentEditable">
+                <div flex="100" layout="row" layout-align="end" ng-show="comment.commentInEditMode">
                     <md-button style="margin:0px;" class="md-raised md-primary" ng-click="updateComment(comment)">
                         Update
                     </md-button>

@@ -306,14 +306,15 @@
         };
         //check if its the commenet made by the current user
         $scope.isCommentEditable = function(comment) {
-            return (comment.username == $rootScope.user.username);
+
+            return (comment.username === $rootScope.user.username);
         };
 
         $scope.editComment = function(comment) {
             if ($scope.isCommentEditable(comment)) {
-                $scope.commentInEditMode = true;
+                comment.commentInEditMode = true;
                 $scope.CommentBeingEdited = comment;
-                $scope.commentEditable = true;
+                comment.commentEditable = true;
             }
         };
 
@@ -330,8 +331,8 @@
         $scope.updateComment = function(comment) {
             tokenService.patch('contentResponse/' + comment.content_response_id, { 'response_text': comment.response_text }).then(function(result) {
                 console.log(result);
-                $scope.commentEditable = false;
-                $scope.commentInEditMode = false;
+                comment.commentEditable = false;
+                comment.commentInEditMode = false;
             });
         };
 
