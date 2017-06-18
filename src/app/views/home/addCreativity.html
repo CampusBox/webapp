@@ -158,7 +158,7 @@
                 </center>
                 <div hide-xs style=" padding:0px" ng-repeat="itemgroup in items" flex layout="row" layout-align="center center" ng-show="progress<1">
                     <span ng-repeat="item in itemgroup track by $index">                        
-                        <md-button  ng-class="item.intrested?'interest_selected':'interest'" ng-checked="exists(item, selected)" ng-click="progress=1;selectType(item)">                        
+                        <md-button   class="interest" ng-checked="exists(item, selected)" ng-click="progress=1;selectType(item)">                        
                             {{ item.title }}
                         </md-button>    
 
@@ -166,7 +166,7 @@
                 </div>
                 <div hide-gt-xs style=" padding:0px" ng-repeat="itemgroup in itemsMobile" flex layout="row" layout-align="center center" ng-show="progress<1">
                     <span ng-repeat="item in itemgroup track by $index">                        
-                        <md-button  ng-class="item.intrested?'interest_selected':'interest'" ng-checked="exists(item, selected)" ng-click="progress=1;selectType(item)">                        
+                        <md-button class="interest" ng-checked="exists(item, selected)" ng-click="progress=1;selectType(item)">                        
                             {{ item.title }}
                         </md-button>    
 

@@ -5,13 +5,13 @@
     <md-button ng-show="event.participation_state == 0" ng-class="(event.participation_state>0) ? 'rsvp-button' : 'button-grey'" ng-click="change(event, $index, 2)" aria-label="Favorite">
         <md-icon ng-class="(event.participation_state>0) ? 'blue' : ''" md-svg-icon="{{(event.participation_state>0)? 'star' : 'star-outline' }}"></md-icon> Interested
     </md-button>
-    <md-select md-selected-text="getParticipationState(event, $index)" ng-show="event.participation_state != 0" ng-model="weapon" placeholder="Weapon" class="md-no-underline">
+    <md-select style="margin:0px" md-selected-text="getParticipationState(event, $index)" ng-show="event.participation_state != 0" ng-model="weapon" placeholder="Weapon" class="md-no-underline">
         <md-option ng-click="change(event, $index, 2)" ng-show="event.participation_state != 2" value="interested">Intrested</md-option>
         <md-option ng-click="change(event, $index, 1)" ng-show="event.participation_state != 1" value="going">Going</md-option>
         <md-option ng-click="change(event, $index, 0)" ng-show="event.participation_state != 0" value="not going">Not going</md-option>
     </md-select>
     <span flex></span>
-    <md-button class="share-button md-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'event');" aria-label="share ">
-        <md-icon ng-class="" md-svg-icon="share"></md-icon>
+    <md-button class="share-button" ng-controller="ShareController" ng-click="showCustom($event,'event');" aria-label="share ">
+        <md-icon ng-class="" md-svg-icon="share"></md-icon>Share
     </md-button>
 </md-card-actions>

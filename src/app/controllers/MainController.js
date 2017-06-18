@@ -18,7 +18,7 @@
 
         console.log($scope.state);
         var semicolon = 186;
-        $rootScope.gray = 'rgba(125, 125, 140, 0.17)';
+        $rootScope.gray = '#fbfcfd';
 
         $scope.customKeys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, semicolon];
 
