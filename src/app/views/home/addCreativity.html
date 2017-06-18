@@ -1,26 +1,3 @@
-<style type="text/css">
-.medium-editor-placeholder::after {
-    color: #b3b3b1;
-}
-
-.md-button.md-primary.md-raised[disabled] {
-    background-color: rgba(30, 136, 229, 0.56);
-    color: #fff;
-}
-
-#trix-toolbar-1 {
-    background-color: white;
-    position: fixed;
-    bottom: 52px;
-    width: 100%;
-    left: 0;
-    z-index: 2;
-}
-
-#trix-editor-1 {
-    max-height: 30vh;
-}
-</style>
 <div style="position: absolute;width: 100%; height: 98%;overflow: scroll;">
     <div ng-init="uploaded = false; addImage = false">
         <div layout-gt-sm="row" layout-xs="column" layout-sm="column" layout-align="start start">
@@ -32,9 +9,7 @@
                             <h3>{{user.name}}</h3>
                             <p>Draft</p>
                         </div>
-                        <!-- Made Changes For Licence and Tags Dialog Box -->
                         <md-button class="md-secondary md-primary md-raised" ng-disabled="(!(title && (mediumEditor || trix) && (mediumEditor.length>20 || trix.length>20) ) || loading)" class="md-raised md-primary" ng-click="publish($event)" ng-hide="loading">Publish</md-button>
-                        <!-- Till here for dialog -->
                         <div class="spinner" ng-hide="!loading" style="width: 40px;height: 40px;background-color: #0570c0;"></div>
                         <md-tooltip ng-show="!(title && (mediumEditor || trix) && (mediumEditor.length>20 || trix.length>20) )" md-direction="bottom">Type min 20 characters.</md-tooltip>
                     </md-list-item>
