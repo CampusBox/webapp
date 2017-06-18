@@ -9,18 +9,15 @@
             '$rootScope',
             '$localStorage',
             '$state',
-            'collegesListService',
             'tokenService',
             '$auth',
             'creativityCategories',
             '$filter',
-            'todoListService',
             '$mdDialog',
-            '$rootScope',
             SignUpDialogController
         ]);
 
-    function SignUpDialogController($scope, $timeout, $rootScope, $localStorage, $state,  tokenService, $auth,creativityCategories, $filter, $mdDialog, $rootScope) {
+    function SignUpDialogController($scope, $timeout, $rootScope, $localStorage, $state,  tokenService, $auth,creativityCategories, $filter, $mdDialog) {
         var vm = this;
 
         $scope.signup = 1;
