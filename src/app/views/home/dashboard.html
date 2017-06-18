@@ -1,5 +1,5 @@
 <div layout="row" layout-align="center" ng-controller="DashboardController" class="main-bg" class="md-padding" style="margin-bottom: 60px;">
-    <div layout="column" flex-gt-sm="80" flex="100">
+    <div layout="column" flex-gt-sm="75" flex-xs="100" flex-sm="100">
         <div layout="row" layout-align="center center">
             <h1 class="md-headline section-heading">
             Opportunities <span hide-gt-xs> for</span> you <span hide-xs>can avail</span>
@@ -73,8 +73,8 @@
                 <h1 class="md-headline section-heading">
                 Creative works by other students
             </h1>
-                <div flex layout-align="space-around" layout="row" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading' infinite-scroll-distance="3 ">
-                    <md-card class="content-card" flex-lg="30" flex-md="45" flex-sm="45" flex="100" ng-repeat="content in finalContents track by $index" style="margin-left: 4px;">
+                <div flex layout-align="space-around" layout-gt-xs="row" layout-xs="column" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading' infinite-scroll-distance="3 ">
+                    <md-card class="content-card" flex-lg="30" flex-md="45" flex-sm="45" ng-repeat="content in finalContents track by $index" style="margin-left: 4px;">
                         <md-card-content style="padding: 0px">
                             <div ng-if="(content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
                                 <iframe id="sc-widget" ng-show="(content.type == 'soundcloud')" width="100%" height="170" scrolling="no" frameborder="0" ng-src="{{content.url}}" allowfullscreen></iframe>
