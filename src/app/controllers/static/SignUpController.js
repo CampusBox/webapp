@@ -4,11 +4,11 @@
         .module('app')
         .controller('SignUpController', [
 
-            '$scope', '$timeout', '$rootScope', '$localStorage', '$state', 'collegesListService', 'tokenService', '$auth', '$filter', 'todoListService',
+            '$scope', '$timeout', 'loginData', '$rootScope', '$localStorage', '$state', 'collegesListService', 'tokenService', '$auth', '$filter', 'todoListService',
             SignUpController
         ]);
 
-    function SignUpController($scope, $timeout, $rootScope, $localStorage, $state, collegesListService, tokenService, $auth, $filter, todoListService) {
+    function SignUpController($scope, $timeout, loginData, $rootScope, $localStorage, $state, collegesListService, tokenService, $auth, $filter, todoListService) {
         var vm = this;
         $scope.loading = false;
         $scope.querySearch = querySearch;
