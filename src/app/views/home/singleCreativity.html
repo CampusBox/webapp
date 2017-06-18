@@ -136,8 +136,7 @@ md-list-item .md-button:not([disabled]):click {
 </div>
 <div ng-if="!loading" layout="row" layout-align="center">
     <div flex-gt-xs="60" flex-xs="100">
-        <md-divider style="margin-top: 20px;"></md-divider>
-        <h2 class="md-headline" style="margin-bottom:20px;margin-left: 8px;">Responses to the Creativity</h2>
+        <h2 class="md-subhead" style="margin-bottom:20px;margin-left: 8px;color: rgba(0,0,0,.6);font-weight: 600;">Responses</h2>
     </div>
 </div>
 <div ng-if="!loading" layout="row" layout-align="center">
@@ -157,24 +156,25 @@ md-list-item .md-button:not([disabled]):click {
             <md-input-container>
                 <textarea autofocus="" placeholder="" rows="3" md-no-resize md-select-on-focus ng-model="newComment"></textarea>
             </md-input-container>
-            <md-button ng-disabled="(newComment.length>0?false:true)" class="md-raised md-primary" ng-click="postComment(newComment);">
+            <md-button ng-disabled="(newComment.length>0?false:true);" class="md-raised md-primary" ng-click="postComment(newComment);addResponse=false;">
                 Publish
             </md-button>
         </md-card-content>
     </md-card>
+<md-divider md-inset ng-if="comments.data.length"></md-divider>
 </div>
 <div layout="row" layout-align="center">
     <md-card flex-gt-xs="60" flex-xs="100" style="margin:8px;">
-        <md-list-item style="padding:16px;" class="md-2-line md-no-proxy" ng-repeat="comment in comments" ng-init="comment.isInEditMode=false;">
+        <md-list-item style="padding:16px;" class="md-2-line md-no-proxy" ng-repeat="comment in comments">
             <div flex="100" layout="column">
                 <div layout="row" layout-align="space-between" style="margin-bottom: 8px;">
-                    <div layout="row">
+                    <div layout="row" ui-sref="home.profile({username: item.username})">
                         <img ng-src="{{user.image}}" class="md-avatar" alt="" />
                         <div class="md-list-item-text" layout="column">
-                            <h3 class="blue_text">{{comment.username}}</h3>
+                            <h3 class="blue_text">{{comment.name}}</h3>
                         </div>
                     </div>
-                    <md-menu ng-show="isCommentEditable(comment) && !comment.isInEditMode">
+                    <md-menu ng-show="isCommentEditable(comment) && !commentEditable">
                         <md-button class="md-icon-button" md-menu-origin="" ng-click="openMenu($mdMenu,$event);">
                             <md-icon md-menu-origin md-svg-src="assets/svg/ic_down.svg"></md-icon>
                         </md-button>
@@ -192,19 +192,19 @@ md-list-item .md-button:not([disabled]):click {
                         </md-menu-content>
                     </md-menu>
                 </div>
-                <div ng-hide="comment.isInEditMode">
+                <div ng-hide="commentEditable">
                     {{comment.response_text}}
                 </div>
-                <md-input-container ng-show="comment.isInEditMode" style="margin:0px;">
+                <md-input-container ng-show="commentEditable" style="margin:0px;">
                     <textarea rows="1" ng-model="comment.response_text"></textarea>
                 </md-input-container>
-                <div flex="100" layout="row" layout-align="end" ng-show="comment.isInEditMode">
+                <div flex="100" layout="row" layout-align="end" ng-show="commentEditable">
                     <md-button style="margin:0px;" class="md-raised md-primary" ng-click="updateComment(comment)">
                         Update
                     </md-button>
                 </div>
 <!--                 <div layout="row" layout-align="end">
-                    <md-menu ng-show="isCommentEditable(comment) && !comment.isInEditMode">
+                    <md-menu ng-show="isCommentEditable(comment) && !commentEditable">
                         <md-button class="md-icon-button" md-menu-origin="" ng-click="openMenu($mdMenu,$event);">
                             <md-icon md-menu-origin md-svg-src="assets/svg/ic_down.svg"></md-icon>
                         </md-button>

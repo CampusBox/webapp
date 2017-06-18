@@ -279,14 +279,15 @@
         $scope.commentInEditMode = false;
         $scope.CommentBeingEdited = null;
         $scope.newComment = '';
+        $scope.commentEditable = false;
 
 
 
         //get all comments at the beginigng
         tokenService.get("responses/" + $scope.contentId)
             .then(function(result) {
-                console.log(result);
                 $scope.comments = result.data;
+                console.log($scope.comments);
                 $scope.responseLoading = false;
             });
 
@@ -296,16 +297,11 @@
         };
         //post the comment
         $scope.postComment = function(data) {
+            $scope.newComment = '';
             tokenService.post('contentResponse/' + $scope.contentId, { 'response_text': data }).then(function(result) {
-                console.log(result);
                 if (result.status === "ok") {
-                    console.log("Comment Posted");
-                    $scope.addResponse = false;
-                    $scope.newComment = '';
+                    $scope.comments = result.data;
                 }
-                //$scope.newComment = "";
-            }).catch(function(error) {
-
             });
         };
         //check if its the commenet made by the current user
@@ -317,7 +313,7 @@
             if ($scope.isCommentEditable(comment)) {
                 $scope.commentInEditMode = true;
                 $scope.CommentBeingEdited = comment;
-                comment.isInEditMode = true;
+                $scope.commentEditable = true;
             }
         };
 
@@ -334,7 +330,7 @@
         $scope.updateComment = function(comment) {
             tokenService.patch('contentResponse/' + comment.content_response_id, { 'response_text': comment.response_text }).then(function(result) {
                 console.log(result);
-                comment.isInEditMode = false;
+                $scope.commentEditable = false;
                 $scope.commentInEditMode = false;
             });
         };
