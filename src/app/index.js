@@ -130,7 +130,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
                     title: 'Dashboard'
                 }
             })
-            .state('home.dashboardFromStatic', {
+        .state('home.dashboardFromStatic', {
                 url: '/dashboard/:onboard',
                 controler: 'DashboardController',
                 templateUrl: 'app/views/home/dashboard.html',
@@ -271,7 +271,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
 
 
     })
-    .run(function($state, $location, $rootScope, $mdDialog, tokenService, Analytics) {
+    .run(function( $state, $location, $rootScope, $mdDialog, tokenService, Analytics) {
         // authManager.checkAuthOnRefresh();
         //   authManager.redirectWhenUnauthenticated();
 

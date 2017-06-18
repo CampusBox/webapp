@@ -9,10 +9,12 @@
             '$rootScope',
             '$localStorage',
             '$state',
+            'collegesListService',
             'tokenService',
             '$auth',
             'creativityCategories',
             '$filter',
+            'todoListService',
             '$mdDialog',
             '$rootScope',
             SignUpDialogController
