@@ -1,3 +1,5 @@
+
+
 <div style="height: 100%;">
     <div ui-sref="home.singleEvent({eventId: event.id})" style="position: relative;">
         <img style="width: 100% ;opacity: 0.9" class="event-cover" ng-src="{{event.image}}" alt="{{event.title}}">
@@ -21,7 +23,7 @@
             <br>
             <span style="color:#555555;text-align: center;">{{event.timings.day}}</span>
             </span>
-            <p flex="80" style="color: #777;" class="md-body-2">
+            <p flex="80" style="color: #777;height: 66px;line-height: 22px; overflow: hidden;" class="md-body-2">
                 {{event.subtitle| limitTo : 100}}
             </p>
         </div>

@@ -42,7 +42,7 @@
         <div layout="column" layout-wrap>
             <div hide-xs flex layout-align="space-around" layout="row">
                 <md-card flex-lg="30" flex-md="45" flex-sm="45" flex="100" layout="column" layout="space-around" ng-repeat="event in events track by $index">
-                    <event-card data="event" bar="true" ng-if="!eventLoading" hide-xs></event-card>
+                    <event-card data="event" bar="true" ng-show="!eventLoading" hide-xs></event-card>
                 </md-card>
             </div>
             <div show-xs hide-gt-xs layout="column">
