@@ -7,7 +7,7 @@
     <div layout-gt-sm="row" layout="column" layout-align-gt-xs="center" layout-align-xs="center strech">
         <div layout="row" layout-align="center">
             <div hide-xs flex layout-align="start" layout="row" layout-wrap flex-gt-xs="80">
-                <md-card ng-repeat="event in events" flex-lg="30" flex-md="45" flex-sm="45" flex="100">
+                <md-card ng-repeat="event in events|orderBy:'[timings.month,timings.day]'" flex-lg="30" flex-md="45" flex-sm="45" flex="100">
                     <event-card data="event" bar="true" ng-if="!eventLoading" hide-xs></event-card>
                 </md-card>
             </div>
