@@ -9,28 +9,13 @@
                             <h3>{{user.name}}</h3>
                             <p>Draft</p>
                         </div>
-                        <md-button class="md-secondary md-primary md-raised" ng-disabled="(!(title && (mediumEditor || trix) && (mediumEditor.length>20 || trix.length>20) ) || loading)" class="md-raised md-primary" ng-click="publish($event)" ng-hide="loading">Publish</md-button>
-                        <div class="spinner" ng-hide="!loading" style="width: 40px;height: 40px;background-color: #0570c0;"></div>
+                        <md-button class="md-primary md-raised" ng-disabled="(!(title && (mediumEditor || trix) && (mediumEditor.length>20 || trix.length>20) ) || loading)" ng-click="publish($event)" ng-hide="loading">Publish</md-button>
+                        <div class="spinner" ng-hide="!loading" style="width: 40px;height: 40px;background-color: #fd5c63;"></div>
+                        <!-- <md-progress-circular style="background: #fd5c63;" md-diameter="60"></md-progress-circular> -->
                         <md-tooltip ng-show="!(title && (mediumEditor || trix) && (mediumEditor.length>20 || trix.length>20) )" md-direction="bottom">Type min 20 characters.</md-tooltip>
                     </md-list-item>
                 </md-list>
-                <div layout-gt-xs="row" ng-hide="progress<1">
-                    <md-button ng-show="coverStatus" ng-click="removeCover()" class="md-icon-button" flex="5">
-                        <md-icon md-svg-icon="close-circle"></md-icon>
-                        <md-tooltip md-direction="left">Remove Cover</md-tooltip>
-                    </md-button>
-                    <div flex-gt-sm="80" layout="column">
-                        <p class="md-display-1" style="outline: none; margin: 0px" bind-options="{disableReturn: true, disableExtraSpaces: true, 'toolbar': {'buttons': [ 'italic', 'underline']}}" ng-model="title" style="display: inline; margin: 0px" medium-editor data-placeholder="Title"></p>
-                    </div>
-                </div>
-                <img style="padding: 0;width: 100%" ngf-thumbnail="item.image" ng-repeat="item in creativity.items" ng-if="(item.mediaType=='cover')" />
-                <div ng-show="(item.embedUrl.description.length>50)">
-                    <md-button class="md-primary" layout="row" flex ngf-select="uploadCover($file)" ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="100MB" ngf-min-height="100" ngf-resize="{width: 1024, height: 800}">
-                        <md-icon md-svg-icon="image-area"></md-icon>
-                        {{coverStatus?"Edit":"Add"}} cover picture to your Article
-                    </md-button>
-                    <span>Adding a cover helps people help discover content better. <a target="_blank" href="http://unsplash.com"></a></span>
-                </div>
+                <item-card ng-show="creativity.type" type=""></item-card>
                 <div flex-offset-gt-sm="10" flex-gt-sm="80" layout="column">
                     <p hide-xs show-gt-xs class="md-title" ng-hide="progress<1" style="outline: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;" ng-model="mediumEditor" medium-editor data-placeholder="Tell your story..."></p>
                     <div show-xs hide-gt-xs ng-hide="progress<1" ng-init="focus=false">
@@ -59,43 +44,6 @@
                         </md-button>    
 
                     </span>
-                </div>
-                <center ng-if="item.mediaType != ''" ng-repeat="item in creativity.items" style="padding: 0px">
-                    <iframe ng-if="item.mediaType == 'youtube'" width="560" height="315" ng-src="{{item.embedUrlIframe}}" frameborder="0" allowfullscreen></iframe>
-                    <iframe ng-if="item.mediaType == 'vimeo'" width="640" height="360" src="{{item.embedUrlIframe}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                    <iframe ng-show="item.mediaType == 'soundcloud'" id="sc-widget" width="100%" height="162px" scrolling="no" frameborder="no" ng-src="{{item.embedUrlIframe}}"></iframe>
-                    <md-card ng-if="item.mediaType == 'link'">
-                        <md-card-title>
-                            <md-card-title-text>
-                                <span class="md-title">{{item.embedUrl.title}}</span>
-                                <span class="md-subhead">{{item.embedUrl.description}}</span>
-                            </md-card-title-text>
-                            <md-card-title-media>
-                                <div class="md-media-sm card-media">
-                                    <img style="max-width: 100%" ng-src="{{item.embedUrl.image}}" alt="">
-                                </div>
-                            </md-card-title-media>
-                        </md-card-title>
-                        <md-card-actions layout="row" layout-align="start center">
-                            <a ng-href="{{item.embedUrl.url}}" style="text-decoration: none;color: rgba(0,0,0,.44)"><span>{{linkPreview.url}}</span></a>
-                        </md-card-actions>
-                    </md-card>
-                    <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
-                </center>
-                <div layout="row" layout-align="strech center" style="z-index: -1;margin-bottom: 120px;">
-                    <div layout="row" layout-align="strech center" ng-click="addMenu=!addMenu" ng-hide="progress<1">
-                        <md-button class="md-icon-button" aria-label="Settings">
-                            <md-icon md-svg-icon="shape-plus"></md-icon>
-                            <md-tooltip md-direction="left">Add media</md-tooltip>
-                        </md-button>
-                        <span>Add media</span>
-                    </div>
-                    <md-button ng-show="addMenu" flex="20" ngf-select="uploadFiles($files, $invalidFiles)" multiple name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 500, height: 500}" ngf-resize-if="$width > 500 || $height > 500">
-                        <p>Image</p>
-                    </md-button>
-                    <md-button flex="20" ng-show="addMenu" ng-click="addItem(content.title)" ng-repeat="content in contents">
-                        <p>{{content.title}}</p>
-                    </md-button>
                 </div>
             </div>
         </div>

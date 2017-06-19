@@ -8,7 +8,7 @@
             replace: true,
             templateUrl: 'app/components/addCreativity/addCreativityDriective.html',
 
-            controller: function($scope,  $sce, $timeout, $mdDialog, allDataService, tokenService, $state, Upload, $rootScope, creativityCategories) {
+            controller: function($scope, $sce, $timeout, $mdDialog, allDataService, tokenService, $state, Upload, $rootScope, creativityCategories, addItemService) {
 
                 var body = {};
                 $scope.progress = 0;
@@ -30,10 +30,9 @@
                 $scope.loading = false;
                 $scope.title = "";
 
-                console.log(parseInt(localStorage.getItem('seenTutorial')));
+
 
                 if (!localStorage.getItem('seenTutorial') || !parseInt(localStorage.getItem('tutorial'))) {
-                    console.log('notset');
                     localStorage.setItem('seenTutorial', true);
                     localStorage.setItem('tutorial', 1);
 
@@ -86,7 +85,7 @@
                 $scope.items = creativityCategories.items;
                 $scope.itemsMobile = creativityCategories.itemsMobile;
 
-                
+
 
 
 
@@ -155,55 +154,38 @@
 
                     }
                 };
-                $scope.addItem = function(heading) {
-                    if (heading == "Text") {
-                        $scope.progress = 2;
-                    } else {
-                        $mdDialog.show({
-                            controller: 'AddItemController',
-                            templateUrl: 'app/views/partials/addItem.html',
-                            parent: angular.element(document.body),
-                            targetEvent: heading,
-                            heading: heading,
-                            scope: $scope,
-                            preserveScope: true,
-                            escapeToClose: true,
-
-                            clickOutsideToClose: true,
-
-                            controllerAs: 'dc'
-                        }).then(function(media) {
-                            $scope.progress = 2;
-                            $scope.creativity.items.push(media);
-                            $scope.addMenu = false;
-
-                            if (media.mediaType == 'Soundcloud') {
-                                var widgetIframe = document.getElementById('sc-widget'),
-                                    widget = SC.Widget(widgetIframe),
-                                    newSoundUrl = $scope.embedUrlIframe;
-                                widget.bind(SC.Widget.Events.READY, function() {
-                                    // load new widget
-                                    widget.bind(SC.Widget.Events.FINISH, function() {
-                                        widget.load(newSoundUrl, {
-                                            show_artwork: false
-                                        });
-                                    });
+                $scope.error = '';
+                $rootScope.$on("returnedItem", function(event, response, errorAdd) {
+                    $scope.error = errorAdd;
+                    $scope.returnedItem = response;
+                    $scope.progress = 2;
+                    $scope.creativity.items.push($scope.returnedItem);
+                    $scope.addMenu = false;
+                    if ($scope.returnedItem.mediaType == 'Soundcloud') {
+                        var widgetIframe = document.getElementById('sc-widget'),
+                            widget = SC.Widget(widgetIframe),
+                            newSoundUrl = $scope.embedUrlIframe;
+                        widget.bind(SC.Widget.Events.READY, function() {
+                            // load new widget
+                            widget.bind(SC.Widget.Events.FINISH, function() {
+                                widget.load(newSoundUrl, {
+                                    show_artwork: false
                                 });
-                            }
-                        }, function() {
-                            console.log('else');
+                            });
                         });
                     }
-                };
+
+                });
+
                 var checkEditor = function() {
                     console.log('checkEditor called');
                     if ($scope.mediumEditor > $scope.trix) {
                         $scope.creativity.items[0].text = $scope.mediumEditor;
                         console.log($scope.creativity.items[0]);
-                    } else if($scope.mediumEditor < $scope.trix){
+                    } else if ($scope.mediumEditor < $scope.trix) {
                         $scope.creativity.items[0].text = $scope.trix;
                         console.log($scope.creativity.items[0]);
-                    }else{
+                    } else {
                         console.log('Error!');
                     }
                 };
