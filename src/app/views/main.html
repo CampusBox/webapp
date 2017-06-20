@@ -182,7 +182,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
             <div class="messages" layout-fill>
                 <md-content class="messages-content">
                     <md-list>
-                        <md-list-item class="md-2-line" ng-click="vm.toggleRightSidebar()" ui-sref="home.myProfile">
+                        <md-list-item class="md-2-line" ng-click="vm.toggleRightSidebar()" ui-sref="home.myProfile({tab: 'profile'})">
                             <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
                             <div class="md-list-item-text">
                                 <h3>{{user.name}}</h3>
@@ -190,32 +190,16 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                             </div>
                         </md-list-item>
                     </md-list>
-                    <md-menu-item hide-gt-sm>
-                        <md-button ng-click="vm.toggleRightSidebar()" ui-sref="home.addCreativity">
-                            <div layout="row" flex="" class="ng-scope layout-row flex">
-                                <p flex="" class="flex">New Creativity</p>
-                                <md-icon md-svg-icon="all-inclusive"></md-icon>
-                            </div>
-                        </md-button>
-                    </md-menu-item>
-                    <md-menu-item hide-gt-sm>
-                        <md-button ng-click="vm.toggleRightSidebar()" ui-sref="home.addEvent">
-                            <div layout="row" flex="" class="ng-scope layout-row flex">
-                                <p flex="" class="flex">New Opportunity</p>
-                                <md-icon md-svg-icon="calendar"></md-icon>
-                            </div>
-                        </md-button>
-                    </md-menu-item>
                     <md-menu-item>
-                        <md-button ng-click="vm.toggleRightSidebar()" ui-sref="home.myProfile({tab: 3})">
+                        <md-button ng-click="vm.toggleRightSidebar()" ui-sref="home.myProfile({tab:'recomended'})">
                             <div layout="row" flex="" class="ng-scope layout-row flex">
                                 <p flex="" class="flex">My Bookmarks</p>
                                 <md-icon md-svg-icon="bookmark"></md-icon>
                             </div>
                         </md-button>
-                    </md-menu-item>
+                    </md-menu-item>                
                     <md-menu-item>
-                        <md-button ng-click="vm.toggleRightSidebar()" ui-sref="home.myProfile({tab: 1})">
+                        <md-button ng-click="vm.toggleRightSidebar()" ui-sref="home.myProfile({tab:'creativity'})">
                             <div layout="row" flex="" class="ng-scope layout-row flex">
                                 <p flex="" class="flex">My Creativity</p>
                                 <md-icon md-svg-icon="all-inclusive"></md-icon>
@@ -223,7 +207,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
-                        <md-button ng-click="vm.toggleRightSidebar()" ui-sref="home.myProfile({tab: 2})">
+                        <md-button ng-click="vm.toggleRightSidebar()" ui-sref="home.myProfile({tab: 'Opportunity'})">
                             <div layout="row" flex="" class="ng-scope layout-row flex">
                                 <p flex="" class="flex">My Opportunities</p>
                                 <md-icon md-svg-icon="calendar"></md-icon>

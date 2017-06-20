@@ -14,7 +14,6 @@
 
     function MyProfileController($mdDialog, $scope, tokenService, $stateParams, $state,$rootScope) {
         var vm = this;
-        $scope.username = $stateParams.username;
         $scope.editAbout = false;
         $scope.loading == true;
         $scope.BookmarkedContents = [];
@@ -22,8 +21,12 @@
         $scope.studentAbout = {};
         $rootScope.currentPageBackground = '#fff';
         $rootScope.title = "My Profile";
-
-
+         $scope.currentNavItem = 'profile';
+ 
+        $scope.currentNavItem = $stateParams.tab;
+        $scope.goto = function(page) {
+            $scope.currentNavItem = page;
+        };
         tokenService.get("myProfile")
             .then(function(student) {
                 $scope.student = student.data;
