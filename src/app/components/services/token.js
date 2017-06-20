@@ -19,12 +19,12 @@
                 // 
                 // 
                 // To test locally from main API 
-                 var serviceBase = 'https://campusbox.org/dist/api/public/';
+                 // var serviceBase = 'https://campusbox.org/dist/api/public/';
                 // 
                 // USE THIS AT MOST TIMES
                 // 
                 // To test locally from BETA API 
-                //var serviceBase = 'http://beta.campusbox.org/api/public/';
+                var serviceBase = 'http://beta.campusbox.org/api/public/';
 
 
                 
