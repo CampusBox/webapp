@@ -234,6 +234,7 @@
         //         return veg;
         //     });
         // }
+        $scope.skills = ['Android','Java','C++'];
         $scope.skillsEdit = function() {
             if ($scope.readonly) {
                 $scope.readonly = !$scope.readonly;
