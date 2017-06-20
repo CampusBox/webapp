@@ -17,7 +17,6 @@
         }
         // document.getElementById('basicveryimportantloading').remove();
 
-        console.log($scope.state);
         var semicolon = 186;
         $rootScope.gray = '#fbfcfd';
 

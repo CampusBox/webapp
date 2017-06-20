@@ -278,7 +278,6 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
         $rootScope.$on('$stateChangeStart',
             function(event, toState, toParams, fromState, fromParams, options) {
                 $rootScope.currentState = toState.name;
-                console.log($rootScope.currentState);
             })
         localStorage.setItem('evervisited', true);
 

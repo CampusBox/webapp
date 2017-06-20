@@ -9,7 +9,6 @@
             templateUrl: 'app/components/addCreativity/addCreativityDriective.html',
 
             controller: function($scope, $sce, $timeout, $mdDialog, allDataService, tokenService, $state, Upload, $rootScope, creativityCategories, addItemService) {
-
                 var body = {};
                 $scope.progress = 0;
                 $scope.isOpen = false;
@@ -98,6 +97,7 @@
                     { 'title': 'Youtube', 'icon': 'youtube-play', 'style': '{fill: "#bb0000"}' },
                     { 'title': 'Vimeo', 'icon': 'vimeo', 'style': '{fill: "#4EBBFF"}' }
                 ];
+
                 $scope.selectType = function(type) {
                     $scope.progress = 1;
                     $scope.creativity.type = type.id;

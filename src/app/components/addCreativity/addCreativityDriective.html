@@ -10,12 +10,12 @@
                             <p>Draft</p>
                         </div>
                         <md-button class="md-primary md-raised" ng-disabled="(!(title && (mediumEditor || trix) && (mediumEditor.length>20 || trix.length>20) ) || loading)" ng-click="publish($event)" ng-hide="loading">Publish</md-button>
-                        <div class="spinner" ng-hide="!loading" style="width: 40px;height: 40px;background-color: #fd5c63;"></div>
+                        <div class="spinner" ng-show="loading" style="width: 40px;height: 40px;background-color: #fd5c63;"></div>
                         <!-- <md-progress-circular style="background: #fd5c63;" md-diameter="60"></md-progress-circular> -->
                         <md-tooltip ng-show="!(title && (mediumEditor || trix) && (mediumEditor.length>20 || trix.length>20) )" md-direction="bottom">Type min 20 characters.</md-tooltip>
                     </md-list-item>
                 </md-list>
-                <item-card ng-show="creativity.type" type=""></item-card>
+                <item-card ng-show="creativity.type"></item-card>
                 <div flex-offset-gt-sm="10" flex-gt-sm="80" layout="column">
                     <p hide-xs show-gt-xs class="md-title" ng-hide="progress<1" style="outline: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;" ng-model="mediumEditor" medium-editor data-placeholder="Tell your story..."></p>
                     <div show-xs hide-gt-xs ng-hide="progress<1" ng-init="focus=false">
