@@ -10,6 +10,13 @@
             <md-icon md-svg-icon="filter-outline"></md-icon>
             Filter
         </md-button>
+        <span flex></span>
+        <md-button ui-sref="home.addCreativity">
+            <div layout="row" flex="" class="ng-scope layout-row flex">
+                <p flex="" class="flex">Add Creativity</p>
+                <md-icon md-svg-icon="all-inclusive"></md-icon>
+            </div>
+        </md-button>
     </div>
     <div layout="row" ng-if="filterShow" layout-wrap show-xs show-sm hide-gt-sm>
         <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected':'interest'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
@@ -20,8 +27,8 @@
             Done
         </md-button>
     </div>
-    <div flex layout-align="space-around" layout-gt-xs="row" layout-xs="column" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading' infinite-scroll-distance="3 ">
-        <md-card class="content-card" flex-lg="30" flex-md="45" flex-sm="45" ng-repeat="content in finalContents track by $index" style="margin-left: 4px;">
+    <div flex layout-align="space-around" layout-gt-xs="row" layout-xs="row" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading' infinite-scroll-distance="3 ">
+        <md-card class="content-card" flex-lg="30" flex-md="45" flex-sm="45" flex-xs="100" ng-repeat="content in finalContents track by $index" style="margin-left: 4px;">
             <md-card-content style="padding: 0px">
                 <div ng-if="(content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
                     <!-- <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" ng-src="{{content.url}}" frameborder="0" allowfullscreen></iframe> -->

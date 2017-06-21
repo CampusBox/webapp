@@ -102,6 +102,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
                 controller: 'SingleEventController',
                 controllerAs: 'vm',
                 data: {
+                    requiresLogin: false,
                     title: 'Event'
                 }
             })
