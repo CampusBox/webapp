@@ -498,18 +498,17 @@ md-chips .md-chips {
                     <div layout="row" ng-hide="!vm.activated" layout-sm="column" layout-align="space-around">
                         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
                     </div>
-                    <md-list>
-                        <md-list-item ui-sref="home.singleEvent({eventId: event.id})" class="md-2-line" ng-repeat="event in student.AttendingEvents.data track by $index">
-                            <img ng-src="{{event.image}}" class="md-avatar" alt="{{item.who}}">
-                            <div class="md-list-item-text">
-                                <h3>{{event.title}}</h3>
-                                <p>{{event.timings.from.date | date: ' d MMM'}} {{event.timings.to.date==event.timings.from.date?null:event.timings.to.date | date: '- d MMM'}}
-                                </p>
-                            </div>
-                            <md-button class="md-warn" aria-label="participants" ng-click="cancelRsvp($event, event, $index)" md-ripple-size="auto">Cancel</md-button>
-                            <md-divider md-inset ng-if="!$last"></md-divider>
-                        </md-list-item>
-                    </md-list>
+                        <md-list>
+                            <md-list-item ui-sref="home.singleEvent({eventId: event.id})" class="md-2-line" ng-repeat="event in student.AttendingEvents.data track by $index">
+                                <img ng-src="{{event.image}}" class="md-avatar" alt="{{item.who}}">
+                                <div class="md-list-item-text">
+                                    <h3>{{event.title}}</h3>
+                                    <p>{{event.timings.from.date | date: ' d MMM'}} {{event.timings.to.date==event.timings.from.date?null:event.timings.to.date | date: '- d MMM'}}</p>
+                                </div>
+                                <md-button class="md-warn" aria-label="participants" ng-click="cancelRsvp($event, event, $index)" md-ripple-size="auto">Cancel</md-button>
+                                <md-divider md-inset ng-if="!$last"></md-divider>
+                            </md-list-item>
+                        </md-list>
                 </div>
             </div>
             <div label="following" ng-show="(currentNavItem=='following')" ng-if="student.Following.data.length">
