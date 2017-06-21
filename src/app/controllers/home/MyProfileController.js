@@ -15,7 +15,8 @@
     function MyProfileController($mdDialog, $scope, tokenService, $stateParams, $state,$rootScope) {
         var vm = this;
         $scope.editAbout = false;
-        $scope.loading == true;
+        $scope.editCollege = false;
+        $scope.loading = true;
         $scope.BookmarkedContents = [];
         $scope.CreativeContents = [];
         $scope.studentAbout = {};
@@ -38,7 +39,7 @@
                     $scope.student.CreativeContents.data[index].created.at = new Date(Date.parse($scope.student.CreativeContents.data[index].created.at.replace('-', '/', 'g'))); //replace mysql date to js date format
                 });
                 $scope.tab = $stateParams.tab;
-                $scope.loading == false;
+                $scope.loading = false;
                 console.log($scope.student);
             });
 
@@ -112,11 +113,13 @@
                 fullscreen: true // Only for -xs, -sm breakpoints.
             })
         };
+
         $scope.about = function() {
             if ($scope.editAbout) {
-                // console.log($scope.studentAbout);
+                 console.log($scope.studentAbout);
                 tokenService.patch("/students/" + $scope.student.username, $scope.studentAbout)
-                    .then(function() {
+                    .then(function(data) {
+                        console.log(data    );
                         $scope.editAbout = false;
                         $scope.student.subtitle = $scope.studentAbout.about;
                     })
@@ -128,6 +131,8 @@
                 $scope.editAbout = true;
             }
         };
+
+
         $scope.follow = function(type, index) {
             // SEND FOLLOWER ID AND FOLLOWING ID IN POST
             if ($scope.student[type].data[index].following) {
@@ -157,6 +162,7 @@
         $scope.readonly = true;
         $scope.removable = false;
         $scope.selectedItem = null;
+        $scope.skill = '';
         $scope.searchText = null;
         $scope.querySearch = querySearch;
         numberChips = [];
@@ -234,23 +240,41 @@
         //         return veg;
         //     });
         // }
-        $scope.skills = ['Android','Java','C++'];
-        $scope.skillsEdit = function() {
-            if ($scope.readonly) {
-                $scope.readonly = !$scope.readonly;
-                $scope.removable = !$scope.removable;
-            } else {
-                $scope.newSkills = {};
+        //$scope.skills = ['Android','Java','C++'];
+        // $scope.skillsEdit = function() {
+        //     if ($scope.readonly) {
+        //         $scope.readonly = !$scope.readonly;
+        //         $scope.removable = !$scope.removable;
+        //     } else {
+        //         $scope.newSkills = {};
+        //         $scope.newSkills.skills = $scope.student.Skills.data;
+        //         tokenService.post("addStudentSkills", $scope.newSkills)
+        //             .then(function(status) {
+        //                 $scope.readonly = !$scope.readonly;
+        //                 $scope.removable = !$scope.removable;
+        //             }).catch(function(status) {
+        //                 console.log(status);
+        //             });
+
+        //     }
+        // };
+
+        $scope.updateSkills = function(){
+            $scope.newSkills = {};
                 $scope.newSkills.skills = $scope.student.Skills.data;
+                if($scope.skill)
+                $scope.newSkills.skills.push({'name':$scope.skill});
+                console.log($scope.newSkills.skills);
                 tokenService.post("addStudentSkills", $scope.newSkills)
                     .then(function(status) {
-                        $scope.readonly = !$scope.readonly;
-                        $scope.removable = !$scope.removable;
+                        console.log(status);
+                        $scope.readonly = true;;
+                        //$scope.removable = !$scope.removable;
+                        $scope.skill= null;
                     }).catch(function(status) {
                         console.log(status);
                     });
 
-            }
         };
 
         // SKILLS CHIP SHIT ENDED
