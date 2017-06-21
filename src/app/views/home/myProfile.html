@@ -17,8 +17,11 @@
 
 md-chips.md-default-theme md-chip.mdfocused,
 md-chips md-chip.md-focused {
+    /*background-color: #fafafa !important;
+    color: rgba(0, 0, 0, .44);
+    border: 1px solid rgb(97, 97, 97) !important;
+*/
     cursor: default;
-    border-radius: 5px;
     font-size: 12px;
     line-height: 32px;
     margin: 8px 8px 0px 0px;
@@ -27,23 +30,29 @@ md-chips md-chip.md-focused {
     box-sizing: border-box;
     max-width: 100%;
     position: relative;
-    background-color: rgb(224, 224, 224);
     color: rgb(66, 66, 66);
+    border-radius: 50%;
+    border: none;
+    box-shadow: none;
 }
 
 md-chips.md-default-theme md-chip,
 md-chips md-chip {
+    /*border-color: rgba(2, 184, 117, 0.8);*/
+    /*border: 1px solid rgb(97, 97, 97) !important;*/
     cursor: default;
-    border-radius: 5px !important;
+    border-radius: 50%;
+    border: none;
+    box-shadow: none;
     font-size: 12px;
     line-height: 32px;
     margin: 8px 8px 0px 0px;
     padding: 0px 7px;
     float: left;
     box-sizing: border-box;
+    background-color: white;
     max-width: 100%;
     position: relative;
-    background-color: rgb(224, 224, 224);
     color: rgb(66, 66, 66);
 }
 
@@ -51,6 +60,17 @@ md-chips.md-default-theme md-chip.md-focused md-icon,
 md-chips md-chip.md-focused,
 md-chips md-chip.md-focused md-icon {
     color: rgba(0, 0, 0, .44) !important;
+    box-shadow: none;
+}
+
+md-chips.md-default-theme .md-chips,
+md-chips .md-chips {
+    box-shadow: none;
+}
+
+.editLink {
+    color: blue;
+    cursor: auto;
 }
 </style>
 <div layout="row" layout-xs="column" layout-align-gt-xs="center start" flex md-padding>
@@ -90,12 +110,113 @@ md-chips md-chip.md-focused md-icon {
         <div>
             <div>
                 <p class="md-headline">{{student.name}}</p>
-                <p class="md-body-2 weight-500"> {{student.college.name}} </p>
+                <!-- <p class="md-body-2 weight-500"> {{student.college.name}} </p>
                 <md-button style="margin-top: :5px;margin-left: 0px; width: 100%"  class="md-raised md-primary" ng-click="">Edit Profile
-                </md-button>
-                
+                </md-button>   -->              
             </div>
-        </div>  
+        </div> 
+                     <md-divider></md-divider>
+            <div layout="row" layout-margin>
+                <p class="md-title">
+                    About
+                </p>
+                <span flex></span>
+                <!--                     <a class="editLink " href=" " ng-show="readonly " ng-click="readonly=false; ">Edit
+                    </a> -->
+            </div>
+            <div layout="row " layout-align="center " ng-hide="editCollege ">
+                <span class="md-subhead ">{{student.college.name}}</span>
+                <!--                         <md-button class="md-icon-button " ng-click="editCollege=true; ">
+                            <md-icon md-svg-icon="pencil "></md-icon>
+                        </md-button> -->
+            </div>
+            <div class="md-body-2 " layout="column " ng-show="editCollege " style="background-color: #f1f1f1;border-radius: 2px;padding:8px; ">
+                <input class="md-body-2 md-padding " md-colors="{color: 'grey'} " ng-model="studentAbout.about ">
+                </input>
+                <div layout="row " style="padding-top: 8px; " layout-align="space-around center ">
+                    <md-button class="md-raised " ng-click="editCollege=false; ">Cancel
+                    </md-button>
+                    <md-button class="md-raised md-primary " ng-click="editCollege=false; ">Update
+                    </md-button>
+                </div>
+            </div>
+            <div ng-hide="editAbout " layout="row " layout-align="center " style="margin-left: 40px; ">
+                <p class="md-body-2 ">
+                    {{(student.subtitle === null)?"Write about yourself. ":student.subtitle}}
+                </p>
+                <md-button class="md-icon-button " ng-click="about() ">
+                    <md-icon md-svg-icon="pencil "></md-icon>
+                </md-button>
+            </div>
+            <div class="md-body-2 " layout="column " ng-show="editAbout " style="background-color: #f1f1f1;border-radius: 2px;padding:8px; ">
+                <input class="md-body-2 md-padding " md-colors="{color: 'grey'} " ng-model="studentAbout.about ">
+                </input>
+                <div layout="row " style="padding-top: 8px; " layout-align="space-around center ">
+                    <md-button class="md-raised " ng-click="editAbout=false; ">Cancel
+                    </md-button>
+                    <md-button class="md-raised md-primary " ng-click="about() ">Update
+                    </md-button>
+                </div>
+            </div>
+            <br>
+            <md-divider></md-divider>
+            <div>
+                <div layout="row " layout-margin>
+                    <!--                 removed class md-title
+ -->
+                    <p class="md-title">
+                        Skills
+                    </p>
+                    <span flex></span>
+                    <!--                     <md-button ng-click="skillsEdit() " class="md-icon-button ">
+                        <md-icon md-svg-icon="pencil " ng-show="readonly "></md-icon>
+                        <md-icon md-svg-icon="checkbox-marked-outline " ng-hide="readonly "></md-icon>
+                    </md-button> -->
+                    <a class="editLink " href="" ng-show="readonly " ng-click="readonly=false; ">Edit
+                    </a>
+                </div>
+                <!--            <form name="skillsForm ">
+                    <md-chips class="your-custom-chip " name="skills " md-separator-keys="customKeys " ng-model="student.Skills.data " md-autocomplete-snap md-transform-chip="transformChip($chip) " md-max-chips="5 " readonly="readonly " md-removable="removable " md-require-match="autocompleteDemoRequireMatch ">
+                        <md-autocomplete md-selected-item="selectedItem " md-search-text="searchText " md-items="item in querySearch(searchText) " md-item-text="item.name " placeholder="Use comma to separate skills. ">
+                            <span md-highlight-text="searchText ">{{item.name}}</span>
+                        </md-autocomplete>
+                        <md-chip-template>
+                            <span>
+                      <strong>{{$chip.name}}</strong>
+                    </span>
+                        </md-chip-template>
+                    </md-chips>
+                </form> -->
+            </div>
+            <div style="margin-bottom: 8px; ">
+                <md-chips style="box-shadow: none; " ng-model="student.Skills.data " md-transform-chip="transformChip($chip) " readonly="true " md-removable="!readonly ">
+                    <md-chip-template>
+                        <span>
+                      <strong>{{$chip.name}}</strong>
+                    </span>
+                    </md-chip-template>
+                </md-chips>
+            </div>
+            <div class="md-body-2 " layout="column " ng-hide="readonly " style="background-color: #f1f1f1;border-radius: 2px;padding:8px; ">
+                <input class="md-body-2 md-padding " placeholder="Type a skill to brag about " md-colors="{color: 'grey'} " ng-model="skill ">
+                </input>
+                <div layout="row " style="padding-top: 8px; " layout-align="space-around center ">
+                    <md-button class="md-raised " ng-click="readonly=true; ">Cancel
+                    </md-button>
+                    <md-button class="md-raised md-primary " ng-click="readonly=true;updateSkills() ">Update
+                    </md-button>
+                </div>
+            </div>
+            <!--             <div ng-hide="student.Skills.data[0] || addSkill ">
+                <p class="md-title ">
+                    Skills
+                </p>
+                <md-button class="md-body-2 " md-colors="{color: 'grey'} " title="Add skills " ng-click="addSkill=t rue;skillsEdit() " class=" ">
+                    <md-icon class="md-primary " md-svg-icon="plus "></md-icon>
+                    Add skills you can brag about
+                </md-button>
+            </div> -->
+            <md-divider></md-divider>
         <div>
             <p class="md-title" >
                 Info
