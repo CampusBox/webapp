@@ -25,6 +25,7 @@
         $rootScope.currentPageBackground = '#fff';
         $rootScope.title = "My Profile";
         $scope.currentNavItem = 'creativity';
+        //detect screen size
         $scope.screenIsSmall = $mdMedia('xs');
         console.log($scope.screenIsSmall);
 
