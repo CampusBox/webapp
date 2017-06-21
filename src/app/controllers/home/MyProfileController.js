@@ -165,14 +165,24 @@
             }
         };
 
-        $scope.unBookmark = function(content, index){
+        $scope.unBookmark = function(content, index) {
             console.log("unbookmark");
             tokenService.delete('bookmarkContent/' + content.id).then(function(result) {
-                    console.log(result);
-                    $scope.student.BookmarkedContents.data.splice(index, 1);
-                }).catch(function(error){
-                    console.log(error);
-                });
+                console.log(result);
+                $scope.student.BookmarkedContents.data.splice(index, 1);
+            }).catch(function(error) {
+                console.log(error);
+            });
+        };
+
+        $scope.unfollow = function(item, index) {
+            console.log("unbookmark");
+            tokenService.delete('studentFollow/' + item.username).then(function(result) {
+                console.log(result);
+                $scope.student.Following.data.splice(index, 1);
+            }).catch(function(error) {
+                console.log(error);
+            });
         };
 
         // SKILLS CHIP SHIT STARTED
