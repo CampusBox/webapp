@@ -208,7 +208,7 @@ md-chips .md-chips {
         <md-card-content>
             <md-tabs md-dynamic-height md-border-bottom md-selected="tab">
                 <!-- need to change it to ng-if  -->
-                <!-- <div show-xs hide-gt-xs> -->
+                <div show-xs hide-gt-xs ng-if="screenIsSmall">
                     <md-tab label="profile" show-xs hide-gt-xs>
                         <md-card show-xs hide-gt-xs ng-if="studentLoading ">
                             <center>
@@ -310,7 +310,7 @@ md-chips .md-chips {
                             </md-card-content>
                         </div>
                     </md-tab>
-                <!-- </div> -->
+                </div>
                 <md-tab label="Content ">
                     <div class="md-padding " layout-fill>
                         <div style="margin-top: 5%; " layout="column " layout-align="center center " ng-show="student.CreativeContents.data.length==0 ">

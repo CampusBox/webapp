@@ -9,10 +9,11 @@
             '$stateParams',
             '$state',
             '$rootScope',
+            '$mdMedia',
             MyProfileController
         ]);
 
-    function MyProfileController($mdDialog, $scope, tokenService, $stateParams, $state,$rootScope) {
+    function MyProfileController($mdDialog, $scope, tokenService, $stateParams, $state,$rootScope, $mdMedia) {
         var vm = this;
         $scope.editAbout = false;
         $scope.editCollege = false;
@@ -22,7 +23,9 @@
         $scope.studentAbout = {};
         $rootScope.currentPageBackground = '#fff';
         $rootScope.title = "My Profile";
-         $scope.currentNavItem = 'profile';
+        $scope.currentNavItem = 'profile';
+        $scope.screenIsSmall = $mdMedia('xs');
+
  
         $scope.currentNavItem = $stateParams.tab;
         $scope.goto = function(page) {
