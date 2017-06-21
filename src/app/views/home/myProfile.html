@@ -284,7 +284,7 @@ md-chips .md-chips {
                     </div>
                     <div layout="row" layout-align="end center">
                     </div>
-                </div layout="column" md-padding>
+                </div>
                 <div show-xs hide-gt-xs ng-if="!studentLoading" ng-hide="(currentNavItem!='profile')" style="padding: 8px;">
                     <div layout="row" layout-align="start start" md-padding>
                         <img flex="35" style="width: 20%; height: 20%;border-radius: 4px;  background-color: #ccc;" ng-src="{{student.photo}}" class="div layout=" column " md-padding-image" alt="{{student.name}}">
@@ -293,7 +293,6 @@ md-chips .md-chips {
                             <span class="md-caption" style="margin-top: 8px; margin-bottom: 8px;"> {{student.college.name}}</span>
                         </div>
                     </div>
-                    <div>
                         <div layout="row">
                             <p class="md-title">
                                 About
@@ -372,13 +371,6 @@ md-chips .md-chips {
                         </div>
                         <div ng-hide="student.Skills.data[0] || addSkill">
                             <!-- <span class="md-body-2" md-colors="{color: 'grey'}"> -->
-<!--                         <md-button class="md-body-2" md-colors="{color: 'grey'}" title="Add skills" ng-click="addSkill = true;skillsEdit()" class="">
-                            <md-icon class="md-primary" md-svg-icon="plus"></md-icon>
-                            Add skills you can brag about
-                        </md-button>
-                        </span>
-                    </div>
-                    <br>  -->
                     <div>
                         <p class="md-title">
                             Social Accounts

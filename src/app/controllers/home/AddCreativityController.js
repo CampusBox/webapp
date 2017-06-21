@@ -15,16 +15,18 @@
             'Upload',
             '$rootScope',
             'creativityCategories',
+            '$mdMedia',
             AddCreativityController
         ]);
 
-    function AddCreativityController($scope,  $sce, $timeout, $mdDialog, allDataService, tokenService, $state, Upload, $rootScope, creativityCategories) {
+    function AddCreativityController($scope, $sce, $timeout, $mdDialog, allDataService, tokenService, $state, Upload, $rootScope, creativityCategories, $mdMedia) {
         var body = {};
         $scope.progress = 0;
         $scope.isOpen = false;
         $scope.addMenu = false;
         $scope.selectedMode = 'md-scale';
-
+        //check if small screen
+        $scope.screenIsSmall = $mdMedia('xs');
         $rootScope.currentPageBackground = '#fff';
         $rootScope.title = "New Creativity";
 
@@ -45,25 +47,26 @@
             console.log('notset');
             localStorage.setItem('seenTutorial', true);
             localStorage.setItem('tutorial', 1);
+            if ($scope.screenIsSmall) {
+                $mdDialog.show({
+                    controller: 'AddItemController',
+                    heading: 'Tutorial',
+                    templateUrl: 'app/views/partials/addBlogTutorial.html',
+                    parent: angular.element(document.body),
+                    locals: {
+                        title: "tutorial"
+                    },
+                    clickOutsideToClose: true,
+                    escapeToClose: true
 
-            $mdDialog.show({
-                controller: 'AddItemController',
-                heading: 'Tutorial',
-                templateUrl: 'app/views/partials/addBlogTutorial.html',
-                parent: angular.element(document.body),
-                locals: {
-                    title: "tutorial"
-                },
-                clickOutsideToClose: true,
-                escapeToClose: true
+                }).then(function() {
+                        localStorage.setItem('tutorial', parseInt(localStorage.getItem('tutorial')) + 1);
+                    }, function() {
+                        localStorage.setItem('tutorial', parseInt(localStorage.getItem('tutorial')) + 1);
+                    }
+                );
+            }
 
-            }).then(function() {
-                    localStorage.setItem('tutorial', parseInt(localStorage.getItem('tutorial')) + 1);
-                }, function() {
-                    localStorage.setItem('tutorial', parseInt(localStorage.getItem('tutorial')) + 1);
-                }
-
-            );
 
         } else if (parseInt(localStorage.getItem('tutorial')) < 4) {
             console.log('notlessthan3');
@@ -95,7 +98,7 @@
         $scope.items = creativityCategories.items;
         $scope.itemsMobile = creativityCategories.itemsMobile;
 
-        
+
 
 
 
@@ -209,10 +212,10 @@
             if ($scope.mediumEditor > $scope.trix) {
                 $scope.creativity.items[0].text = $scope.mediumEditor;
                 console.log($scope.creativity.items[0]);
-            } else if($scope.mediumEditor < $scope.trix){
+            } else if ($scope.mediumEditor < $scope.trix) {
                 $scope.creativity.items[0].text = $scope.trix;
                 console.log($scope.creativity.items[0]);
-            }else{
+            } else {
                 console.log('Error!');
             }
         };
