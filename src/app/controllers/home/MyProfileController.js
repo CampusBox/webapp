@@ -86,7 +86,7 @@
                 .ok('Yes')
                 .cancel('Cancel');
             $mdDialog.show(confirm).then(function() {
-                tokenService.delete('content/' + content.id, '').then(function(result) {
+                tokenService.patch('content/' + content.id, '').then(function(result) {
                     if (result.status != 'error') {
                         console.log(result.status);
                         $scope.student.CreativeContents.data.splice(index, 1);
