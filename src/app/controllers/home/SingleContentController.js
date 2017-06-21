@@ -280,6 +280,8 @@
         $scope.CommentBeingEdited = null;
         $scope.newComment = '';
         $scope.commentEditable = false;
+        $scope.flags = {};
+        $scope.flags.addResponse = false;
 
 
 
@@ -299,12 +301,12 @@
         $scope.canPostComment = function() {
             if (!$rootScope.authenticated) {
                 $rootScope.openLoginDialog(function() {
-                    $scope.addResponse = true;
+                    $scope.flags.addResponse = true;
                 });
             } else {
-                $scope.addResponse = true;
+                $scope.flags.addResponse = true;
             }
-
+            console.log($scope.flags.addResponse);
         };
 
         //post the comment

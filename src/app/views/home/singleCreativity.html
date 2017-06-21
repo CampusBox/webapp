@@ -145,18 +145,18 @@ md-list-item .md-button:not([disabled]):click {
             <md-card-avatar>
                 <img class="md-user-avatar" ng-src="{{user.image}}" />
             </md-card-avatar>
-            <md-card-header-text ng-hide="addResponse" ng-click="canPostComment()">
+            <md-card-header-text ng-hide="flags.addResponse" ng-click="canPostComment()">
                 <span class="md-caption">Write a response...</span>
             </md-card-header-text>
-            <md-card-header-text ng-show="addResponse">
+            <md-card-header-text ng-show="flags.addResponse">
                 <span class="md-title blue_text">{{user.name;}}</span>
             </md-card-header-text>
         </md-card-header>
-        <md-card-content ng-show="addResponse" layout="column">
+        <md-card-content ng-show="flags.addResponse" layout="column">
             <md-input-container>
                 <textarea autofocus="" placeholder="" rows="3" md-no-resize md-select-on-focus ng-model="newComment"></textarea>
             </md-input-container>
-            <md-button ng-disabled="(newComment.length>0?false:true);" class="md-raised md-primary" ng-click="postComment(newComment);addResponse=false;">
+            <md-button ng-disabled="(newComment.length>0?false:true);" class="md-raised md-primary" ng-click="postComment(newComment);flags.addResponse=false;">
                 Publish
             </md-button>
         </md-card-content>
