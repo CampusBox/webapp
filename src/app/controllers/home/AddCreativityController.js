@@ -68,7 +68,7 @@
             }
 
 
-        } else if (parseInt(localStorage.getItem('tutorial')) < 4) {
+        } else if (parseInt(localStorage.getItem('tutorial')) < 2) {
             console.log('notlessthan3');
 
             $mdDialog.show({
