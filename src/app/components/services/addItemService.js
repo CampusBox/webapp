@@ -28,6 +28,12 @@
                     else
                         return true;
                 };
+                obj.setNoembed = function(url) {
+                    allDataService.noembedJson(url)
+                        .then(function(data) {
+                            obj.item.noembed = data;
+                        });
+                };
                 obj.submitUrl = function(url, type) {
                     obj.url = url;
                     switch (type) {
@@ -40,6 +46,7 @@
                                 obj.item.embedUrl1 = "//www.youtube.com/embed/" + videoid[1];
                                 obj.item.embedUrl = videoid[1];
                                 obj.item.embedUrlIframe = $sce.trustAsResourceUrl(obj.item.embedUrl1);
+                                obj.setNoembed(url);
                             } else {
                                 obj.addError = 'Invalid youtube url';
                                 console.log('Invalid youtube url');

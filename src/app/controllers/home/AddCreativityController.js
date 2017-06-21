@@ -171,7 +171,8 @@
     	    $scope.error = errorAdd;
     	    $scope.returnedItem = response;
     	    $scope.progress = 2;
-    	    $scope.creativity.items.push($scope.returnedItem);
+    	    $scope.creativity.items.push(response);
+            console.log($scope.creativity.items);
     	    $scope.addMenu = false;
     	    if ($scope.returnedItem.mediaType == 'Soundcloud') {
     	        var widgetIframe = document.getElementById('sc-widget'),
@@ -189,40 +190,18 @@
 
     	});
 
-    	var checkEditor = function() {
-    	    console.log('checkEditor called');
-    	    if ($scope.mediumEditor > $scope.trix) {
-    	        $scope.creativity.items[0].text = $scope.mediumEditor;
-    	        console.log($scope.creativity.items[0]);
-    	    } else if ($scope.mediumEditor < $scope.trix) {
-    	        $scope.creativity.items[0].text = $scope.trix;
-    	        console.log($scope.creativity.items[0]);
-    	    } else {
-    	        console.log('Error!');
-    	    }
-    	};
-
-    	$scope.submit = function($event) {
-    	    checkEditor();
-    	    $mdDialog.show({
-
-    	        scope: $scope,
-    	        preserveScope: true,
-    	        targetEvent: $event,
-    	        escapeToClose: true,
-    	        fullscreen: true,
-    	        clickOutsideToClose: true,
-    	        templateUrl: 'app/views/partials/license.html',
-    	        controller: SelectLicenseController
-    	    });
-
-    	    function SelectLicenseController($scope, $mdDialog) {
-    	        $scope.closeDialog = function() {
-    	            console.log('CLOSING DIALOG');
-    	            $mdDialog.hide();
-    	        };
-    	    }
-    	};
+        var checkEditor = function() {
+            console.log('checkEditor called');
+            if ($scope.mediumEditor > $scope.trix) {
+                $scope.creativity.items[0].text = $scope.mediumEditor;
+                console.log($scope.creativity.items[0]);
+            } else if ($scope.mediumEditor < $scope.trix) {
+                $scope.creativity.items[0].text = $scope.trix;
+                console.log($scope.creativity.items[0]);
+            } else {
+                console.log('Error!');
+            }
+        };
 
 
     	$scope.publish = function() {
@@ -232,6 +211,7 @@
 
     	    $scope.creativity.tags = $scope.tags;
     	    $scope.creativity.title = $scope.title;
+            console.log($scope.creativity);
     	    tokenService.post("addNew", $scope.creativity)
     	        .then(function(status) {
     	            alert(status.message);

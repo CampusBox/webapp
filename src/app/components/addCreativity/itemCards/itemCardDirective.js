@@ -15,9 +15,9 @@
                 $scope.setNoembed = function(url) {
                     allDataService.noembedJson(url)
                         .then(function(data) {
-                            $scope.creativity.items[0].noembed = data;
+                            $scope.creativity.items[1].noembed = data;
                             if ($scope.title == '') {
-                                $scope.title = $scope.creativity.items[0].noembed.title;
+                                $scope.title = $scope.creativity.items[1].noembed.title;
                             }
                         });
                 };
