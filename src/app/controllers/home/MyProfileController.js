@@ -164,6 +164,17 @@
                 });
             }
         };
+
+        $scope.unBookmark = function(content, index){
+            console.log("unbookmark");
+            tokenService.delete('bookmarkContent/' + content.id).then(function(result) {
+                    console.log(result);
+                    $scope.student.BookmarkedContents.data.splice(index, 1);
+                }).catch(function(error){
+                    console.log(error);
+                });
+        };
+
         // SKILLS CHIP SHIT STARTED
 
         $scope.readonly = true;

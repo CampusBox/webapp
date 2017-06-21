@@ -485,7 +485,7 @@ md-chips .md-chips {
                                     </ul>
                                 </p>
                             </div>
-                            <md-button style="float:right" ng-click="bookmark(content)" aria-label="Favorite ">
+                            <md-button style="float:right" class="md-no-proxy" ng-click="unBookmark(content,$index)" aria-label="Favorite ">
                                 <md-icon ng-class="md-primary" md-svg-icon="bookmark"></md-icon>
                             </md-button>
                         </md-list-item>
