@@ -84,7 +84,7 @@ md-chips .md-chips {
             </md-card-title>
         </center>
         <md-card-content style="margin-top: 0px;">
-        <md-divider></md-divider>
+            <md-divider></md-divider>
             <div layout="row" layout-margin>
                 <p class="md-title">
                     About
@@ -141,7 +141,7 @@ md-chips .md-chips {
                         <md-icon md-svg-icon="pencil " ng-show="readonly "></md-icon>
                         <md-icon md-svg-icon="checkbox-marked-outline " ng-hide="readonly "></md-icon>
                     </md-button> -->
-                    <a class="editLink " href=" " ng-show="readonly " ng-click="readonly=false; ">Edit
+                    <a class="editLink " href="" ng-show="readonly " ng-click="readonly=false; ">Edit
                     </a>
                 </div>
                 <!--            <form name="skillsForm ">
@@ -192,7 +192,7 @@ md-chips .md-chips {
                         Social Accounts
                     </p>
                     <span flex></span>
-                    <a class="editLink " href=" " ng-show="readonly " ng-click="skillsEdit() ">Edit
+                    <a class="editLink " href="" ng-show="readonly " ng-click="skillsEdit() ">Edit
                     </a>
                 </div>
                 <md-list>
@@ -206,10 +206,10 @@ md-chips .md-chips {
     </md-card>
     <md-card flex="70 " flex-xs="100 ">
         <md-card-content>
-            <md-tabs md-dynamic-height md-border-bottom md-selected="tab ">
+            <md-tabs md-dynamic-height md-border-bottom md-selected="tab">
                 <!-- need to change it to ng-if  -->
-                <div show-xs hide-gt-xs>
-                    <md-tab label="profile ">
+                <!-- <div show-xs hide-gt-xs> -->
+                    <md-tab label="profile" show-xs hide-gt-xs>
                         <md-card show-xs hide-gt-xs ng-if="studentLoading ">
                             <center>
                                 <img style="border-radius: 50%; width: 40%; margin-top:20px; background-color: #dfdfdf; padding-bottom: 33% " class="md-card-image ">
@@ -249,7 +249,6 @@ md-chips .md-chips {
                                         <span class="md-title ">{{student.name}}</span>
                                         <br>
                                         <span class="md-caption ">
-                                    <!-- <md-icon md-svg-icon="school "></md-icon> -->
                                      {{student.college.about}}</span>
                                     </md-card-title-text>
                                 </md-card-title>
@@ -297,12 +296,10 @@ md-chips .md-chips {
                                     <p class="md-title ">
                                         Skills
                                     </p>
-                                    <!-- <span class="md-body-2 " md-colors="{color: 'grey'} "> -->
                                     <md-button class="md-body-2 " md-colors="{color: 'grey'} " title="Add skills " ng-click="addSkill=true;skillsEdit() " class=" ">
                                         <md-icon class="md-primary " md-svg-icon="plus "></md-icon>
                                         Add skills you can brag about
                                     </md-button>
-                                    <!-- </span> -->
                                 </div>
                                 <br>
                                 <a style="margin-bottom: 10px; " ng-repeat="social in student.SocialAccounts.data " ng-href="{{social.link}} " target="_blank ">
@@ -313,7 +310,7 @@ md-chips .md-chips {
                             </md-card-content>
                         </div>
                     </md-tab>
-                </div>
+                <!-- </div> -->
                 <md-tab label="Content ">
                     <div class="md-padding " layout-fill>
                         <div style="margin-top: 5%; " layout="column " layout-align="center center " ng-show="student.CreativeContents.data.length==0 ">
