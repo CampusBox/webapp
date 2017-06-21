@@ -293,61 +293,61 @@ md-chips .md-chips {
                             <span class="md-caption" style="margin-top: 8px; margin-bottom: 8px;"> {{student.college.name}}</span>
                         </div>
                     </div>
-                        <div layout="row">
-                            <p class="md-title">
-                                About
-                            </p>
-                            <span flex></span>
-                            <a class="editLink" href="" ng-hide="editAbout " ng-click="about() ">Edit
+                    <div layout="row">
+                        <p class="md-title">
+                            About
+                        </p>
+                        <span flex></span>
+                        <a class="editLink" href="" ng-hide="editAbout " ng-click="about() ">Edit
                     </a>
-                        </div>
-                        <div ng-hide="editAbout " layout="row " layout-align="start ">
-                            <p class="md-body-2">
-                                {{(student.subtitle === null)?"Write about yourself. ":student.subtitle}}
-                            </p>
-                            <!--                             <md-button class="md-icon-button " ng-click="about() ">
+                    </div>
+                    <div ng-hide="editAbout " layout="row " layout-align="start ">
+                        <p class="md-body-2">
+                            {{(student.subtitle === null)?"Write about yourself. ":student.subtitle}}
+                        </p>
+                        <!--                             <md-button class="md-icon-button " ng-click="about() ">
                                 <md-icon md-svg-icon="pencil "></md-icon>
                             </md-button> -->
+                    </div>
+                    <div class="md-body-2 " layout="column " ng-show="editAbout " style="background-color: #f1f1f1;border-radius: 2px;padding:8px; ">
+                        <input class="md-body-2 md-padding " md-colors="{color: 'grey'} " ng-model="studentAbout.about ">
+                        </input>
+                        <div layout="row " style="padding-top: 8px; " layout-align="space-around center ">
+                            <md-button class="md-raised " ng-click="editAbout=false; ">Cancel
+                            </md-button>
+                            <md-button class="md-raised md-primary " ng-click="editAbout=false;about() ">Update
+                            </md-button>
                         </div>
-                        <div class="md-body-2 " layout="column " ng-show="editAbout " style="background-color: #f1f1f1;border-radius: 2px;padding:8px; ">
-                            <input class="md-body-2 md-padding " md-colors="{color: 'grey'} " ng-model="studentAbout.about ">
-                            </input>
-                            <div layout="row " style="padding-top: 8px; " layout-align="space-around center ">
-                                <md-button class="md-raised " ng-click="editAbout=false; ">Cancel
-                                </md-button>
-                                <md-button class="md-raised md-primary " ng-click="editAbout=false;about() ">Update
-                                </md-button>
-                            </div>
-                        </div>
-                        <div layout="row">
-                            <p class="md-title">
-                                Skills
-                            </p>
-                            <span flex></span>
-                            <a class="editLink" href="" ng-show="readonly " ng-click="readonly=false; ">Edit
+                    </div>
+                    <div layout="row">
+                        <p class="md-title">
+                            Skills
+                        </p>
+                        <span flex></span>
+                        <a class="editLink" href="" ng-show="readonly " ng-click="readonly=false; ">Edit
                     </a>
-                        </div>
-                        <div style="margin-bottom: 8px;">
-                            <md-chips style="box-shadow: none;" ng-model="student.Skills.data" md-transform-chip="transformChip($chip)" readonly="true" md-removable="!readonly">
-                                <md-chip-template>
-                                    <span>
+                    </div>
+                    <div style="margin-bottom: 8px;">
+                        <md-chips style="box-shadow: none;" ng-model="student.Skills.data" md-transform-chip="transformChip($chip)" readonly="true" md-removable="!readonly">
+                            <md-chip-template>
+                                <span>
                       <strong>{{$chip.name}}</strong>
                     </span>
-                                </md-chip-template>
-                            </md-chips>
+                            </md-chip-template>
+                        </md-chips>
+                    </div>
+                    <div class="md-body-2" layout="column" ng-hide="readonly" style="background-color: #f1f1f1;border-radius: 2px;padding:8px;">
+                        <input class="md-body-2 md-padding" placeholder="Type a skill to brag about" md-colors="{color: 'grey'}" ng-model="add.skill">
+                        </input>
+                        <div layout="row " style="padding-top: 8px; " layout-align="space-around center">
+                            <md-button class="md-raised " ng-click="readonly=true; ">Cancel
+                            </md-button>
+                            <md-button class="md-raised md-primary " ng-click="readonly=true;updateSkills()">Update
+                            </md-button>
                         </div>
-                        <div class="md-body-2" layout="column" ng-hide="readonly" style="background-color: #f1f1f1;border-radius: 2px;padding:8px;">
-                            <input class="md-body-2 md-padding" placeholder="Type a skill to brag about" md-colors="{color: 'grey'}" ng-model="add.skill">
-                            </input>
-                            <div layout="row " style="padding-top: 8px; " layout-align="space-around center">
-                                <md-button class="md-raised " ng-click="readonly=true; ">Cancel
-                                </md-button>
-                                <md-button class="md-raised md-primary " ng-click="readonly=true;updateSkills()">Update
-                                </md-button>
-                            </div>
-                        </div>
-                        <md-divider></md-divider>
-                        <!--                         <span class="md-title">Skills</span>
+                    </div>
+                    <md-divider></md-divider>
+                    <!--                         <span class="md-title">Skills</span>
                         <div layout-align="start start" ng-show="student.Skills.data[0] || addSkill" ng-init="student.Skills.data[0]? addSkill = true : addSkill = false">
                             <div layout="row">
                                 <form name="skillsForm">
@@ -411,7 +411,11 @@ md-chips .md-chips {
                                     <h3>{{ content.title }}</h3>
                                     <h4>{{ content.created.at | date: ' d MMM'}}</h4>
                                 </div>
-                                <md-menu>
+                                    <md-button class="md-warn" aria-label="participants" ng-click="deleteContent($event, content, $index)" md-ripple-size="auto">
+                                        <md-icon md-svg-icon="delete"></md-icon>
+                                        Delete
+                                    </md-button>
+                                <!--                                 <md-menu>
                                     <md-button aria-label="Option Menu Creativity" class="md-icon-button" ng-click="openMenu($mdMenu,$event);">
                                         <md-icon md-menu-origin md-svg-src="assets/svg/ic_down.svg"></md-icon>
                                     </md-button>
@@ -429,7 +433,7 @@ md-chips .md-chips {
                                             </md-button>
                                         </md-menu-item>
                                     </md-menu-content>
-                                </md-menu>
+                                </md-menu> -->
                             </md-list-item>
                             <md-divider></md-divider>
                         </md-list>
@@ -498,17 +502,17 @@ md-chips .md-chips {
                     <div layout="row" ng-hide="!vm.activated" layout-sm="column" layout-align="space-around">
                         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
                     </div>
-                        <md-list>
-                            <md-list-item ui-sref="home.singleEvent({eventId: event.id})" class="md-2-line" ng-repeat="event in student.AttendingEvents.data track by $index">
-                                <img ng-src="{{event.image}}" class="md-avatar" alt="{{item.who}}">
-                                <div class="md-list-item-text">
-                                    <h3>{{event.title}}</h3>
-                                    <p>{{event.timings.from.date | date: ' d MMM'}} {{event.timings.to.date==event.timings.from.date?null:event.timings.to.date | date: '- d MMM'}}</p>
-                                </div>
-                                <md-button class="md-warn" aria-label="participants" ng-click="cancelRsvp($event, event, $index)" md-ripple-size="auto">Cancel</md-button>
-                                <md-divider md-inset ng-if="!$last"></md-divider>
-                            </md-list-item>
-                        </md-list>
+                    <md-list>
+                        <md-list-item ui-sref="home.singleEvent({eventId: event.id})" class="md-2-line" ng-repeat="event in student.AttendingEvents.data track by $index">
+                            <img ng-src="{{event.image}}" class="md-avatar" alt="{{item.who}}">
+                            <div class="md-list-item-text">
+                                <h3>{{event.title}}</h3>
+                                <p>{{event.timings.from.date | date: ' d MMM'}} {{event.timings.to.date==event.timings.from.date?null:event.timings.to.date | date: '- d MMM'}}</p>
+                            </div>
+                            <md-button class="md-warn" aria-label="participants" ng-click="cancelRsvp($event, event, $index)" md-ripple-size="auto">Cancel</md-button>
+                            <md-divider md-inset ng-if="!$last"></md-divider>
+                        </md-list-item>
+                    </md-list>
                 </div>
             </div>
             <div label="following" ng-show="(currentNavItem=='following')" ng-if="student.Following.data.length">
