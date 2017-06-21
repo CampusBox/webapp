@@ -219,7 +219,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input) {
                         <md-divider></md-divider>
                     </center>
                     <md-list>
-                        <md-list-item class="md-2-line" ng-repeat="notification in notifications" ng-click="vm.toggleRightSidebar()">
+                        <md-list-item class="md-2-line" ng-repeat="notification in notifications" ng-click="NotificationItemClicked(notification)">
                             <md-icon ng-if="notification.type=='follower'" md-svg-icon="account"></md-icon>
                             <md-icon ng-if="notification.type=='event_rsvps'" md-svg-icon="calendar"></md-icon>
                             <md-icon ng-if="notification.type=='content_appreciate'" md-svg-icon="all-inclusive"></md-icon>

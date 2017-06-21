@@ -207,6 +207,21 @@
         }];
 
         // Search Autocomplete End
+
+        $scope.NotificationItemClicked = function(notification) {
+            console.log(notification);
+
+            if (notification.type == 'follower') {
+                $state.go('home.profile', { 'username': notification.follower_username });
+            } else if (notification.type == 'event_rsvps') {
+
+            } else if (notification.type == 'content_appreciate') {
+
+            }
+            toggleRightSidebar();
+
+        }
+
     }
 
 })();
