@@ -369,7 +369,7 @@ md-chips .md-chips {
                                 </md-button>
                             </div>
                         </div>
-                        <div ng-hide="student.Skills.data[0] || addSkill">
+                        <div ng-hide="student.Skills.data[0] || addSkill">-->
                             <!-- <span class="md-body-2" md-colors="{color: 'grey'}"> -->
                     <div>
                         <p class="md-title">
@@ -405,7 +405,7 @@ md-chips .md-chips {
                     </div>
                     <div flex layout="row" layout-wrap layout-align="center center">
                         <md-list flex>
-                            <md-list-item class="md-2-line" ui-sref="home.singleContent({contentId: content.id})" ng-repeat="content in student.CreativeContents.data track by $index">
+                            <md-list-item class="md-2-line md-no-proxy" ui-sref="home.singleContent({contentId: content.id})" ng-repeat="content in student.CreativeContents.data track by $index">
                                 <img ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
                                 <div class="md-list-item-text" layout="column">
                                     <h3>{{ content.title }}</h3>
@@ -454,7 +454,7 @@ md-chips .md-chips {
                         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
                     </div>
                     <md-list>
-                        <md-list-item ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding" ng-repeat="event in student.Events.data ">
+                        <md-list-item ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding md-no-proxy" ng-repeat="event in student.Events.data ">
                             <img ng-src="{{event.image}}" class="md-avatar" alt="{{item.who}}">
                             <p>{{event.title}}</p>
                             <!-- <md-button class="md-primary" aria-label="participants" ng-click="showParticipants(event)" md-ripple-size="auto">Participants</md-button> -->
@@ -509,8 +509,11 @@ md-chips .md-chips {
                                     </ul>
                                 </p>
                             </div>
-                            <md-button style="float:right" class="md-no-proxy" ng-click="unBookmark(content,$index)" aria-label="Favorite ">
+                            <!-- <md-button style="float:right" class="md-no-proxy" ng-click="unBookmark(content,$index)" aria-label="Favorite ">
                                 <md-icon ng-class="md-primary" md-svg-icon="bookmark"></md-icon>
+                            </md-button> -->
+                             <md-button style="float:right" class="md-warn" ng-click="unBookmark(content,$index)" aria-label="Favorite ">
+                                Remove
                             </md-button>
                         </md-list-item>
                         <md-divider></md-divider>
