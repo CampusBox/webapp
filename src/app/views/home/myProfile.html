@@ -328,7 +328,7 @@ md-chips .md-chips {
                     </a>
                     </div>
                     <div style="margin-bottom: 8px;">
-                        <md-chips style="box-shadow: none;" ng-model="student.Skills.data" md-transform-chip="transformChip($chip)" readonly="true" md-removable="!readonly">
+                        <md-chips style="box-shadow: none;" ng-model="student.Skills.data" md-transform-chip="transformChip($chip)" readonly="true" md-removable="!readonly"  md-max-chips="5">
                             <md-chip-template>
                                 <span>
                       <strong>{{$chip.name}}</strong>
@@ -342,7 +342,7 @@ md-chips .md-chips {
                         <div layout="row " style="padding-top: 8px; " layout-align="space-around center">
                             <md-button class="md-raised " ng-click="readonly=true; ">Cancel
                             </md-button>
-                            <md-button class="md-raised md-primary " ng-click="readonly=true;updateSkills()">Update
+                            <md-button class="md-raised md-primary"  ng-click="readonly=true;updateSkills()">Update
                             </md-button>
                         </div>
                     </div>
@@ -411,29 +411,31 @@ md-chips .md-chips {
                                     <h3>{{ content.title }}</h3>
                                     <h4>{{ content.created.at | date: ' d MMM'}}</h4>
                                 </div>
-                                    <md-button class="md-warn" aria-label="participants" ng-click="deleteContent($event, content, $index)" md-ripple-size="auto">
-                                        <md-icon md-svg-icon="delete"></md-icon>
-                                        Delete
-                                    </md-button>
-                                <!--                                 <md-menu>
+                                <md-menu>
                                     <md-button aria-label="Option Menu Creativity" class="md-icon-button" ng-click="openMenu($mdMenu,$event);">
                                         <md-icon md-menu-origin md-svg-src="assets/svg/ic_down.svg"></md-icon>
                                     </md-button>
                                     <md-menu-content width="2">
-                                        <md-menu-item>
-                                            <md-button class="md-warn" aria-label="participants" ng-click="deleteContent($event, content, $index)" md-ripple-size="auto">
-                                                <md-icon md-svg-icon="delete"></md-icon>
-                                                Delete
-                                            </md-button>
-                                        </md-menu-item>
-                                        <md-menu-item>
+<!--                                         <md-menu-item>
                                             <md-button class="md-warn" aria-label="participants" ng-click="" md-ripple-size="auto" style="color: #0570c0;">
                                                 <md-icon md-svg-icon="pencil" style="color: #0570c0;"></md-icon>
                                                 Edit
                                             </md-button>
+                                        </md-menu-item> -->
+                                        <md-menu-item> 
+                                            <md-button class="md-primary" aria-label="participants" ng-click="unPublishAndMoveToDraft(content, $index)" md-ripple-size="auto">
+<!--                                                 <md-icon md-svg-icon="edit"></md-icon>
+ -->                                                UnPublish
+                                            </md-button>
+                                        </md-menu-item>
+                                        <md-menu-item>
+                                            <md-button class="md-warn" aria-label="participants" ng-click="deleteContent($event, content, $index)" md-ripple-size="auto">
+<!--                                                 <md-icon md-svg-icon="delete"></md-icon>
+ -->                                                Delete
+                                            </md-button>
                                         </md-menu-item>
                                     </md-menu-content>
-                                </md-menu> -->
+                                </md-menu>
                             </md-list-item>
                             <md-divider></md-divider>
                         </md-list>

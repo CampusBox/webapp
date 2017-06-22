@@ -27,6 +27,7 @@
         $scope.currentNavItem = 'creativity';
         //detect screen size
         $scope.screenIsSmall = $mdMedia('xs');
+
         console.log($scope.screenIsSmall);
 
         $scope.currentNavItem = $stateParams.tab;
@@ -45,6 +46,10 @@
                     $scope.student.CreativeContents.data[index].created.at = new Date(Date.parse($scope.student.CreativeContents.data[index].created.at.replace('-', '/', 'g'))); //replace mysql date to js date format
                 });
                 $scope.tab = $stateParams.tab;
+                if(!$scope.screenIsSmall){
+                $scope.currentNavItem='creativity';
+                $scope.goto('creativity');
+        }
                 $scope.loading = false;
                 console.log($scope.student);
             });
@@ -93,7 +98,7 @@
                 .ok('Yes')
                 .cancel('Cancel');
             $mdDialog.show(confirm).then(function() {
-                tokenService.delete('content/' + content.id, '').then(function(result) {
+                tokenService.delete('content/' + content.id).then(function(result) {
                     console.log(result);
                     if (result.status != 'error') {
                         console.log(result.status);
@@ -106,6 +111,20 @@
                 console.log('cancel');
             });
         };
+
+
+        $scope.unPublishAndMoveToDraft = function(content, index){
+            tokenService.delete('movetoDraftContent/' + content.id).then(function(result) {
+                    console.log(result);
+                    if (result.status != 'error') {
+                        console.log(result.status);
+                        $scope.student.CreativeContents.data.splice(index, 1);
+                    } else {
+                        console.log(result);
+                    }
+                });
+        };
+
         $scope.openMenu = function($mdMenu, ev) {
             $scope.originatorEv = ev;
             $mdMenu.open(ev);
@@ -193,7 +212,7 @@
         $scope.selectedItem = null;
         $scope.searchText = null;
         $scope.add = {};
-        $scope.add.skill = 'gta';
+        $scope.add.skill = '';
         $scope.querySearch = querySearch;
         numberChips = [];
         numberChips2 = [];
@@ -292,6 +311,7 @@
             $scope.newSkills = {};
             $scope.newSkills.skills = $scope.student.Skills.data;
             if ($scope.add.skill) {
+                if($scope.student.Skills.data.length <=  4)
                 $scope.newSkills.skills.push({ 'name': $scope.add.skill });
             } else {
                 console.log("NULL SKILL");
