@@ -459,16 +459,19 @@ md-chips .md-chips {
                             <p>{{event.title}}</p>
                             <!-- <md-button class="md-primary" aria-label="participants" ng-click="showParticipants(event)" md-ripple-size="auto">Participants</md-button> -->
                             <md-divider md-inset ng-if="!$last"></md-divider>
-                              <md-menu>
+                            <!-- comment this when draft system is made -->
+                               <md-button class="md-warn" aria-label="deleteEvent" ng-click="deleteEvent($event, event, $index)" md-ripple-size="auto">Delete</md-button>
+                                    <!-- Uncomment it when draft system is build  -->
+                              <!-- <md-menu>
                                     <md-button aria-label="Option Menu Creativity" class="md-icon-button" ng-click="openMenu($mdMenu,$event);">
                                         <md-icon md-menu-origin md-svg-src="assets/svg/ic_down.svg"></md-icon>
                                     </md-button>
                                     <md-menu-content width="2">
                                         <md-menu-item>
-                                        <md-button class="md-warn" aria-label="deleteEvent" ng-click="" md-ripple-size="auto">Delete</md-button>
+                                        <md-button class="md-warn" aria-label="deleteEvent" ng-click="deleteEvent($event,event, $index)" md-ripple-size="auto">Delete</md-button>
                                         </md-menu-item>
-                                                                                <md-menu-item>
-                                        <md-button class="md-primary"  md-colors="{color: 'grey'}" aria-label="draftEvent" ng-click="" md-ripple-size="auto">Save to Draft</md-button>
+                                    <md-menu-item>
+                                        <md-button class="md-primary"  md-colors="{color: 'grey'}" aria-label="draftEvent" ng-click="eventToDraft(event, $index)" md-ripple-size="auto">Save to Draft</md-button>
                                         </md-menu-item>
                                         <md-menu-item>
                                             <md-button class="md-warn" aria-label="modifyEvent" ng-click="" md-ripple-size="auto" style="color: #14934a;">
@@ -476,7 +479,8 @@ md-chips .md-chips {
                                             </md-button>
                                         </md-menu-item>
                                     </md-menu-content>
-                                </md-menu>
+                                </md-menu> -->
+
                         </md-list-item>
                     </md-list>
                 </div>

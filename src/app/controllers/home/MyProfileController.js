@@ -45,11 +45,18 @@
                 $scope.student.CreativeContents.data.forEach(function(content, index) {
                     $scope.student.CreativeContents.data[index].created.at = new Date(Date.parse($scope.student.CreativeContents.data[index].created.at.replace('-', '/', 'g'))); //replace mysql date to js date format
                 });
-                $scope.tab = $stateParams.tab;
-                if(!$scope.screenIsSmall){
-                $scope.currentNavItem='creativity';
-                $scope.goto('creativity');
-        }
+                
+                console.log($stateParams.tab);
+                if (!$scope.screenIsSmall && $stateParams.tab === 'profile') {
+                    $scope.currentNavItem = 'creativity';
+                    //$scope.goto('creativity');
+                }else{
+                    $scope.currentNavItem = $stateParams.tab;
+                }
+                if($scope.currentNavItem === 'recomended' && $scope.student.BookmarkedContents.data == 0){
+                    $scope.currentNavItem = 'creativity';
+                    //$scope.goto('creativity');
+                }
                 $scope.loading = false;
                 console.log($scope.student);
             });
@@ -111,19 +118,55 @@
                 console.log('cancel');
             });
         };
-
-
-        $scope.unPublishAndMoveToDraft = function(content, index){
-            tokenService.delete('movetoDraftContent/' + content.id).then(function(result) {
+        $scope.deleteEvent = function(ev, event, index) {
+            var confirm = $mdDialog.confirm()
+                .title('Delete ' + event.title + "?")
+                .textContent('')
+                .targetEvent(ev)
+                .clickOutsideToClose(true)
+                .ok('Yes')
+                .cancel('Cancel');
+            $mdDialog.show(confirm).then(function() {
+                tokenService.delete('events/' + event.id).then(function(result) {
                     console.log(result);
                     if (result.status != 'error') {
                         console.log(result.status);
-                        $scope.student.CreativeContents.data.splice(index, 1);
+                        $scope.student.Events.data.splice(index, 1);
                     } else {
                         console.log(result);
                     }
                 });
+            }, function() {
+                console.log('cancel');
+            });
         };
+
+
+        $scope.unPublishAndMoveToDraft = function(content, index) {
+            tokenService.delete('movetoDraftContent/' + content.id).then(function(result) {
+                console.log(result);
+                if (result.status != 'error') {
+                    console.log(result.status);
+                    $scope.student.CreativeContents.data.splice(index, 1);
+                } else {
+                    console.log(result);
+                }
+            });
+        };
+
+        //Uncomment this when draft system is made
+
+        // $scope.eventSaveToDraft = function(event, index){
+        //     tokenService.delete('movetoDraftEvent/' + event.id).then(function(result) {
+        //             console.log(result);
+        //             if (result.status != 'error') {
+        //                 console.log(result.status);
+        //                 $scope.student.Events.data.splice(index, 1);
+        //             } else {
+        //                 console.log(result);
+        //             }
+        //         });
+        // };
 
         $scope.openMenu = function($mdMenu, ev) {
             $scope.originatorEv = ev;
@@ -311,8 +354,8 @@
             $scope.newSkills = {};
             $scope.newSkills.skills = $scope.student.Skills.data;
             if ($scope.add.skill) {
-                if($scope.student.Skills.data.length <=  4)
-                $scope.newSkills.skills.push({ 'name': $scope.add.skill });
+                if ($scope.student.Skills.data.length <= 4)
+                    $scope.newSkills.skills.push({ 'name': $scope.add.skill });
             } else {
                 console.log("NULL SKILL");
             }

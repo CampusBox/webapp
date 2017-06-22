@@ -7,6 +7,7 @@
             $scope.showCustom = function($event, type) {
                 if (type === 'event') {
                     $scope.type = 'event';
+                    $scope.actualShareUrl = '';
                     $scope.shareUrl = 'https://campusbox.org/dist/singleEvent/';
                 } else {
                     $scope.type = 'creativity';
