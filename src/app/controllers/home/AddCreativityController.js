@@ -26,6 +26,8 @@
         $scope.addMenu = false;
         $scope.selectedMode = 'md-scale';
         //check if small screen
+                        $rootScope.currentMenu = 'add';
+
         $scope.screenIsSmall = $mdMedia('xs');
         $rootScope.currentPageBackground = '#fff';
         $rootScope.title = "New Creativity";

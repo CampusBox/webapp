@@ -24,6 +24,7 @@
         $rootScope.currentPageBackground = $rootScope.gray;
         $rootScope.title = "New Event";
 
+                $rootScope.currentMenu = 'add';
 
 
         $scope.tutorial = false;
