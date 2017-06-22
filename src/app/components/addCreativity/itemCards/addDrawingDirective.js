@@ -9,7 +9,7 @@
             templateUrl: 'app/components/addCreativity/itemCards/addDrawing.html',
             controller: function($scope, addItemService, $sce) {
                 //Define Variables
-                $scope.allowedDrawing = [4,5];
+                $scope.allowedDrawing = [4, 5];
                 $scope.musicAdded = false;
                 $scope.enterUrl = true;
                 //End Defining variables
@@ -22,8 +22,14 @@
 
                     }
                 }
-                $scope.removeItem = function() {
-                    $scope.creativity.items.pop();
+                $scope.instagram = function() {
+                    var url = 'https://www.instagram.com/p/BVpn4AfHqXJ/?r=wa1';
+                    // var result = url.replace(/(^\w+:|^)\/\//, '');
+                    url = url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "");
+                    url = 'https://' + url;
+                }
+                $scope.removeItem = function(index) {
+                    $scope.creativity.items.splice(index, 1);
                     $scope.musicAdded = false;
                 }
                 $scope.addDrawing = function(url) {
@@ -48,7 +54,7 @@
                         addItemService.vimeo(url);
                         $scope.setNoembed(url);
                         $scope.checkVideo();
-                    }else{
+                    } else {
                         $scope.error = 'Enter a valid Youtube, Soundcloud or Vimeo url.'
                     }
                 };

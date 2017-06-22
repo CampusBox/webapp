@@ -115,7 +115,6 @@
     	    $scope.creativity.type = type.id;
     	};
     	$scope.uploadFiles = function(files) {
-    	    console.log('c');
     	    $scope.files = files;
     	    if (files && files.length) {
     	        $scope.progress = 2;

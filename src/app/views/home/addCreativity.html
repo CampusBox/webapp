@@ -20,9 +20,9 @@
                     <div show-xs hide-gt-xs ng-hide="progress<1" ng-init="focus=false">
                         <trix-editor angular-trix id="trix-editor-1" ng-model="trix" placeholder="Tell your story..." class="trix-content md-title" style="border: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;letter-spacing: -.003em;"></trix-editor>
                     </div>
-                    <center ng-repeat="item in creativity.items" style="margin-top: 40px;" ng-if="item.mediaType=='image'">
+<!--                     <center ng-repeat="item in creativity.items" style="margin-top: 40px;" ng-if="item.mediaType=='image'">
                         <img style="max-width: 100%" ngf-thumbnail="item.image" />
-                    </center>
+                    </center> -->
                 </div>
                 <center ng-show="progress<1">
                     <img ng-src="{{user.imageUrl}}" alt="" style="border-radius: 50%; height: auto;width: 20%">
