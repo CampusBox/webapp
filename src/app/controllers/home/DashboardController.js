@@ -95,7 +95,7 @@
                 $scope.creativityLoading = true;
 
                 var i = 0;
-                tokenService.post("contents", { 'limit': 4, 'offset': 0, 'filters': [$scope.categoryTypes[i]] })
+                tokenService.post("contents", { 'limit': 6, 'offset': 0, 'filters': [$scope.categoryTypes[i]] })
                     .then(function(response) {
 
                         console.log(response);
@@ -105,19 +105,19 @@
                         console.log($scope.categories);
 
                         i = 1;
-                        tokenService.post("contents", { 'limit': 4, 'offset': 0, 'filters': [$scope.categoryTypes[i]] })
+                        tokenService.post("contents", { 'limit': 6, 'offset': 0, 'filters': [$scope.categoryTypes[i]] })
                             .then(function(response) {
                                 $scope.categories[i].title = creativityCategories.typesByID[$scope.categoryTypes[i]];
                                 $scope.categories[i].finalContents = transform(response);
 
-                                i = 2;
-                                tokenService.post("contents", { 'limit': 4, 'offset': 0, 'filters': [$scope.categoryTypes[i]] })
+                                i = 6;
+                                tokenService.post("contents", { 'limit': 6, 'offset': 0, 'filters': [$scope.categoryTypes[i]] })
                                     .then(function(response) {
                                         $scope.categories[i].title = creativityCategories.typesByID[$scope.categoryTypes[i] - 1];
                                         $scope.categories[i].finalContents = transform(response);
 
                                         i = 3;
-                                        tokenService.post("contents", { 'limit': 4, 'offset': 0, 'filters': [$scope.categoryTypes[i]] })
+                                        tokenService.post("contents", { 'limit': 6, 'offset': 0, 'filters': [$scope.categoryTypes[i]] })
                                             .then(function(response) {
                                                 $scope.categories[i].title = creativityCategories.typesByID[$scope.categoryTypes[i] - 1];
                                                 $scope.categories[i].finalContents = transform(response);

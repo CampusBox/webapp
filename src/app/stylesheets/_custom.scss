@@ -19,7 +19,7 @@ md-card-header.layout-align-start-center.layout-row {
 }
 
 .capitalize.grey_text.md-button.active md-icon {
-    fill: #0570c0;
+    fill: #14934a;
 }
 
 .capitalize.grey_text.md-button md-icon {
@@ -32,11 +32,11 @@ md-card-header.layout-align-start-center.layout-row {
 
 // .active.capitalize.grey_text.bottom-menu-item{
 .capitalize.grey_text.md-button.active .md-tile-content {
-    color: #0570c0;
+    color: #14934a;
 }
 
 .dialog-login {
-    background-color: #0570c0 !important;
+    background-color: #14934a !important;
     color: #fff !important;
 }
 
@@ -111,11 +111,11 @@ md-card md-card-title md-card-title-media .md-media-lg {
 }
 
 .blue_text {
-    color: #0570c0 !important;
+    color: #14934a !important;
 }
 
 .blue-bg {
-    color: #0570c0 !important;
+    color: #14934a !important;
 }
 
 .capitalize {
@@ -425,7 +425,7 @@ md-list-item:last-child md-divider {
 }
 
 .blue {
-    fill: #0570c0 !important;
+    fill: #14934a !important;
 }
 
 
@@ -705,7 +705,7 @@ md-icon.cross>svg {
 
 .rsvp-button {
     text-transform: capitalize;
-    color: #0570c0;
+    color: #14934a;
 }
 
 .appreciate-button.appreciated {
@@ -731,7 +731,8 @@ md-icon.cross>svg {
 }
 
 .content-card-dashboard {
-    width: 350px;
+    width: 280px;
+    // width: 350px;
     height: 343px;
     box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
 }
@@ -850,7 +851,7 @@ md-icon.cross>svg {
 }
 
 .static-background {
-    background: linear-gradient(#0570c0, #0570c0 70%, #f1f0f0 70.001%);
+    background: linear-gradient(#14934a, #14934a 70%, #f1f0f0 70.001%);
 }
 
 .creativity-page {
@@ -864,7 +865,7 @@ md-icon.cross>svg {
 @media only screen and (max-width: 500px) {
     .play-button {
         margin-left: 40%;
-        margin-top: -31%;
+        // margin-top: -31%;
     }
     .manageXs {
         padding-bottom: 66px;
@@ -877,7 +878,7 @@ md-icon.cross>svg {
         margin-bottom: 55px;
     }
     .static-background {
-        background: #0570c0;
+        background: #14934a;
     }
     .read-more {
         color: rgba(0, 0, 0, .44);
@@ -898,7 +899,7 @@ md-icon.cross>svg {
     }
     .creativity-title {
         margin-top: 31px;
-        font-size: 23px;
+        font-size: 18px;
         line-height: 1.3;
         margin-right: 20px;
         text-decoration: none;

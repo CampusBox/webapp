@@ -13,7 +13,7 @@
                 <md-list-item ui-sref="home.profile({username: content.created.by.username})" class="md-3-line" ng-click="false" md-ink-ripple="0">
                     <img ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
                     <div class="md-list-item-text" layout="column">
-                        <h3><span  ui-sref="home.profile({username: content.created.by.username})"  class="capitalize blue_text pointer" >{{content.created.by.name}} </span> in <span style="color: #0570c0">{{content.content.category?content.content.category:"Unknown"}} </span></h3>
+                        <h3><span  ui-sref="home.profile({username: content.created.by.username})"  class="capitalize blue_text pointer" >{{content.created.by.name}} </span> in <span style="color: #14934a">{{content.content.category?content.content.category:"Unknown"}} </span></h3>
                     <!-- </span> <span><md-button ng-class="profile.following? 'md-primary md-not-raised' : 'md-raised md-primary'" ng-click="follow($event)">{{profile.following? 'Following':'Follow' }}</md-button></span> </h3> -->
                     <h4><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.by.about}}</span></h4>
                     <p><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.at | date: 'd MMM'}}</span></p>
