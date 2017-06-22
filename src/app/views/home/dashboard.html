@@ -40,7 +40,7 @@
             </md-list>
         </div>
         <div layout="column" layout-wrap>
-            <div hide-xs flex layout-align="space-around" layout="row">
+            <div hide-xs flex layout-align="space-around" layout="row" style="max-width: 100%;">
                 <md-card flex-lg="30" flex-md="45" flex-sm="45" flex="100" layout="column" layout="space-around" ng-repeat="event in events track by $index">
                     <event-card data="event" bar="true" ng-show="!eventLoading" hide-xs></event-card>
                 </md-card>
@@ -76,58 +76,60 @@
                     <span flex></span>
                     <md-button class="md-primary" ng-show='category.finalContents.length > 0' ui-sref="home.creativity">See All</md-button>
                 </div>
-                <div flex style="overflow: auto;"  layout="row" class="creativity-page" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading'>
-                    <md-card class="content-card-dashboard" flex="noshrink" ng-repeat="content in category.finalContents track by $index">
-                        <md-card-content style="padding: 0px">
-                            <div ng-if="(content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
-                                <iframe id="sc-widget" ng-show="(content.type == 'soundcloud')" width="100%" height="170" scrolling="no" frameborder="0" ng-src="{{content.url}}" allowfullscreen></iframe>
-                                <iframe ng-show="(content.type == 'vimeo')" width="100%" height="228" ng-src="{{content.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                            </div>
-                            <a ng-if="(content.type == 'cover' || content.type == 'image')" ui-sref="home.singleContent({contentId: content.id})">
-                                <img class="creativity-cover" ng-class="(mediaTypes.indexOf(content.content.type) !== -1)?'creativity-cover-full':''" alt="" ng-src="{{content.url}}">
-                            </a>
-                            <div ng-if="(content.type == 'youtube')" style="position: relative;">
-                                <a ui-sref="home.singleContent({contentId: content.id})">
-                                    <img style="background:url('https://img.youtube.com/vi/{{content.url}}/hqdefault.jpg');object-fit: cover;background-size: cover;background-position: center;" class="creativity-cover" alt="">
-                                    <md-icon class="play-button" md-svg-icon="play" ng-if="(content.type == 'youtube')" ui-sref="home.singleContent({contentId: content.id})" style="" aria-label="Alarm Icon"></md-icon>
+                <div style="height: 354px; overflow-y: hidden;">
+                    <div flex style="overflow-x: auto; max-width: 100%;" layout="row" class="creativity-page" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading'>
+                        <md-card class="content-card-dashboard" flex="noshrink" ng-repeat="content in category.finalContents track by $index">
+                            <md-card-content style="padding: 0px">
+                                <div ng-if="(content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
+                                    <iframe id="sc-widget" ng-show="(content.type == 'soundcloud')" width="100%" height="170" scrolling="no" frameborder="0" ng-src="{{content.url}}" allowfullscreen></iframe>
+                                    <iframe ng-show="(content.type == 'vimeo')" width="100%" height="228" ng-src="{{content.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                </div>
+                                <a ng-if="(content.type == 'cover' || content.type == 'image')" ui-sref="home.singleContent({contentId: content.id})">
+                                    <img class="creativity-cover" ng-class="(mediaTypes.indexOf(content.content.type) !== -1)?'creativity-cover-full':''" alt="" ng-src="{{content.url}}">
                                 </a>
-                            </div>
-                        </md-card-content>
-                        <md-card-header layout="column" flex ng-hide="(mediaTypes.indexOf(content.content.type) !== -1)">
-                            <a ui-sref="home.singleContent({contentId: content.id})" style="text-decoration: none;">
-                                <span class="creativity-title" ng-bind-html="content.title"></span>
-                            </a>
-                            <a ui-sref="home.singleContent({contentId: content.id})" style="text-decoration: none;">
-                                <p class="creativity-description md-body-2 creativity-description-list" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="content.description  | limitTo: 10">
-                                </p>
-                            </a>
-                        </md-card-header>
-                        <md-card-header ng-hide="(mediaTypes.indexOf(content.content.type) !== -1)">
-                            <br>
-                        </md-card-header>
-                        <md-card-header layout="row" layout-align="start center">
-                            <md-card-avatar style="margin-left: 0px;margin-right:5px;">
-                                <img class="md-user-avatar" ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" />
-                            </md-card-avatar>
-                            <md-card-header-text ui-sref="home.singleContent({contentId: content.id})" class="" style="cursor: pointer">
-                                <span class="md-caption ">
+                                <div ng-if="(content.type == 'youtube')" style="position: relative;">
+                                    <a ui-sref="home.singleContent({contentId: content.id})">
+                                        <img style="background:url('https://img.youtube.com/vi/{{content.url}}/hqdefault.jpg');object-fit: cover;background-size: cover;background-position: center;" class="creativity-cover" alt="">
+                                        <md-icon class="play-button" md-svg-icon="play" ng-if="(content.type == 'youtube')" ui-sref="home.singleContent({contentId: content.id})" style="" aria-label="Alarm Icon"></md-icon>
+                                    </a>
+                                </div>
+                            </md-card-content>
+                            <md-card-header layout="column" flex ng-hide="(mediaTypes.indexOf(content.content.type) !== -1)">
+                                <a ui-sref="home.singleContent({contentId: content.id})" style="text-decoration: none;">
+                                    <span class="creativity-title" ng-bind-html="content.title"></span>
+                                </a>
+                                <a ui-sref="home.singleContent({contentId: content.id})" style="text-decoration: none;">
+                                    <p class="creativity-description md-body-2 creativity-description-list" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="content.description  | limitTo: 10">
+                                    </p>
+                                </a>
+                            </md-card-header>
+                            <md-card-header ng-hide="(mediaTypes.indexOf(content.content.type) !== -1)">
+                                <br>
+                            </md-card-header>
+                            <md-card-header layout="row" layout-align="start center">
+                                <md-card-avatar style="margin-left: 0px;margin-right:5px;">
+                                    <img class="md-user-avatar" ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" />
+                                </md-card-avatar>
+                                <md-card-header-text ui-sref="home.singleContent({contentId: content.id})" class="" style="cursor: pointer">
+                                    <span class="md-caption ">
                                 <span class="capitalize blue_text"  ng-click="openProfile($event, content.created.by.username);" >{{content.created.by.name}} </span>
-                                </span>
-                            </md-card-header-text>
-                            <div layout="row" layout-align="start center" flex="50">
-                                <md-button class="md-icon-button appreciate-button" style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
-                                    <md-icon class="pink" md-svg-icon="{{content.Actions.Appreciate.status? 'heart' : 'heart-outline' }}"></md-icon>
-                                </md-button>
-                                <span style="cursor: pointer;" ng-click="showLikes(content.id, content.title)" class="likesNumber"> {{content.Actions.Appreciate.total}}</span>
-                                <md-button class="md-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'creativity');" aria-label="share ">
-                                    <md-icon ng-class="" md-svg-icon="share"></md-icon>
-                                </md-button>
-                                <md-button class="md-icon-button" ng-click="bookmark(content, $index)" aria-label="Favorite">
-                                    <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
-                                </md-button>
-                            </div>
-                        </md-card-header>
-                    </md-card>
+                                    </span>
+                                </md-card-header-text>
+                                <div layout="row" layout-align="start center" flex="50">
+                                    <md-button class="md-icon-button appreciate-button" style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
+                                        <md-icon class="pink" md-svg-icon="{{content.Actions.Appreciate.status? 'heart' : 'heart-outline' }}"></md-icon>
+                                    </md-button>
+                                    <span style="cursor: pointer;" ng-click="showLikes(content.id, content.title)" class="likesNumber"> {{content.Actions.Appreciate.total}}</span>
+                                    <md-button class="md-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'creativity');" aria-label="share ">
+                                        <md-icon ng-class="" md-svg-icon="share"></md-icon>
+                                    </md-button>
+                                    <md-button class="md-icon-button" ng-click="bookmark(content, $index)" aria-label="Favorite">
+                                        <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
+                                    </md-button>
+                                </div>
+                            </md-card-header>
+                        </md-card>
+                    </div>
                 </div>
             </div>
             <div flex layout-align="center center" layout="row" layout-wrap>

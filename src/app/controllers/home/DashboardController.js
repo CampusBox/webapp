@@ -35,8 +35,8 @@
         $rootScope.currentPageBackground = $rootScope.gray;
         $rootScope.title = "Dashboard";
         $scope.finalContents = [];
-        $scope.categories = [{}, {}, {}, {}];
-        $scope.categoryTypes = [8, 9, 2, 3];
+        $scope.categories = [{}, {}];
+        $scope.categoryTypes = [8, 9];
         $scope.types = creativityCategories.types;
 
         var cardObject = {};
