@@ -8,8 +8,8 @@
             replace: true,
             templateUrl: 'app/components/addCreativity/itemCards/itemCard.html',
             controller: function($scope, addItemService, allDataService) {
-                $scope.isAllowed = function(id) {
-                    return $scope.allowedCat.indexOf(id) !== -1;
+                $scope.isAllowed = function(allowed, id) {
+                    return allowed.indexOf(id) !== -1;
                 }
                 $scope.validateYoutube = function(url) {
                     var videoid = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
@@ -27,10 +27,9 @@
                         return false;
                     }
                 }
-
-                $scope.addItem = function(url, heading) {
-                    $scope.creativity.items = [];
-                    addItemService.submitUrl(url, heading);
+                $scope.validateSoundcloud = function(url) {
+                    var regexp = /^https?:\/\/(soundcloud\.com|snd\.sc)\/(.*)$/;
+                    return url.match(regexp) && url.match(regexp)[2];
                 };
                 $scope.setNoembed = function(url) {
                     allDataService.noembedJson(url)
