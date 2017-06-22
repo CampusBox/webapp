@@ -9,7 +9,7 @@
       </div>
     </md-toolbar>
     <md-dialog-content hide-xs show-gt-xs style="min-width: 470px;padding-bottom: 0px;" layout="row" class="md-padding">
-            <md-button flex="15" class="md-icon-button" ng-click="closeDialog()" socialshare socialshare-provider="facebook" socialshare-hashtags="campusbox" socialshare-url="{{type==='event'?shareUrl+event.id:shareUrl+content.id}}" aria-label="facebook ">
+            <md-button flex="15" class="md-icon-button" ng-click="closeDialog()" socialshare socialshare-provider="facebook" socialshare-hashtags="campusbox" socialshare-url="{{actualShareUrl=(type==='event'?shareUrl+event.id:shareUrl+content.id)}}" aria-label="facebook ">
                 <md-icon ng-class=""  md-svg-icon="facebook"></md-icon>
             </md-button>
             <md-button flex="15" class="md-icon-button" ng-click="closeDialog()" socialshare socialshare-provider="twitter" socialshare-url="{{type==='event'?shareUrl+event.id:shareUrl+content.id}}" aria-label="twitter ">
@@ -34,7 +34,7 @@
         <!--            <md-button class="md-icon-button" style="margin-left: 0px;padding-left: 0px;" ngclipboard data-clipboard-text="{{type==='event'?shareUrl+event.id:shareUrl+content.id}}">
                      <md-icon md-svg-src="clipboard" style="fill:white;" aria-label="Copy to clipboard"></md-icon>
                   </md-button> -->
-                  <input ng-model="type==='event'?shareUrl+event.id:shareUrl+content.id" placeholder="URL to share" style="border:1px solid #ccc;border-radius: 3px;">
+                  <input ng-model="actualShareUrl" placeholder="URL to share" style="border:1px solid #ccc;border-radius: 3px;">
             </md-input-container>
             <md-button flex="15" style="background-color: #ccc;" ngclipboard data-clipboard-text="{{type==='event'?shareUrl+event.id:shareUrl+content.id}}">Copy</md-button>
     </md-dialog-content>
