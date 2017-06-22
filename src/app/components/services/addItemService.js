@@ -28,78 +28,57 @@
                     else
                         return true;
                 };
-                obj.setNoembed = function(url) {
-                    allDataService.noembedJson(url)
-                        .then(function(data) {
-                            obj.item.noembed = data;
-                        });
-                };
-                obj.submitUrl = function(url, type) {
+                obj.youtube = function(url) {
                     obj.url = url;
-                    switch (type) {
-                        case 'Youtube':
-                            obj.addError = '';
-                            var videoid = obj.url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
-                            if (videoid != null) {
-                                obj.item = {};
-                                obj.item.mediaType = "youtube";
-                                obj.item.embedUrl1 = "//www.youtube.com/embed/" + videoid[1];
-                                obj.item.embedUrl = videoid[1];
-                                obj.item.embedUrlIframe = $sce.trustAsResourceUrl(obj.item.embedUrl1);
-                                obj.setNoembed(url);
-                            } else {
-                                obj.addError = 'Invalid youtube url';
-                                console.log('Invalid youtube url');
-                            }
-                            break;
-                        case 'Soundcloud':
-                            obj.addError = '';
-                            if (obj.validateSoundcloud(obj.url)) {
-                                obj.item = {};
-                                obj.item.mediaType = "soundcloud";
-                                obj.item.embedUrl = obj.url;
-                                obj.item.embedUrl1 = "//w.soundcloud.com/player/?url=" + obj.url;
-                                obj.item.embedUrlIframe = $sce.trustAsResourceUrl(obj.item.embedUrl1);
-                                setNoembed(obj.url);
-
-                            } else {
-                                obj.addError = 'Invalid soundcloud url';
-                                console.log('Invalid soundcloud url');
-                                obj.mediaType = "";
-                            }
-                            break;
-                        case 'Vimeo':
-                            obj.addError = '';
-                            var videoid = obj.url.match(/https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/);
-                            if (videoid != null) {
-                                obj.item = {};
-                                obj.item.mediaType = "vimeo";
-                                obj.item.embedUrl = "//player.vimeo.com/video/" + videoid[3] + '?color=ffffff&title=0&byline=0&portrait=0&badge=0';
-                                obj.item.embedUrlIframe = $sce.trustAsResourceUrl(obj.item.embedUrl);
-                                setNoembed(obj.url);
-                            } else {
-                                obj.addError = 'Invalid vimeo url';
-                                console.log("Invalid vimeo url");
-                                obj.mediaType = "";
-                            }
-                            break;
-                        case 'Link':
-                            obj.addError = '';
-                            if (obj.validateUrl(obj.url)) {
-                                obj.item.mediaType = 'link';
-                                allDataService.get(obj.url)
-                                    .then(function(blogs) {
-                                        obj.item.embedUrl = blogs.data;
-                                    });
-                            } else {
-                                obj.addError = 'Please enter a valid url';
-                            }
-                            break;
-                        default:
+                    obj.addError = '';
+                    var videoid = obj.url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+                    if (videoid != null) {
+                        obj.item = {};
+                        obj.item.mediaType = "youtube";
+                        obj.item.embedUrl1 = "//www.youtube.com/embed/" + videoid[1];
+                        obj.item.embedUrl = videoid[1];
+                        obj.item.embedUrlIframe = $sce.trustAsResourceUrl(obj.item.embedUrl1);
+                    } else {
+                        obj.addError = 'Invalid youtube url';
+                        console.log('Invalid youtube url');
                     }
                     $rootScope.$emit("returnedItem", obj.item, obj.addError);
 
                 }
+                obj.soundcloud = function(url) {
+                    obj.url = url;
+                    obj.addError = '';
+                    if (obj.validateSoundcloud(obj.url)) {
+                        obj.item = {};
+                        obj.item.mediaType = "soundcloud";
+                        obj.item.embedUrl = obj.url;
+                        obj.item.embedUrl1 = "//w.soundcloud.com/player/?url=" + obj.url;
+                        obj.item.embedUrlIframe = $sce.trustAsResourceUrl(obj.item.embedUrl1);
+
+                    } else {
+                        obj.addError = 'Invalid soundcloud url';
+                        console.log('Invalid soundcloud url');
+                        obj.mediaType = "";
+                    }
+                    $rootScope.$emit("returnedItem", obj.item, obj.addError);
+                }
+                obj.vimeo = function(url) {
+                    obj.url = url;
+                    obj.addError = '';
+                    var videoid = obj.url.match(/https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/);
+                    if (videoid != null) {
+                        obj.item = {};
+                        obj.item.mediaType = "vimeo";
+                        obj.item.embedUrl = "//player.vimeo.com/video/" + videoid[3] + '?color=ffffff&title=0&byline=0&portrait=0&badge=0';
+                        obj.item.embedUrlIframe = $sce.trustAsResourceUrl(obj.item.embedUrl);
+                    } else {
+                        obj.addError = 'Invalid vimeo url';
+                        console.log("Invalid vimeo url");
+                        obj.mediaType = "";
+                    }
+                    $rootScope.$emit("returnedItem", obj.item, obj.addError);
+                }
+
                 return obj;
             }
         ]);
