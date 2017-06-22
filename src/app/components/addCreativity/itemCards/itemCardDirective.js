@@ -8,6 +8,9 @@
             replace: true,
             templateUrl: 'app/components/addCreativity/itemCards/itemCard.html',
             controller: function($scope, addItemService, allDataService) {
+                $scope.isAllowed = function(id) {
+                    return $scope.allowedCat.indexOf(id) !== -1;
+                }
                 $scope.validateYoutube = function(url) {
                     var videoid = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
                     if (videoid != null) {

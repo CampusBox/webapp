@@ -1,4 +1,4 @@
-<div style="max-width: 100%;">
+<div ng-if="isAllowed(creativity.type)">
     <div flex-offset-gt-sm="10" layout="column" ng-repeat="item in creativity.items" style="padding: 0px">
         <div>
             <iframe style="max-width: 100%;" ng-if="item.mediaType == 'youtube'" width="560" height="315" ng-src="{{item.embedUrlIframe}}" frameborder="0" allowfullscreen></iframe>

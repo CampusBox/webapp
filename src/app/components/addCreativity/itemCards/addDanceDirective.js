@@ -9,6 +9,7 @@
             templateUrl: 'app/components/addCreativity/itemCards/addDance.html',
             controller: function($scope, addItemService, $sce) {
                 //Define Variables
+                $scope.allowedCat = [8];
                 $scope.videoAdded = false;
                 $scope.enterUrl = true;
                 //End Defining variables
