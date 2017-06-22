@@ -120,7 +120,7 @@
                 .ok('Yes')
                 .cancel('Cancel');
             $mdDialog.show(confirm).then(function() {
-                tokenService.delete('delEvent/' + event.id).then(function(result) {
+                tokenService.delete('events/' + event.id).then(function(result) {
                     console.log(result);
                     if (result.status != 'error') {
                         console.log(result.status);
