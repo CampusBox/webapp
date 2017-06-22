@@ -1,0 +1,30 @@
+<div ng-if="isAllowed(allowedDrawing, creativity.type)">
+    <div flex-offset-gt-sm="10" layout="column" ng-repeat="item in creativity.items" style="padding: 0px">
+        <div>
+            <img style="padding: 0;width: 100%" ngf-thumbnail="item.image" ng-if="(item.mediaType=='cover')" />
+            <span ng-if="creativity.items[1].noembed.title">{{creativity.items[1].noembed.title}}</span>
+            <md-button ng-if="creativity.items.length > 1" ng-click="removeItem()" class="md-button md-warn">
+                <md-icon md-svg-icon="delete"></md-icon>
+                Remove
+            </md-button>
+        </div>
+    </div>
+    <div flex-offset-gt-sm="10" layout="column">
+        <div layout="row" layout-align="strech center" style="z-index: -1;">
+            <div layout="row" layout-align="strech center" ng-click="addMenu=!addMenu">
+                <md-button class="md-icon-button" aria-label="Settings">
+                    <md-icon md-svg-icon="shape-plus"></md-icon>
+                    <md-tooltip md-direction="left">Add media</md-tooltip>
+                </md-button>
+                <span>Add media</span>
+            </div>
+            <md-button ng-show="addMenu" flex="20" ngf-select="uploadFiles($files, $invalidFiles)" multiple name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 500, height: 500}" ngf-resize-if="$width > 500 || $height > 500">
+                Image
+            </md-button>
+            <md-button flex="20" ng-show="addMenu" ng-click="addItem(content.title)">
+                <md-icon md-svg-icon="instagram"></md-icon>
+                Instagram
+            </md-button>
+        </div>
+    </div>
+</div>
