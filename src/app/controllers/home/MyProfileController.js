@@ -111,6 +111,28 @@
                 console.log('cancel');
             });
         };
+        $scope.deleteEvent = function(ev, event, index) {
+            var confirm = $mdDialog.confirm()
+                .title('Delete ' + event.title + "?")
+                .textContent('')
+                .targetEvent(ev)
+                .clickOutsideToClose(true)
+                .ok('Yes')
+                .cancel('Cancel');
+            $mdDialog.show(confirm).then(function() {
+                tokenService.delete('delEvent/' + event.id).then(function(result) {
+                    console.log(result);
+                    if (result.status != 'error') {
+                        console.log(result.status);
+                        $scope.student.Events.data.splice(index, 1);
+                    } else {
+                        console.log(result);
+                    }
+                });
+            }, function() {
+                console.log('cancel');
+            });
+        };
 
 
         $scope.unPublishAndMoveToDraft = function(content, index){
@@ -124,6 +146,20 @@
                     }
                 });
         };
+
+        //Uncomment this when draft system is made
+         
+        // $scope.eventSaveToDraft = function(event, index){
+        //     tokenService.delete('movetoDraftEvent/' + event.id).then(function(result) {
+        //             console.log(result);
+        //             if (result.status != 'error') {
+        //                 console.log(result.status);
+        //                 $scope.student.Events.data.splice(index, 1);
+        //             } else {
+        //                 console.log(result);
+        //             }
+        //         });
+        // };
 
         $scope.openMenu = function($mdMenu, ev) {
             $scope.originatorEv = ev;
