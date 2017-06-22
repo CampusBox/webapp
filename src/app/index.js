@@ -255,20 +255,20 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
 
         $mdThemingProvider
             .theme('default')
-            .primaryPalette('blue', {
+            .primaryPalette('pink', {
                 'default': '600'
             })
-            .accentPalette('blue', {
+            .accentPalette('pink', {
                 'default': '500'
             })
             .warnPalette('red');
 
         $mdThemingProvider.theme('dark', 'default')
-            .primaryPalette('blue')
-            .dark('blue');
+            .primaryPalette('pink')
+            .dark('pink');
 
-        $mdThemingProvider.theme('blue', 'default')
-            .primaryPalette('blue');
+        $mdThemingProvider.theme('pink', 'default')
+            .primaryPalette('pink');
 
 
     })

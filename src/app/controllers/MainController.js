@@ -137,14 +137,17 @@
         vm.menuItems = [];
         vm.title = $state.current.data.title;
         vm.toggleRightSidebar = toggleRightSidebar;
-        tokenService.get("userImage")
-            .then(function(response) {
-                $rootScope.user = response;
-                tokenService.get("notifications")
-                    .then(function(abc) {
-                        $rootScope.notifications = abc;
-                    });
-            });
+        if ($rootScope.authenticated) {
+
+            tokenService.get("userImage")
+                .then(function(response) {
+                    $rootScope.user = response;
+                    tokenService.get("notifications")
+                        .then(function(abc) {
+                            $rootScope.notifications = abc;
+                        });
+                });
+        }
         navService
             .loadAllItems()
             .then(function(menuItems) {
