@@ -1,8 +1,8 @@
 <div layout="row" layout-align="center" ng-controller="DashboardController" class="main-bg" class="md-padding" style="margin-bottom: 60px;">
     <div layout="column" flex-gt-sm="75" flex-xs="100" flex-sm="100">
         <div layout="row" layout-align="center center">
-            <h1 class="md-headline section-heading">
-            Opportunities <span hide-gt-xs> for</span> you <span hide-xs>can avail</span>
+            <h1 class="md-headline section-heading" style="padding-top: 0px;">
+            Opportunities <span hide-xs>you can avail</span>
         </h1>
             <span flex></span>
             <md-button class="md-primary" ui-sref="home.events">See All</md-button>
@@ -69,15 +69,15 @@
                     </md-list-item>
                 </md-list>
             </div>
-            <h1 class="md-headline section-heading">Creative works by other students</h1>
+            <!-- <h1 class="md-headline section-heading">Creative works by other students</h1> -->
             <div ng-repeat="category in categories">
                 <div layout="row" layout-align="center center">
                     <h1 class="md-headline section-heading">{{category.title}}</h1>
                     <span flex></span>
                     <md-button class="md-primary" ng-show='category.finalContents.length > 0' ui-sref="home.creativity">See All</md-button>
                 </div>
-                <div style="height: 354px; overflow-y: hidden;">
-                    <div flex style="overflow-x: auto; max-width: 100%;" layout="row" class="creativity-page" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading'>
+                <div style="height: 375px; overflow-y: hidden;">
+                    <div flex  layout="row" class="creativity-page inner-box" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading'>
                         <md-card class="content-card-dashboard" flex="noshrink" ng-repeat="content in category.finalContents track by $index">
                             <md-card-content style="padding: 0px">
                                 <div ng-if="(content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">

@@ -14,6 +14,24 @@ md-card {
     box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
 }
 
+md-toolbar {
+    // box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(250, 249, 244, 0);
+    color: rgba(250, 249, 244, 0);
+    display: none;
+    /* Matches the background color of content-wrapper */
+}
+
+::-webkit-scrollbar {
+    background-color: rgba(250, 249, 244, 0);
+    color: rgba(250, 249, 244, 0);
+    display: none;
+    /* Matches the background color of content-wrapper */
+}
+
 md-card-header.layout-align-start-center.layout-row {
     background: #fff;
 }
@@ -713,7 +731,9 @@ md-icon.cross>svg {
     color: white;
     border-color: rgb(233, 30, 99);
 }
-
+md-icon:hover{
+    color: #14934a;
+}
 .white-bg {
     background-color: #fff;
 }
@@ -731,8 +751,8 @@ md-icon.cross>svg {
 }
 
 .content-card-dashboard {
-    width: 280px;
-    // width: 350px;
+    width: 310px;
+    margin-right: 35px;
     height: 343px;
     box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
 }
