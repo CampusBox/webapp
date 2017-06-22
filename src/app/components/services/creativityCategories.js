@@ -16,7 +16,6 @@
                     { 'title': 'Drawing ', 'id': 5 },
                     { 'title': 'Sewing and Fabric', 'id': 6 },
                     { 'title': 'Craft', 'id': 7 },
-                    // { 'title': 'Dancing', 'id': 8 },
                     { 'title': 'Dancing', 'id': 8 },
                     { 'title': 'Singing', 'id': 9 },
                     { 'title': 'Instrumental', 'id': 10 },
@@ -31,6 +30,29 @@
                     { 'title': 'Apps', 'id': 19 },
                     { 'title': 'Electronics', 'id': 20 },
                     { 'title': 'DIY', 'id': 21 }
+                ];
+                obj.typesByID = [
+                    'Articles',
+                    'Poetry',
+                    'Drama',
+                    'Paint and Colour',
+                    'Drawing ',,
+                    'Sewing and Fabric',
+                    'Craft',
+                    'Dancing',
+                    'Singing',
+                    'Instrumental',
+                    'Digital Music',
+                    'Decor',
+                    'Film and Video',
+                    'Animation',
+                    'Graphics',
+                    'UI and UX',
+                    'Websites',
+                    'Programming',
+                    'Apps',
+                    'Electronics',
+                    'DIY'
                 ];
                 obj.items[0] = [
                     { 'title': 'Articles', 'id': 1 },
