@@ -12,17 +12,19 @@
             MyProfileController
         ]);
 
-    function MyProfileController($mdDialog, $scope, tokenService, $stateParams, $state,$rootScope) {
+    function MyProfileController($mdDialog, $scope, tokenService, $stateParams, $state, $rootScope) {
         var vm = this;
         $scope.editAbout = false;
         $scope.loading == true;
         $scope.BookmarkedContents = [];
         $scope.CreativeContents = [];
         $scope.studentAbout = {};
+        $rootScope.currentMenu = 'myProfile';
+
         $rootScope.currentPageBackground = '#fff';
         $rootScope.title = "My Profile";
-         $scope.currentNavItem = 'profile';
- 
+        $scope.currentNavItem = 'profile';
+
         $scope.currentNavItem = $stateParams.tab;
         $scope.goto = function(page) {
             $scope.currentNavItem = page;

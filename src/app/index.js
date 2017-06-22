@@ -282,6 +282,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
 
         $rootScope.user = {};
 
+        
         $rootScope.currentState = $state.current.name;
         $rootScope.$on('$stateChangeSuccess', function() {
             $rootScope.currentState = $state.current.name;

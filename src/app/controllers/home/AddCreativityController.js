@@ -18,12 +18,13 @@
             AddCreativityController
         ]);
 
-    function AddCreativityController($scope,  $sce, $timeout, $mdDialog, allDataService, tokenService, $state, Upload, $rootScope, creativityCategories) {
+    function AddCreativityController($scope, $sce, $timeout, $mdDialog, allDataService, tokenService, $state, Upload, $rootScope, creativityCategories) {
         var body = {};
         $scope.progress = 0;
         $scope.isOpen = false;
         $scope.addMenu = false;
         $scope.selectedMode = 'md-scale';
+        $rootScope.currentMenu = 'Add';
 
         $rootScope.currentPageBackground = '#fff';
         $rootScope.title = "New Creativity";
@@ -95,7 +96,7 @@
         $scope.items = creativityCategories.items;
         $scope.itemsMobile = creativityCategories.itemsMobile;
 
-        
+
 
 
 
@@ -209,10 +210,10 @@
             if ($scope.mediumEditor > $scope.trix) {
                 $scope.creativity.items[0].text = $scope.mediumEditor;
                 console.log($scope.creativity.items[0]);
-            } else if($scope.mediumEditor < $scope.trix){
+            } else if ($scope.mediumEditor < $scope.trix) {
                 $scope.creativity.items[0].text = $scope.trix;
                 console.log($scope.creativity.items[0]);
-            }else{
+            } else {
                 console.log('Error!');
             }
         };

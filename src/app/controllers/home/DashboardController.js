@@ -20,6 +20,7 @@
     function DashboardController($mdDialog, $scope, tokenService, $location, $sce, $filter, $state, $rootScope, $stateParams, creativityCategories, creativityActionsService) {
         $scope.events = {};
         $scope.updatesLoading = true;
+        $rootScope.currentMenu = 'Home';
         $scope.eventLoading = true;
         $scope.eventTopLoading = true;
         $scope.onboard = $stateParams.onboard;
