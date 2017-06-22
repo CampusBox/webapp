@@ -23,13 +23,10 @@
                 }
                 $scope.getParticipationState = function(event, index) {
                     if (event.participation_state == 1) {
-                        console.log('going');
                         return "Going";
                     } else if (event.participation_state == 2) {
-                        console.log('intrested');
                         return "Intrested";
                     } else {
-                        console.log('not going');
                         return "Not going";
                     }
                     }

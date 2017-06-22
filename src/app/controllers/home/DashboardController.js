@@ -20,12 +20,14 @@
     function DashboardController($mdDialog, $scope, tokenService, $location, $sce, $filter, $state, $rootScope, $stateParams, creativityCategories, creativityActionsService) {
         $scope.events = {};
         $scope.updatesLoading = true;
+        $rootScope.currentMenu = 'Home';
         $scope.eventLoading = true;
         $scope.eventTopLoading = true;
         $scope.onboard = $stateParams.onboard;
         if ($scope.onboard == 'login') {
             $rootScope.openLoginDialog();
         }
+
         $scope.creativityLoading = false;
         $scope.contentTopLoading = true;
         $scope.offset = 0;
@@ -33,68 +35,101 @@
         $rootScope.currentPageBackground = $rootScope.gray;
         $rootScope.title = "Dashboard";
         $scope.finalContents = [];
+        $scope.categories = [{}, {}, {}, {}];
+        $scope.categoryTypes = [8, 9, 2, 3];
         $scope.types = creativityCategories.types;
 
         var cardObject = {};
         $scope.finalContents = [];
         $scope.mediaTypes = [4, 5, 6, 7, 12, 15, 16];
 
+        var transform = function(contentsDashboard) {
+            var contents = [];
+            var contentsFinal = [];
+            contents = contentsDashboard.data;
+            console.log(contents);
+            contents.forEach(function(content) {
+                cardObject = {}
+                $scope.loading == false;
+                cardObject.Actions = content.Actions;
+                cardObject.Tags = content.Tags;
+                cardObject.created = content.created;
+                cardObject.created.at = Date.parse(cardObject.created.at.replace('-', '/', 'g')); //replace mysql date to js date format
+                cardObject.id = content.id;
+                cardObject.title = $sce.trustAsHtml(content.title);
+                cardObject.links = content.links;
+                cardObject.total = content.links;
+                content.Items.data.forEach(function(item) {
+                    if (item.type == 'text') {
+                        cardObject.description = item.description;
+                        // cardObject.description = $filter('limitTo')(item.description, 110, 0);
+                        cardObject.description = $sce.trustAsHtml(cardObject.description);
+                    } else if (item.type == 'cover' && !cardObject.type) {
+                        cardObject.type = item.type;
+                        cardObject.url = item.image;
+                    } else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
+                        cardObject.type = item.type;
+                        cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
+                    } else if (((item.type == 'cover') || (item.type == 'image')) && !cardObject.type) {
+                        cardObject.type = item.type;
+                        cardObject.url = item.image;
+                    }
+                });
+                if (cardObject.type != 'cover' || cardObject.type != 'soundcloud' || cardObject.type != 'youtube') {
+                    cardObject.description = $filter('limitTo')(cardObject.description, 90, 0)
+                } else {
+                    cardObject.description = $filter('limitTo')(cardObject.description, 150, 0)
 
-        // tokenService.get("eventsDashboard")
-        // changing temporarily till api is fixed
+                }
+                contentsFinal.push(cardObject);
+            });
+
+            return contentsFinal;
+        };
+
         tokenService.get("minievents?limit=3")
             .then(function(events) {
                 $scope.events = events.data;
                 console.log($scope.events);
                 $scope.eventLoading = false;
-                // $scope.myPagingFunction();
-                // tokenService.get("contentsRandom")
-                tokenService.get("contentsRandom")
-                    .then(function(contentsDashboard) {
-                        $scope.contents = contentsDashboard.data;
-                        $scope.contentsTop = contentsDashboard.data;
-                        $scope.contentLoading = false;
-                        $scope.contentTopLoading = false;
-                        $scope.contents.forEach(function(content) {
-                            cardObject = {}
-                            $scope.loading == false;
-                            cardObject.Actions = content.Actions;
-                            cardObject.Tags = content.Tags;
-                            cardObject.created = content.created;
-                            cardObject.created.at = Date.parse(cardObject.created.at.replace('-', '/', 'g')); //replace mysql date to js date format
-                            cardObject.id = content.id;
-                            cardObject.title = $sce.trustAsHtml(content.title);
-                            cardObject.links = content.links;
-                            cardObject.total = content.links;
-                            content.Items.data.forEach(function(item) {
-                                if (item.type == 'text') {
-                                    cardObject.description = item.description;
-                                    // cardObject.description = $filter('limitTo')(item.description, 110, 0);
-                                    cardObject.description = $sce.trustAsHtml(cardObject.description);
-                                } else if (item.type == 'cover' && !cardObject.type) {
-                                    cardObject.type = item.type;
-                                    cardObject.url = item.image;
-                                } else if ((item.type == 'youtube' || item.type == 'soundcloud' || item.type == 'vimeo') && !cardObject.type) {
-                                    cardObject.type = item.type;
-                                    cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
-                                } else if (((item.type == 'cover') || (item.type == 'image')) && !cardObject.type) {
-                                    cardObject.type = item.type;
-                                    cardObject.url = item.image;
-                                }
-                            });
-                            if (cardObject.type != 'cover' || cardObject.type != 'soundcloud' || cardObject.type != 'youtube') {
-                                cardObject.description = $filter('limitTo')(cardObject.description, 90, 0)
-                            } else {
-                                cardObject.description = $filter('limitTo')(cardObject.description, 150, 0)
+                $scope.creativityLoading = true;
 
-                            }
-                            $scope.contentsTop.push(cardObject);
-                            content = {};
-                            $scope.loading = false;
-                        });
+                var i = 0;
+                tokenService.post("contents", { 'limit': 4, 'offset': 0, 'filters': [$scope.categoryTypes[i]] })
+                    .then(function(response) {
+
+                        console.log(response);
+
+                        $scope.categories[i].title = creativityCategories.typesByID[$scope.categoryTypes[i]];
+                        $scope.categories[i].finalContents = transform(response);
+                        console.log($scope.categories);
+
+                        i = 1;
+                        tokenService.post("contents", { 'limit': 4, 'offset': 0, 'filters': [$scope.categoryTypes[i]] })
+                            .then(function(response) {
+                                $scope.categories[i].title = creativityCategories.typesByID[$scope.categoryTypes[i]];
+                                $scope.categories[i].finalContents = transform(response);
+
+                                i = 2;
+                                tokenService.post("contents", { 'limit': 4, 'offset': 0, 'filters': [$scope.categoryTypes[i]] })
+                                    .then(function(response) {
+                                        $scope.categories[i].title = creativityCategories.typesByID[$scope.categoryTypes[i] - 1];
+                                        $scope.categories[i].finalContents = transform(response);
+
+                                        i = 3;
+                                        tokenService.post("contents", { 'limit': 4, 'offset': 0, 'filters': [$scope.categoryTypes[i]] })
+                                            .then(function(response) {
+                                                $scope.categories[i].title = creativityCategories.typesByID[$scope.categoryTypes[i] - 1];
+                                                $scope.categories[i].finalContents = transform(response);
+                                                $scope.creativityLoading = false;
+                                                console.log()
+                                            });
+                                    });
+                            });
                     });
-                $scope.myPagingFunction();
+
             });
+
         $scope.showLikes = function(id, title) {
             $mdDialog.show({
                 controller: 'ShowLikesController',
@@ -201,4 +236,3 @@
 
 
 })();
-

@@ -21,6 +21,8 @@
         $scope.liked = false;
         $scope.creativityLoading = false;
         $scope.offset = 0;
+                $rootScope.currentMenu = 'Creativity';
+
         $scope.moreItems = true;
         $scope.nonFinalContents = [];
         $scope.finalContents = [];

@@ -16,6 +16,7 @@
 
     function SearchAllController($scope, tokenService, $stateParams, $state, $rootScope, $sce, $filter, creativityCategories) {
         var vm = this;
+        $rootScope.currentMenu = 'search';
 
         $scope.searchTypes = [];
         $scope.nonFinalContents = [];

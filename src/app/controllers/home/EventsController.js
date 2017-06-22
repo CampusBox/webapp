@@ -20,6 +20,8 @@
         $scope.moreItems = true;
         $scope.eventLoading = true;
         $scope.events = [];
+                $rootScope.currentMenu = 'Opportunities';
+
         tokenService.get("minievents?limit=4")
             .then(function(tableData) {
                 $scope.events = tableData.data;
