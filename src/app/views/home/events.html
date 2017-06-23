@@ -6,45 +6,42 @@
 <div class="main-bg">
     <div layout-align="start center" layout="row" hide-gt-xs>
         <span flex></span>
-        <md-button ng-click="vm.toggleRightSidebar()" ui-sref="home.addEvent">
-            <div layout="row" flex="" class="ng-scope layout-row flex">
-                <p flex="" class="flex">Add Opportunity</p>
-                <md-icon md-svg-icon="calendar"></md-icon>
-            </div>
+        <md-button style="text-transform: none;" ng-click="vm.toggleRightSidebar()" ui-sref="home.addEvent">
+            Add an Opportunity
         </md-button>
     </div>
     <div layout="row">
-            <md-card class="content-card" hide-xs hide-sm ng-if="eventLoading" ng-repeat="content in [1,2,3]" flex-lg="30" flex-md="45" flex-sm="45" flex="100">
-                <md-card-header>
-                    <md-card-avatar style="background: #f6f7f8">
-                        <img class="md-user-avatar" />
-                    </md-card-avatar>
-                    <md-card-header-text>
-                        <span style="width: 30%" class=" animated-background">Anything here  </span>
-                    </md-card-header-text>
-                </md-card-header>
-                <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
-            </md-card>
-            <md-list hide-gt-xs>
-                <md-list-item ng-show="eventLoading" flex style="margin-bottom: 15px;" ng-repeat="event in [1,2]" class="secondary-button-padding eventListItem">
-                    <md-card flex>
-                        <md-card-title style="padding: 0px;">
-                            <div class="md-media-sm" style="width: 150px;height:150px; background-color: #eee">
-                                <img class="" style="width: 150px;height:150px;background-color: #f1f1f1" alt="">
-                            </div>
-                            <div style="padding:  14px 23px 0px 33px;" flex layout="column">
-                                <p class="animated-background" style="margin-top: 0px;">Date · Time </p>
-                                <br>
-                                <p class="md-title animated-background" style="font-weight: 600;margin: 0px; background-color: #eee;color: transparent;">
-                                    CampusBox launch
-                                </p>
-                                <p style="margin:0;background-color: #eee;color: transparent;" class="md-caption animated-background">Main Auditorium, Thapar University</p>
-                            </div>
-                        </md-card-title>
-                    </md-card>
-                </md-list-item>
-            </md-list>
-        </div>
+        <md-card class="content-card" hide-xs hide-sm ng-if="eventLoading" ng-repeat="content in [1,2,3]" flex-lg="30" flex-md="45" flex-sm="45" flex="100">
+            <md-card-header>
+                <md-card-avatar style="background: #f6f7f8">
+                    <img class="md-user-avatar" />
+                </md-card-avatar>
+                <md-card-header-text>
+                    <span style="width: 30%" class=" animated-background">Anything here  </span>
+                </md-card-header-text>
+            </md-card-header>
+            <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
+        </md-card>
+        <md-list hide-gt-xs>
+            <md-list-item ng-show="eventLoading" flex style="margin-bottom: 15px;" ng-repeat="event in [1,2]" class="secondary-button-padding eventListItem">
+                <md-card flex>
+                    <md-card-title style="padding: 0px;">
+                        <div class="md-media-sm" style="width: 150px;height:150px; background-color: #eee">
+                            <img class="" style="width: 150px;height:150px;background-color: #f1f1f1" alt="">
+                        </div>
+                        <div style="padding:  14px 23px 0px 33px;" flex layout="column">
+                            <p class="animated-background" style="margin-top: 0px;">Date · Time </p>
+                            <br>
+                            <p class="md-title animated-background" style="font-weight: 600;margin: 0px; background-color: #eee;color: transparent;">
+                                CampusBox launch
+                            </p>
+                            <p style="margin:0;background-color: #eee;color: transparent;" class="md-caption animated-background">Main Auditorium, Thapar University</p>
+                        </div>
+                    </md-card-title>
+                </md-card>
+            </md-list-item>
+        </md-list>
+    </div>
     <div layout-gt-sm="row" layout="column" layout-align-gt-xs="center" layout-align-xs="center strech">
         <div layout="row" layout-align="center">
             <div hide-xs flex layout-align="start" layout="row" layout-wrap flex-gt-xs="80">
