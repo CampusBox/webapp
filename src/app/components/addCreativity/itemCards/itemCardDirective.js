@@ -31,6 +31,11 @@
                     var regexp = /^https?:\/\/(soundcloud\.com|snd\.sc)\/(.*)$/;
                     return url.match(regexp) && url.match(regexp)[2];
                 };
+                $scope.validateInstagram = function(url) {
+                    var regexp = /(https?:\/\/www\.)?instagram\.com(\/p\/\w+\/?)/;
+                    return url.match(regexp) && url.match(regexp)[2];
+                };
+
                 $scope.setNoembed = function(url) {
                     allDataService.noembedJson(url)
                         .then(function(data) {

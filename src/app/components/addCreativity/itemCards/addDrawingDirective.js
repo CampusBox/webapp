@@ -10,35 +10,41 @@
             controller: function($scope, addItemService, $sce, allDataService) {
                 //Define Variables
                 $scope.allowedDrawing = [4, 5];
-                $scope.musicAdded = false;
+                $scope.inputActive = false;
                 $scope.enterUrl = true;
                 //End Defining variables
 
-                $scope.checkVideo = function() {
-                    if ($scope.creativity.items[0] == undefined || $scope.musicAdded) {
-                        $scope.musicAdded = false;
+                $scope.activateInput = function() {
+                    if ($scope.inputActive) {
+                        $scope.inputActive = false;
                     } else {
-                        $scope.musicAdded = true;
+                        $scope.inputActive = true;
 
                     }
                 }
 
-                $scope.instagram = function() {
-                    var url = 'https://www.instagram.com/p/BVpn4AfHqXJ/?r=wa1';
-                    url = url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "");
-                    url = 'https://' + url;
-
-                    allDataService.noembedJson(url)
-                        .then(function(data) {
-                            var media = {};
-                            media.mediaType = 'image';
-                            media.image = data.thumbnail_url;
-                            $scope.creativity.items.push(media);
-                            $scope.creativity.items[1].noembed = data;
-                            if ($scope.title == '') {
-                                $scope.title = $scope.creativity.items[1].noembed.title;
-                            }
-                        });
+                $scope.addInstagram = function(url) {
+                    // var url = 'https://www.instagram.com/p/BVpn4AfHqXJ/?r=wa1';
+                    if ($scope.validateInstagram(url)) {
+                        $scope.activateInput();
+                        url = url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "");
+                        url = 'https://' + url;
+                        allDataService.noembedJson(url)
+                            .then(function(data) {
+                                var length = $scope.creativity.items.length;
+                                var media = {};
+                                media.mediaType = 'image';
+                                media.image = data.thumbnail_url;
+                                $scope.creativity.items.push(media);
+                                $scope.creativity.items[length].noembed = data;
+                                if ($scope.title == '') {
+                                    $scope.title = $scope.creativity.items[1].noembed.title;
+                                }
+                                console.log($scope.creativity.items);
+                            });
+                    } else {
+                        $scope.error = 'Invalid Instagtam image url!'
+                    }
                 }
                 $scope.removeItem = function(index) {
                     $scope.creativity.items.splice(index, 1);

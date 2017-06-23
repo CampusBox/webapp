@@ -14,20 +14,32 @@
     </div>
     <div flex-offset-gt-sm="10" layout="column">
         <div layout="row" layout-align="strech center">
-            <div layout="row" layout-align="strech center" ng-click="addMenu=!addMenu">
-                <md-button class="md-icon-button" aria-label="Settings">
-                    <md-icon md-svg-icon="shape-plus"></md-icon>
-                    <md-tooltip md-direction="left">Add media</md-tooltip>
+            <div style="cursor: pointer;" layout="row" layout-align="strech center" ng-click="addMenu=!addMenu">
+                <md-button class="md-button" aria-label="Settings">
+                    <md-icon md-svg-icon="image-area"></md-icon>
+                    Add media
                 </md-button>
-                <span>Add media</span>
             </div>
             <md-button ng-show="addMenu" flex="20" ngf-select="uploadFiles($files, $invalidFiles)" multiple name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 500, height: 500}" ngf-resize-if="$width > 500 || $height > 500">
-                Image
+                <md-icon md-svg-icon="laptop"></md-icon>
+                Upload
             </md-button>
-            <md-button flex="20" ng-show="addMenu" ng-click="instagram()">
+            <md-button flex="20" ng-show="addMenu && !inputActive" ng-click="activateInput()">
                 <md-icon md-svg-icon="instagram"></md-icon>
                 Instagram
             </md-button>
+            <div flex="100" ng-show="addMenu && inputActive" layout="row" layout-align="space-between center">
+                <form flex="100" ng-submit="addInstagram(url)">
+                    <md-input-container md-no-float style="width:100%;margin-bottom: -3px;">
+                        <input flex md-no-float md-autofocus="" ng-model="url" placeholder="Paste Instagram image url here!" class=" ng-valid md-autofocus md-input ng-empty ng-touched" aria-label="url" id="input_8" aria-invalid="false">
+                        <div class="md-errors-spacer"></div>
+                        <span class="md-caption" style="color:rgb(244, 67, 54);" ng-hide="error == ''">{{error}}</span>
+                    </md-input-container>
+                </form>
+                <button class="md-primary md-button" flex="20" ng-disabled="url == ''" ng-click="addInstagram(url)">Done</button>
+            </div>
+
+
         </div>
     </div>
 </div>
