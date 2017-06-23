@@ -22,7 +22,7 @@ md-list-item .md-button:not([disabled]):click {
             <md-button class="md-icon-button" ng-click="bookmark(content)" aria-label="Favorite ">
                 <md-icon ng-class="content.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
             </md-button>
-            <md-button class="md-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'creativity');" aria-label="Share ">
+            <md-button class="md-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'creativity',content.id);" aria-label="Share ">
                 <md-icon ng-class="" md-svg-icon="share"></md-icon>
             </md-button>
         </div>
@@ -80,7 +80,7 @@ md-list-item .md-button:not([disabled]):click {
             </md-button>
             <span ng-click="showLikes($event, content.id, content.title)" style="cursor: pointer;" class="likesNumber"> {{content.Actions.Appreciate.total}}</span>
             <span flex></span>
-            <md-button style="float:right" ng-controller="ShareController" ng-click="showCustom($event,'creativity');" aria-label="facebook ">
+            <md-button style="float:right" ng-controller="ShareController" ng-click="showCustom($event,'creativity',content.id);" aria-label="facebook ">
                 <md-icon ng-class="" md-svg-icon="share"></md-icon> <span hide-xs>Share</span>
             </md-button>
             <md-button style="float:right" ng-click="bookmark(content)" aria-label="Favorite ">

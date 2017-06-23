@@ -11,7 +11,7 @@
         <md-option ng-click="change(event, $index, 0)" ng-show="event.participation_state != 0" value="not going">Not going</md-option>
     </md-select>
     <span flex></span>
-    <md-button class="share-button" ng-controller="ShareController" ng-click="showCustom($event,'event');" aria-label="share ">
+    <md-button class="share-button" ng-controller="ShareController" ng-click="showCustom($event,'event',event.id);" aria-label="share ">
         <md-icon ng-class="" md-svg-icon="share"></md-icon>Share
     </md-button>
 </md-card-actions>

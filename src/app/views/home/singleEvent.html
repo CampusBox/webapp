@@ -91,7 +91,7 @@
         </div>
         <span flex hide-xs></span>
         <div layout="row" class="md-padding" layout-align="space-around">
-            <md-button class="share-button" ng-controller="ShareController" ng-click="showCustom($event,'event');" aria-label="Share ">
+            <md-button class="share-button" ng-controller="ShareController" ng-click="showCustom($event,'event',eventId);" aria-label="Share ">
                 <md-icon ng-class="" md-svg-icon="share"></md-icon>
             </md-button>
             <md-button class="appreciate-button" ng-click="heart(event, $index)" aria-label="Favorite ">
