@@ -99,7 +99,7 @@
                     .then(function(response) {
 
                         console.log(response);
-
+$scope.categories[i] ={};
                         $scope.categories[i].title = creativityCategories.typesByID[$scope.categoryTypes[i]];
                         $scope.categories[i].finalContents = transform(response);
                         console.log($scope.categories);
