@@ -20,15 +20,10 @@
                     preserveScope: true,
                     targetEvent: $event,
                     templateUrl: 'app/views/partials/shareLinks.html',
-                    controller: DialogController
+                    controller: 'DialogController'
                 });
 
-                function DialogController($scope, $mdDialog) {
-                    $scope.closeDialog = function() {
-                        console.log('CLOSING DIALOG');
-                        $mdDialog.hide();
-                    };
-                }
+              
             }
 
 
