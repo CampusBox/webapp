@@ -4,7 +4,7 @@
 }
 
 .md-button.md-primary.md-raised[disabled] {
-    background-color: rgba(30, 136, 229, 0.56);
+    background-color: rgba(216, 27, 96, 0.56);
     color: #fff;
 }
 #trix-toolbar-1{
@@ -70,7 +70,7 @@
             </div> -->
 
  <div style=" padding:0px;width:100%;" layout-padding layout-wrap flex-gt-xs="60" flex-offset-gt-xs="20">
-                <md-list>
+                <md-list ng-hide="progress<1">
                     <md-list-item class="md-2-line">
                         <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
                         <div class="md-list-item-text">

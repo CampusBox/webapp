@@ -1,5 +1,5 @@
 <div layout="row"  ng-controller="DashboardController" class="main-bg" class="md-padding" style="margin-bottom: 60px;">
-    <div layout="column" flex-offset-gt-sm="10" flex-gt-sm="75" flex-xs="100" flex-sm="100">
+    <div layout="column" flex-offset-gt-sm="10" flex-gt-sm="80" flex-xs="100" flex-sm="100">
         <div layout="row" layout-align="center center">
             <h1 class="md-headline section-heading" style="padding-top: 0px;">
             Opportunities <span hide-xs>you can avail</span>
@@ -7,7 +7,7 @@
             <span flex></span>
             <md-button class="md-primary" ui-sref="home.events">See All</md-button>
         </div>
-        <div layout="row">
+        <div layout="row" layout-align="space-between">
             <md-card class="content-card" hide-xs hide-sm ng-if="eventLoading" ng-repeat="content in [1,2,3]" flex-lg="30" flex-md="45" flex-sm="45" flex="100">
                 <md-card-header>
                     <md-card-avatar style="background: #f6f7f8">
@@ -40,7 +40,7 @@
             </md-list>
         </div>
         <div layout="column" layout-wrap>
-            <div hide-xs flex layout-align="space-around" layout="row" style="max-width: 100%;">
+            <div hide-xs flex layout-align="space-between" layout="row" style="max-width: 100%;">
                 <md-card flex-lg="30" flex-md="45" flex-sm="45" flex="100" layout="column" layout="space-around" ng-repeat="event in events track by $index">
                     <event-card data="event" bar="true" ng-show="!eventLoading" hide-xs></event-card>
                 </md-card>
@@ -147,9 +147,9 @@
                 <div flex="20">
                 </div>
             </div>
-            <md-card class="pointer" ui-sref="home.creativity">
+           <!--  <md-card class="pointer" ui-sref="home.creativity">
                 <center style="padding: 20px;font-weight: 300">See all creativity</center>
-            </md-card>
+            </md-card> -->
         </div>
     </div>
     <!-- <div layout="column" class="md-padding" flex-gt-sm="25" hide-xs hide-sm show-gt-sm>

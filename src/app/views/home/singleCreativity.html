@@ -112,7 +112,7 @@ md-list-item .md-button:not([disabled]):click {
         <img ng-if="(content.type == 'youtube')" style="background:url('https://img.youtube.com/vi/{{content.url}}/hqdefault.jpg');object-fit: cover;background-size: cover;background-position: center;height: 100px;" class="creativity-cover" alt="">
         <md-card-title>
             <md-card-title-text>
-                <span style="font-size: 24px;font-weight: 700!important;" class="md-title">{{content.title}}</span>
+                <span style="font-size: 24px;font-weight: 700!important;" class="md-title" ng-bind-html="content.title"></span>
             </md-card-title-text>
         </md-card-title>
         <md-card-header>
