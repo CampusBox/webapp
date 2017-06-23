@@ -29,8 +29,13 @@
         $scope.screenIsSmall = $mdMedia('xs');
 
         console.log($scope.screenIsSmall);
+if($stateParams.tab==""){
 
         $scope.currentNavItem = $stateParams.tab;
+    }else{
+        $scope.currentNavItem = "profile";
+
+    }
         $scope.goto = function(page) {
             $scope.currentNavItem = page;
         };
