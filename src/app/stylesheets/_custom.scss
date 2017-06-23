@@ -13,7 +13,9 @@ md-card {
     overflow: hidden;
     box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
 }
-
+md-nav-bar{
+    overflow:auto!important;
+}
 md-toolbar {
     // box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
 }
