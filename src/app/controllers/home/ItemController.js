@@ -25,7 +25,7 @@
             $scope.mediaType = "";
             if (videoid != null) {
                 $scope.mediaType = "youtube";
-                $scope.embedUrl = "//www.youtube.com/embed/" + videoid[1];
+                $scope.embedUrl = "https://www.youtube.com/embed/" + videoid[1];
                 $scope.embedUrl = $sce.trustAsResourceUrl($scope.embedUrl);
                 console.log($scope.embedUrl);
             } else {
@@ -33,7 +33,7 @@
                 var videoid = $scope.url.match(/https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/);
                 if (videoid != null) {
                     $scope.mediaType = "vimeo";
-                    $scope.embedUrl = "//player.vimeo.com/video/" + videoid[3];
+                    $scope.embedUrl = "https://player.vimeo.com/video/" + videoid[3];
                     console.log($scope.embedUrl);
                     $scope.embedUrl = $sce.trustAsResourceUrl($scope.embedUrl);
                 } else {
@@ -46,7 +46,7 @@
             $scope.mediaType = "";
             if ($scope.getSoundCloudInfo($scope.url)) {
                 $scope.mediaType = "soundcloud";
-                $scope.embedUrl = "//w.soundcloud.com/player/?url=" + $scope.url;
+                $scope.embedUrl = "https://w.soundcloud.com/player/?url=" + $scope.url;
                 $scope.embedUrl = $sce.trustAsResourceUrl($scope.embedUrl);
                 var widgetIframe = document.getElementById('sc-widget'),
                     widget = SC.Widget(widgetIframe),

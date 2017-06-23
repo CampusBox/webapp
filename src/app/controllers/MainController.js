@@ -111,7 +111,7 @@
                 var videoid = $scope.url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
                 if (videoid != null) {
                     $scope.item.mediaType = "youtube";
-                    $scope.item.embedUrl = "//www.youtube.com/embed/" + videoid[1];
+                    $scope.item.embedUrl = "https://www.youtube.com/embed/" + videoid[1];
                     $scope.item.embedUrlIframe = $sce.trustAsResourceUrl($scope.item.embedUrl);
                     $mdDialog.hide($scope.item);
                 } else {
