@@ -10,14 +10,16 @@
             '$localStorage',
             '$state',
             'tokenService',
+            'secretServices',
             '$auth',
+            '$window',
             'creativityCategories',
             '$filter',
             '$mdDialog',
             SignUpDialogController
         ]);
 
-    function SignUpDialogController($scope, $timeout, $rootScope, $localStorage, $state,  tokenService, $auth,creativityCategories, $filter, $mdDialog) {
+    function SignUpDialogController($scope, $timeout, $rootScope, $localStorage, $state, tokenService, secretServices, $auth, $window, creativityCategories, $filter, $mdDialog) {
         var vm = this;
 
         $scope.signup = 1;
@@ -123,6 +125,79 @@
                 });
 
         };
+
+        $scope.authenticateFromCordova = function(provider) {
+
+            $scope.loading = true;
+
+            console.log("Signup from facebook");
+            $scope.signUp = {};
+
+            facebookConnectPlugin.login([
+                "user_about_me",
+                "read_custom_friendlists",
+                "user_friends",
+                "email",
+                "user_hometown",
+                "user_likes"
+            ], function(response) {
+                $scope.signUp = {
+                    'type': 'facebook',
+                    'token': response.authResponse.accessToken,
+                    'expires_in': response.authResponse.expiresIn,
+                    'skills': $scope.selectedSkills,
+                    'intrests': $scope.interests
+                };
+
+                console.log(JSON.stringify($scope.signUp));
+
+                tokenService.post("signup", $scope.signUp)
+                    .then(function(abc) {
+                        localStorage.setItem('id_token', abc.token);
+
+                        console.log(JSON.stringify(abc));
+
+                        $rootScope.token = abc.token;
+                        $rootScope.image = abc.image;
+                        $rootScope.authenticated = true;
+                        tokenService.get("userImage")
+                                        .then(function(response) {
+                                            $rootScope.user = response;
+                                            tokenService.get("notifications")
+                                                .then(function(abc) {
+                                                    $rootScope.notifications = abc;
+                                                });
+                                        });
+                        $mdDialog.hide();
+                    })
+                    .catch(function(abc) {
+                        localStorage.setItem('id_token', abc.token);
+                        $scope.problem = abc.status;
+                        $rootScope.authenticated = false;
+                        $scope.showSignUp('Could not contact server. Please try again later!');
+                    });
+
+            },function(obj) {
+
+                $scope.signUp.token = response.access_token;
+                $scope.signUp.type = provider;
+                $scope.signUp.skills = $scope.selectedSkills;
+                $scope.signUp.intrests = $scope.interests;
+                $scope.signUp.college_id = $scope.college;
+                tokenService.post("signup", $scope.signUp)
+                    .then(function(abc) {
+                        localStorage.setItem('id_token', abc.token);
+                        $rootScope.token = abc.token;
+                        // $state.go("home.dashboard");
+                        $rootScope.authenticated = true;
+                        $mdDialog.hide();
+                    })
+                    .catch(function(abc) {
+                        $scope.loading = false;
+
+                    });
+            });
+        };
         $scope.selected = [];
         $scope.interests = [];
 
@@ -142,6 +217,84 @@
             return list.indexOf(item) > -1;
         };
         $scope.currentState = 1;
+
+        $scope.googleSignUp = function() {
+
+            console.log("Running googleSignIn test from signup");
+
+            $scope.signUp = {};
+            $scope.loading = true;
+
+            if (!$window.plugins) {
+                console.log("No plugin found!");
+            }
+
+            $window.plugins.googleplus.login({
+                    'webClientId': secretServices.getGClientId,
+                    'offline': true,
+                },
+                function(user_data) {
+
+                    console.log(JSON.stringify(user_data));
+                    console.log("I am running!");
+                    $server_token = user_data.serverAuthCode;
+
+                    $scope.signUp = {
+                        'type' : 'google',
+                        'provider' : "google",
+                        'skills' : $scope.selectedSkills,
+                        'intrests' : $scope.interests,
+                        'college_id' : $scope.college,
+                        'name' : user_data.displayName,
+                        'imageUrl' : user_data.imageUrl,
+                        'email' : user_data.email,
+                        'uid' : user_data.userId
+                    };
+
+                    $.post('https://accounts.google.com/o/oauth2/token', {
+                        code: user_data.serverAuthCode,
+                        client_id: secretServices.getGClientId,
+                        client_secret: secretServices.getGClientSecret,
+                        grant_type: 'authorization_code',
+                        redirect_uri: "",
+                    }).then(function(obj) {
+
+                        console.log("response from desi server");
+                        console.log(JSON.stringify(obj));
+                        $scope.signUp.token = obj.access_token;
+
+                        console.log("starting signUp request");
+                        console.log(JSON.stringify($scope.signUp));
+
+                        tokenService.post("signup", $scope.signUp)
+                            .then(function(abc) {
+
+                                console.log("Got signup request response");
+                                console.log(JSON.stringify(abc));
+
+                                localStorage.setItem('id_token', abc.token);
+                                $rootScope.token = abc.token;
+                                // $state.go("home.dashboard");
+                                $rootScope.authenticated = true;
+                                $mdDialog.hide();
+
+                            })
+                            .catch(function() {
+                                $scope.loading = false;
+                                $scope.problem = "Could not sign you up try again later.";
+                            });
+
+                        $window.plugins.googleplus.logout(
+                            function(msg) {}
+                        );
+                    });
+                },
+                function(msg) {
+
+                }
+            );
+
+        };
 
         $rootScope.$on('event:social-sign-in-success', function(event, response) {
             // console.log("Social sign in success")
