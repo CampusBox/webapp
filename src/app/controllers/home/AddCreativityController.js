@@ -22,6 +22,7 @@
     function AddCreativityController($scope, $sce, $timeout, $mdDialog, allDataService, tokenService, $state, Upload, $rootScope, creativityCategories, addItemService) {
         // 22 june
         $scope.publishable = false;
+        $scope.compulsaryP = [1, 2, 20, 19, 21]
         //
     	var body = {};
     	$scope.progress = 0;
@@ -196,7 +197,7 @@
             }
         }
         $scope.checkPublish = function() {
-            if ($scope.isAllowed($scope.allowedArticle,$scope.creativity.type)) {
+            if ($scope.isAllowed($scope.compulsaryP,$scope.creativity.type)) {
                 $scope.publishable = (($scope.mediumEditor || $scope.trix) && ($scope.mediumEditor.length>20 || $scope.trix.length>20));
             }
             var abc = (!($scope.title && $scope.publishable ) || $scope.loading);
