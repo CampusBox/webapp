@@ -10,7 +10,7 @@
                             <p ng-show="creativity.type">{{categoryName}}</p>
                         </div>
                         <md-button class="md-primary md-raised" ng-disabled="checkPublish()" ng-click="publish($event)" ng-hide="loading">Publish</md-button>
-                        <!-- <div class="spinner" ng-show="loading" style="width: 40px;height: 40px;background-color: #fd5c63;"></div> -->
+                        <md-progress-circular md-diameter="40" ng-show="loading" md-mode="indeterminate"></md-progress-circular>
                         <md-tooltip ng-show="!(title && (mediumEditor || trix) && (mediumEditor.length>20 || trix.length>20) )" md-direction="bottom">Type min 20 characters.</md-tooltip>
                     </md-list-item>
                 </md-list>
@@ -21,9 +21,6 @@
                         <trix-editor angular-trix id="trix-editor-1" ng-model="trix" placeholder="Tell your story..." class="trix-content md-title" style="border: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;letter-spacing: -.003em;"></trix-editor>
                     </div>
                 </div>
-                <!--                     <center ng-repeat="item in creativity.items" style="margin-top: 40px;" ng-if="item.mediaType=='image'">
-                        <img style="max-width: 100%" ngf-thumbnail="item.image" />
-                    </center> -->
                 <center ng-show="progress<1">
                     <img ng-src="{{user.imageUrl}}" alt="" style="border-radius: 50%; height: auto;width: 20%">
                     <p class="md-title">Choose the most appropriate category</p>

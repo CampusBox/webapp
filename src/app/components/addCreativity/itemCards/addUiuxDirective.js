@@ -16,13 +16,7 @@
                 $scope.linkUrl = false;
                 $scope.UiUxAdded = false;
 
-                //End Defining variables
-
-                // $rootScope.$on("textAdded", function(event, state) {
-                //     if ($scope.linkUrl && $scope.graphicsAdded) {
-                //         $scope.checkPublishableUiUx();
-                //     }
-                // });
+                //End Defining variable
 
                 $scope.checkPublishableUiUx = function() {
                     console.log('img ' + $scope.graphicsAdded);

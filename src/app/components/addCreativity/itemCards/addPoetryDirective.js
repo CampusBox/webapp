@@ -37,21 +37,21 @@
                             $scope.creativity.items.pop();
                         }
                         addItemService.youtube(url);
-                        $scope.setNoembed(url);
+                        $scope.setNoembed(url, 1);
                         $scope.checkPoetry();
                     } else if ($scope.validateSoundcloud(url)) {
                         if ($scope.creativity.items.length > 1) {
                             $scope.creativity.items.pop();
                         }
                         addItemService.soundcloud(url);
-                        $scope.setNoembed(url);
+                        $scope.setNoembed(url, 1);
                         $scope.checkPoetry();
                     } else if ($scope.validateVimeo(url)) {
                         if ($scope.creativity.items.length > 1) {
                             $scope.creativity.items.pop();
                         }
                         addItemService.vimeo(url);
-                        $scope.setNoembed(url);
+                        $scope.setNoembed(url, 1);
                         $scope.checkPoetry();
                     } else {
                         $scope.error = "Enter a valid Youtube or Vimeo url.";

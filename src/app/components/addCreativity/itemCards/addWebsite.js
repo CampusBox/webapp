@@ -18,12 +18,6 @@
 
                 //End Defining variables
 
-                // $rootScope.$on("textAdded", function(event, state) {
-                //     if ($scope.urlAdded && $scope.imageAdded) {
-                //         $scope.checkPublishableWebsite();
-                //     }
-                // });
-
                 $scope.checkPublishableWebsite = function() {
                     console.log('img ' + $scope.imageAdded);
                     $scope.websiteAdded = $scope.urlAdded && $scope.imageAdded;

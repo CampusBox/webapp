@@ -30,7 +30,7 @@
                         if ($scope.creativity.items.length > 1) {
                             $scope.creativity.items.pop();
                         }
-                        $scope.setNoembed(url);
+                        $scope.setNoembed(url, 1);
                         $scope.checkMusic();
                         addItemService.youtube(url);
                     } else if ($scope.validateSoundcloud(url)) {
@@ -38,14 +38,14 @@
                             $scope.creativity.items.pop();
                         }
                         addItemService.soundcloud(url);
-                        $scope.setNoembed(url);
+                        $scope.setNoembed(url, 1);
                         $scope.checkMusic();
                     } else if ($scope.validateVimeo(url)) {
                         if ($scope.creativity.items.length > 1) {
                             $scope.creativity.items.pop();
                         }
                         addItemService.vimeo(url);
-                        $scope.setNoembed(url);
+                        $scope.setNoembed(url, 1);
                         $scope.checkMusic();
                     } else {
                         $scope.error = 'Enter a valid Youtube, Soundcloud or Vimeo url.'

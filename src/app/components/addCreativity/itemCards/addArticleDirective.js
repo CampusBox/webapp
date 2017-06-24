@@ -10,41 +10,33 @@
             controller: function($scope, addItemService, $sce, $rootScope) {
                 //Define Variables
                 $scope.allowedArticle = [1, 20, 21];
-                $scope.videoAdded = false;
                 $scope.enterUrl = true;
-                //End Defining variables
-                // $rootScope.$on("textAdded", function(event, state) {
-                //     $scope.publishable = $scope.textAdded;
-                //     // console.log($scope.publishable);
-                        
-                // });
-                $scope.checkMedia = function() {
-                    if ($scope.creativity.items[0] == undefined || $scope.videoAdded) {
-                        $scope.videoAdded = false;
+                $scope.inputActive = false;
+                $scope.removeArticleItem = function(index) {
+                    $scope.creativity.items.splice(index, 1);
+                }
+                $scope.activateMediaInput = function() {
+                    if ($scope.inputActive) {
+                        $scope.inputActive = false;
                     } else {
-                        $scope.videoAdded = true;
+                        $scope.inputActive = true;
 
                     }
                 }
-                $scope.removeItem = function() {
-                    $scope.creativity.items.pop();
-                    $scope.videoAdded = false;
-                }
-                $scope.addVideo = function(url) {
+                $scope.addArticleMedia = function(url) {
+                    var index = $scope.creativity.items.length;
                     if ($scope.validateYoutube(url)) {
-                        if ($scope.creativity.items.length > 1) {
-                            $scope.creativity.items.pop();
-                        }
                         addItemService.youtube(url);
-                        $scope.setNoembed(url);
-                        $scope.checkMedia();
+                        $scope.setNoembed(url, index);
+                        $scope.activateMediaInput();
+                    } else if ($scope.validateSoundcloud(url)) {
+                        addItemService.soundcloud(url);
+                        $scope.setNoembed(url, index);
+                        $scope.activateMediaInput();
                     } else if ($scope.validateVimeo(url)) {
-                        if ($scope.creativity.items.length > 1) {
-                            $scope.creativity.items.pop();
-                        }
                         addItemService.vimeo(url);
-                        $scope.setNoembed(url);
-                        $scope.checkMedia();
+                        $scope.setNoembed(url, index);
+                        $scope.activateMediaInput();
                     } else {
                         $scope.error = "Enter a valid Youtube or Vimeo url.";
                     }

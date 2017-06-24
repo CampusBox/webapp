@@ -40,12 +40,12 @@
                     return url.match(regexp) && url.match(regexp)[2];
                 };
 
-                $scope.setNoembed = function(url) {
+                $scope.setNoembed = function(url, index) {
                     allDataService.noembedJson(url)
                         .then(function(data) {
-                            $scope.creativity.items[1].noembed = data;
+                            $scope.creativity.items[index].noembed = data;
                             if ($scope.title == '') {
-                                $scope.title = $scope.creativity.items[1].noembed.title;
+                                $scope.title = $scope.creativity.items[index].noembed.title;
                             }
                         });
                 };
