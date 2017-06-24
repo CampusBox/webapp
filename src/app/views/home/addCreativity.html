@@ -7,7 +7,7 @@
                         <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
                         <div class="md-list-item-text">
                             <h3>{{user.name}}</h3>
-                            <p>Draft</p>
+                            <p ng-show="creativity.type">{{categoryName}}</p>
                         </div>
                         <md-button class="md-primary md-raised" ng-disabled="checkPublish()" ng-click="publish($event)" ng-hide="loading">Publish</md-button>
                         <!-- <div class="spinner" ng-show="loading" style="width: 40px;height: 40px;background-color: #fd5c63;"></div> -->

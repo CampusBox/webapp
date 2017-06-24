@@ -105,6 +105,7 @@
     	$scope.media.embedUrl = "";
     	$scope.media.mediaType = "";
     	$scope.linkPreview = {};
+        $scope.types = creativityCategories.types;
     	$scope.items = creativityCategories.items;
     	$scope.itemsMobile = creativityCategories.itemsMobile;
 
@@ -123,8 +124,9 @@
     	];
 
     	$scope.selectType = function(type) {
-    	    $scope.progress = 1;
-    	    $scope.creativity.type = type.id;
+            $scope.progress = 1;
+            $scope.creativity.type = type.id;
+    	    $scope.categoryName = $scope.types[$scope.creativity.type - 1].title;
     	};
     	$scope.uploadFiles = function(files) {
             $rootScope.$emit("ImagesAdded");
