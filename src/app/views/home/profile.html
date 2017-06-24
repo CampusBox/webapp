@@ -173,47 +173,45 @@
                     </div>
                     <p class="profile-subtitle">{{profile.subtitle}} </p>
                     <md-divider></md-divider>
-                    <div>
-                        <p class="profile-section-title">Skills</p>
-                        <div flex layout="row" layout-wrap style="margin-top:16px;">
-                            <div class="skill-item" ng-repeat="skill in profile.Skills.data">
-                                <a class="skill-item-text" ui-sref="home.searchAll({query: '{{skill.name}}'})">
-                                    <span>{{skill.name}}</span>
-                                </a>
-                            </div>
-                        </div>
-                        <br>
-                    </div>
-                    <md-divider></md-divider>
-                    <div>
-                        <p class="profile-section-title">Info</p>
-                        <div layout="column">
-                            <div ng-hide="profile.college.name == 'No College Selected' || profile.college.name == NULL" style="margin-bottom: 16px;">
-                                <md-icon md-svg-icon="school" style="size: 18px; color: rgba(99,108,116,0.70); margin-right: 16px" />
-                                <span style="font-family: Roboto-Light;font-size:13px;color: rgba(99,108,116,0.87);line-height: 16px;">{{profile.college.name}}</span>
-                            </div>
-                            <div ng-hide="profile.about.home_city == NULL" style="margin-bottom: 16px;">
-                                <md-icon md-svg-icon="home" style="size: 18px; color: rgba(99,108,116,0.70); margin-right: 16px" />
-                                <span style="font-family: Roboto-Light;font-size:13px;color: rgba(99,108,116,0.87);line-height: 16px;">{{profile.about.home_city}}</span>
-                            </div>
-                            <div ng-hide="profile.about.birthday == 'Not set'" style="margin-bottom: 16px;">
-                                <md-icon md-svg-icon="cake" style="size: 18px; color: rgba(99,108,116,0.70); margin-right: 16px" />
-                                <span style="font-family: Roboto-Light;font-size:13px;color: rgba(99,108,116,0.87);line-height: 16px;">{{profile.about.created_on}}</span>
-                            </div>
-                            <div style="margin-bottom: 16px;">
-                                <md-icon md-svg-icon="face" style="size: 18px; color: rgba(99,108,116,0.70); margin-right: 16px" />
-                                <span style="font-family: Roboto-Light;font-size:13px;color: rgba(99,108,116,0.87);line-height: 16px;">Member since {{profile.about.created_on}}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <md-divider></md-divider>
-                    <div>
-                        <p class="profile-section-title">Social</p>
-                        <div layout="column">
-                            <a ng-repeat="social in profile.SocialAccounts.data" ng-href="{{social.link}}" style="text-decoration: none; font-family: Roboto-Light;font-size: 13px;color: rgba(99,108,116,0.87); margin-bottom: 16px" target="_blank">
-                                <md-icon md-svg-icon="{{social.type}}" style="size: 18px; color: rgba(99,108,116,0.70); margin-right: 16px" /><span style="text-transform: capitalize;">{{social.type}}</span>
+                    <p class="profile-section-title">Skills</p>
+                    <div flex layout="row" layout-wrap style="margin-top:16px;">
+                        <div ng-hide="profile.Skills.data.length==0" class="skill-item" ng-repeat="skill in profile.Skills.data">
+                            <a class="skill-item-text" ui-sref="home.searchAll({query: '{{skill.name}}'})">
+                                <span>{{skill.name}}</span>
                             </a>
                         </div>
+                        <span class="profile-text-data" ng-show="profile.Skills.data.length==0">They haven't added any skills!</span>
+                    </div>
+                    <md-divider style="margin-top: 16px;"></md-divider>
+                    <p class="profile-section-title">Info</p>
+                    <div layout="row" layout-align="start start" ng-hide="profile.college.name == 'No College Selected' || profile.college.name == NULL" class="profile-text-data" style="margin-bottom: 16px;">
+                        <div style="height: 18px; width: 18px;margin-right: 16px;">
+                            <md-icon class="profile-icon" md-svg-icon="school"></md-icon>
+                        </div>{{profile.college.name}}
+                    </div>
+                    <div layout="row" layout-align="start start" ng-hide="profile.about.home_city == NULL" class="profile-text-data" style="margin-bottom: 16px;">
+                        <div style="height: 18px; width: 18px;margin-right: 16px;">
+                            <md-icon class="profile-icon" md-svg-icon="home"></md-icon>
+                        </div>{{profile.about.home_city}}
+                    </div>
+                    <div layout="row" layout-align="start start" ng-hide="profile.about.birthday == 'Not set'" class="profile-text-data" style="margin-bottom: 16px;">
+                        <div style="height: 18px; width: 18px;margin-right: 16px;">
+                            <md-icon class="profile-icon" md-svg-icon="cake"></md-icon>
+                        </div>{{profile.about.birthday}}
+                    </div>
+                    <div layout="row" layout-align="start start" class="profile-text-data" style="margin-bottom: 16px;">
+                        <div style="height: 18px; width: 18px; margin-right: 16px;">
+                            <md-icon class="profile-icon" md-svg-icon="face"></md-icon>
+                        </div>Member since {{profile.about.created_on}}
+                    </div>
+                    <md-divider></md-divider>
+                    <p class="profile-section-title">Social</p>
+                    <div>
+                        <a layout="row" ng-repeat="social in profile.SocialAccounts.data" ng-href="{{social.link}}" style="text-decoration: none; margin-bottom: 16px" class="profile-text-data" target="_blank">
+                            <div style="height: 18px; width: 18px; margin-right: 16px;">
+                                <md-icon class="profile-icon" md-svg-icon="{{social.type}}"></md-icon>
+                            </div><span style="text-transform: capitalize;">{{social.type}}</span>
+                        </a>
                     </div>
                 </div>
                 <div ng-hide="(currentNavItem!='creativity')" ng-if="profile.CreativeContents.data.length>0">

@@ -322,19 +322,20 @@ md-chips .md-chips {
                             </span>
                         </div>
                         <div style="margin-top:16px;">
-                            <md-chips readonly=!editSkills; md-removable="editSkills" style="box-shadow: none;" ng-model="student.Skills.data" md-transform-chip="transformChip($chip)" md-max-chips="5">
+                            <md-chips readonly=!editSkills; ng-hide="student.Skills.data.length==0" md-removable="editSkills" style="box-shadow: none;" ng-model="student.Skills.data" md-transform-chip="transformChip($chip)" md-max-chips="5">
                                 <md-chip-template>
                                     <a class="skill-item-text" ui-sref="home.searchAll({query: '{{$chip.name}}'})">
                                         <span>{{$chip.name}}</span>
                                     </a>
                                 </md-chip-template>
                             </md-chips>
+                            <span class="profile-text-data" ng-show="student.Skills.data.length==0">You haven't added any skills!</span>
                             <div ng-show="editSkills" class="md-body-2" layout="column" style="background-color: #f1f1f1;border-radius: 2px;padding:8px;">
                                 <input class="md-body-2 md-padding" placeholder="Type a skill to brag about" md-colors="{color: 'grey'}" ng-model="add.skill">
                                 </input>
                                 <div layout="row " style="padding-top: 8px; " layout-align="space-around center">
-                                    <md-button class="md-raised" ng-click="editSkills=false;">Cancel</md-button>
-                                    <md-button class="md-raised md-primary" ng-click="editSkills=false;updateSkills();">Update</md-button>
+                                    <md-button class="md-raised" ng-click="editSkills=false;">Close</md-button>
+                                    <md-button class="md-raised md-primary" ng-click="updateSkills();">Update</md-button>
                                 </div>
                             </div>
                         </div>
@@ -344,37 +345,40 @@ md-chips .md-chips {
                         <div layout="row">
                             <span class="profile-section-title">Info</span>
                             <span flex></span>
-                            <!-- <span class="profile-edit-link" ng-hide="editSkills" ng-click="editSkills=true;">
+                            <!-- When info editing/Adding is ready -->
+                            <!-- <span class="profile-edit-link" ng-hide="editInfo" ng-click="editInfo=true;">
                                 Add info
                             </span> -->
                         </div>
-                        <div layout="column">
-                            <div ng-hide="student.college.name == 'No College Selected' || student.college.name == NULL" style="margin-top: 16px;">
-                                <md-icon md-svg-icon="school" style="size: 18px; color: rgba(99,108,116,0.70); margin-right: 16px" />
-                                <span style="font-family: Roboto-Light;font-size:13px;color: rgba(99,108,116,0.87);line-height: 16px;">{{student.college.name}}</span>
-                            </div>
-                            <div ng-hide="student.about.home_city == NULL" style="margin-top: 16px;">
-                                <md-icon md-svg-icon="home" style="size: 18px; color: rgba(99,108,116,0.70); margin-right: 16px" />
-                                <span style="font-family: Roboto-Light;font-size:13px;color: rgba(99,108,116,0.87);line-height: 16px;">{{student.about.home_city}}</span>
-                            </div>
-                            <div ng-hide="student.about.birthday == 'Not set'" style="margin-top: 16px;">
-                                <md-icon md-svg-icon="cake" style="size: 18px; color: rgba(99,108,116,0.70); margin-right: 16px" />
-                                <span style="font-family: Roboto-Light;font-size:13px;color: rgba(99,108,116,0.87);line-height: 16px;">{{student.about.created_on}}</span>
-                            </div>
-                            <div style="margin-top: 16px;">
-                                <md-icon md-svg-icon="face" style="size: 18px; color: rgba(99,108,116,0.70); margin-right: 16px" />
-                                <span style="font-family: Roboto-Light;font-size:13px;color: rgba(99,108,116,0.87);line-height: 16px;">Member since {{student.about.created_on}}</span>
-                            </div>
+                        <div layout="row" layout-align="start start" ng-hide="student.college.name == 'No College Selected' || student.college.name == NULL" class="profile-text-data" style="margin-top: 16px;">
+                            <div style="height: 18px; width: 18px; margin-right: 16px;">
+                                <md-icon class="profile-icon" md-svg-icon="school" style="margin-right: 16px"></md-icon>
+                            </div>{{student.college.name}}
+                        </div>
+                        <div layout="row" layout-align="start start" ng-hide="student.about.home_city == NULL" class="profile-text-data" style="margin-top: 16px;">
+                            <div style="height: 18px; width: 18px; margin-right: 16px;">
+                                <md-icon class="profile-icon" md-svg-icon="home" /></md-icon>
+                            </div>{{student.about.home_city}}
+                        </div>
+                        <div layout="row" layout-align="start start" ng-hide="student.about.birthday == 'Not set'" class="profile-text-data" style="margin-top: 16px;">
+                            <div style="height: 18px; width: 18px; margin-right: 16px;">
+                                <md-icon class="profile-icon" class="profile-icon" md-svg-icon="cake"></md-icon>
+                            </div>{{student.about.created_on}}
+                        </div>
+                        <div layout="row" layout-align="start start" class="profile-text-data" style="margin-top: 16px;">
+                            <div style="height: 18px; width: 18px; margin-right: 16px;">
+                                <md-icon class="profile-icon" md-svg-icon="face" style="margin-right: 16px"></md-icon>
+                            </div>Member since {{student.about.created_on}}
                         </div>
                     </div>
                     <md-divider style="margin-top: 16px;"></md-divider>
+                    <p class="profile-section-title">Social</p>
                     <div>
-                        <p class="profile-section-title">Social</p>
-                        <div layout="column">
-                            <a ng-repeat="social in student.SocialAccounts.data" ng-href="{{social.link}}" style="text-decoration: none; font-family: Roboto-Light;font-size: 13px;color: rgba(99,108,116,0.87); margin-bottom: 16px" target="_blank">
-                                <md-icon md-svg-icon="{{social.type}}" style="size: 18px; color: rgba(99,108,116,0.70); margin-right: 16px" /><span style="text-transform: capitalize;">{{social.type}}</span>
-                            </a>
-                        </div>
+                        <a layout="row"  ng-repeat="social in student.SocialAccounts.data" ng-href="{{social.link}}" style="text-decoration: none; margin-bottom: 16px" class="profile-text-data" target="_blank">
+                            <div style="height: 18px; width: 18px; margin-right: 16px;">
+                                <md-icon class="profile-icon" md-svg-icon="{{social.type}}" style="margin-right: 16px"></md-icon>
+                            </div><span style="text-transform: capitalize;">{{social.type}}</span>
+                        </a>
                     </div>
                     </md-card-content>
                 </div>
