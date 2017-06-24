@@ -15,7 +15,7 @@
                 //End Defining variables
 
                 $rootScope.$on("ImagesAdded", function(event) {
-                    $scope.publishable = true;
+                    $scope.drawingAdded = true;
                 });
                 $scope.activateInput = function() {
                     if ($scope.inputActive) {
@@ -34,6 +34,7 @@
                         url = 'https://' + url;
                         allDataService.noembedJson(url)
                             .then(function(data) {
+                                $scope.drawingAdded = true;
                                 var length = $scope.creativity.items.length;
                                 var media = {};
                                 media.mediaType = 'image';
@@ -49,12 +50,11 @@
                         $scope.error = 'Invalid Instagtam image url!'
                     }
                 }
-                $scope.removeItem = function(index) {
+                $scope.removeDrawing = function(index) {
                     $scope.creativity.items.splice(index, 1);
-                    if ($scope.creativity.items.length < 2) {
-                        $scope.publishable = false;
+                    if ($scope.creativity.items.length == 1) {
+                        $scope.drawingAdded = false;
                     }
-                    $scope.musicAdded = false;
                 }
 
             }
