@@ -4,7 +4,7 @@
     "description": "CampusBox makes life easier for students.",
     "icons": [
         {
-            "src": "/dist/assets/images/logoicon.png",
+            "src": "/dist/assets/images/CB-logo-square-white-1024.png",
             "sizes": "192x192",
             "type": "image/png"
         }
