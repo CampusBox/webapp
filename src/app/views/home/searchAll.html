@@ -18,8 +18,8 @@
     <div layout="column" title="search all">
         <div flex-order="{{fos}}" title="students">
             <h2 class="md-headline" style="color: rgba(0,0,0,.8);" ng-hide="query == '' || students.length == 0">Results for "{{query}}" in students</h2>
-            <div layout="row" layout-search-wrap layout-align="center">
-                <md-card ng-if="listLoading" ui-sref="home.profile" ng-repeat="student in [1,2,3]" style="cursor: pointer;" flex-lg="25" flex-xs="100">
+            <div layout="row" layout-search-wrap class="horizontal-scroll" >
+                <md-card ng-if="listLoading" ui-sref="home.profile" ng-repeat="student in [1,2,3]" style="cursor: pointer;" >
                     <center>
                         <img style="border-radius: 50%; width: 40%; margin-top:20px; background-color: #dfdfdf; padding-bottom: 33%" class="md-card-image">
                         <div layout="column" layout-align="center center">
@@ -50,7 +50,7 @@
                     <md-card-actions layout="row" layout-align="end center">
                     </md-card-actions>
                 </md-card>
-                <md-card ui-sref="home.profile({username: student.username})" ng-repeat="student in students | limitTo:6 track by $index " style="cursor: pointer;" flex-lg="25" flex-md="45" flex-sm="45" flex="100">
+                <md-card ui-sref="home.profile({username: student.username})" ng-repeat="student in students | limitTo:6 track by $index " style="cursor: pointer;" class="profile-card">
                     <center>
                         <img style="border-radius: 50%; width: 40%; margin-top:20px;" ng-src="{{student.photo}}" class="md-card-image" alt="{{student.title}}">
                         <div layout="column" layout-align="center center">
@@ -85,12 +85,12 @@
         </div>
         <div flex-order="{{foe}}" title="events">
             <h2 class="md-headline" style="color: rgba(0,0,0,.8);" ng-hide="query == '' || events.length == 0">Results for "{{query}}" in Opportunities</h2>
-            <div hide-xs flex layout-align="start" layout="row" layout-wrap >
-                <md-card flex-lg="25" flex-md="45" flex-sm="45" flex="100" ng-repeat="event in events | limitTo:6">
+            <div hide-xs flex layout-align="start" class="horizontal-scroll" layout="row" >
+                <md-card  ng-repeat="event in events | limitTo:6" flex-gt-sm="25" class="event-card" >
                     <event-card data="event" bar="false" ng-if="!eventLoading" hide-xs></event-card>
                 </md-card>
             </div>
-            <div show-xs hide-gt-xs layout="column" flex-gt-sm="80">
+            <div show-xs hide-gt-xs layout="column" class="horizontal-scroll" >
                 <md-card style="margin-bottom: 10px;" ng-repeat="event in events" class="secondary-button-padding eventListItem" flex>
                     <event-card-mobile data="event" bar="false" hide-gt-xs></event-card-mobile>
                 </md-card>
@@ -98,8 +98,8 @@
         </div>
         <div flex-order="{{foc}}" title="creativity">
             <h2 class="md-headline" style="color: rgba(0,0,0,.8);" ng-hide="query == '' || finalContents.length == 0">Results for "{{query}}" in Creativity</h2>
-            <div layout-align="start center" layout-align-xs="center center" layout="row" layout-search-wrap  flex="noshrink">
-                <md-card class="content-card" flex-lg="25" flex-md="45" flex-sm="45" flex="100" ng-repeat="content in finalContents | limitTo:6 track by $index">
+            <div  class="horizontal-scroll" layout="row" layout-search-wrap  flex="noshrink">
+                <md-card class="content-card"  ng-repeat="content in finalContents | limitTo:6 track by $index">
                     <md-card-content style="padding: 0px">
                         <div ng-if="(content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
                             <!-- <iframe ng-show="(content.type == 'youtube')" width="100%" height="315" ng-src="{{content.url}}" frameborder="0" allowfullscreen></iframe> -->

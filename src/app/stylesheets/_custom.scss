@@ -13,9 +13,11 @@ md-card {
     overflow: hidden;
     box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
 }
-md-nav-bar nav{
-    overflow:auto!important;
+
+md-nav-bar nav {
+    overflow: auto!important;
 }
+
 md-toolbar {
     // box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
 }
@@ -733,9 +735,11 @@ md-icon.cross>svg {
     color: white;
     border-color: rgb(233, 30, 99);
 }
-md-icon:hover{
+
+md-icon:hover {
     color: #149370;
 }
+
 .white-bg {
     background-color: #fff;
 }
@@ -744,8 +748,29 @@ md-icon:hover{
     color: #fff;
 }
 
+.horizontal-scroll {
+    margin-right: 10px;
+    margin-left: 10px;
+    overflow-x: auto;
+}
+
+.profile-card {
+    min-width: 280px;
+    height: 343px;
+    box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
+    margin-bottom: 24px;
+    margin-left: 16px;
+}
+
+.event-card {
+    min-width: 280px;
+    height: 343px;
+    box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
+    margin-bottom: 24px;
+    margin-left: 16px;
+}
 .content-card {
-    width: 280px;
+    min-width: 280px;
     height: 343px;
     box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
     margin-bottom: 24px;
@@ -990,7 +1015,8 @@ md-icon:hover{
         padding: 8px 0px !important;
     }
 }
+
 .layout-search-wrap {
-  -webkit-flex-wrap: wrap;
-  flex-wrap: nowrap;
-  }
+    -webkit-flex-wrap: wrap;
+    flex-wrap: nowrap;
+}
