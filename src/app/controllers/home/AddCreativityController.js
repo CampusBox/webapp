@@ -20,7 +20,9 @@
         ]);
 
     function AddCreativityController($scope, $sce, $timeout, $mdDialog, allDataService, tokenService, $state, Upload, $rootScope, creativityCategories, addItemService) {
-
+        // 22 june
+        $scope.publishable = false;
+        //
     	var body = {};
     	$scope.progress = 0;
     	$scope.isOpen = false;
@@ -188,8 +190,19 @@
     	    }
 
     	});
-
-        var checkEditor = function() {
+        $scope.isAllowed = function(allowed, id) {
+            if (id != undefined) {
+                return allowed.indexOf(id) !== -1;
+            }
+        }
+        $scope.checkPublish = function() {
+            if ($scope.isAllowed($scope.allowedArticle,$scope.creativity.type)) {
+                $scope.publishable = (($scope.mediumEditor || $scope.trix) && ($scope.mediumEditor.length>20 || $scope.trix.length>20));
+            }
+            var abc = (!($scope.title && $scope.publishable ) || $scope.loading);
+            return abc;
+        }
+        $scope.checkEditor = function() {
             console.log('checkEditor called');
             if ($scope.mediumEditor > $scope.trix) {
                 $scope.creativity.items[0].text = $scope.mediumEditor;
@@ -198,13 +211,14 @@
                 $scope.creativity.items[0].text = $scope.trix;
                 console.log($scope.creativity.items[0]);
             } else {
-                console.log('Error!');
+                console.log('else');
+                $scope.creativity.items[0].text = '';
             }
         };
 
 
     	$scope.publish = function() {
-    	    checkEditor();
+    	    $scope.checkEditor();
     	    $scope.loading = true;
     	    $scope.image = {};
 
