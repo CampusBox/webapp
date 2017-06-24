@@ -24,13 +24,13 @@ function query($url) {
 if ($_SERVER['REQUEST_URI']) {
 	
 	$route = $_SERVER['REQUEST_URI'];
- echo $route; 
+ // echo $route; 
 	$singleContent ='/dist/singleContent/';
 	$singleEvent ='/dist/singleEvent/';
 	$profile ='/dist/profile/';
 
 	if (substr($route, 0, strlen($singleContent)) === $singleContent) {
-		echo "content";
+		// echo "content";
 		$contentUrl = 'https://campusbox.org/dist/api/public/content/';
 		$contentId = substr($route, 20); 
 
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_URI']) {
 	}
 
 	elseif (substr($route, 0, strlen($profile)) === $profile) {
-		echo "profile";
+		// echo "profile";
 		$contentUrl = 'https://campusbox.org/dist/api/public/student/';
 		$contentId = substr($route, 14); 
 		$finalUrl = $contentUrl . $contentId;
@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_URI']) {
 
 	elseif (substr($route, 0, strlen($singleEvent)) === $singleEvent) {
 	// elseif (false){
-		echo "event";
+		// echo "event";
 		$contentUrl = 'https://campusbox.org/dist/api/public/event/';
 		$contentId = substr($route, 18); 
 		$finalUrl = $contentUrl . $contentId;
