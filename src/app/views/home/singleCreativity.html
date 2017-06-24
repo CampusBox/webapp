@@ -59,8 +59,8 @@ md-list-item .md-button:not([disabled]):click {
         <center flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100" ng-repeat="item in content.Items.data">
             <img style="max-width:100%" ng-if="(item.type == 'cover')" ng-src="{{item.image}}" alt="">
             <iframe style="background-color: grey" ng-if="(item.type == 'youtube')" width="100%" height="315" ng-src="{{item.embed.url}}" frameborder="0" allowfullscreen></iframe>
-            <iframe style="background-color: grey" id="sc-widget" ng-if="item.type == 'soundcloud'" width="100%" height="166" scrolling="no" frameborder="0" src="{{item.embed.url}}" allowfullscreen></iframe>
-            <iframe style="background-color: grey" ng-if="item.type == 'vimeo'" width="640" height="360" src="{{item.embed.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <iframe style="background-color: grey" id="sc-widget" ng-if="item.type == 'soundcloud'" width="100%" height="166" scrolling="no" frameborder="0" ng-src="{{item.embed.url}}" allowfullscreen></iframe>
+            <iframe style="background-color: grey" ng-if="item.type == 'vimeo'" width="640" height="360" ng-src="{{item.embed.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         </center>
         <div flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100" ng-repeat="item in content.Items.data">
             <center layout-align="center center">
@@ -117,7 +117,7 @@ md-list-item .md-button:not([disabled]):click {
         </md-card-title>
         <md-card-header>
             <md-card-avatar>
-                <img class="md-user-avatar" src="{{content.created.by.image}}" />
+                <img class="md-user-avatar" ng-src="{{content.created.by.image}}" />
             </md-card-avatar>
             <md-card-header-text flex>
                 <span class="md-title">{{content.created.by.name}}</span>
