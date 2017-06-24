@@ -22,8 +22,8 @@
                 <div style="width: 100%;"  flex="100" layout="row">
                     <form flex="100" ng-submit="addWebsite(url)">
                         <md-input-container md-no-float style="width:100%;margin-bottom: -3px;">
-                            <md-icon md-svg-icon="link"></md-icon>
-                            <input flex md-no-float md-autofocus="" ng-model="url" ng-model-options="{debounce:1100}" ng-change="onType(url)" placeholder="Paste Website url here!" class=" ng-valid md-autofocus md-input ng-empty ng-touched" aria-label="url" id="input_8" aria-invalid="false">
+                            <md-icon md-svg-icon="earth"></md-icon>
+                            <input flex md-no-float md-autofocus="" ng-model="url" ng-model-options="{debounce:1100}" ng-change="onType(url)" placeholder="Paste Website or App url here!" class=" ng-valid md-autofocus md-input ng-empty ng-touched" aria-label="url" id="input_8" aria-invalid="false">
                             <div class="md-errors-spacer"></div>
                             <span class="md-caption" style="color:rgb(244, 67, 54);" ng-hide="error == ''">{{error}}</span>
                         </md-input-container>

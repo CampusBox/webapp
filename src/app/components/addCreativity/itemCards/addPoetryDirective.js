@@ -2,49 +2,57 @@
     'use strict';
 
     angular.module('app').
-    directive('addArticle', function() {
+    directive('addPoetry', function() {
         return {
             restrict: "E",
             replace: true,
-            templateUrl: 'app/components/addCreativity/itemCards/addArticle.html',
+            templateUrl: 'app/components/addCreativity/itemCards/addPoetry.html',
             controller: function($scope, addItemService, $sce, $rootScope) {
                 //Define Variables
-                $scope.allowedArticle = [1, 20, 21];
+                $scope.allowedPoetry = [2];
                 $scope.videoAdded = false;
+                $scope.poetryAdded = false;
                 $scope.enterUrl = true;
                 //End Defining variables
-                // $rootScope.$on("textAdded", function(event, state) {
-                //     $scope.publishable = $scope.textAdded;
-                //     // console.log($scope.publishable);
-                        
-                // });
-                $scope.checkMedia = function() {
+
+                $scope.checkPoetry = function() {
+                        console.log('$scope.poetryAdded');
                     if ($scope.creativity.items[0] == undefined || $scope.videoAdded) {
                         $scope.videoAdded = false;
+                        $scope.poetryAdded = false;
                     } else {
                         $scope.videoAdded = true;
+                        $scope.poetryAdded = true;
 
                     }
                 }
-                $scope.removeItem = function() {
+                $scope.removePoetry = function() {
                     $scope.creativity.items.pop();
                     $scope.videoAdded = false;
+                    $scope.poetryAdded = false;
                 }
-                $scope.addVideo = function(url) {
+                $scope.addPoetryVideo = function(url) {
                     if ($scope.validateYoutube(url)) {
                         if ($scope.creativity.items.length > 1) {
                             $scope.creativity.items.pop();
                         }
                         addItemService.youtube(url);
                         $scope.setNoembed(url);
-                        $scope.checkMedia();
+                        $scope.checkPoetry();
+                    } else if ($scope.validateSoundcloud(url)) {
+                        if ($scope.creativity.items.length > 1) {
+                            $scope.creativity.items.pop();
+                        }
+                        addItemService.soundcloud(url);
+                        $scope.setNoembed(url);
+                        $scope.checkPoetry();
                     } else if ($scope.validateVimeo(url)) {
                         if ($scope.creativity.items.length > 1) {
                             $scope.creativity.items.pop();
                         }
                         addItemService.vimeo(url);
                         $scope.setNoembed(url);
-                        $scope.checkMedia();
+                        $scope.checkPoetry();
                     } else {
                         $scope.error = "Enter a valid Youtube or Vimeo url.";
                     }

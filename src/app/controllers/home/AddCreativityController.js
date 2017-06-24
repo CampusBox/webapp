@@ -224,10 +224,10 @@
                     // If a category has only text as compulsion it wont have publishFromDir
                     $scope.publishable = $scope.textAdded;
                 } else {
-                    $scope.publishable = $scope.textAdded && ($scope.websiteAdded || $scope.danceAdded || $scope.musicAdded || $scope.drawingAdded || $scope.UiUxAdded);
+                    $scope.publishable = $scope.textAdded && ($scope.websiteAdded || $scope.danceAdded || $scope.musicAdded || $scope.drawingAdded || $scope.UiUxAdded || $scope.poetryAdded);
                 }
             } else {
-                $scope.publishable = ($scope.websiteAdded || $scope.danceAdded || $scope.musicAdded || $scope.drawingAdded || $scope.UiUxAdded);
+                $scope.publishable = ($scope.websiteAdded || $scope.danceAdded || $scope.musicAdded || $scope.drawingAdded || $scope.UiUxAdded || $scope.poetryAdded);
             }
             var abc = (!($scope.title && $scope.publishable) || $scope.loading);
             return abc;
