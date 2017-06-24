@@ -882,8 +882,17 @@ md-icon:hover{
 
 .page-content {
     overflow: auto;
-}
-
+}    
+/*eventAction here*/
+ .share-button{
+        font-size: 12px;
+        text-transform: capitalize;
+    }
+    .share-button md-icon{
+        width: 16px;
+        height: 16px;
+    }
+/*till here*/
 @media only screen and (max-width: 500px) {
     .play-button {
         margin-left: 40%;
