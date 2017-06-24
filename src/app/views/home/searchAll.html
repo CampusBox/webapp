@@ -18,7 +18,7 @@
     <div layout="column" title="search all">
         <div flex-order="{{fos}}" title="students">
             <h2 class="md-headline" style="color: rgba(0,0,0,.8);" ng-hide="query == '' || students.length == 0">Results for "{{query}}" in students</h2>
-            <div layout="row" layout-wrap layout-align="center">
+            <div layout="row" layout-search layout-align="center">
                 <md-card ng-if="listLoading" ui-sref="home.profile" ng-repeat="student in [1,2,3]" style="cursor: pointer;" flex-lg="25" flex-xs="100">
                     <center>
                         <img style="border-radius: 50%; width: 40%; margin-top:20px; background-color: #dfdfdf; padding-bottom: 33%" class="md-card-image">
@@ -98,7 +98,7 @@
         </div>
         <div flex-order="{{foc}}" title="creativity">
             <h2 class="md-headline" style="color: rgba(0,0,0,.8);" ng-hide="query == '' || finalContents.length == 0">Results for "{{query}}" in Creativity</h2>
-            <div layout-align="start center" layout-align-xs="center center" layout="row" layout-wrap class="creativity-page">
+            <div layout-align="start center" layout-align-xs="center center" layout="row" layout-search-wrap  flex="noshrink">
                 <md-card class="content-card" flex-lg="25" flex-md="45" flex-sm="45" flex="100" ng-repeat="content in finalContents | limitTo:6 track by $index">
                     <md-card-content style="padding: 0px">
                         <div ng-if="(content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
