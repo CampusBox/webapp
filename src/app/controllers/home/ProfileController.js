@@ -33,6 +33,7 @@
         if ($rootScope.user != undefined) {
             if ($scope.username == $rootScope.user.username) {
 
+                $scope.currentNavItem = 'profile';
                 $state.go('home.myProfile');
             }
         }

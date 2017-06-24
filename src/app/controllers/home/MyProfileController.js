@@ -30,11 +30,9 @@
 
         console.log($scope.screenIsSmall);
         if ($stateParams.tab == "") {
-
-            $scope.currentNavItem = $stateParams.tab;
-        } else {
             $scope.currentNavItem = "profile";
-
+        } else {
+            $scope.currentNavItem = $stateParams.tab;
         }
         $scope.goto = function(page) {
             $scope.currentNavItem = page;
@@ -51,19 +49,17 @@
                     $scope.student.CreativeContents.data[index].created_at = new Date(Date.parse($scope.student.CreativeContents.data[index].created_at.replace('-', '/', 'g'))); //replace mysql date to js date format
                 });
 
-                console.log($stateParams.tab);
                 if (!$scope.screenIsSmall && $stateParams.tab === 'profile') {
                     $scope.currentNavItem = 'creativity';
                     //$scope.goto('creativity');
-                } else {
-                    $scope.currentNavItem = $stateParams.tab;
+                } else if ($scope.currentNavItem == '' || $scope.currentNavItem == null ) {
+                    $scope.currentNavItem = 'profile';
                 }
                 if ($scope.currentNavItem === 'recomended' && $scope.student.BookmarkedContents.data == 0) {
                     $scope.currentNavItem = 'creativity';
                     //$scope.goto('creativity');
                 }
                 $scope.loading = false;
-                console.log($scope.student);
             });
 
 
