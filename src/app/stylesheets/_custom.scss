@@ -1076,3 +1076,7 @@ md-icon:hover {
         padding: 8px 0px !important;
     }
 }
+.layout-search-wrap {
+  -webkit-flex-wrap: wrap;
+  flex-wrap: nowrap;
+  }
