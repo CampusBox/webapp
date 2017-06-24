@@ -16,9 +16,7 @@
 
                 }
                 $scope.change = function(event, index, state) {
-                    console.log('before: ' + event.participation_state);
                     eventsActionsService.change(event, index, state);
-                    console.log('after: ' + event.participation_state);
                     $scope.getParticipationState(event, index);
                 }
                 $scope.getParticipationState = function(event, index) {

@@ -19,6 +19,7 @@
             SignUpDialogController
         ]);
 
+
     function SignUpDialogController($scope, $timeout, $rootScope, $localStorage, $state, tokenService, secretServices, $auth, $window, creativityCategories, $filter, $mdDialog) {
         var vm = this;
 

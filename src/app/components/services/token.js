@@ -24,7 +24,6 @@
                 // USE THIS AT MOST TIMES
                 // 
                 // To test locally from BETA API 
-                // var serviceBase = 'http://beta.campusbox.org/dist/api/public/';
 
 
                 

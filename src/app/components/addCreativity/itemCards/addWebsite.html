@@ -1,0 +1,35 @@
+<div ng-if="isAllowed(allowedWebsite, creativity.type)">
+    <div flex-offset-gt-sm="10" layout="column" ng-repeat="item in creativity.items track by $index" style="padding: 0px">
+        <div layout="column">
+            <center style="margin-top: 40px;" ng-if="item.mediaType=='image'">
+                <div layout="row" layout-align="center center" style="position: relative;background:#fafbfc;max-width: 500px;max-height: 500px;">
+                    <img style="max-width: 100%" ng-src="{{item.image}}" />
+                    <md-button style="position: absolute;top: 0px;right:0px;color: #fff;text-shadow: 0px 1px 3px black;" ng-if="creativity.items.length > 1" ng-click="removeScreenshot($index)" class="md-icon-button md-warn">
+                        <md-icon md-svg-icon="close-circle-outline"></md-icon>
+                    </md-button>
+                </div>
+            </center>
+        </div>
+    </div>
+    <div flex-offset-gt-sm="10" layout="column">
+        <div layout="column" layout-align="center center">
+            <md-button ngf-select="uploadFiles($files, $invalidFiles)" multiple name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 500, height: 500}" ngf-resize-if="$width > 500 || $height > 500">
+                <md-icon md-svg-icon="laptop"></md-icon>
+                Screenshots
+            </md-button>
+            <div style="width: 100%;" layout="column" layout-align="center center">
+                <div style="width: 100%;"  flex="100" layout="row">
+                    <form flex="100" ng-submit="addWebsite(url)">
+                        <md-input-container md-no-float style="width:100%;margin-bottom: -3px;">
+                            <md-icon md-svg-icon="earth"></md-icon>
+                            <input flex md-no-float md-autofocus="" ng-model="url" ng-model-options="{debounce:1100}" ng-change="onType(url)" placeholder="Paste Website or App url here!" class=" ng-valid md-autofocus md-input ng-empty ng-touched" aria-label="url" id="input_8" aria-invalid="false">
+                            <div class="md-errors-spacer"></div>
+                            <span class="md-caption" style="color:rgb(244, 67, 54);" ng-hide="error == ''">{{error}}</span>
+                        </md-input-container>
+                    </form>
+                    <md-progress-circular md-diameter="40" ng-if="fetchLoading" md-mode="indeterminate"></md-progress-circular>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

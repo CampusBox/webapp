@@ -531,7 +531,7 @@ form .progress {
 
 md-progress-circular.md-default-theme path,
 md-progress-circular path {
-    stroke: #fff;
+    stroke: #fd5c63;
 }
 
 .progress div {
@@ -908,7 +908,7 @@ md-icon:hover {
     font-size: 20px;
     line-height: 1.3;
     text-decoration: none;
-    letter-spacing: 0.028em;
+    letter-spacing: -.028em;
     font-weight: 700;
     color: rgba(0, 0, 0, .8);
 }
@@ -1044,13 +1044,10 @@ md-icon:hover {
     }
     .creativity-title {
         margin-top: 31px;
-        font-size: 18px;
+        font-size: 32px !important;
         line-height: 1.3;
         margin-right: 20px;
         text-decoration: none;
-        letter-spacing: 0.028em;
-        font-weight: 700;
-        color: rgba(0, 0, 0, .8);
     }
     .creativity-description {
         margin-top: 8px;
