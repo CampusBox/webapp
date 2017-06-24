@@ -166,9 +166,9 @@
                     cardObject = {};
                     cardObject.Actions = content.Actions;
                     cardObject.Tags = content.Tags;
-                    cardObject.created = content.created;
+                    cardObject.created = content.created_at;
                     //replace mysql date to js date format
-                    cardObject.created.at = Date.parse(cardObject.created.at.replace('-', '/', 'g'));
+                    cardObject.created = Date.parse(cardObject.created.replace('-', '/', 'g'));
                     cardObject.id = content.id;
                     cardObject.title = $sce.trustAsHtml(content.title);
                     cardObject.links = content.links;
@@ -183,8 +183,8 @@
                     $scope.loading = false;
                     cardObject.Actions = content.Actions;
                     cardObject.Tags = content.Tags;
-                    cardObject.created = content.created;
-                    cardObject.created.at = Date.parse(cardObject.created.at.replace('-', '/', 'g')); //replace mysql date to js date format
+                    cardObject.created = content.created_at;
+                    cardObject.created = Date.parse(cardObject.created.replace('-', '/', 'g')); //replace mysql date to js date format
                     cardObject.id = content.id;
                     cardObject.title = $sce.trustAsHtml(content.title);
                     cardObject.links = content.links;
