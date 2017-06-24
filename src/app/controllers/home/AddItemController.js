@@ -43,7 +43,7 @@
                     var videoid = $scope.url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
                     if (videoid != null) {
                         $scope.item.mediaType = "youtube";
-                        $scope.item.embedUrl1 = "//www.youtube.com/embed/" + videoid[1];
+                        $scope.item.embedUrl1 = "https://www.youtube.com/embed/" + videoid[1];
                         $scope.item.embedUrl =videoid[1];
                         $scope.item.embedUrlIframe = $sce.trustAsResourceUrl($scope.item.embedUrl1);
                         $mdDialog.hide($scope.item);
@@ -58,7 +58,7 @@
                     if ($scope.validateSoundcloud($scope.url)) {
                         $scope.item.mediaType = "soundcloud";
                         $scope.item.embedUrl =  $scope.url;
-                        $scope.item.embedUrl1 = "//w.soundcloud.com/player/?url=" + $scope.url;
+                        $scope.item.embedUrl1 = "https://w.soundcloud.com/player/?url=" + $scope.url;
                         $scope.item.embedUrlIframe = $sce.trustAsResourceUrl($scope.item.embedUrl1);
 
                         $mdDialog.hide($scope.item);
@@ -74,7 +74,7 @@
                     if (videoid != null) {
                         $scope.item = {};
                         $scope.item.mediaType = "vimeo";
-                        $scope.item.embedUrl = "//player.vimeo.com/video/" + videoid[3] + '?color=ffffff&title=0&byline=0&portrait=0&badge=0';
+                        $scope.item.embedUrl = "https://player.vimeo.com/video/" + videoid[3] + '?color=ffffff&title=0&byline=0&portrait=0&badge=0';
                         $scope.item.embedUrlIframe = $sce.trustAsResourceUrl($scope.item.embedUrl);
                         $mdDialog.hide($scope.item);
                     } else {

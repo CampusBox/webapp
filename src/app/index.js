@@ -102,6 +102,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
                 controller: 'SingleEventController',
                 controllerAs: 'vm',
                 data: {
+                    requiresLogin: false,
                     title: 'Event'
                 }
             })
@@ -254,20 +255,20 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
 
         $mdThemingProvider
             .theme('default')
-            .primaryPalette('blue', {
+            .primaryPalette('pink', {
                 'default': '600'
             })
-            .accentPalette('blue', {
+            .accentPalette('pink', {
                 'default': '500'
             })
             .warnPalette('red');
 
         $mdThemingProvider.theme('dark', 'default')
-            .primaryPalette('blue')
-            .dark('blue');
+            .primaryPalette('pink')
+            .dark('pink');
 
-        $mdThemingProvider.theme('blue', 'default')
-            .primaryPalette('blue');
+        $mdThemingProvider.theme('pink', 'default')
+            .primaryPalette('pink');
 
 
     })
@@ -283,6 +284,38 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
 
         $rootScope.user = {};
 
+        // REQUIRED FOR CORDOVA
+        // 
+        // angular.element(document).ready(function() {
+        
+        //     console.log("Testing if cordova is passed");
+
+        //     if (window.cordova) {
+
+        //         console.log("Cordova passed!")
+
+        //         document.addEventListener('deviceready', function() {
+        //             console.log("Deviceready event has fired, bootstrapping AngularJS.");
+        //             // Link the callback function to universalLinks
+        //             universalLinks.subscribe(null, function(eventData) {
+        //                 // do some work
+        //                 console.log('Did launch application from the link: ' + eventData.url);
+        //                 var url = eventData.url;
+        //                 var n = url.indexOf('campusbox.org/dist');
+        //                 var result = url.substring(n + 19);
+        //                 // eventData.url = null;
+
+        //                 console.log(result);
+        //                 $location.url(result);
+
+        //             });
+        //         }, false);
+        //     }
+        // });
+        // 
+        // END
+
+        
         $rootScope.currentState = $state.current.name;
         $rootScope.$on('$stateChangeSuccess', function() {
             $rootScope.currentState = $state.current.name;

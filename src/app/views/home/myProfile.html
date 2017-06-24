@@ -2,6 +2,7 @@
 .yellow {
     fill: rgb(255, 235, 59) !important;
 }
+
 [contenteditable] {
     border: 1px dashed #2288d3;
     padding: 8px;
@@ -17,8 +18,11 @@
 
 md-chips.md-default-theme md-chip.mdfocused,
 md-chips md-chip.md-focused {
+    /*background-color: #fafafa !important;
+    color: rgba(0, 0, 0, .44);
+    border: 1px solid rgb(97, 97, 97) !important;
+*/
     cursor: default;
-    border-radius: 5px;
     font-size: 12px;
     line-height: 32px;
     margin: 8px 8px 0px 0px;
@@ -27,23 +31,29 @@ md-chips md-chip.md-focused {
     box-sizing: border-box;
     max-width: 100%;
     position: relative;
-    background-color: rgb(224, 224, 224);
     color: rgb(66, 66, 66);
+    border-radius: 50%;
+    border: none;
+    box-shadow: none;
 }
 
 md-chips.md-default-theme md-chip,
 md-chips md-chip {
+    /*border-color: rgba(2, 184, 117, 0.8);*/
+    /*border: 1px solid rgb(97, 97, 97) !important;*/
     cursor: default;
-    border-radius: 5px !important;
+    border-radius: 50%;
+    border: none;
+    box-shadow: none;
     font-size: 12px;
     line-height: 32px;
     margin: 8px 8px 0px 0px;
     padding: 0px 7px;
     float: left;
     box-sizing: border-box;
+    background-color: white;
     max-width: 100%;
     position: relative;
-    background-color: rgb(224, 224, 224);
     color: rgb(66, 66, 66);
 }
 
@@ -51,17 +61,23 @@ md-chips.md-default-theme md-chip.md-focused md-icon,
 md-chips md-chip.md-focused,
 md-chips md-chip.md-focused md-icon {
     color: rgba(0, 0, 0, .44) !important;
+    box-shadow: none;
+}
+
+md-chips.md-default-theme .md-chips,
+md-chips .md-chips {
+    box-shadow: none;
 }
 </style>
 <div layout="row" layout-xs="column" layout-align-gt-xs="center start" flex md-padding>
     <div layout="column" md-padding hide-xs ng-if="studentLoading" flex="15" flex-xs="100" flex-offset-gt-xs="5">
         <center>
-            <img style="border-radius: 5px; width: 40%; margin-top:20px; background-color: #dfdfdf; padding-bottom: 33%" class="div layout=" column " md-padding-image">
+            <img style="border-radius: 5px; width: 100%; margin-top:20px; background-color: #dfdfdf; padding-bottom: 33%" class="div layout=" column " md-padding-image">
             <div layout="column" layout-align="center center">
                 <br>
-                <span class="md-headline">{{student.name}}</span>
+                <span class="md-headline animated-background">student.title</span>
                 <br>
-                <span class="md-subhead" style="padding:0px;color: rgba(0, 0, 0, 0.6);">{{student.college.name}}</span>
+                <span class="md-body-2 animated-background" style="padding:0px;color: rgba(0, 0, 0, 0.6);">student.college.name name name</span>
                 <br>
             </div>
         </center>
@@ -75,7 +91,7 @@ md-chips md-chip.md-focused md-icon {
             </center>
             <section layout="row" layout-align="center center" layout-wrap>
                 <md-list>
-                    <md-button ng-href="{{social.link}}" ng-repeat="social in profile.SocialAccounts.data">
+                    <md-button ng-href="{{social.link}}" ng-repeat="social in student.SocialAccounts.data">
                         <md-icon md-svg-icon="social.type" md-colors="social.type=='facebook' ? {color: 'indigo'} : {color: 'red'}"></md-icon>
                         social.type
                     </md-button>
@@ -84,81 +100,83 @@ md-chips md-chip.md-focused md-icon {
         </div>
         <div layout="row" layout-align="end center">
         </div>
-    </div layout="column" md-padding>
-    <div layout="column" md-padding hide-xs ng-if="!studentLoading" flex="15" flex-xs="100" style="min-width: 20%;">
+    </div>
+    <div layout="column" md-padding hide-xs ng-if="!studentLoading" flex="20" flex-xs="100" style="min-width: 20%;">
         <img style="border-radius: 5px; width: 100%; margin-top:20px; background-color: #ccc;" ng-src="{{student.photo}}" class="div layout=" column " md-padding-image" alt="{{student.name}}">
         <div>
-            <div>
-                <p class="md-headline">{{student.name}}</p>
-                <p class="md-body-2 weight-500"> {{student.college.name}} </p>
-                <md-button style="margin-top: :5px;margin-left: 0px; width: 100%"  class="md-raised md-primary" ng-click="">Edit Profile
-                </md-button>
-                
-            </div>
-        </div>  
+            <p class="md-headline">{{student.name}}</p>
+        </div>
+        <md-divider></md-divider>
         <div>
-            <p class="md-title" >
-                Info
-                <!--  <md-button class="md-icon-button " ng-click="about()" style="float: right; padding-top: 0px;height: 0px;">
-                                        <md-icon md-svg-icon="pencil"></md-icon>
-                                    </md-button> -->
-                                    
+            <p class="md-title">
+                About
             </p>
-             <div layout-align="start start">
-                                <div ng-hide="editAbout" layout="row">
-                                    <p style="color: rgba(0, 0, 0, 0.44)" class="md-subhead weight-500" ng-bind-html="student.subtitle">
-                                    </p>
-                                </div>
-                                <div class="md-body-2" layout="row" ng-show="editAbout">
-                                    <div class="md-body-2" md-colors="{color: 'grey'}" contenteditable ng-model="studentAbout.about">
-                                    </div>
-                                     <!-- <md-button class="md-icon-button md-primary" ng-click="about()" style="overflow: visible;">
-                                        <md-icon class="md-icon-button" md-svg-icon="checkbox-marked-outline"></md-icon>
-                                    </md-button> -->
-                                </div>
-                            </div>
-                             <md-divider></md-divider>
-            <br>
-            
-           
-            <div  ng-show="student.Skills.data[0] || addSkill" ng-init="student.Skills.data[0]? addSkill = true : addSkill = false">
-                <div layout="row">
-                        <p class="md-title" style="width: 100%">
-                                Skills
-                               <!--  <md-button ng-click="skillsEdit()" style="float: right; padding-top: 0px;height: 0px;" class="md-icon-button">
-                                    <md-icon md-svg-icon="pencil" ng-show="readonly"></md-icon>
-                                    <md-icon md-svg-icon="checkbox-marked-outline" ng-hide="readonly"></md-icon>
-                                </md-button> -->
-                            </p>
-
-                             </div>
-                                    <form name="skillsForm">
-                                        <md-chips class="your-custom-chip" name="skills" md-separator-keys="customKeys" ng-model="student.Skills.data" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
-                                            <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Use comma to separate skills.">
-                                                <span md-highlight-text="searchText">{{item.name}}</span>
-                                            </md-autocomplete>
-                                            <md-chip-template>
-                                         <span>       
-                                  <strong>{{$chip.name}}</strong>
-                                  </span>
-                                            </md-chip-template>
-                                        </md-chips>
-                                    </form>
-                            </div>
-                           <!--   <div ng-hide="student.Skills.data[0] || addSkill">
-                             <p class="md-title">
-                                     Skills
-                             </p>
-                                <md-button class="md-body-2" md-colors="{color: 'grey'}" title="Add skills" ng-click="addSkill = true;skillsEdit()" style="float: right; padding-top: 0px;height: 0px;" class="">
-                                    <md-icon class="md-primary" md-svg-icon="plus"></md-icon>
-                                    Add skills you can brag about
-                                </md-button>
-                            </div> -->
-          
+            <div layout="row " layout-align="center " ng-hide="editCollege ">
+                <span class="md-subhead ">{{student.college.name}}</span>
+                <!--                         <md-button class="md-icon-button " ng-click="editCollege=true; ">
+                            <md-icon md-svg-icon="pencil "></md-icon>
+                        </md-button> -->
+            </div>
+            <div class="md-body-2 " layout="column " ng-show="editCollege " style="background-color: #f1f1f1;border-radius: 2px;padding:8px; ">
+                <input class="md-body-2 md-padding " md-colors="{color: 'grey'} " ng-model="studentAbout.about ">
+                </input>
+                <div layout="row " style="padding-top: 8px; " layout-align="space-around center ">
+                    <md-button class="md-raised " ng-click="editCollege=false; ">Cancel
+                    </md-button>
+                    <md-button class="md-raised md-primary " ng-click="editCollege=false; ">Update
+                    </md-button>
+                </div>
+            </div>
+            <div ng-hide="editAbout " layout="row " layout-align="center ">
+                <p class="md-body-2 ">
+                    {{(student.subtitle === null)?"Write about yourself. ":student.subtitle}}
+                </p>
+                <md-button class="md-icon-button " ng-click="about() ">
+                    <md-icon md-svg-icon="pencil "></md-icon>
+                </md-button>
+            </div>
+            <div class="md-body-2 " layout="column " ng-show="editAbout " style="background-color: #f1f1f1;border-radius: 2px;padding:8px; ">
+                <input class="md-body-2 md-padding " md-colors="{color: 'grey'} " ng-model="studentAbout.about ">
+                </input>
+                <div layout="row " style="padding-top: 8px; " layout-align="space-around center ">
+                    <md-button class="md-raised " ng-click="editAbout=false; ">Cancel
+                    </md-button>
+                    <md-button class="md-raised md-primary " ng-click="about() ">Update
+                    </md-button>
+                </div>
+            </div>
+            <md-divider></md-divider>
+            <div layout="row">
+                <p class="md-title">
+                    Skills
+                </p>
+                <span flex></span>
+                <a class="editLink" href="" ng-show="readonly " ng-click="readonly=false; ">Edit
+                    </a>
+            </div>
+            <div style="margin-bottom: 8px;">
+                <md-chips style="box-shadow: none;" ng-model="student.Skills.data" md-transform-chip="transformChip($chip)" readonly="true" md-removable="!readonly">
+                    <md-chip-template>
+                        <span>
+                      <strong>{{$chip.name}}</strong>
+                    </span>
+                    </md-chip-template>
+                </md-chips>
+            </div>
+            <div class="md-body-2" layout="column" ng-hide="readonly" style="background-color: #f1f1f1;border-radius: 2px;padding:8px;">
+                <input class="md-body-2 md-padding" placeholder="Type a skill to brag about" md-colors="{color: 'grey'}" ng-model="add.skill">
+                </input>
+                <div layout="row " style="padding-top: 8px; " layout-align="space-around center">
+                    <md-button class="md-raised " ng-click="readonly=true; ">Cancel
+                    </md-button>
+                    <md-button class="md-raised md-primary " ng-click="readonly=true;updateSkills()">Update
+                    </md-button>
+                </div>
+            </div>
+            <md-divider></md-divider>
             <p class="md-title">
                 Social Accounts
             </p>
-            
             <md-list>
                 <md-list-item class="md-2-line" ng-repeat="social in student.SocialAccounts.data" ng-href="{{social.link}}" target="_blank">
                     <md-icon md-svg-icon="{{social.type}}" md-colors="social.type=='facebook' ? {color: 'indigo'} : {color: 'red'}"></md-icon>
@@ -171,18 +189,69 @@ md-chips md-chip.md-focused md-icon {
             </md-list>
             <md-divider></md-divider>
         </div>
-    </div layout="column" md-padding>
-
-
+    </div>
     <div layout="column" md-padding flex="55" flex-xs="100" flex-offset-gt-xs="5">
         <div>
-            <div>
-             <md-tabs md-dynamic-height md-border-bottom md-selected="tab" style="padding:5px;">
-            <div  show-xs hide-gt-xs>
-                <md-tab label="profile">
+            <div style="padding-bottom: 20px;">
+                <div layout="row" style="width:100%;">
+                    <md-nav-bar hide-xs md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links" style="overflow: visible;">
+                        <md-nav-item md-nav-click="goto('creativity')" name="creativity">
+                            My Creativities
+                            <!--  ({{student.CreativeContents.data.length}}) -->
+                        </md-nav-item>
+                        <md-nav-item md-nav-click="goto('Opportunity')" name="Opportunity">
+                            My Opportunities
+                            <!--  ({{student.Events.data.length}}) -->
+                        </md-nav-item>
+                        <md-nav-item md-nav-click="goto('recomended')" ng-show="student.BookmarkedContents.data.length>0" name="recomended">
+                            Bookmarks
+                            <!--  ({{student.BookmarkedContents.data.length}}) -->
+                        </md-nav-item>
+                        <md-nav-item md-nav-click="goto('RSVPs')" ng-show="student.AttendingEvents.data.length>0" name="RSVPs">
+                            Rsvp
+                            <!--  ({{student.AttendingEvents.data.length}}) -->
+                        </md-nav-item>
+                        <md-nav-item md-nav-click="goto('following')" ng-show="student.Following.data.length>0" name="following">
+                            Following
+                            <!-- ({{student.Following.data.length}}) -->
+                        </md-nav-item>
+                        <md-nav-item md-nav-click="goto('followers')" ng-show="student.Follower.data.length>0" name="followers">
+                            Followers
+                            <!--  ({{student.Follower.data.length}}) -->
+                        </md-nav-item>
+                    </md-nav-bar>
+                    <div layout="row" hide-gt-xs style="width:100%;overflow-x: auto;">
+                        <md-button ng-click="goto('profile')" style="min-width: 80px;">Profile</md-button>
+                        <md-button ng-click="goto('creativity')" name="creativity" style="min-width: 130px;">
+                            My Creativities
+                            <!--  ({{student.CreativeContents.data.length}}) -->
+                        </md-button>
+                        <md-button ng-click="goto('Opportunity')" name="Opportunity" style="min-width: 155px;">
+                            My Opportunities
+                            <!--  ({{student.Events.data.length}}) -->
+                        </md-button>
+                        <md-button ng-click="goto('recomended')" ng-show="student.BookmarkedContents.data.length>0" name="recomended" style="min-width: 100px;">
+                            Bookmarks
+                            <!-- ({{student.BookmarkedContents.data.length}}) -->
+                        </md-button>
+                        <md-button ng-click="goto('RSVPs')" ng-show="student.AttendingEvents.data.length>0" name="RSVPs" style="min-width: 80px;">
+                            Rsvp
+                            <!--  ({{student.AttendingEvents.data.length}}) -->
+                        </md-button>
+                        <md-button ng-click="goto('following')" ng-show="student.Following.data.length>0" name="following" style="min-width: 100px;">
+                            Following
+                            <!--  ({{student.Following.data.length}}) -->
+                        </md-button>
+                        <md-button ng-click="goto('followers')" ng-show="student.Follower.data.length>0" name="followers" style="min-width: 100px;">
+                            Followers
+                            <!--  ({{student.Follower.data.length}}) -->
+                        </md-button>
+                    </div>
+                </div>
+                <md-divider></md-divider>
                 <div layout="column" md-padding show-xs hide-gt-xs ng-if="studentLoading">
                     <center>
-                        <img  style="border-radius: 5px; width: 100%; background-color: #dfdfdf; padding-bottom: 33%" class="div layout=" column " md-padding-image">
+                        <img style="border-radius: 5px; width: 100%; background-color: #dfdfdf; padding-bottom: 33%" class="div layout=" column " md-padding-image">
                         <div layout="column" layout-align="center center">
                             <br>
                             <span class="md-headline animated-background">student.title </span>
@@ -210,153 +279,118 @@ md-chips md-chip.md-focused md-icon {
                     </div>
                     <div layout="row" layout-align="end center">
                     </div>
-                </div layout="column" md-padding>
-
-                <div show-xs  hide-gt-xs ng-if="!studentLoading">
-                        <div layout="row" layout-align="center center">
-                            <img flex="30" style="width: 20%; height: 20%; margin-top:20px; background-color: #ccc;" ng-src="{{student.photo}}" class="div layout=" column " md-padding-image" alt="{{student.name}}">
-                            <md-card-title flex="70">
-                                <md-card-title-text layout="column">
-                                    <span class="md-title" style="margin-top: :5px;margin-left: 10px;">{{student.name}}</span>
-                                    <br>
-                                    <span class="md-caption" style="margin-top: :5px;margin-left: 10px;">
-                                    <!-- <md-icon md-svg-icon="school"></md-icon> -->
-                                     {{student.college.name}}</span>
-                                     <md-button style="margin-top: :5px;margin-left: 10px; width: 50%;"  class="md-raised md-primary" ng-click="">Edit Profile
-                </md-button>
-                                </md-card-title-text>
-                            </md-card-title>
+                </div>
+                <div show-xs hide-gt-xs ng-if="!studentLoading" ng-hide="(currentNavItem!='profile')" style="padding: 16px;">
+                    <div layout="row">
+                        <div flex="35" layout="column">
+                            <img class="profile-image" ng-src="{{student.photo}}" alt="{{student.name}}">
                         </div>
-                        <md-card-content>
-                         <p class="md-title">
-                                    Info
-                                </p>
-                            <div layout-align="start start">
-                                <div ng-hide="editAbout" layout="row">
-
-                                    <p style="color: rgba(0, 0, 0, 0.44)" class="md-subhead weight-500" ng-bind-html="student.subtitle">
-                                    </p>
-                                    <span flex></span>
-                                   <!--  <md-button class="md-icon-button" ng-click="about()">
-                                        <md-icon md-svg-icon="pencil"></md-icon>
-                                    </md-button> -->
-                                </div>
-                                <!-- <div class="md-body-2" layout="row" ng-show="editAbout">
-                                    <div class="md-body-2" md-colors="{color: 'grey'}" contenteditable ng-model="studentAbout.about">
-                                    </div>
-                                    <md-button class="md-icon-button md-primary" ng-click="about()">
-                                        <md-icon class="md-icon-button" md-svg-icon="checkbox-marked-outline"></md-icon>
-                                    </md-button>
-                                </div> -->
-                            </div>
-                            <p class="md-title">
-                                    Skills
-                                </p>
-                            <div ng-hide="student.Skills.data[0] || addSkill">
-                               
-                                
-                              <!--   <md-button class="md-body-2" md-colors="{color: 'grey'}" title="Add skills" ng-click="addSkill = true;skillsEdit()" class="">
-                                    <md-icon class="md-primary" md-svg-icon="plus"></md-icon>
-                                    Add skills you can brag about
-                                </md-button> -->
-                                <!-- </span> -->
-                            </div>
-                             <div layout-align="start start" ng-show="student.Skills.data[0] || addSkill" ng-init="student.Skills.data[0]? addSkill = true : addSkill = false">
-                                <div layout="row">
-                                    <form name="skillsForm">
-                                        <md-chips class="your-custom-chip" name="skills" md-separator-keys="customKeys" ng-model="student.Skills.data" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
-                                            <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Use comma to separate skills.">
-                                                <span md-highlight-text="searchText">{{item.name}}</span>
-                                            </md-autocomplete>
-                                            <md-chip-template>
-                                                <span>
-                                  <strong>{{$chip.name}}</strong>
-                                </span>
-                                            </md-chip-template>
-                                        </md-chips>
-                                    </form>
-                                    <span flex></span>
-                                    <!-- <md-button ng-click="skillsEdit()" class="md-icon-button">
-                                        <md-icon md-svg-icon="pencil" ng-show="readonly"></md-icon>
-                                        <md-icon md-svg-icon="checkbox-marked-outline" ng-hide="readonly"></md-icon>
-                                    </md-button> -->
-                                </div>
-                            </div>
-
-                            <br>
-                            <p class="md-title">
-                                    Social Accounts
-                                </p>
-                             <a style="margin-bottom: 10px;" ng-repeat="social in student.SocialAccounts.data" ng-href="{{social.link}}">
-                                <md-icon md-svg-icon="{{social.type}}" md-colors="social.type=='facebook' ? {color: 'indigo'} : {color: 'red'}"></md-icon>
-                            </a>
-                            <br>
-                            <br>
-                        </md-card-content>
-                        </md-tab>
-                    </div>.
-
-                <md-tab label="Content">
-                    <div class="md-padding" layout-fill>
-                        <div style="margin-top: 5%;" layout="column" layout-align="center center" ng-show="student.CreativeContents.data.length == 0">
-                            <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCIgdmlld0JveD0iMCAwIDE1MC4yMjMgMTUwLjIyMyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTUwLjIyMyAxNTAuMjIzOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTExNS44ODUsMzguNjMxYy0yMS4zMTIsMC0zNS40MTYsMTcuNDI1LTQ3Ljg1OSwzMi44MDJjLTEwLjYzMSwxMy4xMzYtMjAuNjcsMjUuNTQtMzIuODk3LDI1LjU0ICAgIGMtMTIuNzA5LDAtMjAuNTEyLTEzLjA2Mi0yMC41MTItMjIuNDI2YzAtOC42ODIsOC41Ni0yMS4yOTksMjEuOTc2LTIxLjI5OWMxMy4wMTgsMCwxOS44LDEwLjQxOSwyMC4xNDIsMTAuOTUzICAgIGMyLjEwOSwzLjQxMyw2LjU4Nyw0LjQ4NywxMC4wMTcsMi4zOTVjMy40NDctMi4xLDQuNTM5LTYuNTk3LDIuNDM4LTEwLjA0NGMtMC40NDYtMC43My0xMS4xNjctMTcuOTItMzIuNTk3LTE3LjkyICAgIEMxNS4wMjksMzguNjMyLDAsNTcuNTYyLDAsNzQuNTQ4YzAsMTcuNTIxLDE0LjQyNywzNy4wNDMsMzUuMTI4LDM3LjA0M2MxOS4xOTksMCwzMS45NC0xNS43NCw0NC4yNTktMzAuOTYzICAgIGMxMS4zOTYtMTQuMDc4LDIyLjE2MS0yNy4zNzksMzYuNDk4LTI3LjM3OWM4LjUzLDAsMTQuMTM1LDIuODk0LDE3LjEzMSw4Ljg0YzIuNTk2LDUuMTYsMi41OTQsMTAuOTk5LDIuNTkyLDEzLjAyMiAgICBjMCwxLjE2LTAuNjEzLDYuOTc4LTMuNDUxLDEyLjIxN2MtMy4yMzYsNS45NjgtNy44Myw4Ljc0Ni0xNC40NjksOC43NDZjLTEzLjM2OSwwLTIwLjU5Mi04LjY5LTIzLjMxMi0xMS45NjMgICAgYy0wLjcwNy0wLjg1Mi0xLjIxNi0xLjQ2NS0xLjg5Ni0yLjA0N2MtMy4wNjItMi42MjMtNy42NzgtMi4yNzEtMTAuMzA2LDAuNzk1Yy0yLjUzNCwyLjk1Ny0yLjI5LDcuMzUzLDAuNDc4LDEwLjAxNCAgICBjMC4xMzIsMC4xNSwwLjI5MSwwLjM0NywwLjQ4LDAuNTc2YzMuNTQ1LDQuMjY2LDE0LjMyNCwxNy4yNCwzNC41NTMsMTcuMjRjMjQuNTg2LDAsMzIuNTM3LTIzLjk3MywzMi41MzctMzUuNjc4ICAgIGMwLjAwMi03LjQ1NS0xLjM5NC0xNC4wMTMtNC4xNTQtMTkuNDk2QzE0Mi4xOTMsNDcuODE1LDEzMy44MDksMzguNjMxLDExNS44ODUsMzguNjMxeiIgZmlsbD0iIzg5OGQ5MSIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
-                            <p class="md-subhead" style="color:rgba(0,0,0,.44)">Looks like you haven't added anything yet</p>
-                            <md-button class="md-primary" ui-sref="home.addCreativity">
-                                <md-icon class="md-primary" md-svg-icon="plus-circle-outline"></md-icon> Add Creative Content</md-button>
-                        </div>
-                        <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in [1,2,3,4]">
-                            <md-card ng-show="loading" flex="100" flex-gt-sm="60">
-                                <md-card-header>
-                                    <md-card-avatar style="background: #f6f7f8">
-                                        <img class="md-user-avatar" />
-                                    </md-card-avatar>
-                                    <md-card-header-text>
-                                        <span style="width: 30%" class=" animated-background">Anything here </span>
-                                    </md-card-header-text>
-                                </md-card-header>
-                                <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
-                            </md-card>
-                        </div>
-                        <div flex layout="row" layout-wrap layout-align="center center">
-                            <md-list flex>
-                                <md-list-item class="md-2-line" ui-sref="home.singleContent({contentId: content.id})" ng-repeat="content in student.CreativeContents.data track by $index">
-                                    <img ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
-                                    <div class="md-list-item-text" layout="column">
-                                        <h3>{{ content.title }}</h3>
-                                        <h4>{{ content.created.at | date: ' d MMM'}}</h4>
-                                    </div>
-                                    <md-button class="md-warn" aria-label="participants" ng-click="deleteContent($event, content, $index)" md-ripple-size="auto">
-                                    <md-icon md-svg-icon="delete"></md-icon>
-                                    Delete
-                                    </md-button>
-                                </md-list-item>
-                                <md-divider></md-divider>
-                            </md-list>
+                        <div flex="65" layout="column" style="padding-left: 16px;">
+                            <span class="md-subhead" style="font-size: 20px;">{{student.name}}</span>
+                            <span class="md-subhead" style="color: #636C74; font-size: 14px;margin-top: 2px;">@{{student.username}}</span>
                         </div>
                     </div>
-                </md-tab>
-                <md-tab label="Opportunity">
-                    <div class="md-padding">
-                        <div style="margin-top: 5%;" layout="column" ng-show="student.Events.data.length == 0" layout-align="center center">
-                            <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDYwIDYwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA2MCA2MDsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI2NHB4IiBoZWlnaHQ9IjY0cHgiPgo8Zz4KCTxwYXRoIGQ9Ik01Nyw0aC03VjFjMC0wLjU1My0wLjQ0Ny0xLTEtMWgtN2MtMC41NTMsMC0xLDAuNDQ3LTEsMXYzSDE5VjFjMC0wLjU1My0wLjQ0Ny0xLTEtMWgtN2MtMC41NTMsMC0xLDAuNDQ3LTEsMXYzSDMgICBDMi40NDcsNCwyLDQuNDQ3LDIsNXYxMXY0M2MwLDAuNTUzLDAuNDQ3LDEsMSwxaDU0YzAuNTUzLDAsMS0wLjQ0NywxLTFWMTZWNUM1OCw0LjQ0Nyw1Ny41NTMsNCw1Nyw0eiBNNDMsMmg1djN2M2gtNVY1VjJ6IE0xMiwyaDUgICB2M3YzaC01VjVWMnogTTQsNmg2djNjMCwwLjU1MywwLjQ0NywxLDEsMWg3YzAuNTUzLDAsMS0wLjQ0NywxLTFWNmgyMnYzYzAsMC41NTMsMC40NDcsMSwxLDFoN2MwLjU1MywwLDEtMC40NDcsMS0xVjZoNnY5SDRWNnogICAgTTQsNThWMTdoNTJ2NDFINHoiIGZpbGw9IiM4OThkOTEiLz4KCTxwYXRoIGQ9Ik0zOCwyM2gtN2gtMmgtN2gtMmgtOXY5djJ2N3YydjloOWgyaDdoMmg3aDJoOXYtOXYtMnYtN3YtMnYtOWgtOUgzOHogTTMxLDI1aDd2N2gtN1YyNXogTTM4LDQxaC03di03aDdWNDF6IE0yMiwzNGg3djdoLTcgICBWMzR6IE0yMiwyNWg3djdoLTdWMjV6IE0xMywyNWg3djdoLTdWMjV6IE0xMywzNGg3djdoLTdWMzR6IE0yMCw1MGgtN3YtN2g3VjUweiBNMjksNTBoLTd2LTdoN1Y1MHogTTM4LDUwaC03di03aDdWNTB6IE00Nyw1MGgtNyAgIHYtN2g3VjUweiBNNDcsNDFoLTd2LTdoN1Y0MXogTTQ3LDI1djdoLTd2LTdINDd6IiBmaWxsPSIjODk4ZDkxIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" />
-                            <p class="md-subhead" style="color:rgba(0,0,0,.44)">Looks like you haven't added anything yet</p>
-                            <md-button class="md-primary" ui-sref="home.addEvent">
-                                <md-icon class="md-primary" md-svg-icon="plus-circle-outline"></md-icon> Add event</md-button>
+                    <div>
+                        <div layout="row" style="margin-top: 16px;">
+                            <span class="profile-section-title">About</span>
+                            <span flex></span>
+                            <span class="profile-edit-link" ng-hide="editAbout" ng-click="editAbout=true;">
+                                Edit
+                            </span>
                         </div>
-                        <div layout="row" ng-hide="!vm.activated" layout-sm="column" layout-align="space-around">
-                            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                        <div style="margin-top: 16px;">
+                            <div ng-hide="editAbout" layout="row" layout-align="start">
+                                <span class="profile-subtitle">{{(student.subtitle === null)?"Write about yourself. ":student.subtitle}}</span>
+                            </div>
+                            <div ng-show="editAbout" class="md-body-2" layout="column" style="background-color: #f1f1f1;border-radius: 2px;padding:8px; ">
+                                <input class="md-body-2 md-padding " md-colors="{color: 'grey'} " ng-model="studentAbout.about ">
+                                </input>
+                                <div layout="row " style="padding-top: 8px; " layout-align="space-around center ">
+                                    <md-button class="md-raised" ng-click="editAbout=false;">Cancel</md-button>
+                                    <md-button class="md-raised md-primary" ng-click="about() ">Update</md-button>
+                                </div>
+                            </div>
                         </div>
-                        <md-list>
-                            <md-list-item ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding" ng-repeat="event in student.Events.data ">
-                                <img ng-src="{{event.image}}" class="md-avatar" alt="{{item.who}}">
-                                <p>{{event.title}}</p>
-                                <md-button class="md-primary" aria-label="participants" ng-click="showParticipants(event)" md-ripple-size="auto">Participants</md-button>
-                                <md-divider md-inset ng-if="!$last"></md-divider>
-                            </md-list-item>
-                        </md-list>
                     </div>
-                </md-tab>
-                <md-tab label="Bookmarks" ng-if="student.BookmarkedContents.data.length>0">
+                    <md-divider style="margin-top:16px;"></md-divider>
+                    <div>
+                        <div layout="row" style="margin-top: 16px;">
+                            <span class="profile-section-title">Skills</span>
+                            <span flex></span>
+                            <span class="profile-edit-link" ng-hide="editSkills" ng-click="editSkills=true;">
+                                Edit
+                            </span>
+                        </div>
+                        <div style="margin-top:16px;">
+                            <md-chips readonly=!editSkills; ng-hide="student.Skills.data.length==0" md-removable="editSkills" style="box-shadow: none;" ng-model="student.Skills.data" md-transform-chip="transformChip($chip)" md-max-chips="5">
+                                <md-chip-template>
+                                    <a class="skill-item-text" ui-sref="home.searchAll({query: '{{$chip.name}}'})">
+                                        <span>{{$chip.name}}</span>
+                                    </a>
+                                </md-chip-template>
+                            </md-chips>
+                            <span class="profile-text-data" ng-show="student.Skills.data.length==0">You haven't added any skills!</span>
+                            <div ng-show="editSkills" class="md-body-2" layout="column" style="background-color: #f1f1f1;border-radius: 2px;padding:8px;">
+                                <input class="md-body-2 md-padding" placeholder="Type a skill to brag about" md-colors="{color: 'grey'}" ng-model="add.skill">
+                                </input>
+                                <div layout="row " style="padding-top: 8px; " layout-align="space-around center">
+                                    <md-button class="md-raised" ng-click="editSkills=false;">Close</md-button>
+                                    <md-button class="md-raised md-primary" ng-click="updateSkills();">Update</md-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <md-divider style="margin-top:16px;"></md-divider>
+                    <div style="margin-top: 16px;">
+                        <div layout="row">
+                            <span class="profile-section-title">Info</span>
+                            <span flex></span>
+                            <!-- When info editing/Adding is ready -->
+                            <!-- <span class="profile-edit-link" ng-hide="editInfo" ng-click="editInfo=true;">
+                                Add info
+                            </span> -->
+                        </div>
+                        <div layout="row" layout-align="start start" ng-hide="student.college.name == 'No College Selected' || student.college.name == NULL" class="profile-text-data" style="margin-top: 16px;">
+                            <div style="height: 18px; width: 18px; margin-right: 16px;">
+                                <md-icon class="profile-icon" md-svg-icon="school" style="margin-right: 16px"></md-icon>
+                            </div>{{student.college.name}}
+                        </div>
+                        <div layout="row" layout-align="start start" ng-hide="student.about.home_city == NULL" class="profile-text-data" style="margin-top: 16px;">
+                            <div style="height: 18px; width: 18px; margin-right: 16px;">
+                                <md-icon class="profile-icon" md-svg-icon="home" /></md-icon>
+                            </div>{{student.about.home_city}}
+                        </div>
+                        <div layout="row" layout-align="start start" ng-hide="student.about.birthday == 'Not set'" class="profile-text-data" style="margin-top: 16px;">
+                            <div style="height: 18px; width: 18px; margin-right: 16px;">
+                                <md-icon class="profile-icon" class="profile-icon" md-svg-icon="cake"></md-icon>
+                            </div>{{student.about.created_on}}
+                        </div>
+                        <div layout="row" layout-align="start start" class="profile-text-data" style="margin-top: 16px;">
+                            <div style="height: 18px; width: 18px; margin-right: 16px;">
+                                <md-icon class="profile-icon" md-svg-icon="face" style="margin-right: 16px"></md-icon>
+                            </div>Member since {{student.about.created_on}}
+                        </div>
+                    </div>
+                    <md-divider style="margin-top: 16px;"></md-divider>
+                    <p class="profile-section-title">Social</p>
+                    <div>
+                        <a layout="row"  ng-repeat="social in student.SocialAccounts.data" ng-href="{{social.link}}" style="text-decoration: none; margin-bottom: 16px" class="profile-text-data" target="_blank">
+                            <div style="height: 18px; width: 18px; margin-right: 16px;">
+                                <md-icon class="profile-icon" md-svg-icon="{{social.type}}" style="margin-right: 16px"></md-icon>
+                            </div><span style="text-transform: capitalize;">{{social.type}}</span>
+                        </a>
+                    </div>
+                    </md-card-content>
+                </div>
+            </div>
+            <div label="creativity" ng-hide="(currentNavItem!='creativity')">
+                <div class="md-padding" layout-fill>
+                    <div style="margin-top: 5%;" layout="column" layout-align="center center" ng-show="student.CreativeContents.data.length == 0">
+                        <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCIgdmlld0JveD0iMCAwIDE1MC4yMjMgMTUwLjIyMyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTUwLjIyMyAxNTAuMjIzOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTExNS44ODUsMzguNjMxYy0yMS4zMTIsMC0zNS40MTYsMTcuNDI1LTQ3Ljg1OSwzMi44MDJjLTEwLjYzMSwxMy4xMzYtMjAuNjcsMjUuNTQtMzIuODk3LDI1LjU0ICAgIGMtMTIuNzA5LDAtMjAuNTEyLTEzLjA2Mi0yMC41MTItMjIuNDI2YzAtOC42ODIsOC41Ni0yMS4yOTksMjEuOTc2LTIxLjI5OWMxMy4wMTgsMCwxOS44LDEwLjQxOSwyMC4xNDIsMTAuOTUzICAgIGMyLjEwOSwzLjQxMyw2LjU4Nyw0LjQ4NywxMC4wMTcsMi4zOTVjMy40NDctMi4xLDQuNTM5LTYuNTk3LDIuNDM4LTEwLjA0NGMtMC40NDYtMC43My0xMS4xNjctMTcuOTItMzIuNTk3LTE3LjkyICAgIEMxNS4wMjksMzguNjMyLDAsNTcuNTYyLDAsNzQuNTQ4YzAsMTcuNTIxLDE0LjQyNywzNy4wNDMsMzUuMTI4LDM3LjA0M2MxOS4xOTksMCwzMS45NC0xNS43NCw0NC4yNTktMzAuOTYzICAgIGMxMS4zOTYtMTQuMDc4LDIyLjE2MS0yNy4zNzksMzYuNDk4LTI3LjM3OWM4LjUzLDAsMTQuMTM1LDIuODk0LDE3LjEzMSw4Ljg0YzIuNTk2LDUuMTYsMi41OTQsMTAuOTk5LDIuNTkyLDEzLjAyMiAgICBjMCwxLjE2LTAuNjEzLDYuOTc4LTMuNDUxLDEyLjIxN2MtMy4yMzYsNS45NjgtNy44Myw4Ljc0Ni0xNC40NjksOC43NDZjLTEzLjM2OSwwLTIwLjU5Mi04LjY5LTIzLjMxMi0xMS45NjMgICAgYy0wLjcwNy0wLjg1Mi0xLjIxNi0xLjQ2NS0xLjg5Ni0yLjA0N2MtMy4wNjItMi42MjMtNy42NzgtMi4yNzEtMTAuMzA2LDAuNzk1Yy0yLjUzNCwyLjk1Ny0yLjI5LDcuMzUzLDAuNDc4LDEwLjAxNCAgICBjMC4xMzIsMC4xNSwwLjI5MSwwLjM0NywwLjQ4LDAuNTc2YzMuNTQ1LDQuMjY2LDE0LjMyNCwxNy4yNCwzNC41NTMsMTcuMjRjMjQuNTg2LDAsMzIuNTM3LTIzLjk3MywzMi41MzctMzUuNjc4ICAgIGMwLjAwMi03LjQ1NS0xLjM5NC0xNC4wMTMtNC4xNTQtMTkuNDk2QzE0Mi4xOTMsNDcuODE1LDEzMy44MDksMzguNjMxLDExNS44ODUsMzguNjMxeiIgZmlsbD0iIzg5OGQ5MSIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
+                        <p class="md-subhead" style="color:rgba(0,0,0,.44)">Looks like you haven't added anything yet</p>
+                        <md-button class="md-primary" ui-sref="home.addCreativity">
+                            <md-icon class="md-primary" md-svg-icon="plus-circle-outline"></md-icon> Add Creative Content</md-button>
+                    </div>
                     <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in [1,2,3,4]">
                         <md-card ng-show="loading" flex="100" flex-gt-sm="60">
                             <md-card-header>
@@ -372,80 +406,176 @@ md-chips md-chip.md-focused md-icon {
                     </div>
                     <div flex layout="row" layout-wrap layout-align="center center">
                         <md-list flex>
-                            <md-list-item class="md-3-line" ng-repeat="content in student.BookmarkedContents.data track by $index" ui-sref="home.singleContent({contentId: content.id})">
+                            <md-list-item class="md-2-line md-no-proxy" ui-sref="home.singleContent({contentId: content.id})" ng-repeat="content in student.CreativeContents.data track by $index">
                                 <img ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
                                 <div class="md-list-item-text" layout="column">
                                     <h3>{{ content.title }}</h3>
                                     <h4>{{ content.created.at | date: ' d MMM'}}</h4>
-                                    <p>
-                                        <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
-                                            <li ng-repeat="tag in content.Tags" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">{{tag.name}}</li>
-                                        </ul>
-                                    </p>
                                 </div>
+                                <md-menu>
+                                    <md-button aria-label="Option Menu Creativity" class="md-icon-button" ng-click="openMenu($mdMenu,$event);">
+                                        <md-icon md-menu-origin md-svg-src="assets/svg/ic_down.svg"></md-icon>
+                                    </md-button>
+                                    <md-menu-content width="2">
+                                        <!--                                         <md-menu-item>
+                                            <md-button class="md-warn" aria-label="participants" ng-click="" md-ripple-size="auto" style="color: #149370;">
+                                                <md-icon md-svg-icon="pencil" style="color: #149370;"></md-icon>
+                                                Edit
+                                            </md-button>
+                                        </md-menu-item> -->
+                                        <md-menu-item>
+                                            <md-button class="md-primary" aria-label="participants" ng-click="unPublishAndMoveToDraft(content, $index)" md-ripple-size="auto">
+                                                <!--                                                 <md-icon md-svg-icon="edit"></md-icon>
+ -->UnPublish
+                                            </md-button>
+                                        </md-menu-item>
+                                        <md-menu-item>
+                                            <md-button class="md-warn" aria-label="participants" ng-click="deleteContent($event, content, $index)" md-ripple-size="auto">
+                                                <!--                                                 <md-icon md-svg-icon="delete"></md-icon>
+ -->Delete
+                                            </md-button>
+                                        </md-menu-item>
+                                    </md-menu-content>
+                                </md-menu>
                             </md-list-item>
                             <md-divider></md-divider>
                         </md-list>
                     </div>
-                </md-tab>
-                <md-tab label="RSVPs" ng-if="student.AttendingEvents.data.length">
-                    <div class="md-padding">
-                        <div layout="row" ng-hide="!vm.activated" layout-sm="column" layout-align="space-around">
-                            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                </div>
+            </div>
+            <div label="Opportunity" ng-hide="(currentNavItem!='Opportunity')">
+                <div class="md-padding">
+                    <div style="margin-top: 5%;" layout="column" ng-show="student.Events.data.length == 0" layout-align="center center">
+                        <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDYwIDYwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA2MCA2MDsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI2NHB4IiBoZWlnaHQ9IjY0cHgiPgo8Zz4KCTxwYXRoIGQ9Ik01Nyw0aC03VjFjMC0wLjU1My0wLjQ0Ny0xLTEtMWgtN2MtMC41NTMsMC0xLDAuNDQ3LTEsMXYzSDE5VjFjMC0wLjU1My0wLjQ0Ny0xLTEtMWgtN2MtMC41NTMsMC0xLDAuNDQ3LTEsMXYzSDMgICBDMi40NDcsNCwyLDQuNDQ3LDIsNXYxMXY0M2MwLDAuNTUzLDAuNDQ3LDEsMSwxaDU0YzAuNTUzLDAsMS0wLjQ0NywxLTFWMTZWNUM1OCw0LjQ0Nyw1Ny41NTMsNCw1Nyw0eiBNNDMsMmg1djN2M2gtNVY1VjJ6IE0xMiwyaDUgICB2M3YzaC01VjVWMnogTTQsNmg2djNjMCwwLjU1MywwLjQ0NywxLDEsMWg3YzAuNTUzLDAsMS0wLjQ0NywxLTFWNmgyMnYzYzAsMC41NTMsMC40NDcsMSwxLDFoN2MwLjU1MywwLDEtMC40NDcsMS0xVjZoNnY5SDRWNnogICAgTTQsNThWMTdoNTJ2NDFINHoiIGZpbGw9IiM4OThkOTEiLz4KCTxwYXRoIGQ9Ik0zOCwyM2gtN2gtMmgtN2gtMmgtOXY5djJ2N3YydjloOWgyaDdoMmg3aDJoOXYtOXYtMnYtN3YtMnYtOWgtOUgzOHogTTMxLDI1aDd2N2gtN1YyNXogTTM4LDQxaC03di03aDdWNDF6IE0yMiwzNGg3djdoLTcgICBWMzR6IE0yMiwyNWg3djdoLTdWMjV6IE0xMywyNWg3djdoLTdWMjV6IE0xMywzNGg3djdoLTdWMzR6IE0yMCw1MGgtN3YtN2g3VjUweiBNMjksNTBoLTd2LTdoN1Y1MHogTTM4LDUwaC03di03aDdWNTB6IE00Nyw1MGgtNyAgIHYtN2g3VjUweiBNNDcsNDFoLTd2LTdoN1Y0MXogTTQ3LDI1djdoLTd2LTdINDd6IiBmaWxsPSIjODk4ZDkxIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" />
+                        <p class="md-subhead" style="color:rgba(0,0,0,.44)">Looks like you haven't added anything yet</p>
+                        <md-button class="md-primary" ui-sref="home.addEvent">
+                            <md-icon class="md-primary" md-svg-icon="plus-circle-outline"></md-icon> Add event</md-button>
+                    </div>
+                    <div layout="row" ng-hide="!vm.activated" layout-sm="column" layout-align="space-around">
+                        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                    </div>
+                    <md-list>
+                        <md-list-item ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding md-no-proxy" ng-repeat="event in student.Events.data ">
+                            <img ng-src="{{event.image}}" class="md-avatar" alt="{{item.who}}">
+                            <p>{{event.title}}</p>
+                            <!-- <md-button class="md-primary" aria-label="participants" ng-click="showParticipants(event)" md-ripple-size="auto">Participants</md-button> -->
+                            <md-divider md-inset ng-if="!$last"></md-divider>
+                            <!-- comment this when draft system is made -->
+                            <md-button class="md-warn" aria-label="deleteEvent" ng-click="deleteEvent($event, event, $index)" md-ripple-size="auto">Delete</md-button>
+                            <!-- Uncomment it when draft system is build  -->
+                            <!-- <md-menu>
+                                    <md-button aria-label="Option Menu Creativity" class="md-icon-button" ng-click="openMenu($mdMenu,$event);">
+                                        <md-icon md-menu-origin md-svg-src="assets/svg/ic_down.svg"></md-icon>
+                                    </md-button>
+                                    <md-menu-content width="2">
+                                        <md-menu-item>
+                                        <md-button class="md-warn" aria-label="deleteEvent" ng-click="deleteEvent($event,event, $index)" md-ripple-size="auto">Delete</md-button>
+                                        </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button class="md-primary"  md-colors="{color: 'grey'}" aria-label="draftEvent" ng-click="eventToDraft(event, $index)" md-ripple-size="auto">Save to Draft</md-button>
+                                        </md-menu-item>
+                                        <md-menu-item>
+                                            <md-button class="md-warn" aria-label="modifyEvent" ng-click="" md-ripple-size="auto" style="color: #149370;">
+                                                Modify
+                                            </md-button>
+                                        </md-menu-item>
+                                    </md-menu-content>
+                                </md-menu> -->
+                        </md-list-item>
+                    </md-list>
+                </div>
+                <md-divider></md-divider>
+            </div>
+            <div label="recomended" ng-show="(currentNavItem=='recomended')">
+                <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in [1,2,3,4]">
+                    <md-card ng-show="loading" flex="100" flex-gt-sm="60">
+                        <md-card-header>
+                            <md-card-avatar style="background: #f6f7f8">
+                                <img class="md-user-avatar" />
+                            </md-card-avatar>
+                            <md-card-header-text>
+                                <span style="width: 30%" class=" animated-background">Anything here </span>
+                            </md-card-header-text>
+                        </md-card-header>
+                        <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
+                    </md-card>
+                </div>
+                <div flex layout="row" layout-wrap layout-align="center center">
+                    <md-list flex>
+                        <md-list-item class="md-3-line" ng-repeat="content in student.BookmarkedContents.data track by $index" ui-sref="home.singleContent({contentId: content.id})">
+                            <img ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
+                            <div class="md-list-item-text" layout="column">
+                                <h3>{{ content.title }}</h3>
+                                <h4>{{ content.created.at | date: ' d MMM'}}</h4>
+                                <p>
+                                    <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
+                                        <li ng-repeat="tag in content.Tags" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">{{tag.name}}</li>
+                                    </ul>
+                                </p>
+                            </div>
+                            <!-- <md-button style="float:right" class="md-no-proxy" ng-click="unBookmark(content,$index)" aria-label="Favorite ">
+                                <md-icon ng-class="md-primary" md-svg-icon="bookmark"></md-icon>
+                            </md-button> -->
+                            <md-button style="float:right" class="md-warn" ng-click="unBookmark(content,$index)" aria-label="Favorite ">
+                                Remove
+                            </md-button>
+                        </md-list-item>
+                        <md-divider></md-divider>
+                    </md-list>
+                </div>
+            </div>
+            <div label="RSVPs" ng-show="(currentNavItem=='RSVPs')" ng-if="student.AttendingEvents.data.length">
+                <div class="md-padding">
+                    <div layout="row" ng-hide="!vm.activated" layout-sm="column" layout-align="space-around">
+                        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                    </div>
+                    <md-list>
+                        <md-list-item ui-sref="home.singleEvent({eventId: event.id})" class="md-2-line" ng-repeat="event in student.AttendingEvents.data track by $index">
+                            <img ng-src="{{event.image}}" class="md-avatar" alt="{{item.who}}">
+                            <div class="md-list-item-text">
+                                <h3>{{event.title}}</h3>
+                                <p>{{event.timings.from.date | date: ' d MMM'}} {{event.timings.to.date==event.timings.from.date?null:event.timings.to.date | date: '- d MMM'}}</p>
+                            </div>
+                            <md-button class="md-warn" aria-label="participants" ng-click="cancelRsvp($event, event, $index)" md-ripple-size="auto">Cancel</md-button>
+                            <md-divider md-inset ng-if="!$last"></md-divider>
+                        </md-list-item>
+                    </md-list>
+                </div>
+            </div>
+            <div label="following" ng-show="(currentNavItem=='following')" ng-if="student.Following.data.length">
+                <div class="md-padding">
+                    <md-list-item class="md-3-line" ui-sref="home.profile({username: item.username})" ng-repeat="item in student.Following.data track by $index" ng-click="null">
+                        <img ng-src="{{item.photo}}" class="md-avatar" alt="" />
+                        <div class="md-list-item-text" layout="row">
+                            <div layout="column">
+                                <h3>{{ item.title }} </h3>
+                                <p>{{ item.about }}</p>
+                            </div>
+                            <span flex></span>
                         </div>
-                        <md-list>
-                            <md-list-item ui-sref="home.singleEvent({eventId: event.id})" class="md-2-line" ng-repeat="event in student.AttendingEvents.data track by $index">
-                                <img ng-src="{{event.image}}" class="md-avatar" alt="{{item.who}}">
-                                <div class="md-list-item-text">
-                                    <h3>{{event.title}}</h3>
-                                    <p>{{event.timings.from.date | date: ' d MMM'}} {{event.timings.to.date==event.timings.from.date?null:event.timings.to.date | date: '- d MMM'}}</p>
-                                </div>
-                                <md-button class="md-warn" aria-label="participants" ng-click="cancelRsvp($event, event, $index)" md-ripple-size="auto">Cancel</md-button>
-                                <md-divider md-inset ng-if="!$last"></md-divider>
-                            </md-list-item>
-                        </md-list>
-                    </div>
-                </md-tab>
-                <md-tab ng-if="student.Following.data.length>0">
-                    <md-tab-label>Following ({{student.Following.data.length}}) </md-tab-label>
-                    <md-tab-body>
-                        <md-list flex>
-                            <md-list-item class="md-3-line" ui-sref="home.profile({username: item.username})" ng-repeat="item in student.Following.data track by $index" ng-click="null">
-                                <img ng-src="{{item.photo}}" class="md-avatar" alt="" />
-                                <div class="md-list-item-text" layout="row">
-                                    <div layout="column">
-                                        <h3>{{ item.title }} </h3>
-                                        <p>{{ item.about }}</p>
-                                    </div>
-                                    <span flex></span>
-                                </div>
-                            </md-list-item>
-                            <md-divider></md-divider>
-                        </md-list>
-                    </md-tab-body>
-                </md-tab>
-                <md-tab ng-if="student.Follower.data.length>0">
-                    <md-tab-label>Followers ({{student.Follower.data.length}})</span> </md-tab-label>
-                    <md-tab-body>
-                        <md-list flex>
-                            <md-list-item class="md-3-line" ui-sref="home.profile({username: item.username})" ng-repeat="item in student.Follower.data track by $index" ng-click="null">
-                                <img ng-src="{{item.photo}}" class="md-avatar" alt="" />
-                                <div class="md-list-item-text" layout="row">
-                                    <div layout="column">
-                                        <h3>{{ item.title }} </h3>
-                                        <p>{{ item.about }}</p>
-                                    </div>
-                                    <span flex></span>
-    
-                                </div>
-                            </md-list-item>
-                            <md-divider></md-divider>
-                        </md-list>
-                    </md-tab-body>
-                </md-tab>
-            </md-tabs>
-               
-               
+                        <md-button class=" md-primary" aria-label="participants" ng-click="unfollow(item, $index)" md-ripple-size="auto" style="color: #149370;border-color:#149370;border: 1px;border-style: solid;text-transform: capitalize;">
+                            UnFollow
+                        </md-button>
+                    </md-list-item>
+                    <md-divider></md-divider>
+                </div>
+            </div>
+            <div label="followers" ng-show="(currentNavItem=='followers')" ng-if="student.Follower.data.length">
+                <div class="md-padding">
+                    <md-list-item class="md-3-line" ui-sref="home.profile({username: item.username})" ng-repeat="item in student.Follower.data track by $index" ng-click="null">
+                        <img ng-src="{{item.photo}}" class="md-avatar" alt="" />
+                        <div class="md-list-item-text" layout="row">
+                            <div layout="column">
+                                <h3>{{ item.title }} </h3>
+                                <p>{{ item.about }}</p>
+                            </div>
+                            <span flex></span>
+                        </div>
+                    </md-list-item>
+                    <md-divider></md-divider>
+                </div>
+            </div>
         </div>
-    </div layout="column" md-padding>
+    </div>
+</div>
 </div>

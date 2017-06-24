@@ -16,6 +16,7 @@
 
     function SearchAllController($scope, tokenService, $stateParams, $state, $rootScope, $sce, $filter, creativityCategories) {
         var vm = this;
+        $rootScope.currentMenu = 'search';
 
         $scope.searchTypes = [];
         $scope.nonFinalContents = [];
@@ -97,7 +98,7 @@
                                     cardObject.url = item.image;
                                 } else if (item.type == 'soundcloud') {
                                     cardObject.type = item.type;
-                                    item.embed.url = "//w.soundcloud.com/player/?url=" + item.embed.url;
+                                    item.embed.url = "https://w.soundcloud.com/player/?url=" + item.embed.url;
                                     cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
                                 } else if ((item.type == 'youtube' || item.type == 'vimeo') && !cardObject.type) {
                                     cardObject.type = item.type;

@@ -1,5 +1,6 @@
 (function() {
 
+
     angular
         .module('app')
         .controller('MyProfileController', [
@@ -9,34 +10,56 @@
             '$stateParams',
             '$state',
             '$rootScope',
+            '$mdMedia',
             MyProfileController
         ]);
 
-    function MyProfileController($mdDialog, $scope, tokenService, $stateParams, $state,$rootScope) {
+    function MyProfileController($mdDialog, $scope, tokenService, $stateParams, $state, $rootScope, $mdMedia) {
         var vm = this;
-        $scope.username = $stateParams.username;
         $scope.editAbout = false;
-        $scope.loading == true;
+        $scope.loading = true;
         $scope.BookmarkedContents = [];
         $scope.CreativeContents = [];
         $scope.studentAbout = {};
+        $scope.studentLoading = true;
         $rootScope.currentPageBackground = '#fff';
         $rootScope.title = "My Profile";
+        $scope.currentNavItem = 'creativity';
+        //detect screen size
+        $scope.screenIsSmall = $mdMedia('xs');
 
-
+        console.log($scope.screenIsSmall);
+        if ($stateParams.tab == "") {
+            $scope.currentNavItem = "profile";
+        } else {
+            $scope.currentNavItem = $stateParams.tab;
+        }
+        $scope.goto = function(page) {
+            $scope.currentNavItem = page;
+        };
         tokenService.get("myProfile")
             .then(function(student) {
                 $scope.student = student.data;
+                $scope.studentLoading = false;
                 $scope.studentAbout.about = student.data.subtitle;
                 $scope.student.BookmarkedContents.data.forEach(function(content, index) {
-                    $scope.student.BookmarkedContents.data[index].created.at = new Date(Date.parse($scope.student.BookmarkedContents.data[index].created.at.replace('-', '/', 'g'))); //replace mysql date to js date format
+                    $scope.student.BookmarkedContents.data[index].created_at = new Date(Date.parse($scope.student.BookmarkedContents.data[index].created_at.replace('-', '/', 'g'))); //replace mysql date to js date format
                 });
                 $scope.student.CreativeContents.data.forEach(function(content, index) {
-                    $scope.student.CreativeContents.data[index].created.at = new Date(Date.parse($scope.student.CreativeContents.data[index].created.at.replace('-', '/', 'g'))); //replace mysql date to js date format
+                    $scope.student.CreativeContents.data[index].created_at = new Date(Date.parse($scope.student.CreativeContents.data[index].created_at.replace('-', '/', 'g'))); //replace mysql date to js date format
                 });
-                $scope.tab = $stateParams.tab;
-                $scope.loading == false;
-                console.log($scope.student);
+
+                if (!$scope.screenIsSmall && $stateParams.tab === 'profile') {
+                    $scope.currentNavItem = 'creativity';
+                    //$scope.goto('creativity');
+                } else if ($scope.currentNavItem == '' || $scope.currentNavItem == null ) {
+                    $scope.currentNavItem = 'profile';
+                }
+                if ($scope.currentNavItem === 'recomended' && $scope.student.BookmarkedContents.data == 0) {
+                    $scope.currentNavItem = 'creativity';
+                    //$scope.goto('creativity');
+                }
+                $scope.loading = false;
             });
 
 
@@ -83,7 +106,8 @@
                 .ok('Yes')
                 .cancel('Cancel');
             $mdDialog.show(confirm).then(function() {
-                tokenService.delete('content/' + content.id, '').then(function(result) {
+                tokenService.delete('content/' + content.id).then(function(result) {
+                    console.log(result);
                     if (result.status != 'error') {
                         console.log(result.status);
                         $scope.student.CreativeContents.data.splice(index, 1);
@@ -95,6 +119,61 @@
                 console.log('cancel');
             });
         };
+        $scope.deleteEvent = function(ev, event, index) {
+            var confirm = $mdDialog.confirm()
+                .title('Delete ' + event.title + "?")
+                .textContent('')
+                .targetEvent(ev)
+                .clickOutsideToClose(true)
+                .ok('Yes')
+                .cancel('Cancel');
+            $mdDialog.show(confirm).then(function() {
+                tokenService.delete('events/' + event.id).then(function(result) {
+                    console.log(result);
+                    if (result.status != 'error') {
+                        console.log(result.status);
+                        $scope.student.Events.data.splice(index, 1);
+                    } else {
+                        console.log(result);
+                    }
+                });
+            }, function() {
+                console.log('cancel');
+            });
+        };
+
+
+        $scope.unPublishAndMoveToDraft = function(content, index) {
+            tokenService.delete('movetoDraftContent/' + content.id).then(function(result) {
+                console.log(result);
+                if (result.status != 'error') {
+                    console.log(result.status);
+                    $scope.student.CreativeContents.data.splice(index, 1);
+                } else {
+                    console.log(result);
+                }
+            });
+        };
+
+        //Uncomment this when draft system is made
+
+        // $scope.eventSaveToDraft = function(event, index){
+        //     tokenService.delete('movetoDraftEvent/' + event.id).then(function(result) {
+        //             console.log(result);
+        //             if (result.status != 'error') {
+        //                 console.log(result.status);
+        //                 $scope.student.Events.data.splice(index, 1);
+        //             } else {
+        //                 console.log(result);
+        //             }
+        //         });
+        // };
+
+        $scope.openMenu = function($mdMenu, ev) {
+            $scope.originatorEv = ev;
+            $mdMenu.open(ev);
+        };
+
         $scope.showParticipants = function(ev, eventId) {
             $mdDialog.show({
                 controller: 'ParticipantsController',
@@ -109,6 +188,9 @@
                 fullscreen: true // Only for -xs, -sm breakpoints.
             })
         };
+        $scope.edit = function() {
+            // For profile details edit
+        };
         $scope.about = function() {
             if ($scope.editAbout) {
                 // console.log($scope.studentAbout);
@@ -119,6 +201,7 @@
                     })
                     .catch(function(error) {
                         console.log(error);
+                        $scope.editAbout = false;
                     });
 
             } else {
@@ -149,12 +232,35 @@
                 });
             }
         };
+
+        $scope.unBookmark = function(content, index) {
+            console.log("unbookmark");
+            tokenService.delete('bookmarkContent/' + content.id).then(function(result) {
+                console.log(result);
+                $scope.student.BookmarkedContents.data.splice(index, 1);
+            }).catch(function(error) {
+                console.log(error);
+            });
+        };
+
+        $scope.unfollow = function(item, index) {
+            console.log("unbookmark");
+            tokenService.delete('studentFollow/' + item.username).then(function(result) {
+                console.log(result);
+                $scope.student.Following.data.splice(index, 1);
+            }).catch(function(error) {
+                console.log(error);
+            });
+        };
+
         // SKILLS CHIP SHIT STARTED
 
-        $scope.readonly = true;
+        $scope.editSkills = false;
         $scope.removable = false;
         $scope.selectedItem = null;
         $scope.searchText = null;
+        $scope.add = {};
+        $scope.add.skill = '';
         $scope.querySearch = querySearch;
         numberChips = [];
         numberChips2 = [];
@@ -214,39 +320,30 @@
 
         }
 
-        // function loadVegetables() {
-        //     var veggies = [{
-        //         'name': 'Broccoli'
-        //     }, {
-        //         'name': 'Cabbage'
-        //     }, {
-        //         'name': 'Carrot'
-        //     }, {
-        //         'name': 'Lettuce'
-        //     }, {
-        //         'name': 'Spinach'
-        //     }];
-        //     return veggies.map(function(veg) {
-        //         veg._lowername = veg.name.toLowerCase();
-        //         return veg;
-        //     });
-        // }
-        $scope.skillsEdit = function() {
-            if ($scope.readonly) {
-                $scope.readonly = !$scope.readonly;
-                $scope.removable = !$scope.removable;
-            } else {
-                $scope.newSkills = {};
-                $scope.newSkills.skills = $scope.student.Skills.data;
-                tokenService.post("addStudentSkills", $scope.newSkills)
-                    .then(function(status) {
-                        $scope.readonly = !$scope.readonly;
-                        $scope.removable = !$scope.removable;
-                    }).catch(function(status) {
-                        console.log(status);
-                    });
 
+        $scope.updateSkills = function() {
+
+            $scope.newSkills = {};
+            $scope.newSkills.skills = $scope.student.Skills.data;
+            if ($scope.add.skill) {
+                if ($scope.student.Skills.data.length <= 4)
+                    $scope.newSkills.skills.push({ 'name': $scope.add.skill });
+            } else {
+                console.log("NULL SKILL");
+                $scope.editSkills = false;
             }
+            console.log($scope.add.skill);
+            tokenService.post("addStudentSkills", $scope.newSkills)
+                .then(function(status) {
+                    console.log(status);
+                    $scope.editSkills = false;
+                    $scope.add.skill = null;
+                }).catch(function(status) {
+                    $scope.editSkills = false;
+                    console.log(status);
+                });
+
+
         };
 
         // SKILLS CHIP SHIT ENDED

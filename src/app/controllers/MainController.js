@@ -111,7 +111,7 @@
                 var videoid = $scope.url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
                 if (videoid != null) {
                     $scope.item.mediaType = "youtube";
-                    $scope.item.embedUrl = "//www.youtube.com/embed/" + videoid[1];
+                    $scope.item.embedUrl = "https://www.youtube.com/embed/" + videoid[1];
                     $scope.item.embedUrlIframe = $sce.trustAsResourceUrl($scope.item.embedUrl);
                     $mdDialog.hide($scope.item);
                 } else {
@@ -137,14 +137,17 @@
         vm.menuItems = [];
         vm.title = $state.current.data.title;
         vm.toggleRightSidebar = toggleRightSidebar;
-        tokenService.get("userImage")
-            .then(function(response) {
-                $rootScope.user = response;
-                tokenService.get("notifications")
-                    .then(function(abc) {
-                        $rootScope.notifications = abc;
-                    });
-            });
+        if ($rootScope.authenticated) {
+
+            tokenService.get("userImage")
+                .then(function(response) {
+                    $rootScope.user = response;
+                    tokenService.get("notifications")
+                        .then(function(abc) {
+                            $rootScope.notifications = abc;
+                        });
+                });
+        }
         navService
             .loadAllItems()
             .then(function(menuItems) {
@@ -207,6 +210,21 @@
         }];
 
         // Search Autocomplete End
+
+        $scope.NotificationItemClicked = function(notification) {
+            console.log(notification);
+
+            if (notification.type == 'follower') {
+                $state.go('home.profile', { 'username': notification.follower_username });
+            } else if (notification.type == 'event_rsvps') {
+
+            } else if (notification.type == 'content_appreciate') {
+
+            }
+            toggleRightSidebar();
+
+        }
+
     }
 
 })();

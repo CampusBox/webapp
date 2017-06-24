@@ -14,29 +14,59 @@ md-card {
     box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
 }
 
+.no-shadow {
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0) !important;
+}
+
+md-nav-bar nav {
+    overflow: auto!important;
+}
+
+* {
+    font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+md-toolbar {
+    // box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(250, 249, 244, 0);
+    color: rgba(250, 249, 244, 0);
+    display: none;
+    /* Matches the background color of content-wrapper */
+}
+
+::-webkit-scrollbar {
+    background-color: rgba(250, 249, 244, 0);
+    color: rgba(250, 249, 244, 0);
+    display: none;
+    /* Matches the background color of content-wrapper */
+}
+
 md-card-header.layout-align-start-center.layout-row {
     background: #fff;
 }
 
 .capitalize.grey_text.md-button.active md-icon {
-    fill: #0570c0;
+    fill: #fff;
 }
 
 .capitalize.grey_text.md-button md-icon {
-    fill: #6A6E71;
+    fill: rgba(255, 255, 255, 0.8);
 }
 
 .capitalize.grey_text.md-button .md-tile-content {
-    color: #6A6E71;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 // .active.capitalize.grey_text.bottom-menu-item{
 .capitalize.grey_text.md-button.active .md-tile-content {
-    color: #0570c0;
+    color: #fff;
 }
 
 .dialog-login {
-    background-color: #0570c0 !important;
+    background-color: #149370 !important;
     color: #fff !important;
 }
 
@@ -111,11 +141,11 @@ md-card md-card-title md-card-title-media .md-media-lg {
 }
 
 .blue_text {
-    color: #0570c0 !important;
+    color: #149370 !important;
 }
 
 .blue-bg {
-    color: #0570c0 !important;
+    color: #149370 !important;
 }
 
 .capitalize {
@@ -214,8 +244,12 @@ md-radio-group {
     border: none;
 }
 
-md-icon {
-    height: auto;
+.profile-icon {
+    height: 18px;
+    width: 18px;
+    min-width: 18px;
+    min-height: 18px;
+    color: rgba(99, 108, 116, 0.70);
 }
 
 md-sidenav.md-locked-open.md-sidenav-left {
@@ -425,7 +459,7 @@ md-list-item:last-child md-divider {
 }
 
 .blue {
-    fill: #0570c0 !important;
+    fill: #149370 !important;
 }
 
 
@@ -510,27 +544,47 @@ md-progress-circular path {
     background-color: rgba(255, 255, 255, .6)!important;
 }
 
-.medium-editor-placeholder::after {
-    color: #b3b3b1;
-}
-
-.md-button.md-primary.md-raised[disabled] {
-    background-color: rgba(30, 136, 229, 0.56);
-    color: #fff;
-}
-
-#trix-toolbar-1 {
-    background-color: white;
-    position: fixed;
-    bottom: 1%;
+.button-selected {
+    margin: 0px;
     width: 100%;
-    left: 0;
-    z-index: 2;
+    margin-top: 16px;
+    border: 1px solid #d81b60;
+    border-radius: 4px;
+    background: white;
 }
 
-#trix-editor-1 {
-    max-height: 30vh;
+.md-chips md-chip {
+    border: 1px solid #979797;
+    border-radius: 4px;
 }
+
+.skill-item {
+    cursor: default;
+    border: 1px solid #979797;
+    border-radius: 4px;
+    padding: 0 8px 0 8px;
+    min-width: 40px;
+    max-width: 100%;
+    background-color: white;
+    color: rgb(66, 66, 66);
+    float: left;
+    margin: 0 16px 0 0;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.skill-item-text {
+    opacity: 0.87;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 32px;
+    letter-spacing: 0.3px;
+    color: #636C74;
+    text-align: center;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
 
 /*image upload end*/
 
@@ -726,13 +780,17 @@ md-icon.cross>svg {
 
 .rsvp-button {
     text-transform: capitalize;
-    color: #0570c0;
+    color: #149370;
 }
 
 .appreciate-button.appreciated {
     background: rgb(233, 30, 99);
     color: white;
     border-color: rgb(233, 30, 99);
+}
+
+md-icon:hover {
+    color: #149370;
 }
 
 .white-bg {
@@ -743,12 +801,40 @@ md-icon.cross>svg {
     color: #fff;
 }
 
-.content-card {
-    width: 280px;
+.horizontal-scroll {
+    margin-right: 10px;
+    margin-left: 10px;
+    overflow-x: auto;
+}
+
+.profile-card {
+    min-width: 280px;
     height: 343px;
     box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
     margin-bottom: 24px;
     margin-left: 16px;
+}
+
+.event-card {
+    min-width: 280px;
+    height: 343px;
+    box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
+    margin-bottom: 24px;
+    margin-left: 16px;
+}
+.content-card {
+    min-width: 280px;
+    height: 343px;
+    box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
+    margin-bottom: 24px;
+    margin-left: 16px;
+}
+
+.content-card-dashboard {
+    width: 300px;
+    margin-right: 25px;
+    height: 343px;
+    box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
 }
 
 .play-button {
@@ -856,6 +942,42 @@ md-icon.cross>svg {
     background-color: #eee;
 }
 
+.profile-image {
+    width: 100%;
+    border-radius: 12px;
+    background-color: #ccc;
+    background-position: center center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.profile-subtitle {
+    font-weight: 500;
+    font-size: 15px;
+    color: rgba(99,108,116,.87);
+    line-height: 1.5em;
+    text-align: justify;
+}
+
+.profile-edit-link {
+    font-weight: 400;
+    font-size: 13px;
+    color: rgba(99, 108, 116, 0.87);
+}
+
+.profile-section-title {
+    font-weight: 500;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.profile-text-data {
+    font-weight: 400;
+    font-size: 14px;
+    color: rgba(99, 108, 116, 0.87);
+    line-height: 16px;
+}
+
 .read-more {
     color: rgba(0, 0, 0, .44);
     font-size: 16px;
@@ -865,7 +987,7 @@ md-icon.cross>svg {
 }
 
 .static-background {
-    background: linear-gradient(#0570c0, #0570c0 70%, #f1f0f0 70.001%);
+    background: linear-gradient(#149370, #149370 70%, #f1f0f0 70.001%);
 }
 
 .creativity-page {
@@ -874,12 +996,21 @@ md-icon.cross>svg {
 
 .page-content {
     overflow: auto;
-}
-
+}    
+/*eventAction here*/
+ .share-button{
+        font-size: 12px;
+        text-transform: capitalize;
+    }
+    .share-button md-icon{
+        width: 16px;
+        height: 16px;
+    }
+/*till here*/
 @media only screen and (max-width: 500px) {
     .play-button {
         margin-left: 40%;
-        margin-top: -31%;
+        // margin-top: -31%;
     }
     .manageXs {
         padding-bottom: 66px;
@@ -892,7 +1023,7 @@ md-icon.cross>svg {
         margin-bottom: 55px;
     }
     .static-background {
-        background: #0570c0;
+        background: #149370;
     }
     .read-more {
         color: rgba(0, 0, 0, .44);
@@ -978,4 +1109,9 @@ md-icon.cross>svg {
     .page-content {
         padding: 8px 0px !important;
     }
+}
+
+.layout-search-wrap {
+    -webkit-flex-wrap: wrap;
+    flex-wrap: nowrap;
 }

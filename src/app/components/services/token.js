@@ -12,7 +12,7 @@
                 // Uncomment as per usage
                 // 
                 // before building to pushing to Beta Server 
-                // var serviceBase = '/api/public/';
+                // var serviceBase = '/dist/api/public/';
                 // 
                 // before building to pushing to Main Server 
                 // var serviceBase = 'api/public/';
@@ -24,7 +24,6 @@
                 // USE THIS AT MOST TIMES
                 // 
                 // To test locally from BETA API 
-                // var serviceBase = 'http://beta.campusbox.org/api/public/';
 
 
                 

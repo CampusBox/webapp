@@ -1,5 +1,7 @@
 <md-dialog aria-label="Dog name" class="_md md-default-theme md-transition-in dialog-login" role="dialog">
-        <button style="position: absolute;right: 0px" class="md-button md-icon-button" ng-click="cancel()"><md-icon md-svg-icon="close-circle" style="color: #fff;" aria-label="Alarm Icon"></md-icon></button>
+    <button style="position: absolute;right: 0px" class="md-button md-icon-button" ng-click="cancel()">
+        <md-icon md-svg-icon="close-circle" style="color: #fff;" aria-label="Alarm Icon"></md-icon>
+    </button>
     <md-dialog-content ng-controller="loginDialogController" ng-show="loginVar" class="md-dialog-content">
         <center>
             <img ng-src="{{user.imageUrl}}" alt="" style="border-radius: 50%; height: auto;width: 20%">
@@ -11,12 +13,26 @@
                 <md-progress-circular md-mode="indeterminate"></md-progress-circular>
             </div>
             <div flex layout="column" ng-show="!loading">
+                <!-- REQUIRED FOR WEBAPP -->
                 <md-button style="color: rgb(63, 81, 181);" ng-click="authenticate('facebook')" class="md-raised ">
                     <md-icon style="color: rgb(63, 81, 181);" md-svg-icon="facebook"></md-icon>Continue with facebook
                 </md-button>
+                <!-- END -->
+                <!-- REQUIRED FOR CORDOVA -->
+                <!-- <md-button style="color: rgb(63, 81, 181);" ng-click="authenticateFromCordova('facebook')" class="md-raised ">
+                    <md-icon style="color: rgb(63, 81, 181);" md-svg-icon="facebook"></md-icon>Continue with facebook
+                </md-button> -->
+                <!-- END -->
+                <!-- REQUIRED FOR WEBAPP -->
                 <md-button style="background: #fff;color: rgb(244, 67, 54);" g-login class="md-raised  red">
-                    <md-icon  style="color: rgb(244, 67, 54);" md-svg-icon="google"></md-icon>+ Continue with google
+                    <md-icon style="color: rgb(244, 67, 54);" md-svg-icon="google"></md-icon>+ Continue with google
                 </md-button>
+                <!-- END -->
+                <!-- REQUIRED FOR CORDOVA -->
+                <!-- <md-button style="background: #fff;color: rgb(244, 67, 54);" ng-click="googleSignIn()" class="md-raised  red">
+                    <md-icon style="color: rgb(244, 67, 54);" md-svg-icon="google"></md-icon>+ Continue with google
+                </md-button> -->
+                <!-- END -->
             </div>
             <center>
                 <p>Don't have an account yet ?
@@ -63,13 +79,20 @@
                     <p class="md-subtitle" style="color: rgba(255, 255, 255, 0.81);">Already have an account ? <span ng-click="showLogin('hi')" style="cursor: pointer;color:#fff;text-decoration: underline;"> Login here </span> </p>
                 </center>
                 <div layout="column">
+                    <!-- REQUIRED FOR WEBAPP -->
                     <md-button ng-hide="interests.length<3" style="background: #fff;text-transform: none;color: : rgb(244, 67, 54); width: 50%; margin: auto; margin-top: 4px;" ng-click="authenticate('facebook');" class="md-raised ">
-                                <md-tooltip  md-direction="left">Select intersts to continue</md-tooltip>
-
+                    <!-- END -->
+                    <!-- REQUIRED FOR CORDOVA -->
+                    <!-- <md-button ng-hide="interests.length<3" style="background: #fff;text-transform: none;color: : rgb(244, 67, 54); width: 50%; margin: auto; margin-top: 4px;" ng-click="authenticateFromCordova('facebook');" class="md-raised "> -->
+                    <!-- END -->
                         <md-icon md-svg-icon="facebook" style="background: #fff;"></md-icon>Complete with Facebook
                     </md-button>
-                    <md-button ng-hide="interests.length<3" style="color: : rgb(244, 67, 54);text-transform: none; width: 50%; margin: auto; margin-top: 4px;background: #fff"  g-login class="md-raised ">
-                                <md-tooltip  md-direction="left">Select intersts to continue</md-tooltip>
+                    <!-- REQUIRED FOR WEBAPP -->
+                    <md-button ng-hide="interests.length<3" style="color: : rgb(244, 67, 54);text-transform: none; width: 50%; margin: auto; margin-top: 4px;background: #fff" g-login class="md-raised ">
+                    <!-- END -->
+                    <!-- REQUIRED FOR CORDOVA -->
+                    <!-- <md-button ng-hide="interests.length<3" style="color: : rgb(244, 67, 54);text-transform: none; width: 50%; margin: auto; margin-top: 4px;background: #fff" ng-click="googleSignUp()" class="md-raised "> -->
+                    <!-- END -->
                         <md-icon style="background: #fff;" md-svg-icon="google"></md-icon>+ Complete with Google+
                     </md-button>
                 </div>

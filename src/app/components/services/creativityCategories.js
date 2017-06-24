@@ -31,6 +31,29 @@
                     { 'title': 'Electronics', 'id': 20 },
                     { 'title': 'DIY', 'id': 21 }
                 ];
+                obj.typesByID = [
+                    'Articles',
+                    'Poetry',
+                    'Drama',
+                    'Paint and Colour',
+                    'Drawing ',,
+                    'Sewing and Fabric',
+                    'Craft',
+                    'Dancing',
+                    'Singing',
+                    'Instrumental',
+                    'Digital Music',
+                    'Decor',
+                    'Film and Video',
+                    'Animation',
+                    'Graphics',
+                    'UI and UX',
+                    'Websites',
+                    'Programming',
+                    'Apps',
+                    'Electronics',
+                    'DIY'
+                ];
                 obj.items[0] = [
                     { 'title': 'Articles', 'id': 1 },
                     { 'title': 'Poetry', 'id': 2 },

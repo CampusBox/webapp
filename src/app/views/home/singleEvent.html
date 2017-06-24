@@ -91,7 +91,7 @@
         </div>
         <span flex hide-xs></span>
         <div layout="row" class="md-padding" layout-align="space-around">
-            <md-button class="share-button" ng-controller="ShareController" ng-click="showCustom($event,'event');" aria-label="Share ">
+            <md-button class="share-button" ng-controller="ShareController" ng-click="showCustom($event,'event',eventId);" aria-label="Share ">
                 <md-icon ng-class="" md-svg-icon="share"></md-icon>
             </md-button>
             <md-button class="appreciate-button" ng-click="heart(event, $index)" aria-label="Favorite ">
@@ -117,7 +117,7 @@
                 <textarea rows="3" md-no-resize md-select-on-focus ng-model="newComment"></textarea>
             </md-input-container>
             <div flex="100" layout="row" layout-align="end" style="margin-top: 8px;">
-                <md-button ng-disabled="(newComment.length>0?false:true)" class="md-raised" style="margin:0px;background-color: #0570c0;color: white;" ng-click="postComment(newComment);">
+                <md-button ng-disabled="(newComment.length>0?false:true)" class="md-raised" style="margin:0px;background-color: #149370;color: white;" ng-click="postComment(newComment);">
                     POST
                 </md-button>
             </div>

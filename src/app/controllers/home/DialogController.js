@@ -19,7 +19,11 @@
             $mdDialog.hide();
         };
 
-        $scope.cancel = function() {
+        $scope.closeDialog = function() {
+            $mdDialog.cancel();
+            console.log('asasc');
+        };
+  $scope.cancel = function() {
             $mdDialog.cancel();
             console.log('asasc');
         };

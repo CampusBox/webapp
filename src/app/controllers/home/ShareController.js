@@ -4,13 +4,13 @@
             .controller('ShareController', ['$scope', '$mdDialog', ShareController]);
 
         function ShareController($scope, $mdDialog) {
-            $scope.showCustom = function($event, type) {
+            $scope.showCustom = function($event, type , id) {
                 if (type === 'event') {
                     $scope.type = 'event';
-                    $scope.shareUrl = 'https://campusbox.org/dist/singleEvent/';
+                    $scope.shareUrl = 'https://campusbox.org/dist/singleEvent/'+id;
                 } else {
                     $scope.type = 'creativity';
-                    $scope.shareUrl = 'https://campusbox.org/dist/singleContent/';
+                    $scope.shareUrl = 'https://campusbox.org/dist/singleContent/'+id;
                 }
                 //actual dialog
                 $mdDialog.show({
@@ -19,15 +19,10 @@
                     preserveScope: true,
                     targetEvent: $event,
                     templateUrl: 'app/views/partials/shareLinks.html',
-                    controller: DialogController
+                    controller: 'DialogController'
                 });
 
-                function DialogController($scope, $mdDialog) {
-                    $scope.closeDialog = function() {
-                        console.log('CLOSING DIALOG');
-                        $mdDialog.hide();
-                    };
-                }
+              
             }
 
 
