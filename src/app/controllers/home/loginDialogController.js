@@ -10,13 +10,13 @@
             '$state',
             '$auth',
             'tokenService',
-            'secretServices',
+            // 'secretServices',
             '$mdDialog',
             '$window',
             loginDialogController
         ]);
 
-    function loginDialogController($scope, $rootScope, $localStorage, $$state, $auth, tokenService, secretServices, $mdDialog, $window) {
+    function loginDialogController($scope, $rootScope, $localStorage, $state, $auth, tokenService, $mdDialog, $window) {
         var vm = this;
 
         $scope.loginVar = 0;
@@ -201,8 +201,8 @@
 
                     $.post('https://accounts.google.com/o/oauth2/token', {
                         code: user_data.serverAuthCode,
-                        client_id: secretServices.getGClientId,
-                        client_secret: secretServices.getGClientSecret,
+                        // client_id: secretServices.getGClientId,
+                        // client_secret: secretServices.getGClientSecret,
                         grant_type: 'authorization_code',
                         redirect_uri: "",
                     }).then(function(obj) {
