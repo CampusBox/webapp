@@ -7,13 +7,17 @@
             restrict: "E",
             replace: true,
             templateUrl: 'app/components/addCreativity/itemCards/addArticle.html',
-            controller: function($scope, addItemService, $sce) {
+            controller: function($scope, addItemService, $sce, $rootScope) {
                 //Define Variables
                 $scope.allowedArticle = [1, 2, 20, 21];
                 $scope.videoAdded = false;
                 $scope.enterUrl = true;
                 //End Defining variables
-
+                // $rootScope.$on("textAdded", function(event, state) {
+                //     $scope.publishable = $scope.textAdded;
+                //     // console.log($scope.publishable);
+                        
+                // });
                 $scope.checkMedia = function() {
                     if ($scope.creativity.items[0] == undefined || $scope.videoAdded) {
                         $scope.videoAdded = false;

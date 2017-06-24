@@ -17,16 +17,13 @@
                 $scope.checkMusic = function() {
                     if ($scope.creativity.items[0] == undefined || $scope.musicAdded) {
                         $scope.musicAdded = false;
-                        $scope.publishable = false;
                     } else {
                         $scope.musicAdded = true;
-                        $scope.publishable = true;
                     }
                 }
-                $scope.removeItem = function() {
+                $scope.removeMusic = function() {
                     $scope.creativity.items.pop();
                     $scope.musicAdded = false;
-                    $scope.publishable = false;
                 }
                 $scope.addMusic = function(url) {
                     if ($scope.validateYoutube(url)) {
