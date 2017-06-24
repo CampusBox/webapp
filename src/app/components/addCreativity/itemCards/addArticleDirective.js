@@ -14,7 +14,7 @@
                 $scope.enterUrl = true;
                 //End Defining variables
 
-                $scope.checkVideo = function() {
+                $scope.checkMedia = function() {
                     if ($scope.creativity.items[0] == undefined || $scope.videoAdded) {
                         $scope.videoAdded = false;
                     } else {
@@ -33,14 +33,14 @@
                         }
                         addItemService.youtube(url);
                         $scope.setNoembed(url);
-                        $scope.checkVideo();
+                        $scope.checkMedia();
                     } else if ($scope.validateVimeo(url)) {
                         if ($scope.creativity.items.length > 1) {
                             $scope.creativity.items.pop();
                         }
                         addItemService.vimeo(url);
                         $scope.setNoembed(url);
-                        $scope.checkVideo();
+                        $scope.checkMedia();
                     } else {
                         $scope.error = "Enter a valid Youtube or Vimeo url.";
                     }

@@ -14,17 +14,19 @@
                 $scope.enterUrl = true;
                 //End Defining variables
 
-                $scope.checkVideo = function() {
+                $scope.checkMusic = function() {
                     if ($scope.creativity.items[0] == undefined || $scope.musicAdded) {
                         $scope.musicAdded = false;
+                        $scope.publishable = false;
                     } else {
                         $scope.musicAdded = true;
-
+                        $scope.publishable = true;
                     }
                 }
                 $scope.removeItem = function() {
                     $scope.creativity.items.pop();
                     $scope.musicAdded = false;
+                    $scope.publishable = false;
                 }
                 $scope.addMusic = function(url) {
                     if ($scope.validateYoutube(url)) {
@@ -32,7 +34,7 @@
                             $scope.creativity.items.pop();
                         }
                         $scope.setNoembed(url);
-                        $scope.checkVideo();
+                        $scope.checkMusic();
                         addItemService.youtube(url);
                     } else if ($scope.validateSoundcloud(url)) {
                         if ($scope.creativity.items.length > 1) {
@@ -40,15 +42,15 @@
                         }
                         addItemService.soundcloud(url);
                         $scope.setNoembed(url);
-                        $scope.checkVideo();
+                        $scope.checkMusic();
                     } else if ($scope.validateVimeo(url)) {
                         if ($scope.creativity.items.length > 1) {
                             $scope.creativity.items.pop();
                         }
                         addItemService.vimeo(url);
                         $scope.setNoembed(url);
-                        $scope.checkVideo();
-                    }else{
+                        $scope.checkMusic();
+                    } else {
                         $scope.error = 'Enter a valid Youtube, Soundcloud or Vimeo url.'
                     }
                 };

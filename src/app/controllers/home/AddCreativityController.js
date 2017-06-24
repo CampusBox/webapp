@@ -23,11 +23,20 @@
         // 22 june
         $scope.publishable = false;
         $scope.compulsaryP = [1, 2, 20, 19, 21]
-        //
-    	var body = {};
-    	$scope.progress = 0;
-    	$scope.isOpen = false;
     	$scope.addMenu = false;
+        //
+        // Functions
+        $scope.showMenu = function(){
+            if ($scope.addMenu) {
+                $scope.addMenu = false
+            }else{
+                $scope.addMenu = true;
+            }
+        }
+        //
+        var body = {};
+        $scope.progress = 0;
+        $scope.isOpen = false;
     	$scope.selectedMode = 'md-scale';
 
     	$rootScope.currentPageBackground = '#fff';
@@ -118,6 +127,7 @@
     	    $scope.creativity.type = type.id;
     	};
     	$scope.uploadFiles = function(files) {
+            $rootScope.$emit("ImagesAdded");
     	    $scope.files = files;
     	    if (files && files.length) {
     	        $scope.progress = 2;
@@ -197,6 +207,7 @@
             }
         }
         $scope.checkPublish = function() {
+            // console.log('publishable' + $scope.publishable);
             if ($scope.isAllowed($scope.compulsaryP,$scope.creativity.type)) {
                 $scope.publishable = (($scope.mediumEditor || $scope.trix) && ($scope.mediumEditor.length>20 || $scope.trix.length>20));
             }

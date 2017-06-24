@@ -14,7 +14,7 @@
     </div>
     <div flex-offset-gt-sm="10" layout="column">
         <div layout="row" layout-align="strech center">
-            <div style="cursor: pointer;" layout="row" layout-align="strech center" ng-click="addMenu=!addMenu">
+            <div style="cursor: pointer;" layout="row" layout-align="strech center" ng-click="showMenu()">
                 <md-button class="md-button" aria-label="Settings">
                     <md-icon md-svg-icon="image-area"></md-icon>
                     Add media
@@ -38,8 +38,6 @@
                 </form>
                 <button class="md-primary md-button" flex="20" ng-disabled="url == ''" ng-click="addInstagram(url)">Done</button>
             </div>
-
-
         </div>
     </div>
 </div>

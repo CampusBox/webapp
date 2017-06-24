@@ -7,13 +7,16 @@
             restrict: "E",
             replace: true,
             templateUrl: 'app/components/addCreativity/itemCards/addDrawing.html',
-            controller: function($scope, addItemService, $sce, allDataService) {
+            controller: function($scope, addItemService, $sce, allDataService, $rootScope) {
                 //Define Variables
-                $scope.allowedDrawing = [4, 5];
+                $scope.allowedDrawing = [4, 5, 6, 7, 12];
                 $scope.inputActive = false;
                 $scope.enterUrl = true;
                 //End Defining variables
 
+                $rootScope.$on("ImagesAdded", function(event) {
+                    $scope.publishable = true;
+                });
                 $scope.activateInput = function() {
                     if ($scope.inputActive) {
                         $scope.inputActive = false;
@@ -48,6 +51,9 @@
                 }
                 $scope.removeItem = function(index) {
                     $scope.creativity.items.splice(index, 1);
+                    if ($scope.creativity.items.length < 2) {
+                        $scope.publishable = false;
+                    }
                     $scope.musicAdded = false;
                 }
 
