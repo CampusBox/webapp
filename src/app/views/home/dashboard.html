@@ -19,7 +19,7 @@
                 </md-card-header>
                 <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
             </md-card>
-            <md-list hide-gt-xs>
+            <md-list hide-gt-xs layout="row">
                 <md-list-item ng-show="eventLoading" flex style="margin-bottom: 15px;" ng-repeat="event in [1,2]" class="secondary-button-padding eventListItem">
                     <md-card flex>
                         <md-card-title style="padding: 0px;">
@@ -45,9 +45,9 @@
                     <event-card data="event" bar="true" ng-show="!eventLoading" hide-xs></event-card>
                 </md-card>
             </div>
-            <div show-xs hide-gt-xs layout="column">
-                <md-card style="margin-bottom: 10px;" ng-repeat="event in events" class="secondary-button-padding eventListItem" flex>
-                    <event-card-mobile data="event" bar="true" hide-gt-xs></event-card-mobile>
+            <div show-xs hide-gt-xs layout="row" style="overflow: auto;">
+                <md-card  flex="noshrink" style="margin-bottom: 10px;width: 80%;" ng-repeat="event in events" class="secondary-button-padding eventListItem" >
+                    <event-card data="event" bar="true" ng-show="!eventLoading" hide-gt-xs></event-card>
                 </md-card>
                 <md-list>
                     <md-list-item ng-show="loading" flex style="margin-bottom: 15px;" ng-repeat="event in [1,2]" class="secondary-button-padding eventListItem">

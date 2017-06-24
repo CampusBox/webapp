@@ -174,7 +174,7 @@
                 </div>
                 <center ng-if="item.mediaType != ''" ng-repeat="item in creativity.items" style="padding: 0px">
                     <iframe ng-if="item.mediaType == 'youtube'" width="560" height="315" ng-src="{{item.embedUrlIframe}}" frameborder="0" allowfullscreen></iframe>
-                    <iframe ng-if="item.mediaType == 'vimeo'" width="640" height="360" src="{{item.embedUrlIframe}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    <iframe ng-if="item.mediaType == 'vimeo'" width="640" height="360" ng-src="{{item.embedUrlIframe}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                     <iframe ng-show="item.mediaType == 'soundcloud'" id="sc-widget" width="100%" height="162px" scrolling="no" frameborder="no" ng-src="{{item.embedUrlIframe}}"></iframe>
                     <md-card ng-if="item.mediaType == 'link'">
                         <md-card-title>
