@@ -11,7 +11,9 @@
         ]);
 
     function DialogController($mdDialog, $scope,  $timeout) {
-        $scope.event = {};
+        //this was causing error in share url for type = event
+        //if this is not a typo report 
+        //$scope.event = {};
       
        
             //
