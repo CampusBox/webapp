@@ -10,7 +10,9 @@
             '$localStorage',
             '$state',
             'tokenService',
-            'secretServices',
+            // REQUIRED FOR CORDOVA
+            // 'secretServices',
+            // END
             '$auth',
             '$window',
             'creativityCategories',
@@ -19,7 +21,11 @@
             SignUpDialogController
         ]);
 
-    function SignUpDialogController($scope, $timeout, $rootScope, $localStorage, $state, tokenService, secretServices, $auth, $window, creativityCategories, $filter, $mdDialog) {
+    function SignUpDialogController($scope, $timeout, $rootScope, $localStorage, $state, tokenService, 
+        // REQUIRED FOR CORDOVA     
+        // secretServices,
+        // END
+        $auth, $window, creativityCategories, $filter, $mdDialog) { 
         var vm = this;
 
         $scope.signup = 1;
@@ -230,7 +236,7 @@
             }
 
             $window.plugins.googleplus.login({
-                    'webClientId': secretServices.getGClientId,
+                    'webClientId': '702228530885-vi264d7g6v5ivbcmebjfpomr0hmliomd.apps.googleusercontent.com',
                     'offline': true,
                 },
                 function(user_data) {
@@ -253,8 +259,10 @@
 
                     $.post('https://accounts.google.com/o/oauth2/token', {
                         code: user_data.serverAuthCode,
-                        client_id: secretServices.getGClientId,
-                        client_secret: secretServices.getGClientSecret,
+                        client_id: '702228530885-vi264d7g6v5ivbcmebjfpomr0hmliomd.apps.googleusercontent.com',
+                        // REQUIRED FOR CORDOVA
+                        // client_secret: secretServices.getGClientSecret,
+                        // END
                         grant_type: 'authorization_code',
                         redirect_uri: "",
                     }).then(function(obj) {
@@ -271,12 +279,20 @@
 
                                 console.log("Got signup request response");
                                 console.log(JSON.stringify(abc));
-
                                 localStorage.setItem('id_token', abc.token);
                                 $rootScope.token = abc.token;
-                                // $state.go("home.dashboard");
                                 $rootScope.authenticated = true;
                                 $mdDialog.hide();
+                                tokenService.get("userImage")
+                                        .then(function(response) {
+                                            $rootScope.user = response;
+                                            tokenService.get("notifications")
+                                                .then(function(notif) {
+                                                    $rootScope.notifications = notifs;
+                                                });
+                                        });
+
+                                
 
                             })
                             .catch(function() {
