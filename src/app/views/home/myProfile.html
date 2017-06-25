@@ -300,14 +300,15 @@ md-chips .md-chips {
                         </div>
                         <div style="margin-top: 16px;">
                             <div ng-hide="editAbout" layout="row" layout-align="start">
-                                <span class="profile-subtitle">{{(student.subtitle === null)?"Write about yourself. ":student.subtitle}}</span>
+                                <span ng-hide=' ( student.subtitle == null || student.subtitle == "" ) ' class="profile-subtitle">{{student.subtitle}}</span>
+                                <span ng-show='(student.subtitle == null || student.subtitle == "")' class="profile-subtitle" style="font-style: italic;color: rgba(99,108,116,.45);">Write about yourself.</span>
                             </div>
                             <div ng-show="editAbout" class="md-body-2" layout="column" style="background-color: #f1f1f1;border-radius: 2px;padding:8px; ">
                                 <input class="md-body-2 md-padding " md-colors="{color: 'grey'} " ng-model="studentAbout.about ">
                                 </input>
                                 <div layout="row " style="padding-top: 8px; " layout-align="space-around center ">
                                     <md-button class="md-raised" ng-click="editAbout=false;">Cancel</md-button>
-                                    <md-button class="md-raised md-primary" ng-click="about() ">Update</md-button>
+                                    <md-button class="md-raised md-primary" ng-click="editAbout=false;about() ">Update</md-button>
                                 </div>
                             </div>
                         </div>
@@ -345,7 +346,7 @@ md-chips .md-chips {
                         <div layout="row">
                             <span class="profile-section-title">Info</span>
                             <span flex></span>
-                            <!-- When info editing/Adding is ready -->
+                            <!-- Uncomment when info editing/Adding is ready -->
                             <!-- <span class="profile-edit-link" ng-hide="editInfo" ng-click="editInfo=true;">
                                 Add info
                             </span> -->
