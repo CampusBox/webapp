@@ -69,18 +69,33 @@
         };
         $scope.$watch('filters', function(newValue, oldValue) {
             //console.log(newValue);
-        $scope.css = {
-            'transform': 'rotate(' + (newValue[0].value) + 'deg)',
-            'filter': 'grayscale(' + (newValue[1].value) + '%) opacity(' + (newValue[2].value) + '%)'
+            $scope.css = {
+                'transform': 'rotate(' + (newValue[0].value) + 'deg)',
+                'filter': 'grayscale(' + (newValue[1].value) + '%) opacity(' + (newValue[2].value) + '%)'
+            };
+            $scope.creativity.items.css = JSON.stringify($scope.css);
+            //console.log(JSON.stringify($scope.creativity.items.css));
+            //console.log(JSON.parse($scope.creativity.items.css));
+        }, true);
+
+
+        $scope.showGridBottomSheet = function() {
+            $scope.alert = '';
+            $mdBottomSheet.show({
+                templateUrl: 'bottom-sheet-grid-template.html',
+                controller: 'GridBottomSheetCtrl',
+                clickOutsideToClose: false
+            }).then(function(clickedItem) {
+                $mdToast.show(
+                    $mdToast.simple()
+                    .textContent(clickedItem['name'] + ' clicked!')
+                    .position('top right')
+                    .hideDelay(1500)
+                );
+            }).catch(function(error) {
+                // User clicked outside or hit escape
+            });
         };
-
-        $scope.creativity.items.css = JSON.stringify($scope.css);
-        console.log(JSON.stringify($scope.creativity.items.css));
-        console.log(JSON.parse($scope.creativity.items.css));
-        
-
-
-        },true);
 
 
         if (!localStorage.getItem('seenTutorial') || !parseInt(localStorage.getItem('tutorial'))) {
@@ -280,7 +295,7 @@
 
             $scope.creativity.tags = $scope.tags;
             $scope.creativity.title = $scope.title;
-           
+
 
 
             // tokenService.post("addNew", $scope.creativity)
