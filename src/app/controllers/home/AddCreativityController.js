@@ -58,9 +58,9 @@
         //imagefilter varaibles 
         $scope.currentFilterId = 0;
         $scope.filters = [
-            { 'id': 0, 'type': 'Rotate', 'value': '0' },
-            { 'id': 1, 'type': 'Greyscale', 'value': '0' },
-            { 'id': 2, 'type': 'Opacity', 'value': '100' }
+            { 'id': 0, 'type': 'Rotate', 'value': 0 },
+            { 'id': 1, 'type': 'Greyscale', 'value': 0 },
+            { 'id': 2, 'type': 'Opacity', 'value': 100 }
         ];
 
         $scope.css = {
