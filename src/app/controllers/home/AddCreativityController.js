@@ -288,28 +288,24 @@
             $scope.checkEditor();
             $scope.loading = true;
             $scope.image = {};
-
             $scope.creativity.tags = $scope.tags;
             $scope.creativity.title = $scope.title;
+            tokenService.post("addNew", $scope.creativity)
+                .then(function(status) {
+                    alert(status.message);
+                    if (status.status) {
 
+                        $state.go('home.dashboard');
+                    }
+                    $state.go('home.dashboard');
+                }).catch(function(status) {
+                    alert(status.message);
+                    $state.go('home.dashboard');
+                    if (status.status) {
 
-
-            // tokenService.post("addNew", $scope.creativity)
-            //     .then(function(status) {
-            //         alert(status.message);
-            //         if (status.status) {
-
-            //             $state.go('home.dashboard');
-            //         }
-            //         $state.go('home.dashboard');
-            //     }).catch(function(status) {
-            //         alert(status.message);
-            //         $state.go('home.dashboard');
-            //         if (status.status) {
-
-            //             $state.go('home.dashboard');
-            //         }
-            //     });
+                        $state.go('home.dashboard');
+                    }
+                });
 
         };
 
