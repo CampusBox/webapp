@@ -1,11 +1,11 @@
 <div ng-if="isAllowed(allowedDance,creativity.type)">
-    <div flex-offset-gt-sm="10" layout="column" ng-repeat="item in creativity.items" style="padding: 0px">
+    <div  layout="column" ng-repeat="item in creativity.items" style="padding: 0px">
         <div>
             <iframe style="max-width: 100%;" ng-if="item.mediaType == 'youtube'" width="560" height="315" ng-src="{{item.embedUrlIframe}}" frameborder="0" allowfullscreen></iframe>
             <iframe style="max-width: 100%;" ng-if="item.mediaType == 'vimeo'" width="640" height="360" src="{{item.embedUrlIframe}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         </div>
     </div>
-    <div flex-offset-gt-sm="10" layout="column">
+    <div  layout="column">
         <div ng-show="videoAdded">
             <span>{{creativity.items[1].noembed.title}}</span>
             <md-button ng-click="removeDance()" class="md-button md-warn">

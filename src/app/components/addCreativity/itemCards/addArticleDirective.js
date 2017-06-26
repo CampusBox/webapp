@@ -11,6 +11,7 @@
                 //Define Variables
                 $scope.allowedArticle = [1, 20, 21];
                 $scope.enterUrl = true;
+                
                 $scope.inputActive = false;
                 $scope.removeArticleItem = function(index) {
                     $scope.creativity.items.splice(index, 1);

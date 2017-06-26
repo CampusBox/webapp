@@ -24,17 +24,17 @@
         $scope.publishable = false;
         $scope.compulsaryP = [1, 2, 17, 18, 19, 20, 21];
         $scope.onlyText = [1, 2];
-        $scope.addMenu = false;
+        $scope.addMenu = true;
         $scope.publishFromDir = false;
         //
         // Functions
         $scope.showMenu = function() {
                 if ($scope.addMenu) {
-                    $scope.addMenu = false
+                    $scope.addMenu = false;
                 } else {
                     $scope.addMenu = true;
                 }
-            }
+            };
             //
         var body = {};
         $scope.progress = 0;

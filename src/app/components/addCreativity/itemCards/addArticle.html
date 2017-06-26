@@ -1,5 +1,5 @@
 <div ng-if="isAllowed(allowedArticle,creativity.type)">
-    <div flex-offset-gt-sm="10" layout="column" ng-repeat="item in creativity.items track by $index" style="padding: 0px">
+    <div  layout="column" ng-repeat="item in creativity.items track by $index" style="padding: 0px">
         <div>
             <div>
                 <iframe style="max-width: 100%;" ng-if="item.mediaType == 'youtube'" width="560" height="315" ng-src="{{item.embedUrlIframe}}" frameborder="0" allowfullscreen></iframe>
@@ -24,7 +24,7 @@
             </center>
         </div>
     </div>
-    <div flex-offset-gt-sm="10" layout="column">
+    <div  layout="column">
         <div layout="row" layout-align="space-between center">
             <div layout="row" layout-align="strech center">
                 <div style="cursor: pointer;" layout="row" layout-align="strech center" ng-click="showMenu()">
