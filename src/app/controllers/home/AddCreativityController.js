@@ -55,6 +55,32 @@
         $scope.loading = false;
         $scope.title = "";
 
+        //imagefilter varaibles 
+        $scope.currentFilterId = 0;
+        $scope.filters = [
+            { 'id': 0, 'type': 'Rotate', 'value': '0' },
+            { 'id': 1, 'type': 'Greyscale', 'value': '0' },
+            { 'id': 2, 'type': 'Opacity', 'value': '100' }
+        ];
+
+        $scope.css = {
+            'transform': 'rotate(' + ($scope.filters[0].value) + 'deg)',
+            'filter': 'grayscale(' + ($scope.filters[1].value) + '%) opacity(' + ($scope.filters[2].value) + '%)'
+        };
+        $scope.$watch('filters', function(newValue, oldValue) {
+            //console.log(newValue);
+        $scope.css = {
+            'transform': 'rotate(' + (newValue[0].value) + 'deg)',
+            'filter': 'grayscale(' + (newValue[1].value) + '%) opacity(' + (newValue[2].value) + '%)'
+        };
+
+        $scope.creativity.items.css = JSON.stringify($scope.css);
+        console.log(JSON.stringify($scope.creativity.items.css));
+        console.log(JSON.parse($scope.creativity.items.css));
+        
+
+
+        },true);
 
 
         if (!localStorage.getItem('seenTutorial') || !parseInt(localStorage.getItem('tutorial'))) {
@@ -254,23 +280,25 @@
 
             $scope.creativity.tags = $scope.tags;
             $scope.creativity.title = $scope.title;
-            console.log($scope.creativity);
-            tokenService.post("addNew", $scope.creativity)
-                .then(function(status) {
-                    alert(status.message);
-                    if (status.status) {
+           
 
-                        $state.go('home.dashboard');
-                    }
-                    $state.go('home.dashboard');
-                }).catch(function(status) {
-                    alert(status.message);
-                    $state.go('home.dashboard');
-                    if (status.status) {
 
-                        $state.go('home.dashboard');
-                    }
-                });
+            // tokenService.post("addNew", $scope.creativity)
+            //     .then(function(status) {
+            //         alert(status.message);
+            //         if (status.status) {
+
+            //             $state.go('home.dashboard');
+            //         }
+            //         $state.go('home.dashboard');
+            //     }).catch(function(status) {
+            //         alert(status.message);
+            //         $state.go('home.dashboard');
+            //         if (status.status) {
+
+            //             $state.go('home.dashboard');
+            //         }
+            //     });
 
         };
 
