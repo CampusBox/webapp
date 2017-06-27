@@ -78,6 +78,14 @@
                     }
                     $rootScope.$emit("returnedItem", obj.item, obj.addError);
                 }
+                obj.text = function(text) {
+                    obj.addError = '';
+                    obj.item = {};
+                    obj.item.mediaType = "text";
+                    obj.item.text = text;
+
+                    $rootScope.$emit("returnedItem", obj.item, obj.addError);
+                }
 
                 return obj;
             }
