@@ -4,11 +4,68 @@
             <center style="margin-top: 40px;" ng-if="item.mediaType=='image'">
                 <div layout="row" layout-align="center center" style="position: relative;background:#fafbfc;max-width: 500px;max-height: 500px;">
                     <!-- <img style="max-width: 100%" ngf-thumbnail="item.image" /> -->
-                    <img style="max-width: 100%" ng-src = "{{item.image}}" />
-                    <md-button style="position: absolute;top: 0px;right:0px;color: #fff;text-shadow: 0px 1px 3px black;" ng-if="creativity.items.length > 1" ng-click="removeDrawing($index)" class="md-icon-button md-warn">
+                    <img style="max-width: 100%" ng-style="css" ng-src = "{{item.image}}" />
+                    <md-button style="position: absolute;top: 0px;right:0px;color: #fff;text-shadow: 0px 1px 3px black;background-color: white;" ng-if="creativity.items.length > 1" ng-click="removeDrawing($index)" class="md-icon-button md-warn">
                         <md-icon md-svg-icon="close-circle-outline"></md-icon>
                     </md-button>
+                    <md-button ng-if="creativity.items.length > 1" ng-click="filterToggle()" class="md-icon-button md-warn" style="position: absolute;top: 0px;right:50px;color: #fff;text-shadow: 0px 1px 3px black;background-color: white;">
+                        <md-icon md-svg-icon="filter"></md-icon>
+                    </md-button>
                 </div>
+                                <!--                 <md-card>
+                <md-card-content>
+                    <md-slider-container>
+                        <span>{{filters[currentFilterId].type}}</span>
+                        <md-slider flex min="0 " max="100 " ng-model="filters[currentFilterId].value" aria-label="filters ">
+                        </md-slider>
+                        <md-input-container>
+                            <input flex type="number " ng-model="filters[currentFilterId].value " aria-label="filters " aria-controls="slider ">
+                        </md-input-container>
+                    </md-slider-container>
+                    <md-radio-group ng-model="currentFilterId " layout="row" layout-align="center">
+                        <md-radio-button value="0">Rotate</md-radio-button>
+                        <md-radio-button value="1">Greyscale </md-radio-button>
+                        <md-radio-button value="2">Opacity</md-radio-button>
+                    </md-radio-group>
+                    </md-card-content>
+                </md-card> -->
+                <md-card ng-cloak ng-if="creativity.items.length > 1" ng-show="filterVisible" style="max-width: 500px;max-height: 210px">
+                    <md-content layout="row" layout-padding>
+                        <md-slider-container flex="20">
+                            <!--                             <md-input-container>
+                                <input flex type="number" ng-model="vol" aria-label="volume" aria-controls="volume-slider">
+                            </md-input-container> -->
+                            <md-slider md-discrete ng-model="filter.brightness" min="50" max="200" aria-label="bass" class="md-primary" md-vertical></md-slider>
+                            </md-slider>
+                            <h5>Brightness</h5>
+                        </md-slider-container>
+                        <md-slider-container flex="20">
+                            <!--  <md-input-container>
+                                <input flex type="number" ng-model="bass" aria-label="bass" aria-controls="bass-slider">
+                            </md-input-container> -->
+                            <md-slider md-discrete ng-model="filter.contrast" min="0" max="100" aria-label="bass" class="md-primary" md-vertical></md-slider>
+                            </md-slider>
+                            <h5>Contrast</h5>
+                        </md-slider-container>
+                        <md-slider-container flex="20">
+                            <!-- <md-input-container>
+                                    <input flex type="number" ng-model="master" aria-label="master" aria-controls="master-slider">
+                                </md-input-container> -->
+                            <md-slider flex ng-model="filter.saturation" md-discrete min="50" max="200" aria-label="Master" md-vertical ng-readonly="readonly"></md-slider>
+                            <h5>Saturation</h5>
+                        </md-slider-container>
+                        <md-divider></md-divider>
+                        <div flex>
+                        <div style="margin-bottom: 16px;margin-top: 8px;">Rotation</div>
+                        <md-radio-group ng-model="filter.rotate">
+                            <md-radio-button value="0">0 Deg</md-radio-button>
+                            <md-radio-button value="90">90 Deg </md-radio-button>
+                            <md-radio-button value="180">180 Deg</md-radio-button>
+                            <md-radio-button value="270">270 Deg</md-radio-button>
+                        </md-radio-group>
+                        </div>
+                    </md-content>
+                </md-card>
             </center>
         </div>
     </div>

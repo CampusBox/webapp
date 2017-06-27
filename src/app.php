@@ -21,14 +21,17 @@ function query($url) {
 
 	return $decoded;
 }
+// if ($_GET['link']) {
 if ($_SERVER['REQUEST_URI']) {
 	
+	// $route = $_GET['link'];
 	$route = $_SERVER['REQUEST_URI'];
  // echo $route; 
+
 	$singleContent ='/dist/singleContent/';
 	$singleEvent ='/dist/singleEvent/';
 	$profile ='/dist/profile/';
-
+// echo $route;
 	if (substr($route, 0, strlen($singleContent)) === $singleContent) {
 		// echo "content";
 		$contentUrl = 'https://campusbox.org/dist/api/public/content/';
@@ -36,10 +39,15 @@ if ($_SERVER['REQUEST_URI']) {
 
 		$finalUrl = $contentUrl . $contentId;
 		$decoded = query($finalUrl);
+		// foreach ($decoded['data']['Items']['data'][0] as $value) {
+		// 	if(){
 
+		// 	}
+		// }
 		$final["all"] =$decoded['data'];
 		$final["title"] =$decoded['data']['title'];
 		$final["description"] =$decoded['data']['Items']['data'][0]['description'];
+		$final['image'] =$decoded['data']['created']['by']['image'];
 	}
 
 	elseif (substr($route, 0, strlen($profile)) === $profile) {
@@ -47,13 +55,14 @@ if ($_SERVER['REQUEST_URI']) {
 		$contentUrl = 'https://campusbox.org/dist/api/public/student/';
 		$contentId = substr($route, 14); 
 		$finalUrl = $contentUrl . $contentId;
-		echo $finalUrl;
+		// echo $finalUrl;
 		$decoded = query($finalUrl);
-		print_r($decoded);
+		// print_r($decoded);
 		$final["all"] =$decoded['data'];
 		
 		$final["title"] =$decoded['data']['name'];
 		$final["description"] =$decoded['data']['subtitle'];
+		$final['image'] =$decoded['data']['photo'];
 	} 
 
 	elseif (substr($route, 0, strlen($singleEvent)) === $singleEvent) {
@@ -69,12 +78,20 @@ if ($_SERVER['REQUEST_URI']) {
 		
 		$final["title"] =$decoded['data'][0]['title'];
 		$final["description"] =$decoded['data'][0]['subtitle'];
-
+		$final['image'] =$decoded['data'][0]['image']; 
+ 
 	}
+	$final["description"]= substr($final["description"],20);
 ?>	
 	<title><?php print_r($final['title']) ?></title>
+	<!-- <meta name="description" content="<?php print_r($final['description']) ?>"> </meta> -->
+	<meta name="image" content="<?php print_r($final['image']) ?>"> </meta>
 	<meta property="og:title" content="<?php print_r($final["title"]); ?>" />
-	<meta property="og:description" content="<?php echo $final["description"]; ?>" />
+	<!-- <meta property="og:description" content="<?php print_r($final["description"]); ?>" /> -->
+	<meta property="og:image" content="<?php print_r($final["image"]); ?>" />
+	<meta property="og:site_name" content="campusbox.org" />
+
+
 	<meta property="fb:app_id" content="1250377088376164" />
  	<meta property="og:type"   content="website" />
 <?php }

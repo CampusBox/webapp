@@ -16,10 +16,11 @@
             '$rootScope',
             'creativityCategories',
             'addItemService',
+            '$mdBottomSheet',
             AddCreativityController
         ]);
 
-    function AddCreativityController($scope, $sce, $timeout, $mdDialog, allDataService, tokenService, $state, Upload, $rootScope, creativityCategories, addItemService) {
+    function AddCreativityController($scope, $sce, $timeout, $mdDialog, allDataService, tokenService, $state, Upload, $rootScope, creativityCategories, addItemService, $mdBottomSheet) {
         // 22 june
         $scope.publishable = false;
         $scope.compulsaryP = [1, 2, 17, 18, 19, 20, 21];
@@ -55,6 +56,42 @@
         $scope.loading = false;
         $scope.title = "";
 
+        //imagefilter varaibles 
+        $scope.filterVisible = false;
+        //$scope.currentFilterId = 0;
+        // $scope.filters = [
+        //     { 'id': 0, 'type': 'Rotate', 'value': 0 },
+        //     { 'id': 1, 'type': 'Greyscale', 'value': 0 },
+        //     { 'id': 2, 'type': 'Opacity', 'value': 100 }
+        // ];
+        $scope.filter = {};
+        $scope.filter.rotate = 0;
+        $scope.filter.saturation = 100;
+        $scope.filter.contrast = 100;
+        $scope.filter.brightness = 100;
+
+        $scope.css = {
+            'transform': 'rotate(' + ($scope.filter.rotate) + 'deg)',
+            'filter': 'saturate(' + ($scope.filter.saturation) + '%) brightness(' + ($scope.filter.brightness) + '%) contrast(' + ($scope.filter.contrast) + '%)'
+        };
+        $scope.$watch('filter', function(newValue, oldValue) {
+            //console.log(newValue);
+            $scope.css = {
+                'transform': 'rotate(' + ($scope.filter.rotate) + 'deg)',
+                'filter': 'saturate(' + ($scope.filter.saturation) + '%) brightness(' + ($scope.filter.brightness) + '%) contrast(' + ($scope.filter.contrast) + '%)'
+            };
+            $scope.creativity.items.css = JSON.stringify($scope.css);
+            console.log(JSON.stringify($scope.creativity.items.css));
+            console.log(JSON.parse($scope.creativity.items.css));
+        }, true);
+
+
+        $scope.filterToggle = function() {
+            if ($scope.filterVisible)
+                $scope.filterVisible = false;
+            else
+                $scope.filterVisible = true;
+        };
 
 
         if (!localStorage.getItem('seenTutorial') || !parseInt(localStorage.getItem('tutorial'))) {
@@ -255,7 +292,6 @@
             $scope.checkEditor();
             $scope.loading = true;
             $scope.image = {};
-
             $scope.creativity.tags = $scope.tags;
             $scope.creativity.title = $scope.title;
             console.log($scope.creativity);
