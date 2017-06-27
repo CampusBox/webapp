@@ -16,7 +16,7 @@
                 //End Defining variables
 
                 $scope.checkPoetry = function() {
-                        console.log('$scope.poetryAdded');
+                        console.log($scope.poetryAdded);
                     if ($scope.creativity.items[0] == undefined || $scope.videoAdded) {
                         $scope.videoAdded = false;
                         $scope.poetryAdded = false;
@@ -54,7 +54,7 @@
                         $scope.setNoembed(url, 1);
                         $scope.checkPoetry();
                     } else {
-                        $scope.error = "Enter a valid Youtube or Vimeo url.";
+                        $scope.error = "Sorry we do not support the given url yet.";
                     }
                 };
             }
