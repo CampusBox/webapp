@@ -33,8 +33,8 @@
                         $scope.error = '';
                         $scope.fetchLoading = true;
                         var media = {};
-                        media.mediaType = 'url';
-                        media.url = url;
+                        media.mediaType = 'embed';
+                        media.embedUrl = url;
                         $scope.creativity.items.push(media);
                         allDataService.linkPreviewJson(url)
                             .then(function(data) {
