@@ -48,54 +48,52 @@
                 obj.iframely = function(url) {
                     obj.url = url;
                     obj.addError = '';
-                    if (obj.validateUrl(obj.url)) {
-                        allDataService.iframelyJson(url).then(function(data) {
-                            // console.log(data);
-                            obj.item = {};
-                            if (data.html) {
-                                obj.item.mediaType = "embed";
-                                obj.item.embed = [];
-                                obj.item.embed.url = url;
-                                obj.item.embed.iframe = data.html;
-                                if (data.meta.site) {
-                                    obj.item.embed.provider = data.meta.site;
-                                }
-                                if (data.links.thumbnail.length) {
-                                    obj.item.embed.thumbnailUrl = data.links.thumbnail[0].href;
-                                }
-                                if (data.meta.author_url) {
-                                    obj.item.embed.author = data.meta.author_url;
-                                } else if (data.meta.author) {
-                                    obj.item.embed.author = data.meta.author;
-                                }
-                                console.log(obj.item);
-                                // obj.item.embedUrl = videoid[1];
-                                // obj.item.embedUrlIframe = $sce.trustAsResourceUrl(obj.item.embedUrl1);
-                            } else {
-                                obj.item.mediaType = "tech";
-                                obj.item.tech = [];
-                                obj.item.tech.url = url;
-                                if (data.meta.site) {
-                                    obj.item.tech.provider = data.meta.site;
-                                }
-                                if (data.links.icon.length) {
-                                    obj.item.tech.icon = data.links.icon[0].href;
-                                }
-                                if (data.meta.author_url) {
-                                    obj.item.tech.author = data.meta.author_url;
-                                } else if (data.meta.author) {
-                                    obj.item.tech.author = data.meta.author;
-                                }
-                                console.log(obj.item);
-                                // obj.item.embedUrl = videoid[1];
-                                // obj.item.embedUrlIframe = $sce.trustAsResourceUrl(obj.item.embedUrl1);
+                    allDataService.iframelyJson(url).then(function(data) {
+                        console.log(data);
+                        obj.item = {};
+                        obj.item.iframely = {};
+                        obj.item.iframely.title = data.meta.title;
+                        if (data.html) {
+                            obj.item.mediaType = "embed";
+                            obj.item.embed = [];
+                            obj.item.embed.url = url;
+                            obj.item.embed.iframe = data.html;
+                            if (data.meta.site != undefined) {
+                                obj.item.embed.provider = data.meta.site;
                             }
-                        });
-                    } else {
-                        obj.addError = 'Enter a valid url';
-                        console.log('Invalid url');
-                    }
-                    // $rootScope.$emit("returnedItem", obj.item, obj.addError);
+                            if (data.links.thumbnail != undefined) {
+                                obj.item.embed.thumbnailUrl = data.links.thumbnail[0].href;
+                            }
+                            if (data.meta.author_url != undefined) {
+                                obj.item.embed.author = data.meta.author_url;
+                            } else if (data.meta.author != undefined) {
+                                obj.item.embed.author = data.meta.author;
+                            }
+                            obj.item.embedIframe = $sce.trustAsHtml(data.html);
+                            $rootScope.$emit("returnedItem", obj.item, 0);
+                        } else {
+                            obj.item.mediaType = "tech";
+                            obj.item.tech = [];
+                            obj.item.tech.url = url;
+                            if (data.meta.site != undefined) {
+                                obj.item.tech.provider = data.meta.site;
+                            }
+                            if (data.links.icon.length != undefined) {
+                                obj.item.tech.icon = data.links.icon[0].href;
+                            }
+                            if (data.meta.author_url != undefined) {
+                                obj.item.tech.author = data.meta.author_url;
+                            } else if (data.meta.author != undefined) {
+                                obj.item.tech.author = data.meta.author;
+                            }
+                            $rootScope.$emit("returnedItem", obj.item, obj.addError);
+                        }
+                    }).catch(function(err) {
+                        obj.addError = 'Url not found';
+                        console.log(err);
+                        $rootScope.$emit("returnedItem", obj.addError, 1);
+
+                    });
                 }
                 obj.soundcloud = function(url) {
                     obj.url = url;

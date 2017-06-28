@@ -30,13 +30,13 @@
         //
         // Functions
         $scope.showMenu = function() {
-                if ($scope.addMenu) {
-                    $scope.addMenu = false;
-                } else {
-                    $scope.addMenu = true;
-                }
-            };
-            //
+            if ($scope.addMenu) {
+                $scope.addMenu = false;
+            } else {
+                $scope.addMenu = true;
+            }
+        };
+        //
         var body = {};
         $scope.progress = 0;
         $scope.isOpen = false;
@@ -218,26 +218,17 @@
             }
         };
         $scope.error = '';
-        $rootScope.$on("returnedItem", function(event, response, errorAdd) {
-            $scope.error = errorAdd;
-            $scope.returnedItem = response;
-            $scope.progress = 2;
-            $scope.creativity.items.push(response);
-            console.log($scope.creativity.items);
-            $scope.addMenu = false;
-            if ($scope.returnedItem.mediaType == 'Soundcloud') {
-                var widgetIframe = document.getElementById('sc-widget'),
-                    widget = SC.Widget(widgetIframe),
-                    newSoundUrl = $scope.embedUrlIframe;
-                widget.bind(SC.Widget.Events.READY, function() {
-                    // load new widget
-                    widget.bind(SC.Widget.Events.FINISH, function() {
-                        widget.load(newSoundUrl, {
-                            show_artwork: false
-                        });
-                    });
-                });
+        $rootScope.$on("returnedItem", function(event, response, error) {
+            if (error) {
+                $scope.error = response;
+            } else {
+                $scope.error = '';
+                $scope.returnedItem = response;
+                $scope.progress = 2;
+                $scope.creativity.items.push(response);
+                $scope.addMenu = false;
             }
+            console.log($scope.creativity.items);
 
         });
         $scope.isAllowed = function(allowed, id) {
