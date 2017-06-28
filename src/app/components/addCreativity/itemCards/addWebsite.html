@@ -1,5 +1,5 @@
 <div ng-if="isAllowed(allowedWebsite, creativity.type)">
-    <div flex-offset-gt-sm="10" layout="column" ng-repeat="item in creativity.items track by $index" style="padding: 0px">
+    <div  layout="column" ng-repeat="item in creativity.items track by $index" style="padding: 0px">
         <div layout="column">
             <center style="margin-top: 40px;" ng-if="item.mediaType=='image'">
                 <div layout="row" layout-align="center center" style="position: relative;background:#fafbfc;max-width: 500px;max-height: 500px;">
@@ -11,7 +11,7 @@
             </center>
         </div>
     </div>
-    <div flex-offset-gt-sm="10" layout="column">
+    <div  layout="column">
         <div layout="column" layout-align="center center">
             <md-button ngf-select="uploadFiles($files, $invalidFiles)" multiple name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 500, height: 500}" ngf-resize-if="$width > 500 || $height > 500">
                 <md-icon md-svg-icon="laptop"></md-icon>
