@@ -291,7 +291,7 @@
             $scope.creativity.tags = $scope.tags;
             $scope.creativity.title = $scope.title;
             console.log($scope.creativity);
-            tokenService.post("addNew", $scope.creativity)
+            tokenService.post("addContent", $scope.creativity)
                 .then(function(status) {
                     alert(status.message);
                     if (status.status) {
