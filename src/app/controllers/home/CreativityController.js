@@ -1,7 +1,6 @@
 'use strict';
 
 (function() {
-
     angular
         .module('app')
         .controller('CreativityController', [
@@ -138,7 +137,7 @@
                         $scope.finalContents = $scope.finalContents.concat($scope.nonFinalContents);
                         $scope.finalContentsCopy = $scope.finalContentsCopy.concat($scope.nonFinalContents);
                         $scope.contentDetails.offset += 3;
-                        $scope.myPagingFunction();
+                        // $scope.myPagingFunction();
                     });
 
             }
