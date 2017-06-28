@@ -81,8 +81,6 @@
                 'filter': 'saturate(' + ($scope.filter.saturation) + '%) brightness(' + ($scope.filter.brightness) + '%) contrast(' + ($scope.filter.contrast) + '%)'
             };
             $scope.creativity.items.css = JSON.stringify($scope.css);
-            console.log(JSON.stringify($scope.creativity.items.css));
-            console.log(JSON.parse($scope.creativity.items.css));
         }, true);
 
 

@@ -11,58 +11,56 @@
                 obj.types = [
                     { 'title': 'Articles', 'id': 1 },
                     { 'title': 'Poetry', 'id': 2 },
-                    { 'title': 'Drama', 'id': 3 },
-                    { 'title': 'Paint and Colour', 'id': 4 },
+                    { 'title': 'Acting', 'id': 3 },
+                    { 'title': 'Paint & Colour', 'id': 4 },
                     { 'title': 'Drawing ', 'id': 5 },
-                    { 'title': 'Sewing and Fabric', 'id': 6 },
+                    { 'title': 'Sewing & Fabric', 'id': 6 },
                     { 'title': 'Craft', 'id': 7 },
                     { 'title': 'Dancing', 'id': 8 },
                     { 'title': 'Singing', 'id': 9 },
                     { 'title': 'Instrumental', 'id': 10 },
                     { 'title': 'Digital Music', 'id': 11 },
                     { 'title': 'Decor', 'id': 12 },
-                    { 'title': 'Film and Video', 'id': 13 },
-                    { 'title': 'Animation', 'id': 14 },
-                    { 'title': 'Graphics', 'id': 15 },
-                    { 'title': 'UI and UX', 'id': 16 },
+                    { 'title': 'Film & Cinema', 'id': 13 },
+                    { 'title': 'Video & Animation', 'id': 14 },
+                    { 'title': 'Graphics & Digital Art', 'id': 15 },
+                    { 'title': 'UI & UX', 'id': 16 },
                     { 'title': 'Websites', 'id': 17 },
-                    { 'title': 'Programming', 'id': 18 },
+                    { 'title': 'Creative Coding', 'id': 18 },
                     { 'title': 'Apps', 'id': 19 },
-                    { 'title': 'Electronics', 'id': 20 },
-                    { 'title': 'DIY', 'id': 21 }
+                    { 'title': 'Electronics & Hardware', 'id': 20 }
                 ];
                 obj.typesByID = [
                     'Articles',
                     'Poetry',
-                    'Drama',
-                    'Paint and Colour',
+                    'Acting',
+                    'Paint & Colour',
                     'Drawing ',,
-                    'Sewing and Fabric',
+                    'Sewing & Fabric',
                     'Craft',
                     'Dancing',
                     'Singing',
                     'Instrumental',
                     'Digital Music',
                     'Decor',
-                    'Film and Video',
-                    'Animation',
-                    'Graphics',
-                    'UI and UX',
+                    'Film & Cinema',
+                    'Video & Animation',
+                    'Graphics & Digital Art',
+                    'UI & UX',
                     'Websites',
-                    'Programming',
+                    'Creative Coding',
                     'Apps',
-                    'Electronics',
-                    'DIY'
+                    'Electronics & Hardware'
                 ];
                 obj.items[0] = [
                     { 'title': 'Articles', 'id': 1 },
                     { 'title': 'Poetry', 'id': 2 },
-                    { 'title': 'Drama', 'id': 3 }
+                    { 'title': 'Acting', 'id': 3 }
                 ];
                 obj.items[1] = [
-                    { 'title': 'Paint and Colour', 'id': 4 },
+                    { 'title': 'Paint & Colour', 'id': 4 },
                     { 'title': 'Drawing ', 'id': 5 },
-                    { 'title': 'Sewing and Fabric', 'id': 6 },
+                    { 'title': 'Sewing & Fabric', 'id': 6 },
                     { 'title': 'Craft', 'id': 7 }
                     // { 'title': 'Dancing', 'id': 8 }
                 ];
@@ -75,31 +73,29 @@
 
                 ];
                 obj.items[3] = [
-                    { 'title': 'Film and Video', 'id': 13 },
-                    { 'title': 'Animation', 'id': 14 },
-                    { 'title': 'Graphics', 'id': 15 },
-                    { 'title': 'UI and UX', 'id': 16 },
-                    { 'title': 'Websites', 'id': 17 }
+                    { 'title': 'Film & Cinema', 'id': 13 },
+                    { 'title': 'Video & Animation', 'id': 14 },
+                    { 'title': 'Graphics & Digital Art', 'id': 15 },
+                    { 'title': 'UI & UX', 'id': 16 }
                 ];
                 obj.items[4] = [
-                    { 'title': 'Programming', 'id': 18 },
+                    { 'title': 'Websites', 'id': 17 },
+                    { 'title': 'Creative Coding', 'id': 18 },
                     { 'title': 'Apps', 'id': 19 },
-                    { 'title': 'Electronics', 'id': 20 },
-                    { 'title': 'DIY', 'id': 21 }
+                    { 'title': 'Electronics & Hardware', 'id': 20 }
                 ];
                 obj.itemsMobile[0] = [
                     { 'title': 'Articles', 'id': 1 },
                     { 'title': 'Poetry', 'id': 2 },
-                    { 'title': 'Drama', 'id': 3 }
+                    { 'title': 'Acting', 'id': 3 }
                 ];
                 obj.itemsMobile[1] = [
-                    { 'title': 'Paint and Colour', 'id': 4 },
+                    { 'title': 'Paint & Colour', 'id': 4 },
                     { 'title': 'Drawing ', 'id': 5 },
-                    { 'title': 'Sewing and Fabric', 'id': 6 },
+                    { 'title': 'Sewing & Fabric', 'id': 6 },
                 ];
                 obj.itemsMobile[2] = [
                     { 'title': 'Craft', 'id': 7 },
-                    // { 'title': 'Dancing', 'id': 8 },
                     { 'title': 'Dancing', 'id': 8 },
                     { 'title': 'Singing', 'id': 9 },
                     { 'title': 'Instrumental', 'id': 10 }
@@ -108,22 +104,21 @@
                 obj.itemsMobile[3] = [
                     { 'title': 'Digital Music', 'id': 11 },
                     { 'title': 'Decor', 'id': 12 },
-                    { 'title': 'Film and Video', 'id': 13 }
+                    { 'title': 'Film & Cinema', 'id': 13 }
                 ];
                 obj.itemsMobile[4] = [
-                    { 'title': 'Animation', 'id': 14 },
-                    { 'title': 'Graphics', 'id': 15 },
-                    { 'title': 'UI and UX', 'id': 16 }
+                    { 'title': 'Video & Animation', 'id': 14 },
+                    { 'title': 'Graphics & Digital Art', 'id': 15 },
+                    { 'title': 'UI & UX', 'id': 16 }
                 ];
                 obj.itemsMobile[5] = [
                     { 'title': 'Websites', 'id': 17 },
-                    { 'title': 'Programming', 'id': 18 },
+                    { 'title': 'Creative Coding', 'id': 18 },
                     { 'title': 'Apps', 'id': 19 }
 
                 ];
                 obj.itemsMobile[6] = [
-                    { 'title': 'Electronics', 'id': 20 },
-                    { 'title': 'DIY', 'id': 21 }
+                    { 'title': 'Electronics & Hardware', 'id': 20 }
                 ];
                 return obj;
             }
