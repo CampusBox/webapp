@@ -39,7 +39,7 @@ md-list-item .md-button:not([disabled]):click {
         <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 80px; margin-bottom: 50px; margin-top: 15px;">and again</span>
     </md-card>
     <div flex-gt-sm="80" flex-sm="100" flex ng-if="!loading">
-        <md-list>
+        <md-list hide-xs>
             <md-list-item ui-sref="home.profile({username: content.created.by.username})" flex-offset-gt-sm="10" class="md-3-line" ng-click="false" md-ink-ripple="0">
                 <img ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
                 <div class="md-list-item-text" layout="column">
