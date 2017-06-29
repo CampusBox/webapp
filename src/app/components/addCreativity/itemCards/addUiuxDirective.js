@@ -22,6 +22,13 @@
                     $scope.UiUxAdded = $scope.linkUrl || $scope.graphicsAdded;
                     console.log('$scope.linkUrl ' + $scope.linkUrl);
                 }
+                $scope.removeUiUxItem = function(index) {
+                    $scope.creativity.items.splice(index, 1);
+                    if ($scope.creativity.items.length == 1 || $scope.creativity.items[1].mediaType == 'image') {
+                        $scope.linkUrl = false;
+                        $scope.checkPublishableUiUx();
+                    }
+                }
                 $rootScope.$on("ImagesAdded", function(event) {
                     $scope.graphicsAdded = true;
                     $scope.drawingAdded = false; // On adding images this variable is set true in add drawing directive so we have to set it false here !
