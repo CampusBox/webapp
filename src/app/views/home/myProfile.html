@@ -127,34 +127,34 @@ md-chips .md-chips {
                     </md-button>
                 </div>
             </div>
-            <div ng-hide="editAbout " layout="row " layout-align="center ">
+            <div ng-hide="editAbout" layout="row " layout-align="center ">
                 <p class="md-body-2 ">
                     {{(student.subtitle === null)?"Write about yourself. ":student.subtitle}}
                 </p>
-                <md-button class="md-icon-button " ng-click="about() ">
+                <md-button class="md-icon-button " ng-click="editAbout= true; ">
                     <md-icon md-svg-icon="pencil "></md-icon>
                 </md-button>
             </div>
-            <div class="md-body-2 " layout="column " ng-show="editAbout " style="background-color: #f1f1f1;border-radius: 2px;padding:8px; ">
+            <div class="md-body-2 " layout="column " ng-show="editAbout" style="background-color: #f1f1f1;border-radius: 2px;padding:8px; ">
                 <input class="md-body-2 md-padding " md-colors="{color: 'grey'} " ng-model="studentAbout.about ">
                 </input>
                 <div layout="row " style="padding-top: 8px; " layout-align="space-around center ">
-                    <md-button class="md-raised " ng-click="editAbout=false; ">Cancel
+                    <md-button class="md-raised " ng-click="editAbout = false">Cancel
                     </md-button>
-                    <md-button class="md-raised md-primary " ng-click="about() ">Update
+                    <md-button class="md-raised md-primary " ng-click="editAbout=false;about()">Update
                     </md-button>
                 </div>
             </div>
             <md-divider></md-divider>
-            <div layout="row">
+            <div layout="row" layout-margin>
                 <p class="md-title">
                     Skills
                 </p>
                 <span flex></span>
-                <a class="editLink" href="" ng-show="readonly " ng-click="readonly=false; ">Edit
+                <a href="" ng-init="readonly=true" ng-show="readonly " ng-click="readonly=false; ">Edit
                     </a>
             </div>
-            <div style="margin-bottom: 8px;">
+            <div style="margin-bottom: 8px;" >
                 <md-chips style="box-shadow: none;" ng-model="student.Skills.data" md-transform-chip="transformChip($chip)" readonly="true" md-removable="!readonly">
                     <md-chip-template>
                         <span>
@@ -307,7 +307,7 @@ md-chips .md-chips {
                                 </input>
                                 <div layout="row " style="padding-top: 8px; " layout-align="space-around center ">
                                     <md-button class="md-raised" ng-click="editAbout=false;">Cancel</md-button>
-                                    <md-button class="md-raised md-primary" ng-click="about() ">Update</md-button>
+                                    <md-button class="md-raised md-primary" ng-click="editAbout=false;about() ">Update</md-button>
                                 </div>
                             </div>
                         </div>

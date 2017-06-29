@@ -52,7 +52,7 @@
                 if (!$scope.screenIsSmall && $stateParams.tab === 'profile') {
                     $scope.currentNavItem = 'creativity';
                     //$scope.goto('creativity');
-                } else if ($scope.currentNavItem == '' || $scope.currentNavItem == null ) {
+                } else if ($scope.currentNavItem == '' || $scope.currentNavItem == null) {
                     $scope.currentNavItem = 'profile';
                 }
                 if ($scope.currentNavItem === 'recomended' && $scope.student.BookmarkedContents.data == 0) {
@@ -191,23 +191,18 @@
         $scope.edit = function() {
             // For profile details edit
         };
+
         $scope.about = function() {
-            if ($scope.editAbout) {
-                // console.log($scope.studentAbout);
-                tokenService.patch("/students/" + $scope.student.username, $scope.studentAbout)
-                    .then(function() {
-                        $scope.editAbout = false;
+            console.log($scope.editAbout);
+                tokenService.patch("students/" + $scope.student.username, $scope.studentAbout)
+                    .then(function(result) {
                         $scope.student.subtitle = $scope.studentAbout.about;
                     })
                     .catch(function(error) {
                         console.log(error);
-                        $scope.editAbout = false;
                     });
-
-            } else {
-                $scope.editAbout = true;
-            }
         };
+
         $scope.follow = function(type, index) {
             // SEND FOLLOWER ID AND FOLLOWING ID IN POST
             if ($scope.student[type].data[index].following) {
