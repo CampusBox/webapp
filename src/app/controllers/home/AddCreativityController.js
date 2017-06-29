@@ -50,9 +50,9 @@
         $scope.creativity.items = [];
         $scope.mediumEditor = "";
         $scope.trix = "";
-        // body.mediaType = "text";
-        // body.text = "";
-        // $scope.creativity.items[0] = body;
+        body.mediaType = "text";
+        body.text = "";
+        $scope.creativity.items[0] = body;
         $scope.loading = false;
         $scope.title = "";
 
@@ -272,23 +272,19 @@
         $scope.checkEditor = function() {
             console.log('checkEditor called');
             if ($scope.mediumEditor > $scope.trix) {
-                // $scope.creativity.items[0].text = $scope.mediumEditor;
-                addItemService.text($scope.mediumEditor);
-                console.log($scope.creativity);
+                $scope.creativity.items[0].text = $scope.mediumEditor;
+                console.log($scope.creativity.items[0]);
             } else if ($scope.mediumEditor < $scope.trix) {
-                // $scope.creativity.items[0].text = $scope.trix;
-                addItemService.text($scope.trix);
-                console.log($scope.creativity);
-            } 
-            // else {
-            //     console.log('else');
-            //     $scope.creativity.items[0].text = '';
-            // }
+                $scope.creativity.items[0].text = $scope.trix;
+                console.log($scope.creativity.items[0]);
+            } else {
+                console.log('else');
+                $scope.creativity.items[0].text = '';
+            }
         };
 
 
         $scope.publish = function() {
-            console.log($scope.creativity);
             $scope.checkEditor();
             $scope.loading = true;
             $scope.image = {};
