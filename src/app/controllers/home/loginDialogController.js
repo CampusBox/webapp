@@ -10,13 +10,20 @@
             '$state',
             '$auth',
             'tokenService',
+            // REQUIRED FOR CORDOVA
             // 'secretServices',
+            // END
             '$mdDialog',
             '$window',
             loginDialogController
         ]);
 
-    function loginDialogController($scope, $rootScope, $localStorage, $state, $auth, tokenService, $mdDialog, $window) {
+    function loginDialogController($scope, $rootScope, $localStorage, $state, $auth, tokenService,
+        // REQUIRED FOR CORDOVA
+        // secretServices,
+        // END
+        $mdDialog, 
+        $window) {
         var vm = this;
 
         $scope.loginVar = 0;
@@ -201,8 +208,10 @@
 
                     $.post('https://accounts.google.com/o/oauth2/token', {
                         code: user_data.serverAuthCode,
-                        // client_id: secretServices.getGClientId,
+                        client_id: '702228530885-vi264d7g6v5ivbcmebjfpomr0hmliomd.apps.googleusercontent.com',
+                        // REQUIRED FOR CORDOVA
                         // client_secret: secretServices.getGClientSecret,
+                        // END
                         grant_type: 'authorization_code',
                         redirect_uri: "",
                     }).then(function(obj) {
@@ -266,6 +275,10 @@
                             });
 
                         $state.go('app.home');
+                    }).catch(function(obj){
+
+                        console.log("Something went wrong!");
+                        console.log(JSON.stringify(obj));
                     });
 
                 },
