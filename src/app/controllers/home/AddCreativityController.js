@@ -225,7 +225,13 @@
                 $scope.error = '';
                 $scope.returnedItem = response;
                 $scope.progress = 2;
-                $scope.creativity.items.push(response);
+                if (response.mediaType == 'tech') {
+                    $scope.creativity.items[1] = response;
+                }else if(response.mediaType == 'sourceCodeUrl'){
+                    $scope.creativity.items[2] = response;
+                } else {
+                    $scope.creativity.items.push(response);
+                }
                 $scope.addMenu = false;
             }
             console.log($scope.creativity.items);

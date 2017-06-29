@@ -19,51 +19,63 @@
                 //End Defining variables
 
                 $scope.checkPublishableWebsite = function() {
-                    console.log('img ' + $scope.imageAdded);
                     $scope.websiteAdded = $scope.urlAdded && $scope.imageAdded;
+                    console.log('Publishable Website: ' + $scope.websiteAdded);
                 }
                 $rootScope.$on("ImagesAdded", function(event) {
                     $scope.imageAdded = true;
+                    $scope.drawingAdded = false; // On adding images this variable is set true in add drawing directive so we have to set it false here !
+                    $scope.UiUxAdded = false; // On adding images this variable is set true in add uiux directive so we have to set it false here !
                     $scope.checkPublishableWebsite();
                 });
+                $scope.removeWebsiteItem = function(index) {
+                    $scope.creativity.items.splice(index, 1);
+                    if ($scope.creativity.items.length == 1 || $scope.creativity.items[1].mediaType == 'image') {
+                        $scope.urlAdded = false;
+                        $scope.checkPublishableWebsite();
+                    }
+                }
                 $scope.onType = function(url) {
                     if ($scope.validateUrl(url)) {
                         $scope.urlAdded = true;
                         $scope.checkPublishableWebsite();
                         $scope.error = '';
                         $scope.fetchLoading = true;
-                        var media = {};
-                        media.mediaType = 'embed';
-                        media.embedUrl = url;
-                        $scope.creativity.items.push(media);
-                        allDataService.linkPreviewJson(url)
-                            .then(function(data) {
+                        addItemService.iframely(url, "tech")
+                            .then(function(response) {
                                 $scope.fetchLoading = false;
-                                if (data.image != '') {
-                                    $scope.imageAdded = true;
-                                    var length = $scope.creativity.items.length;
-                                    var media = {};
-                                    media.mediaType = 'image';
-                                    media.image = data.image;
-                                    $scope.creativity.items.push(media);
-                                    $scope.checkPublishableWebsite();
+                                if (response != undefined) {
+                                    if ($scope.title == '') {
+                                        var length = $scope.creativity.items.length;
+                                        $scope.title = $scope.creativity.items[length - 1].display.title;
+                                    }
                                 }
-                                if ($scope.title == '') {
-                                    $scope.title = data.title;
-                                }
-                                console.log($scope.creativity.items);
                             });
                     } else {
+                        $scope.fetchLoading = false;
                         $scope.urlAdded = false;
                         $scope.checkPublishableWebsite();
                         $scope.error = 'Invalid url!'
                     }
+                    console.log($scope.creativity.items);
+                }
+                $scope.onSourceType = function(url) {
+                    if ($scope.validateUrl(url)) {
+                        $scope.sourceError = '';
+                        $scope.sourceFetchLoading = true;
+                        addItemService.iframely(url, "sourceCodeUrl");
+                    } else {
+                        $scope.sourceError = 'Invalid url!'
+                    }
+                    console.log($scope.creativity.items);
                 }
 
                 $scope.removeScreenshot = function(index) {
                     $scope.creativity.items.splice(index, 1);
                     if ($scope.creativity.items.length == 1 || $scope.creativity.items[1].mediaType == 'url') {
                         $scope.imageAdded = false;
+                        $scope.drawingAdded = false; // On adding images this variable is set true in add drawing directive so we have to set it false here !
+                        $scope.UiUxAdded = false; // On adding images this variable is set true in add uiux directive so we have to set it false here !
                         $scope.checkPublishableWebsite();
                     }
                 }

@@ -46,7 +46,7 @@
 
                 }
 
-                obj.iframely = function(url) {
+                obj.iframely = function(url, type) {
 
                     obj.url = url;
                     obj.addError = '';
@@ -55,7 +55,7 @@
                         obj.item = {};
                         obj.item.display = {};
                         obj.item.display.title = data.meta.title;
-                        obj.item.mediaType = "embed";
+                        obj.item.mediaType = type;
                         obj.item.embed = [];
                         if (data.html) {
                             obj.item.embed.iframe = data.html;
@@ -66,6 +66,9 @@
                         }
                         if (data.links.thumbnail != undefined) {
                             obj.item.embed.thumbnailUrl = data.links.thumbnail[0].href;
+                        }
+                        if (data.links.icon != undefined) {
+                            obj.item.embed.icon = data.links.icon[0].href;
                         }
                         if (data.meta.author_url != undefined) {
                             obj.item.embed.author = data.meta.author_url;
