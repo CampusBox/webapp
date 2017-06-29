@@ -1,14 +1,15 @@
-<div layout="row"  ng-controller="DashboardController" class="main-bg" class="md-padding" style="margin-bottom: 60px;">
+<div layout="row" ng-controller="DashboardController" class="main-bg" class="md-padding" style="margin-bottom: 60px;">
     <div layout="column" flex-offset-gt-sm="10" flex-gt-sm="80" flex-xs="100" flex-sm="100">
         <div layout="row" layout-align="center center">
             <h1 class="md-headline section-heading" style="padding-top: 0px;">
-            Opportunities <span hide-xs>you can avail</span>
-        </h1>
+                Opportunities <span hide-xs>you can avail</span>
+            </h1>
             <span flex></span>
             <md-button class="md-primary" ui-sref="home.events">See All</md-button>
         </div>
         <div layout="row" layout-align="space-between">
-            <md-card class="content-card" hide-xs hide-sm ng-if="eventLoading" ng-repeat="content in [1,2,3]" flex-lg="30" flex-md="45" flex-sm="45" flex="100">
+            <md-card class="content-card" hide-xs hide-sm ng-if="eventLoading" ng-repeat="content in [1,2,3]" flex-lg="30" flex-md="45"
+                flex-sm="45" flex="100">
                 <md-card-header>
                     <md-card-avatar style="background: #f6f7f8">
                         <img class="md-user-avatar" />
@@ -46,7 +47,7 @@
                 </md-card>
             </div>
             <div show-xs hide-gt-xs layout="row" style="overflow: auto;">
-                <md-card  flex="noshrink" style="margin-bottom: 10px;width: 80%;" ng-repeat="event in events" class="secondary-button-padding eventListItem" >
+                <md-card flex="noshrink" style="margin-bottom: 10px;width: 80%;" ng-repeat="event in events" class="secondary-button-padding eventListItem">
                     <event-card data="event" bar="true" ng-show="!eventLoading" hide-gt-xs></event-card>
                 </md-card>
                 <md-list>
@@ -77,12 +78,14 @@
                     <md-button class="md-primary" ng-show='category.finalContents.length > 0' ui-sref="home.creativity">See All</md-button>
                 </div>
                 <div style="height: 375px; overflow-y: hidden;">
-                    <div flex  layout="row" class="creativity-page inner-box" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading'>
+                    <div flex layout="row" class="creativity-page inner-box" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading'>
                         <md-card class="content-card-dashboard" flex="noshrink" ng-repeat="content in category.finalContents track by $index">
                             <md-card-content style="padding: 0px">
                                 <div ng-if="(content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
-                                    <iframe id="sc-widget" ng-show="(content.type == 'soundcloud')" width="100%" height="170" scrolling="no" frameborder="0" ng-src="{{content.url}}" allowfullscreen></iframe>
-                                    <iframe ng-show="(content.type == 'vimeo')" width="100%" height="228" ng-src="{{content.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                    <iframe id="sc-widget" ng-show="(content.type == 'soundcloud')" width="100%" height="170" scrolling="no" frameborder="0"
+                                        ng-src="{{content.url}}" allowfullscreen></iframe>
+                                    <iframe ng-show="(content.type == 'vimeo')" width="100%" height="228" ng-src="{{content.url}}" frameborder="0" webkitallowfullscreen
+                                        mozallowfullscreen allowfullscreen></iframe>
                                 </div>
                                 <a ng-if="(content.type == 'cover' || content.type == 'image')" ui-sref="home.singleContent({contentId: content.id})">
                                     <img class="creativity-cover" ng-class="(mediaTypes.indexOf(content.content.type) !== -1)?'creativity-cover-full':''" alt="" ng-src="{{content.url}}">
@@ -99,7 +102,8 @@
                                     <span class="creativity-title" ng-bind-html="content.title"></span>
                                 </a>
                                 <a ui-sref="home.singleContent({contentId: content.id})" style="text-decoration: none;">
-                                    <p class="creativity-description md-body-2 creativity-description-list" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="content.description  | limitTo: 10">
+                                    <p class="creativity-description md-body-2 creativity-description-list" ui-sref="home.singleContent({contentId: content.id})"
+                                        style="cursor: pointer" ng-bind-html="content.description  | limitTo: 10">
                                     </p>
                                 </a>
                             </md-card-header>
@@ -108,7 +112,8 @@
                             </md-card-header>
                             <md-card-header layout="row" layout-align="start center">
                                 <md-card-avatar style="margin-left: 0px;margin-right:5px;">
-                                    <img class="md-user-avatar" ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" />
+                                    <img class="md-user-avatar" ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}"
+                                    />
                                 </md-card-avatar>
                                 <md-card-header-text ui-sref="home.singleContent({contentId: content.id})" class="" style="cursor: pointer">
                                     <span class="md-caption ">
@@ -116,14 +121,16 @@
                                     </span>
                                 </md-card-header-text>
                                 <div layout="row" layout-align="start center" flex="50">
-                                    <md-button class="md-icon-button appreciate-button" style="text-transform: capitalize;" ng-click="heart(content, $index)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
+                                    <md-button class="md-icon-button creativity-action-buttons appreciate-button" style="text-transform: capitalize;" ng-click="heart(content, $index)"
+                                        aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
                                         <md-icon class="pink" md-svg-icon="{{content.Actions.Appreciate.status? 'heart' : 'heart-outline' }}"></md-icon>
                                     </md-button>
                                     <span style="cursor: pointer;" ng-click="showLikes(content.id, content.title)" class="likesNumber"> {{content.Actions.Appreciate.total}}</span>
-                                    <md-button class="md-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'creativity',content.id);" aria-label="share ">
+                                    <md-button class="md-icon-button creativity-action-buttons" ng-controller="ShareController" ng-click="showCustom($event,'creativity',content.id);"
+                                        aria-label="share ">
                                         <md-icon ng-class="" md-svg-icon="share"></md-icon>
                                     </md-button>
-                                    <md-button class="md-icon-button" ng-click="bookmark(content, $index)" aria-label="Favorite">
+                                    <md-button class="md-icon-button creativity-action-buttons" ng-click="bookmark(content, $index)" aria-label="Favorite">
                                         <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
                                     </md-button>
                                 </div>
@@ -133,7 +140,8 @@
                 </div>
             </div>
             <div flex layout-align="center center" layout="row" layout-wrap>
-                <md-card class="content-card" ng-if="creativityLoading" ng-repeat="content in [1,2,3]" flex-lg="30" flex-md="45" flex-sm="45" flex="100">
+                <md-card class="content-card" ng-if="creativityLoading" ng-repeat="content in [1,2,3]" flex-lg="30" flex-md="45" flex-sm="45"
+                    flex="100">
                     <md-card-header>
                         <md-card-avatar style="background: #f6f7f8">
                             <img class="md-user-avatar" />
@@ -147,7 +155,7 @@
                 <div flex="20">
                 </div>
             </div>
-           <!--  <md-card class="pointer" ui-sref="home.creativity">
+            <!--  <md-card class="pointer" ui-sref="home.creativity">
                 <center style="padding: 20px;font-weight: 300">See all creativity</center>
             </md-card> -->
         </div>

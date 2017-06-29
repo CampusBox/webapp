@@ -829,9 +829,12 @@ md-icon:hover {
     margin-bottom: 24px;
     margin-left: 16px;
 }
-
+.creativity-action-buttons{
+    padding: 0px;
+}
 .content-card-dashboard {
-    width: 300px;
+    width: 80%;
+    min-width: 250px;
     margin-right: 25px;
     height: 343px;
     box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
@@ -1013,7 +1016,7 @@ md-icon:hover {
         // margin-top: -31%;
     }
     .manageXs {
-        padding-bottom: 66px;
+        padding-bottom: 66px!important;
     }
     .creativity-page {
         margin-top: 0px;
@@ -1044,7 +1047,7 @@ md-icon:hover {
     }
     .creativity-title {
         margin-top: 31px;
-        font-size: 32px !important;
+        font-size: 19px !important;
         line-height: 1.3;
         margin-right: 20px;
         text-decoration: none;
