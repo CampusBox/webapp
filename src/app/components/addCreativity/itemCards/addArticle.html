@@ -1,11 +1,11 @@
 <div ng-if="isAllowed(allowedArticle,creativity.type)">
     <div  layout="column" ng-repeat="item in creativity.items track by $index" style="padding: 0px">
         <div>
-            <div ng-if="item.mediaType == 'embed'">
+            <div ng-if="item.embed.iframe != '' && item.mediaType == 'embed'">
                 <div ng-bind-html="item.embedIframe"></div>
                 <center>
-                    <span>{{creativity.items[$index].iframely.title}}</span>
-                    <md-button ng-click="removeArticleItem($index)" class="md-button md-warn">
+                    <span>{{creativity.items[$index].display.title}}</span>
+                    <md-button ng-if="item.embed.iframe != '' && item.mediaType == 'embed'" ng-click="removeArticleItem($index)" class="md-button md-warn">
                         <md-icon md-svg-icon="delete"></md-icon>
                         Remove
                     </md-button>
@@ -27,7 +27,7 @@
             <div layout="row" layout-align="strech center">
                 <div style="cursor: pointer;" layout="row" layout-align="strech center" ng-click="showMenu()">
                     <md-button class="md-button" aria-label="Settings">
-                        <md-icon md-svg-icon="image-area"></md-icon>
+                        <md-icon md-svg-icon="animation"></md-icon>
                         Add media
                     </md-button>
                 </div>
@@ -36,12 +36,8 @@
                     Images
                 </md-button>
                 <md-button ng-show="addMenu && !inputActive" ng-click="activateMediaInput()">
-                    <md-icon md-svg-icon="youtube-play"></md-icon>
-                    Video
-                </md-button>
-                <md-button ng-show="addMenu && !inputActive" ng-click="activateMediaInput()">
-                    <md-icon md-svg-icon="soundcloud"></md-icon>
-                    Soundcloud
+                    <md-icon md-svg-icon="earth"></md-icon>
+                    Link
                 </md-button>
             </div>
         </div>
@@ -50,7 +46,7 @@
                 <form flex="100" ng-submit="addArticleMedia(url)">
                     <md-input-container md-no-float style="width:100%">
                         <md-icon md-svg-icon="link"></md-icon>
-                        <input flex md-no-float md-autofocus="" ng-model="url" placeholder="Paste the Youtube or Vimeo or Soundcloud url here" class=" ng-valid md-autofocus md-input ng-empty ng-touched" aria-label="url" id="input_8" aria-invalid="false">
+                        <input flex md-no-float md-autofocus="" ng-model="url" placeholder="Paste any url here" class=" ng-valid md-autofocus md-input ng-empty ng-touched" aria-label="url" id="input_8" aria-invalid="false">
                         <div class="md-errors-spacer"></div>
                         <span class="md-caption" style="color:rgb(244, 67, 54);" ng-hide="error == ''">{{error}}</span>
                     </md-input-container>

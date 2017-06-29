@@ -25,7 +25,7 @@
         $scope.publishable = false;
         $scope.compulsaryP = [1, 2, 17, 18, 19, 20, 21];
         $scope.onlyText = [1, 2];
-        $scope.addMenu = true;
+        $scope.addMenu = false;
         $scope.publishFromDir = false;
         //
         // Functions
@@ -80,7 +80,7 @@
                 'transform': 'rotate(' + ($scope.filter.rotate) + 'deg)',
                 'filter': 'saturate(' + ($scope.filter.saturation) + '%) brightness(' + ($scope.filter.brightness) + '%) contrast(' + ($scope.filter.contrast) + '%)'
             };
-            $scope.creativity.items.css = JSON.stringify($scope.css);
+            // $scope.creativity.items.css = JSON.stringify($scope.css);
         }, true);
 
 

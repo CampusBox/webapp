@@ -28,6 +28,7 @@
                     var index = $scope.creativity.items.length;
                     if (addItemService.validateUrl(url)) {
                         addItemService.iframely(url);
+                        $scope.activateMediaInput();
                     } else {
                         $scope.error = "Enter a valid  url.";
                     }
