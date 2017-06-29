@@ -26,29 +26,14 @@
                     $scope.musicAdded = false;
                 }
                 $scope.addMusic = function(url) {
-                    if ($scope.validateYoutube(url)) {
+                    if (addItemService.validateUrl(url)) {
                         if ($scope.creativity.items.length > 1) {
                             $scope.creativity.items.pop();
                         }
-                        $scope.setNoembed(url, 1);
+                        addItemService.iframely(url);
                         $scope.checkMusic();
-                        addItemService.youtube(url);
-                    } else if ($scope.validateSoundcloud(url)) {
-                        if ($scope.creativity.items.length > 1) {
-                            $scope.creativity.items.pop();
-                        }
-                        addItemService.soundcloud(url);
-                        $scope.setNoembed(url, 1);
-                        $scope.checkMusic();
-                    } else if ($scope.validateVimeo(url)) {
-                        if ($scope.creativity.items.length > 1) {
-                            $scope.creativity.items.pop();
-                        }
-                        addItemService.vimeo(url);
-                        $scope.setNoembed(url, 1);
-                        $scope.checkMusic();
-                    } else {
-                        $scope.error = 'Enter a valid Youtube, Soundcloud or Vimeo url.'
+                    }else {
+                        $scope.error = 'Enter a valid url.'
                     }
                 };
             }
