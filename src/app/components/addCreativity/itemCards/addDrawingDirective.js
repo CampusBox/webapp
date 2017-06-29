@@ -7,7 +7,7 @@
             restrict: "E",
             replace: true,
             templateUrl: 'app/components/addCreativity/itemCards/addDrawing.html',
-            controller: function($scope, addItemService, $sce, allDataService, $rootScope) {
+            controller: function($scope, addItemService, $sce, allDataService, $rootScope, $q) {
                 //Define Variables
                 $scope.allowedDrawing = [4, 5, 6, 7, 12];
                 $scope.inputActive = false;
@@ -26,26 +26,23 @@
                     }
                 }
 
+                // $scope.setTitle = function() {
+                //     console.log('$scope.title');
+                //     
+                // }
                 $scope.addInstagram = function(url) {
-                    // var url = 'https://www.instagram.com/p/BVpn4AfHqXJ/?r=wa1';
-                    if ($scope.validateInstagram(url)) {
+                    if (addItemService.validateUrl(url)) {
                         $scope.activateInput();
-                        url = url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "");
-                        url = 'https://' + url;
-                        allDataService.noembedJson(url)
-                            .then(function(data) {
+                        addItemService.iframely(url).then(function(greeting) {
+                            if (greeting != undefined) {
                                 $scope.drawingAdded = true;
-                                var length = $scope.creativity.items.length;
-                                var media = {};
-                                media.mediaType = 'image';
-                                media.image = data.thumbnail_url;
-                                $scope.creativity.items.push(media);
-                                $scope.creativity.items[length].noembed = data;
                                 if ($scope.title == '') {
-                                    $scope.title = $scope.creativity.items[1].noembed.title;
+                                    var length = $scope.creativity.items.length;
+                                    $scope.title = $scope.creativity.items[length - 1].display.title;
                                 }
-                                console.log($scope.creativity.items);
-                            });
+                                console.log($scope.drawingAdded);
+                            }
+                        });
                     } else {
                         $scope.error = 'Invalid Instagtam image url!'
                     }
