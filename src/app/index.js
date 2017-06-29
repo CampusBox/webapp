@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
-        'ngSanitize', 'ui.router', 'ngMaterial', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'satellizer', 'ngImgCrop', 'angular-jwt', 'infinite-scroll', 'angular-google-analytics', 'ngFileUpload'
+        'ngSanitize', 'ui.router', 'ngMaterial', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage','angular-inview', 'satellizer', 'ngImgCrop', 'angular-jwt',  'angular-google-analytics', 'ngFileUpload'
     ])
     //remove setellizer
     .config(function(AnalyticsProvider, $stateProvider, $urlRouterProvider, $mdThemingProvider, $authProvider, $locationProvider,
@@ -22,7 +22,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
 
          */
 
-        $compileProvider.debugInfoEnabled(false);
+        // $compileProvider.debugInfoEnabled(false);
         $compileProvider.commentDirectivesEnabled(false);
         $compileProvider.cssClassDirectivesEnabled(false);
         // $locationProvider.html5Mode(true);

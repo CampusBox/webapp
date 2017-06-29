@@ -19,6 +19,7 @@
     function CreativityController($scope, tokenService, $mdDialog, $sce, $state, $filter, $rootScope, creativityActionsService, creativityCategories) {
         $scope.liked = false;
         $scope.creativityLoading = false;
+        $scope.flase = false;
         $scope.offset = 0;
                 $rootScope.currentMenu = 'Creativity';
 
@@ -137,15 +138,17 @@
                         $scope.creativityLoading = false;
                         $scope.finalContents = $scope.finalContents.concat($scope.nonFinalContents);
                         $scope.finalContentsCopy = $scope.finalContentsCopy.concat($scope.nonFinalContents);
-                        $scope.contentDetails.offset += 3;
                         // $scope.myPagingFunction();
                     });
+                                            $scope.contentDetails.offset += 3;
+
 
             }
         };
         $scope.filterToggle = function() {
             $scope.filterShow = !$scope.filterShow;
         };
+        $scope.myPagingFunction();
 
         $scope.exists = function(item) {
             if ($scope.selectedCategories.length == 0) {
