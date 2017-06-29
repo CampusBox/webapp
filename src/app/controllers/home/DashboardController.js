@@ -47,7 +47,7 @@
             var contents = [];
             var contentsFinal = [];
             contents = contentsDashboard.data;
-            console.log(contents);
+            // console.log(contents);
             contents.forEach(function(content) {
                 cardObject = {}
                 $scope.loading == false;
@@ -90,7 +90,7 @@
         tokenService.get("minievents?limit=3")
             .then(function(events) {
                 $scope.events = events.data;
-                console.log($scope.events);
+                // console.log($scope.events);
                 $scope.eventLoading = false;
                 $scope.creativityLoading = true;
 
@@ -98,7 +98,7 @@
                 tokenService.post("contents", { 'limit': 6, 'offset': 0, 'filters': [$scope.categoryTypes[i]] })
                     .then(function(response) {
 
-                        console.log(response);
+                        // console.log(response);
 $scope.categories[i] ={};
                         $scope.categories[i].title = creativityCategories.typesByID[$scope.categoryTypes[i]];
                         $scope.categories[i].finalContents = transform(response);
@@ -122,7 +122,7 @@ $scope.categories[i] ={};
                                                 $scope.categories[i].title = creativityCategories.typesByID[$scope.categoryTypes[i] - 1];
                                                 $scope.categories[i].finalContents = transform(response);
                                                 $scope.creativityLoading = false;
-                                                console.log()
+                                                // console.log()
                                             });
                                     });
                             });

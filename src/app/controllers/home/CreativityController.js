@@ -67,6 +67,7 @@
             "filters": []
         };
         $scope.myPagingFunction = function() {
+            console.log('abc');
             if ($scope.creativityLoading == false && $scope.moreItems == true) {
                 $scope.creativityLoading = true;
                 if ($scope.contentDetails.filters.length) {
