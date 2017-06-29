@@ -33,7 +33,7 @@
                 $scope.addInstagram = function(url) {
                     if (addItemService.validateUrl(url)) {
                         $scope.activateInput();
-                        addItemService.iframely(url).then(function(response) {
+                        addItemService.iframely(url, "embed").then(function(response) {
                             if (response != undefined) {
                                 $scope.drawingAdded = true;
                                 if ($scope.title == '') {

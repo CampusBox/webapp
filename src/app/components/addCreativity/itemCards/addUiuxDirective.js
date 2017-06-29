@@ -20,7 +20,6 @@
 
                 $scope.checkPublishableUiUx = function() {
                     $scope.UiUxAdded = $scope.linkUrl || $scope.graphicsAdded;
-                    console.log('$scope.linkUrl ' + $scope.linkUrl);
                 }
                 $scope.removeUiUxItem = function(index) {
                     $scope.creativity.items.splice(index, 1);
@@ -40,7 +39,7 @@
                         $scope.checkPublishableUiUx();
                         $scope.error = '';
                         $scope.fetchLoading = true;
-                        addItemService.iframely(url)
+                        addItemService.iframely(url, "embed")
                             .then(function(response) {
                                 $scope.fetchLoading = false;
                                 if (response != undefined) {

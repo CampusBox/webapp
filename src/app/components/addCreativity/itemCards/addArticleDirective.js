@@ -27,7 +27,7 @@
                 $scope.addArticleMedia = function(url) {
                     var index = $scope.creativity.items.length;
                     if (addItemService.validateUrl(url)) {
-                        addItemService.iframely(url);
+                        addItemService.iframely(url, "embed");
                         $scope.activateMediaInput();
                     } else {
                         $scope.error = "Enter a valid  url.";
