@@ -33,14 +33,13 @@
                 $scope.addInstagram = function(url) {
                     if (addItemService.validateUrl(url)) {
                         $scope.activateInput();
-                        addItemService.iframely(url).then(function(greeting) {
-                            if (greeting != undefined) {
+                        addItemService.iframely(url).then(function(response) {
+                            if (response != undefined) {
                                 $scope.drawingAdded = true;
                                 if ($scope.title == '') {
                                     var length = $scope.creativity.items.length;
                                     $scope.title = $scope.creativity.items[length - 1].display.title;
                                 }
-                                console.log($scope.drawingAdded);
                             }
                         });
                     } else {
