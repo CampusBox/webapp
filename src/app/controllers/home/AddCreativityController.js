@@ -243,11 +243,10 @@
             }
         }
 
-        // $rootScope.$on("publishable", function(event, state) {
-        //     // Set variable when confirmed from respective directives 
-        //     $scope.publishFromDir = state;
-        //     console.log('$scope.publishFromDir ' + $scope.publishFromDir)
-        // });
+        $scope.$on("publishable", function(event, state) {
+            // Set variable when confirmed from respective directives 
+            $scope.publishFromDir = state;
+        });
         $scope.checkPublish = function() {
             if ($scope.isAllowed($scope.compulsaryP, $scope.creativity.type)) {
                 // If a category only text as compulsion we have to check weather min text is added or not
@@ -256,10 +255,10 @@
                     // If a category has only text as compulsion it wont have publishFromDir
                     $scope.publishable = $scope.textAdded;
                 } else {
-                    $scope.publishable = $scope.textAdded && ($scope.websiteAdded || $scope.danceAdded || $scope.musicAdded || $scope.drawingAdded || $scope.UiUxAdded || $scope.poetryAdded);
+                    $scope.publishable = $scope.textAdded && ($scope.publishFromDir);
                 }
             } else {
-                $scope.publishable = ($scope.websiteAdded || $scope.danceAdded || $scope.musicAdded || $scope.drawingAdded || $scope.UiUxAdded || $scope.poetryAdded);
+                $scope.publishable = ($scope.publishFromDir);
             }
             var abc = (!($scope.title && $scope.publishable) || $scope.loading);
             return abc;

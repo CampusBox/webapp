@@ -19,7 +19,7 @@
 
                 $scope.checkPublishableWebsite = function() {
                     $scope.websiteAdded = $scope.urlAdded && $scope.imageAdded;
-                    console.log('Publishable Website: ' + $scope.websiteAdded);
+                    $scope.$emit("publishable", $scope.websiteAdded);
                 }
                 $rootScope.$on("ImagesAdded", function(event) {
                     $scope.imageAdded = true;

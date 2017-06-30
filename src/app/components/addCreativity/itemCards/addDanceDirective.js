@@ -19,9 +19,11 @@
                     if ($scope.creativity.items[0] == undefined || $scope.videoAdded) {
                         $scope.videoAdded = false;
                         $scope.danceAdded = false;
+                        $scope.$emit("publishable", $scope.danceAdded);
                     } else {
                         $scope.videoAdded = true;
                         $scope.danceAdded = true;
+                        $scope.$emit("publishable", $scope.danceAdded);
 
                     }
                 }
@@ -29,6 +31,7 @@
                     $scope.creativity.items.pop();
                     $scope.videoAdded = false;
                     $scope.danceAdded = false;
+                    $scope.$emit("publishable", $scope.danceAdded);
                 }
                 $scope.addDanceVideo = function(url) {
                     if (addItemService.validateUrl(url)) {

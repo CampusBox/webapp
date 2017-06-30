@@ -16,13 +16,16 @@
                 $scope.checkMusic = function() {
                     if ($scope.creativity.items[0] == undefined || $scope.musicAdded) {
                         $scope.musicAdded = false;
+                        $scope.$emit("publishable", $scope.musicAdded);
                     } else {
                         $scope.musicAdded = true;
+                        $scope.$emit("publishable", $scope.musicAdded);
                     }
                 }
                 $scope.removeMusic = function() {
                     $scope.creativity.items.pop();
                     $scope.musicAdded = false;
+                    $scope.$emit("publishable", $scope.musicAdded);
                 }
                 $scope.addMusic = function(url) {
                     if (addItemService.validateUrl(url)) {
@@ -31,7 +34,7 @@
                         }
                         addItemService.iframely(url, "embed");
                         $scope.checkMusic();
-                    }else {
+                    } else {
                         $scope.error = 'Enter a valid url.'
                     }
                 };

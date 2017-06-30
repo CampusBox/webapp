@@ -19,6 +19,7 @@
 
                 $scope.checkPublishableUiUx = function() {
                     $scope.UiUxAdded = $scope.linkUrl || $scope.graphicsAdded;
+                    $scope.$emit("publishable", $scope.UiUxAdded);
                 }
                 $scope.removeUiUxItem = function(index) {
                     $scope.creativity.items.splice(index, 1);
@@ -28,6 +29,7 @@
                     }
                 }
                 $rootScope.$on("ImagesAdded", function(event) {
+                    console.log('uiux ;jasncals');
                     $scope.graphicsAdded = true;
                     $scope.drawingAdded = false; // On adding images this variable is set true in add drawing directive so we have to set it false here !
                     $scope.checkPublishableUiUx();
