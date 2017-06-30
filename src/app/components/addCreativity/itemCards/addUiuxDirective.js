@@ -9,7 +9,6 @@
             templateUrl: 'app/components/addCreativity/itemCards/adduiux.html',
             controller: function($scope, addItemService, $sce, allDataService, $rootScope) {
                 //Define Variables
-                $scope.alloweduiux = [15, 16];
                 $scope.url = '';
                 $scope.fetchLoading = false;
                 $scope.graphicsAdded = false;

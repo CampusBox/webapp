@@ -9,7 +9,7 @@
             templateUrl: 'app/components/addCreativity/itemCards/addArticle.html',
             controller: function($scope, addItemService, $sce, $rootScope, allDataService) {
                 //Define Variables
-                $scope.allowedArticle = [1, 20];
+                
                 $scope.enterUrl = true;
 
                 $scope.inputActive = false;

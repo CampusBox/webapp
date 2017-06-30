@@ -9,7 +9,6 @@
             templateUrl: 'app/components/addCreativity/itemCards/addWebsite.html',
             controller: function($scope, addItemService, $sce, allDataService, $rootScope) {
                 //Define Variables
-                $scope.allowedWebsite = [17, 18, 19];
                 $scope.url = '';
                 $scope.fetchLoading = false;
                 $scope.imageAdded = false;

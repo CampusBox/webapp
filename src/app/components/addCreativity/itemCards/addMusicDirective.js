@@ -9,7 +9,6 @@
             templateUrl: 'app/components/addCreativity/itemCards/addMusic.html',
             controller: function($scope, addItemService, $sce) {
                 //Define Variables
-                $scope.allowedMusic = [9, 10, 11];
                 $scope.musicAdded = false;
                 $scope.enterUrl = true;
                 //End Defining variables

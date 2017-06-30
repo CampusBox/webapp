@@ -9,7 +9,6 @@
             templateUrl: 'app/components/addCreativity/itemCards/addDrawing.html',
             controller: function($scope, addItemService, $sce, allDataService, $rootScope, $q) {
                 //Define Variables
-                $scope.allowedDrawing = [4, 5, 6, 7, 12];
                 $scope.inputActive = false;
                 $scope.enterUrl = true;
                 //End Defining variables
