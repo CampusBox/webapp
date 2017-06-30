@@ -845,7 +845,7 @@ md-icon:hover {
     background: rgba(72, 69, 69, 0.47);
     text-shadow: 2px 2px 2px black;
     position: absolute;
-    top: 25%;
+    top: 32%;
     right: 42%;
     height: 60px;
     width: 60px;
@@ -928,7 +928,7 @@ md-icon:hover {
 
 .creativity-cover {
     cursor: pointer;
-    height: 144px;
+    height: 213px;
     object-fit: cover;
     width: 100%;
 }
@@ -1039,13 +1039,7 @@ md-icon:hover {
     .creativity-card {
         margin: 0px;
     }
-    .creativity-cover {
-        cursor: pointer;
-        height: 150px;
-        max-width: 100%;
-        object-fit: cover;
-        width: 100%;
-    }
+    
     .creativity-title {
         margin-top: 31px;
         font-size: 20px !important;
