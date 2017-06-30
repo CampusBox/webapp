@@ -25,24 +25,18 @@
     <div  layout="column">
         <div layout="row" layout-align="space-between center">
             <div layout="row" layout-align="strech center">
-                <div style="cursor: pointer;" layout="row" layout-align="strech center" ng-click="showMenu()">
-                    <md-button class="md-button" aria-label="Settings">
-                        <md-icon md-svg-icon="animation"></md-icon>
-                        Add media
-                    </md-button>
-                </div>
-                <md-button ng-show="addMenu" ngf-select="uploadFiles($files, $invalidFiles)" multiple name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 500, height: 500}" ngf-resize-if="$width > 500 || $height > 500">
+                <md-button ngf-select="uploadFiles($files, $invalidFiles)" multiple name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 500, height: 500}" ngf-resize-if="$width > 500 || $height > 500">
                     <md-icon md-svg-icon="laptop"></md-icon>
                     Images
                 </md-button>
-                <md-button ng-show="addMenu && !inputActive" ng-click="activateMediaInput()">
+                <md-button ng-click="activateMediaInput()">
                     <md-icon md-svg-icon="earth"></md-icon>
                     Link
                 </md-button>
             </div>
         </div>
         <div layout="row">
-            <div flex="100" ng-show="addMenu && inputActive" layout="row" layout-align="space-between center">
+            <div flex="100" ng-show="inputActive" layout="row" layout-align="space-between center">
                 <form flex="100" ng-submit="addArticleMedia(url)">
                     <md-input-container md-no-float style="width:100%">
                         <md-icon md-svg-icon="link"></md-icon>
