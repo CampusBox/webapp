@@ -71,9 +71,9 @@
                         if (data.links.thumbnail != undefined) {
                             obj.item.thumbnailUrl = data.links.thumbnail[0].href;
                         }
-                        if (data.links.icon != undefined) {
-                            obj.item.icon = data.links.icon[0].href;
-                        }
+                        // if (data.links.icon != undefined) {
+                        //     obj.item.embed.icon = data.links.icon[0].href;
+                        // }
                         if (data.meta.author_url != undefined) {
                             obj.item.author = data.meta.author_url;
                         } else if (data.meta.author != undefined) {

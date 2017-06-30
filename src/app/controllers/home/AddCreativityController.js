@@ -165,17 +165,22 @@
             $scope.creativity.type = type.id;
             $scope.categoryName = $scope.types[$scope.creativity.type - 1].title;
         };
-        $scope.uploadFiles = function(files) {
+        $scope.uploadFiles = function(files, abc, type) {
             $rootScope.$emit("ImagesAdded");
             $scope.files = files;
             if (files && files.length) {
                 $scope.progress = 2;
                 angular.forEach(files, function(file) {
                     Upload.dataUrl(file, true).then(function(url) {
-                        var media = {};
-                        media.mediaType = 'image';
-                        media.image = url;
-                        $scope.creativity.items.push(media);
+                        if (type == 'icon') {
+                            $scope.creativity.items[1].embed.icon = url;
+                        } else {
+                            var media = {};
+                            media.mediaType = 'image';
+                            media.image = url;
+                            $scope.creativity.items.push(media);
+                        }
+
                     });
                 });
                 $scope.addMenu = false;
@@ -227,7 +232,7 @@
                 $scope.progress = 2;
                 if (response.mediaType == 'tech') {
                     $scope.creativity.items[1] = response;
-                }else if(response.mediaType == 'sourceCodeUrl'){
+                } else if (response.mediaType == 'sourceCodeUrl') {
                     $scope.creativity.items[2] = response;
                 } else {
                     $scope.creativity.items.push(response);
