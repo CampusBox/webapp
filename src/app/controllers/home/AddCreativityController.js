@@ -244,7 +244,8 @@
             }
         }
 
-        $scope.$on("publishable", function(event, state) {
+        $scope.$on("publishable", function(event, state, error) {
+            $scope.error = error;
             // Set variable when confirmed from respective directives 
             $scope.publishFromDir = state;
         });
