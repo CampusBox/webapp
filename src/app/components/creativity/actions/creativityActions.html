@@ -1,9 +1,9 @@
 <md-card-header layout="row" layout-align="start center">
     <md-card-avatar style="margin-left: 0px;margin-right:5px;">
-        <img class="md-user-avatar" ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" />
+        <img class="md-user-avatar" ui-sref="home.profile({username: content.owner.username})" ng-src="{{content.owner.photo}}" />
     </md-card-avatar>
     <md-card-header-text ui-sref="home.singleContent({contentId: content.id})" class="" style="cursor: pointer">
-        <span class="md-caption "><span class="capitalize blue_text"  ng-click="openProfile($event, content.created.by.username);" >{{content.created.by.name}} </span><span class="blue_text"> <span style="color: rgba(99,108,116,0.87);"><br> in</span> {{content.category?content.category:"Unknown"}} </span>
+        <span class="md-caption "><span class="capitalize blue_text"  ng-click="openProfile($event, content.owner.username);" >{{content.owner.name}} </span><span class="blue_text"> <span style="color: rgba(99,108,116,0.87);"><br> in</span> {{content.content_type?content.content_type:"Unknown"}} </span>
         </span>
     </md-card-header-text>
     <div layout="row" layout-align="start center" flex="50">
