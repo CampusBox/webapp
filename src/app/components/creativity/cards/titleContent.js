@@ -14,7 +14,6 @@
             controller: function($scope, $sce) {
                 $scope.content.items.text = $sce.trustAsHtml($scope.content.items.text);
                 $scope.content.title = $sce.trustAsHtml($scope.content.title);
-                console.log($scope.content);
             }
         };
     });

@@ -12,9 +12,7 @@
                 content: '=data'
             },
             controller: function($scope, $sce) {
-                console.log($scope.content);
-                // $scope.content.items.embed = $sce.trustAsHtml($scope.content.items.embed);
-
+                $scope.content.items.embed = $sce.trustAsHtml($scope.content.items.embed);
             }
         };
     });
