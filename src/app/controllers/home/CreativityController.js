@@ -18,11 +18,11 @@
         ]);
 
     function CreativityController($scope, tokenService, $mdDialog, $sce, $state, $filter, $rootScope, creativityActionsService, creativityCategories) {
-        
+
         $scope.liked = false;
         $scope.creativityLoading = false;
         $scope.offset = 0;
-                $rootScope.currentMenu = 'Creativity';
+        $rootScope.currentMenu = 'Creativity';
 
         $scope.moreItems = true;
         $scope.nonFinalContents = [];
@@ -30,6 +30,10 @@
         $scope.finalContentsCopy = [];
         $rootScope.currentPageBackground = $rootScope.gray;
         $rootScope.title = "Creativity";
+        $scope.types = creativityCategories.types;
+        $scope.mediaTypes = [4, 5, 6, 7, 12, 15, 16];
+        $scope.contents = [];
+
 
         $scope.showPopUp = function(creativity) {
             console.log(creativity);
@@ -51,22 +55,9 @@
             }
         };
 
-        $scope.selected = [];
-        $scope.filterInBetween = 0;
-        $scope.filterShow = 0;
-        $scope.selectedCategories = [];
-        $scope.types = creativityCategories.types;
-        $scope.mediaTypes = [4, 5, 6, 7, 12, 15, 16];
-        $scope.contents = [];
         $scope.openProfile = function($event, username) {
             $event.stopPropagation();
             $state.go('home.profile', { username: username });
-        };
-        var cardObject = {};
-        $scope.contentDetails = {
-            "limit": 3,
-            "offset": 0,
-            "filters": []
         };
         $scope.myPagingFunction = function() {
             if ($scope.creativityLoading == false && $scope.moreItems == true) {
@@ -144,62 +135,11 @@
 
             }
         };
-        $scope.filterToggle = function() {
-            $scope.filterShow = !$scope.filterShow;
-        };
-
-        $scope.exists = function(item) {
-            if ($scope.selectedCategories.length == 0) {
-                return true;
-            } else {
-
-                return $scope.selectedCategories.indexOf(item) > -1;
-            }
-        };
-        var deleteList = [];
-        $scope.toggle = function(item, list) {
-
-            var idx = $scope.selectedCategories.indexOf(item);
-            if (idx > -1) {
-                $scope.selectedCategories.splice(idx, 1);
-                deleteList.splice(idx, 1);
-                $scope.contentDetails.filters = deleteList;
-                if ($scope.filterInBetween) {
-                    $scope.creativityLoading = false;
-                    $scope.moreItems = true;
-                    $scope.contentDetails.offset = 0;
-                    $scope.filterInBetween = 0;
-                    $scope.finalContentsCopy = [];
-                    $scope.finalContents = [];
-                    $scope.myPagingFunction();
-                } else {
-                    $scope.finalContents = $scope.finalContentsCopy.filter(function(obj) {
-                        return deleteList.indexOf(obj.categoryId) != -1;
-                    });
-                }
-            } else {
-                $scope.selectedCategories.push(item);
-                deleteList.push(item.id);
-                $scope.contentDetails.filters = deleteList;
-                if ($scope.filterInBetween) {
-                    $scope.creativityLoading = false;
-                    $scope.moreItems = true;
-                    $scope.contentDetails.offset = 0;
-                    $scope.filterInBetween = 0;
-                    $scope.finalContentsCopy = [];
-                    $scope.finalContents = [];
-                    $scope.myPagingFunction();
-                } else {
-
-                    $scope.finalContents = $scope.finalContentsCopy.filter(function(obj) {
-                        return deleteList.indexOf(obj.categoryId) != -1;
-                    });
-                }
-
-                $scope.buttonClass = 'md-primary md-raised';
-            }
-            item.intrested = !item.intrested;
-            $scope.selectedCategories = $scope.selectedCategories;
+        var cardObject = {};
+        $scope.contentDetails = {
+            "limit": 3,
+            "offset": 0,
+            "filters": []
         };
 
 
