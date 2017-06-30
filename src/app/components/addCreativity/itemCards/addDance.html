@@ -1,6 +1,6 @@
 <div >
     <div layout="column" ng-repeat="item in creativity.items track by $index" style="padding: 0px">
-        <div ng-if="item.embed.iframe != '' && item.mediaType == 'embed'">
+        <div ng-if="item.iframe != '' && item.mediaType == 'embed'">
             <div ng-bind-html="item.embedIframe"></div>
         </div>
     </div>

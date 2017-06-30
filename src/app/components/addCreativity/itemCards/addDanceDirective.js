@@ -38,8 +38,13 @@
                         if ($scope.creativity.items.length > 1) {
                             $scope.creativity.items.pop();
                         }
-                        addItemService.iframely(url, "embed");
-                        $scope.checkVideo();
+                        var promise = addItemService.iframely(url, "embed");
+
+                        promise.then(function(greeting) {
+                            $scope.checkVideo();
+                        }, function(err) {
+                            $scope.error = err.message;
+                        });
                     } else {
                         $scope.error = "Enter a valid url.";
                     }

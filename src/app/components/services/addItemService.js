@@ -6,9 +6,11 @@
             '$mdDialog',
             '$timeout',
             '$sce',
+            '$q',
             '$rootScope',
             'allDataService',
             function($mdDialog, $timeout, $sce, $rootScope, allDataService) {
+            function($mdDialog, $timeout, $sce, $q,$rootScope, allDataService) {
 
                 var obj = {};
 
@@ -47,44 +49,47 @@
                 }
 
                 obj.iframely = function(url, type) {
-
+                    var defer = $q.defer();
                     obj.url = url;
                     obj.addError = '';
                     allDataService.iframelyJson(url).then(function(data) {
                         console.log(data);
+                        defer.resolve({err: false});
                         obj.item = {};
-                        obj.item.display = {};
-                        obj.item.display.title = data.meta.title;
+                        // obj.item.display = {};
+                        // obj.item.display.title = data.meta.title;
                         obj.item.mediaType = type;
-                        obj.item.embed = [];
+                        // obj.item.embed = [];
+                        
                         if (data.html) {
-                            obj.item.embed.iframe = data.html;
+                            obj.item.iframe = data.html;
                         }
-                        obj.item.embed.url = url;
+                        obj.item.url = url;
                         if (data.meta.site != undefined) {
-                            obj.item.embed.provider = data.meta.site;
+                            obj.item.provider = data.meta.site;
                         }
                         if (data.links.thumbnail != undefined) {
-                            obj.item.embed.thumbnailUrl = data.links.thumbnail[0].href;
+                            obj.item.thumbnailUrl = data.links.thumbnail[0].href;
                         }
                         if (data.links.icon != undefined) {
-                            obj.item.embed.icon = data.links.icon[0].href;
+                            obj.item.icon = data.links.icon[0].href;
                         }
                         if (data.meta.author_url != undefined) {
-                            obj.item.embed.author = data.meta.author_url;
+                            obj.item.author = data.meta.author_url;
                         } else if (data.meta.author != undefined) {
-                            obj.item.embed.author = data.meta.author;
+                            obj.item.author = data.meta.author;
                         }
                         obj.item.embedIframe = $sce.trustAsHtml(data.html);
                         $rootScope.$emit("returnedItem", obj.item, 0);
                     }).catch(function(err) {
+                        defer.reject({err: true,message: 'Url not found'});
                         obj.addError = 'Url not found';
                         console.log(err);
                         $rootScope.$emit("returnedItem", obj.addError, 1);
 
                     });
 
-                    return $timeout(function() {
+                    $timeout(function() {
                             console.log(obj.item);
                         if (obj.item != undefined) {
                             return {
@@ -93,6 +98,8 @@
                             };
                         }
                     }, 1000);
+
+                    return defer.promise;
                 }
                 obj.soundcloud = function(url) {
                     obj.url = url;
