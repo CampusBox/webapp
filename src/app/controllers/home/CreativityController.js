@@ -18,6 +18,7 @@
         ]);
 
     function CreativityController($scope, tokenService, $mdDialog, $sce, $state, $filter, $rootScope, creativityActionsService, creativityCategories) {
+        
         $scope.liked = false;
         $scope.creativityLoading = false;
         $scope.offset = 0;
@@ -200,30 +201,6 @@
             item.intrested = !item.intrested;
             $scope.selectedCategories = $scope.selectedCategories;
         };
-        $scope.showLikes = function(id, title) {
-            $mdDialog.show({
-                controller: 'ShowLikesController',
-                templateUrl: 'app/views/partials/showLikes.html',
-                parent: angular.element(document.body),
-                scope: $scope,
-                locals: {
-                    title: title,
-                    id: id
-                },
-                preserveScope: true,
-                escapeToClose: true,
-                fullscreen: true,
-                clickOutsideToClose: true,
-                controllerAs: 'dc'
-            })
-        }
-
-        $scope.bookmark = function(content, index) {
-            creativityActionsService.bookmark(content);   
-        }
-        $scope.heart = function(content, $index) {
-            creativityActionsService.heart(content, $index);
-        }
 
 
     }
