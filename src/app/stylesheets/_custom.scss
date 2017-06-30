@@ -317,6 +317,28 @@ md-backdrop.md-sidenav-backdrop {
 .orange .md-container {
     background-color: rgb(255, 236, 201)
 }
+// add creativity 
+.medium-editor-placeholder::after {
+     color: #b3b3b1;
+ }
+ 
+ .md-button.md-primary.md-raised[disabled] {
+     background-color: rgba(30, 136, 229, 0.56);
+     color: #fff;
+ }
+ 
+ #trix-toolbar-1 {
+     background-color: white;
+     position: fixed;
+     bottom: 1%;
+     width: 100%;
+     left: 0;
+     z-index: 2;
+ }
+ 
+ #trix-editor-1 {
+     max-height: 30vh;
+ }
 
 //events page 
 .flexy-16 {
