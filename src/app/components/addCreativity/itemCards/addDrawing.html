@@ -54,7 +54,7 @@
         </div>
     </div>
     <div layout="column">
-        <div layout="row" layout-align="strech center">
+        <div ng-hide="drawingAdded" layout="row" layout-align="strech center">
             <md-button ngf-select="uploadFiles($files, $invalidFiles)" multiple name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 500, height: 500}" ngf-resize-if="$width > 500 || $height > 500">
                 <md-icon md-svg-icon="laptop"></md-icon>
                 Upload
@@ -64,7 +64,7 @@
                 Instagram
             </md-button>
         </div>
-        <div flex="100" ng-show="inputActive" layout="row" layout-align="space-between center">
+        <div flex="100" ng-show="inputActive && !drawingAdded" layout="row" layout-align="space-between center">
             <form flex="100" ng-submit="addInstagram(url)">
                 <md-input-container md-no-float style="width:100%;margin-bottom: -3px;">
                     <input flex md-no-float md-autofocus="" ng-model="url" placeholder="Paste Instagram image url here!" class=" ng-valid md-autofocus md-input ng-empty ng-touched" aria-label="url" id="input_8" aria-invalid="false">
