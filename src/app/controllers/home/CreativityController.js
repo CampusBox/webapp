@@ -7,23 +7,17 @@
         .controller('CreativityController', [
             '$scope',
             'tokenService',
-            '$mdDialog',
             '$sce',
             '$state',
             '$filter',
             '$rootScope',
-            'creativityActionsService',
             'creativityCategories',
             CreativityController
         ]);
 
-    function CreativityController($scope, tokenService, $mdDialog, $sce, $state, $filter, $rootScope, creativityActionsService, creativityCategories) {
-
-        $scope.liked = false;
+    function CreativityController($scope, tokenService, $sce, $state, $filter, $rootScope, creativityCategories) {
         $scope.creativityLoading = false;
-        $scope.offset = 0;
         $rootScope.currentMenu = 'Creativity';
-
         $scope.moreItems = true;
         $scope.nonFinalContents = [];
         $scope.finalContents = [];
@@ -33,32 +27,14 @@
         $scope.types = creativityCategories.types;
         $scope.mediaTypes = [4, 5, 6, 7, 12, 15, 16];
         $scope.contents = [];
-
-
-        $scope.showPopUp = function(creativity) {
-            console.log(creativity);
-            if ([1, 2, 17, 21].indexOf(creativity.content.type) > -1) {
-                $state.go('home.singleContent', { contentId: creativity.id });
-
-            } else {
-
-                $mdDialog.show({
-                    controller: 'PopUpCreativityController',
-                    templateUrl: 'app/views/partials/popUpCreativity.html',
-                    parent: angular.element(document.body),
-                    locals: {
-                        creativity: creativity
-                    },
-                    clickOutsideToClose: true,
-                    fullscreen: true // Only for -xs, -sm breakpoints.
-                });
-            }
+        var cardObject = {};
+        $scope.contentDetails = {
+            "limit": 3,
+            "offset": 0,
+            "filters": []
         };
 
-        $scope.openProfile = function($event, username) {
-            $event.stopPropagation();
-            $state.go('home.profile', { username: username });
-        };
+
         $scope.myPagingFunction = function() {
             if ($scope.creativityLoading == false && $scope.moreItems == true) {
                 $scope.creativityLoading = true;
@@ -134,12 +110,6 @@
                     });
 
             }
-        };
-        var cardObject = {};
-        $scope.contentDetails = {
-            "limit": 3,
-            "offset": 0,
-            "filters": []
         };
 
 

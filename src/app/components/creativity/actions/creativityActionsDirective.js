@@ -8,7 +8,7 @@
             replace: true,
             templateUrl: 'app/components/creativity/actions/creativityActions.html',
 
-            controller: function($scope, $mdDialog, creativityActionsService) {
+            controller: function($scope, $mdDialog, $state, creativityActionsService) {
                 $scope.showLikes = function(id, title) {
                     $mdDialog.show({
                         controller: 'ShowLikesController',
@@ -26,7 +26,10 @@
                         controllerAs: 'dc'
                     })
                 }
-
+                $scope.openProfile = function($event, username) {
+                    $event.stopPropagation();
+                    $state.go('home.profile', { username: username });
+                };
                 $scope.bookmark = function(content, index) {
                     creativityActionsService.bookmark(content);   
                 }
