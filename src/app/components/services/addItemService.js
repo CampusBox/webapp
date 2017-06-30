@@ -9,7 +9,6 @@
             '$q',
             '$rootScope',
             'allDataService',
-            function($mdDialog, $timeout, $sce, $rootScope, allDataService) {
             function($mdDialog, $timeout, $sce, $q,$rootScope, allDataService) {
 
                 var obj = {};

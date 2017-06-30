@@ -165,21 +165,17 @@
             $scope.creativity.type = type.id;
             $scope.categoryName = $scope.types[$scope.creativity.type - 1].title;
         };
-        $scope.uploadFiles = function(files, abc, type) {
+        $scope.uploadFiles = function(files, abc) {
             $rootScope.$emit("ImagesAdded");
             $scope.files = files;
             if (files && files.length) {
                 $scope.progress = 2;
                 angular.forEach(files, function(file) {
                     Upload.dataUrl(file, true).then(function(url) {
-                        if (type == 'icon') {
-                            $scope.creativity.items[1].embed.icon = url;
-                        } else {
                             var media = {};
                             media.mediaType = 'image';
                             media.image = url;
                             $scope.creativity.items.push(media);
-                        }
 
                     });
                 });

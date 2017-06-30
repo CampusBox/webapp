@@ -8,11 +8,11 @@
                         <md-icon md-svg-icon="close-circle-outline"></md-icon>
                     </md-button>
                 </div>
-                <div ng-if="item.embed.iframe != '' && item.mediaType == 'embed'">
+                <div ng-if="item.iframe != '' && item.mediaType == 'embed'">
                     <div ng-bind-html="item.embedIframe"></div>
                     <center>
                         <span>{{creativity.items[$index].display.title}}</span>
-                        <md-button ng-if="item.embed.iframe != '' && item.mediaType == 'embed'" ng-click="removeUiUxItem($index)" class="md-button md-warn">
+                        <md-button ng-if="item.iframe != '' && item.mediaType == 'embed'" ng-click="removeUiUxItem($index)" class="md-button md-warn">
                             <md-icon md-svg-icon="delete"></md-icon>
                             Remove
                         </md-button>

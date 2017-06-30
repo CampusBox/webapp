@@ -14,7 +14,13 @@
     <div layout="column">
         <div layout="column" layout-align="center center">
             <div layout="row" layout-align="center center">
-                <img ng-if="creativity.items[1].embed.icon" style="max-width: 32px; max-height: 32px" ng-src="{{creativity.items[1].embed.icon}}" alt="">
+                <div ng-if="urlAdded && iconReq" layout="row">
+                    <img ng-if="creativity.items[1].icon" style="max-width: 50px; max-height: 50px" ng-src="{{creativity.items[1].icon}}" alt="">
+                    <md-button ngf-select="uploadIcon($files, $invalidFiles)" multiple name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 500, height: 500}" ngf-resize-if="$width > 500 || $height > 500">
+                        <md-icon md-svg-icon="cellphone"></md-icon>
+                        Icon
+                    </md-button>
+                </div>
                 <md-button ngf-select="uploadFiles($files, $invalidFiles)" multiple name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" ngf-min-height="100" ngf-resize="{width: 500, height: 500}" ngf-resize-if="$width > 500 || $height > 500">
                     <md-icon md-svg-icon="laptop"></md-icon>
                     Screenshots

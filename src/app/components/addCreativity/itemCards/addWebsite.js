@@ -7,26 +7,48 @@
             restrict: "E",
             replace: true,
             templateUrl: 'app/components/addCreativity/itemCards/addWebsite.html',
-            controller: function($scope, addItemService, $sce, allDataService, $rootScope) {
+            controller: function($scope, addItemService, $sce, allDataService, $rootScope, Upload) {
                 //Define Variables
                 $scope.url = '';
                 $scope.fetchLoading = false;
                 $scope.imageAdded = false;
                 $scope.urlAdded = false;
                 $scope.websiteAdded = false;
-
+                $scope.iconCompulsary = [19];
+                $scope.iconAdded = false;
+                if ($scope.creativity.type == 19) {
+                    $scope.iconReq = true;
+                } else {
+                    $scope.iconReq = false;
+                }
                 //End Defining variables
 
                 $scope.checkPublishableWebsite = function() {
-                    $scope.websiteAdded = $scope.urlAdded && $scope.imageAdded;
+                    if ($scope.iconReq) {
+                        $scope.websiteAdded = $scope.urlAdded && $scope.imageAdded && $scope.iconAdded;
+                    } else {
+                        $scope.websiteAdded = $scope.urlAdded && $scope.imageAdded;
+                    }
                     $scope.$emit("publishable", $scope.websiteAdded);
                 }
                 $rootScope.$on("ImagesAdded", function(event) {
                     $scope.imageAdded = true;
-                    $scope.drawingAdded = false; // On adding images this variable is set true in add drawing directive so we have to set it false here !
-                    $scope.UiUxAdded = false; // On adding images this variable is set true in add uiux directive so we have to set it false here !
                     $scope.checkPublishableWebsite();
                 });
+                $scope.uploadIcon = function(files, abc, type) {
+                    $scope.iconAdded = true;
+                    $scope.checkPublishableWebsite();
+                    $scope.files = files;
+                    if (files && files.length) {
+                        $scope.progress = 2;
+                        angular.forEach(files, function(file) {
+                            Upload.dataUrl(file, true).then(function(url) {
+                                $scope.creativity.items[1].icon = url;
+
+                            });
+                        });
+                    }
+                };
                 $scope.removeWebsiteItem = function(index) {
                     $scope.creativity.items.splice(index, 1);
                     if ($scope.creativity.items.length == 1 || $scope.creativity.items[1].mediaType == 'image') {
@@ -46,7 +68,7 @@
                                 if (response != undefined) {
                                     if ($scope.title == '') {
                                         var length = $scope.creativity.items.length;
-                                        $scope.title = $scope.creativity.items[length - 1].display.title;
+                                        // $scope.title = $scope.creativity.items[length - 1].display.title;
                                     }
                                 }
                             });
@@ -70,11 +92,10 @@
                 }
 
                 $scope.removeScreenshot = function(index) {
+                    console.log($scope.creativity);
                     $scope.creativity.items.splice(index, 1);
-                    if ($scope.creativity.items.length == 1 || $scope.creativity.items[1].mediaType == 'url') {
+                    if ($scope.creativity.items.length == 1 || $scope.creativity.items[1].mediaType == 'tech') {
                         $scope.imageAdded = false;
-                        $scope.drawingAdded = false; // On adding images this variable is set true in add drawing directive so we have to set it false here !
-                        $scope.UiUxAdded = false; // On adding images this variable is set true in add uiux directive so we have to set it false here !
                         $scope.checkPublishableWebsite();
                     }
                 }
