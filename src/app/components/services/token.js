@@ -24,10 +24,10 @@
                 // USE THIS AT MOST TIMES
                 // 
                 // To test locally from BETA API 
-                 // var serviceBase = 'http://beta.campusbox.org/dist/api/public/';
+                 var serviceBase = 'http://beta.campusbox.org/dist/api/public/';
 
                  //For testing from ayush locally
-                 var serviceBase = 'http://192.168.4.101/public/';
+                 // var serviceBase = 'http://192.168.4.101/public/';
 
 
                 $rootScope.config = function() {

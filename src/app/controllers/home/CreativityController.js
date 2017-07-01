@@ -56,7 +56,6 @@
             };
             var deleteList = [];
             $scope.toggle = function(item, list) {
-
                 var idx = $scope.selectedCategories.indexOf(item);
                 if (idx > -1) {
                     $scope.selectedCategories.splice(idx, 1);
@@ -72,7 +71,8 @@
                         $scope.myPagingFunction();
                     } else {
                         $scope.finalContents = $scope.finalContentsCopy.filter(function(obj) {
-                            return deleteList.indexOf(obj.categoryId) != -1;
+                            console.log(obj);
+                            return deleteList.indexOf(obj.content_type) != -1;
                         });
                     }
                 } else {
@@ -90,7 +90,8 @@
                     } else {
 
                         $scope.finalContents = $scope.finalContentsCopy.filter(function(obj) {
-                            return deleteList.indexOf(obj.categoryId) != -1;
+                            console.log(obj);
+                            return deleteList.indexOf(obj.content_type) != -1;
                         });
                     }
 
