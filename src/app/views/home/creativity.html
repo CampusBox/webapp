@@ -1,6 +1,35 @@
 <div layout="column" layout-fill class="main-bg">
     <div layout-gt-xs="row" layout-xs="column">
-        <creativity-filters></creativity-filters>
+        <!-- <creativity-filters></creativity-filters> -->
+        <div flex-gt-xs="20">
+            <center style="margin-top:8px; " hide-xs layout-wrap>
+                <h3 class="md-title">Categories</h3>
+                <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected':'interest'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
+                    {{ type.title }}
+                </md-button>
+            </center>
+            <div layout-align="start center" layout="row" hide-gt-xs>
+                <md-button class="" ng-click="filterToggle()">
+                    <md-icon md-svg-icon="filter-outline"></md-icon>
+                    Filter
+                </md-button>
+                <span flex></span>
+                <md-button ui-sref="home.addCreativity" style="text-transform:none;">
+                    Add a Creativity
+                    <!-- <md-icon md-svg-icon="all-inclusive"></md-icon> -->
+                </md-button>
+            </div>
+            <div layout="row" ng-if="filterShow" layout-wrap show-xs show-sm hide-gt-sm>
+                <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected':'interest'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
+                    {{ type.title }}
+                </md-button>
+                <span flex></span>
+                <md-button ng-click="filterToggle();" class="md-primary">
+                    Done
+                </md-button>
+            </div>
+        </div>
+
         <creativity-card></creativity-card>
     </div>
 </div>

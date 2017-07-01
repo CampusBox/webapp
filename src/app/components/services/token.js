@@ -19,7 +19,7 @@
                 // 
                 // 
                 // To test locally from main API 
-                 var serviceBase = 'https://campusbox.org/dist/api/public/';
+                 // var serviceBase = 'https://campusbox.org/dist/api/public/';
                 // 
                 // USE THIS AT MOST TIMES
                 // 
@@ -27,7 +27,7 @@
                  // var serviceBase = 'http://beta.campusbox.org/dist/api/public/';
 
                  //For testing from ayush locally
-                 // var serviceBase = 'http://192.178.7.141/public/';
+                 var serviceBase = 'http://192.168.4.101/public/';
 
 
                 $rootScope.config = function() {
