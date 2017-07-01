@@ -808,7 +808,7 @@ md-icon:hover {
 }
 
 .profile-card {
-    min-width: 280px;
+    width: 280px;
     height: 343px;
     box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
     margin-bottom: 24px;
@@ -816,25 +816,26 @@ md-icon:hover {
 }
 
 .event-card {
-    min-width: 280px;
+    width: 280px;
     height: 343px;
     box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
     margin-bottom: 24px;
     margin-left: 16px;
 }
+
 .content-card {
-    min-width: 280px;
+    width: 280px;
     height: 343px;
     box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
     margin-bottom: 24px;
     margin-left: 16px;
 }
-.creativity-action-buttons{
+
+.creativity-action-buttons {
     padding: 0px;
 }
+
 .content-card-dashboard {
-    width: 80%;
-    min-width: 250px;
     margin-right: 25px;
     height: 343px;
     box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
@@ -957,7 +958,7 @@ md-icon:hover {
 .profile-subtitle {
     font-weight: 500;
     font-size: 15px;
-    color: rgba(99,108,116,.87);
+    color: rgba(99, 108, 116, .87);
     line-height: 1.5em;
     text-align: justify;
 }
@@ -999,18 +1000,35 @@ md-icon:hover {
 
 .page-content {
     overflow: auto;
-}    
+}
+
+
 /*eventAction here*/
- .share-button{
-        font-size: 12px;
-        text-transform: capitalize;
-    }
-    .share-button md-icon{
-        width: 16px;
-        height: 16px;
-    }
+
+.share-button {
+    font-size: 12px;
+    text-transform: capitalize;
+}
+
+.share-button md-icon {
+    width: 16px;
+    height: 16px;
+}
+
+
 /*till here*/
+
 @media only screen and (max-width: 500px) {
+    .profile-card,
+    .event-card,
+    .content-card {
+        width: 65%;
+        max-width: 290px;
+        min-width: 250px;
+    }
+    md-card md-card-content{
+        padding-bottom:0px;
+    }
     .play-button {
         margin-left: 40%;
         // margin-top: -31%;
