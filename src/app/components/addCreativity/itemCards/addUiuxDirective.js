@@ -43,19 +43,23 @@
                         addItemService.iframely(url, "embed")
                             .then(function(response) {
                                 $scope.fetchLoading = false;
-                                if (response != undefined) {
-                                    if ($scope.title == '') {
-                                        var length = $scope.creativity.items.length;
-                                        $scope.title = $scope.creativity.items[length - 1].display.title;
-                                    }
-                                }
-                                console.log($scope.creativity.items);
+                                $scope.inputActive = false;
+                            }).catch(function(err) {
+                                console.log("Retrying!");
+                                addItemService.iframely(url, "embed")
+                                    .then(function(response) {
+                                        $scope.fetchLoading = false;
+                                        $scope.inputActive = false;
+                                    }).catch(function(err) {
+                                        $scope.fetchLoading = false;
+                                        $scope.error = err.message;
+                                    });
                             });
                     } else {
                         $scope.fetchLoading = false;
                         $scope.linkUrl = false;
                         $scope.checkPublishableUiUx();
-                        $scope.error = 'Invalid url!'
+                        $scope.error = 'Invalid url!';
                     }
                 }
 

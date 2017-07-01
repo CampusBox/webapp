@@ -19,10 +19,12 @@
                     if ($scope.creativity.items[0] == undefined || $scope.videoAdded) {
                         $scope.videoAdded = false;
                         $scope.danceAdded = false;
+                        $scope.url = '';
                         $scope.$emit("publishable", $scope.danceAdded);
                     } else {
                         $scope.videoAdded = true;
                         $scope.danceAdded = true;
+                        $scope.url = '';
                         $scope.$emit("publishable", $scope.danceAdded);
 
                     }
@@ -43,7 +45,12 @@
                         promise.then(function(greeting) {
                             $scope.checkVideo();
                         }, function(err) {
-                            $scope.error = err.message;
+                            console.log("Retrying");
+                            promise.then(function(greeting) {
+                                $scope.checkVideo();
+                            }, function(err) {
+                                $scope.error = err.message;
+                            });
                         });
                     } else {
                         $scope.error = "Enter a valid url.";

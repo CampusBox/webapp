@@ -65,18 +65,19 @@
                         addItemService.iframely(url, "tech")
                             .then(function(response) {
                                 $scope.fetchLoading = false;
-                                if (response != undefined) {
-                                    if ($scope.title == '') {
-                                        var length = $scope.creativity.items.length;
-                                        // $scope.title = $scope.creativity.items[length - 1].display.title;
-                                    }
-                                }
+                            }).catch(function(err) {
+                                addItemService.iframely(url, "tech")
+                                    .then(function(response) {
+                                        $scope.fetchLoading = false;
+                                    }).catch(function(err) {
+                                        $scope.error = err.message;
+                                    });
                             });
                     } else {
                         $scope.fetchLoading = false;
                         $scope.urlAdded = false;
                         $scope.checkPublishableWebsite();
-                        $scope.error = 'Invalid url!'
+                        $scope.error = 'Invalid url!';
                     }
                     console.log($scope.creativity.items);
                 }
@@ -84,7 +85,17 @@
                     if ($scope.validateUrl(url)) {
                         $scope.sourceError = '';
                         $scope.sourceFetchLoading = true;
-                        addItemService.iframely(url, "sourceCodeUrl");
+                        addItemService.iframely(url, "sourceCodeUrl")
+                            .then(function(response) {
+                                $scope.sourceFetchLoading = false;
+                            }).catch(function(err) {
+                                addItemService.iframely(url, "sourceCodeUrl")
+                                    .then(function(response) {
+                                        $scope.sourceFetchLoading = false;
+                                    }).catch(function(err) {
+                                        $scope.sourceError = err.message;                
+                                    });
+                            });
                     } else {
                         $scope.sourceError = 'Invalid url!'
                     }

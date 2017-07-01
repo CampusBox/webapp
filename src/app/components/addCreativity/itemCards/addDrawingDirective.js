@@ -28,17 +28,33 @@
 
                 $scope.addInstagram = function(url) {
                     if (addItemService.validateUrl(url)) {
-                        $scope.activateInput();
-                        addItemService.iframely(url, "embed").then(function(response) {
-                            if (response != undefined) {
-                                $scope.drawingAdded = true;
-                                $scope.$emit("publishable", $scope.drawingAdded);
-                                if ($scope.title == '') {
-                                    var length = $scope.creativity.items.length;
-                                    $scope.title = $scope.creativity.items[length - 1].display.title;
+                        addItemService.iframely(url, "embed")
+                            .then(function(response) {
+                                if (response != undefined) {
+                                    $scope.drawingAdded = true;
+                                    $scope.activateInput();
+                                    $scope.$emit("publishable", $scope.drawingAdded);
+                                    if ($scope.title == '') {
+                                        var length = $scope.creativity.items.length;
+                                        $scope.title = $scope.creativity.items[length - 1].display.title;
+                                    }
                                 }
-                            }
-                        });
+                            }).catch(function(err) {
+                                addItemService.iframely(url, "embed")
+                                    .then(function(response) {
+                                        if (response != undefined) {
+                                            $scope.drawingAdded = true;
+                                            $scope.activateInput();
+                                            $scope.$emit("publishable", $scope.drawingAdded);
+                                            if ($scope.title == '') {
+                                                var length = $scope.creativity.items.length;
+                                                $scope.title = $scope.creativity.items[length - 1].display.title;
+                                            }
+                                        }
+                                    }).catch(function(err) {
+                                        $scope.error = err.message;
+                                    });
+                            });
                     } else {
                         $scope.error = 'Invalid Instagtam image url!'
                     }
