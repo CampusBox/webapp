@@ -25,7 +25,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
         $compileProvider.debugInfoEnabled(false);
         $compileProvider.commentDirectivesEnabled(false);
         $compileProvider.cssClassDirectivesEnabled(false);
-        $locationProvider.html5Mode(true);
+        // $locationProvider.html5Mode(true);
 
 
 
