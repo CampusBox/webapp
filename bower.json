@@ -17,7 +17,6 @@
     "angularjs-social-login": "^2.4.5",
     "ngstorage": "^0.3.11",
     "ng-img-crop": "ngImgCrop#^0.3.2",
-    "angular-jwt": "^0.1.9",
     "satellizer": "^0.15.5",
     "angular-messages": "^1.6.3",
     "angular-socialshare": "angularjs-socialshare#^2.3.8",

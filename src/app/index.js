@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
-        'ngSanitize', 'ui.router', 'ngMaterial', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage','angular-inview', 'satellizer', 'ngImgCrop', 'angular-jwt',  'angular-google-analytics', 'ngFileUpload'
+        'ngSanitize', 'ui.router', 'ngMaterial', 'app', 'angular-medium-editor', 'socialLogin', 'ngStorage', 'angular-inview', 'satellizer', 'ngImgCrop', 'angular-google-analytics', 'ngFileUpload'
     ])
     //remove setellizer
     .config(function(AnalyticsProvider, $stateProvider, $urlRouterProvider, $mdThemingProvider, $authProvider, $locationProvider,
-        $mdIconProvider, socialProvider, jwtInterceptorProvider, jwtOptionsProvider, $httpProvider, $mdDateLocaleProvider, $mdAriaProvider, $compileProvider) {
+        $mdIconProvider, socialProvider, $httpProvider, $mdDateLocaleProvider, $mdAriaProvider, $compileProvider) {
 
         AnalyticsProvider.setAccount('UA-57016004-2'); //UU-XXXXXXX-X should be your tracking code
 
@@ -22,42 +22,16 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
 
          */
 
-        // $compileProvider.debugInfoEnabled(false);
+        $compileProvider.debugInfoEnabled(false);
         $compileProvider.commentDirectivesEnabled(false);
         $compileProvider.cssClassDirectivesEnabled(false);
-        // $locationProvider.html5Mode(true);
+        $locationProvider.html5Mode(true);
 
 
 
         // over 
 
 
-
-        jwtOptionsProvider.config({
-            whiteListedDomains: ['http://localhost', 'http://192.171.2.213', 'https://beta.campusbox.org', 'http://campusbox.org'],
-            // unauthenticatedRedirectPath: '/dashboard',
-            // unauthenticatedRedirector: ['$state', function($state) {
-            //     $state.go('home.dashboard');
-            //     // $rootScope.openLoginDialog();
-            // }],
-            tokenGetter: ['options', 'jwtHelper', function(options, jwtHelper) {
-                if (options && options.url.substr(options.url.length - 5) == '.html') {
-                    return null;
-                }
-                var token = localStorage.getItem('id_token');
-                if (token) {
-                    if (token != "undefined") {
-                        if (!jwtHelper.isTokenExpired(token)) {
-                            return localStorage.getItem('id_token');
-                        } else {
-                            localStorage.removeItem('id_token');
-                        }
-                    } else
-                        localStorage.removeItem('id_token');
-                }
-            }],
-        });
-        $httpProvider.interceptors.push('jwtInterceptor');
 
         $stateProvider
             .state('home', {
@@ -110,70 +84,54 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
                 url: '/login',
                 controller: 'LoginController',
                 templateUrl: 'app/views/static/login.html',
-                data: {
-                    title: 'Dashboard'
-                }
+                
             })
             .state('static.signUp', {
                 url: '/signup',
                 controller: 'SignUpController',
                 templateUrl: 'app/views/static/signUp.html',
-                data: {
-                    title: 'Dashboard'
-                }
+                
             })
 
         .state('home.dashboard', {
                 url: '/dashboard',
                 controler: 'DashboardController',
                 templateUrl: 'app/views/home/dashboard.html',
-                data: {
-                    title: 'Dashboard'
-                }
+                
             })
             .state('home.dashboardFromStatic', {
                 url: '/dashboard/:onboard',
                 controler: 'DashboardController',
                 templateUrl: 'app/views/home/dashboard.html',
-                data: {
-                    title: 'Dashboard'
-                }
+                
             })
             .state('home.searchEvents', {
                 url: '/search/events/:query',
                 controler: 'SearchEventsController',
                 controllerAs: 'vm',
                 templateUrl: 'app/views/home/searchEvents.html',
-                data: {
-                    title: 'Dashboard'
-                }
+                
             })
             .state('home.searchCreativity', {
                 url: '/search/creativity/:query',
                 controler: 'SearchCreativityController',
                 controllerAs: 'vm',
                 templateUrl: 'app/views/home/searchCreativity.html',
-                data: {
-                    title: 'Dashboard'
-                }
+                
             })
             .state('home.searchStudents', {
                 url: '/search/students/:query',
                 controler: 'SearchStudentsController',
                 controllerAs: 'vm',
                 templateUrl: 'app/views/home/searchStudents.html',
-                data: {
-                    title: 'Dashboard'
-                }
+                
             })
             .state('home.searchAll', {
                 url: '/search/:query',
                 controler: 'SearchAllController',
                 controllerAs: 'vm',
                 templateUrl: 'app/views/home/searchAll.html',
-                data: {
-                    title: 'Dashboard'
-                }
+                
             })
             .state('home.profile', {
                 url: '/profile/:username',
@@ -287,7 +245,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
         // REQUIRED FOR CORDOVA
         // 
         // angular.element(document).ready(function() {
-        
+
         //     console.log("Testing if cordova is passed");
 
         //     if (window.cordova) {
@@ -315,7 +273,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
         // 
         // END
 
-        
+
         $rootScope.currentState = $state.current.name;
         $rootScope.$on('$stateChangeSuccess', function() {
             $rootScope.currentState = $state.current.name;
@@ -337,7 +295,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
             }, function() {
                 console.log('else of dialog');
             });
-        }
+        };
 
         $rootScope.token = localStorage.getItem('id_token');
         if ('serviceWorker' in navigator) {
@@ -361,7 +319,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
                 });
         } else {
             $rootScope.authenticated = false;
-            $state.go('home.dashboard');
+            
         }
         //  if (!authManager.isAuthenticated()) {
         //        console.log("sending to login")
