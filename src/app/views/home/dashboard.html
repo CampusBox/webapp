@@ -40,8 +40,12 @@
                     </md-list-item>
                 </md-list>
             </div>
-            <!-- <h1 class="md-headline section-heading">Creative works by other students</h1> -->
-             <loading-creativity></loading-creativity>
+            <!-- <h1 class="md-headline section-heading">Creative works by other students</h1> --> 
+            <!-- <div ng-repeat="category in categories" > -->
+                <loading-creativity  layout="row" layout-align="space-between" ></loading-creativity>
+            <!-- </div> -->
+                
+             
             <div ng-show="!creativityLoading" ng-repeat="category in categories">
                 <div layout="row" layout-align="center center">
                     <h1 class="md-headline section-heading">{{category.title}}</h1>

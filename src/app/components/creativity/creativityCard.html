@@ -75,7 +75,9 @@
                 </div>
             </md-card-header>
         </md-card>
-        <md-card class="content-card" ng-if="creativityLoading" ng-repeat="content in [1,2,3]" flex-lg="30" flex-md="45" flex-sm="45" flex="100">
+       <loading-creativity  layout-wrap style="width: 100%" layout="row" layout-align="space-around" hide-xs ></loading-creativity>
+       <loading-creativity layout="column" layout-align="space-around" hide-gt-xs ></loading-creativity>
+        <!-- <md-card class="content-card" ng-if="creativityLoading" ng-repeat="content in [1,2,3]" flex-lg="30" flex-md="45" flex-sm="45" flex="100">
             <md-card-header>
                 <md-card-avatar style="background: #f6f7f8">
                     <img class="md-user-avatar" />
@@ -85,6 +87,6 @@
                 </md-card-header-text>
             </md-card-header>
             <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
-        </md-card>
+        </md-card> -->
     </div>
 </div>
