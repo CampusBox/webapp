@@ -109,72 +109,14 @@
                 }
                 tokenService.post("contentsList", $scope.contentDetails)
                     .then(function(tableData) {
-                        // console.log(tableData);
                         $scope.creativityLoading = false;
                         if (tableData.data.length < 3) {
                             $scope.moreItems = false;
                         }
-
                         $scope.nonFinalContents = [];
-                        
                         $scope.contents = [];
                         $scope.contents = tableData.data;
-
-                        // $scope.contents.forEach(function(content) {
-                        //     cardObject = {};
-
-                        //     cardObject.Actions = content.Actions;
-                        //     cardObject.Tags = content.Tags;
-                        //     cardObject.created = content.created;
-                        //     // cardObject.created.at = Date.parse(cardObject.created.at.replace('-', '/', 'g')); //replace mysql date to js date format
-                        //     cardObject.id = content.id;
-                        //     cardObject.title = $sce.trustAsHtml(content.title);
-                        //     cardObject.content = content.content;
-                        //     $scope.types.some(function(obj) {
-                        //         if (obj.id == cardObject.content.type) {
-                        //             cardObject.category = obj.title;
-                        //             cardObject.categoryId = obj.id;
-                        //         } else {
-                        //             return;
-                        //         }
-                        //     });
-                        //     cardObject.Items = content.Items;
-                        //     cardObject.links = content.links;
-                        //     cardObject.total = content.links;
-                        //     content.Items.data.forEach(function(item) {
-                        //         if (item.type == 'text') {
-                        //             cardObject.description = item.description;
-                        //             cardObject.description = $sce.trustAsHtml(cardObject.description);
-                        //         } else if ((item.type == 'cover' && !cardObject.type)) {
-                        //             cardObject.type = item.type;
-                        //             cardObject.url = item.image;
-                        //         } else if (item.type == 'soundcloud') {
-                        //             cardObject.type = item.type;
-                        //             item.url = "https://w.soundcloud.com/player/?url=" + item.url;
-                        //             cardObject.url = $sce.trustAsResourceUrl(item.url);
-                        //         } else if ((item.type == 'youtube' || item.type == 'vimeo') && !cardObject.type) {
-                        //             cardObject.type = item.type;
-                        //             cardObject.url = $sce.trustAsResourceUrl(item.url);
-                        //         } else if (((item.type == 'cover') || (item.type == 'image')) && !cardObject.type) {
-                        //             cardObject.type = item.type;
-                        //             cardObject.url = item.image;
-                        //         }
-                        //     });
-                        //     if (cardObject.type != 'cover' || cardObject.type != 'soundcloud' || cardObject.type != 'youtube') {
-                        //         cardObject.description = $filter('limitTo')(cardObject.description, 90, 0)
-                        //     } else {
-                        //         cardObject.description = $filter('limitTo')(cardObject.description, 110, 0)
-
-                        //     }
-                        //     $scope.nonFinalContents.push(cardObject);
-                        //     content = {};
-                        //     $scope.creativityLoading = false;
-
-                        // });
                         $scope.creativityLoading = false;
-                        
-                        // $scope.finalContents = $scope.finalContents.concat($scope.nonFinalContents);
-                        // $scope.finalContentsCopy = $scope.finalContentsCopy.concat($scope.nonFinalContents);
                         $scope.finalContents = $scope.finalContents.concat($scope.contents);
                         $scope.finalContentsCopy = $scope.finalContentsCopy.concat($scope.contents);
 
