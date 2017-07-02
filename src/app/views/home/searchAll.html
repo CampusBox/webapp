@@ -18,8 +18,8 @@
     <div layout="column" title="search all">
         <div flex-order="{{fos}}" title="students">
             <h2 class="md-headline" style="color: rgba(0,0,0,.8);" ng-hide="query == '' || students.length == 0">Results for "{{query}}" in students</h2>
-            <div layout="row" layout-search-wrap class="horizontal-scroll" >
-                <md-card ng-if="listLoading" ui-sref="home.profile" ng-repeat="student in [1,2,3]" style="cursor: pointer;" >
+            <div layout="row" layout-search-wrap class="horizontal-scroll">
+                <md-card ng-if="listLoading" ui-sref="home.profile" ng-repeat="student in [1,2,3]" style="cursor: pointer;">
                     <center>
                         <img style="border-radius: 50%; width: 40%; margin-top:20px; background-color: #dfdfdf; padding-bottom: 33%" class="md-card-image">
                         <div layout="column" layout-align="center center">
@@ -82,17 +82,16 @@
                     <md-card-actions layout="row" layout-align="end center">
                     </md-card-actions>
                 </md-card>
-
             </div>
         </div>
         <div flex-order="{{foe}}" title="events">
             <h2 class="md-headline" style="color: rgba(0,0,0,.8);" ng-hide="query == '' || events.length == 0">Results for "{{query}}" in Opportunities</h2>
-            <div hide-xs flex layout-align="start" class="horizontal-scroll" layout="row" >
-                <md-card  ng-repeat="event in events | limitTo:6" flex-gt-sm="25" class="event-card" >
+            <div hide-xs flex layout-align="start" class="horizontal-scroll" layout="row">
+                <md-card ng-repeat="event in events | limitTo:6" flex-gt-sm="25" class="event-card">
                     <event-card data="event" bar="false" ng-if="!eventLoading" hide-xs></event-card>
                 </md-card>
             </div>
-            <div show-xs hide-gt-xs layout="column" class="horizontal-scroll" >
+            <div show-xs hide-gt-xs layout="column" class="horizontal-scroll">
                 <md-card style="margin-bottom: 10px;" ng-repeat="event in events" class="secondary-button-padding eventListItem" flex>
                     <event-card-mobile data="event" bar="false" hide-gt-xs></event-card-mobile>
                 </md-card>
@@ -100,9 +99,10 @@
         </div>
         <div flex-order="{{foc}}" title="creativity">
             <h2 class="md-headline" style="color: rgba(0,0,0,.8);" ng-hide="query == '' || finalContents.length == 0">Results for "{{query}}" in Creativity</h2>
-            <div  class="horizontal-scroll" layout="row" layout-search-wrap  flex="noshrink">
-
-                <creativity-card class="content-card"  ng-repeat="content in finalContents | limitTo:6 track by $index"></creativity-card>
+            <div class="horizontal-scroll" layout="row" layout-search-wrap flex="noshrink">
+                <div  ng-repeat="content in finalContents | limitTo:6 track by $index">
+                    <creativity-card data="content" bar="true"></creativity-card>
+                </div>
             </div>
         </div>
     </div>

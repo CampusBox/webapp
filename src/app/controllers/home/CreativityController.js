@@ -113,7 +113,6 @@
                         if (tableData.data.length < 3) {
                             $scope.moreItems = false;
                         }
-                        $scope.nonFinalContents = [];
                         $scope.contents = [];
                         $scope.contents = tableData.data;
                         $scope.creativityLoading = false;
