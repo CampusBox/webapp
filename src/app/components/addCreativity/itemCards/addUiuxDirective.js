@@ -9,7 +9,6 @@
             templateUrl: 'app/components/addCreativity/itemCards/adduiux.html',
             controller: function($scope, addItemService, $sce, allDataService, $rootScope) {
                 //Define Variables
-                $scope.alloweduiux = [15, 16];
                 $scope.url = '';
                 $scope.fetchLoading = false;
                 $scope.graphicsAdded = false;
@@ -19,11 +18,20 @@
                 //End Defining variable
 
                 $scope.checkPublishableUiUx = function() {
-                    console.log('img ' + $scope.graphicsAdded);
-                    $scope.UiUxAdded = $scope.linkUrl && $scope.graphicsAdded;
+                    $scope.UiUxAdded = $scope.linkUrl || $scope.graphicsAdded;
+                    $scope.$emit("publishable", $scope.UiUxAdded);
+                }
+                $scope.removeUiUxItem = function(index) {
+                    $scope.creativity.items.splice(index, 1);
+                    if ($scope.creativity.items.length == 1 || $scope.creativity.items[1].mediaType == 'image') {
+                        $scope.linkUrl = false;
+                        $scope.checkPublishableUiUx();
+                    }
                 }
                 $rootScope.$on("ImagesAdded", function(event) {
+                    console.log('uiux ;jasncals');
                     $scope.graphicsAdded = true;
+                    $scope.drawingAdded = false; // On adding images this variable is set true in add drawing directive so we have to set it false here !
                     $scope.checkPublishableUiUx();
                 });
                 $scope.onTypeUiUx = function(url) {
@@ -32,28 +40,19 @@
                         $scope.checkPublishableUiUx();
                         $scope.error = '';
                         $scope.fetchLoading = true;
-                        var media = {};
-                        media.mediaType = 'url';
-                        media.url = url;
-                        $scope.creativity.items.push(media);
-                        allDataService.linkPreviewJson(url)
-                            .then(function(data) {
+                        addItemService.iframely(url, "embed")
+                            .then(function(response) {
                                 $scope.fetchLoading = false;
-                                if (data.image != '') {
-                                    $scope.graphicsAdded = true;
-                                    var length = $scope.creativity.items.length;
-                                    var media = {};
-                                    media.mediaType = 'image';
-                                    media.image = data.image;
-                                    $scope.creativity.items.push(media);
-                                    $scope.checkPublishableUiUx();
-                                }
-                                if ($scope.title == '') {
-                                    $scope.title = data.title;
+                                if (response != undefined) {
+                                    if ($scope.title == '') {
+                                        var length = $scope.creativity.items.length;
+                                        $scope.title = $scope.creativity.items[length - 1].display.title;
+                                    }
                                 }
                                 console.log($scope.creativity.items);
                             });
                     } else {
+                        $scope.fetchLoading = false;
                         $scope.linkUrl = false;
                         $scope.checkPublishableUiUx();
                         $scope.error = 'Invalid url!'
@@ -62,8 +61,10 @@
 
                 $scope.removeUiuxImage = function(index) {
                     $scope.creativity.items.splice(index, 1);
-                    if ($scope.creativity.items.length == 1 || $scope.creativity.items[1].mediaType == 'url') {
+                    console.log($scope.creativity.items.length == 1 || $scope.creativity.items[1].mediaType == 'embed');
+                    if ($scope.creativity.items.length == 1 || $scope.creativity.items[1].mediaType == 'embed') {
                         $scope.graphicsAdded = false;
+                        $scope.drawingAdded = false; // On adding images this variable is set true in add drawing directive so we have to set it false here !
                         $scope.checkPublishableUiUx();
                     }
                 }

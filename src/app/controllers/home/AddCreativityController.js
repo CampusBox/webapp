@@ -16,10 +16,11 @@
             '$rootScope',
             'creativityCategories',
             'addItemService',
+            '$mdBottomSheet',
             AddCreativityController
         ]);
 
-    function AddCreativityController($scope, $sce, $timeout, $mdDialog, allDataService, tokenService, $state, Upload, $rootScope, creativityCategories, addItemService) {
+    function AddCreativityController($scope, $sce, $timeout, $mdDialog, allDataService, tokenService, $state, Upload, $rootScope, creativityCategories, addItemService, $mdBottomSheet) {
         // 22 june
         $scope.publishable = false;
         $scope.compulsaryP = [1, 2, 17, 18, 19, 20, 21];
@@ -29,13 +30,13 @@
         //
         // Functions
         $scope.showMenu = function() {
-                if ($scope.addMenu) {
-                    $scope.addMenu = false
-                } else {
-                    $scope.addMenu = true;
-                }
+            if ($scope.addMenu) {
+                $scope.addMenu = false;
+            } else {
+                $scope.addMenu = true;
             }
-            //
+        };
+        //
         var body = {};
         $scope.progress = 0;
         $scope.isOpen = false;
@@ -55,6 +56,40 @@
         $scope.loading = false;
         $scope.title = "";
 
+        //imagefilter varaibles 
+        $scope.filterVisible = false;
+        //$scope.currentFilterId = 0;
+        // $scope.filters = [
+        //     { 'id': 0, 'type': 'Rotate', 'value': 0 },
+        //     { 'id': 1, 'type': 'Greyscale', 'value': 0 },
+        //     { 'id': 2, 'type': 'Opacity', 'value': 100 }
+        // ];
+        $scope.filter = {};
+        $scope.filter.rotate = 0;
+        $scope.filter.saturation = 100;
+        $scope.filter.contrast = 100;
+        $scope.filter.brightness = 100;
+
+        $scope.css = {
+            'transform': 'rotate(' + ($scope.filter.rotate) + 'deg)',
+            'filter': 'saturate(' + ($scope.filter.saturation) + '%) brightness(' + ($scope.filter.brightness) + '%) contrast(' + ($scope.filter.contrast) + '%)'
+        };
+        $scope.$watch('filter', function(newValue, oldValue) {
+            //console.log(newValue);
+            $scope.css = {
+                'transform': 'rotate(' + ($scope.filter.rotate) + 'deg)',
+                'filter': 'saturate(' + ($scope.filter.saturation) + '%) brightness(' + ($scope.filter.brightness) + '%) contrast(' + ($scope.filter.contrast) + '%)'
+            };
+            // $scope.creativity.items.css = JSON.stringify($scope.css);
+        }, true);
+
+
+        $scope.filterToggle = function() {
+            if ($scope.filterVisible)
+                $scope.filterVisible = false;
+            else
+                $scope.filterVisible = true;
+        };
 
 
         if (!localStorage.getItem('seenTutorial') || !parseInt(localStorage.getItem('tutorial'))) {
@@ -130,17 +165,18 @@
             $scope.creativity.type = type.id;
             $scope.categoryName = $scope.types[$scope.creativity.type - 1].title;
         };
-        $scope.uploadFiles = function(files) {
+        $scope.uploadFiles = function(files, abc) {
             $rootScope.$emit("ImagesAdded");
             $scope.files = files;
             if (files && files.length) {
                 $scope.progress = 2;
                 angular.forEach(files, function(file) {
                     Upload.dataUrl(file, true).then(function(url) {
-                        var media = {};
-                        media.mediaType = 'image';
-                        media.image = url;
-                        $scope.creativity.items.push(media);
+                            var media = {};
+                            media.mediaType = 'image';
+                            media.image = url;
+                            $scope.creativity.items.push(media);
+
                     });
                 });
                 $scope.addMenu = false;
@@ -183,26 +219,23 @@
             }
         };
         $scope.error = '';
-        $rootScope.$on("returnedItem", function(event, response, errorAdd) {
-            $scope.error = errorAdd;
-            $scope.returnedItem = response;
-            $scope.progress = 2;
-            $scope.creativity.items.push(response);
-            console.log($scope.creativity.items);
-            $scope.addMenu = false;
-            if ($scope.returnedItem.mediaType == 'Soundcloud') {
-                var widgetIframe = document.getElementById('sc-widget'),
-                    widget = SC.Widget(widgetIframe),
-                    newSoundUrl = $scope.embedUrlIframe;
-                widget.bind(SC.Widget.Events.READY, function() {
-                    // load new widget
-                    widget.bind(SC.Widget.Events.FINISH, function() {
-                        widget.load(newSoundUrl, {
-                            show_artwork: false
-                        });
-                    });
-                });
+        $rootScope.$on("returnedItem", function(event, response, error) {
+            if (error) {
+                $scope.error = response;
+            } else {
+                $scope.error = '';
+                $scope.returnedItem = response;
+                $scope.progress = 2;
+                if (response.mediaType == 'tech') {
+                    $scope.creativity.items[1] = response;
+                } else if (response.mediaType == 'sourceCodeUrl') {
+                    $scope.creativity.items[2] = response;
+                } else {
+                    $scope.creativity.items.push(response);
+                }
+                $scope.addMenu = false;
             }
+            console.log($scope.creativity.items);
 
         });
         $scope.isAllowed = function(allowed, id) {
@@ -211,11 +244,11 @@
             }
         }
 
-        // $rootScope.$on("publishable", function(event, state) {
-        //     // Set variable when confirmed from respective directives 
-        //     $scope.publishFromDir = state;
-        //     console.log('$scope.publishFromDir ' + $scope.publishFromDir)
-        // });
+        $scope.$on("publishable", function(event, state, error) {
+            $scope.error = error;
+            // Set variable when confirmed from respective directives 
+            $scope.publishFromDir = state;
+        });
         $scope.checkPublish = function() {
             if ($scope.isAllowed($scope.compulsaryP, $scope.creativity.type)) {
                 // If a category only text as compulsion we have to check weather min text is added or not
@@ -224,10 +257,10 @@
                     // If a category has only text as compulsion it wont have publishFromDir
                     $scope.publishable = $scope.textAdded;
                 } else {
-                    $scope.publishable = $scope.textAdded && ($scope.websiteAdded || $scope.danceAdded || $scope.musicAdded || $scope.drawingAdded || $scope.UiUxAdded || $scope.poetryAdded);
+                    $scope.publishable = $scope.textAdded && ($scope.publishFromDir);
                 }
             } else {
-                $scope.publishable = ($scope.websiteAdded || $scope.danceAdded || $scope.musicAdded || $scope.drawingAdded || $scope.UiUxAdded || $scope.poetryAdded);
+                $scope.publishable = ($scope.publishFromDir);
             }
             var abc = (!($scope.title && $scope.publishable) || $scope.loading);
             return abc;
@@ -251,11 +284,10 @@
             $scope.checkEditor();
             $scope.loading = true;
             $scope.image = {};
-
             $scope.creativity.tags = $scope.tags;
             $scope.creativity.title = $scope.title;
             console.log($scope.creativity);
-            tokenService.post("addNew", $scope.creativity)
+            tokenService.post("addContent", $scope.creativity)
                 .then(function(status) {
                     alert(status.message);
                     if (status.status) {

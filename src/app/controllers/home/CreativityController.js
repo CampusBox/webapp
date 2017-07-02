@@ -114,11 +114,11 @@
                                     cardObject.url = item.image;
                                 } else if (item.type == 'soundcloud') {
                                     cardObject.type = item.type;
-                                    item.embed.url = "https://w.soundcloud.com/player/?url=" + item.embed.url;
-                                    cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
+                                    item.url = "https://w.soundcloud.com/player/?url=" + item.url;
+                                    cardObject.url = $sce.trustAsResourceUrl(item.url);
                                 } else if ((item.type == 'youtube' || item.type == 'vimeo') && !cardObject.type) {
                                     cardObject.type = item.type;
-                                    cardObject.url = $sce.trustAsResourceUrl(item.embed.url);
+                                    cardObject.url = $sce.trustAsResourceUrl(item.url);
                                 } else if (((item.type == 'cover') || (item.type == 'image')) && !cardObject.type) {
                                     cardObject.type = item.type;
                                     cardObject.url = item.image;

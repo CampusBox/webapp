@@ -1,13 +1,22 @@
-<div ng-if="isAllowed(alloweduiux, creativity.type)">
+<div>
     <div flex-offset-gt-sm="10" layout="column" ng-repeat="item in creativity.items track by $index" style="padding: 0px">
         <div layout="column">
-            <center style="margin-top: 40px;" ng-if="item.mediaType=='image'">
-                <div layout="row" layout-align="center center" style="position: relative;background:#fafbfc;max-width: 500px;max-height: 500px;">
-                    <!-- <img style="max-width: 100%" ngf-thumbnail="item.image" /> -->
+            <center style="margin-top: 40px;" >
+                <div ng-if="item.mediaType=='image'" layout="row" layout-align="center center" style="position: relative;background:#fafbfc;max-width: 500px;max-height: 500px;">
                     <img style="max-width: 100%" ng-src="{{item.image}}" />
                     <md-button style="position: absolute;top: 0px;right:0px;color: #fff;text-shadow: 0px 1px 3px black;" ng-if="creativity.items.length > 1" ng-click="removeUiuxImage($index)" class="md-icon-button md-warn">
                         <md-icon md-svg-icon="close-circle-outline"></md-icon>
                     </md-button>
+                </div>
+                <div ng-if="item.iframe != '' && item.mediaType == 'embed'">
+                    <div ng-bind-html="item.embedIframe"></div>
+                    <center>
+                        <span>{{creativity.items[$index].display.title}}</span>
+                        <md-button ng-if="item.iframe != '' && item.mediaType == 'embed'" ng-click="removeUiUxItem($index)" class="md-button md-warn">
+                            <md-icon md-svg-icon="delete"></md-icon>
+                            Remove
+                        </md-button>
+                    </center>
                 </div>
             </center>
         </div>

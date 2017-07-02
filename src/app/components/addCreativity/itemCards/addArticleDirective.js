@@ -7,10 +7,11 @@
             restrict: "E",
             replace: true,
             templateUrl: 'app/components/addCreativity/itemCards/addArticle.html',
-            controller: function($scope, addItemService, $sce, $rootScope) {
+            controller: function($scope, addItemService, $sce, $rootScope, allDataService) {
                 //Define Variables
-                $scope.allowedArticle = [1, 20, 21];
+                
                 $scope.enterUrl = true;
+
                 $scope.inputActive = false;
                 $scope.removeArticleItem = function(index) {
                     $scope.creativity.items.splice(index, 1);
@@ -25,20 +26,11 @@
                 }
                 $scope.addArticleMedia = function(url) {
                     var index = $scope.creativity.items.length;
-                    if ($scope.validateYoutube(url)) {
-                        addItemService.youtube(url);
-                        $scope.setNoembed(url, index);
-                        $scope.activateMediaInput();
-                    } else if ($scope.validateSoundcloud(url)) {
-                        addItemService.soundcloud(url);
-                        $scope.setNoembed(url, index);
-                        $scope.activateMediaInput();
-                    } else if ($scope.validateVimeo(url)) {
-                        addItemService.vimeo(url);
-                        $scope.setNoembed(url, index);
+                    if (addItemService.validateUrl(url)) {
+                        addItemService.iframely(url, "embed");
                         $scope.activateMediaInput();
                     } else {
-                        $scope.error = "Enter a valid Youtube or Vimeo url.";
+                        $scope.error = "Enter a valid  url.";
                     }
                 };
             }

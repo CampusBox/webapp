@@ -37,6 +37,13 @@
                 $state.go('home.myProfile');
             }
         }
+
+
+        $scope.isCurrentUser = function(item){
+            return item.username === $rootScope.user.username;
+        }
+
+
         $scope.follow = function(type, index) {
             if ($rootScope.authenticated) {
                 if (type) {

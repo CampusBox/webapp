@@ -98,8 +98,8 @@
                 tokenService.post("contents", { 'limit': 6, 'offset': 0, 'filters': [$scope.categoryTypes[i]] })
                     .then(function(response) {
 
-                        // console.log(response);
-$scope.categories[i] ={};
+                        console.log(response);
+                        $scope.categories[i] = {};
                         $scope.categories[i].title = creativityCategories.typesByID[$scope.categoryTypes[i]];
                         $scope.categories[i].finalContents = transform(response);
                         console.log($scope.categories);

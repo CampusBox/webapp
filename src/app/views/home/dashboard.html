@@ -7,39 +7,39 @@
             <span flex></span>
             <md-button class="md-primary" ui-sref="home.events">See All</md-button>
         </div>
-        <div layout="row" layout-align="space-between">
-            <md-card class="content-card" hide-xs hide-sm ng-if="eventLoading" ng-repeat="content in [1,2,3]" flex-lg="30" flex-md="45"
-                flex-sm="45" flex="100">
-                <md-card-header>
-                    <md-card-avatar style="background: #f6f7f8">
-                        <img class="md-user-avatar" />
-                    </md-card-avatar>
-                    <md-card-header-text>
-                        <span style="width: 30%" class=" animated-background">Anything here  </span>
-                    </md-card-header-text>
-                </md-card-header>
-                <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
-            </md-card>
-            <md-list hide-gt-xs layout="row">
-                <md-list-item ng-show="eventLoading" flex style="margin-bottom: 15px;" ng-repeat="event in [1,2]" class="secondary-button-padding eventListItem">
-                    <md-card flex>
-                        <md-card-title style="padding: 0px;">
-                            <div class="md-media-sm" style="width: 150px;height:150px; background-color: #eee">
-                                <img class="" style="width: 150px;height:150px;background-color: #f1f1f1" alt="">
-                            </div>
-                            <div style="padding:  14px 23px 0px 33px;" flex layout="column">
-                                <p class="animated-background" style="margin-top: 0px;">Date · Time </p>
-                                <br>
-                                <p class="md-title animated-background" style="font-weight: 600;margin: 0px; background-color: #eee;color: transparent;">
-                                    CampusBox launch
-                                </p>
-                                <p style="margin:0;background-color: #eee;color: transparent;" class="md-caption animated-background">Main Auditorium, Thapar University</p>
-                            </div>
-                        </md-card-title>
-                    </md-card>
-                </md-list-item>
-            </md-list>
-        </div>
+        <!--  <div layout="row">
+        <md-card class="content-card" hide-xs hide-sm ng-if="eventLoading" ng-repeat="content in [1,2,3]" flex-lg="30" flex-md="45" flex-sm="45" flex="100">
+            <md-card-header>
+                <md-card-avatar style="background: #f6f7f8">
+                    <img class="md-user-avatar" />
+                </md-card-avatar>
+                <md-card-header-text>
+                    <span style="width: 30%" class=" animated-background">Anything here  </span>
+                </md-card-header-text>
+            </md-card-header>
+            <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
+        </md-card>
+        <md-list hide-gt-xs>
+            <md-list-item ng-show="eventLoading" flex style="margin-bottom: 15px;" ng-repeat="event in [1,2]" class="secondary-button-padding eventListItem">
+                <md-card flex>
+                    <md-card-title style="padding: 0px;">
+                        <div class="md-media-sm" style="width: 150px;height:150px; background-color: #eee">
+                            <img class="" style="width: 150px;height:150px;background-color: #f1f1f1" alt="">
+                        </div>
+                        <div style="padding:  14px 23px 0px 33px;" flex layout="column">
+                            <p class="animated-background" style="margin-top: 0px;">Date · Time </p>
+                            <br>
+                            <p class="md-title animated-background" style="font-weight: 600;margin: 0px; background-color: #eee;color: transparent;">
+                                CampusBox launch
+                            </p>
+                            <p style="margin:0;background-color: #eee;color: transparent;" class="md-caption animated-background">Main Auditorium, Thapar University</p>
+                        </div>
+                    </md-card-title>
+                </md-card>
+            </md-list-item>
+        </md-list>
+    </div> -->
+        <loading-events style="overflow: auto;" layout-align="space-between" layout="row"></loading-events>
         <div layout="column" layout-wrap>
             <div hide-xs flex layout-align="space-between" layout="row" style="max-width: 100%;">
                 <md-card flex-lg="30" flex-md="45" flex-sm="45" flex="100" layout="column" layout="space-around" ng-repeat="event in events track by $index">
@@ -50,7 +50,7 @@
                 <md-card flex="noshrink" style="margin-bottom: 10px;width: 80%;" ng-repeat="event in events" class="secondary-button-padding eventListItem">
                     <event-card data="event" bar="true" ng-show="!eventLoading" hide-gt-xs></event-card>
                 </md-card>
-                <md-list>
+               <!--  <md-list>
                     <md-list-item ng-show="loading" flex style="margin-bottom: 15px;" ng-repeat="event in [1,2]" class="secondary-button-padding eventListItem">
                         <md-card flex>
                             <md-card-title style="padding: 0px;">
@@ -68,10 +68,11 @@
                             </md-card-title>
                         </md-card>
                     </md-list-item>
-                </md-list>
+                </md-list> -->
             </div>
             <!-- <h1 class="md-headline section-heading">Creative works by other students</h1> -->
-            <div ng-repeat="category in categories">
+            <loading-creativity layout="row" layout-align="space-between" style="overflow: auto;"></loading-creativity>
+            <div ng-show="!creativityLoading" ng-repeat="category in categories">
                 <div layout="row" layout-align="center center">
                     <h1 class="md-headline section-heading">{{category.title}}</h1>
                     <span flex></span>
@@ -79,7 +80,7 @@
                 </div>
                 <div style="height: 375px; overflow-y: hidden;">
                     <div flex layout="row" class="creativity-page inner-box" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading'>
-                        <md-card class=" content-card " flex="noshrink" ng-repeat="content in category.finalContents track by $index">
+                        <md-card class="content-card-dashboard" flex="noshrink" ng-repeat="content in category.finalContents track by $index">
                             <md-card-content style="padding: 0px">
                                 <div ng-if="(content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
                                     <iframe id="sc-widget" ng-show="(content.type == 'soundcloud')" width="100%" height="170" scrolling="no" frameborder="0"
@@ -139,9 +140,9 @@
                     </div>
                 </div>
             </div>
-            <div flex layout-align="center center" layout="row" layout-wrap>
-                <md-card class="content-card" ng-if="creativityLoading" ng-repeat="content in [1,2,3]" flex-lg="30" flex-md="45" flex-sm="45"
-                    flex="100">
+            <!-- uncommented and made directive -->
+           <!--  <div flex layout-align="center center" layout="row" layout-wrap>
+                <md-card class="content-card" ng-if="creativityLoading" ng-repeat="content in [1,2,3]" flex-lg="30" flex-md="45" flex-sm="45" flex="100">
                     <md-card-header>
                         <md-card-avatar style="background: #f6f7f8">
                             <img class="md-user-avatar" />
@@ -154,7 +155,8 @@
                 </md-card>
                 <div flex="20">
                 </div>
-            </div>
+            </div> -->
+            <!-- till here -->
             <!--  <md-card class="pointer" ui-sref="home.creativity">
                 <center style="padding: 20px;font-weight: 300">See all creativity</center>
             </md-card> -->

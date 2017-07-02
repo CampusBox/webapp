@@ -9,7 +9,6 @@
             templateUrl: 'app/components/addCreativity/itemCards/addMusic.html',
             controller: function($scope, addItemService, $sce) {
                 //Define Variables
-                $scope.allowedMusic = [9, 10, 11];
                 $scope.musicAdded = false;
                 $scope.enterUrl = true;
                 //End Defining variables
@@ -17,38 +16,26 @@
                 $scope.checkMusic = function() {
                     if ($scope.creativity.items[0] == undefined || $scope.musicAdded) {
                         $scope.musicAdded = false;
+                        $scope.$emit("publishable", $scope.musicAdded);
                     } else {
                         $scope.musicAdded = true;
+                        $scope.$emit("publishable", $scope.musicAdded);
                     }
                 }
                 $scope.removeMusic = function() {
                     $scope.creativity.items.pop();
                     $scope.musicAdded = false;
+                    $scope.$emit("publishable", $scope.musicAdded);
                 }
                 $scope.addMusic = function(url) {
-                    if ($scope.validateYoutube(url)) {
+                    if (addItemService.validateUrl(url)) {
                         if ($scope.creativity.items.length > 1) {
                             $scope.creativity.items.pop();
                         }
-                        $scope.setNoembed(url, 1);
-                        $scope.checkMusic();
-                        addItemService.youtube(url);
-                    } else if ($scope.validateSoundcloud(url)) {
-                        if ($scope.creativity.items.length > 1) {
-                            $scope.creativity.items.pop();
-                        }
-                        addItemService.soundcloud(url);
-                        $scope.setNoembed(url, 1);
-                        $scope.checkMusic();
-                    } else if ($scope.validateVimeo(url)) {
-                        if ($scope.creativity.items.length > 1) {
-                            $scope.creativity.items.pop();
-                        }
-                        addItemService.vimeo(url);
-                        $scope.setNoembed(url, 1);
+                        addItemService.iframely(url, "embed");
                         $scope.checkMusic();
                     } else {
-                        $scope.error = 'Enter a valid Youtube, Soundcloud or Vimeo url.'
+                        $scope.error = 'Enter a valid url.'
                     }
                 };
             }

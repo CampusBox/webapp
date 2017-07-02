@@ -191,15 +191,18 @@
         $scope.edit = function() {
             // For profile details edit
         };
+
         $scope.about = function() {
-            tokenService.patch("/students/" + $scope.student.username, $scope.studentAbout)
-                .then(function() {
-                    $scope.student.subtitle = $scope.studentAbout.about;
-                })
-                .catch(function(error) {
-                    console.log(error);
-                });
+            console.log($scope.editAbout);
+                tokenService.patch("students/" + $scope.student.username, $scope.studentAbout)
+                    .then(function(result) {
+                        $scope.student.subtitle = $scope.studentAbout.about;
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    });
         };
+
         $scope.follow = function(type, index) {
             // SEND FOLLOWER ID AND FOLLOWING ID IN POST
             if ($scope.student[type].data[index].following) {

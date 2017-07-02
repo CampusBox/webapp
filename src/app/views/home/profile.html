@@ -42,7 +42,7 @@
             <div>
                 <p class="md-headline">{{profile.name}}</p>
                 <p class="md-body-2 weight-500"> {{profile.subtitle}} </p>
-                <md-button style="margin: 0px; width: 100%" ng-class="profile.following? 'md-primary md-not-raised' : 'md-raised md-primary'" ng-click="follow()">{{profile.following? 'Following':'Follow' }}</md-button>
+                <md-button style="margin: 0px; width: 100%" ng-if="!isCurrentUser(profile)" ng-class="profile.following? 'md-primary md-not-raised' : 'md-raised md-primary'" ng-click="follow()">{{profile.following? 'Following':'Follow' }}</md-button>
             </div>
         </div>
         <div>
@@ -307,7 +307,7 @@
                                         <p>{{ item.about }}</p>
                                     </div>
                                     <span flex></span>
-                                    <md-button style="max-height: 36px;" ng-class="item.following.status? 'md-primary' : 'md-raised md-primary'" ng-click="follow('Following', $index)">{{item.following.status? 'Following':'Follow' }}</md-button>
+                                    <md-button ng-if="!isCurrentUser(item)" style="max-height: 36px;" ng-class="item.following.status? 'md-primary' : 'md-raised md-primary'" ng-click="follow('Following', $index)">{{item.following.status? 'Following':'Follow' }}</md-button>
                                 </div>
                             </md-list-item>
                         </md-list>
@@ -325,7 +325,7 @@
                                         <p>{{ item.about }}</p>
                                     </div>
                                     <span flex></span>
-                                    <md-button style="max-height: 36px;" ng-class="item.following.status? 'md-primary' : 'md-raised md-primary'" ng-click="follow('Follower', $index)">{{item.following.status? 'Following':'Follow' }}</md-button>
+                                    <md-button ng-if="!isCurrentUser(item)" style="max-height: 36px;" ng-class="item.following.status? 'md-primary' : 'md-raised md-primary'" ng-click="follow('Follower', $index)">{{item.following.status? 'Following':'Follow' }}</md-button>
                                 </div>
                             </md-list-item>
                         </md-list>

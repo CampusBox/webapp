@@ -50,7 +50,7 @@
                     <md-card-actions layout="row" layout-align="end center">
                     </md-card-actions>
                 </md-card>
-                <md-card ui-sref="home.profile({username: student.username})" ng-repeat="student in students | limitTo:6 track by $index " style="cursor: pointer;" class="profile-card">
+                <md-card ui-sref="home.profile({username: student.username})" ng-repeat="student in students | limitTo:6 track by $index" style="cursor: pointer;" flex="30" flex-xs="100">
                     <center>
                         <img style="border-radius: 50%; width: 40%; margin-top:20px;" ng-src="{{student.photo}}" class="md-card-image" alt="{{student.title}}">
                         <div layout="column" layout-align="center center">
@@ -59,6 +59,7 @@
                             <p class="md-subhead" style="padding: 0px 10px;    font-weight: 500;">
                                 {{student.about}}
                             </p>
+                            <!-- <md-button ng-class="student.following? 'md-primary' : 'md-raised md-primary'" ng-click="follow($event, $index);">{{student.following? 'Following':'Follow' }}</md-button> -->
                         </div>
                     </center>
                     <div style="padding-top: 0px;">
@@ -70,17 +71,18 @@
                             </div>
                         </center>
                         <!-- <section layout="row" layout-align="center center" layout-wrap>
-                        <md-list>
-                            <md-button ng-href="{{social.link}}" ng-repeat="social in student.SocialAccounts.data">
-                                <md-icon md-svg-icon="{{social.type}}" md-colors="social.type=='facebook' ? {color: 'indigo'} : {color: 'red'}"></md-icon>
-                                {{social.type}}
-                            </md-button>
-                        </md-list>
-                    </section> -->
+                            <md-list>
+                                <md-button ng-href="{{social.link}}" ng-repeat="social in student.SocialAccounts.data">
+                                    <md-icon md-svg-icon="{{social.type}}" md-colors="social.type=='facebook' ? {color: 'indigo'} : {color: 'red'}"></md-icon>
+                                    {{social.type}}
+                                </md-button>
+                            </md-list>
+                        </section> -->
                     </div>
                     <md-card-actions layout="row" layout-align="end center">
                     </md-card-actions>
                 </md-card>
+
             </div>
         </div>
         <div flex-order="{{foe}}" title="events">

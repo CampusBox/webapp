@@ -10,7 +10,11 @@
             Add an Opportunity
         </md-button>
     </div>
-    <div layout="row">
+    <div layout-align="center" layout="row">
+        <loading-events hide-xs layout="row" flex layout-align="start" layout-wrap  flex-gt-xs="80" ></loading-events>
+        </div>
+           <!-- commented out this to use directive -->
+          <!--  <div layout="row">
         <md-card class="content-card" hide-xs hide-sm ng-if="eventLoading" ng-repeat="content in [1,2,3]" flex-lg="30" flex-md="45" flex-sm="45" flex="100">
             <md-card-header>
                 <md-card-avatar style="background: #f6f7f8">
@@ -22,6 +26,7 @@
             </md-card-header>
             <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
         </md-card>
+ -->                       <!-- till here -->
         <md-list hide-gt-xs>
             <md-list-item ng-show="eventLoading" flex style="margin-bottom: 15px;" ng-repeat="event in [1,2]" class="secondary-button-padding eventListItem">
                 <md-card flex>
@@ -41,7 +46,7 @@
                 </md-card>
             </md-list-item>
         </md-list>
-    </div>
+        <!-- </div> -->
     <div layout-gt-sm="row" layout="column" layout-align-gt-xs="center" layout-align-xs="center strech">
         <div layout="row" layout-align="center">
             <div hide-xs flex layout-align="start" layout="row" layout-wrap flex-gt-xs="80">
