@@ -43,7 +43,7 @@ md-list-item .md-button:not([disabled]):click {
                 <span  ui-sref="home.profile({username: content.created.by.username})"  class="capitalize blue_text pointer" >
                 {{content.created.by.name}} </span> in <span style="color: #149370">{{content.content.category?content.content.category:"Unknown"}} </span>
                     </h3>
-                    <h4><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.by.about}}</span></h4>
+                    <h4><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.owner.about}}</span></h4>
                     <p><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.at | date: 'd MMM'}}</span></p>
                 </div>
             </md-list-item>

@@ -29,8 +29,9 @@
                 </md-button>
             </div>
         </div>
-
-        <creativity-card></creativity-card>
+        <div flex layout-align="space-around" layout-gt-xs="row" layout-xs="row" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading' infinite-scroll-distance="3 ">
+            <creativity-card class="content-card" flex-lg="30" flex-md="45" flex-sm="45" flex-xs="100" ng-repeat="content in finalContents track by $index" style="margin-left: 4px;"></creativity-card>
+        </div>
     </div>
 </div>
 <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>

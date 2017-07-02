@@ -1,21 +1,12 @@
-<div flex layout-align="space-around" layout-gt-xs="row" layout-xs="row" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading' infinite-scroll-distance="3 ">
-    <md-card class="content-card" flex-lg="30" flex-md="45" flex-sm="45" flex-xs="100" ng-repeat="content in finalContents track by $index" style="margin-left: 4px;">
+<!-- <div flex layout-align="space-around" layout-gt-xs="row" layout-xs="row" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading' infinite-scroll-distance="3 "> -->
+    <md-card >
         <embed-card ng-if="content.view_type == 1" bar="true" data="content"></embed-card>
         <title-image ng-if="content.view_type == 2" bar="true" data="content"></title-image>
         <title-content ng-if="content.view_type == 3" bar="true" data="content"></title-content>
         <apps-card ng-if="content.view_type == 4" bar="true" data="content"></apps-card>
-        <!--         <md-card-header layout="column" flex ng-hide="(mediaTypes.indexOf(content.content.type) !== -1)">
-            <a ui-sref="home.singleContent({contentId: content.id})" style="text-decoration: none;">
-                <span class="creativity-title" ng-bind-html="content.title"></span>
-            </a>
-            <a ui-sref="home.singleContent({contentId: content.id})" style="text-decoration: none;text-overflow: ellipsis;">
-                <p class="creativity-description md-body-2 creativity-description-list" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="content.description  | limitTo: 10">
-                </p>
-            </a>
-        </md-card-header> -->
         <creativity-actions></creativity-actions>
     </md-card>
-    <md-card class="content-card" ng-if="creativityLoading" ng-repeat="content in [1,2,3]" flex-lg="30" flex-md="45" flex-sm="45" flex="100">
+    <!-- <md-card class="content-card" ng-if="creativityLoading" ng-repeat="content in [1,2,3]" flex-lg="30" flex-md="45" flex-sm="45" flex="100">
         <md-card-header>
             <md-card-avatar style="background: #f6f7f8">
                 <img class="md-user-avatar" />
@@ -25,5 +16,5 @@
             </md-card-header-text>
         </md-card-header>
         <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
-    </md-card>
-</div>
+    </md-card> -->
+<!-- </div> -->
