@@ -1,17 +1,17 @@
-
-
 <div style="height: 100%;">
     <div ui-sref="home.singleEvent({eventId: event.id})" style="position: relative;">
         <img style="width: 100% ;opacity: 0.9" class="event-cover" ng-src="{{event.image}}" alt="{{event.title}}">
-        <span class="md-caption" style="position: absolute;top: 20px;right: 20px;color: #fff;background: rgba(12,12,12,0.5);border-style: solid;border-width:0px;border-color: #fff;padding: 3px;border-radius: 4px;">
-                <md-icon  style="fill: #fff;" ng-show="event.location.type" md-svg-icon="currency-inr"></md-icon>
+        <div style="position: absolute;bottom: 2px;width: 100%;color: #fff;background: rgba(12,12,12,0.5);border-style: solid;border-width:0px;border-color: #fff;padding: 4px;">
+            <span class="md-caption" style="">
+                <md-icon  style="fill: #fff;" md-svg-icon="currency-inr"></md-icon>
                 {{event.price?event.price:" No Fees"}}
                 </span>
-        <span class="md-subhead" style="position: absolute;bottom: 20px;left: 20px;color: #fff;background: rgba(12,12,12,0.5);border-style: solid;border-width:0px;border-color: #fff;padding: 3px;border-radius: 4px;">
+            <span class="md-subhead" style="float: right; padding-right: 13px" >
             <md-icon style="fill: #fff;" ng-show="event.location.type" md-svg-icon="map-marker"></md-icon>
             <md-icon style="fill: #fff;" ng-hide="event.location.type" md-svg-icon="earth"></md-icon>
             {{event.location.data}}
         </span>
+        </div>
     </div>
     <md-card-title ui-sref="home.singleEvent({eventId: event.id})" style="padding:8px 0px 0px 20px;">
         <span class="md-title" style="font-weight: 400"> {{event.title}}</span>
@@ -28,6 +28,5 @@
             </p>
         </div>
     </md-card-content>
-        
     <event-actions ng-if="bar" style="margin-top:-10px;" layout="row" layout-align="end center"></event-actions>
 </div>

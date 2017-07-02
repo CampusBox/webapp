@@ -1,7 +1,6 @@
 'use strict';
 
 (function() {
-
     angular
         .module('app')
         .controller('CreativityController', [
@@ -102,6 +101,7 @@
             };
         // FILTERS SHIT END
         $scope.myPagingFunction = function() {
+            console.log('abc');
             if ($scope.creativityLoading == false && $scope.moreItems == true) {
                 $scope.creativityLoading = true;
                 if ($scope.contentDetails.filters.length) {
@@ -116,12 +116,15 @@
                         $scope.contents = [];
                         $scope.contents = tableData.data;
                         $scope.creativityLoading = false;
+           // $scope.myPagingFunction();
                         $scope.finalContents = $scope.finalContents.concat($scope.contents);
                         $scope.finalContentsCopy = $scope.finalContentsCopy.concat($scope.contents);
 
                         $scope.contentDetails.offset += 3;
                         $scope.myPagingFunction();
                     });
+                                            $scope.contentDetails.offset += 3;
+
 
             }
         };
