@@ -96,7 +96,7 @@
 
                 var i = 0;
                 var obj = { 'limit': 6, 'offset': 0, 'filters': [] };
-                tokenService.post("contentsList", obj)
+                tokenService.post("contents", obj)
                     .then(function(response) {
 
                         console.log(response);
@@ -106,19 +106,19 @@
                         console.log($scope.categories);
 
                         i = 1;
-                        tokenService.post("contentsList", obj)
+                        tokenService.post("contents", obj)
                             .then(function(response) {
                                 $scope.categories[i].title = creativityCategories.typesByID[$scope.categoryTypes[i]];
                                 $scope.categories[i].finalContents = transform(response);
 
                                 i = 6;
-                                tokenService.post("contentsList", obj)
+                                tokenService.post("contents", obj)
                                     .then(function(response) {
                                         $scope.categories[i].title = creativityCategories.typesByID[$scope.categoryTypes[i] - 1];
                                         $scope.categories[i].finalContents = transform(response);
 
                                         i = 3;
-                                        tokenService.post("contentsList", obj)
+                                        tokenService.post("contents", obj)
                                             .then(function(response) {
                                                 $scope.categories[i].title = creativityCategories.typesByID[$scope.categoryTypes[i] - 1];
                                                 $scope.categories[i].finalContents = transform(response);
