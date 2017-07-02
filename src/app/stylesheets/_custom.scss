@@ -317,6 +317,28 @@ md-backdrop.md-sidenav-backdrop {
 .orange .md-container {
     background-color: rgb(255, 236, 201)
 }
+// add creativity 
+.medium-editor-placeholder::after {
+     color: #b3b3b1;
+ }
+ 
+ .md-button.md-primary.md-raised[disabled] {
+     background-color: rgba(30, 136, 229, 0.56);
+     color: #fff;
+ }
+ 
+ #trix-toolbar-1 {
+     background-color: white;
+     position: fixed;
+     bottom: 1%;
+     width: 100%;
+     left: 0;
+     z-index: 2;
+ }
+ 
+ #trix-editor-1 {
+     max-height: 30vh;
+ }
 
 //events page 
 .flexy-16 {
@@ -849,7 +871,7 @@ md-icon:hover {
     background: rgba(72, 69, 69, 0.47);
     text-shadow: 2px 2px 2px black;
     position: absolute;
-    top: 25%;
+    top: 32%;
     right: 42%;
     height: 60px;
     width: 60px;
@@ -871,6 +893,8 @@ md-icon:hover {
 .creativity-description-list {
     margin-top: 0px;
     margin-bottom: 0px;
+    height: 225px;
+    line-height: 25px;
 }
 
 .creativity-description-list br {
@@ -893,6 +917,8 @@ md-icon:hover {
 }
 
 .creativity-description p {
+    height: 225px;
+    line-height: 25px;
     margin: 0px;
     color: rgba(99, 108, 116, 0.87);
     font-size: 18px;
@@ -905,7 +931,6 @@ md-icon:hover {
 }
 
 .creativity-title {
-    margin-left: auto;
     margin-right: auto;
     max-width: 688px;
     margin-top: 28px;
@@ -928,7 +953,7 @@ md-icon:hover {
 
 .creativity-cover {
     cursor: pointer;
-    height: 144px;
+    height: 213px;
     object-fit: cover;
     width: 100%;
 }
@@ -1056,13 +1081,7 @@ md-icon:hover {
     .creativity-card {
         margin: 0px;
     }
-    .creativity-cover {
-        cursor: pointer;
-        height: 150px;
-        max-width: 100%;
-        object-fit: cover;
-        width: 100%;
-    }
+    
     .creativity-title {
         margin-top: 31px;
         font-size: 19px !important;

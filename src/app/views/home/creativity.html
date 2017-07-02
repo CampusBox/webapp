@@ -1,11 +1,49 @@
-<div  layout="column" layout-fill class="main-bg">
-    <creativity-card></creativity-card>
-    <!--   <div infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading' infinite-scroll-distance="4 ">
-    </div> -->
-    <div>
-    </div>
-    <div flex layout-align="center center" layout="row" layout-wrap>
-        <div flex="20">
+<div layout="column" layout-fill class="main-bg">
+    <div layout-gt-xs="row" layout-xs="column">
+        <!-- <creativity-filters></creativity-filters> -->
+        <div flex-gt-xs="20">
+            <center style="margin-top:8px; " hide-xs layout-wrap>
+                <h3 class="md-title">Categories</h3>
+                <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected':'interest'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
+                    {{ type.title }}
+                </md-button>
+            </center>
+            <div layout-align="start center" layout="row" hide-gt-xs>
+                <md-button class="" ng-click="filterToggle()">
+                    <md-icon md-svg-icon="filter-outline"></md-icon>
+                    Filter
+                </md-button>
+                <span flex></span>
+                <md-button ui-sref="home.addCreativity" style="text-transform:none;">
+                    Add a Creativity
+                    <!-- <md-icon md-svg-icon="all-inclusive"></md-icon> -->
+                </md-button>
+            </div>
+            <div layout="row" ng-if="filterShow" layout-wrap show-xs show-sm hide-gt-sm>
+                <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected':'interest'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
+                    {{ type.title }}
+                </md-button>
+                <span flex></span>
+                <md-button ng-click="filterToggle();" class="md-primary">
+                    Done
+                </md-button>
+            </div>
+        </div>
+        <div flex layout-align="space-around" layout-gt-xs="row" layout-xs="row" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading' infinite-scroll-distance="3 ">
+            <div   flex-lg="30" flex-md="45" flex-sm="45" flex-xs="100" ng-repeat="content in finalContents track by $index" >
+                <creativity-card style="margin-left: 4px;" data="content" bar="true"></creativity-card>
+                <md-card class="content-card" ng-if="creativityLoading" ng-repeat="content in [1,2,3]" flex-lg="30" flex-md="45" flex-sm="45" flex="100">
+                    <md-card-header>
+                        <md-card-avatar style="background: #f6f7f8">
+                            <img class="md-user-avatar" />
+                        </md-card-avatar>
+                        <md-card-header-text>
+                            <span style="width: 30%" class=" animated-background">Anything here  </span>
+                        </md-card-header-text>
+                    </md-card-header>
+                    <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
+                </md-card>
+            </div>
         </div>
     </div>
 </div>

@@ -178,6 +178,7 @@
         };
         tokenService.get("content/" + $scope.contentId)
             .then(function(tableData) {
+                console.log(tableData);
                 $scope.loading = false;
                 $scope.content = tableData.data;
                 console.log(JSON.parse(angular.toJson($scope.content)));

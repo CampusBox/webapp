@@ -1,0 +1,12 @@
+<md-card-content style="padding: 0px">
+    <div ui-sref="home.singleContent({contentId: content.id})" style="position: relative;">
+        <img ng-src="{{content.items.thumbnail}}" class="creativity-cover" alt="{{content.title}}">
+        <md-icon class="play-button" ng-if="content.items.overlay == 'video' " md-svg-icon="play" style="" aria-label="Alarm Icon"></md-icon>
+        <md-icon class="play-button" ng-if="content.items.overlay == 'singing' " md-svg-icon="music-note" style="" aria-label="Alarm Icon"></md-icon>
+    </div>
+    <md-card-header layout="column" flex>
+        <a ui-sref="home.singleContent({contentId: content.id})" style="text-decoration: none;">
+            <span class="creativity-title" ng-bind-html="content.title"></span>
+        </a>
+    </md-card-header>
+</md-card-content>

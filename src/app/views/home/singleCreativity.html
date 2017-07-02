@@ -8,10 +8,6 @@ md-list-item .md-button:not([disabled]):click {
     background-color: transparent;
 }
 </style>
-<meta property="og:title" content="{{content.title}}" />
-<meta property="og:image" content="{{content.Items.data[1].image}}" />
-<meta property="og:site_name" content="CampusBox" />
-<meta property="og:description" content="{{content.Items.data[0].description}}" />
 <div layout="row" class="white-bg ">
     <div flex-gt-sm="10" hide-sm hide-xs>
         <div layout="column" layout-align="center center" style="position: fixed;top: 45%;left: 25px;">
@@ -46,9 +42,8 @@ md-list-item .md-button:not([disabled]):click {
                     <h3><span class="md-subhead"></span>
                 <span  ui-sref="home.profile({username: content.created.by.username})"  class="capitalize blue_text pointer" >
                 {{content.created.by.name}} </span> in <span style="color: #149370">{{content.content.category?content.content.category:"Unknown"}} </span>
-                <!-- </span> <span><md-button ng-class="profile.following? 'md-primary md-not-raised' : 'md-raised md-primary'" ng-click="follow($event)">{{profile.following? 'Following':'Follow' }}</md-button></span> </h3> -->
                     </h3>
-                    <h4><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.by.about}}</span></h4>
+                    <h4><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.owner.about}}</span></h4>
                     <p><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.at | date: 'd MMM'}}</span></p>
                 </div>
             </md-list-item>
@@ -56,18 +51,31 @@ md-list-item .md-button:not([disabled]):click {
         <div>
         </div>
         <h1 flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100" class="md-title creativity-title creativity-title-single" ng-bind-html="content.title"></h1>
-        <center flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100" ng-repeat="item in content.Items.data">
+        <div layout="row" ng-repeat="item in content.Items.data">
+            <a ng-if="item.type == 'tech' " href="{{item.data}}">
+                <md-icon md-svg-icon="earth"></md-icon>
+                Visit
+            </a>
+            <a ng-if="item.type == 'sourceCodeUrl' " href="{{item.data}}">
+                <md-icon md-svg-icon="github-circle"></md-icon>
+                Source code
+            </a>
+        </div>
+        <!--         <center flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100" ng-repeat="item in content.Items.data">
             <img style="max-width:100%" ng-if="(item.type == 'cover')" ng-src="{{item.image}}" alt="">
             <iframe style="background-color: grey" ng-if="(item.type == 'youtube')" width="100%" height="315" ng-src="{{item.embed.url}}" frameborder="0" allowfullscreen></iframe>
             <iframe style="background-color: grey" id="sc-widget" ng-if="item.type == 'soundcloud'" width="100%" height="166" scrolling="no" frameborder="0" ng-src="{{item.embed.url}}" allowfullscreen></iframe>
             <iframe style="background-color: grey" ng-if="item.type == 'vimeo'" width="640" height="360" ng-src="{{item.embed.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        </center>
-        <div flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100" ng-repeat="item in content.Items.data">
-            <center layout-align="center center">
+        </center> -->
+        <div layout="column">
+            <div ng-if="item.type == 'text' || item.type == 'embed' " flex-order="{{(item.priority + 1)*(-1)}}" flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100" ng-repeat="item in content.Items.data">
+                <!--             <center layout-align="center center">
                 <img ng-if="(item.type == 'image')" ng-src="{{item.image}}" alt="">
             </center>
             <p class="md-body-1 creativity-description creativity-description-single" ng-bind-html="item.description">
-            </p>
+            </p> -->
+                <div class="creativity-description creativity-description-single" ng-bind-html="item.data"></div>
+            </div>
         </div>
         <div flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100">
             <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
@@ -90,18 +98,6 @@ md-list-item .md-button:not([disabled]):click {
                     </span>
             </md-button>
             <md-divider></md-divider>
-            <md-list>
-                <md-list-item ui-sref="home.profile({username: content.created.by.username})" class="md-2-line" ng-click="false" md-ink-ripple="0">
-                    <img ui-sref="home.profile({username: content.created.by.username})" ng-src="{{content.created.by.image}}" class="md-avatar" alt="{{content.created.by.name}}" />
-                    <div class="md-list-item-text" layout="column">
-                        <h3><span class="md-subhead">
-                        <span  ui-sref="home.profile({username: content.created.by.username})"  class="capitalize blue_text pointer" >
-                        {{content.created.by.name}}
-                        <!-- </span> <span><md-button ng-class="profile.following? 'md-primary md-not-raised' : 'md-raised md-primary'" ng-click="follow($event)">{{profile.following? 'Following':'Follow' }}</md-button></span> </h3> -->
-                        <h4><span style="color: rgba(0,0,0,.44);" class="md-caption">{{content.created.by.about}}</span></h4>
-                    </div>
-                </md-list-item>
-            </md-list>
         </div>
     </div>
 </div>
@@ -130,9 +126,7 @@ md-list-item .md-button:not([disabled]):click {
                 <span style="cursor: pointer;" ng-click="showLikes($event, content.id, content.title)" class="likesNumber"> {{content.Actions.Appreciate.total}}</span>
             </md-card-icon-actions>
         </md-card-header>
-        <!-- <md-card-content>
-        </md-card-content>
- --></md-card>
+    </md-card>
 </div>
 <div ng-if="!loading" layout="row" layout-align="center">
     <div flex-gt-xs="60" flex-xs="100">
@@ -161,7 +155,7 @@ md-list-item .md-button:not([disabled]):click {
             </md-button>
         </md-card-content>
     </md-card>
-<md-divider md-inset ng-if="comments.data.length"></md-divider>
+    <md-divider md-inset ng-if="comments.data.length"></md-divider>
 </div>
 <div layout="row" layout-align="center">
     <md-card flex-gt-xs="60" flex-xs="100" style="margin:8px;">
@@ -203,28 +197,8 @@ md-list-item .md-button:not([disabled]):click {
                         Update
                     </md-button>
                 </div>
-<!--                 <div layout="row" layout-align="end">
-                    <md-menu ng-show="isCommentEditable(comment) && !commentEditable">
-                        <md-button class="md-icon-button" md-menu-origin="" ng-click="openMenu($mdMenu,$event);">
-                            <md-icon md-menu-origin md-svg-src="assets/svg/ic_down.svg"></md-icon>
-                        </md-button>
-                        <md-menu-content width="3">
-                            <md-menu-item>
-                                <md-button ng-click="editComment(comment)">
-                                    Edit
-                                </md-button>
-                            </md-menu-item>
-                            <md-menu-item>
-                                <md-button ng-click="deleteComment(comment)">
-                                    Delete
-                                </md-button>
-                            </md-menu-item>
-                        </md-menu-content>
-                    </md-menu>
-                </div> -->
             </div>
             <md-divider></md-divider>
         </md-list-item>
     </md-card>
 </div>
-<script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
