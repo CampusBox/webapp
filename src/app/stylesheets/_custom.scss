@@ -27,7 +27,7 @@ md-nav-bar nav {
 }
 
 md-toolbar {
-    // box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
+    box-shadow: 1px 0px 10px rgba(0, 0, 0, 0.12) !important;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -49,7 +49,7 @@ md-card-header.layout-align-start-center.layout-row {
 }
 
 .capitalize.grey_text.md-button.active md-icon {
-    fill: #14934a;
+    fill: #23cf5f;
 }
 
 .capitalize.grey_text.md-button md-icon {
@@ -62,7 +62,7 @@ md-card-header.layout-align-start-center.layout-row {
 
 // .active.capitalize.grey_text.bottom-menu-item{
 .capitalize.grey_text.md-button.active .md-tile-content {
-    color: #14934a;
+    color: #23cf5f;
 }
 
 .dialog-login {
