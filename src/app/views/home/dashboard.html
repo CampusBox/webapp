@@ -50,7 +50,7 @@
                 <md-card flex="noshrink" style="margin-bottom: 10px;width: 80%;" ng-repeat="event in events" class="secondary-button-padding eventListItem">
                     <event-card data="event" bar="true" ng-show="!eventLoading" hide-gt-xs></event-card>
                 </md-card>
-               <!--  <md-list>
+                <!--  <md-list>
                     <md-list-item ng-show="loading" flex style="margin-bottom: 15px;" ng-repeat="event in [1,2]" class="secondary-button-padding eventListItem">
                         <md-card flex>
                             <md-card-title style="padding: 0px;">
@@ -79,8 +79,9 @@
                     <md-button class="md-primary" ng-show='category.finalContents.length > 0' ui-sref="home.creativity">See All</md-button>
                 </div>
                 <div style="height: 375px; overflow-y: hidden;">
-                    <div flex  layout="row" class="creativity-page inner-box" infinite-scroll-disabled='creativityLoading'>
-                    <md-card class="content-card-dashboard" flex="noshrink" ng-repeat="content in category.finalContents track by $index">
+                    <div flex layout="row" class="creativity-page inner-box" layout-search-wrap flex="noshrink" class="horizontal-scroll" infinite-scroll-disabled='creativityLoading'>
+                        <creativity-card class="content-card-dashboard" flex="none" ng-repeat="content in category.finalContents.data track by $index" data="content"  actions="true" showcategory="false" ></creativity-card>
+                        <!-- <md-card class="content-card-dashboard" flex="noshrink" ng-repeat="content in category.finalContents track by $index">
                         <md-card-content style="padding: 0px">
                             <div ng-if="(content.type == 'vimeo') || (content.type == 'soundcloud') " layout-align="center center">
                                 <iframe id="sc-widget" ng-show="(content.type == 'soundcloud')" width="100%" height="170" scrolling="no" frameborder="0" ng-src="{{content.url}}" allowfullscreen></iframe>
@@ -130,13 +131,12 @@
                                 </md-button>
                             </div>
                         </md-card-header>
-                    </md-card>
-                   <!--      <creativity-card class="content-card-dashboard content-card" flex="noshrink" ng-repeat="content in category.finalContents track by $index"></creativity-card> -->
+                    </md-card> -->
                     </div>
                 </div>
             </div>
             <!-- uncommented and made directive -->
-           <!--  <div flex layout-align="center center" layout="row" layout-wrap>
+            <!--  <div flex layout-align="center center" layout="row" layout-wrap>
                 <md-card class="content-card" ng-if="creativityLoading" ng-repeat="content in [1,2,3]" flex-lg="30" flex-md="45" flex-sm="45" flex="100">
                     <md-card-header>
                         <md-card-avatar style="background: #f6f7f8">
