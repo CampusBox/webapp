@@ -35,7 +35,7 @@
                     'Poetry',
                     'Acting',
                     'Paint & Colour',
-                    'Drawing ',,
+                    'Drawing ',
                     'Sewing & Fabric',
                     'Craft',
                     'Dancing',
