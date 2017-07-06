@@ -154,7 +154,7 @@ md-chips .md-chips {
                 <a href="" ng-init="readonly=true" ng-show="readonly " ng-click="readonly=false; ">Edit
                     </a>
             </div>
-            <div style="margin-bottom: 8px;" >
+            <div style="margin-bottom: 8px;">
                 <md-chips style="box-shadow: none;" ng-model="student.Skills.data" md-transform-chip="transformChip($chip)" readonly="true" md-removable="!readonly">
                     <md-chip-template>
                         <span>
@@ -203,7 +203,7 @@ md-chips .md-chips {
                             My Opportunities
                             <!--  ({{student.Events.data.length}}) -->
                         </md-nav-item>
-                        <md-nav-item md-nav-click="goto('recomended')" ng-show="student.BookmarkedContents.data.length>0" name="recomended">
+                        <md-nav-item md-nav-click="goto('recomended')" name="recomended">
                             Bookmarks
                             <!--  ({{student.BookmarkedContents.data.length}}) -->
                         </md-nav-item>
@@ -211,7 +211,7 @@ md-chips .md-chips {
                             Rsvp
                             <!--  ({{student.AttendingEvents.data.length}}) -->
                         </md-nav-item>
-                        <md-nav-item md-nav-click="goto('following')" ng-show="student.Following.data.length>0" name="following">
+                        <md-nav-item md-nav-click="goto('following')" name="following">
                             Following
                             <!-- ({{student.Following.data.length}}) -->
                         </md-nav-item>
@@ -230,7 +230,7 @@ md-chips .md-chips {
                             My Opportunities
                             <!--  ({{student.Events.data.length}}) -->
                         </md-button>
-                        <md-button ng-click="goto('recomended')" ng-show="student.BookmarkedContents.data.length>0" name="recomended" style="min-width: 100px;">
+                        <md-button ng-click="goto('recomended')" name="recomended" style="min-width: 100px;">
                             Bookmarks
                             <!-- ({{student.BookmarkedContents.data.length}}) -->
                         </md-button>
@@ -375,7 +375,7 @@ md-chips .md-chips {
                     <md-divider style="margin-top: 16px;"></md-divider>
                     <p class="profile-section-title">Social</p>
                     <div>
-                        <a layout="row"  ng-repeat="social in student.SocialAccounts.data" ng-href="{{social.link}}" style="text-decoration: none; margin-bottom: 16px" class="profile-text-data" target="_blank">
+                        <a layout="row" ng-repeat="social in student.SocialAccounts.data" ng-href="{{social.link}}" style="text-decoration: none; margin-bottom: 16px" class="profile-text-data" target="_blank">
                             <div style="height: 18px; width: 18px; margin-right: 16px;">
                                 <md-icon class="profile-icon" md-svg-icon="{{social.type}}" style="margin-right: 16px"></md-icon>
                             </div><span style="text-transform: capitalize;">{{social.type}}</span>
@@ -386,11 +386,13 @@ md-chips .md-chips {
             </div>
             <div label="creativity" ng-hide="(currentNavItem!='creativity')">
                 <div class="md-padding" layout-fill>
-                    <div style="margin-top: 5%;" layout="column" layout-align="center center" ng-show="student.CreativeContents.data.length == 0">
-                        <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCIgdmlld0JveD0iMCAwIDE1MC4yMjMgMTUwLjIyMyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTUwLjIyMyAxNTAuMjIzOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTExNS44ODUsMzguNjMxYy0yMS4zMTIsMC0zNS40MTYsMTcuNDI1LTQ3Ljg1OSwzMi44MDJjLTEwLjYzMSwxMy4xMzYtMjAuNjcsMjUuNTQtMzIuODk3LDI1LjU0ICAgIGMtMTIuNzA5LDAtMjAuNTEyLTEzLjA2Mi0yMC41MTItMjIuNDI2YzAtOC42ODIsOC41Ni0yMS4yOTksMjEuOTc2LTIxLjI5OWMxMy4wMTgsMCwxOS44LDEwLjQxOSwyMC4xNDIsMTAuOTUzICAgIGMyLjEwOSwzLjQxMyw2LjU4Nyw0LjQ4NywxMC4wMTcsMi4zOTVjMy40NDctMi4xLDQuNTM5LTYuNTk3LDIuNDM4LTEwLjA0NGMtMC40NDYtMC43My0xMS4xNjctMTcuOTItMzIuNTk3LTE3LjkyICAgIEMxNS4wMjksMzguNjMyLDAsNTcuNTYyLDAsNzQuNTQ4YzAsMTcuNTIxLDE0LjQyNywzNy4wNDMsMzUuMTI4LDM3LjA0M2MxOS4xOTksMCwzMS45NC0xNS43NCw0NC4yNTktMzAuOTYzICAgIGMxMS4zOTYtMTQuMDc4LDIyLjE2MS0yNy4zNzksMzYuNDk4LTI3LjM3OWM4LjUzLDAsMTQuMTM1LDIuODk0LDE3LjEzMSw4Ljg0YzIuNTk2LDUuMTYsMi41OTQsMTAuOTk5LDIuNTkyLDEzLjAyMiAgICBjMCwxLjE2LTAuNjEzLDYuOTc4LTMuNDUxLDEyLjIxN2MtMy4yMzYsNS45NjgtNy44Myw4Ljc0Ni0xNC40NjksOC43NDZjLTEzLjM2OSwwLTIwLjU5Mi04LjY5LTIzLjMxMi0xMS45NjMgICAgYy0wLjcwNy0wLjg1Mi0xLjIxNi0xLjQ2NS0xLjg5Ni0yLjA0N2MtMy4wNjItMi42MjMtNy42NzgtMi4yNzEtMTAuMzA2LDAuNzk1Yy0yLjUzNCwyLjk1Ny0yLjI5LDcuMzUzLDAuNDc4LDEwLjAxNCAgICBjMC4xMzIsMC4xNSwwLjI5MSwwLjM0NywwLjQ4LDAuNTc2YzMuNTQ1LDQuMjY2LDE0LjMyNCwxNy4yNCwzNC41NTMsMTcuMjRjMjQuNTg2LDAsMzIuNTM3LTIzLjk3MywzMi41MzctMzUuNjc4ICAgIGMwLjAwMi03LjQ1NS0xLjM5NC0xNC4wMTMtNC4xNTQtMTkuNDk2QzE0Mi4xOTMsNDcuODE1LDEzMy44MDksMzguNjMxLDExNS44ODUsMzguNjMxeiIgZmlsbD0iIzg5OGQ5MSIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
-                        <p class="md-subhead" style="color:rgba(0,0,0,.44)">Looks like you haven't added anything yet</p>
+                    <div layout="column" layout-align="center center" ng-show="student.CreativeContents.data.length == 0">
+                        <center>
+                            <p class="md-title" style="color:rgba(0,0,0,.44);">Let's get started by creating your first idea</p>
+                        </center>
+                        <img style="height: 200px; width: 200px;opacity: 0.8;" src="assets/svg/girl.svg" alt="">
                         <md-button class="md-primary" ui-sref="home.addCreativity">
-                            <md-icon class="md-primary" md-svg-icon="plus-circle-outline"></md-icon> Add Creative Content</md-button>
+                             Add Creative Content</md-button>
                     </div>
                     <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in [1,2,3,4]">
                         <md-card ng-show="loading" flex="100" flex-gt-sm="60">
@@ -446,11 +448,12 @@ md-chips .md-chips {
             </div>
             <div label="Opportunity" ng-hide="(currentNavItem!='Opportunity')">
                 <div class="md-padding">
-                    <div style="margin-top: 5%;" layout="column" ng-show="student.Events.data.length == 0" layout-align="center center">
-                        <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDYwIDYwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA2MCA2MDsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI2NHB4IiBoZWlnaHQ9IjY0cHgiPgo8Zz4KCTxwYXRoIGQ9Ik01Nyw0aC03VjFjMC0wLjU1My0wLjQ0Ny0xLTEtMWgtN2MtMC41NTMsMC0xLDAuNDQ3LTEsMXYzSDE5VjFjMC0wLjU1My0wLjQ0Ny0xLTEtMWgtN2MtMC41NTMsMC0xLDAuNDQ3LTEsMXYzSDMgICBDMi40NDcsNCwyLDQuNDQ3LDIsNXYxMXY0M2MwLDAuNTUzLDAuNDQ3LDEsMSwxaDU0YzAuNTUzLDAsMS0wLjQ0NywxLTFWMTZWNUM1OCw0LjQ0Nyw1Ny41NTMsNCw1Nyw0eiBNNDMsMmg1djN2M2gtNVY1VjJ6IE0xMiwyaDUgICB2M3YzaC01VjVWMnogTTQsNmg2djNjMCwwLjU1MywwLjQ0NywxLDEsMWg3YzAuNTUzLDAsMS0wLjQ0NywxLTFWNmgyMnYzYzAsMC41NTMsMC40NDcsMSwxLDFoN2MwLjU1MywwLDEtMC40NDcsMS0xVjZoNnY5SDRWNnogICAgTTQsNThWMTdoNTJ2NDFINHoiIGZpbGw9IiM4OThkOTEiLz4KCTxwYXRoIGQ9Ik0zOCwyM2gtN2gtMmgtN2gtMmgtOXY5djJ2N3YydjloOWgyaDdoMmg3aDJoOXYtOXYtMnYtN3YtMnYtOWgtOUgzOHogTTMxLDI1aDd2N2gtN1YyNXogTTM4LDQxaC03di03aDdWNDF6IE0yMiwzNGg3djdoLTcgICBWMzR6IE0yMiwyNWg3djdoLTdWMjV6IE0xMywyNWg3djdoLTdWMjV6IE0xMywzNGg3djdoLTdWMzR6IE0yMCw1MGgtN3YtN2g3VjUweiBNMjksNTBoLTd2LTdoN1Y1MHogTTM4LDUwaC03di03aDdWNTB6IE00Nyw1MGgtNyAgIHYtN2g3VjUweiBNNDcsNDFoLTd2LTdoN1Y0MXogTTQ3LDI1djdoLTd2LTdINDd6IiBmaWxsPSIjODk4ZDkxIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" />
-                        <p class="md-subhead" style="color:rgba(0,0,0,.44)">Looks like you haven't added anything yet</p>
+                    <div layout="column" ng-show="student.Events.data.length == 0" layout-align="center center">
+                        <p class="md-title" style="color:rgba(0,0,0,.44);">Opportunities don't happen, you create them</p>
+                        <center>
+                        </center>
                         <md-button class="md-primary" ui-sref="home.addEvent">
-                            <md-icon class="md-primary" md-svg-icon="plus-circle-outline"></md-icon> Add event</md-button>
+                             Add event</md-button>
                     </div>
                     <div layout="row" ng-hide="!vm.activated" layout-sm="column" layout-align="space-around">
                         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
@@ -488,6 +491,16 @@ md-chips .md-chips {
                 <md-divider></md-divider>
             </div>
             <div label="recomended" ng-show="(currentNavItem=='recomended')">
+                <div layout="column" layout-align="center center" ng-show="student.CreativeContents.data.length == 0">
+                    <!-- Heart Balloon icon by Icons8 -->
+                    <center>
+                        <center>
+                            <p class="md-title" style="color:rgba(0,0,0,.44);">Your Bookmarks will live here</p>
+                        </center>
+                    <img style="height:200px; width: 200px; opacity: 0.8;" src="assets/svg/opportunist.svg" alt="">
+                    </center>
+                    <md-button class="md-primary" ui-sref="home.addCreativity">Start exploring</md-button>
+                </div>
                 <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in [1,2,3,4]">
                     <md-card ng-show="loading" flex="100" flex-gt-sm="60">
                         <md-card-header>
