@@ -63,13 +63,11 @@
                         </div>
                     </center>
                     <div style="padding-top: 0px;">
-                        <center>
-                            <div style=" text-align:center;">
-                                <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
-                                    <li ng-repeat="skill in student.Skills.data" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">{{skill.name}}</li>
-                                </ul>
-                            </div>
-                        </center>
+                        <div style=" text-align:center;">
+                            <ul layout="row" layout-align="center center" style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
+                                <li ng-repeat="skill in student.Skills.data" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">{{skill.name}}</li>
+                            </ul>
+                        </div>
                         <!-- <section layout="row" layout-align="center center" layout-wrap>
                             <md-list>
                                 <md-button ng-href="{{social.link}}" ng-repeat="social in student.SocialAccounts.data">
@@ -100,8 +98,8 @@
         <div flex-order="{{foc}}" title="creativity">
             <h2 class="md-headline" style="color: rgba(0,0,0,.8);" ng-hide="query == '' || finalContents.length == 0">Results for "{{query}}" in Creativity</h2>
             <div class="horizontal-scroll" layout="row" layout-search-wrap flex="noshrink">
-                <div  ng-repeat="content in finalContents | limitTo:6 track by $index">
-                    <creativity-card data="content" bar="true"></creativity-card>
+                <div ng-repeat="content in finalContents | limitTo:6 track by $index">
+                    <creativity-card showcategory="true" data="content" actions="false"></creativity-card>
                 </div>
             </div>
         </div>
