@@ -39,7 +39,7 @@
             </md-list-item>
         </md-list>
     </div> -->
-        <loading-events style="overflow: auto;" layout-align="space-between" layout="row"></loading-events>
+        <loading-events style="overflow: auto;width: 100%;" layout-align="space-between" layout="row"></loading-events>
         <div layout="column" layout-wrap>
             <div hide-xs flex layout-align="space-between" layout="row" style="max-width: 100%;">
                 <md-card flex-lg="30" flex-md="45" flex-sm="45" flex="100" layout="column" layout="space-around" ng-repeat="event in events track by $index">
@@ -71,7 +71,7 @@
                 </md-list> -->
             </div>
             <!-- <h1 class="md-headline section-heading">Creative works by other students</h1> -->
-            <loading-creativity layout="row" layout-align="space-between" style="overflow: auto;"></loading-creativity>
+            <loading-creativity layout="row" ng-repeat="category in categories" layout-align="space-between" style="overflow: auto;"></loading-creativity>
             <div ng-show="!creativityLoading" ng-repeat="category in categories">
                 <div layout="row" layout-align="center center">
                     <h1 class="md-headline section-heading">{{category.title}}</h1>

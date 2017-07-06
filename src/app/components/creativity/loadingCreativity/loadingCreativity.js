@@ -6,7 +6,7 @@
         	restrict: "E",
             templateUrl: 'app/components/creativity/loadingCreativity/loadingCreativity.html',
              controller: function( $scope) {
-                 $scope.creativityLoading = false;
+                 $scope.creativityLoading = true;;
             }
         };
     });
