@@ -22,6 +22,7 @@
         $scope.finalContents = [];
         $scope.finalContentsCopy = [];
         $rootScope.currentPageBackground = $rootScope.gray;
+        $scope.flase = false;
         $rootScope.title = "Creativity";
         $scope.types = creativityCategories.types;
         $scope.typesByID = creativityCategories.typesByID;
@@ -35,73 +36,73 @@
         };
 
         //FILTERS SHIT START
-            
-            console.log('filters called');
-            $scope.selected = [];
-            $scope.filterInBetween = 0;
-            $scope.filterShow = 0;
-            $scope.selectedCategories = [];
-            $scope.filterToggle = function() {
-                $scope.filterShow = !$scope.filterShow;
-            };
 
-            $scope.exists = function(item) {
-                if ($scope.selectedCategories.length == 0) {
-                    return true;
+        console.log('filters called');
+        $scope.selected = [];
+        $scope.filterInBetween = 0;
+        $scope.filterShow = 0;
+        $scope.selectedCategories = [];
+        $scope.filterToggle = function() {
+            $scope.filterShow = !$scope.filterShow;
+        };
+
+        $scope.exists = function(item) {
+            if ($scope.selectedCategories.length == 0) {
+                return true;
+            } else {
+
+                return $scope.selectedCategories.indexOf(item) > -1;
+            }
+        };
+        var deleteList = [];
+        $scope.toggle = function(item, list) {
+            var idx = $scope.selectedCategories.indexOf(item);
+            if (idx > -1) {
+                $scope.selectedCategories.splice(idx, 1);
+                deleteList.splice(idx, 1);
+                $scope.contentDetails.filters = deleteList;
+                if ($scope.filterInBetween) {
+                    $scope.creativityLoading = false;
+                    $scope.moreItems = true;
+                    $scope.contentDetails.offset = 0;
+                    $scope.filterInBetween = 0;
+                    $scope.finalContentsCopy = [];
+                    $scope.finalContents = [];
+                    $scope.myPagingFunction();
+                } else {
+                    $scope.finalContents = $scope.finalContentsCopy.filter(function(obj) {
+                        console.log(obj);
+                        return deleteList.indexOf(obj.content_type) != -1;
+                    });
+                }
+            } else {
+                $scope.selectedCategories.push(item);
+                deleteList.push(item.id);
+                $scope.contentDetails.filters = deleteList;
+                if ($scope.filterInBetween) {
+                    $scope.creativityLoading = false;
+                    $scope.moreItems = true;
+                    $scope.contentDetails.offset = 0;
+                    $scope.filterInBetween = 0;
+                    $scope.finalContentsCopy = [];
+                    $scope.finalContents = [];
+                    $scope.myPagingFunction();
                 } else {
 
-                    return $scope.selectedCategories.indexOf(item) > -1;
+                    $scope.finalContents = $scope.finalContentsCopy.filter(function(obj) {
+                        console.log(obj);
+                        return deleteList.indexOf(obj.content_type) != -1;
+                    });
                 }
-            };
-            var deleteList = [];
-            $scope.toggle = function(item, list) {
-                var idx = $scope.selectedCategories.indexOf(item);
-                if (idx > -1) {
-                    $scope.selectedCategories.splice(idx, 1);
-                    deleteList.splice(idx, 1);
-                    $scope.contentDetails.filters = deleteList;
-                    if ($scope.filterInBetween) {
-                        $scope.creativityLoading = false;
-                        $scope.moreItems = true;
-                        $scope.contentDetails.offset = 0;
-                        $scope.filterInBetween = 0;
-                        $scope.finalContentsCopy = [];
-                        $scope.finalContents = [];
-                        $scope.myPagingFunction();
-                    } else {
-                        $scope.finalContents = $scope.finalContentsCopy.filter(function(obj) {
-                            console.log(obj);
-                            return deleteList.indexOf(obj.content_type) != -1;
-                        });
-                    }
-                } else {
-                    $scope.selectedCategories.push(item);
-                    deleteList.push(item.id);
-                    $scope.contentDetails.filters = deleteList;
-                    if ($scope.filterInBetween) {
-                        $scope.creativityLoading = false;
-                        $scope.moreItems = true;
-                        $scope.contentDetails.offset = 0;
-                        $scope.filterInBetween = 0;
-                        $scope.finalContentsCopy = [];
-                        $scope.finalContents = [];
-                        $scope.myPagingFunction();
-                    } else {
 
-                        $scope.finalContents = $scope.finalContentsCopy.filter(function(obj) {
-                            console.log(obj);
-                            return deleteList.indexOf(obj.content_type) != -1;
-                        });
-                    }
-
-                    $scope.buttonClass = 'md-primary md-raised';
-                }
-                item.intrested = !item.intrested;
-                $scope.selectedCategories = $scope.selectedCategories;
-            };
+                $scope.buttonClass = 'md-primary md-raised';
+            }
+            item.intrested = !item.intrested;
+            $scope.selectedCategories = $scope.selectedCategories;
+        };
         // FILTERS SHIT END
         $scope.myPagingFunction = function() {
-            console.log('abc');
+            console.log("myPagingFunction");
             if ($scope.creativityLoading == false && $scope.moreItems == true) {
                 $scope.creativityLoading = true;
                 if ($scope.contentDetails.filters.length) {
@@ -116,19 +117,19 @@
                         $scope.contents = [];
                         $scope.contents = tableData.data;
                         $scope.creativityLoading = false;
-           // $scope.myPagingFunction();
+                        // $scope.myPagingFunction();
                         $scope.finalContents = $scope.finalContents.concat($scope.contents);
                         $scope.finalContentsCopy = $scope.finalContentsCopy.concat($scope.contents);
 
                         $scope.contentDetails.offset += 3;
                         $scope.myPagingFunction();
                     });
-                                            $scope.contentDetails.offset += 3;
+                $scope.contentDetails.offset += 3;
 
 
             }
         };
-
+        $scope.myPagingFunction();
 
     }
 }());
