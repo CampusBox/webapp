@@ -211,7 +211,7 @@ md-chips .md-chips {
                             Rsvp
                             <!--  ({{student.AttendingEvents.data.length}}) -->
                         </md-nav-item>
-                        <md-nav-item md-nav-click="goto('following')" name="following">
+                        <md-nav-item md-nav-click="goto('following')" name="following" ng-show="student.following.data.length > 0">
                             Following
                             <!-- ({{student.Following.data.length}}) -->
                         </md-nav-item>
@@ -392,7 +392,7 @@ md-chips .md-chips {
                         </center>
                         <img style="height: 200px; width: 200px;opacity: 0.8;" src="assets/svg/girl.svg" alt="">
                         <md-button class="md-primary" ui-sref="home.addCreativity">
-                             Add Creative Content</md-button>
+                            Add Creative Content</md-button>
                     </div>
                     <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in [1,2,3,4]">
                         <md-card ng-show="loading" flex="100" flex-gt-sm="60">
@@ -453,7 +453,7 @@ md-chips .md-chips {
                         <center>
                         </center>
                         <md-button class="md-primary" ui-sref="home.addEvent">
-                             Add event</md-button>
+                            Add event</md-button>
                     </div>
                     <div layout="row" ng-hide="!vm.activated" layout-sm="column" layout-align="space-around">
                         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
@@ -497,9 +497,10 @@ md-chips .md-chips {
                         <center>
                             <p class="md-title" style="color:rgba(0,0,0,.44);">Your Bookmarks will live here</p>
                         </center>
-                    <img style="height:200px; width: 200px; opacity: 0.8;" src="assets/svg/opportunist.svg" alt="">
+                        <img style="height:200px; width: 200px; opacity: 0.8;" src="assets/svg/opportunist.svg" alt="">
                     </center>
-                    <md-button class="md-primary" ui-sref="home.addCreativity">Start exploring</md-button>
+                    <p class="md-title" style="color:rgba(0,0,0,.44);">Your Bookmarks will live here</p>
+                    <md-button class="md-primary" ui-sref="home.creativity" title="Explore all creative content">Start exploring</md-button>
                 </div>
                 <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in [1,2,3,4]">
                     <md-card ng-show="loading" flex="100" flex-gt-sm="60">
