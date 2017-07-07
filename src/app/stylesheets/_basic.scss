@@ -1,7 +1,12 @@
-/*all the padding and basic margin css*/
-
-
 /*
+    Contents
+        1. padding
+        2. margin
+        3. typography classes
+*/
+
+
+/* Padding and Margin
 types
     padding (p)
     margin  (m)
@@ -17,10 +22,64 @@ intetsities
     4: 16px;
     5: 20px;
     6: 24px;
+
+    type{direction}-intensity
 */
 
 
-/*type{direction}-intensity*/
+/*Typography
+    1. section heading
+    2. card heading
+    3. page heading
+    4. page subheading
+
+    1. card body
+    2. button text
+    3. body text
+
+    usage: cb-a-b ;
+*/
+
+.cb-section-heading {
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: -.02em;
+}
+
+.cb-card-heading {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -.02em;
+}
+
+.cb-page-heading {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -.02em;
+}
+
+.cb-page-subheading {
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -.02em;
+}
+
+.cb-card-body {
+    font-size: 14px;
+    letter-spacing: 0;
+    font-weight: 400;
+}
+
+.cb-button-text {
+    font-size: 12px;
+    letter-spacing: .02em;
+}
+
+.cb-body-text {
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: -.004em;
+}
 
 .p-0 {
     padding: 0px;
