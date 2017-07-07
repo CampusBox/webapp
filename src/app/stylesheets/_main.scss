@@ -5,12 +5,18 @@ $accent-color: rgb(0, 150, 136);
 $warning-color: #E75753;
 // VARIABLES
 $left-sidenav-width: 110px;
-$font-family: 'Open Sans',-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+$font-family: 'Open Sans',
+-apple-system,
+BlinkMacSystemFont,
+Roboto,
+Helvetica Neue,
+sans-serif !important;
 
 /*Defaults*/
-*{
-	font-family: $font-family;
-	color : $text-color;
+
+* {
+    font-family: $font-family;
+    color: $text-color;
 }
 
 .cb-green-bg {
@@ -18,14 +24,27 @@ $font-family: 'Open Sans',-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue
 }
 
 
+/*material overides*/
+
+.md-button.md-raised:not([disabled]) {
+    box-shadow: none;
+}
+
+.md-button {
+    text-transform: none;
+}
+
+
 /*TEXT COLORS*/
 
 .cb-grey-title {
-    color: $text-color ;
+    color: $text-color;
 }
+
 .cb-grey-text {
     color: #484848;
 }
+
 .cb-grey-card {
     color: rgba(0, 0, 0, 0.6);
 }
