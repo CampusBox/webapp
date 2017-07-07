@@ -3,24 +3,44 @@
 
 /*
 types
-	padding (p)
-	margin  (m)
+    padding (p)
+    margin  (m)
 direction
-	top
-	left
-	bottom
-	right
+    top
+    left
+    bottom
+    right
 intetsities
-	1: 4px;
-	2: 8px;
-	3: 12px;
-	4: 16px;
-	5: 20px;
-	6: 24px;
+    1: 4px;
+    2: 8px;
+    3: 12px;
+    4: 16px;
+    5: 20px;
+    6: 24px;
 */
 
 
 /*type{direction}-intensity*/
+
+.p-0 {
+    padding: 0px;
+}
+
+.pt-0 {
+    padding-top: 0px;
+}
+
+.pr-0 {
+    padding-right: 0px;
+}
+
+.pb-0 {
+    padding-bottom: 0px;
+}
+
+.pl-0 {
+    padding-left: 0px;
+}
 
 .p-1 {
     padding: 4px;
@@ -81,6 +101,7 @@ intetsities
 .pl-3 {
     padding-left: 12px;
 }
+
 .p-4 {
     padding: 16px;
 }
@@ -141,6 +162,25 @@ intetsities
     padding-left: 24px;
 }
 
+.m-0 {
+    margin: 0px;
+}
+
+.mt-0 {
+    margin-top: 0px;
+}
+
+.mr-0 {
+    margin-right: 0px;
+}
+
+.mb-0 {
+    margin-bottom: 0px;
+}
+
+.ml-0 {
+    margin-left: 0px;
+}
 
 .m-1 {
     margin: 4px;
@@ -201,6 +241,7 @@ intetsities
 .ml-3 {
     margin-left: 12px;
 }
+
 .m-4 {
     margin: 16px;
 }
