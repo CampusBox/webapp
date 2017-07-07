@@ -8,7 +8,7 @@
             replace: true,
             templateUrl: 'app/components/events/card/actions/eventActions.html',
 
-            controller: function($mdDialog, $scope, $element, tokenService,  $timeout, $location, $state, $rootScope, eventsActionsService) {
+            controller: function($mdDialog, $scope, $element, tokenService, $timeout, $location, $state, $rootScope, eventsActionsService) {
 
                 $scope.heartEvent = function(event, $index) {
                     eventsActionsService.heart(event, $index);
@@ -23,11 +23,11 @@
                     if (event.participation_state == 1) {
                         return "Going";
                     } else if (event.participation_state == 2) {
-                        return "Intrested";
+                        return "Interested";
                     } else {
                         return "Not going";
                     }
-                    }
+                }
                 $scope.rsvpEvent = function(event, index, state, $event) {
                     console.log('before: ' + event.participation_state);
                     $scope.getParticipationState(event, index);
