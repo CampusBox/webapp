@@ -44,9 +44,9 @@
                 }
                 obj.bookmark = function(content) {
                     if ($rootScope.authenticated) {
-                        content.actions.bookmarked.status = !content.actions.bookmarked.status;
-                        if (content.actions.bookmarked.status) {
-                            content.actions.bookmarked.total += 1;
+                        content.actions.bookmarks.status = !content.actions.bookmarks.status;
+                        if (content.actions.bookmarks.status) {
+                            content.actions.bookmarks.total += 1;
                             tokenService.post('bookmarkContent/' + content.id).then(function(result) {
                                 if (result.status != 'error') {
                                     console.log(result.status);
@@ -55,7 +55,7 @@
                                 }
                             });
                         } else {
-                            content.actions.bookmarked.total -= 1;
+                            content.actions.bookmarks.total -= 1;
                             tokenService.delete('bookmarkContent/' + content.id, '').then(function(result) {
                                 if (result.status != 'error') {
                                     console.log(result.status);

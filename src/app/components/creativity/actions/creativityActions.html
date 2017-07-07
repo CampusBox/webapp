@@ -12,14 +12,14 @@
     </md-card-header-text>
     <div layout="row" layout-align="start center" flex="50" ng-show="actions">
         <md-button class="appreciate-button md-icon-button" style="text-transform: capitalize;" ng-click="heart(content)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
-            <md-icon class="pink" md-svg-icon="{{content.Actions.Appreciate.status? 'heart' : 'heart-outline' }}"></md-icon>
+            <md-icon class="pink" md-svg-icon="{{content.actions.appreciate.status? 'heart' : 'heart-outline' }}"></md-icon>
         </md-button>
         <span ng-click="showLikes(content.id, content.title)" style="cursor: pointer;" class="likesNumber"> {{content.Actions.Appreciate.total}}</span>
         <md-button class="md-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'creativity',content.id)" aria-label="share ">
             <md-icon ng-class="" md-svg-icon="share"></md-icon>
         </md-button>
         <md-button class="md-icon-button" ng-click="bookmark(content)" aria-label="Favorite">
-            <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
+            <md-icon ng-class="content.actions.bookmarks.status? 'grey':''" md-svg-icon="{{content.actions.bookmarks.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
         </md-button>
     </div>
 </md-card-header>
