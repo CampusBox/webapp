@@ -8,14 +8,12 @@
             replace: true,
             templateUrl: 'app/components/creativity/creativityCard.html',
             scope: {
-                bar: '=bar',
-                content: '=data'
+                actions: '=actions',
+                content: '=data',
+                showcategory: '=showcategory'
             },
-            controller: function() {
-
-
-
-
+            controller: function($scope, creativityCategories) {
+                $scope.typesByID = creativityCategories.typesByID;
             }
         };
     });

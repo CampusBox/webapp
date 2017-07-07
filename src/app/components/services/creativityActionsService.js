@@ -6,13 +6,14 @@
             '$rootScope',
             'tokenService',
             function($rootScope, tokenService) {
-                var obj = {};
+                var obj = this;
 
                 obj.heart = function(content) {
+                    console.log(content);
                     if ($rootScope.authenticated) {
-                        content.Actions.Appreciate.status = !content.Actions.Appreciate.status;
-                        if (content.Actions.Appreciate.status) {
-                            content.Actions.Appreciate.total += 1;
+                        content.actions.appreciate.status = !content.actions.appreciate.status;
+                        if (content.actions.appreciate.status) {
+                            content.actions.appreciate.total += 1;
                             tokenService.post('appreciateContent/' + content.id).then(function(result) {
                                 console.log('post request');
                                 if (result.status != 'error') {
@@ -23,7 +24,7 @@
                                 }
                             });
                         } else {
-                            content.Actions.Appreciate.total -= 1;
+                            content.actions.appreciate.total -= 1;
 
                             tokenService.delete('appreciateContent/' + content.id, '').then(function(result) {
                                 console.log('delete request');
@@ -43,9 +44,9 @@
                 }
                 obj.bookmark = function(content) {
                     if ($rootScope.authenticated) {
-                        content.Actions.Bookmarked.status = !content.Actions.Bookmarked.status;
-                        if (content.Actions.Bookmarked.status) {
-                            content.Actions.Bookmarked.total += 1;
+                        content.actions.bookmarks.status = !content.actions.bookmarks.status;
+                        if (content.actions.bookmarks.status) {
+                            content.actions.bookmarks.total += 1;
                             tokenService.post('bookmarkContent/' + content.id).then(function(result) {
                                 if (result.status != 'error') {
                                     console.log(result.status);
@@ -54,7 +55,7 @@
                                 }
                             });
                         } else {
-                            content.Actions.Bookmarked.total -= 1;
+                            content.actions.bookmarks.total -= 1;
                             tokenService.delete('bookmarkContent/' + content.id, '').then(function(result) {
                                 if (result.status != 'error') {
                                     console.log(result.status);

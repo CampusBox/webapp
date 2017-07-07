@@ -30,9 +30,10 @@
             </div>
         </div>
         <div flex layout-align="space-around" layout-gt-xs="row" layout-xs="row" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading' infinite-scroll-distance="3 ">
+        
             <div   flex-lg="30" flex-md="45" flex-sm="45" flex-xs="100" ng-repeat="content in finalContents track by $index" >
-                <creativity-card style="margin-left: 4px;" data="content" bar="true"></creativity-card>
-                <md-card class="content-card" ng-if="creativityLoading" ng-repeat="content in [1,2,3]" flex-lg="30" flex-md="45" flex-sm="45" flex="100">
+                <creativity-card style="margin-left: 4px;" data="content" showcategory="true" actions="true"></creativity-card>
+                <md-card class="content-card" in-view="myPagingFunction()" in-view-options="{ generateParts: true,offset : 300,generateDirection:true }" ng-show="moreItems" ng-repeat="content in [1,2,3]" flex-lg="30" flex-md="45" flex-sm="45" flex="100">
                     <md-card-header>
                         <md-card-avatar style="background: #f6f7f8">
                             <img class="md-user-avatar" />

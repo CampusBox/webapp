@@ -9,6 +9,7 @@
             templateUrl: 'app/components/creativity/actions/creativityActions.html',
 
             controller: function($scope, $mdDialog, $state, creativityActionsService) {
+
                 $scope.showLikes = function(id, title) {
                     $mdDialog.show({
                         controller: 'ShowLikesController',
