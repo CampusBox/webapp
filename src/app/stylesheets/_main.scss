@@ -42,11 +42,6 @@ sans-serif !important;
     color: $text-color;
 }
 
-.cb-grey-fill {
-    fill: $grey-color;
-    opacity: 0.5;
-}
-
 .cb-grey-text {
     color: $grey-color;
 }
@@ -65,6 +60,11 @@ sans-serif !important;
 
 .cb-white-fill {
     fill: #ffffff;
+}
+
+.cb-grey-fill {
+    fill: $grey-color;
+    opacity: 0.5;
 }
 
 

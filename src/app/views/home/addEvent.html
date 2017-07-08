@@ -1,5 +1,5 @@
 <div flex layout-gt-xs="row" layout="column">
-    <md-card flex-gt-xs="65" >
+    <md-card flex-gt-xs="65">
         <form name="eventForm" novalidate ng-submit=" submitEvent(event,tags)">
             <md-tabs md-dynamic-height md-border-bottom="" md-selected="selectedIndex">
                 <md-tab label="Basic Details">
@@ -180,11 +180,11 @@
             </md-dialog-actions>
         </form>
     </md-card>
-    <div flex-gt-xs="30" >
+    <div flex-gt-xs="30">
         <h1 class="md-title">Preview - <small>Updated as you input.</small></h1>
         <md-card flex="100">
             <div style="position: relative;">
-                <img style="width: 100% ;opacity: 0.9" class="event-cover" ng-src="{{event.croppedDataUrl}}" alt="{{event.title}}">
+                <img style="width: 100% ;opacity: 0.9" class="event-cover-vertical" ng-src="{{event.croppedDataUrl}}" alt="{{event.title}}">
                 <span class="md-caption" style="position: absolute;top: 20px;right: 20px;color: #fff;background: rgba(12,12,12,0.5);border-style: solid;border-width:0px;border-color: #fff;padding: 3px;border-radius: 4px;">
                         <md-icon  style="fill: #fff;" ng-show="event.location.type" md-svg-icon="currency-inr"></md-icon>
                         {{event.price?event.price:" No Fees"}}
@@ -212,10 +212,10 @@
             </md-card-content>
             <md-card-actions style="margin: 2px 17px 4px 4px;" layout="row" layout-align="end center">
                 <md-button ng-show="event.participation_state==0" class="button-grey" aria-label="Favorite">
-                    <md-icon  md-svg-icon="check"></md-icon> Going
+                    <md-icon md-svg-icon="check"></md-icon> Going
                 </md-button>
                 <md-button class="button-grey" aria-label="Favorite">
-                <md-icon md-svg-icon="star-outline"></md-icon> Interested
+                    <md-icon md-svg-icon="star-outline"></md-icon> Interested
                 </md-button>
                 <md-select md-selected-text="getParticipationState(event, $index)" ng-show="event.participation_state !=0" ng-model="weapon" placeholder="Weapon" class="md-no-underline">
                     <md-option ng-click="change(event, $index, 2)" ng-show="event.participation_state !=2" value="interested">Intrested</md-option>
@@ -226,7 +226,7 @@
                 <md-button class="share-button md-icon-button" ng-controller="ShareController" ng-click="showCustom($event, 'event');" aria-label="share">
                     <md-icon ng-class="" md-svg-icon="share"></md-icon>
                 </md-button>
-                </md-card-actions>
+            </md-card-actions>
         </md-card>
     </div>
 </div>

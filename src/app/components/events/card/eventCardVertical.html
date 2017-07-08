@@ -1,6 +1,6 @@
 <div>
     <div ui-sref="home.singleEvent({eventId: event.id})" style="position: relative;">
-        <img style="width: 100% ;opacity: 0.9" class="event-cover" ng-src="{{event.image}}" alt="{{event.title}}">
+        <img class="event-cover-vertical" ng-src="{{event.image}}" alt="{{event.title}}">
         <div layout="row" class="event-info-strip-bg pt-1 pb-1">
             <div class="ml-2">
                 <md-icon class="event-icon" md-svg-icon="currency-inr"></md-icon>
@@ -18,10 +18,10 @@
         <span class="cb-card-heading " md-truncate> {{event.title}}</span>
         <div class="mt-2" layout="row">
             <div class="mr-4">
-                <span class="event-month cb-red">{{event.timings.month}}</span>
-                <span class="event-date cb-grey-card">{{event.timings.day}}</span>
+                <span class="event-month-vertical cb-red">{{event.timings.month}}</span>
+                <span class="event-date-vertical cb-grey-card">{{event.timings.day}}</span>
             </div>
-            <span class="event-desc cb-card-body cb-grey-card">{{event.subtitle| limitTo : 100}}</span>
+            <span class="event-desc-vertical cb-card-body cb-grey-card">{{event.subtitle| limitTo : 100}}</span>
         </div>
     </div>
     <event-actions ng-if="bar" style="margin-top:-10px;" layout="row" layout-align="space-between end"></event-actions>

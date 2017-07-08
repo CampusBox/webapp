@@ -5,13 +5,13 @@
     angular
         .module('app')
         .controller('MainController', [
-            'navService', '$mdSidenav', 'tokenService', '$mdDialog', '$log', '$q', '$timeout', '$state', '$mdToast', '$scope', '$localStorage', '$location', '$mdConstant', '$rootScope',
+            'navService', '$mdSidenav', 'tokenService', '$mdMedia', '$mdDialog', '$log', '$q', '$timeout', '$state', '$mdToast', '$scope', '$localStorage', '$location', '$mdConstant', '$rootScope',
             MainController
         ]);
 
-    function MainController(navService, $mdSidenav, tokenService, $mdDialog, $log, $q, $timeout, $state, $mdToast, $scope, $localStorage, $location, $mdConstant, $rootScope) {
+    function MainController(navService, $mdSidenav, tokenService, $mdMedia, $mdDialog, $log, $q, $timeout, $state, $mdToast, $scope, $localStorage, $location, $mdConstant, $rootScope) {
         var vm = this;
-        
+
         if (typeof document.getElementById('basicveryimportantloading') !== 'undefined' && document.getElementById('basicveryimportantloading') != null) {
             document.getElementById('basicveryimportantloading').remove();
         }
@@ -21,6 +21,14 @@
         $rootScope.gray = '#fbfcfd';
 
         $scope.customKeys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, semicolon];
+
+        $scope.hideBottomBar = $mdMedia('(max-height: 400px)');
+
+        $scope.$watch(function() {
+            return $mdMedia('(max-height: 400px)');
+        }, function(val) {
+            $scope.hideBottomBar = val;
+        });
 
         $scope.searchTypes = [];
         // {
@@ -74,9 +82,9 @@
             });
 
         };
-    
 
-     
+
+
         var expToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3NhbXBsZXMuYXV0aDAuY29tLyIsInN1YiI6ImZhY2Vib29rfDEwMTU0Mjg3MDI3NTEwMzAyIiwiYXVkIjoiQlVJSlNXOXg2MHNJSEJ3OEtkOUVtQ2JqOGVESUZ4REMiLCJleHAiOjE0MTIyMzQ3MzAsImlhdCI6MTQxMjE5ODczMH0.7M5sAV50fF1-_h9qVbdSgqAnXVF7mz3I6RjS6JiH0H8';
         // $scope.user = $localStorage.user;
         vm.menuItems = [];

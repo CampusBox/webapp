@@ -1,12 +1,12 @@
 <div layout="column">
     <div layout="row" ui-sref="home.singleEvent({eventId: event.id})" style="padding-bottom: 0px">
-        <div class="event-cover-mobile" style="background: url({{event.image}});" flex="30" layout="column" layout-align="center center">
-            <p class="event-month-mobile m-0">{{event.timings.month}}</p>
-            <p class="event-date-mobile m-0">{{event.timings.day}}</p>
+        <div class="event-cover-horizontal" style="background: url({{event.image}});" flex="30" layout="column" layout-align="center center">
+            <p class="event-month-horizontal m-0">{{event.timings.month}}</p>
+            <p class="event-date-horizontal m-0">{{event.timings.day}}</p>
         </div>
         <div flex="70" class="p-4">
             <p class="cb-card-heading m-0" md-truncate>{{event.title | limitTo : 30}}</p>
-            <p class="event-desc-mobile cb-card-body cb-grey-card m-0">{{event.subtitle| limitTo : 100}}</p>
+            <p class="event-desc-horizontal cb-card-body cb-grey-card m-0">{{event.subtitle| limitTo : 100}}</p>
             <div class="mt-2">
                 <div flex="50" layout="row" style="float: left;" md-truncate>
                     <md-icon class="event-icon cb-grey-fill mr-1" ng-show="event.location.type" md-svg-icon="map-marker"></md-icon>

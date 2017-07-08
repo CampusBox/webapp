@@ -2,18 +2,17 @@
     'use strict';
 
     angular.module('app').
-    directive('eventCard', function() {
+    directive('eventCardHorizontal', function() {
         return {
             restrict: "E",
             replace: true,
-            templateUrl: 'app/components/events/card/eventCard.html',
+            templateUrl: 'app/components/events/card/eventCardHorizontal.html',
             scope: {
-                bar: "=bar",
+                bar: '=bar',
                 event: '=data'
             },
 
             controller: function($mdDialog, $scope) {
-
                 $scope.types = [
                     { 'id': 0, 'title': 'All', },
                     { 'id': 1, 'title': 'Competition', },
