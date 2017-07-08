@@ -28,44 +28,42 @@
 
 <div layout="column" ng-show="!loading" class=" white-bg" flex-gt-xs="80" flex-offset-gt-xs="10">
     <div layout-gt-xs="row" layout-xs="column" layout-align="start center">
-        <div flex-sm="40" flex-md="30" flex-lg="30" flex-xs="100">
+        <div flex-sm="40" flex-md="40" flex-lg="30" flex-xs="100">
             <img style="max-width: 100%;border-radius: 10px;" ng-src="{{event.image}}" alt="Event title">
         </div>
         <div layout-gt-xs="column" layout-xs="row" flex flex-xs="100">
             <div layout="column" layout-align-xs="center">
-                <h1 class="section-heading" style="padding: 0px 16px">
-                    {{event.title}}</h1>
-                <span  style="padding: 0px 16px">
-                        {{event.subtitle}}</span>
+                <p class="cb-section-heading m-0" style="padding: 0px 16px">
+                    {{event.title}}</p>
+                <span class="pl-4">{{event.subtitle}}</span>
                 <md-list layout="column" layout-align="start start">
                     <md-list-item layout="row">
-                        <md-icon md-svg-icon="calendar-clock" class=" grey-text" aria-label="Alarm Icon"></md-icon>
-                        <h3>
-
+                        <md-icon md-svg-icon="calendar-clock" class=" cb-grey-fill" aria-label="Alarm Icon"></md-icon>
+                        <p class="m-0">
                             {{event.timings.from.date | date: ' d MMM'}} · {{event.timings.from.time}}{{event.timings.from.period}} - {{event.timings.to.date==event.timings.from.date?null:event.timings.to.date | date: ' d MMM'}} · {{ event.timings.to.time}}{{event.timings.to.period}}
-                        </h3>
+                            </p>
                     </md-list-item>
                     <md-list-item ng-if="event.link">
-                        <md-icon md-svg-icon="web" class="grey-text" aria-label="Website"></md-icon>
-                        <h3 >
+                        <md-icon md-svg-icon="web" class="cb-grey-fill" aria-label="Website"></md-icon>
+                        <p class="m-0">
                             <a href="{{event.link}}" target="_blank"> {{event.link}} </a>
-                        </h3>
+                        </p>
                     </md-list-item>
                     <md-list-item>
-                        <md-icon md-svg-icon="map-marker" class="grey-text" aria-label="Alarm Icon"></md-icon>
-                        <h3 >
+                        <md-icon md-svg-icon="map-marker" class="cb-grey-fill" aria-label="Alarm Icon"></md-icon>
+                        <p class="m-0">
                             {{event.details.venue}}
-                        </h3>
+                        </p>
                     </md-list-item>
                     <md-list-item>
-                        <md-icon md-svg-icon="account-circle" class="grey-text" aria-label="Alarm Icon"></md-icon>
-                        <h3 >
+                        <md-icon md-svg-icon="account-circle" class="cb-grey-fill" aria-label="Alarm Icon"></md-icon>
+                        <p class="m-0">
                             By : <a href="{{event.organiser.link}}" target="_blank"> {{event.organiser.name}} </a>({{event.organiser.phone}})
-                        </h3>
+                        </p>
                     </md-list-item>
                     <md-list-item>
-                        <md-icon md-svg-icon="currency-inr" class="grey-text" aria-label="Alarm Icon"></md-icon>
-                        <h3 >{{event.details.price? event.details.price+' /-' : 'Free'}}</h3>
+                        <md-icon md-svg-icon="currency-inr" class="cb-grey-fill" aria-label="Alarm Icon"></md-icon>
+                        <p class="m-0">{{event.details.price? event.details.price+' /-' : 'Free'}}</p>
                     </md-list-item>
                 </md-list>
             </div>
