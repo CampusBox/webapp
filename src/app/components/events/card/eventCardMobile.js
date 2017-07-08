@@ -12,7 +12,7 @@
                 event: '=data'
             },
 
-            controller: function($mdDialog, $scope, $element, tokenService, $timeout, $location, $state, $rootScope) {
+            controller: function($mdDialog, $scope) {
                 $scope.types = [
                     { 'id': 0, 'title': 'All', },
                     { 'id': 1, 'title': 'Competition', },
@@ -26,7 +26,7 @@
                 $scope.timings = [
                     { 'id': 0, 'title': 'All' },
                     { 'id': 1, 'title': 'Today' },
-                    { 'id': 2, 'title': 'Tommorrow' },
+                    { 'id': 2, 'title': 'Tomorrow' },
                     { 'id': 3, 'title': 'This Week' },
                     { 'id': 4, 'title': 'This Month' }
                 ];
