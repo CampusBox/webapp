@@ -2,43 +2,43 @@
     +
 </md-button> -->
 <style type="text/css">
-md-toolbar {
-    background-color: #fff !important;
-}
-
-md-toolbar.md-default-theme:not(.md-menu-toolbar) md-icon,
-md-toolbar:not(.md-menu-toolbar) md-icon,
-.blue_fill {
-    fill: #6A6E71;
-}
-
-md-autocomplete.autocomplete-custom-template md-autocomplete-wrap {
-    box-shadow: 0px 0px #fff !important;
-    /*width: 40%;*/
-}
-
-md-autocomplete.autocomplete-custom-template input:not(.md-input) {
-    border: solid 1px #dbdbdb;
-    background: #eee;
-    border-radius: 4px;
-}
-md-autocomplete.autocomplete-custom-template input:not(.md-input):focus{
-    border: solid 2px #ccc;
-
+    md-toolbar {
+        background-color: #23CF5F !important;
+    }
+    
+    md-toolbar.md-default-theme:not(.md-menu-toolbar) md-icon,
+    md-toolbar:not(.md-menu-toolbar) md-icon,
+    .blue_fill {
+        fill: #6A6E71;
+    }
+    
+    md-autocomplete.autocomplete-custom-template md-autocomplete-wrap {
+        box-shadow: 0px 0px #fff !important;
+        /*width: 40%;*/
+    }
+    
+    md-autocomplete.autocomplete-custom-template input:not(.md-input) {
+        border: solid 1px #dbdbdb;
+        /*background: #eee;*/
+        border-radius: 4px;
+    }
+    
+    md-autocomplete.autocomplete-custom-template input:not(.md-input):focus {
+        border: solid 2px #ccc;
         background: #f1f1f1;
-
-}
+    }
 </style>
 <div layout="column" layout-fill>
     <md-toolbar md-scroll-shrink md-shrink-speed-factor="0.1" hide-xs hide-sm layout="row" layout-align="center center" style="    min-height: 57px;" class="md-whiteframe-1dp cb-green-bg">
         <section layout-align="start center">
             <md-button hide-sm hide-xs layout="row" ui-sref="home.dashboard" layout-align="center center" class="md-toolbar-tools" style="    height: 57px;" aria-label="Home">
-                <span style="text-transform: none;font-size: 26px;font-weight: 900;"> CampusBox</span>
+                <span class="cb-white" style="text-transform: none;font-size: 26px;font-weight: 900;"> CampusBox</span>
             </md-button>
         </section>
         <section layout-align="start center" flex>
             <form hide-sm hide-xs ng-submit="searchedFast(searchText)">
-                <md-autocomplete ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-items="item in searchTypes" md-item-text="searchText" md-min-length="0" placeholder="Search CampusBox" class="autocomplete-custom-template">
+                <md-autocomplete ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-items="item in searchTypes" md-item-text="searchText" md-min-length="0" placeholder="Search CampusBox"
+                    class="autocomplete-custom-template">
                     <md-item-template>
                         <md-list-item class="noright" ng-click="searched(item,searchText)">
                             <md-icon md-svg-icon="{{item.icon}}" class=" md-hue-3"></md-icon>
@@ -49,7 +49,8 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input):focus{
             </form>
         </section>
         <section layout-align="end start">
-            <md-button hide-sm hide-xs style="height: auto;font-weight: 500;line-height: 16px;margin-top: 3px;margin-bottom: 0px;font-size: 13px;" ng-repeat="item in vm.menuItems" layout-align="center center" ng-class="{active: (currentMenu==item.name)}" flex class="capitalize grey_text" ng-click="vm.selectItem(item)" ui-sref="{{item.sref}}">
+            <md-button hide-sm hide-xs style="height: auto;font-weight: 500;line-height: 16px;margin-top: 3px;margin-bottom: 0px;font-size: 13px;" ng-repeat="item in vm.menuItems" layout-align="center center" ng-class="{active: (currentMenu==item.name)}" flex class="capitalize grey_text"
+                ng-click="vm.selectItem(item)" ui-sref="{{item.sref}}">
                 <div class="md-tile-content" layout="column">
                     <md-icon md-svg-icon="{{item.icon}}"></md-icon>
                 </div>
@@ -57,7 +58,8 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input):focus{
                     {{item.name}}
                 </div>
             </md-button>
-            <md-button ng-show="!authenticated" ng-click="openLoginDialog()" md-menu-origin="" md-menu-align-target style="height: auto;font-weight: 500;line-height: 16px;margin-top: 3px;margin-bottom: 0px;min-width: 0px;    font-size: 13px;" layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications">
+            <md-button ng-show="!authenticated" ng-click="openLoginDialog()" md-menu-origin="" md-menu-align-target style="height: auto;font-weight: 500;line-height: 16px;margin-top: 3px;margin-bottom: 0px;min-width: 0px;    font-size: 13px;" layout-align="center center"
+                flex class="capitalize grey_text" aria-label="Notifications">
                 <div hide-sm hide-xs class="md-tile-content" layout="column">
                     <md-icon md-svg-icon="plus-circle"></md-icon>
                 </div>
@@ -66,7 +68,8 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input):focus{
                 </div>
             </md-button>
             <md-menu md-offset="-88 56">
-                <md-button ng-class="{active: (currentMenu=='add')}" ng-show="authenticated" md-menu-origin="" md-menu-align-target style="height: auto;font-weight: 500;line-height: 16px;margin-top: 3px;margin-bottom: 0px;min-width: 0px;    font-size: 13px;" layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications" ng-click="$mdMenu.open()">
+                <md-button ng-class="{active: (currentMenu=='add')}" ng-show="authenticated" md-menu-origin="" md-menu-align-target style="height: auto;font-weight: 500;line-height: 16px;margin-top: 3px;margin-bottom: 0px;min-width: 0px;    font-size: 13px;" layout-align="center center"
+                    flex class="capitalize grey_text" aria-label="Notifications" ng-click="$mdMenu.open()">
                     <div hide-sm hide-xs class="md-tile-content" layout="column">
                         <md-icon md-svg-icon="plus-circle"></md-icon>
                     </div>
@@ -103,7 +106,8 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input):focus{
             </md-menu>
         </section>
         <section layout-align="end start">
-            <md-button ng-class="{active: (currentMenu=='home.myProfile')}" ng-show="authenticated" style="height: auto;font-weight: 500;line-height: 16px;margin-top: 3px;margin-bottom: 0px;font-size: 13px;" hide-sm hide-xs layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
+            <md-button ng-class="{active: (currentMenu=='home.myProfile')}" ng-show="authenticated" style="height: auto;font-weight: 500;line-height: 16px;margin-top: 3px;margin-bottom: 0px;font-size: 13px;" hide-sm hide-xs layout-align="center center" flex class="capitalize grey_text"
+                aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
                 <div hide-sm hide-xs class="md-tile-content" layout="column">
                     <!-- <md-icon md-svg-icon="account"></md-icon> -->
                     <img ng-src="{{user.image}}" style="width: 24px; height: 24px;align-self: center;vertical-align: middle;border-radius: 50%">
@@ -124,11 +128,8 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input):focus{
             </md-button>
         </section>
     </md-toolbar>
-    <md-content flex class="md-padding page-content" height="100%" style="background-color: {{currentPageBackground}};">
-        <div ui-view class="manageXs" style="max-width: 1500px;margin:auto;">
-        </div>
-    </md-content>
-    <md-toolbar hide-gt-sm layout="row" ng-hide="currentState == 'home.addCreativity' " style="position: fixed;bottom: 0px; box-shadow: 0px 1px 8px 2px rgba(0, 0, 0, 0.2), 0px 3px 4px 2px rgba(0, 0, 0, 0.14), 0px 3px 3px 2px rgba(0, 0, 0, 0.12)" layout-align="center center">
+    <md-toolbar hide-gt-sm layout="row" ng-hide="currentState == 'home.addCreativity' || hideBottomBar" style="position: fixed;bottom: 0px; box-shadow: 0px 1px 8px 2px rgba(0, 0, 0, 0.2), 0px 3px 4px 2px rgba(0, 0, 0, 0.14), 0px 3px 3px 2px rgba(0, 0, 0, 0.12)"
+        layout-align="center center">
         <md-button ng-class="{active: (currentMenu=='home.dashboard')}" layout-align="center center" flex class="capitalize grey_text bottom-menu-item" ng-click="vm.selectItem(item)" ui-sref-active="" ui-sref=".dashboard">
 
             <div hide-md class="md-tile-content">
@@ -162,7 +163,8 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input):focus{
                 Creativity
             </div>
         </md-button>
-        <md-button ng-class="{active: ((currentMenu=='home.addCreativity') || (currentMenu=='home.addEvent') || (currentMenu=='home.myProfile'))}" ng-show="authenticated" layout-align="center center" flex class="capitalize grey_text bottom-menu-item" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
+        <md-button ng-class="{active: ((currentMenu=='home.addCreativity') || (currentMenu=='home.addEvent') || (currentMenu=='home.myProfile'))}" ng-show="authenticated" layout-align="center center" flex class="capitalize grey_text bottom-menu-item" aria-label="Notifications"
+            ng-click="vm.toggleRightSidebar()">
             <div class="md-tile-content">
                 <img ng-src="{{user.image}}" style="width: 24px; height: 24px;align-self: center;vertical-align: middle;border-radius: 50%">
                 <!-- <md-icon md-svg-icon="account"></md-icon> -->
@@ -181,6 +183,10 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input):focus{
         </md-button>
         </md-menu>
     </md-toolbar>
+    <md-content flex class="md-padding page-content" height="100%" style="background-color: {{currentPageBackground}} ">
+        <div ui-view class="manageXs" style="max-width: 1500px;margin:auto;">
+        </div>
+    </md-content>
     <md-sidenav md-component-id="right" class="md-sidenav-right">
         <section>
             <!-- <div ng-include src=" 'app/views/partials/messages.html'"></div> -->
@@ -202,7 +208,7 @@ md-autocomplete.autocomplete-custom-template input:not(.md-input):focus{
                                 <md-icon md-svg-icon="bookmark"></md-icon>
                             </div>
                         </md-button>
-                    </md-menu-item>                
+                    </md-menu-item>
                     <md-menu-item>
                         <md-button ng-click="vm.toggleRightSidebar()" ui-sref="home.myProfile({tab:'creativity'})">
                             <div layout="row" flex="" class="ng-scope layout-row flex">

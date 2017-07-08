@@ -1,8 +1,8 @@
 <div class="p-1" layout="row" layout-align="center center">
-    <md-button class="event-action-button" ng-show="event.participation_state == 0" ng-click="change(event, $index, 1)" aria-label="going">
+    <md-button flex class="event-action-button" ng-show="event.participation_state == 0" ng-click="change(event, $index, 1)" aria-label="going">
         Going
     </md-button>
-    <md-button class="event-action-button" ng-show="event.participation_state == 0" ng-click="change(event, $index, 2)" aria-label="interested">
+    <md-button flex class="event-action-button" ng-show="event.participation_state == 0" ng-click="change(event, $index, 2)" aria-label="interested">
         Interested
     </md-button>
     <md-select class="m-0 ml-4" style="font-size: 12px;" md-selected-text="getParticipationState(event, $index)" ng-show="event.participation_state != 0" ng-model="weapon" class="md-no-underline">
@@ -12,7 +12,7 @@
         <md-option ng-click="change(event, $index, 0)" ng-show="event.participation_state == 2" value="not interested">Not interested</md-option>
     </md-select>
     <span ng-show="event.participation_state != 0" flex></span>
-    <md-button class="event-action-button" ng-controller="ShareController" ng-click="showCustom($event,'event',event.id);" aria-label="share ">
+    <md-button flex class="event-action-button" ng-controller="ShareController" ng-click="showCustom($event,'event',event.id);" aria-label="share ">
         Share
     </md-button>
 </div>

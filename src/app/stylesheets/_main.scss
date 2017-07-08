@@ -1,6 +1,7 @@
 // COLORS
 $main-bg-color: #fff;
 $text-color: #373737;
+$grey-color: #484848;
 $accent-color: rgb(0, 150, 136);
 $warning-color: #E75753;
 // VARIABLES
@@ -42,17 +43,34 @@ sans-serif !important;
 }
 
 .cb-grey-text {
-    color: #484848;
+    color: $grey-color;
 }
 
 .cb-grey-card {
     color: rgba(0, 0, 0, 0.6);
 }
 
+.cb-red {
+    color: #e91e63;
+}
+
+.cb-white {
+    color: #ffffff;
+}
+
+.cb-white-fill {
+    fill: #ffffff;
+}
+
+.cb-grey-fill {
+    fill: $grey-color;
+    opacity: 0.5;
+}
+
 
 /*main.html*/
 
-.grey_text {
+.white_text {
     color: #fff !important;
 }
 

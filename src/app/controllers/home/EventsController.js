@@ -7,20 +7,27 @@
             '$scope',
             '$element',
             'tokenService',
-            '$timeout',
+            '$mdMedia',
             '$location',
             '$state',
             '$rootScope',
             EventsController
         ]);
 
-    function EventsController($mdDialog, $scope, $element, tokenService,  $timeout, $location, $state, $rootScope) {
+    function EventsController($mdDialog, $scope, $element, tokenService, $mdMedia, $location, $state, $rootScope) {
         var vm = this;
         $scope.offset = 0;
         $scope.moreItems = true;
         $scope.eventLoading = true;
         $scope.events = [];
-                $rootScope.currentMenu = 'Opportunities';
+        $rootScope.currentMenu = 'Opportunities';
+        $scope.screenIsSmall = $mdMedia('xs');
+
+        $scope.$watch(function() {
+            return $mdMedia('xs');
+        }, function(small) {
+            $scope.screenIsSmall = small;
+        });
 
         tokenService.get("minievents?limit=4")
             .then(function(tableData) {

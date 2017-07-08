@@ -1,0 +1,25 @@
+<div layout="column">
+    <div layout="row" ui-sref="home.singleEvent({eventId: event.id})" style="padding-bottom: 0px">
+        <div class="event-cover-horizontal" style="background: url({{event.image}});" flex="30" layout="column" layout-align="center center">
+            <p class="event-month-horizontal m-0">{{event.timings.month}}</p>
+            <p class="event-date-horizontal m-0">{{event.timings.day}}</p>
+        </div>
+        <div flex="70" class="p-4">
+            <p class="cb-card-heading m-0" md-truncate>{{event.title | limitTo : 30}}</p>
+            <p class="event-desc-horizontal cb-card-body cb-grey-card m-0">{{event.subtitle| limitTo : 100}}</p>
+            <div class="mt-2">
+                <div flex="50" layout="row" style="float: left;" md-truncate>
+                    <md-icon class="event-icon cb-grey-fill mr-1" ng-show="event.location.type" md-svg-icon="map-marker"></md-icon>
+                    <md-icon class="event-icon cb-grey-fill mr-1" ng-hide="event.location.type" md-svg-icon="earth"></md-icon>
+                    <p class="cb-grey-text m-0 cb-card-body">{{event.location.data}}</p>
+                </div>
+                <div flex="50" layout="row" style="float: right;" md-truncate>
+                    <md-icon class="event-icon cb-grey-fill mr-1" md-svg-icon="currency-inr"></md-icon>
+                    <p class="cb-grey-text m-0 cb-card-body">{{event.price?event.price:" No Fees"}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <md-divider></md-divider>
+    <event-actions ng-if="bar" layout="row" layout-align="space-between end"></event-actions>
+</div>

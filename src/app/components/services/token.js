@@ -7,8 +7,8 @@
             '$http',
             '$q',
             function($rootScope, $http, $q, $location) {
-                
-              
+
+
                 // Uncomment as per usage
                 // 
                 // before building to pushing to Beta Server 
@@ -19,15 +19,15 @@
                 // 
                 // 
                 // To test locally from main API 
-                 // var serviceBase = 'https://campusbox.org/dist/api/public/';
+                // var serviceBase = 'https://campusbox.org/dist/api/public/';
                 // 
                 // USE THIS AT MOST TIMES
                 // 
                 // To test locally from BETA API 
-                 var serviceBase = 'http://beta.campusbox.org/dist/api/public/';
+                // var serviceBase = 'http://beta.campusbox.org/dist/api/public/';
 
-                 //For testing from ayush locally
-                 // var serviceBase = 'http://192.168.4.101/public/';
+                //For testing from ayush locally
+                var serviceBase = 'http://192.178.4.112/public/';
 
 
                 $rootScope.config = function() {

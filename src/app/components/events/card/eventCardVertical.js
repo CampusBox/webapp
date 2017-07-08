@@ -2,17 +2,18 @@
     'use strict';
 
     angular.module('app').
-    directive('eventCardMobile', function() {
+    directive('eventCardVertical', function() {
         return {
             restrict: "E",
             replace: true,
-            templateUrl: 'app/components/events/card/eventCardMobile.html',
+            templateUrl: 'app/components/events/card/eventCardVertical.html',
             scope: {
-                bar: '=bar',
+                bar: "=bar",
                 event: '=data'
             },
 
-            controller: function($mdDialog, $scope, $element, tokenService, $timeout, $location, $state, $rootScope) {
+            controller: function($mdDialog, $scope) {
+
                 $scope.types = [
                     { 'id': 0, 'title': 'All', },
                     { 'id': 1, 'title': 'Competition', },
@@ -26,7 +27,7 @@
                 $scope.timings = [
                     { 'id': 0, 'title': 'All' },
                     { 'id': 1, 'title': 'Today' },
-                    { 'id': 2, 'title': 'Tommorrow' },
+                    { 'id': 2, 'title': 'Tomorrow' },
                     { 'id': 3, 'title': 'This Week' },
                     { 'id': 4, 'title': 'This Month' }
                 ];
