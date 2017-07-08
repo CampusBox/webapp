@@ -72,24 +72,7 @@
         </div>
     </div>
     <md-divider></md-divider>
-    <!--<div layout-gt-xs="row" layout-xs="column">
-        <div layout="row" layout-align="space-around">
-            <md-button ng-repeat="tag in event.Tags.data" style="cursor: default;border-radius: 5px;font-size:12px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(66,66,66);">#{{tag}}</md-button>
-        </div>
-        <span flex hide-xs></span>
-        <div layout="row" layout-align="space-around">
-            <md-button class="share-button" ng-controller="ShareController" ng-click="showCustom($event,'event',eventId);" aria-label="Share ">
-                <md-icon ng- md-svg-icon="share"></md-icon>
-            </md-button>
-            <md-button class="appreciate-button" ng-click="heart(event, $index)" aria-label="Favorite ">
-                <md-icon class="pink" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>{{event.Actions.Bookmarked.status? 'Appreciated' : 'Appreciate' }}
-            </md-button>
-            <md-button class="rsvp-button" ng-class="(event.Actions.Participants.status)? 'md-raised md-primary' : ''" ng-click="rsvpEvent(event, $index, 'events')" aria-label="Favorite">
-                <md-icon ng-class="(event.Actions.Participants.status)? '':'blue'" md-svg-icon="{{!event.Actions.Participants.status? 'account-check' : 'plus-one' }}"></md-icon> {{!event.Actions.Participants.status? 'attending' : 'RSVP' }}
-            </md-button>
-        </div>
-    </div>-->
-    
+    <event-actions layout="row" layout-align="space-around center"></event-actions>
     <md-divider></md-divider>
     <div class="cb-body-container">
         <p class="cb-body justify" ng-bind-html="event.details.description"></p>
