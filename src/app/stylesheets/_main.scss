@@ -19,7 +19,12 @@ sans-serif !important;
     font-family: $font-family;
     color: $text-color;
 }
-
+img{
+    max-width:100%;
+}
+a{
+    text-decoration:none;
+}
 .cb-green-bg {
     background: #23CF5F !important;
 }

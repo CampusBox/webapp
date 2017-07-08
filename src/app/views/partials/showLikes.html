@@ -1,7 +1,7 @@
 <md-dialog aria-label="Dog name" ng-class="dialog.css" class="_md md-default-theme md-transition-in" flex-gt-sm="40" role="dialog">
     <md-dialog-content class="md-dialog-content" r>
-        <h2 class="md-title">Likes for "{{title}}"</h2>
-        <div class="md-dialog-content-body">
+        <h2 >Likes for "{{title}}"</h2>
+        <div >
             <md-list>
                 <md-list-item ng-repeat="item in likes" class="md-2-line">
                     <img style="cursor: pointer;" ui-sref="home.profile({username: item.username})" ng-src="{{item.photo}}" class="md-avatar" alt="{{item.title}}" />

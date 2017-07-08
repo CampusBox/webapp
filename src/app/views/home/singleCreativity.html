@@ -1,13 +1,3 @@
-<style>
-md-list-item .md-button:not([disabled]):hover {
-    background-color: transparent;
-    cursor: auto;
-}
-
-md-list-item .md-button:not([disabled]):click {
-    background-color: transparent;
-}
-</style>
 <div layout="row" class="white-bg ">
     <div flex-gt-sm="10" hide-sm hide-xs>
         <div layout="column" layout-align="center center" style="position: fixed;top: 45%;left: 25px;">
@@ -19,7 +9,7 @@ md-list-item .md-button:not([disabled]):click {
                 <md-icon ng-class="content.Actions.Bookmarked.status? 'yellow':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
             </md-button>
             <md-button class="md-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'creativity',content.id);" aria-label="Share ">
-                <md-icon ng-class="" md-svg-icon="share"></md-icon>
+                <md-icon ng- md-svg-icon="share"></md-icon>
             </md-button>
         </div>
     </div>
@@ -32,7 +22,7 @@ md-list-item .md-button:not([disabled]):click {
                 <span style="width: 30%" class=" animated-background">Anything here </span>
             </md-card-header-text>
         </md-card-header>
-        <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 80px; margin-bottom: 50px; margin-top: 15px;">and again</span>
+        <span class=" animated-background" flex="90" flex-offset="10" style="padding: 80px; margin-bottom: 50px; margin-top: 15px;">and again</span>
     </md-card>
     <div flex-gt-sm="80" flex-sm="100" flex ng-if="!loading">
         <md-list hide-xs>
@@ -50,7 +40,7 @@ md-list-item .md-button:not([disabled]):click {
         </md-list>
         <div>
         </div>
-        <h1 flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100" class="md-title creativity-title creativity-title-single" ng-bind-html="content.title"></h1>
+        <h1 flex-offset-gt-sm="10" flex-gt-sm="80" flex-sm="100" class=" creativity-title creativity-title-single" ng-bind-html="content.title"></h1>
         <div layout="row" ng-repeat="item in content.Items.data">
             <a ng-if="item.type == 'tech' " href="{{item.data}}">
                 <md-icon md-svg-icon="earth"></md-icon>
@@ -72,7 +62,7 @@ md-list-item .md-button:not([disabled]):click {
                 <!--             <center layout-align="center center">
                 <img ng-if="(item.type == 'image')" ng-src="{{item.image}}" alt="">
             </center>
-            <p class="md-body-1 creativity-description creativity-description-single" ng-bind-html="item.description">
+            <p class=" creativity-description creativity-description-single" ng-bind-html="item.description">
             </p> -->
                 <div class="creativity-description creativity-description-single" ng-bind-html="item.data"></div>
             </div>
@@ -89,7 +79,7 @@ md-list-item .md-button:not([disabled]):click {
             <span ng-click="showLikes($event, content.id, content.title)" style="cursor: pointer;" class="likesNumber"> {{content.Actions.Appreciate.total}}</span>
             <span flex></span>
             <md-button style="float:right" ng-controller="ShareController" ng-click="showCustom($event,'creativity',content.id);" aria-label="facebook ">
-                <md-icon ng-class="" md-svg-icon="share"></md-icon> <span hide-xs>Share</span>
+                <md-icon ng- md-svg-icon="share"></md-icon> <span hide-xs>Share</span>
             </md-button>
             <md-button style="float:right" ng-click="bookmark(content)" aria-label="Favorite ">
                 <md-icon ng-class="content.Actions.Bookmarked.status? 'grey':''" md-svg-icon="{{content.Actions.Bookmarked.status? 'bookmark' : 'bookmark-outline' }}"></md-icon> <span hide-xs>
@@ -108,7 +98,7 @@ md-list-item .md-button:not([disabled]):click {
         <img ng-if="(content.type == 'youtube')" style="background:url('https://img.youtube.com/vi/{{content.url}}/hqdefault.jpg');object-fit: cover;background-size: cover;background-position: center;height: 100px;" class="creativity-cover" alt="">
         <md-card-title>
             <md-card-title-text>
-                <span style="font-size: 24px;font-weight: 700!important;" class="md-title" ng-bind-html="content.title"></span>
+                <span style="font-size: 24px;font-weight: 700!important;"  ng-bind-html="content.title"></span>
             </md-card-title-text>
         </md-card-title>
         <md-card-header>
@@ -116,7 +106,7 @@ md-list-item .md-button:not([disabled]):click {
                 <img class="md-user-avatar" ng-src="{{content.created.by.image}}" />
             </md-card-avatar>
             <md-card-header-text flex>
-                <span class="md-title">{{content.created.by.name}}</span>
+                <span >{{content.created.by.name}}</span>
                 <span class="md-subhead">{{content.created.at | date: 'd MMM'}}</span>
             </md-card-header-text>
             <md-card-icon-actions style="float: right;">
@@ -143,7 +133,7 @@ md-list-item .md-button:not([disabled]):click {
                 <span class="md-caption">Write a response...</span>
             </md-card-header-text>
             <md-card-header-text ng-show="flags.addResponse">
-                <span class="md-title blue_text">{{user.name;}}</span>
+                <span class=" blue_text">{{user.name;}}</span>
             </md-card-header-text>
         </md-card-header>
         <md-card-content ng-show="flags.addResponse" layout="column">

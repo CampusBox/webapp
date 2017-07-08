@@ -16,15 +16,15 @@
                 </md-list>
                 <item-card ng-show="creativity.type"></item-card>
                 <div layout="column">
-                    <p hide-xs show-gt-xs class="md-title" ng-hide="progress<1" style="outline: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;letter-spacing: -.003em;" ng-model="mediumEditor" medium-editor data-placeholder="Tell your story..."></p>
+                    <p hide-xs show-gt-xs  ng-hide="progress<1" style="outline: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;letter-spacing: -.003em;" ng-model="mediumEditor" medium-editor data-placeholder="Tell your story..."></p>
                     <div show-xs hide-gt-xs ng-hide="progress<1" ng-init="focus=false">
-                        <trix-editor angular-trix id="trix-editor-1" ng-model="trix" placeholder="Tell your story..." class="trix-content md-title" style="border: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;letter-spacing: -.003em;">
+                        <trix-editor angular-trix id="trix-editor-1" ng-model="trix" placeholder="Tell your story..." class="trix-content " style="border: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;letter-spacing: -.003em;">
                         </trix-editor>
                     </div>
                 </div>
                 <center ng-show="progress<1">
                     <img ng-src="{{user.imageUrl}}" alt="" style="border-radius: 50%; height: auto;width: 20%">
-                    <p class="md-title">Choose the most appropriate category</p>
+                    <p >Choose the most appropriate category</p>
                 </center>
                 <div hide-xs style=" padding:0px" ng-repeat="itemgroup in items" flex layout="row" layout-align="center center" ng-show="progress<1">
                     <span ng-repeat="item in itemgroup track by $index">                        

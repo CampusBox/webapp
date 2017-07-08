@@ -35,7 +35,7 @@
             <div layout="column" layout-align-xs="center">
                 <h1 class="section-heading" style="padding: 0px 16px">
                     {{event.title}}</h1>
-                <span class="" style="padding: 0px 16px">
+                <span  style="padding: 0px 16px">
                         {{event.subtitle}}</span>
                 <md-list layout="column" layout-align="start start">
                     <md-list-item layout="row">
@@ -79,7 +79,7 @@
         <span flex hide-xs></span>
         <div layout="row" layout-align="space-around">
             <md-button class="share-button" ng-controller="ShareController" ng-click="showCustom($event,'event',eventId);" aria-label="Share ">
-                <md-icon ng-class="" md-svg-icon="share"></md-icon>
+                <md-icon ng- md-svg-icon="share"></md-icon>
             </md-button>
             <md-button class="appreciate-button" ng-click="heart(event, $index)" aria-label="Favorite ">
                 <md-icon class="pink" md-svg-icon="{{event.Actions.Bookmarked.status? 'heart' : 'heart-outline' }}"></md-icon>{{event.Actions.Bookmarked.status? 'Appreciated' : 'Appreciate' }}

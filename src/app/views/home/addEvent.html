@@ -96,7 +96,7 @@
                             <br>
                             <br>
                         </center>
-                        <p class="md-title" ng-hide="progress<1" style="outline: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;" ng-model="event.description" medium-editor data-placeholder="Mention complete details about the event here (including rules and prizes)."></p>
+                        <p  ng-hide="progress<1" style="outline: none; font-family: Georgia, Cambria, 'Times New Roman',Times,serif;" ng-model="event.description" medium-editor data-placeholder="Mention complete details about the event here (including rules and prizes)."></p>
                     </div>
                 </md-tab>
                 <md-tab label="Additional Details">
@@ -181,7 +181,7 @@
         </form>
     </md-card>
     <div flex-gt-xs="30">
-        <h1 class="md-title">Preview - <small>Updated as you input.</small></h1>
+        <h1 >Preview - <small>Updated as you input.</small></h1>
         <md-card flex="100">
             <div style="position: relative;">
                 <img style="width: 100% ;opacity: 0.9" class="event-cover-vertical" ng-src="{{event.croppedDataUrl}}" alt="{{event.title}}">
@@ -196,16 +196,16 @@
                     </span>
             </div>
             <md-card-title ui-sref="home.singleEvent({eventId: event.id})" style="padding:8px 0px 0px 20px;">
-                <span class="md-title" style="font-weight: 400"> {{event.title?event.title:'Give it a title'}}</span>
+                <span  style="font-weight: 400"> {{event.title?event.title:'Give it a title'}}</span>
             </md-card-title>
             <md-card-content ui-sref="home.singleEvent({eventId: event.id})">
                 <div layout="row" layout-wrap>
-                    <span style="padding-top:10px;text-align: center;font-weight: 500" flex="20" class="md-headline" md-colors="{color: 'red'}"><span>
+                    <span style="padding-top:10px;text-align: center;font-weight: 500" flex="20"  md-colors="{color: 'red'}"><span>
                             {{event.fromDate?event.fromDate:null | date: 'MMM'}} </span>
                     <br>
                     <span style="color:#555555;text-align: center;">{{event.toDate==event.fromDate?event.fromDate:null | date: ' dd'}}</span>
                     </span>
-                    <p flex="80" style="color: #777;" class="md-body-2">
+                    <p flex="80" style="color: #777;" >
                         {{event.subtitle?event.subtitle:'Enter your message'| limitTo : 100}}
                     </p>
                 </div>
@@ -224,7 +224,7 @@
                 </md-select>
                 <span flex></span>
                 <md-button class="share-button md-icon-button" ng-controller="ShareController" ng-click="showCustom($event, 'event');" aria-label="share">
-                    <md-icon ng-class="" md-svg-icon="share"></md-icon>
+                    <md-icon ng- md-svg-icon="share"></md-icon>
                 </md-button>
             </md-card-actions>
         </md-card>

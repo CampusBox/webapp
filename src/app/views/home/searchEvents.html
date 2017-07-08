@@ -16,7 +16,7 @@
             <md-nav-item md-nav-click="searched('events', query)">Opportunities</md-nav-item>
             <md-nav-item md-nav-click="searched('creativity', query)">Creativity</md-nav-item>
         </md-nav-bar>
-        <h2 class="md-headline" style="color: rgba(0,0,0,.8);" ng-hide="query == '' || events.length == 0">Results for "{{query}}" in events</h2>
+        <h2  style="color: rgba(0,0,0,.8);" ng-hide="query == '' || events.length == 0">Results for "{{query}}" in events</h2>
         <div layout-gt-sm="row" layout="column" layout-align-gt-xs="start start" layout-align-xs="center strech">
             <div hide-xs flex layout-align="start" layout="row" layout-wrap flex-gt-sm="80">
                 <md-card flex-lg="30" flex-md="45" flex-sm="45" flex="100" ng-repeat="event in events">

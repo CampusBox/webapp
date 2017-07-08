@@ -1,83 +1,12 @@
-<style>
-.yellow {
-    fill: rgb(255, 235, 59) !important;
-}
-
-[contenteditable] {
-    border: 1px dashed #2288d3;
-    padding: 8px;
-}
-
-.badge {
-    margin: 0 0 0 8px;
-    background-color: #8BC34A;
-    color: white;
-    padding: 2px 4px;
-    border-radius: 2px;
-}
-
-md-chips.md-default-theme md-chip.mdfocused,
-md-chips md-chip.md-focused {
-    /*background-color: #fafafa !important;
-    color: rgba(0, 0, 0, .44);
-    border: 1px solid rgb(97, 97, 97) !important;
-*/
-    cursor: default;
-    font-size: 12px;
-    line-height: 32px;
-    margin: 8px 8px 0px 0px;
-    padding: 0px 7px;
-    float: left;
-    box-sizing: border-box;
-    max-width: 100%;
-    position: relative;
-    color: rgb(66, 66, 66);
-    border-radius: 50%;
-    border: none;
-    box-shadow: none;
-}
-
-md-chips.md-default-theme md-chip,
-md-chips md-chip {
-    /*border-color: rgba(2, 184, 117, 0.8);*/
-    /*border: 1px solid rgb(97, 97, 97) !important;*/
-    cursor: default;
-    border-radius: 50%;
-    border: none;
-    box-shadow: none;
-    font-size: 12px;
-    line-height: 32px;
-    margin: 8px 8px 0px 0px;
-    padding: 0px 7px;
-    float: left;
-    box-sizing: border-box;
-    background-color: white;
-    max-width: 100%;
-    position: relative;
-    color: rgb(66, 66, 66);
-}
-
-md-chips.md-default-theme md-chip.md-focused md-icon,
-md-chips md-chip.md-focused,
-md-chips md-chip.md-focused md-icon {
-    color: rgba(0, 0, 0, .44) !important;
-    box-shadow: none;
-}
-
-md-chips.md-default-theme .md-chips,
-md-chips .md-chips {
-    box-shadow: none;
-}
-</style>
 <div layout="row" layout-xs="column" layout-align-gt-xs="center start" flex md-padding>
     <div layout="column" md-padding hide-xs ng-if="studentLoading" flex="15" flex-xs="100" flex-offset-gt-xs="5">
         <center>
             <img style="border-radius: 5px; width: 100%; margin-top:20px; background-color: #dfdfdf; padding-bottom: 33%" class="div layout=" column " md-padding-image">
             <div layout="column" layout-align="center center">
                 <br>
-                <span class="md-headline animated-background">student.title</span>
+                <span class=" animated-background">student.title</span>
                 <br>
-                <span class="md-body-2 animated-background" style="padding:0px;color: rgba(0, 0, 0, 0.6);">student.college.name name name</span>
+                <span class=" animated-background" style="padding:0px;color: rgba(0, 0, 0, 0.6);">student.college.name name name</span>
                 <br>
             </div>
         </center>
@@ -85,7 +14,7 @@ md-chips .md-chips {
             <center>
                 <div style=" text-align:center;">
                     <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
-                        <li ng-repeat="skill in [1,2,3]" class="" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(224,224,224);">skill.name</li>
+                        <li ng-repeat="skill in [1,2,3]"  style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(224,224,224);">skill.name</li>
                     </ul>
                 </div>
             </center>
@@ -104,11 +33,11 @@ md-chips .md-chips {
     <div layout="column" md-padding hide-xs ng-if="!studentLoading" flex="20" flex-xs="100" style="min-width: 20%;">
         <img style="border-radius: 5px; width: 100%; margin-top:20px; background-color: #ccc;" ng-src="{{student.photo}}" class="div layout=" column " md-padding-image" alt="{{student.name}}">
         <div>
-            <p class="md-headline">{{student.name}}</p>
+            <p >{{student.name}}</p>
         </div>
         <md-divider></md-divider>
         <div>
-            <p class="md-title">
+            <p >
                 About
             </p>
             <div layout="row " layout-align="center " ng-hide="editCollege ">
@@ -117,8 +46,8 @@ md-chips .md-chips {
                             <md-icon md-svg-icon="pencil "></md-icon>
                         </md-button> -->
             </div>
-            <div class="md-body-2 " layout="column " ng-show="editCollege " style="background-color: #f1f1f1;border-radius: 2px;padding:8px; ">
-                <input class="md-body-2 md-padding " md-colors="{color: 'grey'} " ng-model="studentAbout.about ">
+            <div class=" " layout="column " ng-show="editCollege " style="background-color: #f1f1f1;border-radius: 2px;padding:8px; ">
+                <input class=" md-padding " md-colors="{color: 'grey'} " ng-model="studentAbout.about ">
                 </input>
                 <div layout="row " style="padding-top: 8px; " layout-align="space-around center ">
                     <md-button class="md-raised " ng-click="editCollege=false; ">Cancel
@@ -128,15 +57,15 @@ md-chips .md-chips {
                 </div>
             </div>
             <div ng-hide="editAbout" layout="row " layout-align="center ">
-                <p class="md-body-2 ">
+                <p class=" ">
                     {{(student.subtitle === null)?"Write about yourself. ":student.subtitle}}
                 </p>
                 <md-button class="md-icon-button " ng-click="editAbout= true; ">
                     <md-icon md-svg-icon="pencil "></md-icon>
                 </md-button>
             </div>
-            <div class="md-body-2 " layout="column " ng-show="editAbout" style="background-color: #f1f1f1;border-radius: 2px;padding:8px; ">
-                <input class="md-body-2 md-padding " md-colors="{color: 'grey'} " ng-model="studentAbout.about ">
+            <div class=" " layout="column " ng-show="editAbout" style="background-color: #f1f1f1;border-radius: 2px;padding:8px; ">
+                <input class=" md-padding " md-colors="{color: 'grey'} " ng-model="studentAbout.about ">
                 </input>
                 <div layout="row " style="padding-top: 8px; " layout-align="space-around center ">
                     <md-button class="md-raised " ng-click="editAbout = false">Cancel
@@ -147,7 +76,7 @@ md-chips .md-chips {
             </div>
             <md-divider></md-divider>
             <div layout="row" layout-margin>
-                <p class="md-title">
+                <p >
                     Skills
                 </p>
                 <span flex></span>
@@ -163,8 +92,8 @@ md-chips .md-chips {
                     </md-chip-template>
                 </md-chips>
             </div>
-            <div class="md-body-2" layout="column" ng-hide="readonly" style="background-color: #f1f1f1;border-radius: 2px;padding:8px;">
-                <input class="md-body-2 md-padding" placeholder="Type a skill to brag about" md-colors="{color: 'grey'}" ng-model="add.skill">
+            <div  layout="column" ng-hide="readonly" style="background-color: #f1f1f1;border-radius: 2px;padding:8px;">
+                <input class=" md-padding" placeholder="Type a skill to brag about" md-colors="{color: 'grey'}" ng-model="add.skill">
                 </input>
                 <div layout="row " style="padding-top: 8px; " layout-align="space-around center">
                     <md-button class="md-raised " ng-click="readonly=true; ">Cancel
@@ -174,7 +103,7 @@ md-chips .md-chips {
                 </div>
             </div>
             <md-divider></md-divider>
-            <p class="md-title">
+            <p >
                 Social Accounts
             </p>
             <md-list>
@@ -254,9 +183,9 @@ md-chips .md-chips {
                         <img style="border-radius: 5px; width: 100%; background-color: #dfdfdf; padding-bottom: 33%" class="div layout=" column " md-padding-image">
                         <div layout="column" layout-align="center center">
                             <br>
-                            <span class="md-headline animated-background">student.title </span>
+                            <span class=" animated-background">student.title </span>
                             <br>
-                            <span class="md-body-2 animated-background" style="padding:0px;color: rgba(0, 0, 0, 0.6);">student.college.name name name</span>
+                            <span class=" animated-background" style="padding:0px;color: rgba(0, 0, 0, 0.6);">student.college.name name name</span>
                             <br>
                         </div>
                     </center>
@@ -264,7 +193,7 @@ md-chips .md-chips {
                         <center>
                             <div style=" text-align:center;">
                                 <ul style="list-style: none; display:inline-block; margin-top: 0px; padding-left:0px;">
-                                    <li ng-repeat="skill in [1,2,3]" class="" style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(224,224,224);">skill.name</li>
+                                    <li ng-repeat="skill in [1,2,3]"  style="cursor: default;border-radius: 5px;font-size:12px;line-height: 32px;margin: 8px 8px 0 0;padding: 0 7px 0 7px;float: left;box-sizing:border-box;max-width: 100%;position: relative;background-color:rgb(224, 224, 224);color: rgb(224,224,224);">skill.name</li>
                                 </ul>
                             </div>
                         </center>
@@ -303,8 +232,8 @@ md-chips .md-chips {
                                 <span ng-hide=' ( student.subtitle == null || student.subtitle == "" ) ' class="profile-subtitle">{{student.subtitle}}</span>
                                 <span ng-show='(student.subtitle == null || student.subtitle == "")' class="profile-subtitle" style="font-style: italic;color: rgba(99,108,116,.45);">Write about yourself.</span>
                             </div>
-                            <div ng-show="editAbout" class="md-body-2" layout="column" style="background-color: #f1f1f1;border-radius: 2px;padding:8px; ">
-                                <input class="md-body-2 md-padding " md-colors="{color: 'grey'} " ng-model="studentAbout.about ">
+                            <div ng-show="editAbout"  layout="column" style="background-color: #f1f1f1;border-radius: 2px;padding:8px; ">
+                                <input class=" md-padding " md-colors="{color: 'grey'} " ng-model="studentAbout.about ">
                                 </input>
                                 <div layout="row " style="padding-top: 8px; " layout-align="space-around center ">
                                     <md-button class="md-raised" ng-click="editAbout=false;">Cancel</md-button>
@@ -331,8 +260,8 @@ md-chips .md-chips {
                                 </md-chip-template>
                             </md-chips>
                             <span class="profile-text-data" ng-show="student.Skills.data.length==0">You haven't added any skills!</span>
-                            <div ng-show="editSkills" class="md-body-2" layout="column" style="background-color: #f1f1f1;border-radius: 2px;padding:8px;">
-                                <input class="md-body-2 md-padding" placeholder="Type a skill to brag about" md-colors="{color: 'grey'}" ng-model="add.skill">
+                            <div ng-show="editSkills"  layout="column" style="background-color: #f1f1f1;border-radius: 2px;padding:8px;">
+                                <input class=" md-padding" placeholder="Type a skill to brag about" md-colors="{color: 'grey'}" ng-model="add.skill">
                                 </input>
                                 <div layout="row " style="padding-top: 8px; " layout-align="space-around center">
                                     <md-button class="md-raised" ng-click="editSkills=false;">Close</md-button>
@@ -388,7 +317,7 @@ md-chips .md-chips {
                 <div class="md-padding" layout-fill>
                     <div layout="column" layout-align="center center" ng-show="student.CreativeContents.data.length == 0">
                         <center>
-                            <p class="md-title" style="color:rgba(0,0,0,.44);">Let's get started by creating your first idea</p>
+                            <p  style="color:rgba(0,0,0,.44);">Let's get started by creating your first idea</p>
                         </center>
                         <img style="height: 200px; width: 200px;opacity: 0.8;" src="assets/svg/girl.svg" alt="">
                         <md-button class="md-primary" ui-sref="home.addCreativity">
@@ -404,7 +333,7 @@ md-chips .md-chips {
                                     <span style="width: 30%" class=" animated-background">Anything here </span>
                                 </md-card-header-text>
                             </md-card-header>
-                            <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
+                            <span class=" animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
                         </md-card>
                     </div>
                     <div flex layout="row" layout-wrap layout-align="center center">
@@ -449,7 +378,7 @@ md-chips .md-chips {
             <div label="Opportunity" ng-hide="(currentNavItem!='Opportunity')">
                 <div class="md-padding">
                     <div layout="column" ng-show="student.Events.data.length == 0" layout-align="center center">
-                        <p class="md-title" style="color:rgba(0,0,0,.44);">Opportunities don't happen, you create them</p>
+                        <p  style="color:rgba(0,0,0,.44);">Opportunities don't happen, you create them</p>
                         <center>
                         </center>
                         <md-button class="md-primary" ui-sref="home.addEvent">
@@ -495,11 +424,11 @@ md-chips .md-chips {
                     <!-- Heart Balloon icon by Icons8 -->
                     <center>
                         <center>
-                            <p class="md-title" style="color:rgba(0,0,0,.44);">Your Bookmarks will live here</p>
+                            <p  style="color:rgba(0,0,0,.44);">Your Bookmarks will live here</p>
                         </center>
                         <img style="height:200px; width: 200px; opacity: 0.8;" src="assets/svg/opportunist.svg" alt="">
                     </center>
-                    <p class="md-title" style="color:rgba(0,0,0,.44);">Your Bookmarks will live here</p>
+                    <p  style="color:rgba(0,0,0,.44);">Your Bookmarks will live here</p>
                     <md-button class="md-primary" ui-sref="home.creativity" title="Explore all creative content">Start exploring</md-button>
                 </div>
                 <div flex layout="row" layout-wrap layout-align="center center" ng-repeat="content in [1,2,3,4]">
@@ -512,7 +441,7 @@ md-chips .md-chips {
                                 <span style="width: 30%" class=" animated-background">Anything here </span>
                             </md-card-header-text>
                         </md-card-header>
-                        <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
+                        <span class=" animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
                     </md-card>
                 </div>
                 <div flex layout="row" layout-wrap layout-align="center center">

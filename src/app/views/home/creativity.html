@@ -3,13 +3,13 @@
         <!-- <creativity-filters></creativity-filters> -->
         <div flex-gt-xs="20">
             <center style="margin-top:8px; " hide-xs layout-wrap>
-                <h3 class="md-title">Categories</h3>
+                <h3 >Categories</h3>
                 <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected':'interest'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
                     {{ type.title }}
                 </md-button>
             </center>
             <div layout-align="start center" layout="row" hide-gt-xs>
-                <md-button class="" ng-click="filterToggle()">
+                <md-button  ng-click="filterToggle()">
                     <md-icon md-svg-icon="filter-outline"></md-icon>
                     Filter
                 </md-button>
@@ -43,7 +43,7 @@
                             <span style="width: 30%" class=" animated-background">Anything here  </span>
                         </md-card-header-text>
                     </md-card-header>
-                    <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
+                    <span class=" animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
                 </md-card> -->
             </div>
             <loading-creativity in-view="myPagingFunction()" in-view-options="{ generateParts: true,offset : 300,generateDirection:true }" ng-show="moreItems" layout-wrap style="width: 100%" layout="row" layout-align="space-around" hide-xs ></loading-creativity>

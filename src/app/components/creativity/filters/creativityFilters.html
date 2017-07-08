@@ -1,12 +1,12 @@
 <div flex-gt-xs="20">
     <center style="margin-top:8px; " hide-xs layout-wrap>
-        <h3 class="md-title">Categories</h3>
+        <h3 >Categories</h3>
         <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected':'interest'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
             {{ type.title }}
         </md-button>
     </center>
     <div layout-align="start center" layout="row" hide-gt-xs>
-        <md-button class="" ng-click="filterToggle()">
+        <md-button  ng-click="filterToggle()">
             <md-icon md-svg-icon="filter-outline"></md-icon>
             Filter
         </md-button>

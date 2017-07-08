@@ -1,25 +1,3 @@
-<style>
-.pink {
-    fill: rgb(233, 30, 99) !important;
-}
-
-.grey {
-    fill: #9E9E9E !important;
-}
-
-.creativity-description {
-    margin: 0px;
-    font-size: 23px;
-    line-height: 1.22;
-    letter-spacing: -.022em;
-    word-spacing: 0.1em;
-    font-weight: 300;
-    color: rgba(0, 0, 0, .44);
-    margin-top: 5px;
-    font-style: normal;
-    font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
-}
-</style>
 <div layout="column" layout-fill ng-controller="SearchCreativityController">
     <form hide-gt-sm ng-submit="searchedFast(searchText)">
         <md-autocomplete ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text="searchText" md-items="item in searchTypes" md-item-text="searchText" md-min-length="0" placeholder="Search for creativity here" md-menu-class="autocomplete-custom-template">
@@ -37,7 +15,7 @@
         <md-nav-item md-nav-click="searched('events', query)">Opportunities</md-nav-item>
         <md-nav-item md-nav-click="searched('creativity', query)">Creativity</md-nav-item>
     </md-nav-bar>
-    <h2 class="md-headline" style="color: rgba(0,0,0,.8);" ng-hide="query == '' || finalContents.length == 0">Results for "{{query}}" in creativity</h2>
+    <h2  style="color: rgba(0,0,0,.8);" ng-hide="query == '' || finalContents.length == 0">Results for "{{query}}" in creativity</h2>
     <div flex layout="row" layout-wrap ng-if="loading && query !=''" layout-align="center center" ng-repeat="content in [1,2,3,4]">
         <md-card ng-show="loading" flex="100" flex-gt-sm="60">
             <md-card-header>
@@ -48,7 +26,7 @@
                     <span style="width: 30%" class=" animated-background">Anything here </span>
                 </md-card-header-text>
             </md-card-header>
-            <span class="md-headline animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
+            <span class=" animated-background" flex="90" flex-offset="10" style="padding: 40px; margin-bottom: 50px">and again</span>
         </md-card>
         <div flex="20">
         </div>

@@ -12,10 +12,10 @@
                 </center>
             </div>
 
-            <center style="margin-top: 40px;" ng-if="item.mediaType=='image'" ng-init="item.css={};item.css.push(css);">
-                <div layout="row" layout-align="center center" style="position: relative;background:#fafbfc;max-width: 500px;max-height: 500px;">
-                    <img style="max-width: 100%" ng-src="{{item.image}}" />
-                    <md-button style="position: absolute;top: 0px;right:0px;color: #fff;text-shadow: 0px 1px 3px black;background-color: white;" ng-if="creativity.items.length > 1" ng-click="removeDrawing($index)" class="md-icon-button md-warn">
+            <center  ng-if="item.mediaType=='image'" ng-init="item.css={};item.css.push(css);">
+                <div layout="row" layout-align="center center" >
+                    <img  ng-src="{{item.image}}" />
+                    <md-button  ng-if="creativity.items.length > 1" ng-click="removeDrawing($index)" class="md-icon-button md-warn">
                         <md-icon md-svg-icon="close-circle-outline"></md-icon>
                     </md-button>
                 </div>
@@ -38,11 +38,11 @@
         <div layout="row">
             <div flex="100" ng-show="inputActive" layout="row" layout-align="space-between center">
                 <form flex="100" ng-submit="addArticleMedia(url)">
-                    <md-input-container md-no-float style="width:100%">
+                    <md-input-container md-no-float>
                         <md-icon md-svg-icon="link"></md-icon>
                         <input flex md-no-float md-autofocus="" ng-model="url" placeholder="Paste any url here" class=" ng-valid md-autofocus md-input ng-empty ng-touched" aria-label="url" id="input_8" aria-invalid="false">
                         <div class="md-errors-spacer"></div>
-                        <span class="md-caption" style="color:rgb(244, 67, 54);" ng-hide="error == ''">{{error}}</span>
+                        <span class="md-caption"  ng-hide="error == ''">{{error}}</span>
                     </md-input-container>
                 </form>
                 <button class="md-primary md-button" flex="20" ng-disabled="url == ''" ng-click="addArticleMedia(url)">Done</button>

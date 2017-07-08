@@ -5,7 +5,7 @@
     <md-dialog-content ng-controller="loginDialogController" ng-show="loginVar" class="md-dialog-content">
         <center>
             <img ng-src="{{user.imageUrl}}" alt="" style="border-radius: 50%; height: auto;width: 20%">
-            <p class="md-title">Log into your account</p>
+            <p >Log into your account</p>
         </center>
         <div class="md-padding" layout="column">
             <div>{{problem}}</div>
@@ -46,8 +46,8 @@
             <div ng-show="currentState==1" class="md-p adding autocomplete" layout="column">
                 <center>
                     <span class="md-subtitle" ng-show="message" style="color: #F44336;">{{message}}</span>
-                    <p class="md-headline"> Signing up for new account.</p>
-                    <p class="md-title">Select atleast 3 topics to
+                    <p > Signing up for new account.</p>
+                    <p >Select atleast 3 topics to
                         <br>personalise your content stream.</p>
                 </center>
                 <form>

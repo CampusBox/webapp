@@ -1,7 +1,7 @@
 <div layout="row" ng-controller="DashboardController" class="main-bg" class="md-padding" style="margin-bottom: 60px;">
     <div layout="column" flex-offset-gt-sm="10" flex-gt-sm="80" flex-xs="100" flex-sm="100">
         <div layout="row" layout-align="center center">
-            <h1 class="md-headline section-heading" style="padding-top: 0px;">
+            <h1 class=" section-heading" style="padding-top: 0px;">
                 Opportunities <span hide-xs>you can avail</span>
             </h1>
             <span flex></span>
@@ -9,11 +9,11 @@
         </div>
     
             </div>
-            <!-- <h1 class="md-headline section-heading">Creative works by other students</h1> -->
+            <!-- <h1 class=" section-heading">Creative works by other students</h1> -->
             <loading-creativity ng-if="creativityLoading" layout="row" ng-repeat="category in categories" layout-align="space-between" style="overflow: auto;"></loading-creativity>
             <div ng-show="!creativityLoading" ng-repeat="category in categories">
                 <div layout="row" layout-align="center center">
-                    <h1 class="md-headline section-heading">{{category.title}}</h1>
+                    <h1 class=" section-heading">{{category.title}}</h1>
                     <span flex></span>
                     <md-button class="md-primary" ng-show='category.finalContents.length > 0' ui-sref="home.creativity">See All</md-button>
                 </div>

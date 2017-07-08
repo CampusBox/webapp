@@ -1,10 +1,10 @@
 <div>
     <md-card-header layout="column" flex>
-        <a ui-sref="home.singleContent({contentId: content.id})" style="text-decoration: none;">
+        <a ui-sref="home.singleContent({contentId: content.id})" >
             <span class="creativity-title" ng-bind-html="content.title"></span>
         </a>
-        <a ui-sref="home.singleContent({contentId: content.id})" style="text-decoration: none;text-overflow: ellipsis;">
-            <p class="cb-grey-card creativity-description md-body-2 creativity-description-list app-description" ui-sref="home.singleContent({contentId: content.id})" style="cursor: pointer" ng-bind-html="content.items.text">
+        <a ui-sref="home.singleContent({contentId: content.id})" >
+            <p class="cb-grey-card creativity-description  creativity-description-list app-description" ui-sref="home.singleContent({contentId: content.id})"  ng-bind-html="content.items.text">
             </p>
         </a>
     <div ui-sref="home.singleContent({contentId: content.id})">

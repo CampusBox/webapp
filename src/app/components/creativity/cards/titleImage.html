@@ -5,7 +5,7 @@
         <md-icon class="play-button" ng-if="content.items.overlay == 'singing' " md-svg-icon="music-note" style="" aria-label="Alarm Icon"></md-icon>
     </div>
     <md-card-header layout="column" flex>
-        <a ui-sref="home.singleContent({contentId: content.id})" style="text-decoration: none;">
+        <a ui-sref="home.singleContent({contentId: content.id})" >
             <span class="creativity-title" ng-bind-html="content.title"></span>
         </a>
     </md-card-header>
