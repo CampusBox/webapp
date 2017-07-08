@@ -19,12 +19,7 @@
                                     <md-option ng-value="type.id" ng-repeat="type in types">{{type.title}}</md-option>
                                 </md-select>
                             </md-input-container>
-                            <!--  <md-input-container md-no-float flex>
-                                <label>Opportunity Category</label>clock
-                                <md-select ng-required="true" ng-model="event.category">
-                                    <md-option ng-value="category.id" ng-repeat="category in categories">{{category.title}}</md-option>
-                                </md-select>
-                            </md-input-container> -->
+                          
                         </div>
                         <div layout-gt-sm="row" flex>
                             <md-input-container md-no-float flex>
@@ -109,11 +104,7 @@
                             <label>Link to the event (website or facebook page)</label>
                             <input placeholder="http://" type="text" ng-model="event.link">
                         </md-input-container>
-                        <!-- 
-                        <md-input-container md-no-float>
-                            <label>Description</label>
-                            <textarea placeholder="Mention complete details here with rules(if a competition)" required="" ng-model="event.description" md-maxlength="1800" rows="4" md-select-on-focus></textarea>
-                        </md-input-container> -->
+                      
                         <md-input-container md-no-float>
                             <label>Enter tags for your event</label>
                             <md-chips name="skills" ng-model="tags" md-separator-keys="customKeys" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-max-chips="5" readonly="readonly" md-removable="removable" md-require-match="autocompleteDemoRequireMatch">
@@ -161,9 +152,7 @@
                     </div>
                     <span ng-show="result">Upload Successful</span>
                     <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
-                    <!-- <md-button style="float: right" class="md-raised md-primary" ng-click="submitOpportunity(event,tags)">
-                        Create
-                    </md-button> -->
+                   
                 </md-tab>
             </md-tabs>
             <md-dialog-actions layout="row">
