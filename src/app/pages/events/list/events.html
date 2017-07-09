@@ -1,7 +1,7 @@
 <div class="main-bg">
     <div layout-align="start center" layout="row" hide-gt-sm>
         <span flex></span>
-        <md-button style="text-transform: none;" ng-click="vm.toggleRightSidebar()" ui-sref="home.addEvent">
+        <md-button  ng-click="vm.toggleRightSidebar()" ui-sref="home.addEvent">
             Add an Opportunity
         </md-button>
     </div>
@@ -9,28 +9,27 @@
         <loading-events hide-xs layout="row" flex layout-align="start" layout-wrap flex-gt-xs="80"></loading-events>
     </div>
     <md-list ng-if="eventLoading" hide-gt-xs>
-        <md-list-item flex style="margin-bottom: 15px;" ng-repeat="event in [1,2]">
+        <md-list-item flex  ng-repeat="event in [1,2]">
             <md-card flex>
-                <md-card-title style="padding: 0px;">
-                    <div class="md-media-sm" style="width: 150px;height:150px; background-color: #eee">
-                        <img  style="width: 150px;height:150px;background-color: #f1f1f1" alt="">
+                <md-card-title >
+                    <div class="md-media-sm"  alt="">
                     </div>
-                    <div style="padding:  14px 23px 0px 33px;" flex layout="column">
-                        <p class="animated-background" style="margin-top: 0px;">Date · Time </p>
+                    <div  flex layout="column">
+                        <p class="animated-background">Date · Time </p>
                         <br>
-                        <p class=" animated-background" style="font-weight: 600;margin: 0px; background-color: #eee;color: transparent;">
+                        <p class=" animated-background" >
                             CampusBox launch
                         </p>
-                        <p style="margin:0;background-color: #eee;color: transparent;" class="md-caption animated-background">Main Auditorium, Thapar University</p>
+                        <p  class="md-caption animated-background">Main Auditorium, Thapar University</p>
                     </div>
                 </md-card-title>
             </md-card>
         </md-list-item>
     </md-list>
     <div ng-if="!eventLoading && !screenIsSmall" flex layout-align="start" layout="row" layout-wrap>
-        <event-card-vertical class="cb-card" ng-repeat="event in events|orderBy:'[timings.month,timings.day]'" style="width:280px;" data="event" bar="true"></event-card-vertical>
+        <event-card-vertical class="cb-card-vertical" ng-repeat="event in events|orderBy:'[timings.month,timings.day]'" data="event" bar="true"></event-card-vertical>
     </div>
     <div ng-if="!eventLoading && screenIsSmall" layout="column" flex-xs="100">
-        <event-card-horizontal class="cb-card cb-card-mobile" ng-repeat="event in events|orderBy:'[timings.month,timings.day]'" data="event" bar="true"></event-card-horizontal>
+        <event-card-horizontal class="cb-card cb-card-horizontal" ng-repeat="event in events|orderBy:'[timings.month,timings.day]'" data="event" bar="true"></event-card-horizontal>
     </div>
 </div>
