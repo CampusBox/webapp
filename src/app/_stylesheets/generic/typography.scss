@@ -62,7 +62,6 @@
     letter-spacing: 0;
     line-height: 1.5em;
     font-weight: 400;
-    margin: 0px;
 }
 
 .cb-info-text-white {
@@ -77,6 +76,24 @@
     font-size: $f-5;
     font-weight: $normal;
     margin: $s-0;
+}
+
+.cb-info-text {
+    font-size: $f-4;
+    font-weight: $normal;
+    margin: $s-0;
+}
+
+.text-limit-lines-3 {
+    height: 60px;
+    line-height: 20px;
+    overflow: hidden;
+}
+
+.text-limit-lines-2 {
+    height: 40px;
+    line-height: 20px;
+    overflow: hidden;
 }
 
 .justify {

@@ -10,11 +10,6 @@
 
             controller: function($mdDialog, $scope, $element, tokenService, $timeout, $location, $state, $rootScope, eventsActionsService) {
 
-                $scope.heartEvent = function(event, $index) {
-                    eventsActionsService.heart(event, $index);
-                    $scope.getParticipationState(event, index);
-
-                }
                 $scope.change = function(event, index, state) {
                     eventsActionsService.change(event, index, state);
                     $scope.getParticipationState(event, index);

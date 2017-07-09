@@ -1,31 +1,12 @@
+/*
+    Page specific elements
+*/
+
+// For going, interested and share buttons
 .event-action-button {
     font-size: 13px;
     padding: 0px;
     margin: 0px;
-}
-
-.event-month-vertical {
-    font-size: 20px;
-    color: $text-color-red;
-}
-
-.event-date-vertical {
-    font-size: 28px;
-}
-
-.event-month-horizontal {
-    font-size: $f-2;
-    font-weight: $bold;
-    color: $main-bg-color;
-    margin: 0px;
-    text-shadow: 0px 1px 3px black;
-}
-
-.event-date-horizontal {
-    font-size: $f-1;
-    color: $main-bg-color;
-    margin: 0px;
-    text-shadow: 0px 1px 3px black;
 }
 
 .event-cover-vertical {
@@ -43,18 +24,6 @@
     box-shadow: inset 0px 0px 0px 900px rgba(0, 0, 0, 0.4);
     background-size: cover !important;
     background-position: center !important;
-}
-
-.text-limit-lines-3 {
-    height: 60px;
-    line-height: 20px;
-    overflow: hidden;
-}
-
-.text-limit-lines-2 {
-    height: 40px;
-    line-height: 20px;
-    overflow: hidden;
 }
 
 .event-info-container-vertical {
@@ -81,10 +50,6 @@
     margin-right: 4px;
 }
 
-.event-description {
-    text-align: justify;
-}
-
 .event-description-container {
     margin: 0px;
     margin-left: $s-4;
@@ -97,10 +62,49 @@
     margin-left: $s-4;
 }
 
+.single-event-info-text-container {
+    margin-top: $s-2;
+}
+
 .event-date-container-vertical {
     margin: 0px;
     margin-left: $s-4;
     margin-bottom: $s-4;
+}
+
+
+/*
+    Page specific typography
+*/
+
+.event-month-vertical {
+    font-size: 20px;
+    color: $text-color-red;
+}
+
+.event-date-vertical {
+    font-size: 28px;
+}
+
+.event-month-horizontal {
+    font-size: $f-2;
+    font-weight: $bold;
+    color: $main-bg-color;
+    margin: 0px;
+    text-shadow: 0px 1px 3px black;
+}
+
+.event-date-horizontal {
+    font-size: $f-1;
+    color: $main-bg-color;
+    margin: 0px;
+    text-shadow: 0px 1px 3px black;
+}
+
+.event-info-text {
+    font-size: $f-4;
+    font-weight: $normal;
+    margin: $s-0;
 }
 
 @media only screen and (max-width: 600px) {
