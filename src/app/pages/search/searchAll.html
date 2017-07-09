@@ -1,4 +1,4 @@
-<div class="md-padding" ng-controller="SearchAllController as vm">
+<div class="" ng-controller="SearchAllController as vm">
     <form hide-gt-sm ng-submit="searchedFast(searchText)">
         <md-autocomplete md-autofocus ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text="searchText" md-items="item in searchTypes" md-item-text="searchText" md-min-length="0" placeholder="Search Campusbox" md-menu-class="autocomplete-custom-template">
             <md-item-template>
@@ -104,13 +104,13 @@
             </div>
         </div>
     </div>
-    <div class="md-padding" style="margin-top: 8%;" ng-show="(query !='' && students.length==0 && events.length==0 && creativity.length==0)" layout="column" layout-align="center center">
+    <div class="" style="margin-top: 8%;" ng-show="(query !='' && students.length==0 && events.length==0 && creativity.length==0)" layout="column" layout-align="center center">
         <img style="border-radius: 50%; width: 40%; margin-top:20px; background-color: #dfdfdf; padding-bottom: 33%" class="md-card-image">
         <p class="md-subhead" style="color:rgba(0,0,0,.44)">
             We couldn’t find anything, try something else
         </p>
     </div>
-    <div class="md-padding" style="margin-top: 8%;" ng-show="query == '' " layout="column" layout-align="center center">
+    <div class="" style="margin-top: 8%;" ng-show="query == '' " layout="column" layout-align="center center">
         <p class="md-subhead" style="color:rgba(0,0,0,.44)">Let us know what are you searching for...</p>
         <md-icon md-svg-icon="magnify"></md-icon>
     </div>

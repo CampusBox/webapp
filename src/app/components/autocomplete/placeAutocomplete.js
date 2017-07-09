@@ -25,7 +25,7 @@
 angular.module('angularMaterialAdmin')
     .directive('placeAutocomplete', function() {
         return {
-            templateUrl: 'app/views/partials/place-autocomplete.html',
+            templateUrl: 'app/components/autocomplete/place-autocomplete.html',
             restrict: 'E',
             replace: true,
             scope: {

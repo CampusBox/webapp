@@ -99,7 +99,7 @@
             $mdDialog.show({
                 controller: 'AddItemController',
                 heading: 'Tutorial',
-                templateUrl: 'app/views/partials/addBlogTutorial.html',
+                templateUrl: 'app/dialogs/addBlogTutorial.html',
                 parent: angular.element(document.body),
                 locals: {
                     title: "tutorial"
@@ -121,7 +121,7 @@
             $mdDialog.show({
                 controller: 'AddItemController',
                 heading: 'Tutorial',
-                templateUrl: 'app/views/partials/addBlogTutorial.html',
+                templateUrl: 'app/dialogs/addBlogTutorial.html',
                 parent: angular.element(document.body),
                 locals: {
                     title: "tutorial"

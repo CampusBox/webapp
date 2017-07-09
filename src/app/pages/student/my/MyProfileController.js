@@ -67,7 +67,7 @@
         $scope.showAdvanced = function(ev) {
             $mdDialog.show({
                 controller: DialogController,
-                templateUrl: 'app/views/partials/completeProfile.html',
+                templateUrl: 'app/dialogs/completeProfile.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose: true,
@@ -177,7 +177,7 @@
         $scope.showParticipants = function(ev, eventId) {
             $mdDialog.show({
                 controller: 'ParticipantsController',
-                templateUrl: 'app/views/partials/showParticipants.html',
+                templateUrl: 'app/dialogs/showParticipants.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 locals: {

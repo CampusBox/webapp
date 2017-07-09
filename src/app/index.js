@@ -285,7 +285,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
         $rootScope.openLoginDialog = function(callback) {
             $mdDialog.show({
                 controller: 'loginDialogController',
-                templateUrl: 'app/pages/partials/loginDialog.html',
+                templateUrl: 'app/dialogs/auth/loginDialog.html',
                 parent: angular.element(document.body),
                 escapeToClose: true,
                 fullscreen: true,
