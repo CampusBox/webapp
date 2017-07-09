@@ -2,24 +2,19 @@
  * Colours
  */
 
-$main-bg-color: #fff;
+$main-bg-color: #fff !important;
 // $text-color: #373737;
 $grey-color: #484848;
 $accent-color: rgb(0, 150, 136);
 $warning-color: #E75753;
-
-$text-color-black: rgba(0,0,0,.87)!important;
-$text-color-red: #e91e63!important;
-$text-color-grey: rgba(0,0,0,.44)!important;
-$text-color-light-grey: rgba(0,0,0,.44)!important;
-
-
-
+$text-color-black: rgba(0, 0, 0, .87) !important;
+$text-color-red: #e91e63 !important;
+$text-color-grey: rgba(0, 0, 0, .6) !important;
+$text-color-light-grey: rgba(0, 0, 0, .44) !important;
 
 /**
  * typography
  */
-
 
 //families
 $font-family: 'Open Sans',
@@ -28,35 +23,29 @@ BlinkMacSystemFont,
 Roboto,
 Helvetica Neue,
 sans-serif !important;
-
 // sizes
-$f-1 : 36px;
-$f-2 : 24px;
-$f-3 : 20px;
-$f-4 : 16px;
-
-
-$f-5 : 14px;
-$f-6 : 13px;
-$f-7 : 12px;
-
+$f-1: 36px;
+$f-2: 24px;
+$f-3: 20px;
+$f-4: 16px;
+$f-5: 14px;
+$f-6: 13px;
+$f-7: 12px;
 // weights
-// $thin :300;
+$thin :300;
 $normal:400;
+$semi-bold :600;
 $bold :700;
-
 // letter spacing
 $spacing-increase:0.035em;
 $spacing-reduce:-0.02em;
-
 // word spacing
-
-
 
 /**
  * layouts
  */
 
+$border-radius:2px;
 $inner-max-width:720px;
 $left-sidenav-width: 110px;
 $s-0:0px;
@@ -77,4 +66,3 @@ $s-10:40px;
 
 $card-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1),
 0 0 0 1px rgba(0, 0, 0, .02);
-

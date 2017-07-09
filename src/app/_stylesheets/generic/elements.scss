@@ -37,8 +37,15 @@
  * other elements
  */
 
+.main-container {
+    max-width: 1500px;
+    margin: auto;
+    padding-top: 16px;
+    padding-left: 16px;
+}
+
 .creativity-description p {
-    margin: 0px;
+    margin: $s-0;
 }
 
 .animated-background {
@@ -57,8 +64,8 @@
 .cb-card-vertical {
     overflow: hidden;
     background-color: white;
-    border-radius: 2px;
-    margin: 0px;
+    border-radius: $border-radius;
+    margin: $s-0;
     margin-right: $s-7;
     margin-bottom: $s-7;
     box-shadow: $card-shadow;
@@ -68,9 +75,10 @@
 .cb-card-horizontal {
     overflow: hidden;
     background-color: white;
-    border-radius: 2px;
-    margin: 0px;
+    border-radius: $border-radius;
+    margin: $s-0;
     margin-bottom: $s-4;
+    margin-right: $s-4;
     box-shadow: $card-shadow;
 }
 
@@ -79,4 +87,11 @@
     margin: auto;
 }
 
-@media only screen and (max-width: 500px) {}
+@media only screen and (max-width: 600px) {
+    .btn-add-mobile {
+        padding: $s-0;
+        margin: $s-0;
+        margin-right: $s-4;
+        margin-bottom: $s-4;
+    }
+}

@@ -1,35 +1,33 @@
 <div class="main-bg">
     <div layout-align="start center" layout="row" hide-gt-sm>
         <span flex></span>
-        <md-button  ng-click="vm.toggleRightSidebar()" ui-sref="home.addEvent">
+        <md-button class="btn-add-mobile" ng-click="vm.toggleRightSidebar()" ui-sref="home.addEvent">
             Add an Opportunity
         </md-button>
     </div>
     <div layout-align="center" layout="row">
         <loading-events hide-xs layout="row" flex layout-align="start" layout-wrap flex-gt-xs="80"></loading-events>
     </div>
-    <md-list ng-if="eventLoading" hide-gt-xs>
-        <md-list-item flex  ng-repeat="event in [1,2]">
-            <md-card flex>
-                <md-card-title >
-                    <div class="md-media-sm"  alt="">
-                    </div>
-                    <div  flex layout="column">
-                        <p class="animated-background">Date · Time </p>
-                        <br>
-                        <p class=" animated-background" >
-                            CampusBox launch
-                        </p>
-                        <p  class="md-caption animated-background">Main Auditorium, Thapar University</p>
-                    </div>
-                </md-card-title>
-            </md-card>
-        </md-list-item>
-    </md-list>
+    <div ng-if="eventLoading && screenIsSmall">
+        <div flex ng-repeat="event in [1,2]">
+            <div flex>
+                <div class="md-media-sm" alt="">
+                </div>
+                <div flex layout="column">
+                    <p class="animated-background">Date · Time </p>
+                    <br>
+                    <p class=" animated-background">
+                        CampusBox launch
+                    </p>
+                    <p class="md-caption animated-background">Main Auditorium, Thapar University</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <div ng-if="!eventLoading && !screenIsSmall" flex layout-align="start" layout="row" layout-wrap>
-        <event-card-vertical class="cb-card-vertical" ng-repeat="event in events|orderBy:'[timings.month,timings.day]'" data="event" bar="true"></event-card-vertical>
+        <event-card-vertical class="cb-card-vertical" ng-repeat="event in events" data="event" bar="true"></event-card-vertical>
     </div>
     <div ng-if="!eventLoading && screenIsSmall" layout="column" flex-xs="100">
-        <event-card-horizontal class="cb-card cb-card-horizontal" ng-repeat="event in events|orderBy:'[timings.month,timings.day]'" data="event" bar="true"></event-card-horizontal>
+        <event-card-horizontal class="cb-card-horizontal" ng-repeat="event in events" data="event" bar="true"></event-card-horizontal>
     </div>
 </div>

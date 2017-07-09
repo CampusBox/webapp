@@ -1,12 +1,10 @@
-
-
 .cb-white-fill {
     fill: #ffffff;
 }
 
 .cb-grey-fill {
-    fill: $grey-color;
-    opacity: 0.5;
+    fill: $text-color-grey;
+    opacity: 0.6;
 }
 
 
@@ -32,6 +30,7 @@
 .capitalize.grey_text.md-button.active .md-tile-content {
     color: #23cf5f;
 }
+
 
 /*Defaults*/
 

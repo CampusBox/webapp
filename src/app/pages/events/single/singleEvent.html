@@ -1,4 +1,4 @@
-<div ng-show="loading" layout="column" flex-gt-xs="80" flex-offset-gt-xs="10">
+<div ng-show="loading" layout="column" flex-gt-xs="80">
     <div layout-gt-xs="row" layout-xs="column" layout-align="start" layout-align-xs="strech start">
         <img flex-sm="40" flex-md="40" flex-lg="30" flex-xs="100" style="background-color: #eee;    min-height: 250px;" class="md-card-image">
         <div layout-gt-xs="column" layout-xs="row" flex flex-xs="100">
@@ -26,40 +26,40 @@
     <md-divider></md-divider>
 </div>
 
-<div layout="column" ng-show="!loading" class=" white-bg" flex-gt-xs="80">
+<div class="cb-body-container" layout="column" ng-show="!loading" class=" white-bg" layout-align="center">
     <div layout-gt-xs="row" layout-xs="column">
-        <div flex-sm="40" flex-md="40" flex-lg="30" flex-xs="100">
+        <div flex-sm="40" flex-md="40" flex-lg="40" flex-xs="100">
             <img ng-src="{{event.image}}" alt="Event title">
         </div>
         <div class="event-single-info-container" layout="column" flex flex-xs="100">
-            <p class="cb-section-heading mt-2">{{event.title}}</p>
+            <p class="cb-section-heading mt-4">{{event.title}}</p>
             <p class="cb-section-subheading mt-2">{{event.subtitle}}</p>
-            <div class="mt-2" layout="row" layout-align="start start">
-                <md-icon md-svg-icon="calendar-clock" class=" event-icon cb-grey-fill mr-1" aria-label="Alarm Icon"></md-icon>
+            <div class="mt-4" layout="row" layout-align="start start">
+                <md-icon md-svg-icon="calendar-clock" class=" event-icon cb-grey-fill mr-4" aria-label="Alarm Icon"></md-icon>
                 <p flex class="m-0">
                     {{event.timings.from.date | date: ' d MMM'}} · {{event.timings.from.time}}{{event.timings.from.period}} - {{event.timings.to.date==event.timings.from.date?null:event.timings.to.date | date: ' d MMM'}} · {{ event.timings.to.time}}{{event.timings.to.period}}
                 </p>
             </div>
-            <div class="mt-2" layout="row" layout-align="start start" ng-if="event.link">
-                <md-icon md-svg-icon="web" class="event-icon cb-grey-fill mr-1" aria-label="Website"></md-icon>
+            <div class="mt-4" layout="row" layout-align="start start" ng-if="event.link">
+                <md-icon md-svg-icon="web" class="event-icon cb-grey-fill mr-4" aria-label="Website"></md-icon>
                 <p flex class="m-0">
                     <a href="{{event.link}}" target="_blank"> {{event.link}} </a>
                 </p>
             </div>
-            <div class="mt-2" layout="row" layout-align="start start">
-                <md-icon md-svg-icon="map-marker" class="event-icon cb-grey-fill mr-1" aria-label="Alarm Icon"></md-icon>
+            <div class="mt-4" layout="row" layout-align="start start">
+                <md-icon md-svg-icon="map-marker" class="event-icon cb-grey-fill mr-4" aria-label="Alarm Icon"></md-icon>
                 <p flex class="m-0">
                     {{event.details.venue}}
                 </p>
             </div>
-            <div class="mt-2" layout="row" layout-align="start start">
-                <md-icon md-svg-icon="account-circle" class="event-icon cb-grey-fill mr-1" aria-label="Alarm Icon"></md-icon>
+            <div class="mt-4" layout="row" layout-align="start start">
+                <md-icon md-svg-icon="account-circle" class="event-icon cb-grey-fill mr-4" aria-label="Alarm Icon"></md-icon>
                 <p flex class="m-0">
                     By : <a href="{{event.organiser.link}}" target="_blank"> {{event.organiser.name}} </a>({{event.organiser.phone}})
                 </p>
             </div>
-            <div class="mt-2" layout="row" layout-align="start start">
-                <md-icon md-svg-icon="currency-inr" class="event-icon cb-grey-fill mr-1" aria-label="Alarm Icon"></md-icon>
+            <div class="mt-4" layout="row" layout-align="start start">
+                <md-icon md-svg-icon="currency-inr" class="event-icon cb-grey-fill mr-4" aria-label="Alarm Icon"></md-icon>
                 <p flex class="m-0">{{event.details.price? event.details.price+' /-' : 'Free'}}</p>
             </div>
         </div>
@@ -67,8 +67,6 @@
     <md-divider></md-divider>
     <event-actions layout="row" layout-align="space-around center"></event-actions>
     <md-divider></md-divider>
-    <div class="cb-body-container">
-        <p class="cb-body justify" ng-bind-html="event.details.description"></p>
-    </div>
+    <p class="cb-body justify" ng-bind-html="event.details.description"></p>
     <md-divider class="m-5"></md-divider>
 </div>
