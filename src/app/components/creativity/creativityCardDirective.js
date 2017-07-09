@@ -15,8 +15,8 @@
             controller: function($scope, $sce, creativityCategories) {
                 $scope.typesByID = creativityCategories.typesByID;
 
-                $scope.getTrustedHtml = function() {
-                    return $sce.trustAsHtml($scope.content.items.embed);
+                $scope.getTrustedHtml = function(data) {
+                    return $sce.trustAsHtml(data);
                 }
             }
         };

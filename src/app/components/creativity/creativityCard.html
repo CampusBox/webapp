@@ -1,11 +1,22 @@
-<div class="cb-card-vertical">
+<div class="cb-card-vertical creativity-card pointer">
     <a ui-sref="home.singleContent({contentId: content.id})">
-        <div ng-if="content.view_type == 1" class="embedCard" ng-bind-html="getTrustedHtml()"></div>
-        <title-image ng-if="content.view_type == 2" data="content"></title-image>
-        <title-content ng-if="content.view_type == 3" data="content"></title-content>
-        <apps-card ng-if="content.view_type == 4" data="content"></apps-card>
+        <div ng-if="content.view_type == 1" class="embed-card" ng-bind-html="getTrustedHtml(content.items.embed)"></div>
+        <div ng-if="content.view_type == 2" layout="column">
+            <div class="creativity-cover" style="background: url({{content.items.thumbnail}});" layout="column" layout-align="center center">
+                <md-icon class="creativity-overlay-button" ng-if="content.items.overlay == 'video' " md-svg-icon="play" aria-label="Alarm Icon"></md-icon>
+                <md-icon class="creativity-overlay-button" ng-if="content.items.overlay == 'singing' " md-svg-icon="music-note" aria-label="Alarm Icon"></md-icon>
+            </div>
+            <span class="cb-card-title" ng-bind-html="getTrustedHtml(content.title)"></span>
+        </div>
+        <div ng-if="content.view_type == 3" layout="column" flex>
+            <p class="cb-card-title" ng-bind-html="getTrustedHtml(content.title)"></p>
+            <div class="cb-card-body text-limit-lines-7" ng-bind-html="getTrustedHtml(content.items.text | limitTo : 250)"></div>
+        </div>
+        <div ng-if="content.view_type == 4" layout="column" flex>
+            <span class="cb-card-title" ng-bind-html="getTrustedHtml(content.title)"></span>
+            <p class="cb-card-body text-limit-lines-3" ng-bind-html="getTrustedHtml(content.items.text)"></p>
+            <img ng-src="{{content.items.icon}}" class="app-icon" alt="{{content.title}}">
+        </div>
         <creativity-actions></creativity-actions>
-        <h1>Ababjb</h1>
     </a>
-
 </div>

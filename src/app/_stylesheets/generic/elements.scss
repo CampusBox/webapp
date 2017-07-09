@@ -12,6 +12,16 @@
 
 
 /**
+* Stupid p tag
+*/
+
+p {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+/**
  * generic
  */
 
@@ -44,8 +54,10 @@
     padding-left: 16px;
 }
 
-.creativity-description p {
+.cb-card-title p {
     margin: $s-0;
+    color: inherit;
+    font-size: inherit;
 }
 
 .animated-background {

@@ -71,7 +71,6 @@
                     $scope.myPagingFunction();
                 } else {
                     $scope.finalContents = $scope.finalContentsCopy.filter(function(obj) {
-                        console.log(obj);
                         return deleteList.indexOf(obj.content_type) != -1;
                     });
                 }
@@ -90,7 +89,6 @@
                 } else {
 
                     $scope.finalContents = $scope.finalContentsCopy.filter(function(obj) {
-                        console.log(obj);
                         return deleteList.indexOf(obj.content_type) != -1;
                     });
                 }
@@ -102,7 +100,6 @@
         };
         // FILTERS SHIT END
         $scope.myPagingFunction = function() {
-            console.log("myPagingFunction");
             if ($scope.creativityLoading == false && $scope.moreItems == true) {
                 $scope.creativityLoading = true;
                 if ($scope.contentDetails.filters.length) {

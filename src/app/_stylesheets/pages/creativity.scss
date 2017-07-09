@@ -1,15 +1,31 @@
-.embedCard img {
-	object-fit: cover;
+.embed-card img {
+    object-fit: cover;
     height: 271px;
     width: 100%;
 }
-.appIcon-cover{
-	cursor: pointer;
-	object-fit: cover;
-	height: 150px;
-	width: 150px;
-	border-radius: 4px;
+
+.app-icon {
+    object-fit: cover;
+    height: 150px;
+    width: 150px;
+    border-radius: 4px;
 }
-.app-description{
-	height: 75px !important;
+
+.creativity-cover {
+    height: 213px;
+    object-fit: cover;
+    width: 100%;
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+.creativity-overlay-button {
+    fill: white;
+    border-style: solid;
+    border-color: white;
+    border-radius: 100%;
+    background: rgba(72, 69, 69, 0.47);
+    text-shadow: 2px 2px 2px black;
+    height: 60px;
+    width: 60px;
 }

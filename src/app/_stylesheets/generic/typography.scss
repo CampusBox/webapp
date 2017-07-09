@@ -51,10 +51,20 @@
     font-size: $f-5;
     letter-spacing: $spacing-increase;
     font-weight: $normal;
-    margin: $s-4;
-    margin-top: $s-0;
+    margin: $s-4 !important;
+    margin-top: $s-0 !important;
     color: $text-color-light-grey;
     text-align: justify;
+}
+
+.creativity-card {
+    height: 343px;
+    .cb-card-body {
+        text-align: left;
+    }
+    .p {
+        margin: $s-0;
+    }
 }
 
 .cb-body {
@@ -82,6 +92,12 @@
     font-size: $f-4;
     font-weight: $normal;
     margin: $s-0;
+}
+
+.text-limit-lines-7 {
+    height: 205px;
+    line-height: 29px;
+    overflow: hidden;
 }
 
 .text-limit-lines-3 {
