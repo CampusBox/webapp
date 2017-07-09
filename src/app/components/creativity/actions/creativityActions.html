@@ -1,15 +1,15 @@
-<md-card-header layout="row" layout-align="start center">
+<div layout="row" layout-align="start center">
     <md-card-avatar >
         <img class="md-user-avatar" ui-sref="home.profile({username: content.owner.username})" ng-src="{{content.owner.photo}}" />
     </md-card-avatar>
-    <md-card-header-text ui-sref="home.singleContent({contentId: content.id})" >
+    <div ui-sref="home.singleContent({contentId: content.id})" >
         <span class="md-caption ">
         <span class="capitalize blue_text"  ng-click="openProfile($event, content.owner.username);" >{{content.owner.name}} </span>
         <span ng-show="showcategory" class="blue_text"> 
         <span ><br ng-show="actions"> in</span> 
         {{content.content_type?typesByID[content.content_type]:"Unknown"}} </span>
         </span>
-    </md-card-header-text>
+    </div>
     <div layout="row" layout-align="start center" flex="50" ng-show="actions">
         <md-button class="appreciate-button md-icon-button" ng-click="heart(content)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
             <md-icon class="pink" md-svg-icon="{{content.actions.appreciate.status? 'heart' : 'heart-outline' }}"></md-icon>
@@ -22,4 +22,4 @@
             <md-icon ng-class="content.actions.bookmarks.status? 'grey':''" md-svg-icon="{{content.actions.bookmarks.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
         </md-button>
     </div>
-</md-card-header>
+</div>

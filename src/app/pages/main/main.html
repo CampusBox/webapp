@@ -152,15 +152,15 @@
         </md-button>
         </md-menu>
     </md-toolbar>
-    <md-content flex class="md-padding page-content" height="100%" style="background-color: {{currentPageBackground}} ">
+    <div flex class="md-padding page-content" height="100%" style="background-color: {{currentPageBackground}} ">
         <div ui-view class="manageXs" style="max-width: 1500px;margin:auto;">
         </div>
-    </md-content>
+    </div>
     <md-sidenav md-component-id="right" class="md-sidenav-right">
         <section>
             <!-- <div ng-include src=" 'app/views/partials/messages.html'"></div> -->
             <div class="messages" layout-fill>
-                <md-content class="messages-content">
+                <div class="messages-content">
                     <md-list>
                         <md-list-item class="md-2-line" ng-click="vm.toggleRightSidebar()" ui-sref="home.myProfile({tab: 'profile'})">
                             <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
@@ -229,7 +229,7 @@
                             </div>
                         </md-button>
                     </md-menu-item>
-                </md-content>
+                </div>
             </div>
         </section>
     </md-sidenav>
