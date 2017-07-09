@@ -12,8 +12,12 @@
                 content: '=data',
                 showcategory: '=showcategory'
             },
-            controller: function($scope, creativityCategories) {
+            controller: function($scope, $sce, creativityCategories) {
                 $scope.typesByID = creativityCategories.typesByID;
+
+                $scope.getTrustedHtml = function() {
+                    return $sce.trustAsHtml($scope.content.items.embed);
+                }
             }
         };
     });

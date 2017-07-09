@@ -1,7 +1,11 @@
-<div class="cb-card-vertical ">
-    <embed-card ng-if="content.view_type == 1"  data="content"></embed-card>
-    <title-image ng-if="content.view_type == 2"  data="content"></title-image>
-    <title-content ng-if="content.view_type == 3"  data="content"></title-content>
-    <apps-card ng-if="content.view_type == 4"  data="content"></apps-card>
-    <creativity-actions></creativity-actions>
+<div class="cb-card-vertical">
+    <a ui-sref="home.singleContent({contentId: content.id})">
+        <div ng-if="content.view_type == 1" class="embedCard" ng-bind-html="getTrustedHtml()"></div>
+        <title-image ng-if="content.view_type == 2" data="content"></title-image>
+        <title-content ng-if="content.view_type == 3" data="content"></title-content>
+        <apps-card ng-if="content.view_type == 4" data="content"></apps-card>
+        <creativity-actions></creativity-actions>
+        <h1>Ababjb</h1>
+    </a>
+
 </div>
