@@ -1,25 +1,27 @@
 <div layout="column">
-    <div layout="row" ui-sref="home.singleEvent({eventId: event.id})">
-        <div class="event-cover-horizontal" style="background: url({{event.image}});" flex="30" layout="column" layout-align="center center">
-            <p class="event-month-horizontal">{{event.timings.month}}</p>
-            <p class="event-date-horizontal">{{event.timings.day}}</p>
-        </div>
-        <div flex="70" class="p-4">
-            <p class="cb-card-title" md-truncate>{{event.title | limitTo : 30}}</p>
-            <p class="text-limit-lines-2 cb-card-body">{{event.subtitle| limitTo : 100}}</p>
-            <div class="event-info-container-horizontal">
-                <div flex="50" layout="row" style="float: left;" md-truncate>
-                    <md-icon class="event-icon cb-grey-fill" ng-show="event.location.type" md-svg-icon="map-marker"></md-icon>
-                    <md-icon class="event-icon cb-grey-fill" ng-hide="event.location.type" md-svg-icon="earth"></md-icon>
-                    <p class="cb-info-text-grey">{{event.location.data}}</p>
-                </div>
-                <div flex="50" layout="row" style="float: right;" md-truncate>
-                    <md-icon class="event-icon cb-grey-fill" md-svg-icon="currency-inr"></md-icon>
-                    <p class="cb-info-text-grey">{{event.price?event.price:" No Fees"}}</p>
+    <a ui-sref="home.singleEvent({eventId: event.id})">
+        <div layout="row">
+            <div class="event-cover-horizontal" style="background: url({{event.image}});" flex="30" layout="column" layout-align="center center">
+                <p class="event-month-horizontal">{{event.timings.month}}</p>
+                <p class="event-date-horizontal">{{event.timings.day}}</p>
+            </div>
+            <div flex="70" class="p-4">
+                <p class="cb-card-title" md-truncate>{{event.title | limitTo : 30}}</p>
+                <p class="text-limit-lines-2 cb-card-body">{{event.subtitle| limitTo : 100}}</p>
+                <div class="event-info-container-horizontal">
+                    <div flex="50" layout="row" style="float: left;" md-truncate>
+                        <md-icon class="event-icon cb-grey-fill" ng-show="event.location.type" md-svg-icon="map-marker"></md-icon>
+                        <md-icon class="event-icon cb-grey-fill" ng-hide="event.location.type" md-svg-icon="earth"></md-icon>
+                        <p class="cb-info-text-grey">{{event.location.data}}</p>
+                    </div>
+                    <div flex="50" layout="row" style="float: right;" md-truncate>
+                        <md-icon class="event-icon cb-grey-fill" md-svg-icon="currency-inr"></md-icon>
+                        <p class="cb-info-text-grey">{{event.price?event.price:" No Fees"}}</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </a>
     <md-divider></md-divider>
     <event-actions ng-if="bar" layout="row" layout-align="space-between end"></event-actions>
 </div>
