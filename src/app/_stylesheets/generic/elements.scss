@@ -36,7 +36,9 @@
     overflow: hidden;
     background-color: white;
     border-radius: 2px;
-    margin: 16px;
+    margin: 0px;
+    margin-left: 16px;
+    margin-bottom: 16px;
     box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
     width: 280px;
 }
@@ -45,10 +47,8 @@
     overflow: hidden;
     background-color: white;
     border-radius: 2px;
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    margin: 0px;
+    margin-bottom: 16px;
     box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
 }
 
