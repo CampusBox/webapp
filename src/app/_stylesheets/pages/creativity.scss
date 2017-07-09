@@ -1,0 +1,15 @@
+.embedCard img {
+	object-fit: cover;
+    height: 271px;
+    width: 100%;
+}
+.appIcon-cover{
+	cursor: pointer;
+	object-fit: cover;
+	height: 150px;
+	width: 150px;
+	border-radius: 4px;
+}
+.app-description{
+	height: 75px !important;
+}
