@@ -37,7 +37,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
         $stateProvider
             .state('home', {
                 url: '',
-                templateUrl: 'app/views/main.html',
+                templateUrl: 'app/pages/main/main.html',
                 controller: 'MainController',
                 controllerAs: 'vm',
                 abstract: true,
@@ -45,14 +45,14 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
             })
             .state('static', {
                 url: '',
-                templateUrl: 'app/views/static.html',
+                templateUrl: 'app/pages/main/static.html',
                 controller: 'StaticController',
                 controllerAs: 'vm',
                 abstract: true
             })
             .state('home.myProfile', {
                 url: '/myProfile/:tab',
-                templateUrl: 'app/main/student/my/myProfile.html',
+                templateUrl: 'app/pages/student/my/myProfile.html',
                 controller: 'MyProfileController',
                 controllerAs: 'vm',
                 data: {
@@ -62,7 +62,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
             })
             .state('home.addEvent', {
                 url: '/addEvent',
-                templateUrl: 'app/main/events/add/addEvent.html',
+                templateUrl: 'app/pages/events/add/addEvent.html',
                 controller: 'AddEventController',
                 controllerAs: 'vm',
                 data: {
@@ -73,7 +73,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
             })
             .state('home.singleEvent', {
                 url: '/singleEvent/:eventId',
-                templateUrl: 'app/main/events/single/singleEvent.html',
+                templateUrl: 'app/pages/events/single/singleEvent.html',
                 controller: 'SingleEventController',
                 controllerAs: 'vm',
                 data: {
@@ -84,59 +84,59 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
             .state('static.login', {
                 url: '/login',
                 controller: 'LoginController',
-                templateUrl: 'app/views/static/login.html',
+                templateUrl: 'app/pages/static/login.html',
 
             })
             .state('static.signUp', {
                 url: '/signup',
                 controller: 'SignUpController',
-                templateUrl: 'app/views/static/signUp.html',
+                templateUrl: 'app/pages/static/signUp.html',
 
             })
 
         .state('home.dashboard', {
                 url: '/dashboard',
                 controler: 'DashboardController',
-                templateUrl: 'app/main/dashboard/dashboard.html',
+                templateUrl: 'app/pages/dashboard/dashboard.html',
 
             })
             .state('home.dashboardFromStatic', {
                 url: '/dashboard/:onboard',
                 controler: 'DashboardController',
-                templateUrl: 'app/main/dashboard/dashboard.html',
+                templateUrl: 'app/pages/dashboard/dashboard.html',
 
             })
             .state('home.searchEvents', {
                 url: '/search/events/:query',
                 controler: 'SearchEventsController',
                 controllerAs: 'vm',
-                templateUrl: 'app/main/search/searchEvents.html',
+                templateUrl: 'app/pages/search/searchEvents.html',
 
             })
             .state('home.searchCreativity', {
                 url: '/search/creativity/:query',
                 controler: 'SearchCreativityController',
                 controllerAs: 'vm',
-                templateUrl: 'app/main/search/searchCreativity.html',
+                templateUrl: 'app/pages/search/searchCreativity.html',
 
             })
             .state('home.searchStudents', {
                 url: '/search/students/:query',
                 controler: 'SearchStudentsController',
                 controllerAs: 'vm',
-                templateUrl: 'app/main/search/searchStudents.html',
+                templateUrl: 'app/pages/search/searchStudents.html',
 
             })
             .state('home.searchAll', {
                 url: '/search/:query',
                 controler: 'SearchAllController',
                 controllerAs: 'vm',
-                templateUrl: 'app/main/search/searchAll.html',
+                templateUrl: 'app/pages/search/searchAll.html',
 
             })
             .state('home.profile', {
                 url: '/profile/:username',
-                templateUrl: 'app/main/student/single/profile.html',
+                templateUrl: 'app/pages/student/single/profile.html',
                 controller: 'ProfileController',
                 controllerAs: 'vm',
                 data: {
@@ -145,7 +145,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
             })
             .state('home.singleContent', {
                 url: '/singleContent/:contentId',
-                templateUrl: 'app/main/creativity/single/singleCreativity.html',
+                templateUrl: 'app/pages/creativity/single/singleCreativity.html',
                 controller: 'SingleContentController',
                 controllerAs: 'vm',
                 data: {
@@ -154,7 +154,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
             })
             .state('home.events', {
                 url: '/events',
-                templateUrl: 'app/main/events/list/events.html',
+                templateUrl: 'app/pages/events/list/events.html',
                 controller: 'EventsController',
                 controllerAs: 'vm',
                 data: {
@@ -163,7 +163,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
             })
             .state('home.creativity', {
                 url: '/creativity',
-                templateUrl: 'app/main/creativity/list/creativity.html',
+                templateUrl: 'app/pages/creativity/list/creativity.html',
                 controller: 'CreativityController',
                 controllerAs: 'vm',
                 data: {
@@ -173,7 +173,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
 
         .state('home.addCreativity', {
             url: '/addCreativity',
-            templateUrl: 'app/main/creativity/add/addCreativity.html',
+            templateUrl: 'app/pages/creativity/add/addCreativity.html',
             controller: 'AddCreativityController',
             controllerAs: 'vm',
             data: {
@@ -285,7 +285,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
         $rootScope.openLoginDialog = function(callback) {
             $mdDialog.show({
                 controller: 'loginDialogController',
-                templateUrl: 'app/views/partials/loginDialog.html',
+                templateUrl: 'app/pages/partials/loginDialog.html',
                 parent: angular.element(document.body),
                 escapeToClose: true,
                 fullscreen: true,

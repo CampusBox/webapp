@@ -1,5 +1,15 @@
-.pointer{
+.pointer {
     cursor: pointer;
+}
+
+.horizontal-scroll {
+    height: 375px;
+    overflow-y: hidden;
+}
+
+.center {
+    text-align: center;
+    margin: auto;
 }
 
 .animated-background {

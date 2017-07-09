@@ -2,7 +2,7 @@
     <div layout-gt-xs="row" layout-xs="column">
         <!-- <creativity-filters></creativity-filters> -->
         <div flex-gt-xs="20">
-            <center style="margin-top:8px; " hide-xs layout-wrap>
+            <center hide-xs layout-wrap>
                 <h3>Categories</h3>
                 <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected':'interest'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
                     {{ type.title }}
@@ -14,7 +14,7 @@
                     Filter
                 </md-button>
                 <span flex></span>
-                <md-button ui-sref="home.addCreativity" style="text-transform:none;">
+                <md-button ui-sref="home.addCreativity" >
                     Add a Creativity
                     <!-- <md-icon md-svg-icon="all-inclusive"></md-icon> -->
                 </md-button>
@@ -31,7 +31,7 @@
         </div>
         <div flex layout-align="space-around" layout-gt-xs="row" layout-xs="row" layout-wrap class="creativity-page" infinite-scroll="myPagingFunction() " infinite-scroll-disabled='creativityLoading' infinite-scroll-distance="3 ">
             <div flex-lg="30" flex-md="45" flex-sm="45" flex-xs="100" ng-repeat="content in finalContents track by $index">
-                <creativity-card style="margin-left: 4px;min-width: 98%;" data="content" showcategory="true" actions="true"></creativity-card>
+                <creativity-card  data="content" showcategory="true" actions="true"></creativity-card>
             </div>
             <loading-creativity in-view="myPagingFunction()" in-view-options="{ generateParts: true,offset : 300,generateDirection:true }" ng-show="moreItems" layout-wrap style="width: 100%" layout="row" layout-align="space-around" hide-xs></loading-creativity>
             <loading-creativity in-view="myPagingFunction()" in-view-options="{ generateParts: true,offset : 300,generateDirection:true }" ng-show="moreItems" layout="column" style="width: 100%" layout-align="space-around" hide-gt-xs></loading-creativity>
