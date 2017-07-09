@@ -129,18 +129,8 @@
                     $scope.heart(content, $index);
                 });
             }
-        }
-        $scope.openUrlAdd = function(ev) {
-            $mdDialog.show({
-                controller: 'AddUrlController',
-                templateUrl: 'app/views/partials/addUrl.html',
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                clickOutsideToClose: true,
-                fullscreen: true // Only for -xs, -sm breakpoints.
-            })
         };
-
+        
 
     }
 }());

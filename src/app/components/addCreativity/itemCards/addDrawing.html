@@ -13,7 +13,7 @@
                     </md-button>
                 </div>
                 <md-card ng-cloak ng-if="creativity.items.length > 1" ng-show="filterVisible" style="max-width: 500px;max-height: 210px">
-                    <md-content layout="row" layout-padding>
+                    <div layout="row" layout-padding>
                         <md-slider-container flex="20">
                             <md-slider md-discrete ng-model="filter.brightness" min="50" max="200" aria-label="bass" class="md-primary" md-vertical></md-slider>
                             </md-slider>
@@ -38,7 +38,7 @@
                                 <md-radio-button value="270">270 Deg</md-radio-button>
                             </md-radio-group>
                         </div>
-                    </md-content>
+                    </div>
                 </md-card>
             </center>
             <div ng-if="item.iframe != '' && item.mediaType == 'embed'">

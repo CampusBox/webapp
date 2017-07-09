@@ -1,7 +1,7 @@
-<div layout="row" layout-xs="column" layout-align-gt-xs="center start" flex md-padding>
-    <div layout="column" md-padding hide-xs ng-if="studentLoading" flex="15" flex-xs="100" flex-offset-gt-xs="5">
+<div layout="row" layout-xs="column" layout-align-gt-xs="center start" flex >
+    <div layout="column"  hide-xs ng-if="studentLoading" flex="15" flex-xs="100" flex-offset-gt-xs="5">
         <center>
-            <img style="border-radius: 5px; width: 100%; margin-top:20px; background-color: #dfdfdf; padding-bottom: 33%" class="div layout=" column " md-padding-image">
+            <img style="border-radius: 5px; width: 100%; margin-top:20px; background-color: #dfdfdf; padding-bottom: 33%" class="div layout=" column " -image">
             <div layout="column" layout-align="center center">
                 <br>
                 <span class=" animated-background">student.title</span>
@@ -30,8 +30,8 @@
         <div layout="row" layout-align="end center">
         </div>
     </div>
-    <div layout="column" md-padding hide-xs ng-if="!studentLoading" flex="20" flex-xs="100" style="min-width: 20%;">
-        <img style="border-radius: 5px; width: 100%; margin-top:20px; background-color: #ccc;" ng-src="{{student.photo}}" class="div layout=" column " md-padding-image" alt="{{student.name}}">
+    <div layout="column"  hide-xs ng-if="!studentLoading" flex="20" flex-xs="100" style="min-width: 20%;">
+        <img style="border-radius: 5px; width: 100%; margin-top:20px; background-color: #ccc;" ng-src="{{student.photo}}" class="div layout=" column " -image" alt="{{student.name}}">
         <div>
             <p >{{student.name}}</p>
         </div>
@@ -47,7 +47,7 @@
                         </md-button> -->
             </div>
             <div class=" " layout="column " ng-show="editCollege " style="background-color: #f1f1f1;border-radius: 2px;padding:8px; ">
-                <input class=" md-padding " md-colors="{color: 'grey'} " ng-model="studentAbout.about ">
+                <input class="  " md-colors="{color: 'grey'} " ng-model="studentAbout.about ">
                 </input>
                 <div layout="row " style="padding-top: 8px; " layout-align="space-around center ">
                     <md-button class="md-raised " ng-click="editCollege=false; ">Cancel
@@ -65,7 +65,7 @@
                 </md-button>
             </div>
             <div class=" " layout="column " ng-show="editAbout" style="background-color: #f1f1f1;border-radius: 2px;padding:8px; ">
-                <input class=" md-padding " md-colors="{color: 'grey'} " ng-model="studentAbout.about ">
+                <input class="  " md-colors="{color: 'grey'} " ng-model="studentAbout.about ">
                 </input>
                 <div layout="row " style="padding-top: 8px; " layout-align="space-around center ">
                     <md-button class="md-raised " ng-click="editAbout = false">Cancel
@@ -93,7 +93,7 @@
                 </md-chips>
             </div>
             <div  layout="column" ng-hide="readonly" style="background-color: #f1f1f1;border-radius: 2px;padding:8px;">
-                <input class=" md-padding" placeholder="Type a skill to brag about" md-colors="{color: 'grey'}" ng-model="add.skill">
+                <input class=" " placeholder="Type a skill to brag about" md-colors="{color: 'grey'}" ng-model="add.skill">
                 </input>
                 <div layout="row " style="padding-top: 8px; " layout-align="space-around center">
                     <md-button class="md-raised " ng-click="readonly=true; ">Cancel
@@ -119,7 +119,7 @@
             <md-divider></md-divider>
         </div>
     </div>
-    <div layout="column" md-padding flex="55" flex-xs="100" flex-offset-gt-xs="5">
+    <div layout="column"  flex="55" flex-xs="100" flex-offset-gt-xs="5">
         <div>
             <div style="padding-bottom: 20px;">
                 <div layout="row" style="width:100%;">
@@ -178,9 +178,9 @@
                     </div>
                 </div>
                 <md-divider></md-divider>
-                <div layout="column" md-padding show-xs hide-gt-xs ng-if="studentLoading">
+                <div layout="column"  show-xs hide-gt-xs ng-if="studentLoading">
                     <center>
-                        <img style="border-radius: 5px; width: 100%; background-color: #dfdfdf; padding-bottom: 33%" class="div layout=" column " md-padding-image">
+                        <img style="border-radius: 5px; width: 100%; background-color: #dfdfdf; padding-bottom: 33%" class="div layout=" column " -image">
                         <div layout="column" layout-align="center center">
                             <br>
                             <span class=" animated-background">student.title </span>
@@ -233,7 +233,7 @@
                                 <span ng-show='(student.subtitle == null || student.subtitle == "")' class="profile-subtitle" style="font-style: italic;color: rgba(99,108,116,.45);">Write about yourself.</span>
                             </div>
                             <div ng-show="editAbout"  layout="column" style="background-color: #f1f1f1;border-radius: 2px;padding:8px; ">
-                                <input class=" md-padding " md-colors="{color: 'grey'} " ng-model="studentAbout.about ">
+                                <input class="  " md-colors="{color: 'grey'} " ng-model="studentAbout.about ">
                                 </input>
                                 <div layout="row " style="padding-top: 8px; " layout-align="space-around center ">
                                     <md-button class="md-raised" ng-click="editAbout=false;">Cancel</md-button>
@@ -261,7 +261,7 @@
                             </md-chips>
                             <span class="profile-text-data" ng-show="student.Skills.data.length==0">You haven't added any skills!</span>
                             <div ng-show="editSkills"  layout="column" style="background-color: #f1f1f1;border-radius: 2px;padding:8px;">
-                                <input class=" md-padding" placeholder="Type a skill to brag about" md-colors="{color: 'grey'}" ng-model="add.skill">
+                                <input class=" " placeholder="Type a skill to brag about" md-colors="{color: 'grey'}" ng-model="add.skill">
                                 </input>
                                 <div layout="row " style="padding-top: 8px; " layout-align="space-around center">
                                     <md-button class="md-raised" ng-click="editSkills=false;">Close</md-button>
@@ -314,7 +314,7 @@
                 </div>
             </div>
             <div label="creativity" ng-hide="(currentNavItem!='creativity')">
-                <div class="md-padding" layout-fill>
+                <div class="" layout-fill>
                     <div layout="column" layout-align="center center" ng-show="student.CreativeContents.data.length == 0">
                         <center>
                             <p  style="color:rgba(0,0,0,.44);">Let's get started by creating your first idea</p>
@@ -376,7 +376,7 @@
                 </div>
             </div>
             <div label="Opportunity" ng-hide="(currentNavItem!='Opportunity')">
-                <div class="md-padding">
+                <div class="">
                     <div layout="column" ng-show="student.Events.data.length == 0" layout-align="center center">
                         <p  style="color:rgba(0,0,0,.44);">Opportunities don't happen, you create them</p>
                         <center>
@@ -469,7 +469,7 @@
                 </div>
             </div>
             <div label="RSVPs" ng-show="(currentNavItem=='RSVPs')" ng-if="student.AttendingEvents.data.length">
-                <div class="md-padding">
+                <div class="">
                     <div layout="row" ng-hide="!vm.activated" layout-sm="column" layout-align="space-around">
                         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
                     </div>
@@ -487,7 +487,7 @@
                 </div>
             </div>
             <div label="following" ng-show="(currentNavItem=='following')" ng-if="student.Following.data.length">
-                <div class="md-padding">
+                <div class="">
                     <md-list-item class="md-3-line" ui-sref="home.profile({username: item.username})" ng-repeat="item in student.Following.data track by $index" ng-click="null">
                         <img ng-src="{{item.photo}}" class="md-avatar" alt="" />
                         <div class="md-list-item-text" layout="row">
@@ -505,7 +505,7 @@
                 </div>
             </div>
             <div label="followers" ng-show="(currentNavItem=='followers')" ng-if="student.Follower.data.length">
-                <div class="md-padding">
+                <div class="">
                     <md-list-item class="md-3-line" ui-sref="home.profile({username: item.username})" ng-repeat="item in student.Follower.data track by $index" ng-click="null">
                         <img ng-src="{{item.photo}}" class="md-avatar" alt="" />
                         <div class="md-list-item-text" layout="row">

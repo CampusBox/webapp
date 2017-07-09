@@ -76,7 +76,7 @@
             $event.stopPropagation();
             $mdDialog.show({
                 controller: 'ShowLikesController',
-                templateUrl: 'app/views/partials/showLikes.html',
+                templateUrl: 'app/dialogs/showLikes.html',
                 parent: angular.element(document.body),
                 scope: $scope,
                 locals: {

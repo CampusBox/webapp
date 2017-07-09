@@ -3,7 +3,7 @@
         <form name="eventForm" novalidate ng-submit=" submitEvent(event,tags)">
             <md-tabs md-dynamic-height md-border-bottom="" md-selected="selectedIndex">
                 <md-tab label="Basic Details">
-                    <div class="md-padding" layout="column" layout-padding>
+                    <div class="" layout="column" layout-padding>
                         <md-input-container md-no-float>
                             <label>Title</label>
                             <input placeholder="My demo event" placeholder="My demo event" md-autofocus="" ng-required="true" type="text" ng-model="event.title" md-maxlength="40">
@@ -82,7 +82,7 @@
                     </div>
                 </md-tab>
                 <md-tab label="Description">
-                    <div class="md-padding">
+                    <div class="">
                         <center ng-if="!tutorial">
                             <br>
                             <img ng-src="assets/images/addOpportunity.gif" style="border-color: #ccc;border-radius: 6px; border-style: solid;max-width: 90%" src="assets/images/editing.gif">
@@ -95,7 +95,7 @@
                     </div>
                 </md-tab>
                 <md-tab label="Additional Details">
-                    <div class="md-padding" layout="column">
+                    <div class="" layout="column">
                         <md-input-container md-no-float flex>
                             <!-- <label>Opportunity Venue</label> -->
                             <place-autocomplete placeholder="Mention college name if event is open for all participants" type="text" ng-model="event.venue" md-maxlength="100"></place-autocomplete>

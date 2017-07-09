@@ -1,8 +1,8 @@
 <div layout="row" layout-xs="column" layout-align-gt-xs="start none" flex>
     <!-- <div hide-cs> -->
-    <div layout="column" md-padding hide-xs ng-if="studentLoading" flex="15" flex-xs="100" flex-offset-gt-xs="5">
+    <div layout="column"  hide-xs ng-if="studentLoading" flex="15" flex-xs="100" flex-offset-gt-xs="5">
         <center>
-            <img style="border-radius: 5px; width: 100%; margin-top:20px; background-color: #dfdfdf; padding-bottom: 33%" class="div layout=" column " md-padding-image">
+            <img style="border-radius: 5px; width: 100%; margin-top:20px; background-color: #dfdfdf; padding-bottom: 33%" class="div layout=" column " -image">
             <div layout="column" layout-align="center center">
                 <br>
                 <span class=" animated-background">student.title </span>
@@ -30,9 +30,9 @@
         </div>
         <div layout="row" layout-align="end center">
         </div>
-    </div layout="column" md-padding>
-    <div layout="column" md-padding hide-xs ng-if="!studentLoading" flex="15" flex-xs="100" flex-offset-gt-xs="5" style="min-width: 200px;">
-        <img style="border-radius: 5px; width: 100%; margin-top:20px; background-color: #ccc;" ng-src="{{profile.photo}}" class="div layout=" column " md-padding-image" alt="{{profile.name}}">
+    </div layout="column" >
+    <div layout="column"  hide-xs ng-if="!studentLoading" flex="15" flex-xs="100" flex-offset-gt-xs="5" style="min-width: 200px;">
+        <img style="border-radius: 5px; width: 100%; margin-top:20px; background-color: #ccc;" ng-src="{{profile.photo}}" class="div layout=" column " -image" alt="{{profile.name}}">
         <div>
             <div>
                 <p >{{profile.name}}</p>
@@ -77,9 +77,9 @@
                 </md-list-item>
             </md-list>
         </div>
-    </div layout="column" md-padding>
+    </div layout="column" >
     <!-- </div> -->
-    <div layout="column" md-padding flex="70" flex-xs="100" flex-offset-gt-xs="5">
+    <div layout="column"  flex="70" flex-xs="100" flex-offset-gt-xs="5">
         <div>
             <div style="padding-bottom: 20px;" style="width: auto;">
                 <md-nav-bar hide-xs md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links" style="overflow: scroll;">
@@ -123,9 +123,9 @@
                 <md-divider></md-divider>
             </div>
             <div>
-                <div layout="column" md-padding show-xs hide-gt-xs ng-if="studentLoading">
+                <div layout="column"  show-xs hide-gt-xs ng-if="studentLoading">
                     <center>
-                        <img style="border-radius: 5px; width: 100%; background-color: #dfdfdf; padding-bottom: 33%" class="div layout=" column " md-padding-image">
+                        <img style="border-radius: 5px; width: 100%; background-color: #dfdfdf; padding-bottom: 33%" class="div layout=" column " -image">
                         <div layout="column" layout-align="center center">
                             <br>
                             <span class=" animated-background">student.title </span>
@@ -153,7 +153,7 @@
                     </div>
                     <div layout="row" layout-align="end center">
                     </div>
-                </div layout="column" md-padding>
+                </div layout="column" >
                 <div show-xs hide-gt-xs ng-if="!studentLoading" ng-hide="(currentNavItem!='overview')" style="padding: 16px;">
                     <div layout="row">
                         <div flex="35" layout="column">
@@ -233,7 +233,7 @@
                 <div ng-hide="(currentNavItem!='events')" ng-if="profile.Events.data.length>0">
                     <md-list>
                         <md-list-item style="margin-bottom: 10px;" ng-repeat="event in profile.Events.data" ui-sref="home.singleEvent({eventId: event.id})" class="secondary-button-padding eventListItem">
-                            <div layout="column" md-padding flex>
+                            <div layout="column"  flex>
                                 <div style="padding-bottom: 0px;">
                                     <div style="padding:  5px 0px 0px 12px;" flex layout="column">
                                         <span style="margin-top: 0px; color: #555555;text-align: right;margin-right: 28px;" >{{event.timings.from.date | date: ' d MMM'}} {{event.timings.to.date==event.timings.from.date?null:event.timings.to.date | date: '- d MMM'}} 
@@ -269,10 +269,10 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div layout="column" md-padding>
+                            </div layout="column" >
                         </md-list-item>
                         <md-list-item ng-show="loading" style="margin-bottom: 15px;" ng-repeat="event in [1,2,3]" class="secondary-button-padding eventListItem">
-                            <div layout="column" md-padding flex>
+                            <div layout="column"  flex>
                                 <div style="padding: 0px;">
                                     <div class="md-media-sm" style="width: 200px;height:200px;">
                                         <img  style="width: 200px;height:200px;background-color: #f1f1f1" alt="">
@@ -286,7 +286,7 @@
                                         <p style="margin:0;" class="md-caption animated-background ">Main Auditorium, Thapar University</p>
                                     </div>
                                 </div>
-                            </div layout="column" md-padding>
+                            </div layout="column" >
                         </md-list-item>
                     </md-list>
                 </div>
