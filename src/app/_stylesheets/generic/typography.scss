@@ -16,38 +16,45 @@
 
     usage: cb-a-b ;
 */
- 
 
- 
 .cb-section-heading {
     font-size: 24px;
-    font-weight: 500;
-    color: $text-color-kala;
-    letter-spacing: -.02em;
+    font-weight: 700;
+    margin: 0px;
+}
+
+.cb-section-subheading {
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0px;
 }
 
 .cb-card-heading {
     font-size: 16px;
     font-weight: 700;
     letter-spacing: .035em;
+    margin: 0px;
 }
 
 .cb-page-heading {
     font-size: 36px;
     font-weight: 700;
     letter-spacing: -.02em;
+    margin: 0px;
 }
 
 .cb-page-subheading {
     font-size: 20px;
     font-weight: 400;
     letter-spacing: -.02em;
+    margin: 0px;
 }
 
 .cb-card-body {
     font-size: 14px;
     letter-spacing: 0;
     font-weight: 400;
+    margin: 0px;
 }
 
 .cb-body {
@@ -55,17 +62,20 @@
     letter-spacing: 0;
     line-height: 1.5em;
     font-weight: 400;
+    margin: 0px;
 }
 
 .cb-button-text {
     font-size: 12px;
     letter-spacing: .02em;
+    margin: 0px;
 }
 
 .cb-body-text {
     font-size: 18px;
     font-weight: 400;
     letter-spacing: -.004em;
+    margin: 0px;
 }
 
 .justify {
@@ -73,9 +83,20 @@
 }
 
 @media only screen and (max-width: 500px) {
+    .cb-section-heading {
+        font-size: 20px;
+        font-weight: 600;
+        margin: 0px;
+    }
+    .cb-section-subheading {
+        font-size: 16px;
+        font-weight: 400;
+        margin: 0px;
+    }
     .cb-body {
         font-size: 13px;
         letter-spacing: 0;
         font-weight: 400;
+        margin: 0px;
     }
 }
