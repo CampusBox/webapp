@@ -135,14 +135,14 @@
         <md-button ng-class="{active: ((currentMenu=='home.addCreativity') || (currentMenu=='home.addEvent') || (currentMenu=='home.myProfile'))}" ng-show="authenticated" layout-align="center center" flex class="capitalize grey_text bottom-menu-item" aria-label="Notifications"
             ng-click="vm.toggleRightSidebar()">
             <div class="md-tile-content">
-                <img ng-src="{{user.image}}" style="width: 24px; height: 24px;align-self: center;vertical-align: middle;border-radius: 50%">
+                <img ng-src="{{user.image}}" class="md-card-avatar">
                 <!-- <md-icon md-svg-icon="account"></md-icon> -->
             </div>
             <div class="md-tile-content" >
                 Me
             </div>
         </md-button>
-        <md-button hide-gt-sm ng-show="!authenticated" style="line-height: 16px;margin-top: 3px;" layout-align="center center" ng-class="{active: $state.includes('home')}" flex class="capitalize grey_text bottom-menu-item" ng-click="openLoginDialog()">
+        <md-button hide-gt-sm ng-show="!authenticated" layout-align="center center" ng-class="{active: $state.includes('home')}" flex class="capitalize grey_text bottom-menu-item" ng-click="openLoginDialog()">
             <div class="md-tile-content" layout="column">
                 <md-icon md-svg-icon="account"></md-icon>
             </div>
@@ -152,10 +152,10 @@
         </md-button>
         </md-menu>
     </md-toolbar>
-    <div flex class=" page-content" height="100%" style="background-color: {{currentPageBackground}} ">
-        <div ui-view class="manageXs" style="max-width: 1500px;margin:auto;">
+    <md-content flex  style="background-color: {{currentPageBackground}} ">
+        <div ui-view  style="max-width: 1500px;margin:auto;">
         </div>
-    </div>
+    </md-content>
     <md-sidenav md-component-id="right" class="md-sidenav-right">
         <section>
             <!-- <div ng-include src=" 'app/views/partials/messages.html'"></div> -->
@@ -212,10 +212,10 @@
                                 <md-icon md-svg-icon="{{phone.options.actionIcon}}"></md-icon>
                             </md-button>
                         </md-list-item>
-                        <div style="padding: 30px;" ng-if="notifications.length==0">
+                        <div  ng-if="notifications.length==0">
                             <center>
-                                <md-icon style="width:48px;height:48px;" md-svg-icon="bell-ring"></md-icon>
-                                <p style="color: rgba(0,0,0,0.54)">No new notification.</p>
+                                <md-icon md-svg-icon="bell-ring"></md-icon>
+                                <p >No new notification.</p>
                             </center>
                         </div>
                         <md-divider></md-divider>
