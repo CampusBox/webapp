@@ -1,18 +1,61 @@
-// COLORS
+/**
+ * Colours
+ */
+
 $main-bg-color: #fff;
-$text-color: #373737;
+// $text-color: #373737;
 $grey-color: #484848;
 $accent-color: rgb(0, 150, 136);
 $warning-color: #E75753;
-$text-color-kala: #E75753;
-// Font
+
+$text-color-black: rgba(0,0,0,.87)!important;
+$text-color-red: #e91e63!important;
+$text-color-grey: rgba(0,0,0,.44)!important;
+$text-color-light-grey: rgba(0,0,0,.44)!important;
+
+
+
+
+/**
+ * typography
+ */
+
+
+//families
 $font-family: 'Open Sans',
 -apple-system,
 BlinkMacSystemFont,
 Roboto,
 Helvetica Neue,
 sans-serif !important;
-// Sizes
+
+// sizes
+$f-1 : 36px;
+$f-2 : 24px;
+$f-3 : 20px;
+$f-4 : 16px;
+$f-5 : 14px;
+$f-6 : 13px;
+$f-7 : 12px;
+
+// weights
+// $thin :300;
+$normal:400;
+$bold :700;
+
+// letter spacing
+$spacing-increase:0.035em;
+$spacing-reduce:-0.02em;
+
+// word spacing
+
+
+
+/**
+ * layouts
+ */
+
+$inner-max-width:720px;
 $left-sidenav-width: 110px;
 $s-0:0px;
 $s-1:4px;
@@ -21,76 +64,15 @@ $s-3:12px;
 $s-4:16px;
 $s-5:20px;
 $s-6:24px;
+$s-7:28px;
+$s-8:32px;
+$s-9:36px;
+$s-10:40px;
 
-/*Defaults*/
+/**
+ * Card
+ */
 
-.cb-green-bg {
-    background: #23CF5F !important;
-}
+$card-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1),
+0 0 0 1px rgba(0, 0, 0, .02);
 
-
-/*material overides*/
-
-.md-button.md-raised:not([disabled]) {
-    box-shadow: none;
-}
-
-.md-button {
-    text-transform: none;
-}
-
-
-/*TEXT COLORS*/
-
-.cb-grey-title {
-    color: $text-color;
-}
-
-.cb-grey-text {
-    color: $grey-color;
-}
-
-.cb-grey-card {
-    color: rgba(0, 0, 0, 0.6);
-}
-
-.cb-red {
-    color: #e91e63;
-}
-
-.cb-white {
-    color: #ffffff;
-}
-
-.cb-white-fill {
-    fill: #ffffff;
-}
-
-.cb-grey-fill {
-    fill: $grey-color;
-    opacity: 0.5;
-}
-
-
-/*main.html*/
-
-.white_text {
-    color: #fff !important;
-}
-
-.capitalize.grey_text.md-button.active md-icon {
-    fill: #23cf5f;
-}
-
-.capitalize.grey_text.md-button md-icon {
-    fill: #fff;
-}
-
-.capitalize.grey_text.md-button .md-tile-content {
-    color: #fff;
-}
-
-// .active.capitalize.grey_text.bottom-menu-item{
-.capitalize.grey_text.md-button.active .md-tile-content {
-    color: #23cf5f;
-}

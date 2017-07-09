@@ -2,22 +2,22 @@
     <div ui-sref="home.singleEvent({eventId: event.id})" style="position: relative;">
         <img class="event-cover-vertical" ng-src="{{event.image}}" alt="{{event.title}}">
         <div layout="row" class="event-info-strip-bg pt-1 pb-1">
-            <div class="ml-2">
+            <div >
                 <md-icon class="event-icon cb-white-fill" md-svg-icon="currency-inr"></md-icon>
                 <span class="cb-white">{{event.price?event.price:" No Fees"}}</span>
             </div>
             <div flex></div>
-            <div class="mr-2">
+            <div >
                 <md-icon class="event-icon cb-white-fill" ng-show="event.location.type" md-svg-icon="map-marker"></md-icon>
                 <md-icon class="event-icon cb-white-fill" ng-hide="event.location.type" md-svg-icon="earth"></md-icon>
                 <span class="cb-white">{{event.location.data}}</span>
             </div>
         </div>
     </div>
-    <div ui-sref="home.singleEvent({eventId: event.id})" class="p-4" layout="column">
-        <span class="cb-card-heading " md-truncate> {{event.title}}</span>
-        <div class="mt-2" layout="row">
-            <div class="mr-4">
+    <div ui-sref="home.singleEvent({eventId: event.id})" layout="column">
+        <span class="cb-card-heading" md-truncate> {{event.title}}</span>
+        <div layout="row">
+            <div>
                 <span class="event-month-vertical cb-red">{{event.timings.month}}</span>
                 <span class="event-date-vertical cb-grey-card">{{event.timings.day}}</span>
             </div>

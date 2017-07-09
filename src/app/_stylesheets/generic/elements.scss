@@ -1,3 +1,20 @@
+/**
+ * Material overides
+ */
+
+.md-button.md-raised:not([disabled]) {
+    box-shadow: none;
+}
+
+.md-button {
+    text-transform: none;
+}
+
+
+/**
+ * generic
+ */
+
 .pointer {
     cursor: pointer;
 }
@@ -14,6 +31,11 @@
 .text-center {
     text-align: center;
 }
+
+
+/**
+ * other elements
+ */
 
 .creativity-description p {
     margin: 0px;
@@ -37,9 +59,9 @@
     background-color: white;
     border-radius: 2px;
     margin: 0px;
-    margin-left: 16px;
-    margin-bottom: 16px;
-    box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
+    margin-right: $s-7;
+    margin-bottom: $s-7;
+    box-shadow: $card-shadow;
     width: 280px;
 }
 
@@ -48,12 +70,12 @@
     background-color: white;
     border-radius: 2px;
     margin: 0px;
-    margin-bottom: 16px;
-    box-shadow: 0 4px 16px -2px rgba(0, 0, 0, .1), 0 0 0 1px rgba(0, 0, 0, .02);
+    margin-bottom: $s-4;
+    box-shadow: $card-shadow;
 }
 
 .cb-body-container {
-    max-width: 720px;
+    max-width: $inner-max-width;
     margin: auto;
 }
 

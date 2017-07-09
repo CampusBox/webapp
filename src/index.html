@@ -26,7 +26,7 @@
     <meta name="msapplication-TileColor" content="#23CF5F">
     <meta name="msapplication-TileImage" content="/mstile-144x144.png">
     <meta name="theme-color" content="#000">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <link rel="manifest" href="/dist/manifest.webmanifest">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
@@ -41,251 +41,251 @@
     <!-- endbuild -->
 </head>
 <style type="text/css">
-    body.pg-loading {
-        overflow: hidden;
-    }
-    
+body.pg-loading {
+    overflow: hidden;
+}
+
+.cb-caption {
+    color: #FFF;
+    font-weight: 300;
+    font-size: 25px;
+    margin-bottom: 100px;
+}
+
+.loading-message {
+    color: #FFF;
+    font-weight: 900;
+    font-size: 60px;
+    letter-spacing: -.22;
+    line-height: 1.2em;
+    /*padding-bottom: 50px;*/
+    margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 500px) {
     .cb-caption {
         color: #FFF;
         font-weight: 300;
-        font-size: 25px;
-        margin-bottom: 100px;
+        font-size: 18px;
+        margin: auto;
+        margin-bottom: 40px;
+        margin-top: 0px;
     }
-    
     .loading-message {
         color: #FFF;
         font-weight: 900;
-        font-size: 60px;
+        font-size: 25px;
+        margin: auto;
+        max-width: 95%;
         letter-spacing: -.22;
         line-height: 1.2em;
         /*padding-bottom: 50px;*/
-        margin-bottom: 20px;
+        margin-bottom: 0px;
     }
-    
-    @media only screen and (max-width: 500px) {
-        .cb-caption {
-            color: #FFF;
-            font-weight: 300;
-            font-size: 18px;
-            margin: auto;
-            margin-bottom: 40px;
-            margin-top: 0px;
-        }
-        .loading-message {
-            color: #FFF;
-            font-weight: 900;
-            font-size: 25px;
-            margin: auto;
-            max-width: 95%;
-            letter-spacing: -.22;
-            line-height: 1.2em;
-            /*padding-bottom: 50px;*/
-            margin-bottom: 0px;
-        }
-        .pg-loading-logo {
-            width: 30%;
-        }
+    .pg-loading-logo {
+        width: 30%;
     }
-    
-    .pg-loading-screen {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        top: 0;
-        z-index: 1000000;
-        opacity: 1;
-        background-color: #23CF5F;
-        -webkit-transition: background-color 0.4s ease-in-out 0s;
-        -moz-transition: background-color 0.4s ease-in-out 0s;
-        -ms-transition: background-color 0.4s ease-in-out 0s;
-        -o-transition: background-color 0.4s ease-in-out 0s;
-        transition: background-color 0.4s ease-in-out 0s;
-    }
-    
-    .pg-loading-screen.pg-loaded {
-        opacity: 0;
-        -webkit-animation: pgAnimLoaded 0.5s cubic-bezier(0.7, 0, 0.3, 1) both;
-        -moz-animation: pgAnimLoaded 0.5s cubic-bezier(0.7, 0, 0.3, 1) both;
-        -ms-animation: pgAnimLoaded 0.5s cubic-bezier(0.7, 0, 0.3, 1) both;
-        -o-animation: pgAnimLoaded 0.5s cubic-bezier(0.7, 0, 0.3, 1) both;
-        animation: pgAnimLoaded 0.5s cubic-bezier(0.7, 0, 0.3, 1) both;
-    }
-    
-    .pg-loading-screen.pg-loading .pg-loading-logo-header,
-    .pg-loading-screen.pg-loading .pg-loading-html {
-        opacity: 1;
-    }
-    
-    .pg-loading-screen.pg-loading .pg-loading-logo-header,
-    .pg-loading-screen.pg-loading .pg-loading-html:not(.pg-loaded) {
-        -webkit-animation: pgAnimLoading 1s cubic-bezier(0.7, 0, 0.3, 1) both;
-        -moz-animation: pgAnimLoading 1s cubic-bezier(0.7, 0, 0.3, 1) both;
-        -ms-animation: pgAnimLoading 1s cubic-bezier(0.7, 0, 0.3, 1) both;
-        -o-animation: pgAnimLoading 1s cubic-bezier(0.7, 0, 0.3, 1) both;
-        animation: pgAnimLoading 1s cubic-bezier(0.7, 0, 0.3, 1) both;
-    }
-    
-    .pg-loading-screen.pg-loading .pg-loading-html:not(.pg-loaded) {
-        -webkit-animation-delay: 0.3s;
-        -moz-animation-delay: 0.3s;
-        -ms-animation-delay: 0.3s;
-        -o-animation-delay: 0.3s;
-        animation-delay: 0.3s;
-    }
-    
-    .pg-loading-screen .pg-loading-inner {
-        height: 100%;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        position: static;
-    }
-    
-    .pg-loading-screen .pg-loading-center-outer {
-        width: 100%;
-        padding: 0;
-        display: table !important;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin: 0;
-    }
-    
-    .pg-loading-screen .pg-loading-center-middle {
-        padding: 0;
-        vertical-align: middle;
-        display: table-cell !important;
-        margin: 0;
-        text-align: center;
-    }
-    
-    .pg-loading-screen .pg-loading-logo-header,
-    .pg-loading-screen .pg-loading-html {
-        width: 100%;
-        opacity: 0;
-    }
-    
-    .pg-loading-screen .pg-loading-logo-header {
-        text-align: center;
-    }
-    
-    .pg-loading-screen .pg-loading-logo-header img {
-        display: inline-block !important;
-    }
-    
-    .pg-loading-screen .pg-loading-html.pg-loaded {
-        -webkit-transition: opacity 0.5s cubic-bezier(0.7, 0, 0.3, 1);
-        -moz-transition: opacity 0.5s cubic-bezier(0.7, 0, 0.3, 1);
-        -ms-transition: opacity 0.5s cubic-bezier(0.7, 0, 0.3, 1);
-        -o-transition: opacity 0.5s cubic-bezier(0.7, 0, 0.3, 1);
-        transition: opacity 0.5s cubic-bezier(0.7, 0, 0.3, 1);
-    }
-    
-    .pg-loading-screen .pg-loading-html.pg-loaded.pg-removing {
+}
+
+.pg-loading-screen {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1000000;
+    opacity: 1;
+    background-color: #23CF5F;
+    -webkit-transition: background-color 0.4s ease-in-out 0s;
+    -moz-transition: background-color 0.4s ease-in-out 0s;
+    -ms-transition: background-color 0.4s ease-in-out 0s;
+    -o-transition: background-color 0.4s ease-in-out 0s;
+    transition: background-color 0.4s ease-in-out 0s;
+}
+
+.pg-loading-screen.pg-loaded {
+    opacity: 0;
+    -webkit-animation: pgAnimLoaded 0.5s cubic-bezier(0.7, 0, 0.3, 1) both;
+    -moz-animation: pgAnimLoaded 0.5s cubic-bezier(0.7, 0, 0.3, 1) both;
+    -ms-animation: pgAnimLoaded 0.5s cubic-bezier(0.7, 0, 0.3, 1) both;
+    -o-animation: pgAnimLoaded 0.5s cubic-bezier(0.7, 0, 0.3, 1) both;
+    animation: pgAnimLoaded 0.5s cubic-bezier(0.7, 0, 0.3, 1) both;
+}
+
+.pg-loading-screen.pg-loading .pg-loading-logo-header,
+.pg-loading-screen.pg-loading .pg-loading-html {
+    opacity: 1;
+}
+
+.pg-loading-screen.pg-loading .pg-loading-logo-header,
+.pg-loading-screen.pg-loading .pg-loading-html:not(.pg-loaded) {
+    -webkit-animation: pgAnimLoading 1s cubic-bezier(0.7, 0, 0.3, 1) both;
+    -moz-animation: pgAnimLoading 1s cubic-bezier(0.7, 0, 0.3, 1) both;
+    -ms-animation: pgAnimLoading 1s cubic-bezier(0.7, 0, 0.3, 1) both;
+    -o-animation: pgAnimLoading 1s cubic-bezier(0.7, 0, 0.3, 1) both;
+    animation: pgAnimLoading 1s cubic-bezier(0.7, 0, 0.3, 1) both;
+}
+
+.pg-loading-screen.pg-loading .pg-loading-html:not(.pg-loaded) {
+    -webkit-animation-delay: 0.3s;
+    -moz-animation-delay: 0.3s;
+    -ms-animation-delay: 0.3s;
+    -o-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+}
+
+.pg-loading-screen .pg-loading-inner {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: static;
+}
+
+.pg-loading-screen .pg-loading-center-outer {
+    width: 100%;
+    padding: 0;
+    display: table !important;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+}
+
+.pg-loading-screen .pg-loading-center-middle {
+    padding: 0;
+    vertical-align: middle;
+    display: table-cell !important;
+    margin: 0;
+    text-align: center;
+}
+
+.pg-loading-screen .pg-loading-logo-header,
+.pg-loading-screen .pg-loading-html {
+    width: 100%;
+    opacity: 0;
+}
+
+.pg-loading-screen .pg-loading-logo-header {
+    text-align: center;
+}
+
+.pg-loading-screen .pg-loading-logo-header img {
+    display: inline-block !important;
+}
+
+.pg-loading-screen .pg-loading-html.pg-loaded {
+    -webkit-transition: opacity 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+    -moz-transition: opacity 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+    -ms-transition: opacity 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+    -o-transition: opacity 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+    transition: opacity 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.pg-loading-screen .pg-loading-html.pg-loaded.pg-removing {
+    opacity: 0;
+}
+
+.pg-loading-screen .pg-loading-html.pg-loaded.pg-loading {
+    opacity: 1;
+}
+
+@-webkit-keyframes pgAnimLoading {
+    from {
         opacity: 0;
     }
-    
-    .pg-loading-screen .pg-loading-html.pg-loaded.pg-loading {
+}
+
+@-moz-keyframes pgAnimLoading {
+    from {
+        opacity: 0;
+    }
+}
+
+@-o-keyframes pgAnimLoading {
+    from {
+        opacity: 0;
+    }
+}
+
+@-ms-keyframes pgAnimLoading {
+    from {
+        opacity: 0;
+    }
+}
+
+@keyframes pgAnimLoading {
+    from {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes pgAnimLoaded {
+    from {
         opacity: 1;
     }
-    
-    @-webkit-keyframes pgAnimLoading {
-        from {
-            opacity: 0;
-        }
+}
+
+@-moz-keyframes pgAnimLoaded {
+    from {
+        opacity: 1;
     }
-    
-    @-moz-keyframes pgAnimLoading {
-        from {
-            opacity: 0;
-        }
+}
+
+@-o-keyframes pgAnimLoaded {
+    from {
+        opacity: 1;
     }
-    
-    @-o-keyframes pgAnimLoading {
-        from {
-            opacity: 0;
-        }
+}
+
+@-ms-keyframes pgAnimLoaded {
+    from {
+        opacity: 1;
     }
-    
-    @-ms-keyframes pgAnimLoading {
-        from {
-            opacity: 0;
-        }
+}
+
+@keyframes pgAnimLoaded {
+    from {
+        opacity: 1;
     }
-    
-    @keyframes pgAnimLoading {
-        from {
-            opacity: 0;
-        }
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    margin: 100px auto;
+    -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+    animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-rotateplane {
+    0% {
+        -webkit-transform: perspective(120px)
     }
-    
-    @-webkit-keyframes pgAnimLoaded {
-        from {
-            opacity: 1;
-        }
+    50% {
+        -webkit-transform: perspective(120px) rotateY(180deg)
     }
-    
-    @-moz-keyframes pgAnimLoaded {
-        from {
-            opacity: 1;
-        }
+    100% {
+        -webkit-transform: perspective(120px) rotateY(180deg) rotateX(180deg)
     }
-    
-    @-o-keyframes pgAnimLoaded {
-        from {
-            opacity: 1;
-        }
+}
+
+@keyframes sk-rotateplane {
+    0% {
+        transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+        -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
     }
-    
-    @-ms-keyframes pgAnimLoaded {
-        from {
-            opacity: 1;
-        }
+    50% {
+        transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+        -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
     }
-    
-    @keyframes pgAnimLoaded {
-        from {
-            opacity: 1;
-        }
+    100% {
+        transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+        -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
     }
-    
-    .spinner {
-        width: 40px;
-        height: 40px;
-        background-color: #fff;
-        margin: 100px auto;
-        -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
-        animation: sk-rotateplane 1.2s infinite ease-in-out;
-    }
-    
-    @-webkit-keyframes sk-rotateplane {
-        0% {
-            -webkit-transform: perspective(120px)
-        }
-        50% {
-            -webkit-transform: perspective(120px) rotateY(180deg)
-        }
-        100% {
-            -webkit-transform: perspective(120px) rotateY(180deg) rotateX(180deg)
-        }
-    }
-    
-    @keyframes sk-rotateplane {
-        0% {
-            transform: perspective(120px) rotateX(0deg) rotateY(0deg);
-            -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
-        }
-        50% {
-            transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-            -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
-        }
-        100% {
-            transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-            -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-        }
-    }
+}
 </style>
 
 <body>
