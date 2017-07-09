@@ -80,6 +80,8 @@
     text-align: justify;
 }
 
-.event-single-info-container {}
+.event-single-info-container {
+    margin-top: $s-1;
+}
 
 @media only screen and (max-width: 500px) {}
