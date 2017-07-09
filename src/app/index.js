@@ -7,7 +7,8 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
     .config(function(AnalyticsProvider, $stateProvider, $urlRouterProvider, $mdThemingProvider, $authProvider, $locationProvider,
         $mdIconProvider, socialProvider, $httpProvider, $mdDateLocaleProvider, $mdAriaProvider, $compileProvider) {
 
-        AnalyticsProvider.setAccount('UA-57016004-2'); //UU-XXXXXXX-X should be your tracking code
+        //UU-XXXXXXX-X should be your tracking code
+        AnalyticsProvider.setAccount('UA-57016004-2');
 
 
         $mdDateLocaleProvider.formatDate = function(date) {
@@ -51,7 +52,7 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
             })
             .state('home.myProfile', {
                 url: '/myProfile/:tab',
-                templateUrl: 'app/main/dashboard/myProfile.html',
+                templateUrl: 'app/main/student/my/myProfile.html',
                 controller: 'MyProfileController',
                 controllerAs: 'vm',
                 data: {
@@ -61,18 +62,18 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'satellizer',
             })
             .state('home.addEvent', {
                 url: '/addEvent',
-                templateUrl: 'app/main/dashboard/addEvent.html',
+                templateUrl: 'app/main/events/add/addEvent.html',
                 controller: 'AddEventController',
                 controllerAs: 'vm',
                 data: {
                     requiresLogin: true,
 
-                    title: 'My Profile'
+                    title: 'Add new event'
                 }
             })
             .state('home.singleEvent', {
                 url: '/singleEvent/:eventId',
-                templateUrl: 'app/main/dashboard/singleEvent.html',
+                templateUrl: 'app/main/events/single/singleEvent.html',
                 controller: 'SingleEventController',
                 controllerAs: 'vm',
                 data: {
