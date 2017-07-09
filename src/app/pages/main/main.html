@@ -19,7 +19,7 @@
             </form>
         </section>
         <section layout-align="end start">
-            <md-button hide-sm hide-xs style="height: auto;font-weight: 500;line-height: 16px;margin-top: 3px;margin-bottom: 0px;font-size: 13px;" ng-repeat="item in vm.menuItems" layout-align="center center" ng-class="{active: (currentMenu==item.name)}" flex class="capitalize grey_text"
+            <md-button hide-sm hide-xs  ng-repeat="item in vm.menuItems" layout-align="center center" ng-class="{active: (currentMenu==item.name)}" flex class="capitalize grey_text"
                 ng-click="vm.selectItem(item)" ui-sref="{{item.sref}}">
                 <div class="md-tile-content" layout="column">
                     <md-icon md-svg-icon="{{item.icon}}"></md-icon>
@@ -28,7 +28,7 @@
                     {{item.name}}
                 </div>
             </md-button>
-            <md-button ng-show="!authenticated" ng-click="openLoginDialog()" md-menu-origin="" md-menu-align-target style="height: auto;font-weight: 500;line-height: 16px;margin-top: 3px;margin-bottom: 0px;min-width: 0px;    font-size: 13px;" layout-align="center center"
+            <md-button ng-show="!authenticated" ng-click="openLoginDialog()" md-menu-origin="" md-menu-align-target layout-align="center center"
                 flex class="capitalize grey_text" aria-label="Notifications">
                 <div hide-sm hide-xs class="md-tile-content" layout="column">
                     <md-icon md-svg-icon="plus-circle"></md-icon>
@@ -38,7 +38,7 @@
                 </div>
             </md-button>
             <md-menu md-offset="-88 56">
-                <md-button ng-class="{active: (currentMenu=='add')}" ng-show="authenticated" md-menu-origin="" md-menu-align-target style="height: auto;font-weight: 500;line-height: 16px;margin-top: 3px;margin-bottom: 0px;min-width: 0px;    font-size: 13px;" layout-align="center center"
+                <md-button ng-class="{active: (currentMenu=='add')}" ng-show="authenticated" md-menu-origin="" md-menu-align-target layout-align="center center"
                     flex class="capitalize grey_text" aria-label="Notifications" ng-click="$mdMenu.open()">
                     <div hide-sm hide-xs class="md-tile-content" layout="column">
                         <md-icon md-svg-icon="plus-circle"></md-icon>
@@ -76,19 +76,18 @@
             </md-menu>
         </section>
         <section layout-align="end start">
-            <md-button ng-class="{active: (currentMenu=='home.myProfile')}" ng-show="authenticated" style="height: auto;font-weight: 500;line-height: 16px;margin-top: 3px;margin-bottom: 0px;font-size: 13px;" hide-sm hide-xs layout-align="center center" flex class="capitalize grey_text"
+            <md-button ng-class="{active: (currentMenu=='home.myProfile')}" ng-show="authenticated"  hide-sm hide-xs layout-align="center center" flex class="capitalize grey_text"
                 aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
                 <div hide-sm hide-xs class="md-tile-content" layout="column">
                     <!-- <md-icon md-svg-icon="account"></md-icon> -->
-                    <img ng-src="{{user.image}}" style="width: 24px; height: 24px;align-self: center;vertical-align: middle;border-radius: 50%">
+                    <img ng-src="{{user.image}}" >
                     <!-- <span style="color:#fff" class="notifications-label"> </span> -->
                 </div>
                 <div class="md-tile-content">
                     Me
                 </div>
             </md-button>
-            <md-button hide-sm hide-xs ng-show="!authenticated" style="height: auto;font-weight: 500;
-    line-height: 16px;margin-top: 3px;margin-bottom: 0px;    font-size: 13px;" layout-align="center center" ng-class="{active: $state.includes('home')}" flex class="capitalize grey_text" ng-click="openLoginDialog()">
+            <md-button hide-sm hide-xs ng-show="!authenticated"  layout-align="center center" ng-class="{active: $state.includes('home')}" flex class="capitalize grey_text" ng-click="openLoginDialog()">
                 <div class="md-tile-content" layout="column">
                     <md-icon md-svg-icon="account"></md-icon>
                 </div>
@@ -105,7 +104,7 @@
             <div hide-md class="md-tile-content">
                 <md-icon md-svg-icon="home"></md-icon>
             </div>
-            <div class="md-tile-content" style="line-height: 16px;font-weight: 500;">
+            <div class="md-tile-content" >
                 Home
             </div>
         </md-button>
@@ -113,7 +112,7 @@
             <div hide-md class="md-tile-content">
                 <md-icon md-svg-icon="magnify"></md-icon>
             </div>
-            <div class="md-tile-content" style="line-height: 16px;font-weight: 500;">
+            <div class="md-tile-content" >
                 Search
             </div>
         </md-button>
@@ -121,7 +120,7 @@
             <div hide-md class="md-tile-content">
                 <md-icon md-svg-icon="calendar"></md-icon>
             </div>
-            <div class="md-tile-content" style="line-height: 16px;font-weight: 500;">
+            <div class="md-tile-content" >
                 Opportunities
             </div>
         </md-button>
@@ -129,7 +128,7 @@
             <div hide-md class="md-tile-content">
                 <md-icon md-svg-icon="all-inclusive"></md-icon>
             </div>
-            <div class="md-tile-content" style="line-height: 16px;font-weight: 500;">
+            <div class="md-tile-content" >
                 Creativity
             </div>
         </md-button>
@@ -139,7 +138,7 @@
                 <img ng-src="{{user.image}}" style="width: 24px; height: 24px;align-self: center;vertical-align: middle;border-radius: 50%">
                 <!-- <md-icon md-svg-icon="account"></md-icon> -->
             </div>
-            <div class="md-tile-content" style="line-height: 16px;font-weight: 500;">
+            <div class="md-tile-content" >
                 Me
             </div>
         </md-button>
