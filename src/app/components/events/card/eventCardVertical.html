@@ -3,13 +3,13 @@
         <img class="event-cover-vertical" ng-src="{{event.image}}" alt="{{event.title}}">
         <div layout="row" class="event-info-strip-bg pt-1 pb-1">
             <div class="ml-2">
-                <md-icon class="event-icon" md-svg-icon="currency-inr"></md-icon>
+                <md-icon class="event-icon cb-white-fill" md-svg-icon="currency-inr"></md-icon>
                 <span class="cb-white">{{event.price?event.price:" No Fees"}}</span>
             </div>
             <div flex></div>
             <div class="mr-2">
-                <md-icon class="event-icon" ng-show="event.location.type" md-svg-icon="map-marker"></md-icon>
-                <md-icon class="event-icon" ng-hide="event.location.type" md-svg-icon="earth"></md-icon>
+                <md-icon class="event-icon cb-white-fill" ng-show="event.location.type" md-svg-icon="map-marker"></md-icon>
+                <md-icon class="event-icon cb-white-fill" ng-hide="event.location.type" md-svg-icon="earth"></md-icon>
                 <span class="cb-white">{{event.location.data}}</span>
             </div>
         </div>

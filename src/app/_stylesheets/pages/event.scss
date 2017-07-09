@@ -65,7 +65,6 @@
 }
 
 .event-icon {
-    fill: #fff;
     height: 18px;
     width: 18px;
     min-height: 18px;
@@ -81,7 +80,13 @@
 }
 
 .event-single-info-container {
-    margin-top: $s-1;
+    margin: 0px;
+    margin-left: $s-4;
 }
 
-@media only screen and (max-width: 500px) {}
+@media only screen and (max-width: 600px) {
+    .event-single-info-container {
+        margin: 0px;
+        margin-top: $s-4;
+    }
+}
