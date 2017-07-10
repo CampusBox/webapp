@@ -1,25 +1,23 @@
-<div layout="row" layout-align="start center">
-    <md-card-avatar >
-        <img class="md-user-avatar" ui-sref="home.profile({username: content.owner.username})" ng-src="{{content.owner.photo}}" />
-    </md-card-avatar>
-    <div ui-sref="home.singleContent({contentId: content.id})" >
-        <span class="md-caption ">
-        <span class="capitalize blue_text"  ng-click="openProfile($event, content.owner.username);" >{{content.owner.name}} </span>
-        <span ng-show="showcategory" class="blue_text"> 
-        <span ><br ng-show="actions"> in</span> 
-        {{content.content_type?typesByID[content.content_type]:"Unknown"}} </span>
-        </span>
+<div class="creativity-card-actions" layout="row" layout-align="start center">
+    <a ui-sref="home.profile({username: content.owner.username})">
+        <img class="user-avatar" ng-src="{{content.owner.photo}}" />
+    </a>
+    <div layout="row" ui-sref="home.singleContent({contentId: content.id})">
+        <p class="capitalize blue_text" ng-click="openProfile($event, content.owner.username);">{{content.owner.name}} </p>
+        <p ng-show="showcategory" class="blue_text">
+            <p><br ng-show="actions"> in</p> {{content.content_type?typesByID[content.content_type - 1]:"Unknown"}}
+        </p>
     </div>
     <div layout="row" layout-align="start center" flex="50" ng-show="actions">
         <md-button class="appreciate-button md-icon-button" ng-click="heart(content)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
-            <md-icon class="pink" md-svg-icon="{{content.actions.appreciate.status? 'heart' : 'heart-outline' }}"></md-icon>
+            <md-icon class="cb-red-fill" md-svg-icon="{{content.actions.appreciate.status? 'heart' : 'heart-outline' }}"></md-icon>
         </md-button>
-        <span ng-click="showLikes(content.id, content.title)"  class="likesNumber"> {{content.Actions.Appreciate.total}}</span>
+        <span ng-click="showLikes(content.id, content.title)" class="likesNumber"> {{content.Actions.Appreciate.total}}</span>
         <md-button class="md-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'creativity',content.id)" aria-label="share ">
             <md-icon ng- md-svg-icon="share"></md-icon>
         </md-button>
         <md-button class="md-icon-button" ng-click="bookmark(content)" aria-label="Favorite">
-            <md-icon ng-class="content.actions.bookmarks.status? 'grey':''" md-svg-icon="{{content.actions.bookmarks.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
+            <md-icon ng-class="content.actions.bookmarks.status? 'cb-grey-fill':''" md-svg-icon="{{content.actions.bookmarks.status? 'bookmark' : 'bookmark-outline' }}"></md-icon>
         </md-button>
     </div>
 </div>

@@ -37,7 +37,6 @@
 
         //FILTERS SHIT START
 
-        console.log('filters called');
         $scope.selected = [];
         $scope.filterInBetween = 0;
         $scope.filterShow = 0;
@@ -105,6 +104,7 @@
                 if ($scope.contentDetails.filters.length) {
                     $scope.filterInBetween = 1;
                 }
+                console.log($scope.contentDetails);
                 tokenService.post("contentsList", $scope.contentDetails)
                     .then(function(tableData) {
                         $scope.creativityLoading = false;
@@ -121,7 +121,7 @@
                         $scope.contentDetails.offset += 3;
                         $scope.myPagingFunction();
                     });
-                $scope.contentDetails.offset += 3;
+                // $scope.contentDetails.offset += 3;
 
 
             }

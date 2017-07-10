@@ -76,7 +76,8 @@
             <md-button ng-class="{active: (currentMenu=='home.myProfile')}" ng-show="authenticated" hide-sm hide-xs layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
                 <div hide-sm hide-xs class="md-tile-content" layout="column">
                     <!-- <md-icon md-svg-icon="account"></md-icon> -->
-                    <img ng-src="{{user.image}}">
+                    <!--Style tag below was intentionally done by Ayush till he gets to this point-->
+                    <img ng-src="{{user.image}}" style="height: 24px; width: 24px; margin: auto; border-radius: 100px;">
                     <!-- <span style="color:#fff" class="notifications-label"> </span> -->
                 </div>
                 <div class="md-tile-content">
@@ -130,7 +131,8 @@
         </md-button>
         <md-button ng-class="{active: ((currentMenu=='home.addCreativity') || (currentMenu=='home.addEvent') || (currentMenu=='home.myProfile'))}" ng-show="authenticated" layout-align="center center" flex class="capitalize grey_text bottom-menu-item" aria-label="Notifications"
             ng-click="vm.toggleRightSidebar()">
-            <div class="md-tile-content">
+            <!--Style tag below was intentionally done by Ayush till he gets to this point-->
+            <div class="md-tile-content" style="height: 24px; width: 24px; margin: auto; border-radius: 100px;">
                 <img ng-src="{{user.image}}" class="md-card-avatar">
                 <!-- <md-icon md-svg-icon="account"></md-icon> -->
             </div>

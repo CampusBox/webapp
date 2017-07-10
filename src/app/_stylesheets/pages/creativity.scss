@@ -9,12 +9,16 @@
     height: 150px;
     width: 150px;
     border-radius: 4px;
+    margin: auto;
+    background-size: cover !important;
+    background-position: center !important;
 }
 
 .creativity-cover {
     height: 213px;
     object-fit: cover;
     width: 100%;
+    margin: auto;
     background-size: cover !important;
     background-position: center !important;
 }
@@ -28,4 +32,10 @@
     text-shadow: 2px 2px 2px black;
     height: 60px;
     width: 60px;
+}
+
+.creativity-card-actions {
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }

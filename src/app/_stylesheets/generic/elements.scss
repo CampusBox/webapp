@@ -99,6 +99,12 @@ p {
     margin: auto;
 }
 
+.user-avatar {
+    height: $s-8;
+    width: $s-8;
+    border-radius: 25px;
+}
+
 @media only screen and (max-width: 600px) {
     .btn-add-mobile {
         padding: $s-0;
