@@ -20,24 +20,24 @@
 
 /*TEXT COLORS*/
 
-.cb-grey-title {
-    color: $text-color-grey;
+.cb-white {
+    color: white;
 }
 
 .cb-grey-text {
     color: $text-color-grey;
 }
 
-.cb-grey-card {
-    color: rgba(0, 0, 0, 0.6);
+.cb-caption-clickable {
+    color: $cb-green-color;
+    text-transform: capitalize;
+    font-size: $f-7;
 }
 
-.cb-red {
-    color: #e91e63;
-}
-
-.cb-white {
-    color: #ffffff;
+.cb-caption-text {
+    color: $text-color-grey;
+    text-transform: capitalize;
+    font-size: $f-7;
 }
 
 .cb-card-title {
@@ -55,17 +55,6 @@
     margin-top: $s-0 !important;
     color: $text-color-light-grey;
     text-align: justify;
-}
-
-.creativity-card {
-    height: 343px;
-    position: relative;
-    .cb-card-body {
-        text-align: left;
-    }
-    .p {
-        margin: $s-0;
-    }
 }
 
 .cb-body {
@@ -132,6 +121,15 @@
         letter-spacing: 0;
         font-weight: 400;
         margin: 0px;
+    }
+}
+
+// Page specific typography
+.creativity-card {
+    height: 343px;
+    position: relative;
+    .cb-card-body {
+        text-align: left;
     }
 }
 

@@ -1,12 +1,15 @@
-<div class="creativity-card-actions" layout="row" layout-align="start center">
-    <a ui-sref="home.profile({username: content.owner.username})">
-        <img class="user-avatar" ng-src="{{content.owner.photo}}" />
-    </a>
-    <div layout="row" ui-sref="home.singleContent({contentId: content.id})">
-        <p class="capitalize blue_text" ng-click="openProfile($event, content.owner.username);">{{content.owner.name}} </p>
-        <p ng-show="showcategory" class="blue_text">
-            <p><br ng-show="actions"> in</p> {{content.content_type?typesByID[content.content_type - 1]:"Unknown"}}
-        </p>
+<div class="creativity-card-actions" layout="row" layout-align="stretch center">
+    <div layout="row" flex="50">
+        <a ui-sref="home.profile({username: content.owner.username})">
+            <img class="user-avatar" ng-src="{{content.owner.photo}}" />
+        </a>
+        <div layout="column" ui-sref="home.singleContent({contentId: content.id})">
+            <p class="cb-caption-clickable" ng-click="openProfile($event, content.owner.username);">{{content.owner.name}} </p>
+            <div layout="row" ng-show="showcategory">
+                <p class="cb-caption-text">in&nbsp;&nbsp;</p>
+                <p class="cb-caption-clickable">{{content.content_type?typesByID[content.content_type - 1]:"Unknown"}}</p>
+            </div>
+        </div>
     </div>
     <div layout="row" layout-align="start center" flex="50" ng-show="actions">
         <md-button class="appreciate-button md-icon-button" ng-click="heart(content)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
