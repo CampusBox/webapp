@@ -15,7 +15,6 @@
         if (typeof document.getElementById('basicveryimportantloading') !== 'undefined' && document.getElementById('basicveryimportantloading') != null) {
             document.getElementById('basicveryimportantloading').remove();
         }
-        // document.getElementById('basicveryimportantloading').remove();
 
         var semicolon = 186;
         $rootScope.gray = '#fbfcfd';
@@ -30,24 +29,17 @@
             $scope.hideBottomBar = val;
         });
 
+        $scope.screenIsSmall = $mdMedia('sm');
+
+        $scope.$watch(function() {
+            return $mdMedia('sm');
+        }, function(small) {
+            $scope.screenIsSmall = small;
+        });
+
         $scope.searchTypes = [];
-        // {
-        //     'title': 'events',
-        //     'icon': 'calendar'
-        // }, {
-        //     'title': 'creativity',
-        //     'icon': 'all-inclusive'
-        // }, {
-        //     'title': 'students',
-        //     'icon': 'school'
-        // }];
         $scope.searchData = {};
         $scope.searchData.data = [];
-        // tokenService.get("search/" + "M")
-        //     .then(function(tableData) {
-        //         $scope.searchData.data = [].concat(tableData);
-        //     });
-        // $scope.querySearch = querySearch;
 
         function querySearch(query) {
             // $timeout(tokenService.get("search/" + query)
@@ -63,7 +55,6 @@
             // console.log('searchText: ' + searchText);
         }
         $scope.logout = function(ev) {
-            // console.log("main controller logout");
             localStorage.clear();
             $rootScope.token = null;
             $rootScope.authenticated = false;
@@ -75,9 +66,6 @@
                 .targetEvent(event)
                 .ok('Okay');
             $mdDialog.show(confirm).then(function() {
-                // $scope.status = 'Record deleted successfully!';
-
-                // $scope.status = 'You decided to keep your record.';
                 $state.go('home.dashboard');
             });
 
