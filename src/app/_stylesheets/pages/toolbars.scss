@@ -1,6 +1,13 @@
-.toolbar{
+.toolbar {
     min-height: 57px;
     background-color: #fff;
+    cursor: pointer;
+}
+
+.search {
+    font-size: $f-7;
+    padding: $s-2;
+    width: 100%;
 }
 
 .nav-button {
@@ -13,11 +20,11 @@
     font-size: 13px;
 }
 
-.logo{
-     text-transform: none;
-     font-size: $f-2;
-     font-weight: $extra-bold;
-     color: $cb-green-color;
-     margin-right: $s-4;
-     margin-left: $s-4;
+.logo {
+    text-transform: none;
+    font-size: $f-2;
+    font-weight: $extra-bold;
+    color: $cb-green-color;
+    margin-right: $s-4;
+    margin-left: $s-4;
 }

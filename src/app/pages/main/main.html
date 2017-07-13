@@ -1,27 +1,20 @@
 <div layout="column" layout-fill>
-    <div class="toolbar" ng-if="!screenIsSmall" md-scroll-shrink md-shrink-speed-factor="0.1" layout="row" layout-align="center center" >
-        <p class="logo" ui-sref="home.dashboard"> CampusBox</p>
-            <form ng-submit="searchedFast(searchText)">
-                <md-autocomplete ng-disabled="isDisabled" md-no-cache="true" md-selected-item="selectedItem" md-search-text-change="querySearch(searchText)" md-search-text="searchText" md-items="item in searchTypes" md-item-text="searchText" md-min-length="0" placeholder="Search CampusBox"
-                    class="autocomplete-custom-template">
-                    <md-item-template>
-                        <md-list-item class="noright" ng-click="searched(item,searchText)">
-                            <md-icon md-svg-icon="{{item.icon}}" class=" md-hue-3"></md-icon>
-                            <p> Search"{{searchText}}" in <em> {{item.title}}</em> </p>
-                        </md-list-item>
-                    </md-item-template>
-                </md-autocomplete>
-            </form>
+    <md-toolbar class="toolbar" ng-if="!screenIsSmall" md-scroll-shrink md-shrink-speed-factor="0.1" layout="row" layout-align="start center">
+        <p class="logo" ui-sref="home.creativity"> Campusbox</p>
+        <form flex="30" ng-submit="searchedFast(searchText)">
+            <input class="search" type="text" name="searchText" placeholder="Search Campusbox">
+        </form>
+
         <section layout-align="end start">
-            <md-button ng-repeat="item in vm.menuItems" layout-align="center center" ng-class="{active: (currentMenu==item.name)}" flex class="capitalize grey_text" ng-click="vm.selectItem(item)" ui-sref="{{item.sref}}">
+            <!-- <md-button ng-repeat="item in vm.menuItems" layout-align="center center" ng-class="{active: (currentMenu==item.name)}" flex class="capitalize grey_text" ng-click="vm.selectItem(item)" ui-sref="{{item.sref}}">
                 <div class="md-tile-content" layout="column">
                     <md-icon md-svg-icon="{{item.icon}}"></md-icon>
                 </div>
                 <div class="md-tile-content">
                     {{item.name}}
                 </div>
-            </md-button>
-            <md-button ng-show="!authenticated" ng-click="openLoginDialog()" md-menu-origin="" md-menu-align-target layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications">
+            </md-button> -->
+            <md-button ng-if="!authenticated" ng-click="openLoginDialog()" md-menu-origin="" md-menu-align-target layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications">
                 <div class="md-tile-content" layout="column">
                     <md-icon md-svg-icon="plus-circle"></md-icon>
                 </div>
@@ -32,21 +25,21 @@
             <md-menu md-offset="-88 56">
                 <md-button ng-class="{active: (currentMenu=='add')}" ng-show="authenticated" md-menu-origin="" md-menu-align-target layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications" ng-click="$mdMenu.open()">
                     <div class="md-tile-content" layout="column">
-                        <md-icon md-svg-icon="plus-circle"></md-icon>
+                        <md-icon class="cb-grey-fill" md-svg-icon="plus-circle"></md-icon>
                     </div>
                     <div class="md-tile-content">
                         Add
                     </div>
                 </md-button>
                 <md-menu-content width="5">
-                    <md-menu-item>
+                    <!-- <md-menu-item>
                         <md-button ng-click="$mdCloseMenu()" ui-sref="home.addEvent">
                             <div layout="row" flex="" class="ng-scope layout-row flex">
                                 <p flex="" class="flex">Add Opportunity</p>
                                 <md-icon md-svg-icon="calendar"></md-icon>
                             </div>
                         </md-button>
-                    </md-menu-item>
+                    </md-menu-item> -->
                     <md-menu-item>
                         <md-button ng-click="$mdCloseMenu()" ui-sref="home.addCreativity">
                             <div layout="row" flex="" class="ng-scope layout-row flex">
@@ -55,24 +48,13 @@
                             </div>
                         </md-button>
                     </md-menu-item>
-                    <!--                     <md-menu-item>
-                        <md-button ng-click="addUpdate();$mdCloseMenu()">
-                            <div layout="row" flex="" class="ng-scope layout-row flex">
-                                <p flex="" class="flex">Add Update</p>
-                                <md-icon md-svg-icon="account"></md-icon>
-                            </div>
-                        </md-button>
-                    </md-menu-item>-->
                 </md-menu-content>
             </md-menu>
         </section>
         <section layout-align="end start">
             <md-button ng-class="{active: (currentMenu=='home.myProfile')}" ng-show="authenticated" layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
                 <div class="md-tile-content" layout="column">
-                    <!-- <md-icon md-svg-icon="account"></md-icon> -->
-                    <!--Style tag below was intentionally done by Ayush till he gets to this point-->
                     <img ng-src="{{user.image}}" style="height: 24px; width: 24px; margin: auto; border-radius: 100px;">
-                    <!-- <span style="color:#fff" class="notifications-label"> </span> -->
                 </div>
                 <div class="md-tile-content">
                     Me
@@ -87,7 +69,7 @@
                 </div>
             </md-button>
         </section>
-    </div>
+    </md-toolbar>
     <md-toolbar hide-gt-sm layout="row" ng-hide="currentState == 'home.addCreativity' || hideBottomBar" style="position: fixed;bottom: 0px; box-shadow: 0px 1px 8px 2px rgba(0, 0, 0, 0.2), 0px 3px 4px 2px rgba(0, 0, 0, 0.14), 0px 3px 3px 2px rgba(0, 0, 0, 0.12)"
         layout-align="center center">
         <md-button ng-class="{active: (currentMenu=='home.dashboard')}" layout-align="center center" flex class="capitalize grey_text bottom-menu-item" ng-click="vm.selectItem(item)" ui-sref-active="" ui-sref=".dashboard">

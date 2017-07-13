@@ -37,23 +37,6 @@
             $scope.screenIsSmall = small;
         });
 
-        $scope.searchTypes = [];
-        $scope.searchData = {};
-        $scope.searchData.data = [];
-
-        function querySearch(query) {
-            // $timeout(tokenService.get("search/" + query)
-            //     .then(function(tableData) {
-            //         $scope.searchData = tableData;
-            //         console.log($scope.searchData.data);
-            //         return $scope.searchData;
-            //     }), 10000);
-        }
-
-        $scope.submitSearch = function(item, searchText) {
-            // console.log(item);
-            // console.log('searchText: ' + searchText);
-        }
         $scope.logout = function(ev) {
             localStorage.clear();
             $rootScope.token = null;
@@ -98,36 +81,9 @@
         function toggleRightSidebar() {
             $mdSidenav('right').toggle();
         }
-
-
-        $scope.searched = function(item, text) {
-            if (item.title == 'events') {
-                $state.go('home.searchEvents', { query: text });
-            } else if (item.title == 'creativity') {
-                $state.go('home.searchCreativity', { query: text });
-            } else if (item.title == 'students') {
-                $state.go('home.searchStudents', { query: text });
-            }
-        };
         $scope.searchedFast = function(text) {
             console.log(text);
             $state.go('home.searchAll', { query: text });
-
-            switch ($state.current.name) {
-                case 'home.searchAll':
-                    $state.go('home.searchAll', { query: text });
-                    break;
-                case 'home.searchStudents':
-                    $state.go('home.searchStudents', { query: text });
-                    break;
-                case 'home.searchCreativity':
-                    $state.go('home.searchCreativity', { query: text });
-                    break;
-                case 'home.searchEvents':
-                    $state.go('home.searchEvents', { query: text });
-                    break;
-
-            }
         };
 
         function showSimpleToast(title) {
@@ -138,10 +94,6 @@
                 .position('top right')
             );
         }
-        $scope.openSearch = function(q) {
-                $location.path('/search').search({ 'q': q });
-            }
-            //Search Autocomplete start
 
         $scope.test = [{
             'name': 'rOHSN',
@@ -149,8 +101,6 @@
             'watchers': '3,623',
             'forks': '16,175',
         }];
-
-        // Search Autocomplete End
 
         $scope.NotificationItemClicked = function(notification) {
             console.log(notification);

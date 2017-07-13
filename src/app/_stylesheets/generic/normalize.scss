@@ -12,5 +12,18 @@ a {
 }
 
 md-toolbar {
-    background: #23CF5F !important;
+    background: white !important;
+}
+
+p {
+    margin: 0px;
+    padding: 0px;
+}
+
+md-button md-raised:not([disabled]) {
+    box-shadow: none;
+}
+
+md-button {
+    text-transform: none;
 }
