@@ -27,12 +27,6 @@
             console.log(blogId);
             vm.liked = !vm.liked;
         };
-        // Socialshare.share({
-        //   'provider': 'facebook',
-        //   'attrs': {
-        //     'socialshareUrl': 'http://720kb.net'
-        //   }
-        // });
 
         $scope.showLikes = function($event, id, title) {
             $event.stopPropagation();
