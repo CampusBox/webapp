@@ -8,6 +8,11 @@
     font-size: $f-7;
     padding: $s-2;
     width: 100%;
+    border-radius: $border-radius;
+    background: $bg-light-grey;
+    color: $text-color-grey;
+    border: solid 1px #ccc;
+    font-weight: $semi-bold;
 }
 
 .nav-button {

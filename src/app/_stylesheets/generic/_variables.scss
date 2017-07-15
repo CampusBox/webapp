@@ -2,16 +2,17 @@
  * Colours
  */
 
-$main-bg-color: #fff !important;
+$main-bg-color: #fff;
+$bg-light-grey: rgba(0, 0, 0, 0.1);
 // $text-color: #373737;
-$cb-green-color: #23CF5F !important;
+$cb-green-color: #23CF5F;
 $grey-color: #484848;
 $accent-color: rgb(0, 150, 136);
 $warning-color: #E75753;
-$text-color-black: rgba(0, 0, 0, .87) !important;
-$text-color-red: #e91e63 !important;
-$text-color-grey: rgba(0, 0, 0, .6) !important;
-$text-color-light-grey: rgba(0, 0, 0, .44) !important;
+$text-color-black: rgba(0, 0, 0, .87);
+$text-color-red: #e91e63;
+$text-color-grey: rgba(0, 0, 0, .6);
+$text-color-light-grey: rgba(0, 0, 0, .44);
 
 /**
  * typography

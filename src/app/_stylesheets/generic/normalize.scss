@@ -27,3 +27,7 @@ md-button md-raised:not([disabled]) {
 md-button {
     text-transform: none;
 }
+
+md-tile-content md-icon {
+    fill: $text-color-grey;
+}
