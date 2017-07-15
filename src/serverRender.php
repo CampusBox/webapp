@@ -20,22 +20,14 @@ if ($result->num_rows > 0) {
     
     // while($row = $result->fetch_assoc()) {
 ?>
-
-
-           <meta property="og:title" content="<?php echo $row["title"]; ?>" />
-            <meta property="og:description" content="<?php echo $row["title"]; ?>" />
-
-
-
+        <meta property="og:title" content="<?php echo $row["title"]; ?>" />
+        <meta property="og:description" content="<?php echo $row["title"]; ?>" />
 <?php
-
-
-
         echo "id: " . $row["content_id"]. " - Name: " . $row["title"]. "<br>";
-break();
-    }
-} else {
-    echo "0 results";
-}
-$conn->close();
+        break();
+        }
+        } else {
+            echo "0 results";
+        }
+        $conn->close();
 ?>

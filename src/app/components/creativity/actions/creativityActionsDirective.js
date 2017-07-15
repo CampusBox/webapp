@@ -26,17 +26,17 @@
                         clickOutsideToClose: true,
                         controllerAs: 'dc'
                     })
-                }
+                };
                 $scope.openProfile = function($event, username) {
                     $event.stopPropagation();
                     $state.go('home.profile', { username: username });
                 };
                 $scope.bookmark = function(content, index) {
                     creativityActionsService.bookmark(content);   
-                }
+                };
                 $scope.heart = function(content, $index) {
                     creativityActionsService.heart(content, $index);
-                }
+                };
 
             }
         };
