@@ -1,24 +1,14 @@
 <div layout="column" ng-controller="DashboardController" class="main-bg" class="" style="margin-bottom: 60px;">
-    <div layout="column" flex-offset-gt-sm="10" flex-gt-sm="80" flex-xs="100" flex-sm="100">
-        <div layout="row" layout-align="center center">
-            <h1 class=" section-heading" >
-                Opportunities <span hide-xs>you can avail</span>
-            </h1>
-            <span flex></span>
-            <md-button class="md-primary" ui-sref="home.events">See All</md-button>
-        </div>
-    </div>
-    <!-- <h1 class=" section-heading">Creative works by other students</h1> -->
-    <loading-creativity ng-if="creativityLoading" layout="row" ng-repeat="category in categories" layout-align="space-between" ></loading-creativity>
+    <loading-creativity ng-if="creativityLoading" layout="row" ng-repeat="category in categories" layout-align="space-between"></loading-creativity>
     <div ng-show="!creativityLoading" ng-repeat="category in categories">
         <div layout="row" layout-align="center center">
             <h1 class=" section-heading">{{category.title}}</h1>
             <span flex></span>
             <md-button class="md-primary" ng-show='category.finalContents.length > 0' ui-sref="home.creativity">See All</md-button>
         </div>
-        <div >
+        <div>
             <div flex layout="row" class="creativity-page inner-box" layout-search-wrap flex="noshrink" class="horizontal-scroll" infinite-scroll-disabled='creativityLoading'>
-                <creativity-card  flex="none" ng-repeat="content in category.finalContents.data track by $index" data="content" actions="true" showcategory="false"></creativity-card>
+                <creativity-card flex="none" ng-repeat="content in category.finalContents.data track by $index" data="content" actions="true" showcategory="false"></creativity-card>
             </div>
         </div>
     </div>
