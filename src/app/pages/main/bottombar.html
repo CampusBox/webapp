@@ -1,0 +1,53 @@
+<md-button ng-class="{active: (currentMenu=='home.dashboard')}" layout-align="center center" flex class="capitalize grey_text bottom-menu-item" ng-click="vm.selectItem(item)" ui-sref-active="" ui-sref=".dashboard">
+
+    <div hide-md class="md-tile-content">
+        <md-icon md-svg-icon="home"></md-icon>
+    </div>
+    <div class="md-tile-content">
+        Home
+    </div>
+</md-button>
+<md-button layout-align="center center" ng-class="{active: (currentMenu=='home.searchAll')}" flex class="capitalize grey_text bottom-menu-item" ui-sref="home.searchAll" aria-label="Notifications" ng-click="">
+    <div hide-md class="md-tile-content">
+        <md-icon md-svg-icon="magnify"></md-icon>
+    </div>
+    <div class="md-tile-content">
+        Search
+    </div>
+</md-button>
+<md-button ng-class="{active: (currentMenu=='home.events')}" layout-align="center center" flex class="capitalize grey_text bottom-menu-item" ng-click="vm.selectItem(item)" ui-sref-active="" ui-sref=".events">
+    <div hide-md class="md-tile-content">
+        <md-icon md-svg-icon="calendar"></md-icon>
+    </div>
+    <div class="md-tile-content">
+        Opportunities
+    </div>
+</md-button>
+<md-button ng-class="{active: (currentMenu=='home.creativity')}" layout-align="center center" flex class="capitalize grey_text bottom-menu-item" ng-click="vm.selectItem(item)" ui-sref-active="" ui-sref=".creativity">
+    <div hide-md class="md-tile-content">
+        <md-icon md-svg-icon="all-inclusive"></md-icon>
+    </div>
+    <div class="md-tile-content">
+        Creativity
+    </div>
+</md-button>
+<md-button ng-class="{active: ((currentMenu=='home.addCreativity') || (currentMenu=='home.addEvent') || (currentMenu=='home.myProfile'))}" ng-show="authenticated" layout-align="center center" flex class="capitalize grey_text bottom-menu-item" aria-label="Notifications"
+    ng-click="vm.toggleRightSidebar()">
+    <!--Style tag below was intentionally done by Ayush till he gets to this point-->
+    <div class="md-tile-content" style="height: 24px; width: 24px; margin: auto; border-radius: 100px;">
+        <img ng-src="{{user.image}}" class="md-card-avatar">
+        <!-- <md-icon md-svg-icon="account"></md-icon> -->
+    </div>
+    <div class="md-tile-content">
+        Me
+    </div>
+</md-button>
+<md-button hide-gt-sm ng-show="!authenticated" layout-align="center center" ng-class="{active: $state.includes('home')}" flex class="capitalize grey_text bottom-menu-item" ng-click="openLoginDialog()">
+    <div class="md-tile-content" layout="column">
+        <md-icon md-svg-icon="account"></md-icon>
+    </div>
+    <div class="md-tile-content">
+        Login
+    </div>
+</md-button>
+</md-menu>
