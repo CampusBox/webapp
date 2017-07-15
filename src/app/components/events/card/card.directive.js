@@ -52,36 +52,7 @@
                     console.log('testing report function');
                 };
 
-                $scope.heartEvent = function(event, $index) {
-                    if ($rootScope.authenticated) {
-                        $scope.events[$index].Actions.Bookmarked.status = !$scope.events[$index].Actions.Bookmarked.status;
-                        if ($scope.events[$index].Actions.Bookmarked.status) {
-                            $scope.events[$index].Actions.Bookmarked.total += 1;
-                            tokenService.post('bookmarkEvent/' + event.id).then(function(result) {
-
-                                if (result.status != 'error') {
-                                    // console.log(result.status);
-                                } else {
-                                    // console.log(result);
-                                }
-                            });
-                        } else {
-                            $scope.events[$index].Actions.Bookmarked.total -= 1;
-
-                            tokenService.delete('bookmarkEvent/' + event.id, '').then(function(result) {
-                                if (result.status != 'error') {
-                                    // console.log(result.status);
-                                } else {
-                                    // console.log(result);
-                                }
-                            });
-                        }
-                    } else {
-                        $rootScope.openLoginDialog(function() {
-                            $scope.heartEvent(event, $index);
-                        });
-                    }
-                }
+            
                 $scope.rsvpEvent = function($event, event, $index, state) {
                     $event.stopPropagation();
                     if ($rootScope.authenticated) {
