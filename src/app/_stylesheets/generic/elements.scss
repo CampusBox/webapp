@@ -94,12 +94,16 @@
 }
 
 .interest {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.1) !important;
     border-radius: $border-radius-chip;
     text-transform: none !important;
     padding: $s-0 $s-3;
     min-width: $s-0;
     font-size: $f-6;
+}
+
+.profile-card {
+    background: white;
 }
 
 @media only screen and (max-width: 600px) {
