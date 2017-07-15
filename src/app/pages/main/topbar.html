@@ -1,0 +1,69 @@
+<p class="logo" ui-sref="home.creativity"> Campusbox</p>
+<form flex="30" ng-submit="searchedFast(searchText)">
+    <input class="search" type="text" name="searchText" placeholder="Search Campusbox">
+</form>
+
+<section layout-align="end start">
+    <!-- <md-button ng-repeat="item in vm.menuItems" layout-align="center center" ng-class="{active: (currentMenu==item.name)}" flex class="capitalize grey_text" ng-click="vm.selectItem(item)" ui-sref="{{item.sref}}">
+                <div class="md-tile-content" layout="column">
+                    <md-icon md-svg-icon="{{item.icon}}"></md-icon>
+                </div>
+                <div class="md-tile-content">
+                    {{item.name}}
+                </div>
+            </md-button> -->
+    <md-button ng-if="!authenticated" ng-click="openLoginDialog()" md-menu-origin="" md-menu-align-target layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications">
+        <div class="md-tile-content" layout="column">
+            <md-icon md-svg-icon="plus-circle"></md-icon>
+        </div>
+        <div class="md-tile-content">
+            Add
+        </div>
+    </md-button>
+    <md-menu md-offset="-88 56">
+        <md-button ng-class="{active: (currentMenu=='add')}" ng-show="authenticated" md-menu-origin="" md-menu-align-target layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications" ng-click="$mdMenu.open()">
+            <div class="md-tile-content" layout="column">
+                <md-icon class="cb-grey-fill" md-svg-icon="plus-circle"></md-icon>
+            </div>
+            <div class="md-tile-content">
+                Add
+            </div>
+        </md-button>
+        <md-menu-content width="5">
+            <!-- <md-menu-item>
+                        <md-button ng-click="$mdCloseMenu()" ui-sref="home.addEvent">
+                            <div layout="row" flex="" class="ng-scope layout-row flex">
+                                <p flex="" class="flex">Add Opportunity</p>
+                                <md-icon md-svg-icon="calendar"></md-icon>
+                            </div>
+                        </md-button>
+                    </md-menu-item> -->
+            <md-menu-item>
+                <md-button ng-click="$mdCloseMenu()" ui-sref="home.addCreativity">
+                    <div layout="row" flex="" class="ng-scope layout-row flex">
+                        <p flex="" class="flex">Add Creativity</p>
+                        <md-icon md-svg-icon="all-inclusive"></md-icon>
+                    </div>
+                </md-button>
+            </md-menu-item>
+        </md-menu-content>
+    </md-menu>
+</section>
+<section layout-align="end start">
+    <md-button ng-class="{active: (currentMenu=='home.myProfile')}" ng-show="authenticated" layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
+        <div class="md-tile-content" layout="column">
+            <img ng-src="{{user.image}}" style="height: 24px; width: 24px; margin: auto; border-radius: 100px;">
+        </div>
+        <div class="md-tile-content">
+            Me
+        </div>
+    </md-button>
+    <md-button ng-show="!authenticated" layout-align="center center" ng-class="{active: $state.includes('home')}" flex class="capitalize grey_text" ng-click="openLoginDialog()">
+        <div class="md-tile-content" layout="column">
+            <md-icon md-svg-icon="account"></md-icon>
+        </div>
+        <div class="md-tile-content">
+            Login
+        </div>
+    </md-button>
+</section>
