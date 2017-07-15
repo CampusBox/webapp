@@ -21,11 +21,11 @@
             SignUpDialogController
         ]);
 
-    function SignUpDialogController($scope, $timeout, $rootScope, $localStorage, $state, tokenService, 
+    function SignUpDialogController($scope, $timeout, $rootScope, $localStorage, $state, tokenService,
         // REQUIRED FOR CORDOVA     
         // secretServices,
         // END
-        $auth, $window, creativityCategories, $filter, $mdDialog) { 
+        $auth, $window, creativityCategories, $filter, $mdDialog) {
         var vm = this;
 
         $scope.signup = 1;
@@ -38,7 +38,7 @@
             $rootScope.$emit("callShowLoginFunc", {});
             $scope.signup = 0;
         }
-        $scope.showSignUp = function(){
+        $scope.showSignUp = function() {
             $scope.signup = 1;
 
         }
@@ -97,6 +97,14 @@
                             $rootScope.image = abc.image;
                             // $state.go("home.dashboard");
                             $rootScope.authenticated = true;
+                            tokenService.get("userImage")
+                                .then(function(res) {
+                                    $rootScope.user = res;
+                                    tokenService.get("notifications")
+                                        .then(function(abcd) {
+                                            $rootScope.notifications = abcd;
+                                        });
+                                });
                             $mdDialog.hide();
                         }).catch(function(abc) {
                             localStorage.setItem('id_token', abc.token);
@@ -167,13 +175,13 @@
                         $rootScope.image = abc.image;
                         $rootScope.authenticated = true;
                         tokenService.get("userImage")
-                                        .then(function(response) {
-                                            $rootScope.user = response;
-                                            tokenService.get("notifications")
-                                                .then(function(abc) {
-                                                    $rootScope.notifications = abc;
-                                                });
-                                        });
+                            .then(function(response) {
+                                $rootScope.user = response;
+                                tokenService.get("notifications")
+                                    .then(function(abc) {
+                                        $rootScope.notifications = abc;
+                                    });
+                            });
                         $mdDialog.hide();
                     })
                     .catch(function(abc) {
@@ -183,7 +191,7 @@
                         $scope.showSignUp('Could not contact server. Please try again later!');
                     });
 
-            },function(obj) {
+            }, function(obj) {
 
                 $scope.signUp.token = response.access_token;
                 $scope.signUp.type = provider;
@@ -246,15 +254,15 @@
                     $server_token = user_data.serverAuthCode;
 
                     $scope.signUp = {
-                        'type' : 'google',
-                        'provider' : "google",
-                        'skills' : $scope.selectedSkills,
-                        'intrests' : $scope.interests,
-                        'college_id' : $scope.college,
-                        'name' : user_data.displayName,
-                        'imageUrl' : user_data.imageUrl,
-                        'email' : user_data.email,
-                        'uid' : user_data.userId
+                        'type': 'google',
+                        'provider': "google",
+                        'skills': $scope.selectedSkills,
+                        'intrests': $scope.interests,
+                        'college_id': $scope.college,
+                        'name': user_data.displayName,
+                        'imageUrl': user_data.imageUrl,
+                        'email': user_data.email,
+                        'uid': user_data.userId
                     };
 
                     $.post('https://accounts.google.com/o/oauth2/token', {
@@ -284,15 +292,15 @@
                                 $rootScope.authenticated = true;
                                 $mdDialog.hide();
                                 tokenService.get("userImage")
-                                        .then(function(response) {
-                                            $rootScope.user = response;
-                                            tokenService.get("notifications")
-                                                .then(function(notif) {
-                                                    $rootScope.notifications = notifs;
-                                                });
-                                        });
+                                    .then(function(response) {
+                                        $rootScope.user = response;
+                                        tokenService.get("notifications")
+                                            .then(function(notif) {
+                                                $rootScope.notifications = notifs;
+                                            });
+                                    });
 
-                                
+
 
                             })
                             .catch(function() {
@@ -349,6 +357,6 @@
         });
 
 
-      
+
     }
 })();
