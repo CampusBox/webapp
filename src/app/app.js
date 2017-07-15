@@ -1,6 +1,8 @@
-(function(){
-  'use strict';
+(function() {
+    'use strict';
 
-  angular.module('app', [ 'ngMaterial','720kb.socialshare','angularTrix','ngclipboard']);
+    angular.module('app', ['ngAnimate', 'satellizer', 'ngMaterial',
+        'ngSanitize', 'socialLogin', 'ngStorage', 'angular-inview', 'angular-medium-editor', 'satellizer', 'ngImgCrop', 'angular-google-analytics', 'ngFileUpload'
+    ]);
 
 })();
