@@ -1,38 +1,33 @@
-<div layout="column" layout-fill class="main-bg">
-    <div layout-gt-xs="row" layout-xs="column">
-        <!-- <creativity-filters></creativity-filters> -->
-        <div flex-gt-xs="20">
-            <center hide-xs layout-wrap>
-                <h3>Categories</h3>
-                <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected':'interest'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
-                    {{ type.title }}
-                </md-button>
-            </center>
-            <div layout-align="start center" layout="row" hide-gt-xs>
-                <md-button ng-click="filterToggle()">
-                    <md-icon md-svg-icon="filter-outline"></md-icon>
-                    Filter
-                </md-button>
-                <span flex></span>
-                <md-button ui-sref="home.addCreativity">
-                    Add a Creativity
-                    <!-- <md-icon md-svg-icon="all-inclusive"></md-icon> -->
-                </md-button>
-            </div>
-            <div layout="row" ng-if="filterShow" layout-wrap show-xs show-sm hide-gt-sm>
-                <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected':'interest'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
-                    {{ type.title }}
-                </md-button>
-                <span flex></span>
-                <md-button ng-click="filterToggle();" class="md-primary">
-                    Done
-                </md-button>
-            </div>
+<div layout-gt-xs="row" layout-xs="column">
+    <div flex flex-gt-xs="70" layout-align="start" layout="row" layout-wrap>
+        <creativity-card ng-repeat="content in finalContents track by $index" data="content" showcategory="true" actions="true"></creativity-card>
+        <loading-creativity in-view="myPagingFunction()" in-view-options="{ generateParts: true,offset : 300,generateDirection:true }" ng-show="moreItems" layout-wrap layout="row" layout-align="space-around" hide-xs></loading-creativity>
+        <loading-creativity in-view="myPagingFunction()" in-view-options="{ generateParts: true,offset : 300,generateDirection:true }" ng-show="moreItems" layout="column" layout-align="space-around" hide-gt-xs></loading-creativity>
+    </div>
+    <div flex-gt-xs="30">
+        <div hide-xs layout-wrap>
+            <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected':'interest'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
+                {{ type.title }}
+            </md-button>
         </div>
-        <div flex layout-align="space-around" layout-gt-xs="row" layout-xs="row" layout-wrap class="creativity-page">
-            <creativity-card ng-repeat="content in finalContents track by $index" data="content" showcategory="true" actions="true"></creativity-card>
-            <loading-creativity in-view="myPagingFunction()" in-view-options="{ generateParts: true,offset : 300,generateDirection:true }" ng-show="moreItems" layout-wrap layout="row" layout-align="space-around" hide-xs></loading-creativity>
-            <loading-creativity in-view="myPagingFunction()" in-view-options="{ generateParts: true,offset : 300,generateDirection:true }" ng-show="moreItems" layout="column" layout-align="space-around" hide-gt-xs></loading-creativity>
+        <div layout-align="start center" layout="row" hide-gt-xs>
+            <md-button ng-click="filterToggle()">
+                <md-icon md-svg-icon="filter-outline"></md-icon>
+                Filter
+            </md-button>
+            <span flex></span>
+            <md-button ui-sref="home.addCreativity">
+                Add a Creativity
+            </md-button>
+        </div>
+        <div layout="row" ng-if="filterShow" layout-wrap show-xs show-sm hide-gt-sm>
+            <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected':'interest'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
+                {{ type.title }}
+            </md-button>
+            <span flex></span>
+            <md-button ng-click="filterToggle();" class="md-primary">
+                Done
+            </md-button>
         </div>
     </div>
 </div>
