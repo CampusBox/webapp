@@ -17,17 +17,21 @@
         </div>
     </div>
     <div flex flex-gt-xs="75" layout-align="start" layout="row" layout-wrap>
-        <creativity-card ng-repeat="content in finalContents track by $index" data="content" showcategory="true" actions="true"></creativity-card>
-        <loading-creativity in-view="myPagingFunction()" in-view-options="{ generateParts: true,offset : 300,generateDirection:true }" ng-show="moreItems" layout-wrap layout="row" layout-align="space-around" hide-xs></loading-creativity>
-        <loading-creativity in-view="myPagingFunction()" in-view-options="{ generateParts: true,offset : 300,generateDirection:true }" ng-show="moreItems" layout="column" layout-align="space-around" hide-gt-xs></loading-creativity>
+        <creativity-card ng-if="!isEmptyDataSet" ng-repeat="content in finalContents track by $index" data="content" showcategory="true" actions="true"></creativity-card>
+        <p ng-if="isEmptyDataSet">Awesome 404 page</p>
+        <loading-creativity in-view="myPagingFunction()" in-view-options="{ generateParts: true,offset : 300,generateDirection:true }" ng-if="moreItems && creativityLoading" layout-wrap layout="row" layout-align="space-around"></loading-creativity>
     </div>
-    <div layout="row" hide-xs flex-gt-xs="25">
-        <div layout="row" class="profile-card">
-            <div layout="column">
-                <img ng-src="{{user.image}}" style="height: 24px; width: 24px; margin: auto; border-radius: 100px;">
+    <div layout="column" hide-xs flex-gt-xs="25">
+        <div layout="column" class="profile-card">
+            <div class="profile-name-container" layout="row" layout-align="start center">
+                <img class="user-avatar" ng-src="{{user.image}}">
+                <p>{{user.name}}</p>
             </div>
+            <p>{{user.desc}}</p>
+            <md-divider></md-divider>
+            <md-button class="profile-card-action-button" ng-click="home.myProfile">View profile</md-button>
         </div>
-        <div layout-wrap>
+        <div layout-align="space-between" layout-wrap>
             <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected':'interest'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
                 {{ type.title }}
             </md-button>

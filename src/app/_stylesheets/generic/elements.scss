@@ -91,6 +91,7 @@
     color: white !important;
     min-width: $s-0;
     font-size: $f-6;
+    margin-left: $s-0;
 }
 
 .interest {
@@ -98,6 +99,7 @@
     border-radius: $border-radius-chip;
     text-transform: none !important;
     padding: $s-0 $s-3;
+    margin-left: $s-0;
     min-width: $s-0;
     font-size: $f-6;
 }
@@ -117,6 +119,6 @@
         padding: 0px 7px;
         min-width: 0px;
         font-size: 12px;
-        margin: 7px 2px;
+        margin-left: $s-0;
     }
 }

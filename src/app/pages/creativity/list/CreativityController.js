@@ -23,6 +23,7 @@
         $scope.finalContentsCopy = [];
         $rootScope.currentPageBackground = $rootScope.gray;
         $scope.flase = false;
+        $scope.isEmptyDataSet = false;
         $rootScope.title = "Creativity";
         $scope.types = creativityCategories.types;
         $scope.typesByID = creativityCategories.typesByID;
@@ -107,7 +108,12 @@
                 console.log($scope.contentDetails);
                 tokenService.post("contentsList", $scope.contentDetails)
                     .then(function(tableData) {
-                        $scope.creativityLoading = false;
+
+                        if (tableData.data.length == 0 && $scope.contentDetails.offset == 0) {
+                            console.log("Empty data!");
+                            $scope.isEmptyDataSet = true;
+                        }
+
                         if (tableData.data.length < 3) {
                             $scope.moreItems = false;
                         }

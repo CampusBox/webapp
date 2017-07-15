@@ -34,6 +34,10 @@
     width: 60px;
 }
 
+.creativity-card {
+    height: 343px;
+}
+
 .creativity-card-actions {
     position: absolute;
     width: 100%;
@@ -52,4 +56,34 @@
     padding: $s-0;
     margin: $s-0;
     line-height: $s-6;
+}
+
+.profile-card {
+    .user-avatar {
+        margin-right: $s-4;
+    }
+}
+
+.profile-name-container {
+    margin: $s-3;
+}
+
+.profile-card-action-button {
+    margin: $s-0;
+    padding: $s-0;
+    text-transform: none !important;
+}
+
+.creativity-loading-cover {
+    height: 280px;
+    width: 280px;
+}
+
+.creativity-loading-actions {
+    position: absolute;
+    width: 248px;
+    height: 31px;
+    bottom: 0;
+    left: 0;
+    margin: $s-4;
 }
