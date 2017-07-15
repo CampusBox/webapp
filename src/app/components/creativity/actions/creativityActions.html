@@ -11,12 +11,12 @@
             </div>
         </div>
     </div>
-    <div layout="row" layout-align="space-around center" flex="50" ng-show="actions">
+    <div layout="row" layout-align="space-between center" flex="50" ng-show="actions">
         <md-button class="cb-icon-button" ng-click="heart(content)" aria-label="Favorite" title="Recommend to share this article with your followers and let the author know you liked it">
             <md-icon class="cb-red-fill" md-svg-icon="{{content.actions.appreciate.status? 'heart' : 'heart-outline' }}"></md-icon>
         </md-button>
         <p ng-click="showLikes(content.id, content.title)" class="likesNumber">
-            {{content.Actions.Appreciate.total}}</p>
+            {{content.actions.appreciate.total}}</p>
         <md-button class="cb-icon-button" ng-controller="ShareController" ng-click="showCustom($event,'creativity',content.id)" aria-label="share ">
             <md-icon class="cb-dark-grey-fill" md-svg-icon="../../../../assets/svg/share-outline.svg"></md-icon>
         </md-button>

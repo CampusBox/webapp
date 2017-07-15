@@ -83,11 +83,36 @@
     margin-right: $s-2;
 }
 
+.interest_selected {
+    background-color: $text-color-red;
+    border-radius: $border-radius-chip;
+    padding: $s-0 $s-3;
+    text-transform: none !important;
+    color: white !important;
+    min-width: $s-0;
+    font-size: $f-6;
+}
+
+.interest {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: $border-radius-chip;
+    text-transform: none !important;
+    padding: $s-0 $s-3;
+    min-width: $s-0;
+    font-size: $f-6;
+}
+
 @media only screen and (max-width: 600px) {
     .btn-add-mobile {
         padding: $s-0;
         margin: $s-0;
         margin-right: $s-4;
         margin-bottom: $s-4;
+    }
+    .interest {
+        padding: 0px 7px;
+        min-width: 0px;
+        font-size: 12px;
+        margin: 7px 2px;
     }
 }
