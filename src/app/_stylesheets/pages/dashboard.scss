@@ -1,0 +1,16 @@
+.btn-see-all {
+    padding: $s-2;
+    margin: $s-0;
+    color: $text-color-red;
+    text-transform: none !important;
+    min-width: $s-0;
+    min-height: $s-0;
+    line-height: $s-0;
+}
+
+.dashboard-category-title-container {
+    margin-bottom: $s-2;
+    .cb-section-heading {
+        margin-left: 3px;
+    }
+}

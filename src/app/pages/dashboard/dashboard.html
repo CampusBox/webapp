@@ -1,15 +1,23 @@
-<div layout="column" ng-controller="DashboardController" class="main-bg" class="" style="margin-bottom: 60px;">
-    <loading-creativity ng-if="creativityLoading" layout="row" ng-repeat="category in categories" layout-align="space-between"></loading-creativity>
-    <div ng-show="!creativityLoading" ng-repeat="category in categories">
-        <div layout="row" layout-align="center center">
-            <h1 class=" section-heading">{{category.title}}</h1>
-            <span flex></span>
-            <md-button class="md-primary" ng-show='category.finalContents.length > 0' ui-sref="home.creativity">See All</md-button>
-        </div>
-        <div>
-            <div flex layout="row" class="creativity-page inner-box" layout-search-wrap flex="noshrink" class="horizontal-scroll" infinite-scroll-disabled='creativityLoading'>
+<div layout="row" ng-controller="DashboardController">
+    <p ng-if="creativityLoading">Imagine awesome loading here</p>
+    <div ng-if="!creativityLoading" flex="100" flex-gt-xs="75">
+        <div ng-repeat="category in categories">
+            <div layout="row" class="dashboard-category-title-container" layout-align="start center">
+                <p class="cb-section-heading">{{category.title}}</p>
+                <span flex></span>
+                <md-button class="btn-see-all" ui-sref="home.creativity">See All</md-button>
+            </div>
+            <div flex layout="row" class="horizontal-scroll" layout-search-wrap flex="noshrink" infinite-scroll-disabled='creativityLoading'>
                 <creativity-card flex="none" ng-repeat="content in category.finalContents.data track by $index" data="content" actions="true" showcategory="false"></creativity-card>
             </div>
+        </div>
+    </div>
+    <div hide-xs flex></div>
+    <div ng-if="!creativityLoading" hide-xs flex-gt-xs="20">
+        <div layout-align="space-between" layout-wrap>
+            <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected':'interest'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
+                {{ type.title }}
+            </md-button>
         </div>
     </div>
 </div>

@@ -28,6 +28,12 @@
     color: $text-color-grey;
 }
 
+.cb-section-heading {
+    font-size: $f-2;
+    font-weight: $bold;
+    margin: $s-0;
+}
+
 .cb-caption-clickable {
     color: $cb-green-color;
     text-transform: capitalize;
@@ -111,11 +117,6 @@
 }
 
 @media only screen and (max-width: 500px) {
-    .cb-section-heading {
-        font-size: 20px;
-        font-weight: 600;
-        margin: 0px;
-    }
     .cb-body {
         font-size: 13px;
         letter-spacing: 0;

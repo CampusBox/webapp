@@ -9,6 +9,9 @@
 .horizontal-scroll {
     height: 375px;
     overflow-y: hidden;
+    overflow-x: auto;
+    max-width: 100%;
+    padding-left: 3px; // To enable left shadow of the card
 }
 
 .center {
