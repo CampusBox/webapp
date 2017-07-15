@@ -3,9 +3,9 @@
         <a ui-sref="home.profile({username: content.owner.username})">
             <img class="user-avatar" ng-src="{{content.owner.photo}}" />
         </a>
-        <div layout="column" ui-sref="home.singleContent({contentId: content.id})">
+        <div layout="column" ui-sref="home.singleContent({contentId: content.id})" layout-align="center">
             <p class="cb-caption-clickable" ng-click="openProfile($event, content.owner.username);">{{content.owner.name}} </p>
-            <div layout="row" ng-show="showcategory">
+            <div layout="row" ng-if="showcategory">
                 <p class="cb-caption-text">in&nbsp;&nbsp;</p>
                 <p class="cb-caption-clickable">{{content.content_type?typesByID[content.content_type - 1]:"Unknown"}}</p>
             </div>
