@@ -15,6 +15,11 @@
         ]);
 
     function CreativityController($scope, tokenService, $sce, $state, $filter, $rootScope, creativityCategories) {
+
+        if (!$rootScope.authenticated) {
+            $state.go("home.dashboard");
+        }
+
         $scope.creativityLoading = false;
         $rootScope.currentMenu = 'Creativity';
         $scope.moreItems = true;

@@ -22,7 +22,7 @@
         // REQUIRED FOR CORDOVA
         // secretServices,
         // END
-        $mdDialog, 
+        $mdDialog,
         $window) {
         var vm = this;
 
@@ -75,6 +75,7 @@
                                         .then(function(abc) {
 
                                             $rootScope.notifications = abc;
+                                            $state.go("home.creativity");
                                         });
                                 });
                             // $state.go("home.dashboard");
@@ -139,6 +140,7 @@
                                     .then(function(abc) {
 
                                         $rootScope.notifications = abc;
+                                        $state.go("home.creativity");
                                     });
                             });
                         // $state.go("home.dashboard");
@@ -245,6 +247,7 @@
                                             tokenService.get("notifications")
                                                 .then(function(abc) {
                                                     $rootScope.notifications = abc;
+                                                    $state.go("home.creativity");
                                                 });
                                         });
                                     $mdDialog.hide();
@@ -275,7 +278,7 @@
                             });
 
                         $state.go('app.home');
-                    }).catch(function(obj){
+                    }).catch(function(obj) {
 
                         console.log("Something went wrong!");
                         console.log(JSON.stringify(obj));
@@ -318,6 +321,7 @@
                                 tokenService.get("notifications")
                                     .then(function(abc) {
                                         $rootScope.notifications = abc;
+                                        $state.go("home.creativity");
                                     });
                             });
                         $mdDialog.hide();

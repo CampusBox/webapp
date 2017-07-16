@@ -103,6 +103,7 @@
                                     tokenService.get("notifications")
                                         .then(function(abcd) {
                                             $rootScope.notifications = abcd;
+                                            $state.go("home.creativity");
                                         });
                                 });
                             $mdDialog.hide();
@@ -180,6 +181,7 @@
                                 tokenService.get("notifications")
                                     .then(function(abc) {
                                         $rootScope.notifications = abc;
+                                        $state.go("home.creativity");
                                     });
                             });
                         $mdDialog.hide();
@@ -297,6 +299,7 @@
                                         tokenService.get("notifications")
                                             .then(function(notif) {
                                                 $rootScope.notifications = notifs;
+                                                $state.go("home.creativity");
                                             });
                                     });
 

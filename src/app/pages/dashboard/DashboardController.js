@@ -28,6 +28,10 @@
             $rootScope.openLoginDialog();
         }
 
+        if ($rootScope.authenticated) {
+            $state.go("home.creativity");
+        }
+
         $scope.creativityLoading = false;
         $scope.contentTopLoading = true;
         $scope.offset = 0;
@@ -95,8 +99,8 @@
             });
 
         $scope.stop = function($event) {
-                $event.stopPropagation();
-            }
+            $event.stopPropagation();
+        }
 
         $scope.myPagingFunction = function() {
             if ($scope.creativityLoading == false && $scope.offset < 5) {
