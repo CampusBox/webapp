@@ -17,7 +17,7 @@ angular.module('angularMaterialAdmin', ['app'])
         Uncomment before buidling for pushing to server 
          */
 
-        $compileProvider.debugInfoEnabled(false);
+        // $compileProvider.debugInfoEnabled(false);
         $compileProvider.commentDirectivesEnabled(false);
         $compileProvider.cssClassDirectivesEnabled(false);
         // $locationProvider.html5Mode(true);

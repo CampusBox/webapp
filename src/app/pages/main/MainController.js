@@ -29,12 +29,12 @@
             $scope.hideBottomBar = val;
         });
 
-        $scope.screenIsSmall = $mdMedia('sm');
+        $rootScope.screenIsSmall = $mdMedia('sm') || $mdMedia('xs');
 
         $scope.$watch(function() {
-            return $mdMedia('sm');
+            return ($mdMedia('sm') || $mdMedia('xs'));
         }, function(small) {
-            $scope.screenIsSmall = small;
+            $rootScope.screenIsSmall = small;
         });
 
         $scope.logout = function(ev) {
@@ -87,16 +87,11 @@
                 $mdToast.simple()
                 .content(title)
                 .hideDelay(2000)
-                .position('top right')
+                .position('bottom right')
             );
         }
+        showSimpleToast('ajhsahksh');
 
-        $scope.test = [{
-            'name': 'rOHSN',
-            'url': 'https://github.com/angular/angular.js',
-            'watchers': '3,623',
-            'forks': '16,175',
-        }];
 
         $scope.NotificationItemClicked = function(notification) {
 
@@ -105,6 +100,7 @@
             } else if (notification.type == 'event_rsvps') {
                 // 
             } else if (notification.type == 'content_appreciate') {
+                $state.go('home.singleContent', { 'contentId': notification.content_id });
                 // 
             }
             toggleRightSidebar();
