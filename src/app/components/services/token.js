@@ -27,7 +27,7 @@
                 // var serviceBase = 'http://beta.campusbox.org/dist/api/public/';
 
                 //For testing from ayush locally
-                var serviceBase = 'http://localhost/public/';
+                var serviceBase = 'http://192.178.5.20/public/';
 
 
                 $rootScope.config = function() {

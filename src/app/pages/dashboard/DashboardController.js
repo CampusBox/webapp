@@ -7,6 +7,7 @@
             '$scope',
             'tokenService',
             '$location',
+            '$mdMedia',
             '$sce',
             '$filter',
             '$state',
@@ -17,12 +18,9 @@
             DashboardController
         ]);
 
-    function DashboardController($mdDialog, $scope, tokenService, $location, $sce, $filter, $state, $rootScope, $stateParams, creativityCategories, creativityActionsService) {
-        $scope.events = {};
+    function DashboardController($mdDialog, $scope, tokenService, $location, $mdMedia, $sce, $filter, $state, $rootScope, $stateParams, creativityCategories, creativityActionsService) {
         $scope.updatesLoading = true;
         $rootScope.currentMenu = 'Home';
-        $scope.eventLoading = true;
-        $scope.eventTopLoading = true;
         $scope.onboard = $stateParams.onboard;
         if ($scope.onboard == 'login') {
             $rootScope.openLoginDialog();
@@ -32,7 +30,18 @@
             $state.go("home.creativity");
         }
 
-        $scope.creativityLoading = false;
+        $scope.limit = 3;
+        console.log($scope.limit);
+        if ($mdMedia('(min-width: 1610px)')) {
+            $scope.limit = 4;
+        } else if ($mdMedia('(min-width: 1200px)')) {
+            $scope.limit = 3;
+        } else {
+            $scope.limit = 2;
+        }
+        console.log($scope.limit);
+
+        $scope.creativityLoading = true;
         $scope.contentTopLoading = true;
         $scope.offset = 0;
         $scope.nonFinalContents = [];
@@ -40,63 +49,52 @@
         $rootScope.title = "Dashboard";
         $scope.finalContents = [];
         $scope.categories = [{}, {}];
-        $scope.categoryTypes = [8, 9];
         $scope.types = creativityCategories.types;
 
         var cardObject = {};
         $scope.finalContents = [];
         $scope.mediaTypes = [4, 5, 6, 7, 12, 15, 16];
 
-        tokenService.get("minievents?limit=3")
-            .then(function(events) {
-                $scope.events = events.data;
-                // console.log($scope.events);
-                $scope.eventLoading = false;
-                $scope.creativityLoading = true;
+        const categoryTypes = [1, 2, 5, 4];
+        var i = 0;
+        var obj = { 'limit': $scope.limit, 'offset': 0, 'filters': [categoryTypes[i]] };
+        tokenService.post("contentsList", obj)
+            .then(function(response) {
 
-                categoryTypes = [1, 2, 5, 4];
+                $scope.categories[i] = {};
+                $scope.categories[i].title = creativityCategories.typesByID[categoryTypes[i] - 1];
+                $scope.categories[i].finalContents = response;
 
-                var i = 0;
-                var obj = { 'limit': 6, 'offset': 0, 'filters': [categoryTypes[i]] };
+                i = 1;
+                obj = { 'limit': $scope.limit, 'offset': 0, 'filters': [categoryTypes[i]] };
                 tokenService.post("contentsList", obj)
                     .then(function(response) {
-
-                        console.log(response);
                         $scope.categories[i] = {};
                         $scope.categories[i].title = creativityCategories.typesByID[categoryTypes[i] - 1];
                         $scope.categories[i].finalContents = response;
 
-                        i = 1;
-                        obj = { 'limit': 6, 'offset': 0, 'filters': [categoryTypes[i]] };
+                        i = 2;
+                        obj = { 'limit': $scope.limit, 'offset': 0, 'filters': [categoryTypes[i]] };
                         tokenService.post("contentsList", obj)
                             .then(function(response) {
                                 $scope.categories[i] = {};
                                 $scope.categories[i].title = creativityCategories.typesByID[categoryTypes[i] - 1];
                                 $scope.categories[i].finalContents = response;
 
-                                i = 2;
-                                obj = { 'limit': 6, 'offset': 0, 'filters': [categoryTypes[i]] };
+                                i = 3;
+                                obj = { 'limit': $scope.limit, 'offset': 0, 'filters': [categoryTypes[i]] };
                                 tokenService.post("contentsList", obj)
                                     .then(function(response) {
                                         $scope.categories[i] = {};
                                         $scope.categories[i].title = creativityCategories.typesByID[categoryTypes[i] - 1];
                                         $scope.categories[i].finalContents = response;
+                                        $scope.creativityLoading = false;
 
-                                        i = 3;
-                                        obj = { 'limit': 6, 'offset': 0, 'filters': [categoryTypes[i]] };
-                                        tokenService.post("contentsList", obj)
-                                            .then(function(response) {
-                                                $scope.categories[i] = {};
-                                                $scope.categories[i].title = creativityCategories.typesByID[categoryTypes[i] - 1];
-                                                $scope.categories[i].finalContents = response;
-                                                $scope.creativityLoading = false;
-                                                console.log($scope.categories);
-                                            });
                                     });
                             });
                     });
-
             });
+
 
         $scope.stop = function($event) {
             $event.stopPropagation();
