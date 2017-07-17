@@ -11,6 +11,29 @@
 .dashboard-category-title-container {
     margin-bottom: $s-2;
     .cb-section-heading {
-        margin-left: 3px;
+        margin-left: $s-4;
+    }
+}
+
+.dashboard-container {
+    margin: auto;
+    @media only screen and (min-width: 1643px) {
+        width: 1643px;
+    }
+    @media only screen and (min-width: 1232px) and (max-width: 1643px) {
+        width: 1232px;
+    }
+    @media only screen and (min-width: 822px) and (max-width: 1232px) {
+        width: 822px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .dashboard-content-container {
+        margin-right: $s-4;
+        .cb-card-vertical {
+            margin-right: $s-4;
+            margin-bottom: $s-4;
+        }
     }
 }

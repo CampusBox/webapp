@@ -7,7 +7,7 @@
             '$scope',
             'tokenService',
             '$location',
-            '$mdMedia',
+            '$window',
             '$sce',
             '$filter',
             '$state',
@@ -18,7 +18,7 @@
             DashboardController
         ]);
 
-    function DashboardController($mdDialog, $scope, tokenService, $location, $mdMedia, $sce, $filter, $state, $rootScope, $stateParams, creativityCategories, creativityActionsService) {
+    function DashboardController($mdDialog, $scope, tokenService, $location, $window, $sce, $filter, $state, $rootScope, $stateParams, creativityCategories, creativityActionsService) {
         $scope.updatesLoading = true;
         $rootScope.currentMenu = 'Home';
         $scope.onboard = $stateParams.onboard;
@@ -30,15 +30,31 @@
             $state.go("home.creativity");
         }
 
+        /**
+         * The min width for fitting boxes is determined using
+         * total_screen_width = (308 * n + 28 - 16 -12) * 4 / 3 [28 extra padding 16, 12 left and right padding needed]
+         * 
+         * total_screen_width = 308 * n * 4 / 3 
+         * 
+         * n = total_screen_width * 3 / (308 * 4)
+         * 
+         * n or limit = total_screen_width * 3 / 1232
+         * 
+         * Where 
+         *      308 => width of one box [280 + 28 (margin) ]
+         *      n => number of boxes to be shown
+         *      4 / 3 => The box takes 75% of the whole screen
+         */
+
         $scope.limit = 3;
-        console.log($scope.limit);
-        if ($mdMedia('(min-width: 1610px)')) {
-            $scope.limit = 4;
-        } else if ($mdMedia('(min-width: 1200px)')) {
-            $scope.limit = 3;
+        const width = $window.innerWidth;
+        console.log(width);
+        if (width > 822) {
+            $scope.limit = width * 3 / 1232; // Automatically floors the number, no need to round up
         } else {
-            $scope.limit = 2;
+            $scope.limit = 6;
         }
+        console.log((width * 3 / 1232));
         console.log($scope.limit);
 
         $scope.creativityLoading = true;

@@ -7,11 +7,9 @@
 }
 
 .horizontal-scroll {
-    height: 375px;
-    overflow-y: hidden;
     overflow-x: auto;
     max-width: 100%;
-    padding-left: 3px; // To enable left shadow of the card
+    padding-left: $s-4; // To enable left shadow of the card
 }
 
 .center {
@@ -31,7 +29,6 @@
     max-width: 1720px;
     margin: auto;
     padding-top: 16px;
-    padding-left: 16px;
 }
 
 .cb-card-title p {
