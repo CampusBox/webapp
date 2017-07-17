@@ -1,5 +1,5 @@
-<div layout-gt-xs="row" layout-xs="column">
-    <div hide-gt-xs>
+<div class="creativity-container" layout-gt-sm="row" layout-xs="column">
+    <div ng-if="screenIsSmall">
         <div layout-align="start center" layout="row">
             <md-button ng-click="filterToggle()">
                 <md-icon md-svg-icon="filter-outline"></md-icon>
@@ -16,12 +16,12 @@
             </md-button>
         </div>
     </div>
-    <div flex flex-gt-xs="75" layout-align="start" layout="row" layout-wrap>
+    <div flex flex-gt-sm="75" layout-align="start" layout="row" layout-wrap>
         <creativity-card ng-if="!isEmptyDataSet" ng-repeat="content in finalContents track by $index" data="content" showcategory="true" actions="true"></creativity-card>
         <p ng-if="isEmptyDataSet">Awesome 404 page</p>
         <loading-creativity in-view="myPagingFunction()" in-view-options="{ generateParts: true,offset : 300,generateDirection:true }" ng-if="moreItems && creativityLoading" layout-wrap layout="row" layout-align="space-around"></loading-creativity>
     </div>
-    <div layout="column" hide-xs flex-gt-xs="25">
+    <div layout="column" ng-if="!screenIsSmall" flex-gt-xs="25">
         <div layout="column" class="profile-card">
             <div class="profile-name-container" layout="row" layout-align="start center">
                 <img class="user-avatar" ng-src="{{user.image}}">
