@@ -1,7 +1,7 @@
 <div layout="column" layout-fill>
     <md-toolbar class="toolbar" ng-if="!screenIsSmall" ng-include="'app/pages/main/topbar.html'" md-scroll-shrink md-shrink-speed-factor="0.1" layout="row" layout-align="start center">
     </md-toolbar>
-    <md-toolbar hide-gt-sm layout="row" ng-hide="currentState == 'home.addCreativity' || hideBottomBar" style="position: fixed;bottom: 0px; box-shadow: 0px 1px 8px 2px rgba(0, 0, 0, 0.2), 0px 3px 4px 2px rgba(0, 0, 0, 0.14), 0px 3px 3px 2px rgba(0, 0, 0, 0.12)"
+    <md-toolbar ng-if="screenIsSmall" layout="row" ng-hide="currentState == 'home.addCreativity' || hideBottomBar" style="position: fixed;bottom: 0px; box-shadow: 0px 1px 8px 2px rgba(0, 0, 0, 0.2), 0px 3px 4px 2px rgba(0, 0, 0, 0.14), 0px 3px 3px 2px rgba(0, 0, 0, 0.12)"
         layout-align="center center" ng-include="'app/pages/main/bottombar.html'">
 
     </md-toolbar>

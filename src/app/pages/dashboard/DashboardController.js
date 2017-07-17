@@ -49,7 +49,7 @@
         $scope.limit = 3;
         const width = $window.innerWidth;
         console.log(width);
-        if (width > 822) {
+        if (width > 960) {
             $scope.limit = width * 3 / 1232; // Automatically floors the number, no need to round up
         } else {
             $scope.limit = 6;

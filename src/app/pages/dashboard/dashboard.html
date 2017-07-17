@@ -1,6 +1,6 @@
 <div class="dashboard-container" layout="row" ng-controller="DashboardController">
     <p ng-if="creativityLoading">Imagine awesome loading here</p>
-    <div class="dashboard-content-container" ng-if="!creativityLoading" flex="100" flex-gt-xs="75">
+    <div class="dashboard-content-container" ng-if="!creativityLoading" flex="100" flex-gt-sm="75">
         <div ng-repeat="category in categories">
             <div layout="row" class="dashboard-category-title-container" layout-align="start center">
                 <p class="cb-section-heading">{{category.title}}</p>
@@ -12,7 +12,7 @@
             </div>
         </div>
     </div>
-    <div ng-if="!creativityLoading" hide-xs flex-offset="5" flex-gt-xs="20">
+    <div ng-if="!creativityLoading && !screenIsSmall" flex-offset="5" flex-gt-xs="20">
         <div layout-align="space-between" layout-wrap>
             <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected':'interest'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
                 {{ type.title }}
