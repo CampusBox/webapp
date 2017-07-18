@@ -1,4 +1,25 @@
-<md-button ng-class="{active: (currentMenu=='home.dashboard')}" layout-align="center center" flex class="capitalize grey_text bottom-menu-item" ng-click="vm.selectItem(item)" ui-sref-active="" ui-sref=".dashboard">
+ <div layout="column" flex="25" ng-class="{active: (currentState=='home.dashboard' || currentState=='home.creativity')}" class="bottombar-item">
+    <md-icon class="bottombar-item-icon" md-svg-icon="home"></md-icon> 
+    <p class="bottombar-item-text">Home</p>
+</div>
+<div layout="column" flex="25" ng-class="{active: (currentMenu=='home.searchAll')}" class="bottombar-item">
+    <md-icon class="bottombar-item-icon" md-svg-icon="magnify"></md-icon> 
+    <p class="bottombar-item-text">Search</p>
+</div>
+<div layout="column" flex="25" ng-class="{active: (currentState == 'home.addCreativity')}" class="bottombar-item">
+    <md-icon class="bottombar-item-icon" md-svg-icon="plus"></md-icon> 
+    <p class="bottombar-item-text">Add</p>
+</div>
+<div ng-if="authenticated" layout="column" flex="25" class="bottombar-item">
+        <img class="bottombar-item-user-icon" ng-src="{{user.image}}">
+    <p class="bottombar-item-text">Me</p>
+</div> 
+<div ng-if="!authenticated" layout="column" flex="25" class="bottombar-item">
+    <md-icon class="bottombar-item-icon" md-svg-icon="account"></md-icon> 
+    <p class="bottombar-item-text">Login</p>
+</div> 
+
+ <!-- <md-button ng-class="{active: (currentMenu=='home.dashboard')}" layout-align="center center" flex class="capitalize grey_text bottom-menu-item" ng-click="vm.selectItem(item)" ui-sref-active="" ui-sref=".dashboard">
 
     <div hide-md class="md-tile-content">
         <md-icon md-svg-icon="home"></md-icon>
@@ -30,14 +51,14 @@
     <div class="md-tile-content">
         Creativity
     </div>
-</md-button>
-<md-button ng-class="{active: ((currentMenu=='home.addCreativity') || (currentMenu=='home.addEvent') || (currentMenu=='home.myProfile'))}" ng-show="authenticated" layout-align="center center" flex class="capitalize grey_text bottom-menu-item" aria-label="Notifications"
-    ng-click="vm.toggleRightSidebar()">
+</md-button> -->
+ <!-- <md-button ng-class="{active: ((currentMenu=='home.addCreativity') || (currentMenu=='home.addEvent') || (currentMenu=='home.myProfile'))}" ng-show="authenticated" layout-align="center center" flex class="capitalize grey_text bottom-menu-item" aria-label="Notifications" 
+    ng-click="vm.toggleRightSidebar()"> -->
     <!--Style tag below was intentionally done by Ayush till he gets to this point-->
-    <div class="md-tile-content" style="height: 24px; width: 24px; margin: auto; border-radius: 100px;">
-        <img ng-src="{{user.image}}" class="md-card-avatar">
+    <!-- <div class="md-tile-content" style="height: 24px; width: 24px; margin: auto; border-radius: 100px;">
+        <img ng-src="{{user.image}}" class="md-card-avatar"> -->
         <!-- <md-icon md-svg-icon="account"></md-icon> -->
-    </div>
+    <!-- </div>
     <div class="md-tile-content">
         Me
     </div>
@@ -50,4 +71,4 @@
         Login
     </div>
 </md-button>
-</md-menu>
+</md-menu>  -->
