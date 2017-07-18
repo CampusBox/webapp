@@ -3,32 +3,11 @@
     <form flex ng-submit="searchedFast(searchText)">
         <input class="search" type="text" name="searchText" placeholder="Search Campusbox">
     </form>
-    <!-- <md-button ng-repeat="item in vm.menuItems" layout-align="center center" ng-class="{active: (currentMenu==item.name)}" flex class="capitalize grey_text" ng-click="vm.selectItem(item)" ui-sref="{{item.sref}}">
-                <div class="md-tile-content" layout="column">
-                    <md-icon md-svg-icon="{{item.icon}}"></md-icon>
-                </div>
-                <div class="md-tile-content">
-                    {{item.name}}
-                </div>
-            </md-button> -->
+    <div layout="row" ng-click="authenticated?gotoState('addCreativity'):openLoginDialog()">
+        <md-icon md-svg-icon="plus"></md-icon>
+        <p>Add new content</p>
+    </div>
     <section>
-
-        <md-button ng-if="!authenticated" ng-click="openLoginDialog()" md-menu-origin="" md-menu-align-target layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications">
-            <div class="md-tile-content" layout="column">
-                <md-icon md-svg-icon="plus-circle"></md-icon>
-            </div>
-            <div class="md-tile-content">
-                Add
-            </div>
-        </md-button>
-        <md-button ng-if="authenticated" ui-sref="home.addCreativity" md-menu-origin="" md-menu-align-target layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications">
-            <div class="md-tile-content" layout="column">
-                <md-icon md-svg-icon="plus-circle"></md-icon>
-            </div>
-            <div class="md-tile-content">
-                Add
-            </div>
-        </md-button>
         <md-button ng-class="{active: (currentMenu=='home.myProfile')}" ng-show="authenticated" layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
             <div class="md-tile-content" layout="column">
                 <img ng-src="{{user.image}}" style="height: 24px; width: 24px; margin: auto; border-radius: 100px;">

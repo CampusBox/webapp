@@ -21,7 +21,8 @@
     <div class="creativity-content-container" flex flex-gt-sm="75" layout-align="start" layout="row" layout-wrap>
         <creativity-card ng-if="!isEmptyDataSet" ng-repeat="content in finalContents track by $index" data="content" showcategory="true" actions="true"></creativity-card>
         <p ng-if="isEmptyDataSet">Awesome 404 page</p>
-        <loading-creativity in-view="myPagingFunction()" in-view-options="{ generateParts: true,offset : 300,generateDirection:true }" ng-if="moreItems && creativityLoading" layout-wrap layout="row" layout-align="start"></loading-creativity>
+        <span in-view="myPagingFunction()" in-view-options="{ generateParts: true,offset : 0,generateDirection:true }" ng-if="moreItems ">  </span>
+        <loading-creativity ng-if=" creativityLoading" layout-wrap layout="row" layout-align="start"></loading-creativity>
     </div>
     <div layout="column" ng-if="!screenIsSmall" flex-gt-xs="25">
         <div layout="column" class="personal-profile-card">

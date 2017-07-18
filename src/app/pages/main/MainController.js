@@ -54,6 +54,11 @@
 
         };
 
+
+        $scope.gotoState = function(state) {
+            $location.url(state);
+        };
+
         vm.menuItems = [];
         vm.title = $state.current.data.title;
         vm.toggleRightSidebar = toggleRightSidebar;

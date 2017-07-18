@@ -105,12 +105,12 @@
         };
         // FILTERS SHIT END
         $scope.myPagingFunction = function() {
+            console.log('ahdj');
             if ($scope.creativityLoading == false && $scope.moreItems == true) {
                 $scope.creativityLoading = true;
                 if ($scope.contentDetails.filters.length) {
                     $scope.filterInBetween = 1;
                 }
-                console.log($scope.contentDetails);
                 tokenService.post("contentsList", $scope.contentDetails)
                     .then(function(tableData) {
 
@@ -121,16 +121,16 @@
 
                         if (tableData.data.length < 3) {
                             $scope.moreItems = false;
+                            console.log("Khatam data!");
                         }
+                        $scope.creativityLoading = false;
                         $scope.contents = [];
                         $scope.contents = tableData.data;
-                        $scope.creativityLoading = false;
                         // $scope.myPagingFunction();
                         $scope.finalContents = $scope.finalContents.concat($scope.contents);
                         $scope.finalContentsCopy = $scope.finalContentsCopy.concat($scope.contents);
 
                         $scope.contentDetails.offset += 3;
-                        $scope.myPagingFunction();
                     });
                 // $scope.contentDetails.offset += 3;
 
