@@ -1,28 +1,21 @@
-<section flex layout="row" layout-align="start center">
+<div flex layout="row" layout-align="start center">
     <p class="logo" ui-sref="home.creativity"> Campusbox</p>
     <form flex ng-submit="searchedFast(searchText)">
         <input class="search" type="text" name="searchText" placeholder="Search Campusbox">
     </form>
-    <div layout="row" ng-click="authenticated?gotoState('addCreativity'):openLoginDialog()">
-        <md-icon md-svg-icon="plus"></md-icon>
-        <p>Add new content</p>
-    </div>
-    <section>
-        <md-button ng-class="{active: (currentMenu=='home.myProfile')}" ng-show="authenticated" layout-align="center center" flex class="capitalize grey_text" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
-            <div class="md-tile-content" layout="column">
-                <img ng-src="{{user.image}}" style="height: 24px; width: 24px; margin: auto; border-radius: 100px;">
-            </div>
-            <div class="md-tile-content">
-                Me
-            </div>
-        </md-button>
-        <md-button ng-show="!authenticated" layout-align="center center" ng-class="{active: $state.includes('home')}" flex class="capitalize grey_text" ng-click="openLoginDialog()">
-            <div class="md-tile-content" layout="column">
-                <md-icon md-svg-icon="account"></md-icon>
-            </div>
-            <div class="md-tile-content">
-                Login
-            </div>
-        </md-button>
-    </section>
-</section>
+    <md-button layout="row" class="topbar-btn" ng-click="authenticated?gotoState('addCreativity'):openLoginDialog()">
+        <p class="topbar-cta-text">Add new content</p>
+    </md-button>
+    <md-button ng-if="authenticated" layout-align="center center" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
+        <p>Me</p>
+    </md-button>
+    <md-button ng-if="!authenticated" layout-align="center center" ng-class="{active: $state.includes('home')}" class="capitalize grey_text" ng-click="openLoginDialog()">
+        <div class="md-tile-content" layout="column">
+            <md-icon md-svg-icon="account"></md-icon>
+        </div>
+        <div class="md-tile-content">
+            Login
+        </div>
+    </md-button>
+
+</div>

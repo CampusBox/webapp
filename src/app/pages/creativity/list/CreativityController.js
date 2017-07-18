@@ -105,7 +105,6 @@
         };
         // FILTERS SHIT END
         $scope.myPagingFunction = function() {
-            console.log('ahdj');
             if ($scope.creativityLoading == false && $scope.moreItems == true) {
                 $scope.creativityLoading = true;
                 if ($scope.contentDetails.filters.length) {
@@ -121,7 +120,6 @@
 
                         if (tableData.data.length < 3) {
                             $scope.moreItems = false;
-                            console.log("Khatam data!");
                         }
                         $scope.creativityLoading = false;
                         $scope.contents = [];

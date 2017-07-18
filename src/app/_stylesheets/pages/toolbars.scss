@@ -5,7 +5,7 @@
 .topbar {
     max-width: 1720px;
     margin: auto;
-    min-height: 57px;
+    height: $topbar-height;
     background-color: #fff;
     cursor: pointer;
 }
@@ -24,11 +24,11 @@
 .nav-button {
     height: auto;
     font-weight: 500;
-    line-height: 16px;
+    line-height: $s-4;
     margin-top: 3px;
-    margin-bottom: 0px;
-    min-width: 0px;
-    font-size: 13px;
+    margin-bottom: $s-0;
+    min-width: $s-0;
+    font-size: $f-6;
 }
 
 .logo {
@@ -38,6 +38,20 @@
     color: $cb-green-color;
     margin-right: $s-4;
     margin-left: $s-4;
+}
+
+.topbar-btn {
+    margin: $s-0;
+    margin-left: $s-6;
+    margin-right: $s-6;
+    min-width: $s-0;
+    text-transform: none !important;
+}
+
+.topbar-cta-text {
+    color: $cb-green-color;
+    font-weight: $semi-bold;
+    font-size: $f-4;
 }
 
 
