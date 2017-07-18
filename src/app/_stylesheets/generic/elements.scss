@@ -29,6 +29,9 @@
     max-width: 1720px;
     margin: auto;
     padding-top: 16px;
+    @media only screen and (max-width: 960px) {
+        padding-bottom: $bottombar-height;
+    }
 }
 
 .cb-card-title p {

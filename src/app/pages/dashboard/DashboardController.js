@@ -71,7 +71,7 @@
         $scope.finalContents = [];
         $scope.mediaTypes = [4, 5, 6, 7, 12, 15, 16];
 
-        const categoryTypes = [1, 2, 5, 4];
+        const categoryTypes = [5, 2, 4, 1];
         var i = 0;
         var obj = { 'limit': $scope.limit, 'offset': 0, 'filters': [categoryTypes[i]] };
         tokenService.post("contentsList", obj)

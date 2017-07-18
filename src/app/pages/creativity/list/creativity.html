@@ -1,6 +1,8 @@
 <div class="creativity-container" layout-gt-sm="row" layout-xs="column">
     <div class="mobile-filter-container" ng-if="screenIsSmall">
         <div layout-align="start center" layout="row">
+            <p class="cb-section-heading">Creativity</p>
+            <div flex></div>
             <md-button class="filter-button" ng-click="filterToggle()">
                 <md-icon class="cb-grey-fill filter-button-icon" md-svg-icon="filter-outline"></md-icon>
                 Filter
@@ -29,7 +31,7 @@
             </div>
             <p class="cb-card-body">{{user.description}}</p>
             <md-divider></md-divider>
-            <md-button class="personal-profile-action-button" ng-click="home.myProfile">View profile</md-button>
+            <md-button class="personal-profile-action-button" ui-sref="home.myProfile({tab: 'profile'})">View profile</md-button>
         </div>
         <div layout-align="space-between" layout-wrap>
             <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected':'interest'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">
