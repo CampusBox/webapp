@@ -21,16 +21,6 @@
     font-weight: $semi-bold;
 }
 
-.nav-button {
-    height: auto;
-    font-weight: 500;
-    line-height: $s-4;
-    margin-top: 3px;
-    margin-bottom: $s-0;
-    min-width: $s-0;
-    font-size: $f-6;
-}
-
 .logo {
     text-transform: none;
     font-size: $f-2;
@@ -40,10 +30,10 @@
     margin-left: $s-4;
 }
 
-.topbar-btn {
+.topbar-cta-btn {
     margin: $s-0;
     margin-left: $s-6;
-    margin-right: $s-6;
+    margin-right: $s-2;
     min-width: $s-0;
     text-transform: none !important;
 }
@@ -52,6 +42,32 @@
     color: $cb-green-color;
     font-weight: $semi-bold;
     font-size: $f-4;
+}
+
+.topbar-item {
+    max-height: $topbar-height;
+    min-width: $s-0;
+    text-transform: none !important;
+    margin-right: $s-4;
+    margin-left: $s-4;
+    // Following are based on material design specs
+    padding-top: $s-2;
+    padding-bottom: $s-2 + 2;
+}
+
+.topbar-item-icon {
+    margin: $s-0;
+    fill: $text-color-grey !important;
+    opacity: 0.6;
+    height: 24px;
+    width: 24px;
+    margin-bottom: $s-1 - 2;
+}
+
+.topbar-item-text {
+    font-size: $f-7;
+    color: $text-color-light-grey;
+    line-height: $f-7;
 }
 
 

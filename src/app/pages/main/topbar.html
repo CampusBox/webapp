@@ -1,21 +1,19 @@
-<div flex layout="row" layout-align="start center">
+<div flex layout="row" layout-align="center center">
     <p class="logo" ui-sref="home.creativity"> Campusbox</p>
-    <form flex ng-submit="searchedFast(searchText)">
+    <form flex="45" ng-submit="searchedFast(searchText)">
         <input class="search" type="text" name="searchText" placeholder="Search Campusbox">
     </form>
-    <md-button layout="row" class="topbar-btn" ng-click="authenticated?gotoState('addCreativity'):openLoginDialog()">
+    <div flex></div>
+    <md-button layout="row" class="topbar-cta-btn" ng-click="authenticated?gotoState('addCreativity'):openLoginDialog()">
         <p class="topbar-cta-text">Add new content</p>
     </md-button>
-    <md-button ng-if="authenticated" layout-align="center center" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
-        <p>Me</p>
-    </md-button>
-    <md-button ng-if="!authenticated" layout-align="center center" ng-class="{active: $state.includes('home')}" class="capitalize grey_text" ng-click="openLoginDialog()">
-        <div class="md-tile-content" layout="column">
-            <md-icon md-svg-icon="account"></md-icon>
-        </div>
-        <div class="md-tile-content">
-            Login
-        </div>
-    </md-button>
+    <div layout="column" ng-if="authenticated" class="topbar-item" layout-align="start center" aria-label="Notifications" ng-click="vm.toggleRightSidebar()">
+        <md-icon class="topbar-item-icon" md-svg-icon="bell"></md-icon>
+        <p class="topbar-item-text">Notifications</p>
+    </div>
+    <div ng-if="!authenticated" class="topbar-item" layout-align="start center" ng-click="openLoginDialog()">
+        <md-icon class="topbar-item-icon" md-svg-icon="account"></md-icon>
+        <p class="topbar-item-text">Login</p>
+    </div>
 
 </div>
