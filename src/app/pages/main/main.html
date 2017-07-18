@@ -1,6 +1,6 @@
 <div layout="column" layout-fill>
     <md-toolbar class="topbar" ng-if="!screenIsSmall" ng-include="'app/pages/main/topbar.html'" md-scroll-shrink md-shrink-speed-factor="0.1" layout="row" layout-align="start center"></md-toolbar>
-    <md-toolbar class"bottombar" layout="row" ng-if="screenIsSmall && !(currentState == 'home.addCreativity' || hideBottomBar)" layout-align="center center" ng-include="'app/pages/main/bottombar.html'"></md-toolbar>
+    <md-toolbar class="bottombar" layout="row" ng-if="screenIsSmall && !(currentState == 'home.addCreativity' || hideBottomBar)" layout-align="center center" ng-include="'app/pages/main/bottombar.html'"></md-toolbar>
     <md-content flex style="background-color: {{currentPageBackground}} ">
         <div class="main-container" ui-view></div>
     </md-content>

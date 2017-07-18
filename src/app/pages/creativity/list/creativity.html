@@ -1,8 +1,8 @@
 <div class="creativity-container" layout-gt-sm="row" layout-xs="column">
-    <div ng-if="screenIsSmall">
+    <div class="mobile-filter-container" ng-if="screenIsSmall">
         <div layout-align="start center" layout="row">
-            <md-button ng-click="filterToggle()">
-                <md-icon md-svg-icon="filter-outline"></md-icon>
+            <md-button class="filter-button" ng-click="filterToggle()">
+                <md-icon class="cb-grey-fill filter-button-icon" md-svg-icon="filter-outline"></md-icon>
                 Filter
             </md-button>
         </div>
@@ -11,15 +11,15 @@
                 {{ type.title }}
             </md-button>
             <span flex></span>
-            <md-button ng-click="filterToggle();" class="md-primary">
+            <md-button class="filter-button" ng-click="filterToggle();" class="md-primary">
                 Done
             </md-button>
         </div>
     </div>
-    <div flex flex-gt-sm="75" layout-align="start" layout="row" layout-wrap>
+    <div class="creativity-content-container" flex flex-gt-sm="75" layout-align="start" layout="row" layout-wrap>
         <creativity-card ng-if="!isEmptyDataSet" ng-repeat="content in finalContents track by $index" data="content" showcategory="true" actions="true"></creativity-card>
         <p ng-if="isEmptyDataSet">Awesome 404 page</p>
-        <loading-creativity in-view="myPagingFunction()" in-view-options="{ generateParts: true,offset : 300,generateDirection:true }" ng-if="moreItems && creativityLoading" layout-wrap layout="row" layout-align="space-around"></loading-creativity>
+        <loading-creativity in-view="myPagingFunction()" in-view-options="{ generateParts: true,offset : 300,generateDirection:true }" ng-if="moreItems && creativityLoading" layout-wrap layout="row" layout-align="start"></loading-creativity>
     </div>
     <div layout="column" ng-if="!screenIsSmall" flex-gt-xs="25">
         <div layout="column" class="profile-card">
