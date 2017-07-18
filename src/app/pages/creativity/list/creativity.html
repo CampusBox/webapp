@@ -22,14 +22,14 @@
         <loading-creativity in-view="myPagingFunction()" in-view-options="{ generateParts: true,offset : 300,generateDirection:true }" ng-if="moreItems && creativityLoading" layout-wrap layout="row" layout-align="start"></loading-creativity>
     </div>
     <div layout="column" ng-if="!screenIsSmall" flex-gt-xs="25">
-        <div layout="column" class="profile-card">
-            <div class="profile-name-container" layout="row" layout-align="start center">
+        <div layout="column" class="personal-profile-card">
+            <div class="personal-profile-name-container" layout="row" layout-align="start center">
                 <img class="user-avatar" ng-src="{{user.image}}">
-                <p>{{user.name}}</p>
+                <p class="cb-card-title">{{user.name}}</p>
             </div>
-            <p>{{user.description}}</p>
+            <p class="cb-card-body">{{user.description}}</p>
             <md-divider></md-divider>
-            <md-button class="profile-card-action-button" ng-click="home.myProfile">View profile</md-button>
+            <md-button class="personal-profile-action-button" ng-click="home.myProfile">View profile</md-button>
         </div>
         <div layout-align="space-between" layout-wrap>
             <md-button ng-repeat="type in types" ng-class="type.intrested?'interest_selected':'interest'" ng-checked="exists(type, selected)" ng-click="toggle(type, selected)">

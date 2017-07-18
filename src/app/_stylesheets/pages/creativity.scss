@@ -103,17 +103,24 @@
     line-height: $s-6;
 }
 
-.profile-card {
+.personal-profile-card {
+    background: white;
+    border-radius: $border-radius;
+    box-shadow: $card-shadow;
+    margin-bottom: $s-4;
+}
+
+.personal-profile-card {
     .user-avatar {
-        margin-right: $s-4;
+        margin-right: $s-0;
     }
 }
 
-.profile-name-container {
-    margin: $s-3;
+.personal-profile-name-container {
+    margin-left: $s-3;
 }
 
-.profile-card-action-button {
+.personal-profile-action-button {
     margin: $s-0;
     padding: $s-0;
     text-transform: none !important;
