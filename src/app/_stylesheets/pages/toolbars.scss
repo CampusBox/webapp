@@ -152,7 +152,7 @@
         padding: $s-0;
     }
     .cb-card-body {
-        margin: $s-0 !important;
+        margin: $s-1 $s-0 $s-0 $s-0 !important;
         padding: $s-0;
     }
     .user-avatar {
@@ -168,4 +168,41 @@
 .notif-container {
     height: 100%;
     overflow-x: auto;
+}
+
+.notif-item-container {
+    margin-bottom: $s-2;
+}
+
+.notif-item-icon {
+    margin: $s-0 $s-4 $s-0 $s-0 !important;
+    padding: $s-0;
+    // Setting grey color of icons
+    fill: $text-color-grey !important;
+    opacity: 0.7;
+}
+
+.notif-item-text {
+    line-height: normal;
+    padding: $s-0;
+    color: $text-color-grey;
+}
+
+.notif-action-btn {
+    margin: $s-0;
+    padding: $s-0;
+}
+
+.notif-action-btn-text {
+    text-align: start;
+    text-transform: none !important;
+    color: $text-color-light-grey;
+}
+
+.notif-action-btn-icon {
+    margin: $s-0 $s-4 $s-0 $s-4 !important;
+    padding: $s-0;
+    font-size: $f-5;
+    fill: $text-color-grey !important;
+    opacity: 0.6;
 }

@@ -1,5 +1,5 @@
 <div class="sidebar" layout="column" layout-fill flex>
-    <md-button class="notif-profile-card" layout="row" layout-align="start center" ui-sref="home.myProfile({tab: 'profile'})" ng-click="vm.toggleRightSidebar()">
+    <md-button class="notif-profile-card" ng-class="" layout="row" layout-align="start center" ui-sref="home.myProfile({tab: 'profile'})" ng-click="vm.toggleRightSidebar()">
         <img ng-src="{{user.image}}" class="user-avatar" alt="{{user.name}}" />
         <div layout="column">
             <p class="cb-card-title">{{user.name}}</p>
@@ -10,16 +10,13 @@
     <md-divider></md-divider>
     <div class="notif-container" flex>
         <md-list ng-if="notifications.length>0">
-            <md-list-item ng-repeat="notification in notifications" ng-click="NotificationItemClicked(notification)">
-                <md-icon ng-if="notification.type=='follower'" md-svg-icon="account"></md-icon>
-                <md-icon ng-if="notification.type=='content_appreciate'" md-svg-icon="all-inclusive"></md-icon>
-                <div class="md-list-item-text">
-                    <p ng-if="notification.type=='follower'" ui-sref="home.profile({username: notification.follower_username})">{{notification.follower_username}} started following you.</p>
-                    <p ng-if="notification.type=='content_appreciate'" ui-sref="home.singleContent({contentId: notification.content_id})">{{notification.total}} {{(notification.total>1)?'people have':'person has'}} appreciated your creativity.</p>
-                </div>
-                <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon" aria-label="call">
-                    <md-icon md-svg-icon="{{phone.options.actionIcon}}"></md-icon>
-                </md-button>
+            <md-list-item class="notif-item-container" ng-repeat="notification in notifications" ng-click="NotificationItemClicked(notification)">
+                <!--Follower notification  -->
+                <md-icon class="notif-item-icon" ng-if="notification.type=='follower'" md-svg-icon="account"></md-icon>
+                <p class="notif-item-text" ng-if="notification.type=='follower'">{{notification.follower_username}} started following you.</p>
+                <!--Content appreciate notification  -->
+                <md-icon class="notif-item-icon" ng-if="notification.type=='content_appreciate'" md-svg-icon="all-inclusive"></md-icon>
+                <p class="notif-item-text" ng-if="notification.type=='content_appreciate'">{{notification.total}} {{(notification.total>1)?'people have':'person has'}} appreciated your creativity.</p>
             </md-list-item>
         </md-list>
         <div class="notif-error" ng-if="notifications.length<1" layout="column" layout-align="start center">
@@ -28,12 +25,8 @@
         </div>
     </div>
     <md-divider></md-divider>
-    <md-menu-item>
-        <md-button ng-click="logout();vm.toggleRightSidebar()">
-            <div layout="row" flex="" class="ng-scope layout-row flex">
-                <p flex="">Sign Out</p>
-                <md-icon md-svg-icon="logout-variant"></md-icon>
-            </div>
-        </md-button>
-    </md-menu-item>
+    <md-button class="notif-action-btn" layout="row" layout-align="start center" ng-click="logout();vm.toggleRightSidebar()">
+        <md-icon class="notif-action-btn-icon" md-svg-icon="logout-variant"></md-icon>
+        <p class="notif-action-btn-text" flex>Sign Out</p>
+    </md-button>
 </div>
