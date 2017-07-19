@@ -70,6 +70,7 @@
                     tokenService.get("notifications")
                         .then(function(abc) {
                             $rootScope.notifications = abc;
+
                         });
                 });
         }

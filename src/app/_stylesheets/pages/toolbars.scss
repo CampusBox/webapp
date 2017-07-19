@@ -129,3 +129,43 @@
         color: $cb-green-color !important;
     }
 }
+
+
+/**
+*   CSS properties for sidebar
+**/
+
+.sidebar {
+    .cb-section-heading {
+        margin: $s-4
+    }
+}
+
+.notif-profile-card {
+    padding: $s-4;
+    margin: $s-0;
+    text-transform: none !important;
+    line-height: $s-5;
+    cursor: pointer;
+    .cb-card-title {
+        margin: $s-0;
+        padding: $s-0;
+    }
+    .cb-card-body {
+        margin: $s-0 !important;
+        padding: $s-0;
+    }
+    .user-avatar {
+        margin-right: $s-4;
+    }
+}
+
+.notif-error {
+    margin-top: $s-10;
+    margin-bottom: $s-7;
+}
+
+.notif-container {
+    height: 100%;
+    overflow-x: auto;
+}

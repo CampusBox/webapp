@@ -1,49 +1,39 @@
-<!-- <div ng-include src=" 'app/views/partials/messages.html'"></div> -->
-<div class="messages" layout-fill>
-    <div class="messages-content">
-        <md-list>
-            <md-list-item class="md-2-line" ng-click="vm.toggleRightSidebar()" ui-sref="home.myProfile({tab: 'profile'})">
-                <img ng-src="{{user.image}}" class="md-avatar" alt="{{user.name}}" />
-                <div class="md-list-item-text">
-                    <h3>{{user.name}}</h3>
-                    <p>View profile</p>
-                </div>
-            </md-list-item>
-        </md-list>
-        <center>
-            <h3 class="grey_text">Notifications</h3>
-            <md-divider></md-divider>
-        </center>
-        <md-list>
-            <md-list-item class="md-2-line" ng-repeat="notification in notifications" ng-click="NotificationItemClicked(notification)">
+<div class="sidebar" layout="column" layout-fill flex>
+    <md-button class="notif-profile-card" layout="row" layout-align="start center" ui-sref="home.myProfile({tab: 'profile'})" ng-click="vm.toggleRightSidebar()">
+        <img ng-src="{{user.image}}" class="user-avatar" alt="{{user.name}}" />
+        <div layout="column">
+            <p class="cb-card-title">{{user.name}}</p>
+            <p class="cb-card-body">View profile</p>
+        </div>
+    </md-button>
+    <p class="cb-section-heading">Notifications</p>
+    <md-divider></md-divider>
+    <div class="notif-container" flex>
+        <md-list ng-if="notifications.length>0">
+            <md-list-item ng-repeat="notification in notifications" ng-click="NotificationItemClicked(notification)">
                 <md-icon ng-if="notification.type=='follower'" md-svg-icon="account"></md-icon>
-                <md-icon ng-if="notification.type=='event_rsvps'" md-svg-icon="calendar"></md-icon>
                 <md-icon ng-if="notification.type=='content_appreciate'" md-svg-icon="all-inclusive"></md-icon>
                 <div class="md-list-item-text">
                     <p ng-if="notification.type=='follower'" ui-sref="home.profile({username: notification.follower_username})">{{notification.follower_username}} started following you.</p>
-                    <p ng-if="notification.type=='event_rsvps'" ui-sref="home.singleEvent({eventId: notification.event_id})">{{notification.total}} {{(notification.total>1)?'people are':'person is'}} interested your opportunity"{{notification.title}}" </p>
                     <p ng-if="notification.type=='content_appreciate'" ui-sref="home.singleContent({contentId: notification.content_id})">{{notification.total}} {{(notification.total>1)?'people have':'person has'}} appreciated your creativity.</p>
                 </div>
                 <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon" aria-label="call">
                     <md-icon md-svg-icon="{{phone.options.actionIcon}}"></md-icon>
                 </md-button>
             </md-list-item>
-            <div ng-if="notifications.length==0">
-                <center>
-                    <md-icon md-svg-icon="bell-ring"></md-icon>
-                    <p>No new notification.</p>
-                </center>
-            </div>
-            <md-divider></md-divider>
         </md-list>
-        <div flex></div>
-        <md-menu-item>
-            <md-button ng-click="logout();vm.toggleRightSidebar()">
-                <div layout="row" flex="" class="ng-scope layout-row flex">
-                    <p flex="">Sign Out</p>
-                    <md-icon md-svg-icon="logout-variant"></md-icon>
-                </div>
-            </md-button>
-        </md-menu-item>
+        <div class="notif-error" ng-if="notifications.length<1" layout="column" layout-align="start center">
+            <md-icon class="cb-grey-fill" md-svg-icon="bell-ring"></md-icon>
+            <p class="cb-grey-text">No new notification.</p>
+        </div>
     </div>
+    <md-divider></md-divider>
+    <md-menu-item>
+        <md-button ng-click="logout();vm.toggleRightSidebar()">
+            <div layout="row" flex="" class="ng-scope layout-row flex">
+                <p flex="">Sign Out</p>
+                <md-icon md-svg-icon="logout-variant"></md-icon>
+            </div>
+        </md-button>
+    </md-menu-item>
 </div>
