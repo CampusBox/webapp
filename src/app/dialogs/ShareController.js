@@ -18,7 +18,7 @@
                     scope: $scope,
                     preserveScope: true,
                     targetEvent: $event,
-                    templateUrl: 'app/views/partials/shareLinks.html',
+                    templateUrl: '/app/dialogs/shareLinks.html',
                     controller: 'DialogController'
                 });
 
