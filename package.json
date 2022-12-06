@@ -22,7 +22,7 @@
     "gulp-load-plugins": "~0.7.1",
     "gulp-minify-html": "~0.1.7",
     "gulp-ng-annotate": "~1.0.0",
-    "gulp-protractor": "~0.0.11",
+    "gulp-protractor": "~0.0.12",
     "gulp-rename": "~1.2.0",
     "gulp-replace": "~0.5.0",
     "gulp-rev": "~2.0.1",
@@ -36,7 +36,7 @@
     "karma-jasmine": "~0.3.1",
     "karma-phantomjs-launcher": "~0.1.4",
     "main-bower-files": "~2.4.0",
-    "protractor": "~1.4.0",
+    "protractor": "~7.0.0",
     "require-dir": "~0.1.0",
     "uglify-save-license": "~0.4.1",
     "wiredep": "~2.2.0"
